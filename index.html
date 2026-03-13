@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkBio — Sua landing page na bio do Instagram</title>
+    <meta name="description" content="Crie uma landing page completa com subdomínio próprio como suaempresa.linkbio.app.br. Links, agenda, produtos e contatos em uma única página." />
+    <meta name="keywords"    content="link na bio, linkbio, landing page, instagram, whatsapp, bio personalizada" />
+    <meta name="author"      content="LinkBio" />
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content="LinkBio — Sua landing page na bio do Instagram" />
+    <meta property="og:description" content="Landing page completa com subdomínio próprio, links, agenda e produtos. Criação por R$ 99 e R$ 9,99/mês para manter ativa." />
+    <meta property="og:image"       content="/logo/logo-link-bio-1.png" />
+    <meta property="og:url"         content="https://linkbio.app.br" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+    <link rel="apple-touch-icon"    href="favicon.png" />
+    <link rel="preconnect"          href="https://fonts.googleapis.com" />
+    <link rel="preconnect"          href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
+            colors: {
+              primary:    '#2F80ED',
+              secondary:  '#333333',
+              background: '#F5F7FA',
+            },
+            boxShadow: {
+              soft:   '0 18px 45px rgba(15,23,42,0.08)',
+              glow:   '0 0 60px rgba(47,128,237,0.35)',
+              'glow-sm': '0 0 30px rgba(47,128,237,0.2)',
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      html { scroll-behavior: smooth; }
+
+      /* Grid hero background */
+      .hero-grid {
+        background-image:
+          radial-gradient(circle at 50% -10%, rgba(47,128,237,0.18) 0%, transparent 55%),
+          linear-gradient(rgba(47,128,237,0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(47,128,237,0.05) 1px, transparent 1px);
+        background-size: 100% 100%, 44px 44px, 44px 44px;
+      }
+
+      /* Gradient text */
+      .text-gradient {
+        background: linear-gradient(135deg, #2F80ED 0%, #60a5fa 60%, #38bdf8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Gradient border badge */
+      .badge-gradient {
+        background: linear-gradient(#080c18, #080c18) padding-box,
+                    linear-gradient(135deg, rgba(47,128,237,0.8), rgba(56,189,248,0.3)) border-box;
+        border: 1px solid transparent;
+      }
+
+      /* Phone ambient glow */
+      .phone-wrap::before {
+        content: '';
+        position: absolute;
+        inset: -60px;
+        background: radial-gradient(circle, rgba(47,128,237,0.22) 0%, transparent 65%);
+        border-radius: 50%;
+        z-index: 0;
+        animation: pulse-glow 3.5s ease-in-out infinite;
+      }
+
+      @keyframes pulse-glow {
+        0%, 100% { opacity: .5; transform: scale(1); }
+        50%       { opacity: 1; transform: scale(1.08); }
+      }
+
+      /* Scroll animations */
+      [data-animate] {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity .65s ease, transform .65s ease;
+      }
+      [data-animate].is-visible          { opacity: 1; transform: translateY(0); }
+      [data-animate-delay="100"]         { transition-delay: .10s; }
+      [data-animate-delay="200"]         { transition-delay: .20s; }
+      [data-animate-delay="300"]         { transition-delay: .30s; }
+      [data-animate-delay="400"]         { transition-delay: .40s; }
+
+      /* Step connector line */
+      .steps-connector::after {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: calc(100% + 10px);
+        width: calc(100% - 20px);
+        height: 1px;
+        background: linear-gradient(90deg, rgba(47,128,237,0.5), rgba(47,128,237,0.1));
+      }
+
+      /* ── Splash screen ─────────────────────────── */
+      #splash {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #080c18;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        transition: opacity .5s ease, visibility .5s ease;
+      }
+      #splash.hide {
+        opacity: 0;
+        visibility: hidden;
+      }
+      .splash-logo {
+        animation: splash-pop .5s cubic-bezier(.34,1.56,.64,1) both;
+      }
+      @keyframes splash-pop {
+        from { opacity: 0; transform: scale(.7); }
+        to   { opacity: 1; transform: scale(1); }
+      }
+      .splash-bar-track {
+        width: 180px;
+        height: 3px;
+        border-radius: 99px;
+        background: rgba(47,128,237,0.15);
+        overflow: hidden;
+      }
+      .splash-bar-fill {
+        height: 100%;
+        border-radius: 99px;
+        background: linear-gradient(90deg, #2F80ED, #38bdf8);
+        animation: splash-fill 1.6s ease forwards;
+      }
+      @keyframes splash-fill {
+        from { width: 0%; }
+        to   { width: 100%; }
+      }
+    </style>
+  </head>
+
+  <body class="bg-background text-secondary antialiased font-sans text-[15px] sm:text-base leading-relaxed">
+
+    <!-- ══════════════════════ SPLASH ══════════════════════ -->
+    <div id="splash">
+      <div class="splash-logo flex flex-col items-center gap-4">
+        <img src="logo/logo-link-bio-2.png" alt="LinkBio" class="h-12 w-auto object-contain" />
+        <p class="text-[13px] text-slate-400 font-medium tracking-wide">Sua landing page na bio</p>
+      </div>
+      <div class="splash-bar-track">
+        <div class="splash-bar-fill"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════ NAVBAR ══════════════════════ -->
+    <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-[0_1px_12px_rgba(15,23,42,0.06)]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-16 items-center justify-between">
+
+          <a href="#hero" class="flex items-center gap-2">
+            <img src="logo/logo-link-bio-1.png" alt="Logo LinkBio" class="h-8 w-auto object-contain" loading="lazy" />
+          </a>
+
+          <nav class="hidden md:flex items-center gap-8 text-[14px] font-medium">
+            <a href="#features"     class="text-secondary/70 hover:text-secondary transition">Recursos</a>
+            <a href="#examples"     class="text-secondary/70 hover:text-secondary transition">Exemplos</a>
+            <a href="#how-it-works" class="text-secondary/70 hover:text-secondary transition">Como funciona</a>
+            <a href="#pricing"      class="text-secondary/70 hover:text-secondary transition">Preços</a>
+          </nav>
+
+          <div class="flex items-center gap-3">
+            <a
+              href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio"
+              target="_blank" rel="noopener noreferrer"
+              class="hidden sm:inline-flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-2 text-[14px] font-semibold text-white hover:bg-primary/90 transition shadow-glow-sm"
+            >
+              Criar minha página agora
+            </a>
+            <button id="menu-btn" class="md:hidden flex items-center justify-center h-9 w-9 rounded-xl border border-slate-200 text-secondary/70 hover:text-secondary hover:border-primary/40 transition" aria-label="Menu">
+              <svg id="icon-open"  xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-secondary/70" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16"/></svg>
+              <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden text-secondary/70" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200/80 bg-white/95 backdrop-blur-md">
+        <nav class="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-1">
+          <a href="#features"     class="mobile-link rounded-xl px-4 py-3 text-[15px] font-medium text-secondary/80 hover:text-secondary hover:bg-slate-50 transition">Recursos</a>
+          <a href="#examples"     class="mobile-link rounded-xl px-4 py-3 text-[15px] font-medium text-secondary/80 hover:text-secondary hover:bg-slate-50 transition">Exemplos</a>
+          <a href="#how-it-works" class="mobile-link rounded-xl px-4 py-3 text-[15px] font-medium text-secondary/80 hover:text-secondary hover:bg-slate-50 transition">Como funciona</a>
+          <a href="#pricing"      class="mobile-link rounded-xl px-4 py-3 text-[15px] font-medium text-secondary/80 hover:text-secondary hover:bg-slate-50 transition">Preços</a>
+          <div class="mt-2 pt-2 border-t border-slate-100">
+            <a
+              href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio"
+              target="_blank" rel="noopener noreferrer"
+              class="mobile-link inline-flex w-full items-center justify-center rounded-full bg-primary px-4 py-2.5 text-[15px] font-semibold text-white"
+            >
+              Criar minha página agora
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+
+      <!-- ══════════════════════ HERO ══════════════════════ -->
+      <section id="hero" class="hero-grid relative overflow-hidden bg-[#080c18] pt-12 sm:pt-20 pb-20 sm:pb-32">
+
+        <div class="absolute -right-24 top-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px] pointer-events-none"></div>
+        <div class="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-cyan-500/8 blur-[80px] pointer-events-none"></div>
+
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative">
+          <div class="grid gap-14 lg:grid-cols-[minmax(0,1.15fr),minmax(0,0.85fr)] items-center">
+
+            <!-- Copy -->
+            <div class="space-y-7">
+
+              <div data-animate>
+                <span class="badge-gradient inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold text-slate-200 tracking-wide uppercase">
+                  <span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
+                  Para criadores · lojas · profissionais
+                </span>
+              </div>
+
+              <div data-animate data-animate-delay="100">
+                <h1 class="text-[42px] sm:text-[56px] md:text-[68px] font-extrabold tracking-tight leading-[1.05] text-white">
+                  Todos os seus<br />
+                  links em um
+                  <span class="text-gradient block sm:inline"> único lugar</span>
+                </h1>
+                <p class="mt-5 max-w-xl text-[15px] sm:text-[17px] text-slate-400 leading-relaxed">
+                  Tenha uma landing page completa no formato link da bio, com subdomínio próprio como
+                  <span class="text-slate-100 font-medium">suaempresa.linkbio.app.br</span>, sem precisar registrar domínio nem contratar hospedagem.
+                </p>
+              </div>
+
+              <div data-animate data-animate-delay="200" class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <a
+                  href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio"
+                  target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-[15px] sm:text-[16px] font-bold text-white shadow-glow hover:bg-primary/90 transition"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19l1.1-2.9A7 7 0 1119 12a7 7 0 01-11.9 4.1L5 19z"/></svg>
+                  Criar minha página agora
+                </a>
+                <a
+                  href="#examples"
+                  class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-7 py-3.5 text-[15px] sm:text-[16px] font-semibold text-slate-200 hover:bg-white/10 hover:border-white/20 transition"
+                >
+                  Ver exemplos
+                </a>
+              </div>
+
+              <div data-animate data-animate-delay="300" class="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-slate-400">
+                <span class="flex items-center gap-1.5"><span class="text-emerald-400 font-bold">✓</span> Entrega em poucos dias</span>
+                <span class="flex items-center gap-1.5"><span class="text-emerald-400 font-bold">✓</span> Criação por R$ 99</span>
+                <span class="flex items-center gap-1.5"><span class="text-emerald-400 font-bold">✓</span> Manutenção por R$ 9,99/mês</span>
+              </div>
+            </div>
+
+            <!-- Phone mockup -->
+            <div data-animate data-animate-delay="200" class="flex justify-center lg:justify-end">
+              <div class="phone-wrap relative w-[250px] sm:w-[270px] md:w-[300px]">
+                <div class="relative z-10 rounded-[2.2rem] bg-gradient-to-b from-slate-800 via-slate-900 to-slate-900 p-2 border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
+                  <div class="absolute left-1/2 -translate-x-1/2 -top-0.5 h-5 w-28 rounded-b-3xl bg-slate-800 z-20"></div>
+                  <div class="relative rounded-[1.8rem] bg-[#0c0f1d] p-4 flex flex-col gap-3.5">
+
+                    <div class="flex flex-col items-center gap-2.5 pt-3">
+                      <div class="relative">
+                        <div class="h-16 w-16 rounded-full bg-gradient-to-tr from-primary to-emerald-400 p-[2px]">
+                          <div class="h-full w-full rounded-full bg-[#0c0f1d] flex items-center justify-center">
+                            <span class="text-sm font-bold text-white">P</span>
+                          </div>
+                        </div>
+                        <span class="absolute -bottom-0.5 -right-0.5 inline-flex items-center rounded-full bg-emerald-500 px-1.5 py-0.5 text-[9px] font-bold text-white">online</span>
+                      </div>
+                      <div class="text-center">
+                        <p class="text-[13px] font-bold text-white">Paty Criadora</p>
+                        <p class="text-[11px] text-slate-400 mt-0.5">Beleza · Rotina · Negócios digitais</p>
+                      </div>
+                    </div>
+
+                    <div class="flex flex-col gap-2">
+                      <button class="w-full rounded-full bg-primary px-4 py-2.5 text-[11px] font-bold text-white flex items-center justify-between">
+                        <span>Meu Instagram</span><span class="opacity-70">↗</span>
+                      </button>
+                      <button class="w-full rounded-full bg-white/6 px-4 py-2.5 text-[11px] font-semibold text-white border border-white/8 flex items-center justify-between">
+                        <span>WhatsApp Business</span><span class="opacity-70">↗</span>
+                      </button>
+                      <button class="w-full rounded-full bg-white/6 px-4 py-2.5 text-[11px] font-semibold text-white border border-white/8 flex items-center justify-between">
+                        <span>Minha loja online</span><span class="opacity-70">↗</span>
+                      </button>
+                      <button class="w-full rounded-full bg-white/6 px-4 py-2.5 text-[11px] font-semibold text-white border border-white/8 flex items-center justify-between">
+                        <span>Agendar consulta</span><span class="opacity-70">↗</span>
+                      </button>
+                    </div>
+
+                    <div class="rounded-2xl bg-white/4 border border-white/8 p-3 grid grid-cols-3 gap-2 text-center">
+                      <div>
+                        <p class="text-[9px] text-slate-500 mb-0.5">Cliques hoje</p>
+                        <p class="text-sm font-bold text-white">328</p>
+                      </div>
+                      <div>
+                        <p class="text-[9px] text-slate-500 mb-0.5">Conversão</p>
+                        <p class="text-sm font-bold text-emerald-400">+18%</p>
+                      </div>
+                      <div>
+                        <p class="text-[9px] text-slate-500 mb-0.5">Link top</p>
+                        <p class="text-[10px] font-semibold text-slate-200">WhatsApp</p>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ SOCIAL PROOF ══════════════════ -->
+      <section class="bg-white border-b border-slate-100 py-6">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div data-animate class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
+
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H4v-2a4 4 0 015-3.87M12 12a4 4 0 100-8 4 4 0 000 8z"/></svg>
+              </div>
+              <div>
+                <p class="text-lg font-extrabold text-secondary leading-none">+12.000</p>
+                <p class="text-xs text-secondary/60 mt-0.5">páginas criadas</p>
+              </div>
+            </div>
+
+            <div class="hidden sm:block h-10 w-px bg-slate-100"></div>
+
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
+              </div>
+              <div>
+                <p class="text-lg font-extrabold text-secondary leading-none">+1,4 milhão</p>
+                <p class="text-xs text-secondary/60 mt-0.5">cliques registrados</p>
+              </div>
+            </div>
+
+            <div class="hidden sm:block h-10 w-px bg-slate-100"></div>
+
+            <div class="flex items-center gap-3">
+              <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+              </div>
+              <div>
+                <p class="text-lg font-extrabold text-secondary leading-none">4,9 / 5</p>
+                <p class="text-xs text-secondary/60 mt-0.5">avaliação média</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ FEATURES ══════════════════ -->
+      <section id="features" class="py-16 sm:py-24 bg-gradient-to-b from-[#080c18] via-[#0b1020] to-[#080c18] relative overflow-hidden">
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/6 blur-[120px] pointer-events-none"></div>
+
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative">
+          <div data-animate class="text-center max-w-2xl mx-auto mb-14">
+            <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-3">Recursos</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+              Tudo o que você precisa<br class="hidden sm:block" /> em uma única bio
+            </h2>
+            <p class="mt-4 text-[16px] text-slate-400">
+              Uma plataforma simples, rápida e poderosa para concentrar todos os seus links e aumentar seus resultados.
+            </p>
+          </div>
+
+          <div class="grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+            <div data-animate data-animate-delay="100" class="group relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-white/7 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary group-hover:bg-primary/25 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 7h10M7 11h6m-6 4h4"/><rect x="3.5" y="4.5" width="17" height="15" rx="3" stroke-width="1.8"/></svg>
+              </div>
+              <div>
+                <h3 class="text-[15px] font-bold text-white mb-1.5">Página personalizada</h3>
+                <p class="text-[14px] text-slate-400 leading-relaxed">Bio com sua foto, cores, descrição e todos os links em um único endereço.</p>
+              </div>
+            </div>
+
+            <div data-animate data-animate-delay="200" class="group relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-white/7 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary group-hover:bg-primary/25 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.172 14.828a4 4 0 010-5.656l1.414-1.414a4 4 0 015.656 5.656l-1.414 1.414M14.828 9.172a4 4 0 010 5.656l-1.414 1.414a4 4 0 01-5.656-5.656l1.414-1.414"/></svg>
+              </div>
+              <div>
+                <h3 class="text-[15px] font-bold text-white mb-1.5">Links ilimitados</h3>
+                <p class="text-[14px] text-slate-400 leading-relaxed">WhatsApp, Instagram, loja, agenda, vídeos e qualquer link em segundos.</p>
+              </div>
+            </div>
+
+            <div data-animate data-animate-delay="300" class="group relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-white/7 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary group-hover:bg-primary/25 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 19h16M7 10v6M12 6v10M17 13v3"/></svg>
+              </div>
+              <div>
+                <h3 class="text-[15px] font-bold text-white mb-1.5">Estatísticas</h3>
+                <p class="text-[14px] text-slate-400 leading-relaxed">Veja cliques por link, botões mais acessados e de onde vem o tráfego.</p>
+              </div>
+            </div>
+
+            <div data-animate data-animate-delay="400" class="group relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-white/7 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary group-hover:bg-primary/25 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 5h16v14H4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 9h16"/><circle cx="7" cy="7" r=".75"/><circle cx="10" cy="7" r=".75"/><circle cx="13" cy="7" r=".75"/></svg>
+              </div>
+              <div>
+                <h3 class="text-[15px] font-bold text-white mb-1.5">Subdomínio próprio</h3>
+                <p class="text-[14px] text-slate-400 leading-relaxed">Endereço exclusivo como <span class="text-slate-200 font-medium">seunome.linkbio.app.br</span> sem custo extra.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ EXAMPLES ══════════════════ -->
+      <section id="examples" class="py-16 sm:py-24 bg-white">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+          <div data-animate class="text-center max-w-2xl mx-auto mb-14">
+            <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-3">Exemplos reais</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-secondary">Exemplos de páginas LinkBio</h2>
+            <p class="mt-4 text-[16px] text-secondary/70">
+              Veja como criadores, lojas e profissionais usam o LinkBio para facilitar o acesso do público.
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+
+            <article data-animate data-animate-delay="100" class="group rounded-3xl bg-background border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
+              <div class="self-start space-y-0.5">
+                <span class="text-[11px] font-semibold text-primary bg-primary/8 px-2.5 py-1 rounded-full">Criadora de conteúdo</span>
+                <p class="text-xs text-secondary/60 pt-1.5 pl-0.5">personal.linkbio.app.br</p>
+              </div>
+              <div class="w-[200px] rounded-[1.7rem] bg-slate-900 p-2 border border-slate-800 shadow-soft group-hover:border-primary/60 transition">
+                <div class="rounded-[1.3rem] bg-slate-950 p-3 flex flex-col gap-2.5">
+                  <div class="flex flex-col items-center gap-1.5">
+                    <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-primary to-pink-500 p-0.5">
+                      <div class="h-full w-full rounded-full bg-slate-950 flex items-center justify-center"><span class="text-xs font-bold text-white">P</span></div>
+                    </div>
+                    <div class="text-center"><p class="text-[11px] font-bold text-white">Paty Criadora</p><p class="text-[9px] text-slate-400">Vlogs · Lifestyle · Conteúdo</p></div>
+                  </div>
+                  <button class="w-full rounded-full bg-primary py-1.5 text-[10px] font-bold text-white">Último vídeo no YouTube</button>
+                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">Meu Instagram</button>
+                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">Agenda de parcerias</button>
+                </div>
+              </div>
+            </article>
+
+            <article data-animate data-animate-delay="200" class="group rounded-3xl bg-background border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
+              <div class="self-start space-y-0.5">
+                <span class="text-[11px] font-semibold text-emerald-600 bg-emerald-500/10 px-2.5 py-1 rounded-full">Loja física + online</span>
+                <p class="text-xs text-secondary/60 pt-1.5 pl-0.5">loja.linkbio.app.br</p>
+              </div>
+              <div class="w-[200px] rounded-[1.7rem] bg-slate-900 p-2 border border-slate-800 shadow-soft group-hover:border-primary/60 transition">
+                <div class="rounded-[1.3rem] bg-slate-950 p-3 flex flex-col gap-2.5">
+                  <div class="flex flex-col items-center gap-1.5">
+                    <div class="h-10 w-10 rounded-full bg-emerald-400/90 flex items-center justify-center"><span class="text-xs font-bold text-slate-900">F</span></div>
+                    <div class="text-center"><p class="text-[11px] font-bold text-white">Farmácia Central</p><p class="text-[9px] text-slate-400">Atendimento 24h</p></div>
+                  </div>
+                  <button class="w-full rounded-full bg-primary py-1.5 text-[10px] font-bold text-white">Loja online</button>
+                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">WhatsApp para pedidos</button>
+                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">Como chegar</button>
+                </div>
+              </div>
+            </article>
+
+            <article data-animate data-animate-delay="300" class="group rounded-3xl bg-background border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
+              <div class="self-start space-y-0.5">
+                <span class="text-[11px] font-semibold text-sky-600 bg-sky-500/10 px-2.5 py-1 rounded-full">Profissional da saúde</span>
+                <p class="text-xs text-secondary/60 pt-1.5 pl-0.5">profissional.linkbio.app.br</p>
+              </div>
+              <div class="w-[200px] rounded-[1.7rem] bg-slate-900 p-2 border border-slate-800 shadow-soft group-hover:border-primary/60 transition">
+                <div class="rounded-[1.3rem] bg-slate-950 p-3 flex flex-col gap-2.5">
+                  <div class="flex flex-col items-center gap-1.5">
+                    <div class="h-10 w-10 rounded-full bg-sky-400/90 flex items-center justify-center"><span class="text-xs font-bold text-slate-900">J</span></div>
+                    <div class="text-center"><p class="text-[11px] font-bold text-white">Dr. João Silva</p><p class="text-[9px] text-slate-400">Clínico geral</p></div>
+                  </div>
+                  <button class="w-full rounded-full bg-primary py-1.5 text-[10px] font-bold text-white">Agendar consulta</button>
+                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">Telemedicina</button>
+                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">Local da clínica</button>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ HOW IT WORKS ══════════════════ -->
+      <section id="how-it-works" class="py-16 sm:py-24 bg-gradient-to-b from-[#080c18] via-[#0b1020] to-[#080c18] relative overflow-hidden">
+        <div class="absolute right-0 top-0 h-96 w-96 rounded-full bg-primary/8 blur-[100px] pointer-events-none"></div>
+
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative">
+
+          <div data-animate class="text-center max-w-xl mx-auto mb-14">
+            <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-3">Processo</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Como funciona</h2>
+            <p class="mt-4 text-[16px] text-slate-400">
+              Em poucos dias, sua página está pronta para colocar na bio e começar a converter.
+            </p>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-3 relative">
+
+            <div data-animate data-animate-delay="100" class="relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 hover:border-primary/40 hover:bg-white/6 transition duration-300">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="h-9 w-9 rounded-xl bg-primary text-white text-sm font-extrabold flex items-center justify-center shadow-glow-sm flex-shrink-0">1</div>
+                <div class="h-px flex-1 bg-gradient-to-r from-primary/40 to-transparent hidden md:block"></div>
+              </div>
+              <h3 class="text-[15px] font-bold text-white mb-2">Fale com a gente</h3>
+              <p class="text-[14px] text-slate-400 leading-relaxed">Mande mensagem pelo WhatsApp, conte sobre o seu negócio e o que precisa na sua página.</p>
+            </div>
+
+            <div data-animate data-animate-delay="200" class="relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 hover:border-primary/40 hover:bg-white/6 transition duration-300">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="h-9 w-9 rounded-xl bg-primary text-white text-sm font-extrabold flex items-center justify-center shadow-glow-sm flex-shrink-0">2</div>
+                <div class="h-px flex-1 bg-gradient-to-r from-primary/40 to-transparent hidden md:block"></div>
+              </div>
+              <h3 class="text-[15px] font-bold text-white mb-2">Criamos sua página</h3>
+              <p class="text-[14px] text-slate-400 leading-relaxed">Montamos tudo para você: subdomínio, layout, links, agenda, produtos e identidade visual.</p>
+            </div>
+
+            <div data-animate data-animate-delay="300" class="relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 hover:border-primary/40 hover:bg-white/6 transition duration-300">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="h-9 w-9 rounded-xl bg-primary text-white text-sm font-extrabold flex items-center justify-center shadow-glow-sm flex-shrink-0">3</div>
+              </div>
+              <h3 class="text-[15px] font-bold text-white mb-2">Coloque na bio</h3>
+              <p class="text-[14px] text-slate-400 leading-relaxed">Você recebe seu link <span class="text-slate-200">suaempresa.linkbio.app.br</span> e coloca na bio do Instagram, WhatsApp e onde mais quiser.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ PRICING ══════════════════ -->
+      <section id="pricing" class="py-16 sm:py-24 bg-white">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+          <div data-animate class="text-center max-w-xl mx-auto mb-14">
+            <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-3">Preços</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-secondary">Investimento acessível</h2>
+            <p class="mt-4 text-[16px] text-secondary/70">
+              Você paga uma única vez pela criação e uma mensalidade irrisória para manter sempre ativa.
+            </p>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
+
+            <!-- Card 1: Criação -->
+            <div data-animate class="relative flex flex-col rounded-3xl border border-slate-200 bg-background px-7 py-8 shadow-sm hover:shadow-soft hover:-translate-y-1 transition duration-300">
+              <div class="flex items-start justify-between mb-5">
+                <div>
+                  <p class="text-[11px] font-bold text-secondary/50 tracking-widest uppercase mb-1">Pagamento único</p>
+                  <h3 class="text-xl font-extrabold text-secondary">Criação da página</h3>
+                </div>
+                <div class="h-10 w-10 rounded-xl bg-secondary/8 flex items-center justify-center text-secondary/50">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                </div>
+              </div>
+
+              <div class="flex items-baseline gap-1.5 mb-1">
+                <span class="text-4xl font-extrabold text-secondary">R$ 99</span>
+                <span class="text-sm text-secondary/50">única vez</span>
+              </div>
+              <p class="text-[12px] text-secondary/50 mb-6">Você só paga novamente se quiser uma nova página.</p>
+
+              <ul class="space-y-3 text-[14px] text-secondary/80 mb-8">
+                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Subdomínio <span class="font-semibold">cliente.linkbio.app.br</span></span></li>
+                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Landing page completa: links, agenda, produtos e contatos</span></li>
+                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Aplicação da sua identidade visual (logo, cores, foto)</span></li>
+                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Entrega em poucos dias, pronta para a bio</span></li>
+              </ul>
+
+              <div class="mt-auto">
+                <a
+                  href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio"
+                  target="_blank" rel="noopener noreferrer"
+                  class="inline-flex w-full items-center justify-center rounded-full border-2 border-secondary px-4 py-3 text-[15px] font-bold text-secondary hover:bg-secondary hover:text-white transition"
+                >
+                  Quero criar minha página
+                </a>
+              </div>
+            </div>
+
+            <!-- Card 2: Mensalidade -->
+            <div data-animate data-animate-delay="100" class="relative flex flex-col rounded-3xl border border-primary/25 bg-gradient-to-b from-primary/6 via-white to-white px-7 py-8 shadow-soft hover:-translate-y-1 transition duration-300 overflow-hidden">
+              <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/10 blur-2xl pointer-events-none"></div>
+              <div class="absolute -left-10 bottom-0  h-40 w-40 rounded-full bg-cyan-500/6  blur-2xl pointer-events-none"></div>
+
+              <div class="relative flex items-start justify-between mb-5">
+                <div>
+                  <p class="text-[11px] font-bold text-primary/80 tracking-widest uppercase mb-1">Recorrente</p>
+                  <h3 class="text-xl font-extrabold text-secondary">Manter página ativa</h3>
+                </div>
+                <span class="inline-flex items-center rounded-full bg-primary/12 px-2.5 py-1 text-[10px] font-bold text-primary">IRRISÓRIO</span>
+              </div>
+
+              <div class="relative flex items-baseline gap-1.5 mb-1">
+                <span class="text-4xl font-extrabold text-secondary">R$ 9,99</span>
+                <span class="text-sm text-secondary/50">/mês</span>
+              </div>
+              <p class="relative text-[12px] text-emerald-600 font-semibold mb-6">Menos que um café — sua página no ar 24h por dia.</p>
+
+              <ul class="relative space-y-3 text-[14px] text-secondary/80 mb-8">
+                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Hospedagem e página ativa 24h/7 dias</span></li>
+                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Painel com cliques por link e métricas básicas de acesso</span></li>
+                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Suporte para trocar links, textos e botões</span></li>
+                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Melhorias contínuas na plataforma LinkBio</span></li>
+                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Sem fidelidade — cancele quando quiser</span></li>
+              </ul>
+
+              <div class="relative mt-auto">
+                <a
+                  href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio"
+                  target="_blank" rel="noopener noreferrer"
+                  class="inline-flex w-full items-center justify-center rounded-full bg-primary px-4 py-3 text-[15px] font-bold text-white shadow-glow hover:bg-primary/90 transition"
+                >
+                  Criar minha página agora
+                </a>
+                <p class="mt-2.5 text-[11px] text-secondary/50 text-center">Sem fidelidade. Cancele quando quiser.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Comparação -->
+          <div data-animate class="mt-10 max-w-3xl mx-auto rounded-2xl border border-slate-100 bg-background px-6 py-5 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            <div class="h-10 w-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            </div>
+            <p class="text-[14px] text-secondary/70 text-center sm:text-left">
+              <span class="font-bold text-secondary">Muito mais barato que um site ou landing page tradicional.</span> Um site WordPress simples custa R$ 800–2.000 de criação + R$ 50–150/mês de hospedagem. Com o LinkBio você tem o essencial por R$ 99 + R$ 9,99/mês, <span class="text-emerald-600 font-semibold">sem precisar de domínio, desenvolvedor ou hospedagem.</span>
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ══════════════════ CTA ══════════════════ -->
+      <section id="cta" class="py-16 sm:py-24 bg-background">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div data-animate class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0b1120] via-[#080c18] to-[#0b1120] px-8 py-12 sm:px-12 sm:py-14 flex flex-col md:flex-row items-center gap-10 border border-white/5">
+
+            <div class="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-primary/30 blur-[80px] pointer-events-none"></div>
+            <div class="absolute -left-16  bottom-0  h-56 w-56 rounded-full bg-cyan-500/15 blur-[80px] pointer-events-none"></div>
+
+            <div class="relative flex-1 space-y-5 text-center md:text-left">
+              <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                Crie sua página de links<br class="hidden sm:block" />
+                <span class="text-gradient">agora mesmo</span>
+              </h2>
+              <p class="text-[16px] text-slate-300 max-w-lg">
+                Centralize seus links, acompanhe cliques e facilite a vida de quem te acompanha. Criação por <span class="text-white font-bold">R$ 99</span> e só <span class="text-white font-bold">R$ 9,99/mês</span> para manter ativa.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
+                <a
+                  href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio"
+                  target="_blank" rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-[15px] sm:text-[16px] font-bold text-white shadow-glow hover:bg-primary/90 transition"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19l1.1-2.9A7 7 0 1119 12a7 7 0 01-11.9 4.1L5 19z"/></svg>
+                  Criar minha página agora
+                </a>
+                <a href="#examples" class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-[15px] sm:text-[16px] font-semibold text-white/90 hover:bg-white/10 transition">
+                  Ver exemplos
+                </a>
+              </div>
+              <p class="text-[12px] text-slate-400">Não precisa de domínio · Sem contrato · R$ 9,99/mês</p>
+            </div>
+
+            <div class="relative w-full max-w-xs hidden md:block">
+              <div class="rounded-2xl bg-white/5 border border-white/10 px-5 py-4 space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm font-bold text-white">linkbio.app.br</span>
+                  <span class="text-[11px] text-emerald-400 font-semibold">+328 cliques hoje</span>
+                </div>
+                <div class="h-px bg-white/8"></div>
+                <div class="space-y-2">
+                  <div class="flex items-center justify-between text-[12px]">
+                    <span class="text-slate-400">WhatsApp</span>
+                    <div class="flex items-center gap-2"><div class="h-1.5 w-20 rounded-full bg-white/10 overflow-hidden"><div class="h-full w-[62%] bg-primary rounded-full"></div></div><span class="text-slate-200 font-semibold">62%</span></div>
+                  </div>
+                  <div class="flex items-center justify-between text-[12px]">
+                    <span class="text-slate-400">Instagram</span>
+                    <div class="flex items-center gap-2"><div class="h-1.5 w-20 rounded-full bg-white/10 overflow-hidden"><div class="h-full w-[23%] bg-cyan-400 rounded-full"></div></div><span class="text-slate-200 font-semibold">23%</span></div>
+                  </div>
+                  <div class="flex items-center justify-between text-[12px]">
+                    <span class="text-slate-400">Outros</span>
+                    <div class="flex items-center gap-2"><div class="h-1.5 w-20 rounded-full bg-white/10 overflow-hidden"><div class="h-full w-[15%] bg-emerald-400 rounded-full"></div></div><span class="text-slate-200 font-semibold">15%</span></div>
+                  </div>
+                </div>
+                <p class="text-[11px] text-slate-500 pt-1">Dados em tempo real da sua página LinkBio</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ══════════════════ FOOTER ══════════════════ -->
+    <footer class="bg-[#080c18] border-t border-white/5">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div class="space-y-2.5">
+            <img src="logo/logo-link-bio-1.png" alt="Logo LinkBio" class="h-7 w-auto object-contain" loading="lazy" />
+            <p class="text-[13px] text-slate-500 max-w-sm">
+              A forma mais simples de ter uma landing page completa no formato link da bio, sem domínio nem hospedagem.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8">
+            <nav class="flex gap-5 text-[13px] text-slate-400">
+              <a href="#" class="hover:text-white transition">Sobre</a>
+              <a href="#" class="hover:text-white transition">Termos</a>
+              <a href="#" class="hover:text-white transition">Contato</a>
+            </nav>
+            <div class="flex items-center gap-3">
+              <a href="#" aria-label="Instagram" class="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary/50 hover:text-primary transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="4" y="4" width="16" height="16" rx="5" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke-width="1.6"/><circle cx="17" cy="7" r=".8" fill="currentColor"/></svg>
+              </a>
+              <a href="#" aria-label="WhatsApp" class="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-emerald-500/50 hover:text-emerald-400 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M5 19l1.1-2.9A7 7 0 1119 12a7 7 0 01-11.9 4.1L5 19z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 border-t border-white/5 pt-6 text-[12px] text-slate-600 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+          <p>© <span id="year"></span> LinkBio. Todos os direitos reservados.</p>
+          <p>Feito para criadores, lojas e profissionais que querem simplificar a bio.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a
+      href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio"
+      target="_blank" rel="noopener noreferrer"
+      aria-label="Falar no WhatsApp"
+      class="fixed bottom-5 right-5 z-40 inline-flex items-center justify-center h-14 w-14 rounded-full bg-emerald-500 shadow-[0_8px_30px_rgba(16,185,129,0.4)] hover:bg-emerald-600 hover:scale-105 transition"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M5 19l1.1-2.9A7 7 0 1119 12a7 7 0 01-11.9 4.1L5 19z"/>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M10.5 9.5l.7 1.4a1 1 0 00.4.4l1.4.7"/>
+      </svg>
+    </a>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // ── Splash screen ───────────────────────────────────────
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const splash = document.getElementById('splash');
+          splash.classList.add('hide');
+          splash.addEventListener('transitionend', () => splash.remove(), { once: true });
+        }, 1800);
+      });
+
+      // Mobile menu
+      const menuBtn    = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const iconOpen   = document.getElementById('icon-open');
+      const iconClose  = document.getElementById('icon-close');
+      menuBtn.addEventListener('click', () => {
+        const open = !mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden', open);
+        iconOpen.classList.toggle('hidden', !open);
+        iconClose.classList.toggle('hidden', open);
+      });
+      document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      }));
+
+      // Scroll animations
+      const obs = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      }), { threshold: 0.1 });
+      document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
+    </script>
+  </body>
+</html>
