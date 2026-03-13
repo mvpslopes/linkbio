@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Marcos Bléa | Músico Independente</title>
+    <meta name="description" content="Marcos Bléa — músico independente cristão. Conheça a história, ouça as músicas e acompanhe os próximos shows." />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans:    ['Inter', 'ui-sans-serif', 'system-ui'],
+              display: ['Syne', 'ui-sans-serif', 'system-ui'],
+            },
+            colors: {
+              gold:   '#C9A84C',
+              'gold-light': '#E8C97A',
+              dark:   '#0a0a0a',
+            },
+            boxShadow: {
+              gold: '0 0 50px rgba(201,168,76,0.3)',
+              'gold-sm': '0 0 25px rgba(201,168,76,0.18)',
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      html { scroll-behavior: smooth; scroll-padding-top: 120px; }
+
+      body { background: #0a0a0a; }
+
+      /* Fundo estrelado */
+      .stars-bg {
+        background-image:
+          radial-gradient(circle at 20% 30%, rgba(201,168,76,0.07) 0%, transparent 45%),
+          radial-gradient(circle at 80% 70%, rgba(201,168,76,0.05) 0%, transparent 40%),
+          radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+          radial-gradient(1px 1px at 40% 10%, rgba(255,255,255,0.3) 0%, transparent 100%),
+          radial-gradient(1px 1px at 65% 40%, rgba(255,255,255,0.35) 0%, transparent 100%),
+          radial-gradient(1px 1px at 85% 15%, rgba(255,255,255,0.25) 0%, transparent 100%),
+          radial-gradient(1px 1px at 50% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+          radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.3) 0%, transparent 100%),
+          radial-gradient(1px 1px at 75% 85%, rgba(255,255,255,0.2) 0%, transparent 100%);
+      }
+
+      /* Gradient text dourado */
+      .text-gold-gradient {
+        background: linear-gradient(135deg, #C9A84C 0%, #E8C97A 50%, #C9A84C 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Badge borda gradiente dourada */
+      .badge-gold {
+        background: linear-gradient(#0a0a0a, #0a0a0a) padding-box,
+                    linear-gradient(135deg, rgba(201,168,76,0.7), rgba(232,201,122,0.2)) border-box;
+        border: 1px solid transparent;
+      }
+
+      /* Scroll animations */
+      [data-animate] {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .7s ease, transform .7s ease;
+      }
+      [data-animate].is-visible           { opacity: 1; transform: translateY(0); }
+      [data-animate-delay="100"]          { transition-delay: .10s; }
+      [data-animate-delay="200"]          { transition-delay: .20s; }
+      [data-animate-delay="300"]          { transition-delay: .30s; }
+      [data-animate-delay="400"]          { transition-delay: .40s; }
+
+      /* Barra de progresso do player */
+      #progress-bar { transition: width .3s linear; }
+
+      /* Equalizer animado */
+      .eq-bar {
+        display: inline-block;
+        width: 3px;
+        border-radius: 2px;
+        background: #C9A84C;
+        animation: eq 1s ease-in-out infinite;
+      }
+      .eq-bar:nth-child(1) { animation-delay: 0s;    height: 10px; }
+      .eq-bar:nth-child(2) { animation-delay: .15s;  height: 16px; }
+      .eq-bar:nth-child(3) { animation-delay: .3s;   height: 8px;  }
+      .eq-bar:nth-child(4) { animation-delay: .45s;  height: 14px; }
+      .eq-bar:nth-child(5) { animation-delay: .6s;   height: 10px; }
+      @keyframes eq {
+        0%, 100% { transform: scaleY(1);   }
+        50%       { transform: scaleY(.3); }
+      }
+      .eq-wrap.paused .eq-bar { animation-play-state: paused; }
+
+      /* Linha decorativa dourada */
+      .gold-line {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+      }
+
+      /* Card de música hover */
+      .track-card {
+        transition: border-color .25s, background .25s, transform .25s;
+      }
+      .track-card:hover {
+        border-color: rgba(201,168,76,0.4);
+        background: rgba(201,168,76,0.06);
+        transform: translateY(-2px);
+      }
+
+      /* Foto placeholder */
+      .photo-placeholder {
+        background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+        border: 1px solid rgba(201,168,76,0.15);
+      }
+    </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y83GLV10G1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y83GLV10G1');
+  </script>
+  </head>
+
+  <body class="text-slate-100 font-sans antialiased">
+
+    <!-- ═══════ PLAYER FIXO NO TOPO ═══════ -->
+    <div id="player-bar" class="fixed top-0 left-0 right-0 z-50 bg-[#0d0d0d]/95 backdrop-blur-md border-b border-white/8">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-2.5 flex items-center gap-2 sm:gap-4">
+
+        <!-- Capa miniatura -->
+        <div class="h-8 w-8 rounded-lg overflow-hidden shrink-0 border border-white/10">
+          <img src="public/cover/dia-do-senhor.png" alt="Dia do Senhor" class="h-full w-full object-cover" />
+        </div>
+
+        <!-- Equalizer / status (oculto em telas muito pequenas) -->
+        <div id="eq-wrap" class="eq-wrap paused hidden sm:flex items-end gap-[3px] shrink-0 h-5">
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+          <span class="eq-bar"></span>
+        </div>
+
+        <!-- Info da faixa -->
+        <div class="flex-1 min-w-0">
+          <p class="text-[12px] font-semibold text-white truncate" id="track-name">Dia do Senhor</p>
+          <div class="mt-1 h-1 rounded-full bg-white/10 overflow-hidden">
+            <div id="progress-bar" class="h-full rounded-full bg-gold" style="width:0%"></div>
+          </div>
+        </div>
+
+        <!-- Botão ATIVAR SOM (aparece quando mudo) -->
+        <button id="unmute-btn" onclick="activateSound()"
+          class="shrink-0 inline-flex items-center gap-2 rounded-full bg-gold px-3.5 py-1.5 text-[12px] font-bold text-black animate-pulse hover:animate-none hover:bg-gold-light transition"
+          aria-label="Ativar som">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+          </svg>
+          Ativar som
+        </button>
+
+        <!-- Botão play/pause (aparece depois que som foi ativado) -->
+        <button id="play-btn" onclick="togglePlay()"
+          class="hidden shrink-0 h-9 w-9 rounded-full bg-gold flex items-center justify-center hover:bg-gold-light transition shadow-gold-sm"
+          aria-label="Tocar / pausar">
+          <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-black" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-black hidden" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+          </svg>
+        </button>
+
+        <!-- Volume mute toggle -->
+        <button onclick="toggleMute()" id="vol-btn"
+          class="hidden shrink-0 text-slate-400 hover:text-gold transition"
+          aria-label="Silenciar / ativar som">
+          <svg id="icon-vol" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+          </svg>
+          <svg id="icon-mute" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6m0-6l6 6"/>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- ═══════ HEADER / NAV ═══════ -->
+    <header class="sticky top-[53px] z-40 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/6">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
+
+        <div class="flex items-center gap-3">
+          <!-- Avatar placeholder -->
+          <div class="h-9 w-9 rounded-full bg-gradient-to-tr from-gold to-amber-300 p-[2px] shrink-0">
+            <img
+              src="public/foto/Gemini_Generated_Image_2z8ov42z8ov42z8o.png"
+              alt="Marcos Bléa"
+              class="h-full w-full rounded-full object-cover object-top"
+            />
+          </div>
+          <span class="font-display text-[15px] font-bold text-white tracking-wide">Marcos Bléa</span>
+        </div>
+
+        <nav class="hidden sm:flex items-center gap-6 text-[13px] text-slate-400">
+          <a href="#historia" class="hover:text-gold transition">História</a>
+          <a href="#musicas"  class="hover:text-gold transition">Músicas</a>
+          <a href="#shows"    class="hover:text-gold transition">Shows</a>
+          <a href="#contato"  class="hover:text-gold transition">Contato</a>
+        </nav>
+
+        <a
+          href="https://wa.me/5531942378881?text=Ol%C3%A1%20Marcos%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es."
+          target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-gold/40 bg-gold/10 p-2 text-gold hover:bg-gold/20 hover:border-gold/70 transition"
+          aria-label="Contato via WhatsApp"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 32 32" fill="currentColor">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+          </svg>
+        </a>
+      </div>
+    </header>
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="stars-bg relative overflow-hidden pt-10 pb-16 sm:pt-20 sm:pb-28" style="min-height: 80vh;">
+
+      <!-- Glow de fundo -->
+      <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-gold/6 blur-[120px] pointer-events-none"></div>
+
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 relative">
+        <div class="grid gap-14 lg:grid-cols-[minmax(0,1fr),minmax(0,0.8fr)] items-center">
+
+          <!-- Copy -->
+          <div class="space-y-8">
+
+            <div data-animate>
+              <span class="badge-gold inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-semibold text-gold tracking-widest uppercase">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm-1 14H9V7h2v10zm4 0h-2V7h2v10z"/>
+                </svg>
+                Músico Independente · Cristão
+              </span>
+            </div>
+
+            <div data-animate data-animate-delay="100">
+              <h1 class="font-display text-[38px] sm:text-[54px] md:text-[72px] lg:text-[80px] font-black leading-[1] tracking-tight text-white">
+                Marcos<br />
+                <span class="text-gold-gradient">Bléa</span>
+              </h1>
+              <p class="mt-5 text-[15px] sm:text-[17px] text-slate-400 leading-relaxed max-w-lg">
+                Música que nasce da fé, atravessa a alma e conecta pessoas. Uma história de chamado, superação e canções que falam o que as palavras sozinhas não alcançam.
+              </p>
+            </div>
+
+            <!-- CTAs -->
+            <div data-animate data-animate-delay="200" class="flex flex-wrap gap-3">
+              <button onclick="togglePlay()"
+                class="inline-flex items-center gap-2.5 rounded-full bg-gold px-7 py-3.5 text-[15px] font-bold text-black shadow-gold hover:bg-gold-light transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Ouvir agora
+              </button>
+              <a href="#musicas"
+                class="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-[15px] font-semibold text-white hover:bg-white/10 hover:border-white/25 transition">
+                Ver músicas
+              </a>
+            </div>
+
+            <!-- Streaming links -->
+            <div data-animate data-animate-delay="300" class="flex flex-wrap items-center gap-3">
+              <span class="text-[12px] text-slate-500 uppercase tracking-widest">Ouça em</span>
+              <!-- Spotify -->
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-[13px] text-slate-300 hover:border-[#1DB954]/50 hover:text-[#1DB954] transition">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                Spotify
+              </a>
+              <!-- YouTube -->
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-[13px] text-slate-300 hover:border-[#FF0000]/50 hover:text-[#FF0000] transition">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+                YouTube
+              </a>
+              <!-- Instagram -->
+              <a href="https://www.instagram.com/0.marcos.silva/" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-[13px] text-slate-300 hover:border-fuchsia-400/50 hover:text-fuchsia-300 transition">
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.7"/>
+                  <circle cx="12" cy="12" r="5" stroke-width="1.7"/>
+                  <circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/>
+                </svg>
+                Instagram
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Foto hero -->
+          <div data-animate data-animate-delay="200" class="flex justify-center lg:justify-end">
+            <div class="relative w-full max-w-[260px] sm:max-w-[300px]">
+              <!-- Glow atrás da foto -->
+              <div class="absolute inset-0 rounded-3xl bg-gold/18 blur-[50px] scale-110 pointer-events-none"></div>
+              <!-- Foto real -->
+              <div class="relative rounded-3xl overflow-hidden border border-gold/25 shadow-[0_30px_80px_rgba(0,0,0,0.7)]">
+                <img
+                  src="public/foto/Gemini_Generated_Image_2z8ov42z8ov42z8o.png"
+                  alt="Marcos Bléa"
+                  class="w-full h-auto object-cover object-top"
+                  loading="eager"
+                />
+                <!-- Gradiente sutil na base -->
+                <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0a0a0a]/60 to-transparent pointer-events-none"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="gold-line mx-auto max-w-5xl"></div>
+
+    <!-- ═══════ SINGLE LANÇAMENTO ═══════ -->
+    <section class="py-16 sm:py-24 bg-gradient-to-b from-[#0a0a0a] via-[#0d0b07] to-[#0a0a0a] overflow-hidden">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="text-center mb-10">
+          <p class="text-[11px] font-bold text-gold tracking-widest uppercase mb-2">Novo lançamento</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Single disponível agora</h2>
+        </div>
+
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.85fr),minmax(0,1fr)] items-center">
+
+          <!-- Capa em destaque -->
+          <div data-animate class="flex justify-center lg:justify-end">
+            <div class="relative group">
+              <!-- Glow atrás da capa -->
+              <div class="absolute inset-0 rounded-3xl bg-gold/25 blur-[50px] scale-110 pointer-events-none transition group-hover:bg-gold/40 duration-500"></div>
+              <!-- Capa -->
+              <div class="relative rounded-3xl overflow-hidden border border-gold/30 shadow-[0_30px_80px_rgba(0,0,0,0.7)] w-[200px] sm:w-[260px] lg:w-[280px]">
+                <img
+                  src="public/cover/dia-do-senhor.png"
+                  alt="Dia do Senhor – Marcos Bléa"
+                  class="w-full h-auto object-cover group-hover:scale-105 transition duration-700"
+                />
+                <!-- Overlay escuro com botão play ao hover -->
+                <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 cursor-pointer" onclick="togglePlay()">
+                  <div class="h-16 w-16 rounded-full bg-gold flex items-center justify-center shadow-gold">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-black ml-1" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Informações do single -->
+          <div data-animate data-animate-delay="150" class="space-y-6">
+
+            <div class="space-y-2">
+              <div class="inline-flex items-center gap-2 rounded-full bg-gold/10 border border-gold/30 px-3 py-1.5">
+                <span class="h-1.5 w-1.5 rounded-full bg-gold animate-pulse"></span>
+                <span class="text-[11px] font-bold text-gold tracking-widest uppercase">Single · 2026</span>
+              </div>
+              <h3 class="font-display text-[34px] sm:text-[44px] font-black text-white leading-tight tracking-tight">
+                Dia do<br/><span class="text-gold-gradient">Senhor</span>
+              </h3>
+              <p class="text-[15px] text-slate-400 leading-relaxed max-w-md">
+                Uma canção de adoração que celebra a presença e a fidelidade de Deus. Ouça agora nas principais plataformas de streaming.
+              </p>
+            </div>
+
+            <!-- Botões -->
+            <div class="flex flex-wrap gap-3">
+              <button onclick="togglePlay()"
+                class="inline-flex items-center gap-2.5 rounded-full bg-gold px-6 py-3 text-[14px] font-bold text-black shadow-gold hover:bg-gold-light transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                Ouvir agora
+              </button>
+              <!-- Spotify -->
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full border border-[#1DB954]/30 bg-[#1DB954]/10 px-5 py-3 text-[14px] font-semibold text-[#1DB954] hover:bg-[#1DB954]/20 transition">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                Spotify
+              </a>
+              <!-- YouTube -->
+              <a href="#" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full border border-[#FF0000]/30 bg-[#FF0000]/10 px-5 py-3 text-[14px] font-semibold text-[#FF4444] hover:bg-[#FF0000]/20 transition">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+                YouTube
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="gold-line mx-auto max-w-5xl"></div>
+
+    <!-- ═══════ HISTÓRIA ═══════ -->
+    <section id="historia" class="py-16 sm:py-24 bg-[#0a0a0a]">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="text-center max-w-xl mx-auto mb-12">
+          <p class="text-[11px] font-bold text-gold tracking-widest uppercase mb-3">A jornada</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Uma história de fé e música</h2>
+        </div>
+
+        <div class="grid gap-8 lg:grid-cols-2 items-start">
+
+          <div data-animate class="space-y-5 text-[15px] text-slate-400 leading-relaxed">
+            <p>
+              Marcos Bléa começou a tocar ainda jovem, guiado por uma fé que sempre foi maior que os obstáculos.
+              Entre acordes descobertos na igreja e letras escritas nas madrugadas, foi construindo uma linguagem musical
+              única — honesta, profunda e cheia de propósito.
+            </p>
+            <p>
+              Sua música nasce do cotidiano da fé: das dúvidas, das certezas, das vitórias silenciosas e das orações
+              que ninguém ouve. Cada canção é um testemunho cantado, uma ponte entre o que se sente e o que se crê.
+            </p>
+            <p>
+              Como músico independente, Marcos mantém o controle criativo total sobre sua obra — produzindo,
+              compondo e distribuindo com autenticidade, conectando-se diretamente com quem precisa ouvir.
+            </p>
+          </div>
+
+          <div data-animate data-animate-delay="100" class="space-y-3">
+            <div class="rounded-2xl border border-white/8 bg-white/3 px-5 py-5 flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-gold/10 flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-[14px] font-semibold text-white">Compositor &amp; instrumentista</p>
+                <p class="text-[13px] text-slate-500 mt-0.5">Violão, teclado e voz — cria e arranja suas próprias composições.</p>
+              </div>
+            </div>
+            <div class="rounded-2xl border border-white/8 bg-white/3 px-5 py-5 flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-gold/10 flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-[14px] font-semibold text-white">Música com propósito</p>
+                <p class="text-[13px] text-slate-500 mt-0.5">Letras que falam de fé, superação e encontro com Deus.</p>
+              </div>
+            </div>
+            <div class="rounded-2xl border border-white/8 bg-white/3 px-5 py-5 flex items-start gap-4">
+              <div class="h-10 w-10 rounded-xl bg-gold/10 flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H4v-2a4 4 0 015-3.87M12 12a4 4 0 100-8 4 4 0 000 8z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-[14px] font-semibold text-white">Independente</p>
+                <p class="text-[13px] text-slate-500 mt-0.5">Produção autoral, distribuição própria e conexão direta com o público.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="gold-line mx-auto max-w-5xl"></div>
+
+    <!-- ═══════ MÚSICAS ═══════ -->
+    <section id="musicas" class="py-16 sm:py-24 bg-gradient-to-b from-[#0a0a0a] via-[#0d0b07] to-[#0a0a0a]">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="text-center max-w-xl mx-auto mb-12">
+          <p class="text-[11px] font-bold text-gold tracking-widest uppercase mb-3">Discografia</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Músicas</h2>
+          <p class="mt-3 text-[15px] text-slate-400">Ouça, compartilhe e deixe a música falar.</p>
+        </div>
+
+        <div data-animate class="space-y-3">
+          <!-- Faixa 1 -->
+          <div class="track-card rounded-2xl border border-gold/20 bg-gold/5 px-5 py-4 flex items-center gap-4 cursor-pointer" onclick="togglePlay()">
+            <!-- Capa do single -->
+            <div class="h-12 w-12 rounded-xl overflow-hidden shrink-0 border border-gold/20 shadow-gold-sm relative">
+              <img src="public/cover/dia-do-senhor.png" alt="Dia do Senhor" class="h-full w-full object-cover" />
+              <!-- Ícone play sobre a capa -->
+              <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-[14px] font-semibold text-white truncate">Dia do Senhor</p>
+              <p class="text-[12px] text-slate-400 mt-0.5">Marcos Bléa · Single · 2026</p>
+            </div>
+            <!-- Badge lançamento -->
+            <span class="shrink-0 rounded-full bg-gold/15 border border-gold/30 px-2.5 py-1 text-[11px] font-semibold text-gold">Novo</span>
+          </div>
+
+          <!-- Faixa 2 (placeholder) -->
+          <div class="track-card rounded-2xl border border-white/8 bg-white/3 px-5 py-4 flex items-center gap-4 opacity-50">
+            <div class="h-10 w-10 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-500" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-[14px] font-semibold text-slate-400 truncate">Em breve...</p>
+              <p class="text-[12px] text-slate-600 mt-0.5">Marcos Bléa</p>
+            </div>
+          </div>
+          <div class="track-card rounded-2xl border border-white/8 bg-white/3 px-5 py-4 flex items-center gap-4 opacity-30">
+            <div class="h-10 w-10 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-600" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <div class="flex-1 min-w-0">
+              <p class="text-[14px] font-semibold text-slate-500 truncate">Em breve...</p>
+              <p class="text-[12px] text-slate-600 mt-0.5">Marcos Bléa</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="gold-line mx-auto max-w-5xl"></div>
+
+    <!-- ═══════ SHOWS ═══════ -->
+    <section id="shows" class="py-16 sm:py-24 bg-[#0a0a0a]">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="text-center max-w-xl mx-auto mb-12">
+          <p class="text-[11px] font-bold text-gold tracking-widest uppercase mb-3">Agenda</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">Próximos shows</h2>
+        </div>
+
+        <div data-animate class="rounded-2xl border border-gold/15 bg-gold/4 px-6 py-8 text-center space-y-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gold/40 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.3">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          <p class="text-[15px] font-semibold text-white">Novas datas em breve</p>
+          <p class="text-[13px] text-slate-500">Acompanhe o Instagram para não perder nenhum anúncio.</p>
+          <a href="https://www.instagram.com/0.marcos.silva/" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 mt-2 rounded-full border border-gold/30 bg-gold/10 px-5 py-2.5 text-[13px] font-semibold text-gold hover:bg-gold/20 transition">
+            Seguir no Instagram
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <div class="gold-line mx-auto max-w-5xl"></div>
+
+    <!-- ═══════ CTA CONTATO ═══════ -->
+    <section id="contato" class="py-16 sm:py-24 bg-gradient-to-b from-[#0a0a0a] via-[#0d0b07] to-[#0a0a0a]">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div data-animate class="relative overflow-hidden rounded-3xl border border-gold/20 bg-gradient-to-br from-gold/8 via-[#0d0b07] to-[#0a0a0a] px-6 py-12 sm:px-12 text-center space-y-5">
+          <div class="absolute -top-20 left-1/2 -translate-x-1/2 h-48 w-48 rounded-full bg-gold/12 blur-[60px] pointer-events-none"></div>
+          <p class="text-[11px] font-bold text-gold tracking-widest uppercase relative">Booking &amp; Contato</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white relative">
+            Leve a música do Marcos<br class="hidden sm:block" />
+            <span class="text-gold-gradient">para o seu evento</span>
+          </h2>
+          <p class="text-[15px] text-slate-400 max-w-md mx-auto relative">
+            Shows em igrejas, eventos cristãos, cultos e encontros. Entre em contato para verificar disponibilidade e cachê.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center relative">
+            <a
+              href="https://wa.me/5531942378881?text=Ol%C3%A1%20Marcos%2C%20gostaria%20de%20agendar%20uma%20apresenta%C3%A7%C3%A3o."
+              target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2.5 rounded-full bg-gold px-8 py-3.5 text-[15px] font-bold text-black shadow-gold hover:bg-gold-light transition"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 32 32" fill="currentColor">
+                <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+              </svg>
+              Falar no WhatsApp
+            </a>
+            <a href="https://www.instagram.com/0.marcos.silva/" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-3.5 text-[15px] font-semibold text-white hover:bg-white/10 transition">
+              <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.7"/>
+                <circle cx="12" cy="12" r="5" stroke-width="1.7"/>
+                <circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/>
+              </svg>
+              Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="border-t border-white/6 bg-[#0a0a0a] py-6">
+      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-slate-600">
+        <p>© <span id="year"></span> Marcos Bléa · Todos os direitos reservados</p>
+        <p>Feito com <span class="text-gold">♪</span> e fé</p>
+      </div>
+    </footer>
+
+    <!-- WhatsApp flutuante -->
+    <a
+      href="https://wa.me/5531942378881?text=Ol%C3%A1%20Marcos%2C%20gostaria%20de%20agendar%20uma%20apresenta%C3%A7%C3%A3o."
+      target="_blank" rel="noopener noreferrer"
+      aria-label="Agendar show com Marcos Bléa"
+      class="fixed bottom-6 right-6 z-50 flex items-center gap-3 rounded-full bg-emerald-500 pl-4 pr-5 py-3 shadow-[0_8px_30px_rgba(16,185,129,0.45)] hover:bg-emerald-600 hover:scale-105 transition-all duration-200 group"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white shrink-0" viewBox="0 0 32 32" fill="currentColor">
+        <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+      </svg>
+      <span class="text-[13px] font-bold text-white">Agendar show</span>
+    </a>
+
+    <!-- Audio element -->
+    <audio id="audio" preload="auto">
+      <source src="public/musicas/dia-do-senhor.mp3" type="audio/mpeg" />
+    </audio>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Scroll animations
+      const obs = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      }), { threshold: 0.1 });
+      document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
+
+      // Autoplay ao carregar
+      window.addEventListener('load', () => {
+        audio.volume = 0;
+        const tryPlay = () => {
+          audio.play().then(() => {
+            playing = true;
+            setPlayUI(true);
+            startFade('in');
+          }).catch(() => {
+            // Navegador bloqueou autoplay — aguarda primeiro clique/toque do usuário
+            const unlock = () => {
+              audio.volume = 0;
+              audio.play().then(() => {
+                playing = true;
+                setPlayUI(true);
+                startFade('in');
+              }).catch(() => {});
+              document.removeEventListener('click', unlock);
+              document.removeEventListener('touchstart', unlock);
+            };
+            document.addEventListener('click', unlock, { once: true });
+            document.addEventListener('touchstart', unlock, { once: true });
+          });
+        };
+        tryPlay();
+      });
+
+      // ── Player ──
+      const audio       = document.getElementById('audio');
+      const iconPlay    = document.getElementById('icon-play');
+      const iconPause   = document.getElementById('icon-pause');
+      const eqWrap      = document.getElementById('eq-wrap');
+      const progressBar = document.getElementById('progress-bar');
+      const unmuteBtn   = document.getElementById('unmute-btn');
+      const playBtn     = document.getElementById('play-btn');
+      const volBtn      = document.getElementById('vol-btn');
+      const iconVol     = document.getElementById('icon-vol');
+      const iconMute    = document.getElementById('icon-mute');
+
+      const FADE_DURATION = 2.0;
+      const FADE_STEPS    = 40;
+      let playing     = false;
+      let fadeTimer   = null;
+      let soundActive = false;
+
+      // Progresso + loop com fade suave
+      audio.addEventListener('timeupdate', () => {
+        if (!audio.duration) return;
+        progressBar.style.width = (audio.currentTime / audio.duration * 100) + '%';
+        const remaining = audio.duration - audio.currentTime;
+        if (remaining <= FADE_DURATION && remaining > 0 && playing && !fadeTimer && soundActive) {
+          startFade('out', () => {
+            audio.currentTime = 0;
+            audio.volume = 0;
+            fadeTimer = null;
+            startFade('in');
+          });
+        }
+      });
+
+      function startFade(direction, onComplete) {
+        clearInterval(fadeTimer);
+        const interval = (FADE_DURATION * 1000) / FADE_STEPS;
+        const step = 1 / FADE_STEPS;
+        fadeTimer = setInterval(() => {
+          let v = audio.volume + (direction === 'in' ? step : -step);
+          v = Math.min(1, Math.max(0, parseFloat(v.toFixed(4))));
+          audio.volume = v;
+          if ((direction === 'in' && v >= 1) || (direction === 'out' && v <= 0)) {
+            clearInterval(fadeTimer);
+            fadeTimer = null;
+            if (onComplete) onComplete();
+          }
+        }, interval);
+      }
+
+      function setPlayUI(isPlaying) {
+        iconPlay.classList.toggle('hidden', isPlaying);
+        iconPause.classList.toggle('hidden', !isPlaying);
+        eqWrap.classList.toggle('paused', !isPlaying);
+      }
+
+      // Usuário clica em "Ativar som"
+      function activateSound() {
+        soundActive = true;
+        unmuteBtn.classList.add('hidden');
+        playBtn.classList.remove('hidden');
+        volBtn.classList.remove('hidden');
+        audio.muted = false;
+        audio.volume = 0;
+        startFade('in');
+      }
+
+      function togglePlay() {
+        if (!soundActive) { activateSound(); return; }
+        if (playing) {
+          clearInterval(fadeTimer);
+          fadeTimer = null;
+          startFade('out', () => {
+            audio.pause();
+            audio.volume = 1;
+            playing = false;
+            setPlayUI(false);
+          });
+        } else {
+          audio.volume = 0;
+          audio.play().catch(() => {});
+          playing = true;
+          setPlayUI(true);
+          clearInterval(fadeTimer);
+          fadeTimer = null;
+          startFade('in');
+        }
+      }
+
+      function toggleMute() {
+        audio.muted = !audio.muted;
+        iconVol.classList.toggle('hidden', audio.muted);
+        iconMute.classList.toggle('hidden', !audio.muted);
+      }
+
+      // Inicia mudo ao carregar (sempre permitido pelos browsers)
+      window.addEventListener('load', () => {
+        audio.muted = true;
+        audio.volume = 1;
+        audio.play().then(() => {
+          playing = true;
+          setPlayUI(true);
+        }).catch(() => {});
+      });
+    </script>
+
+  <!-- Analytics LinkBio -->
+  <script src="https://linkbio.app.br/tracker.js" data-slug="marcosblea"></script>
+  </body>
+</html>
