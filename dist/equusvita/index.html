@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>EquusVita | Centro de Reprodução Equina – Silveirânia, MG</title>
+    <meta name="description" content="EquusVita – Centro de Reprodução Equina e Serviços em Silveirânia, MG. Reprodução equina, manejo, avaliação clínica e consultoria técnica. Desde 2010." />
+    <meta name="keywords" content="reprodução equina, inseminação equina, transferência embrião, equusvita, silveirânia MG, haras minas gerais, veterinário equino" />
+    <link rel="canonical" href="https://equusvita.linkbio.api.br/" />
+    <link rel="icon" href="public/logo/logo-equusvita-5.png" type="image/png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://equusvita.linkbio.api.br/" />
+    <meta property="og:title" content="EquusVita – Centro de Reprodução Equina | Silveirânia, MG" />
+    <meta property="og:description" content="Centro de Reprodução Equina e Serviços em Silveirânia, MG. Desde 2010." />
+    <meta property="og:locale" content="pt_BR" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "EquusVita Centro de Reprodução Equina e Serviços Ltda",
+      "description": "Centro de reprodução equina e serviços veterinários especializados em Silveirânia, MG. Desde 2010.",
+      "url": "https://equusvita.linkbio.api.br/",
+      "telephone": "+5532999187334",
+      "foundingDate": "2010",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rodovia Prefeito Martinho Gomes AMG-0505, KM03, Zona Rural",
+        "addressLocality": "Silveirânia",
+        "addressRegion": "MG",
+        "postalCode": "36185-000",
+        "addressCountry": "BR"
+      }
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      html { scroll-behavior: smooth; }
+      body { background: #f5f0e8; color: #1a1a1a; }
+
+      /* Splash */
+      #splash {
+        position: fixed; inset: 0; z-index: 9999;
+        display: flex; flex-direction: column;
+        align-items: center; justify-content: center; gap: 2rem;
+        background: #012700;
+        transition: opacity 0.7s ease, visibility 0.7s ease;
+      }
+      #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+      #splash img {
+        width: 160px; height: auto; display: block;
+        animation: splash-in 1s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      @keyframes splash-in {
+        from { opacity: 0; transform: scale(0.75); }
+        to   { opacity: 1; transform: scale(1); }
+      }
+      #splash .bar {
+        width: 140px; height: 2px; border-radius: 99px;
+        background: rgba(255,255,255,0.15); overflow: hidden;
+      }
+      #splash .bar-fill {
+        height: 100%; border-radius: 99px;
+        background: linear-gradient(90deg, #4a9e2a, #7dc54f);
+        width: 0; animation: bar-go 1.3s ease-out forwards;
+      }
+      @keyframes bar-go { to { width: 100%; } }
+
+      /* Hero */
+      .hero-img {
+        position: absolute; inset: 0;
+        background: url('public/hero/hero.jpg') center center / cover no-repeat;
+      }
+      .hero-overlay {
+        position: absolute; inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(1,39,0,0.55) 0%,
+          rgba(1,39,0,0.35) 40%,
+          rgba(1,39,0,0.75) 100%
+        );
+      }
+
+      /* Divisor ornamental */
+      .divider {
+        display: flex; align-items: center; gap: 1rem;
+        color: #012700; opacity: 0.35;
+      }
+      .divider::before, .divider::after {
+        content: ''; flex: 1; height: 1px; background: currentColor;
+      }
+
+      /* Card serviço */
+      .service-card {
+        border-left: 3px solid #012700;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .service-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(1,39,0,0.12);
+      }
+
+      /* Foto equipe */
+      .team-photo {
+        overflow: hidden; border-radius: 1rem;
+        box-shadow: 0 20px 60px rgba(1,39,0,0.18);
+      }
+      .team-photo img { transition: transform 0.6s ease; display: block; width: 100%; }
+      .team-photo:hover img { transform: scale(1.04); }
+
+      /* Animações de scroll */
+      [data-animate] {
+        opacity: 0; transform: translateY(24px);
+        transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+      }
+      [data-animate].is-visible { opacity: 1; transform: translateY(0); }
+      [data-animate-delay="100"] { transition-delay: .08s; }
+      [data-animate-delay="200"] { transition-delay: .16s; }
+      [data-animate-delay="300"] { transition-delay: .24s; }
+      [data-animate-delay="400"] { transition-delay: .32s; }
+      [data-animate-delay="500"] { transition-delay: .40s; }
+    </style>
+  </head>
+
+  <body class="font-sans antialiased">
+
+    <!-- Splash -->
+    <div id="splash">
+      <img src="public/logo/logo-equusvita-3.png" alt="EquusVita" />
+      <div class="bar"><div class="bar-fill"></div></div>
+    </div>
+
+    <!-- ═══════ HEADER ═══════ -->
+    <header class="fixed top-0 left-0 right-0 z-40 transition-all duration-300" id="header">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8 py-4 flex items-center justify-between gap-4">
+        <a href="#" aria-label="EquusVita" class="flex items-center gap-3">
+          <img src="public/logo/logo-equusvita-3.png" alt="EquusVita" class="h-16 w-auto transition-all duration-300" id="header-logo" />
+        </a>
+        <nav class="hidden md:flex items-center gap-7 text-[13px] font-semibold tracking-wide" id="header-nav">
+          <a href="#sobre" class="hover:opacity-70 transition uppercase">Sobre</a>
+          <a href="#servicos" class="hover:opacity-70 transition uppercase">Serviços</a>
+          <a href="#equipe" class="hover:opacity-70 transition uppercase">Equipe</a>
+          <a href="#contato" class="hover:opacity-70 transition uppercase">Contato</a>
+        </nav>
+
+        <!-- Botão WhatsApp (desktop) -->
+        <a
+          href="https://wa.me/5532999187334?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20EquusVita.%20Vim%20pelo%20LinkBio%20da%20EquusVita."
+          target="_blank" rel="noopener noreferrer"
+          class="hidden md:inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13px] font-bold transition" id="header-btn"
+          style="background:#012700;color:#fff"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 32 32" fill="currentColor">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+          </svg>
+          <span class="hidden sm:inline">Falar conosco</span>
+          <span class="sm:hidden">WhatsApp</span>
+        </a>
+
+        <!-- Botão menu mobile -->
+        <button
+          id="menu-toggle"
+          class="md:hidden inline-flex items-center justify-center rounded-full border border-white/40 px-3 py-2 text-white transition bg-black/20 backdrop-blur"
+          aria-label="Abrir menu"
+        >
+          <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Menu mobile -->
+    <div
+      id="mobile-menu"
+      class="md:hidden fixed top-[60px] left-0 right-0 z-30 px-5 sm:px-8 pb-4 pt-3 space-y-3 bg-black/80 backdrop-blur border-b border-white/10 hidden"
+    >
+      <a href="#sobre" class="block text-sm font-semibold text-white/90 py-1">Sobre</a>
+      <a href="#servicos" class="block text-sm font-semibold text-white/90 py-1">Serviços</a>
+      <a href="#equipe" class="block text-sm font-semibold text-white/90 py-1">Equipe</a>
+      <a href="#contato" class="block text-sm font-semibold text-white/90 py-1">Contato</a>
+      <a
+        href="https://wa.me/5532999187334?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20EquusVita.%20Vim%20pelo%20LinkBio%20da%20EquusVita."
+        target="_blank" rel="noopener noreferrer"
+        class="mt-2 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-[13px] font-bold text-white"
+        style="background:#012700"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 32 32" fill="currentColor">
+          <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+        </svg>
+        Falar conosco
+      </a>
+    </div>
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="relative h-screen min-h-[600px] flex items-end">
+      <div class="hero-img"></div>
+      <div class="hero-overlay"></div>
+      <div class="relative z-10 w-full mx-auto max-w-6xl px-5 sm:px-8 pb-16 sm:pb-24">
+        <div class="max-w-2xl">
+          <p class="text-[11px] font-bold tracking-[0.25em] uppercase text-white/60 mb-4">Desde 2010 · Silveirânia, MG</p>
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
+            Reprodução<br/>Equina de<br/><em class="not-italic" style="color:#7dc54f">Excelência</em>
+          </h1>
+          <p class="text-[16px] sm:text-[18px] text-white/80 leading-relaxed mb-8 max-w-lg">
+            Especialistas em reprodução, saúde e manejo equino. Cuidado e técnica ao serviço da genética do seu plantel.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a
+              href="https://wa.me/5532999187334?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20EquusVita.%20Vim%20pelo%20LinkBio%20da%20EquusVita."
+              target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-[15px] font-bold text-white transition"
+              style="background:#012700;box-shadow:0 4px 24px rgba(1,39,0,0.5)"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="currentColor">
+                <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+              </svg>
+              Falar no WhatsApp
+            </a>
+            <a href="#servicos" class="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 backdrop-blur px-7 py-3.5 text-[15px] font-semibold text-white hover:bg-white/20 transition">
+              Nossos serviços
+            </a>
+          </div>
+        </div>
+      <!-- Scroll hint -->
+      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 opacity-50">
+        <span class="text-[10px] font-semibold tracking-widest uppercase text-white">Role</span>
+        <div class="h-8 w-px bg-white/50 relative overflow-hidden rounded-full">
+          <div class="absolute top-0 left-0 right-0 h-4 bg-white rounded-full animate-bounce"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ SOBRE ═══════ -->
+    <section id="sobre" class="py-20 sm:py-28" style="background:#f5f0e8">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8">
+        <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+
+          <!-- Foto equipe principal -->
+          <div data-animate class="w-full lg:w-[45%] shrink-0">
+            <div class="team-photo">
+              <img src="public/fotos/01.PNG" alt="Equipe EquusVita" />
+            </div>
+            <p class="text-center text-[12px] text-[#012700]/50 font-medium tracking-wide mt-3 uppercase">Nossa equipe</p>
+          </div>
+
+          <!-- Texto -->
+          <div class="flex-1 space-y-6">
+            <div data-animate>
+              <div class="divider mb-6">
+                <img src="public/logo/logo-equusvita-5.png" alt="" class="h-8 w-8 opacity-60" />
+              </div>
+              <p class="text-[12px] font-bold tracking-[0.2em] uppercase mb-3" style="color:#012700">Sobre nós</p>
+              <h2 class="text-4xl sm:text-5xl font-black leading-tight tracking-tight" style="color:#012700">
+                Referência em<br/>genética equina<br/>desde 2010
+              </h2>
+            </div>
+            <div data-animate data-animate-delay="100">
+              <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
+                A <strong class="text-[#012700]">EquusVita</strong> é um centro especializado em reprodução equina localizado em Silveirânia, Minas Gerais. Atuamos com foco na saúde, performance e bem-estar dos equinos, oferecendo serviços técnicos e veterinários de alto padrão.
+              </p>
+            </div>
+            <div data-animate data-animate-delay="200">
+              <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
+                Nossa estrutura foi projetada para oferecer excelência no manejo reprodutivo, com equipe qualificada e comprometida com os melhores resultados genéticos e produtivos para haras, criadores e proprietários de cavalos.
+              </p>
+            </div>
+            <div data-animate data-animate-delay="300" class="flex flex-wrap gap-4 pt-2">
+              <div class="text-center px-5 py-3 rounded-xl" style="background:#012700/10;border:1px solid rgba(1,39,0,0.15)">
+                <p class="text-3xl font-black" style="color:#012700">+14</p>
+                <p class="text-[12px] font-semibold uppercase tracking-wide text-[#012700]/60">anos de experiência</p>
+              </div>
+              <div class="text-center px-5 py-3 rounded-xl" style="background:rgba(1,39,0,0.06);border:1px solid rgba(1,39,0,0.15)">
+                <p class="text-3xl font-black" style="color:#012700">MG</p>
+                <p class="text-[12px] font-semibold uppercase tracking-wide text-[#012700]/60">Silveirânia</p>
+              </div>
+              <div class="text-center px-5 py-3 rounded-xl" style="background:rgba(1,39,0,0.06);border:1px solid rgba(1,39,0,0.15)">
+                <p class="text-3xl font-black" style="color:#012700">360°</p>
+                <p class="text-[12px] font-semibold uppercase tracking-wide text-[#012700]/60">atendimento</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ SERVIÇOS ═══════ -->
+    <section id="servicos" style="background:#012700" class="py-20 sm:py-28">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8">
+
+        <div data-animate class="text-center max-w-xl mx-auto mb-14">
+          <p class="text-[12px] font-bold tracking-[0.2em] uppercase mb-3 text-white/50">O que fazemos</p>
+          <h2 class="text-4xl sm:text-5xl font-black text-white leading-tight tracking-tight">Nossos Serviços</h2>
+        </div>
+
+        <div class="grid gap-px sm:grid-cols-2 rounded-2xl overflow-hidden" style="background:rgba(255,255,255,0.1)">
+
+          <div data-animate data-animate-delay="100" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#012700;border-left-color:#4a9e2a">
+            <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 4c0 4 4 6 8 6s8 2 8 6M4 20c0-4 4-6 8-6s8-2 8-6M4 4h16M4 20h16"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white">Reprodução Equina</h3>
+            <p class="text-[14px] text-white/60 leading-relaxed">Inseminação artificial, coleta e avaliação de sêmen, transferência de embrião (TE) e criopreservação. Tecnologia de ponta para maximizar o potencial genético do seu plantel.</p>
+          </div>
+
+          <div data-animate data-animate-delay="200" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#012700;border-left-color:#4a9e2a">
+            <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white">Avaliação e Saúde Equina</h3>
+            <p class="text-[14px] text-white/60 leading-relaxed">Exame andrológico e ginecológico, diagnóstico por imagem, acompanhamento reprodutivo e clínico. Cuidados completos para a saúde e performance dos seus animais.</p>
+          </div>
+
+          <div data-animate data-animate-delay="300" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#012700;border-left-color:#4a9e2a">
+            <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white">Manejo de Haras</h3>
+            <p class="text-[14px] text-white/60 leading-relaxed">Gestão reprodutiva completa de haras e propriedades rurais. Planejamento de cobertura, controle de ciclo, acompanhamento de gestação e suporte ao produtor.</p>
+          </div>
+
+          <div data-animate data-animate-delay="400" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#012700;border-left-color:#4a9e2a">
+            <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white">Consultoria Técnica</h3>
+            <p class="text-[14px] text-white/60 leading-relaxed">Orientação especializada para criadores e proprietários. Melhoria genética, planejamento reprodutivo e apoio na tomada de decisões estratégicas para o seu plantel.</p>
+          </div>
+
+        </div>
+
+        <div data-animate class="text-center mt-12">
+          <a
+            href="https://wa.me/5532999187334?text=Ol%C3%A1%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20EquusVita.%20Vim%20pelo%20LinkBio%20da%20EquusVita."
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold transition"
+            style="background:#fff;color:#012700;box-shadow:0 4px 24px rgba(1,39,0,0.25)"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="currentColor">
+              <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+            </svg>
+            Solicitar informações
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════ EQUIPE ═══════ -->
+    <section id="equipe" class="py-20 sm:py-28" style="background:#f5f0e8">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8">
+        <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
+
+          <!-- Foto -->
+          <div data-animate class="w-full lg:w-[50%] shrink-0">
+            <div class="team-photo">
+              <img src="public/fotos/02.PNG" alt="Equipe EquusVita no haras" />
+            </div>
+            <p class="text-center text-[12px] text-[#012700]/50 font-medium tracking-wide mt-3 uppercase">Equipe completa</p>
+          </div>
+
+          <!-- Texto -->
+          <div class="flex-1 space-y-6">
+            <div data-animate>
+              <div class="divider mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="#012700" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H4v-2a4 4 0 015-3.87M12 12a4 4 0 100-8 4 4 0 000 8z"/>
+                </svg>
+              </div>
+              <p class="text-[12px] font-bold tracking-[0.2em] uppercase mb-3" style="color:#012700">Nossa equipe</p>
+              <h2 class="text-4xl sm:text-5xl font-black leading-tight tracking-tight" style="color:#012700">
+                Profissionais<br/>dedicados ao<br/>bem-estar equino
+              </h2>
+            </div>
+            <div data-animate data-animate-delay="100">
+              <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
+                Nossa equipe é formada por médicos-veterinários e técnicos especializados em reprodução equina, com anos de experiência no campo e comprometidos com os mais altos padrões de atendimento.
+              </p>
+            </div>
+            <div data-animate data-animate-delay="200">
+              <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
+                Trabalhamos com ética, ciência e paixão pelos cavalos, sempre buscando a melhor solução para cada animal e cada propriedade que atendemos.
+              </p>
+            </div>
+            <div data-animate data-animate-delay="300">
+              <a
+                href="https://wa.me/5532999187334?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20EquusVita.%20Vim%20pelo%20LinkBio%20da%20EquusVita."
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-[14px] font-bold transition group"
+                style="color:#012700"
+              >
+                Entre em contato
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ LOCALIZAÇÃO E CONTATO ═══════ -->
+    <section id="contato" style="background:#1a1a1a" class="py-20 sm:py-28">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8">
+
+        <div data-animate class="text-center max-w-xl mx-auto mb-14">
+          <p class="text-[12px] font-bold tracking-[0.2em] uppercase mb-3 text-white/40">Venha nos visitar</p>
+          <h2 class="text-4xl sm:text-5xl font-black text-white leading-tight tracking-tight">Onde estamos</h2>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-3">
+
+          <!-- Endereço -->
+          <div data-animate data-animate-delay="100" class="rounded-2xl p-8 flex flex-col gap-4" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08)">
+            <div class="h-10 w-10 rounded-lg flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">Endereço</p>
+              <p class="text-[15px] font-semibold text-white leading-snug">Rodovia Prefeito Martinho Gomes</p>
+              <p class="text-[14px] text-white/60 mt-1">AMG-0505, KM 03<br/>Zona Rural – Silveirânia, MG<br/>CEP: 36.185-000</p>
+            </div>
+            <!-- TODO: substituir pelo link definitivo do Google Maps -->
+            <a href="https://maps.google.com/?q=Silveirânia+MG+AMG-0505" target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-1.5 text-[13px] font-semibold transition" style="color:#4a9e2a">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+              Ver no mapa
+            </a>
+          </div>
+
+          <!-- WhatsApp -->
+          <div data-animate data-animate-delay="200" class="rounded-2xl p-8 flex flex-col gap-4" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08)">
+            <div class="h-10 w-10 rounded-lg flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 32 32" fill="#4a9e2a">
+                <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">WhatsApp</p>
+              <p class="text-[22px] font-bold text-white">(32) 99918-7334</p>
+              <p class="text-[13px] text-white/50 mt-1">Atendimento personalizado</p>
+            </div>
+            <a
+              href="https://wa.me/5532999187334?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20EquusVita.%20Vim%20pelo%20LinkBio%20da%20EquusVita."
+              target="_blank" rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-[14px] font-bold transition"
+              style="background:#4a9e2a;color:#fff"
+            >
+              Enviar mensagem
+            </a>
+          </div>
+
+          <!-- Horário -->
+          <div data-animate data-animate-delay="300" class="rounded-2xl p-8 flex flex-col gap-4" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08)">
+            <div class="h-10 w-10 rounded-lg flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-3">Horário</p>
+              <div class="space-y-2.5">
+                <div class="flex justify-between">
+                  <span class="text-[14px] text-white/60">Seg – Sex</span>
+                  <span class="text-[14px] font-semibold text-white">8h – 17h</span>
+                </div>
+                <div class="h-px" style="background:rgba(255,255,255,0.06)"></div>
+                <div class="flex justify-between">
+                  <span class="text-[14px] text-white/60">Sábado</span>
+                  <span class="text-[14px] font-semibold text-white">8h – 12h</span>
+                </div>
+                <div class="h-px" style="background:rgba(255,255,255,0.06)"></div>
+                <div class="flex justify-between">
+                  <span class="text-[14px] text-white/60">Emergências</span>
+                  <span class="text-[14px] font-semibold" style="color:#4a9e2a">Consulte</span>
+                </div>
+              </div>
+              <!-- TODO: confirmar horários com o cliente -->
+              <p class="text-[11px] text-white/25 mt-4">* Sujeito a confirmação</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer style="background:#0a0a0a" class="border-t py-10" style2="border-color:rgba(255,255,255,0.06)">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div class="flex items-center gap-4">
+            <img src="public/logo/logo-equusvita-3.png" alt="EquusVita" class="h-10 w-auto" />
+            <div>
+              <p class="font-black text-white text-[14px] tracking-wide">EQUUSVITA</p>
+              <p class="text-[11px] text-white/40">Centro de Reprodução Equina · Silveirânia, MG</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <a href="https://wa.me/5532999187334?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20EquusVita.%20Vim%20pelo%20LinkBio%20da%20EquusVita." target="_blank" rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              class="h-9 w-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:border-emerald-500/50 hover:text-emerald-400 transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 32 32" fill="currentColor">
+                <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-[12px] text-white/25" style="border-top:1px solid rgba(255,255,255,0.06)">
+          <p>© 2025 EquusVita Centro de Reprodução Equina e Serviços Ltda.</p>
+          <a href="https://linkbio.api.br" target="_blank" rel="noopener noreferrer" class="hover:text-white/50 transition">
+            Criado com <span style="color:#7dc54f">LinkBio</span>
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Botão flutuante WhatsApp -->
+    <a
+      href="https://wa.me/5532999187334?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20servi%C3%A7os%20da%20EquusVita.%20Vim%20pelo%20LinkBio%20da%20EquusVita."
+      target="_blank" rel="noopener noreferrer"
+      aria-label="Falar no WhatsApp"
+      class="fixed bottom-5 right-5 z-40 inline-flex items-center justify-center h-14 w-14 rounded-full bg-emerald-500 hover:bg-emerald-600 hover:scale-105 transition"
+      style="box-shadow:0 8px 30px rgba(16,185,129,0.4)"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" viewBox="0 0 32 32" fill="currentColor">
+        <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+      </svg>
+    </a>
+
+    <script>
+      // Splash
+      window.addEventListener('load', () => {
+        const splash = document.getElementById('splash');
+        setTimeout(() => splash && splash.classList.add('hide'), 1300);
+      });
+
+      // Header: transparente no topo, branco ao rolar
+      const header = document.getElementById('header');
+      const headerLogo   = document.getElementById('header-logo');
+      const headerNav    = document.getElementById('header-nav');
+      const headerBtn    = document.getElementById('header-btn');
+      const mobileMenu   = document.getElementById('mobile-menu');
+      const menuToggle   = document.getElementById('menu-toggle');
+      const iconOpen     = document.getElementById('icon-open');
+      const iconClose    = document.getElementById('icon-close');
+
+      function updateHeader() {
+        const scrolled = window.scrollY > 60;
+        if (scrolled) {
+          header.style.background = 'rgba(255,255,255,0.97)';
+          header.style.backdropFilter = 'blur(12px)';
+          header.style.borderBottom = '1px solid rgba(1,39,0,0.1)';
+          header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+          headerLogo.src = 'public/logo/logo-equusvita-2.png';
+          if (headerNav) headerNav.style.color = '#012700';
+          headerBtn.style.background = '#012700';
+          headerBtn.style.color = '#fff';
+          if (mobileMenu) {
+            mobileMenu.style.background = 'rgba(255,255,255,0.98)';
+            mobileMenu.style.borderBottomColor = 'rgba(1,39,0,0.1)';
+            mobileMenu.querySelectorAll('a').forEach(a => { a.style.color = '#012700'; });
+          }
+        } else {
+          header.style.background = 'transparent';
+          header.style.backdropFilter = 'none';
+          header.style.borderBottom = 'none';
+          header.style.boxShadow = 'none';
+          headerLogo.src = 'public/logo/logo-equusvita-3.png';
+          if (headerNav) headerNav.style.color = '#fff';
+          headerBtn.style.background = '#012700';
+          headerBtn.style.color = '#fff';
+          if (mobileMenu) {
+            mobileMenu.style.background = 'rgba(0,0,0,0.8)';
+            mobileMenu.style.borderBottomColor = 'rgba(255,255,255,0.1)';
+            mobileMenu.querySelectorAll('a').forEach(a => { a.style.color = '#ffffff'; });
+          }
+        }
+      }
+      window.addEventListener('scroll', updateHeader, { passive: true });
+      updateHeader();
+
+      // Toggle menu mobile
+      if (menuToggle && mobileMenu && iconOpen && iconClose) {
+        menuToggle.addEventListener('click', () => {
+          const isOpen = !mobileMenu.classList.contains('hidden');
+          if (isOpen) {
+            mobileMenu.classList.add('hidden');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+          } else {
+            mobileMenu.classList.remove('hidden');
+            iconOpen.classList.add('hidden');
+            iconClose.classList.remove('hidden');
+          }
+        });
+      }
+
+      // Scroll animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); }
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+    </script>
+
+    <script src="https://linkbio.api.br/tracker.js" data-slug="equusvita"></script>
+  </body>
+</html>
