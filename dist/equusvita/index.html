@@ -87,7 +87,7 @@
       /* Hero */
       .hero-img {
         position: absolute; inset: 0;
-        background: url('public/hero/hero.jpg') center center / cover no-repeat;
+        background: url('public/fotos/06.jpeg') center center / cover no-repeat;
       }
       .hero-overlay {
         position: absolute; inset: 0;
@@ -122,8 +122,25 @@
       .team-photo {
         overflow: hidden; border-radius: 1rem;
         box-shadow: 0 20px 60px rgba(1,39,0,0.18);
+        background: rgba(1,39,0,0.06);
+        aspect-ratio: 16 / 10;
       }
-      .team-photo img { transition: transform 0.6s ease; display: block; width: 100%; }
+      .team-photo img {
+        transition: transform 0.6s ease;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+      .team-photo.contain {
+        aspect-ratio: auto;
+      }
+      .team-photo.contain img {
+        height: auto;
+        object-fit: contain;
+        background: rgba(1,39,0,0.06);
+      }
       .team-photo:hover img { transform: scale(1.04); }
 
       /* Animações de scroll */
@@ -156,7 +173,9 @@
         </a>
         <nav class="hidden md:flex items-center gap-7 text-[13px] font-semibold tracking-wide" id="header-nav">
           <a href="#sobre" class="hover:opacity-70 transition uppercase">Sobre</a>
+          <a href="#central" class="hover:opacity-70 transition uppercase">A Central</a>
           <a href="#servicos" class="hover:opacity-70 transition uppercase">Serviços</a>
+          <a href="#estrutura" class="hover:opacity-70 transition uppercase">Estrutura</a>
           <a href="#equipe" class="hover:opacity-70 transition uppercase">Equipe</a>
           <a href="#contato" class="hover:opacity-70 transition uppercase">Contato</a>
         </nav>
@@ -197,7 +216,9 @@
       class="md:hidden fixed top-[60px] left-0 right-0 z-30 px-5 sm:px-8 pb-4 pt-3 space-y-3 bg-black/80 backdrop-blur border-b border-white/10 hidden"
     >
       <a href="#sobre" class="block text-sm font-semibold text-white/90 py-1">Sobre</a>
+      <a href="#central" class="block text-sm font-semibold text-white/90 py-1">A Central</a>
       <a href="#servicos" class="block text-sm font-semibold text-white/90 py-1">Serviços</a>
+      <a href="#estrutura" class="block text-sm font-semibold text-white/90 py-1">Estrutura</a>
       <a href="#equipe" class="block text-sm font-semibold text-white/90 py-1">Equipe</a>
       <a href="#contato" class="block text-sm font-semibold text-white/90 py-1">Contato</a>
       <a
@@ -214,17 +235,17 @@
     </div>
 
     <!-- ═══════ HERO ═══════ -->
-    <section class="relative h-screen min-h-[600px] flex items-end">
+    <section class="relative h-screen min-h-[600px] flex items-start pt-28 sm:pt-32 lg:pt-36">
       <div class="hero-img"></div>
       <div class="hero-overlay"></div>
       <div class="relative z-10 w-full mx-auto max-w-6xl px-5 sm:px-8 pb-16 sm:pb-24">
         <div class="max-w-2xl">
-          <p class="text-[11px] font-bold tracking-[0.25em] uppercase text-white/60 mb-4">Desde 2010 · Silveirânia, MG</p>
+          <p class="text-[11px] font-bold tracking-[0.25em] uppercase text-white/60 mb-4">Desde 2010 · Reprodução Equina · Silveirânia – MG</p>
           <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.05] mb-6">
-            Reprodução<br/>Equina de<br/><em class="not-italic" style="color:#7dc54f">Excelência</em>
+            Excelência em<br/>Reprodução<br/>Equina
           </h1>
-          <p class="text-[16px] sm:text-[18px] text-white/80 leading-relaxed mb-8 max-w-lg">
-            Especialistas em reprodução, saúde e manejo equino. Cuidado e técnica ao serviço da genética do seu plantel.
+          <p class="text-[16px] sm:text-[18px] text-white/80 leading-relaxed mb-6 max-w-xl">
+            Condução reprodutiva com manejo técnico, acompanhamento contínuo e estrutura preparada para maior eficiência durante a estação.
           </p>
           <div class="flex flex-wrap gap-3">
             <a
@@ -236,20 +257,13 @@
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="currentColor">
                 <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
               </svg>
-              Falar no WhatsApp
+              Fale Conosco
             </a>
-            <a href="#servicos" class="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 backdrop-blur px-7 py-3.5 text-[15px] font-semibold text-white hover:bg-white/20 transition">
-              Nossos serviços
+            <a href="#central" class="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 backdrop-blur px-7 py-3.5 text-[15px] font-semibold text-white hover:bg-white/20 transition">
+              Nosso Trabalho
             </a>
           </div>
         </div>
-      <!-- Scroll hint -->
-      <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 opacity-50">
-        <span class="text-[10px] font-semibold tracking-widest uppercase text-white">Role</span>
-        <div class="h-8 w-px bg-white/50 relative overflow-hidden rounded-full">
-          <div class="absolute top-0 left-0 right-0 h-4 bg-white rounded-full animate-bounce"></div>
-        </div>
-      </div>
     </section>
 
     <!-- ═══════ SOBRE ═══════ -->
@@ -271,19 +285,22 @@
               <div class="divider mb-6">
                 <img src="public/logo/logo-equusvita-5.png" alt="" class="h-8 w-8 opacity-60" />
               </div>
-              <p class="text-[12px] font-bold tracking-[0.2em] uppercase mb-3" style="color:#012700">Sobre nós</p>
+              <p class="text-[12px] font-bold tracking-[0.2em] uppercase mb-3" style="color:#012700">Sobre a central</p>
               <h2 class="text-4xl sm:text-5xl font-black leading-tight tracking-tight" style="color:#012700">
-                Referência em<br/>genética equina<br/>desde 2010
+                Central de<br/>Reprodução<br/>Equina
               </h2>
             </div>
             <div data-animate data-animate-delay="100">
               <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
-                A <strong class="text-[#012700]">EquusVita</strong> é um centro especializado em reprodução equina localizado em Silveirânia, Minas Gerais. Atuamos com foco na saúde, performance e bem-estar dos equinos, oferecendo serviços técnicos e veterinários de alto padrão.
+                A <strong class="text-[#012700]">Equusvita</strong> é uma central de reprodução equina estruturada para conduzir, de forma contínua, os processos envolvidos na reprodução de éguas e garanhões.
               </p>
             </div>
             <div data-animate data-animate-delay="200">
               <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
-                Nossa estrutura foi projetada para oferecer excelência no manejo reprodutivo, com equipe qualificada e comprometida com os melhores resultados genéticos e produtivos para haras, criadores e proprietários de cavalos.
+                Diferente do atendimento pontual em campo, a central permite acompanhamento próximo dos animais, com controle de ciclo, manejo organizado e execução dos procedimentos no momento adequado.
+              </p>
+              <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70 mt-4">
+                As éguas permanecem sob observação frequente, o que possibilita melhor aproveitamento reprodutivo ao longo da estação. Esse modelo reduz perdas, evita deslocamentos constantes e aumenta a eficiência dos resultados.
               </p>
             </div>
             <div data-animate data-animate-delay="300" class="flex flex-wrap gap-4 pt-2">
@@ -306,6 +323,42 @@
       </div>
     </section>
 
+    <!-- ═══════ COMO FUNCIONA A CENTRAL ═══════ -->
+    <section id="central" class="py-20 sm:py-28" style="background:#ffffff">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8">
+        <div class="max-w-3xl">
+          <div data-animate class="space-y-6">
+            <div class="divider mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="#012700" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <p class="text-[12px] font-bold tracking-[0.2em] uppercase" style="color:#012700">Como funciona a central</p>
+            <h2 class="text-4xl sm:text-5xl font-black leading-tight tracking-tight" style="color:#012700">
+              Rotina, controle<br/>e decisão<br/>mais rápida
+            </h2>
+            <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
+              Na central, todo o processo reprodutivo acontece dentro de uma rotina organizada.
+            </p>
+            <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
+              As éguas doadoras são acompanhadas de forma contínua, permitindo maior controle sobre o ciclo e melhor definição do momento de inseminação e coleta de embrião.
+            </p>
+            <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
+              As receptoras são preparadas de forma sincronizada, garantindo condições adequadas para a fixação da gestação.
+            </p>
+            <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
+              Os garanhões permanecem sob manejo da equipe, com coleta programada, avaliação e, quando necessário, congelamento de sêmen.
+            </p>
+            <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
+              A proximidade da equipe com os animais, aliada ao suporte laboratorial, permite tomada de decisão mais rápida e condução mais precisa de cada caso ao longo da estação.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider mx-auto max-w-6xl px-5 sm:px-8 opacity-20" style="color:#012700"></div>
+
     <!-- ═══════ SERVIÇOS ═══════ -->
     <section id="servicos" style="background:#012700" class="py-20 sm:py-28">
       <div class="mx-auto max-w-6xl px-5 sm:px-8">
@@ -324,37 +377,64 @@
               </svg>
             </div>
             <h3 class="text-xl font-bold text-white">Reprodução Equina</h3>
-            <p class="text-[14px] text-white/60 leading-relaxed">Inseminação artificial, coleta e avaliação de sêmen, transferência de embrião (TE) e criopreservação. Tecnologia de ponta para maximizar o potencial genético do seu plantel.</p>
+            <p class="text-[14px] text-white/60 leading-relaxed">Condução completa do processo reprodutivo, com inseminação artificial utilizando sêmen fresco ou congelado, além de transferência de embriões.</p>
           </div>
 
           <div data-animate data-animate-delay="200" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#012700;border-left-color:#4a9e2a">
             <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.845v6.31a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-white">Avaliação e Saúde Equina</h3>
-            <p class="text-[14px] text-white/60 leading-relaxed">Exame andrológico e ginecológico, diagnóstico por imagem, acompanhamento reprodutivo e clínico. Cuidados completos para a saúde e performance dos seus animais.</p>
+            <h3 class="text-xl font-bold text-white">Coleta e Avaliação de Sêmen</h3>
+            <p class="text-[14px] text-white/60 leading-relaxed">Coleta programada de garanhões, com avaliação da qualidade seminal e definição de uso imediato ou criopreservação.</p>
           </div>
 
           <div data-animate data-animate-delay="300" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#012700;border-left-color:#4a9e2a">
             <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 8l-7 7-3-3"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 12a7 7 0 1114 0 7 7 0 01-14 0z"/>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-white">Manejo de Haras</h3>
-            <p class="text-[14px] text-white/60 leading-relaxed">Gestão reprodutiva completa de haras e propriedades rurais. Planejamento de cobertura, controle de ciclo, acompanhamento de gestação e suporte ao produtor.</p>
+            <h3 class="text-xl font-bold text-white">Criopreservação</h3>
+            <p class="text-[14px] text-white/60 leading-relaxed">Processo de congelamento de sêmen com controle técnico, permitindo armazenamento e utilização futura.</p>
           </div>
 
           <div data-animate data-animate-delay="400" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#012700;border-left-color:#4a9e2a">
             <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 18c2.5 0 4.5-2 5-5 .5 3 2.5 5 5 5"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v6"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 6h6"/>
               </svg>
             </div>
-            <h3 class="text-xl font-bold text-white">Consultoria Técnica</h3>
-            <p class="text-[14px] text-white/60 leading-relaxed">Orientação especializada para criadores e proprietários. Melhoria genética, planejamento reprodutivo e apoio na tomada de decisões estratégicas para o seu plantel.</p>
+            <h3 class="text-xl font-bold text-white">Manejo de Doadoras e Receptoras</h3>
+            <p class="text-[14px] text-white/60 leading-relaxed">Acompanhamento contínuo das éguas, com controle de ciclo, sincronização e preparação para cada etapa do processo.</p>
+          </div>
+
+          <div data-animate data-animate-delay="100" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#012700;border-left-color:#4a9e2a">
+            <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3M4 11h16"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 5h12a2 2 0 012 2v13a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 15h2m4 0h2"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white">Acompanhamento Reprodutivo</h3>
+            <p class="text-[14px] text-white/60 leading-relaxed">Monitoramento frequente com avaliação clínica e reprodutiva, permitindo ajustes conforme a resposta de cada animal.</p>
+          </div>
+
+          <div data-animate data-animate-delay="200" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#012700;border-left-color:#4a9e2a">
+            <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h10M7 17h10"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-white">Gestão Reprodutiva de Haras</h3>
+            <p class="text-[14px] text-white/60 leading-relaxed">Organização da estação de monta, controle de cobertura, planejamento e suporte técnico ao criador.</p>
           </div>
 
         </div>
@@ -376,8 +456,66 @@
       </div>
     </section>
 
+    <!-- ═══════ ESTRUTURA ═══════ -->
+    <section id="estrutura" class="py-20 sm:py-28" style="background:#f5f0e8">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12" data-animate>
+          <p class="text-[12px] font-bold tracking-[0.2em] uppercase mb-3" style="color:#012700">Nossa Estrutura</p>
+          <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70 mt-4">
+            A central conta com estrutura preparada para atender todas as etapas da reprodução equina, com suporte laboratorial para maior consistência nos resultados.
+          </p>
+        </div>
+
+        <div class="grid gap-px sm:grid-cols-2 rounded-2xl overflow-hidden" style="background:rgba(1,39,0,0.14)">
+          <div data-animate class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#ffffff;border-left-color:#012700">
+            <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(1,39,0,0.08)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#012700" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18M7 7l5-4 5 4M7 17l5 4 5-4"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold" style="color:#012700">Ambiente controlado</h3>
+            <p class="text-[14px] leading-relaxed text-[#1a1a1a]/70">Rotina organizada e condições adequadas para condução reprodutiva com consistência ao longo da estação.</p>
+          </div>
+
+          <div data-animate data-animate-delay="100" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#ffffff;border-left-color:#012700">
+            <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(1,39,0,0.08)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#012700" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 7h18M3 12h18M3 17h18"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold" style="color:#012700">Áreas específicas para manejo</h3>
+            <p class="text-[14px] leading-relaxed text-[#1a1a1a]/70">Setores definidos para cada etapa do processo, com execução no momento adequado e suporte da equipe.</p>
+          </div>
+
+          <div data-animate data-animate-delay="200" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#ffffff;border-left-color:#012700">
+            <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(1,39,0,0.08)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#012700" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 20h10M9 20V6a3 3 0 116 0v14"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold" style="color:#012700">Alojamento adequado</h3>
+            <p class="text-[14px] leading-relaxed text-[#1a1a1a]/70">Espaços adequados para permanência de doadoras, receptoras e garanhões com acompanhamento frequente.</p>
+          </div>
+
+          <div data-animate data-animate-delay="300" class="service-card p-8 sm:p-10 flex flex-col gap-4" style="background:#ffffff;border-left-color:#012700">
+            <div class="h-12 w-12 rounded-xl flex items-center justify-center" style="background:rgba(1,39,0,0.08)">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="#012700" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 3h6v6H9V3zM7 21h10M12 9v12"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold" style="color:#012700">Laboratório equipado</h3>
+            <p class="text-[14px] leading-relaxed text-[#1a1a1a]/70">Recursos necessários para avaliação, manipulação e conservação de material biológico com segurança e precisão.</p>
+          </div>
+        </div>
+
+        <p class="text-[14px] text-[#012700]/60 mt-6 max-w-3xl">
+          A associação entre estrutura, rotina organizada e suporte laboratorial permite maior consistência nos resultados ao longo da estação, com capacidade para alcançar volumes expressivos de embriões quando o manejo e as condições reprodutivas são favoráveis.
+        </p>
+      </div>
+    </section>
+
     <!-- ═══════ EQUIPE ═══════ -->
-    <section id="equipe" class="py-20 sm:py-28" style="background:#f5f0e8">
+    <section id="equipe" class="py-20 sm:py-28" style="background:#ffffff">
       <div class="mx-auto max-w-6xl px-5 sm:px-8">
         <div class="flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
 
@@ -397,19 +535,19 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H4v-2a4 4 0 015-3.87M12 12a4 4 0 100-8 4 4 0 000 8z"/>
                 </svg>
               </div>
-              <p class="text-[12px] font-bold tracking-[0.2em] uppercase mb-3" style="color:#012700">Nossa equipe</p>
+              <p class="text-[12px] font-bold tracking-[0.2em] uppercase mb-3" style="color:#012700">Equipe</p>
               <h2 class="text-4xl sm:text-5xl font-black leading-tight tracking-tight" style="color:#012700">
-                Profissionais<br/>dedicados ao<br/>bem-estar equino
+                Condução técnica<br/>e acompanhamento<br/>direto
               </h2>
             </div>
             <div data-animate data-animate-delay="100">
               <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
-                Nossa equipe é formada por médicos-veterinários e técnicos especializados em reprodução equina, com anos de experiência no campo e comprometidos com os mais altos padrões de atendimento.
+                A Equusvita conta com equipe formada por médicos veterinários e técnicos com atuação em reprodução equina, acompanhando diretamente cada etapa do processo, desde a avaliação inicial até a confirmação de prenhez.
               </p>
             </div>
             <div data-animate data-animate-delay="200">
               <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
-                Trabalhamos com ética, ciência e paixão pelos cavalos, sempre buscando a melhor solução para cada animal e cada propriedade que atendemos.
+                A Equusvita conta com equipe formada por médicos veterinários e técnicos com atuação em reprodução equina, acompanhando diretamente cada etapa do processo, desde a avaliação inicial até a confirmação de prenhez.
               </p>
             </div>
             <div data-animate data-animate-delay="300">
@@ -431,13 +569,85 @@
       </div>
     </section>
 
+    <!-- ═══════ RESPONSÁVEL TÉCNICO ═══════ -->
+    <section id="responsavel" class="py-20 sm:py-28" style="background:#f5f0e8">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8">
+        <div class="grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
+          <div data-animate class="rounded-2xl p-8" style="background:#ffffff;border:1px solid rgba(1,39,0,0.12)">
+            <div class="divider mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="#012700" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 7h10M7 17h10"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 3h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2z"/>
+              </svg>
+            </div>
+            <p class="text-[12px] font-bold tracking-[0.2em] uppercase" style="color:#012700">Responsável técnico</p>
+            <h2 class="text-4xl sm:text-5xl font-black leading-tight tracking-tight mt-2" style="color:#012700">Dr. Rafael Goretti</h2>
+            <p class="text-[14px] text-[#1a1a1a]/70 mt-2">MV, MSc</p>
+            <p class="text-[14px] text-[#1a1a1a]/70">Dunn Ranch 🇺🇸 | Equusvita 🇧🇷</p>
+
+            <div class="h-px my-6" style="background:rgba(1,39,0,0.12)"></div>
+
+            <p class="text-[15px] leading-relaxed text-[#1a1a1a]/70">
+              Dr. Rafael Goretti construiu sua trajetória com forte atuação prática na reprodução equina, sendo reconhecido pela consistência no trabalho a campo e pela condução técnica de casos ao longo de diferentes estações.
+            </p>
+            <p class="text-[15px] leading-relaxed text-[#1a1a1a]/70 mt-4">
+              Com experiência no Brasil e nos Estados Unidos, já participou da condução e confirmação de mais de <strong class="text-[#012700]">15.000</strong> transferências de embriões equinos, resultado de anos de trabalho contínuo, precisão nos procedimentos e acompanhamento reprodutivo.
+            </p>
+            <p class="text-[15px] leading-relaxed text-[#1a1a1a]/70 mt-4">
+              Sua atuação está diretamente ligada à rotina da central, contribuindo na condução dos casos, tomada de decisão técnica e organização dos processos reprodutivos. Atua também na formação de profissionais e programas de imersão em reprodução equina.
+            </p>
+          </div>
+
+          <div data-animate data-animate-delay="100" class="team-photo contain">
+            <img src="public/fotos/rafael_goretti.png" alt="Dr. Rafael Goretti" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════ POR QUE TRABALHAR COM UMA CENTRAL ═══════ -->
+    <section id="por-que" class="py-20 sm:py-28" style="background:#f5f0e8">
+      <div class="mx-auto max-w-6xl px-5 sm:px-8">
+        <div class="grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
+          <div data-animate class="space-y-6">
+            <div class="divider mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="#012700" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <p class="text-[12px] font-bold tracking-[0.2em] uppercase" style="color:#012700">Por que trabalhar com uma central</p>
+            <h2 class="text-4xl sm:text-5xl font-black leading-tight tracking-tight" style="color:#012700">Mais controle.<br/>Mais eficiência.</h2>
+            <p class="text-[16px] leading-relaxed text-[#1a1a1a]/70">
+              A condução da reprodução dentro de uma central permite:
+            </p>
+          </div>
+
+          <div data-animate data-animate-delay="100" class="rounded-2xl p-8" style="background:#ffffff;border:1px solid rgba(1,39,0,0.12)">
+            <ul class="space-y-3 text-[15px] text-[#1a1a1a]/75">
+              <li class="flex gap-2.5"><span class="mt-2 h-1.5 w-1.5 rounded-full" style="background:#012700"></span><span>Maior frequência de acompanhamento</span></li>
+              <li class="flex gap-2.5"><span class="mt-2 h-1.5 w-1.5 rounded-full" style="background:#012700"></span><span>Melhor controle do ciclo reprodutivo</span></li>
+              <li class="flex gap-2.5"><span class="mt-2 h-1.5 w-1.5 rounded-full" style="background:#012700"></span><span>Redução de perdas por falha de timing</span></li>
+              <li class="flex gap-2.5"><span class="mt-2 h-1.5 w-1.5 rounded-full" style="background:#012700"></span><span>Execução dos procedimentos no momento adequado</span></li>
+              <li class="flex gap-2.5"><span class="mt-2 h-1.5 w-1.5 rounded-full" style="background:#012700"></span><span>Melhor aproveitamento da estação</span></li>
+            </ul>
+            <div class="h-px my-5" style="background:rgba(1,39,0,0.12)"></div>
+            <p class="text-[14px] text-[#1a1a1a]/70">A proximidade da equipe com os animais impacta diretamente na eficiência dos resultados.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ═══════ LOCALIZAÇÃO E CONTATO ═══════ -->
     <section id="contato" style="background:#1a1a1a" class="py-20 sm:py-28">
       <div class="mx-auto max-w-6xl px-5 sm:px-8">
 
         <div data-animate class="text-center max-w-xl mx-auto mb-14">
-          <p class="text-[12px] font-bold tracking-[0.2em] uppercase mb-3 text-white/40">Venha nos visitar</p>
-          <h2 class="text-4xl sm:text-5xl font-black text-white leading-tight tracking-tight">Onde estamos</h2>
+          <p class="text-[12px] font-bold tracking-[0.2em] uppercase mb-3 text-white/40">Contatos</p>
+          <h2 class="text-4xl sm:text-5xl font-black text-white leading-tight tracking-tight">Fale com a equipe</h2>
+          <p class="text-[15px] text-white/55 leading-relaxed mt-4">
+            Fale com a equipe técnica e entenda como funciona o acompanhamento na central.
+          </p>
         </div>
 
         <div class="grid gap-6 sm:grid-cols-3">
@@ -487,34 +697,21 @@
             </a>
           </div>
 
-          <!-- Horário -->
+          <!-- Local -->
           <div data-animate data-animate-delay="300" class="rounded-2xl p-8 flex flex-col gap-4" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08)">
             <div class="h-10 w-10 rounded-lg flex items-center justify-center" style="background:rgba(74,158,42,0.15)">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="#4a9e2a" stroke-width="1.6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 6h18M3 12h18M3 18h18"/>
               </svg>
             </div>
             <div>
-              <p class="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-3">Horário</p>
-              <div class="space-y-2.5">
-                <div class="flex justify-between">
-                  <span class="text-[14px] text-white/60">Seg – Sex</span>
-                  <span class="text-[14px] font-semibold text-white">8h – 17h</span>
-                </div>
-                <div class="h-px" style="background:rgba(255,255,255,0.06)"></div>
-                <div class="flex justify-between">
-                  <span class="text-[14px] text-white/60">Sábado</span>
-                  <span class="text-[14px] font-semibold text-white">8h – 12h</span>
-                </div>
-                <div class="h-px" style="background:rgba(255,255,255,0.06)"></div>
-                <div class="flex justify-between">
-                  <span class="text-[14px] text-white/60">Emergências</span>
-                  <span class="text-[14px] font-semibold" style="color:#4a9e2a">Consulte</span>
-                </div>
-              </div>
-              <!-- TODO: confirmar horários com o cliente -->
-              <p class="text-[11px] text-white/25 mt-4">* Sujeito a confirmação</p>
+              <p class="text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">Local</p>
+              <p class="text-[22px] font-bold text-white">Silveirânia – MG</p>
+              <p class="text-[13px] text-white/50 mt-1">Atendimento na central</p>
             </div>
+            <a href="#sobre" class="inline-flex items-center gap-2 rounded-xl px-5 py-3 text-[14px] font-bold transition" style="background:rgba(74,158,42,0.15);color:#fff;border:1px solid rgba(74,158,42,0.35)">
+              Entender a central
+            </a>
           </div>
 
         </div>

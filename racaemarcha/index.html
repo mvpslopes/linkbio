@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Raça e Marcha – Mangalarga Marchador</title>
+  <meta name="description" content="Raça e Marcha: o ponto de encontro do Mangalarga Marchador. Conteúdo, visibilidade e resultados para criadores, haras e parceiros do segmento."/>
+  <meta property="og:title" content="Raça e Marcha – Mangalarga Marchador"/>
+  <meta property="og:description" content="Conteúdo, visibilidade e resultados para o universo do Mangalarga Marchador."/>
+  <meta property="og:type" content="website"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <script src="https://linkbio.api.br/tracker.js" data-slug="racaemarcha" defer></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:      #c0392b;
+      --red-deep: #9b1a10;
+      --red-glow: rgba(192,57,43,0.25);
+      --silver:   #d1d1d1;
+      --silver-lt:#f0f0f0;
+      --dark:     #080810;
+      --dark2:    #10101c;
+      --dark3:    #181828;
+      --white:    #ffffff;
+      --muted:    #a7a7a7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: var(--red); border-radius: 3px; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; height: 68px;
+      background: rgba(8,8,16,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      transition: all .3s;
+    }
+    header.scrolled {
+      height: 60px;
+      background: rgba(8,8,16,0.98);
+      border-bottom-color: rgba(192,57,43,0.3);
+    }
+    .header-logo img { height: 44px; width: auto; display: block; }
+    header.scrolled .header-logo img { height: 38px; }
+
+    /* desktop nav */
+    nav.desk { display: flex; align-items: center; gap: 28px; }
+    nav.desk a {
+      font-size: 13px; font-weight: 500; letter-spacing: .03em;
+      color: var(--silver); text-decoration: none; text-transform: uppercase;
+      transition: color .2s;
+    }
+    nav.desk a:hover { color: #fff; }
+
+    .btn-wpp-hdr {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--red); color: #fff;
+      font-size: 13px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+      padding: 9px 18px; border-radius: 6px; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-wpp-hdr:hover { background: var(--red-deep); transform: translateY(-1px); }
+    .btn-wpp-hdr svg { flex-shrink: 0; }
+
+    /* hamburger */
+    #menu-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 6px; color: var(--silver);
+    }
+    #menu-toggle:hover { color: #fff; }
+
+    /* mobile menu */
+    #mobile-menu {
+      display: none; position: fixed; top: 68px; left: 0; right: 0; bottom: 0;
+      background: rgba(8,8,16,0.98); backdrop-filter: blur(20px);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 36px; z-index: 99;
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu a {
+      font-size: 22px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      color: var(--silver); text-decoration: none; transition: color .2s;
+    }
+    #mobile-menu a:hover { color: #fff; }
+    #mobile-menu .btn-wpp-mob {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--red); color: #fff;
+      font-size: 15px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+      padding: 14px 32px; border-radius: 8px; text-decoration: none; margin-top: 8px;
+      transition: background .2s;
+    }
+    #mobile-menu .btn-wpp-mob:hover { background: var(--red-deep); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      background: var(--dark);
+      display: flex; align-items: flex-end;
+      padding: 0 0 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 65% 45%, rgba(192,57,43,0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(148,163,184,0.05) 0%, transparent 60%);
+    }
+    /* diagonal stripe accent */
+    .hero-stripe {
+      position: absolute; top: 0; right: 0;
+      width: 45%; height: 100%;
+      background: linear-gradient(135deg, transparent 40%, rgba(192,57,43,0.04) 40%);
+      pointer-events: none;
+    }
+    /* large horse silhouette bg */
+    .hero-horse {
+      position: absolute; right: -4%; bottom: 0;
+      height: 92%; width: auto;
+      opacity: .07;
+      filter: brightness(0) invert(1);
+      pointer-events: none;
+      user-select: none;
+    }
+    /* red vertical bar */
+    .hero-redbar {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 4px; background: linear-gradient(to bottom, transparent, var(--red) 30%, var(--red) 70%, transparent);
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      padding: 120px 48px 0;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 2px; background: var(--red);
+    }
+    .hero-title {
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 900; line-height: 1;
+      letter-spacing: -.03em;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .hero-title span { color: var(--red); }
+    .hero-sub {
+      margin-top: 24px;
+      max-width: 520px;
+      font-size: 17px; font-weight: 400; line-height: 1.65;
+      color: var(--silver);
+    }
+    .hero-actions {
+      margin-top: 40px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--red); color: #fff;
+      font-size: 14px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+      padding: 14px 28px; border-radius: 6px; text-decoration: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 24px rgba(192,57,43,0.35);
+    }
+    .btn-primary:hover { background: var(--red-deep); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(192,57,43,0.45); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(148,163,184,0.3); color: var(--silver-lt);
+      font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      padding: 14px 28px; border-radius: 6px; text-decoration: none;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: rgba(148,163,184,0.7); color: #fff; background: rgba(148,163,184,0.06); }
+    .hero-stats {
+      margin-top: 56px; display: flex; gap: 40px; flex-wrap: wrap;
+    }
+    .stat { display: flex; flex-direction: column; gap: 4px; }
+    .stat-num {
+      font-size: 32px; font-weight: 900; color: #fff; letter-spacing: -.02em;
+      line-height: 1;
+    }
+    .stat-num span { color: var(--red); }
+    .stat-label {
+      font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── SECTION COMMONS ─── */
+    section { position: relative; overflow: hidden; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .section-header { margin-bottom: 56px; }
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 14px;
+    }
+    .section-eyebrow::before {
+      content: ''; display: block; width: 24px; height: 2px; background: var(--red);
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 800; letter-spacing: -.02em; line-height: 1.1;
+      text-transform: uppercase;
+    }
+    .section-desc {
+      margin-top: 14px; max-width: 580px;
+      font-size: 16px; line-height: 1.7;
+    }
+
+    /* ─── SOBRE ─── */
+    #sobre {
+      padding: 100px 0;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+    .sobre-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .sobre-text p {
+      font-size: 17px; line-height: 1.8; color: #334155; margin-bottom: 18px;
+    }
+    .sobre-text p strong { color: #0f172a; font-weight: 700; }
+    .sobre-visual {
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+    .sobre-logo-wrap {
+      position: relative; z-index: 2;
+    }
+    .sobre-logo-wrap img { width: 100%; max-width: 360px; display: block; }
+    .sobre-glow {
+      position: absolute; inset: -40px;
+      background: radial-gradient(ellipse at center, rgba(192,57,43,0.12) 0%, transparent 70%);
+      border-radius: 32px;
+      box-shadow: 0 18px 40px rgba(15,23,42,0.3);
+    }
+
+    /* variantes de cores de título/descrição dentro do bloco claro */
+    #sobre .section-title {
+      color: #0f172a;
+    }
+    #sobre .section-desc {
+      color: #475569;
+    }
+
+    /* ─── POR QUE NÓS ─── */
+    #porquenos {
+      padding: 100px 0;
+      background: var(--dark);
+    }
+    .porque-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px;
+    }
+    .porque-card {
+      background: var(--dark3);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px; padding: 32px 28px;
+      position: relative; overflow: hidden;
+      transition: border-color .3s, transform .3s;
+    }
+    .porque-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--red);
+      transform: scaleX(0); transform-origin: left; transition: transform .3s;
+    }
+    .porque-card:hover { border-color: rgba(192,57,43,0.3); transform: translateY(-4px); }
+    .porque-card:hover::before { transform: scaleX(1); }
+    .porque-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: rgba(192,57,43,0.12); border: 1px solid rgba(192,57,43,0.2);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .porque-icon svg { color: var(--red); }
+    .porque-card h3 {
+      font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px;
+      letter-spacing: -.01em;
+    }
+    .porque-card p { font-size: 14px; line-height: 1.7; color: var(--silver); }
+
+    /* ─── SERVIÇOS ─── */
+    #servicos {
+      padding: 100px 0;
+      background: var(--dark2);
+    }
+    .servicos-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px;
+    }
+    .servico-card {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px; padding: 36px 32px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .servico-card:hover {
+      border-color: rgba(192,57,43,0.35);
+      box-shadow: 0 8px 40px rgba(192,57,43,0.12);
+    }
+    .servico-num {
+      font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--red);
+    }
+    .servico-card h3 {
+      font-size: 19px; font-weight: 800; color: #fff; letter-spacing: -.01em; line-height: 1.2;
+    }
+    .servico-card p { font-size: 14px; line-height: 1.75; color: var(--silver); flex: 1; }
+    .servico-divider {
+      height: 1px; background: rgba(255,255,255,0.07); margin: 4px 0;
+    }
+
+    /* ─── BENEFÍCIOS ─── */
+    #beneficios {
+      padding: 100px 0;
+      background: var(--dark);
+      position: relative;
+    }
+    .beneficios-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .beneficio-list { display: flex; flex-direction: column; gap: 18px; }
+    .beneficio-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px; background: var(--dark3);
+      transition: border-color .3s;
+    }
+    .beneficio-item:hover { border-color: rgba(192,57,43,0.25); }
+    .beneficio-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--red); flex-shrink: 0; margin-top: 5px;
+    }
+    .beneficio-item p { font-size: 14px; line-height: 1.65; color: var(--silver-lt); }
+
+    .adicionais-box {
+      background: var(--dark3); border: 1px solid rgba(192,57,43,0.2);
+      border-radius: 14px; padding: 36px 32px;
+    }
+    .adicionais-box h3 {
+      font-size: 18px; font-weight: 800; color: #fff; letter-spacing: -.01em;
+      margin-bottom: 20px; text-transform: uppercase;
+    }
+    .adicionais-box ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+    .adicionais-box li {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 14px; line-height: 1.6; color: var(--silver);
+    }
+    .adicionais-box li::before {
+      content: '→'; color: var(--red); font-weight: 700; flex-shrink: 0; margin-top: 1px;
+    }
+    .adicionais-box .obs {
+      margin-top: 20px; padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 12px; color: var(--muted); font-style: italic;
+    }
+
+    /* ─── CTA / CONTATO ─── */
+    #contato {
+      padding: 100px 0;
+      background: var(--dark2);
+    }
+    .cta-box {
+      background: linear-gradient(135deg, var(--dark3) 0%, rgba(192,57,43,0.08) 100%);
+      border: 1px solid rgba(192,57,43,0.25);
+      border-radius: 20px; padding: 64px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(192,57,43,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-horse-bg {
+      position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
+      height: 90%; width: auto; opacity: .04;
+      filter: brightness(0) invert(1);
+      pointer-events: none;
+    }
+    .cta-box h2 {
+      font-size: clamp(28px, 4vw, 44px); font-weight: 900; letter-spacing: -.02em;
+      text-transform: uppercase; color: #fff; position: relative; z-index: 1;
+    }
+    .cta-box h2 span { color: var(--red); }
+    .cta-box p {
+      margin-top: 16px; font-size: 17px; color: var(--silver); max-width: 540px;
+      margin-left: auto; margin-right: auto; line-height: 1.65; position: relative; z-index: 1;
+    }
+    .cta-box .cta-actions {
+      margin-top: 40px; display: flex; flex-wrap: wrap; gap: 14px;
+      justify-content: center; position: relative; z-index: 1;
+    }
+    .btn-ig {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(148,163,184,0.3); color: var(--silver-lt);
+      font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      padding: 14px 28px; border-radius: 6px; text-decoration: none;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .btn-ig:hover { border-color: rgba(203,74,145,0.6); color: #fff; background: rgba(203,74,145,0.08); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--dark); border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 48px 0;
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .footer-logo img { height: 40px; width: auto; }
+    .footer-links {
+      display: flex; gap: 24px; flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 12px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color .2s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy {
+      font-size: 12px; color: var(--muted);
+    }
+    .footer-copy span { color: var(--red); }
+
+    /* ─── FLOATING WPP ─── */
+    .float-wpp {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25d366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.4);
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .float-wpp:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.5); }
+    .float-wpp svg { color: #fff; }
+
+    /* ─── DIVIDER LINE ─── */
+    .redline {
+      height: 2px; background: linear-gradient(to right, transparent, var(--red) 30%, var(--red) 70%, transparent);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+      .sobre-grid, .beneficios-inner { grid-template-columns: 1fr; gap: 48px; }
+      .sobre-visual { order: -1; }
+      nav.desk { display: none; }
+      .btn-wpp-hdr { display: none; }
+      #menu-toggle { display: flex; }
+      .hero-content { padding: 100px 24px 0; }
+      .cta-box { padding: 40px 24px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .hero-stats { gap: 28px; }
+      .hero-horse { right: -20%; height: 80%; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-title { letter-spacing: -.02em; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .cta-box h2 { font-size: 26px; }
+      section { padding: 72px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header id="site-header">
+  <a href="#hero" class="header-logo" aria-label="Raça e Marcha">
+    <img src="logo/logo-raca-e-marcha-2.png" alt="Raça e Marcha"/>
+  </a>
+
+  <nav class="desk" aria-label="Navegação principal">
+    <a href="#sobre">Sobre</a>
+    <a href="#porquenos">Por que nós</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#beneficios">Benefícios</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <a href="https://wa.me/5531998267101?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+Ra%C3%A7a+e+Marcha+e+gostaria+de+saber+mais+sobre+as+parcerias."
+     class="btn-wpp-hdr" target="_blank" rel="noopener"
+     data-track="header-wpp">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 32 32" fill="currentColor" width="16" height="16">
+      <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+    </svg>
+    Falar no WhatsApp
+  </a>
+
+  <button id="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path id="menu-icon-open" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      <path id="menu-icon-close" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" style="display:none"/>
+    </svg>
+  </button>
+</header>
+
+<!-- mobile menu -->
+<nav id="mobile-menu" aria-label="Menu mobile">
+  <a href="#sobre" class="mob-link">Sobre</a>
+  <a href="#porquenos" class="mob-link">Por que nós</a>
+  <a href="#servicos" class="mob-link">Serviços</a>
+  <a href="#beneficios" class="mob-link">Benefícios</a>
+  <a href="#contato" class="mob-link">Contato</a>
+  <a href="https://wa.me/5531998267101?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+Ra%C3%A7a+e+Marcha+e+gostaria+de+saber+mais+sobre+as+parcerias."
+     class="btn-wpp-mob" target="_blank" rel="noopener" data-track="mobile-menu-wpp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="18" height="18">
+      <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+    </svg>
+    Falar no WhatsApp
+  </a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-stripe"></div>
+  <div class="hero-redbar"></div>
+  <img class="hero-horse" src="logo/logo-raca-e-marcha-6.png" alt="" aria-hidden="true"/>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Raça em conexão. Marcha em movimento.</p>
+    <h1 class="hero-title">
+      Raça<br/><span>&amp;</span> Marcha
+    </h1>
+    <p class="hero-sub">
+      O ponto de encontro da raça. Conectamos criadores, apaixonados e o público ao universo do Mangalarga Marchador com conteúdo de impacto.
+    </p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5531998267101?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+Ra%C3%A7a+e+Marcha+e+gostaria+de+saber+mais+sobre+as+parcerias."
+         class="btn-primary" target="_blank" rel="noopener" data-track="hero-wpp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="18" height="18">
+          <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+        </svg>
+        Quero ser parceiro
+      </a>
+      <a href="#servicos" class="btn-secondary" data-track="hero-servicos">
+        Ver serviços
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </a>
+    </div>
+    <!-- hero-stats removidos (cliente não gostou dos destaques) -->
+  </div>
+</section>
+
+<div class="redline"></div>
+
+<!-- ═══ SOBRE ═══ -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div class="sobre-text">
+        <div class="section-header">
+          <p class="section-eyebrow">Nossa história</p>
+          <h2 class="section-title">Nascemos<br/>pela raça</h2>
+        </div>
+        <p>
+          O <strong>Raça em Marcha</strong> nasceu com o propósito de valorizar, fortalecer e divulgar a essência do cavalo Mangalarga Marchador.
+        </p>
+        <p>
+          Mais do que um canal de comunicação, somos um <strong>ponto de encontro da raça</strong>, conectando criadores, apaixonados e o público em geral.
+        </p>
+        <p>
+          Nosso compromisso é transformar a paixão pelo Marchador em <strong>conteúdo de impacto e alcance</strong> para criadores, haras e empresas do segmento.
+        </p>
+        <div style="margin-top:36px">
+          <a href="https://wa.me/5531998267101?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+Ra%C3%A7a+e+Marcha+e+gostaria+de+saber+mais+sobre+as+parcerias."
+             class="btn-primary" target="_blank" rel="noopener" data-track="sobre-wpp">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="16" height="16">
+              <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+            </svg>
+            Entre em contato
+          </a>
+        </div>
+      </div>
+
+      <div class="sobre-visual">
+        <div class="sobre-glow"></div>
+        <div class="sobre-logo-wrap">
+          <img src="logo/logo-raca-e-marcha-1.png" alt="Raça e Marcha – Mangalarga Marchador"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="redline"></div>
+
+<!-- ═══ POR QUE NÓS ═══ -->
+<section id="porquenos">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">Nossos diferenciais</p>
+      <h2 class="section-title">Por que nos<br/>escolher?</h2>
+      <p class="section-desc">Somos referência no segmento e entregamos resultados reais para nossos parceiros.</p>
+    </div>
+
+    <div class="porque-grid">
+      <div class="porque-card">
+        <div class="porque-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+          </svg>
+        </div>
+        <h3>Autoridade no segmento</h3>
+        <p>Conteúdo focado exclusivamente no Mangalarga Marchador, construindo credibilidade sólida no nicho.</p>
+      </div>
+
+      <div class="porque-card">
+        <div class="porque-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+          </svg>
+        </div>
+        <h3>Engajamento qualificado</h3>
+        <p>Público fiel, apaixonado e direcionada — criadores, treinadores, competidores e entusiastas da marcha.</p>
+      </div>
+
+      <div class="porque-card">
+        <div class="porque-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+          </svg>
+        </div>
+        <h3>Alcance e visibilidade</h3>
+        <p>A marca dos nossos parceiros ganha espaço em uma vitrine digital estratégica e em constante crescimento.</p>
+      </div>
+
+      <div class="porque-card">
+        <div class="porque-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </div>
+        <h3>Conexão com o público</h3>
+        <p>Respiramos a marcha. Nosso conteúdo ressoa com quem realmente vive e ama o Mangalarga Marchador.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="redline"></div>
+
+<!-- ═══ SERVIÇOS ═══ -->
+<section id="servicos">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-eyebrow">O que oferecemos</p>
+      <h2 class="section-title">Nossos<br/>serviços</h2>
+      <p class="section-desc">Soluções completas de comunicação e visibilidade para o universo do Marchador.</p>
+    </div>
+
+    <div class="servicos-grid">
+      <div class="servico-card">
+        <span class="servico-num">01</span>
+        <h3>Gestão de Conteúdo Estratégico</h3>
+        <div class="servico-divider"></div>
+        <p>Planejamento e publicação de postagens no Instagram <strong style="color:#f0f0f0">@racaemarcha_oficial</strong>. Conteúdos que reforçam a presença digital, ampliam o alcance e consolidam a autoridade no mercado.</p>
+      </div>
+
+      <div class="servico-card">
+        <span class="servico-num">02</span>
+        <h3>Criação de Artes Personalizadas</h3>
+        <div class="servico-divider"></div>
+        <p>Desenvolvimento de artes profissionais para divulgação de eventos, leilões e campanhas de parceiros com identidade visual de alto padrão.</p>
+      </div>
+
+      <div class="servico-card">
+        <span class="servico-num">03</span>
+        <h3>Produção Audiovisual</h3>
+        <div class="servico-divider"></div>
+        <p>Criação de vídeos promocionais, chamadas para eventos, conteúdos de bastidores e pós-eventos. Registro profissional da essência da raça.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="redline"></div>
+
+<!-- ═══ BENEFÍCIOS ═══ -->
+<section id="beneficios">
+  <div class="container">
+    <div class="beneficios-inner">
+      <div>
+        <div class="section-header">
+          <p class="section-eyebrow">Para parceiros</p>
+          <h2 class="section-title">Benefícios<br/>exclusivos</h2>
+          <p class="section-desc">Ao se tornar nosso parceiro, você tem acesso a:</p>
+        </div>
+
+        <div class="beneficio-list">
+          <div class="beneficio-item">
+            <div class="beneficio-dot"></div>
+            <p>Divulgação em uma página direcionada ao segmento Mangalarga Marchador.</p>
+          </div>
+          <div class="beneficio-item">
+            <div class="beneficio-dot"></div>
+            <p>Reforço de marca em um público altamente engajado e qualificado.</p>
+          </div>
+          <div class="beneficio-item">
+            <div class="beneficio-dot"></div>
+            <p>Possibilidade de conteúdos exclusivos em stories, reels e publicações fixas.</p>
+          </div>
+          <div class="beneficio-item">
+            <div class="beneficio-dot"></div>
+            <p>Ampliação de alcance com ações estratégicas de tráfego pago e parcerias.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="adicionais-box">
+          <h3>Adicionais</h3>
+          <ul>
+            <li>Presença em eventos e transmissões com divulgação em tempo real.</li>
+            <li>Apoio presencial para geração de conteúdo durante dias de concentração.</li>
+            <li>Produção de materiais exclusivos no local: haras, eventos, lives, leilões, competições, etc.</li>
+          </ul>
+          <p class="obs">Os valores são sob consulta e conforme demanda específica.</p>
+        </div>
+
+        <div style="margin-top:24px">
+          <a href="https://wa.me/5531998267101?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+Ra%C3%A7a+e+Marcha+e+gostaria+de+saber+mais+sobre+as+parcerias."
+             class="btn-primary" target="_blank" rel="noopener" style="width:100%;justify-content:center" data-track="beneficios-wpp">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="16" height="16">
+              <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+            </svg>
+            Consultar valores
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="redline"></div>
+
+<!-- ═══ CONTATO / CTA ═══ -->
+<section id="contato">
+  <div class="container">
+    <div class="cta-box">
+      <img class="cta-horse-bg" src="logo/logo-raca-e-marcha-6.png" alt="" aria-hidden="true"/>
+      <h2>Vamos construir<br/>algo <span>juntos?</span></h2>
+      <p>Fale com a gente e descubra como o Raça e Marcha pode levar sua marca a um público apaixonado pelo Mangalarga Marchador.</p>
+      <div class="cta-actions">
+        <a href="https://wa.me/5531998267101?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+Ra%C3%A7a+e+Marcha+e+gostaria+de+saber+mais+sobre+as+parcerias."
+           class="btn-primary" target="_blank" rel="noopener" data-track="cta-wpp">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="18" height="18">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+          </svg>
+          Falar no WhatsApp
+        </a>
+        <a href="https://instagram.com/racaemarcha_oficial" class="btn-ig" target="_blank" rel="noopener" data-track="cta-instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          Ver no Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#hero" class="footer-logo" aria-label="Raça e Marcha">
+        <img src="logo/logo-raca-e-marcha-2.png" alt="Raça e Marcha"/>
+      </a>
+      <div class="footer-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#beneficios">Benefícios</a>
+        <a href="https://instagram.com/racaemarcha_oficial" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/5531998267101?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+Ra%C3%A7a+e+Marcha+e+gostaria+de+saber+mais+sobre+as+parcerias."
+           target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <p class="footer-copy">© 2025 <span>Raça e Marcha</span>. Mangalarga Marchador.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ FLOATING WHATSAPP ═══ -->
+<a href="https://wa.me/5531998267101?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+Ra%C3%A7a+e+Marcha+e+gostaria+de+saber+mais+sobre+as+parcerias."
+   class="float-wpp" target="_blank" rel="noopener" aria-label="WhatsApp"
+   data-track="float-wpp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="28" height="28">
+    <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+  </svg>
+</a>
+
+<!-- ═══ SCRIPTS ═══ -->
+<script>
+  // Header scroll
+  const hdr = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+    iconOpen.style.display = isOpen ? 'none' : 'block';
+    iconClose.style.display = isOpen ? 'block' : 'none';
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('#mobile-menu .mob-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      iconOpen.style.display = 'block';
+      iconClose.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

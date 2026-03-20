@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cristiano Ladeira – Promoção &amp; Eventos</title>
+  <meta name="description" content="Cristiano Ladeira Promoção &amp; Eventos – especialistas em eventos do cavalo Mangalarga Marchador. Leilões, campeonatos, shows de marcha e muito mais."/>
+  <meta property="og:title" content="Cristiano Ladeira – Promoção &amp; Eventos"/>
+  <meta property="og:description" content="Especialistas em eventos do cavalo Mangalarga Marchador."/>
+  <meta property="og:type" content="website"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://linkbio.api.br/tracker.js" data-slug="cristianoladeira" defer></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:   #f5f5f5;
+      --cream2:  #ebebeb;
+      --black:   #0a0a0a;
+      --black2:  #111111;
+      --gold:    #6b7280;
+      --gold-lt: #9ca3af;
+      --gold-bg: rgba(107,114,128,0.10);
+      --blue:    #0b3b8a;
+      --blue-lt: #1f6fd6;
+      --red:     #ff0000;
+      --wine:    #0b3b8a;
+      --wine-lt: #1f6fd6;
+      --white:   #ffffff;
+      --muted:   #6b7280;
+      --silver:  #c8cdd5;
+      --silver2: #e2e5ea;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--black); border-radius: 3px; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 40px; height: 72px;
+      background: rgba(245,245,245,0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      transition: all .3s;
+    }
+    header.scrolled {
+      height: 62px;
+      background: rgba(245,245,245,0.98);
+      border-bottom-color: rgba(0,0,0,0.14);
+    }
+    .hdr-logo img { height: 46px; width: auto; display: block; }
+    header.scrolled .hdr-logo img { height: 40px; }
+
+    nav.desk { display: flex; align-items: center; gap: 32px; }
+    nav.desk a {
+      font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color .2s;
+    }
+    nav.desk a:hover { color: var(--black); }
+
+    .btn-wpp-hdr {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--wine); color: #fff;
+      font-size: 12px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase;
+      padding: 9px 20px; border-radius: 4px; text-decoration: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-wpp-hdr:hover { background: var(--wine-lt); transform: translateY(-1px); }
+
+    #menu-toggle {
+      display: none; background: none; border: none; cursor: pointer;
+      padding: 6px; color: var(--black);
+    }
+
+    #mobile-menu {
+      display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: var(--cream); flex-direction: column;
+      align-items: center; justify-content: center; gap: 36px; z-index: 99;
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 32px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--black); text-decoration: none; transition: color .2s;
+    }
+    #mobile-menu a:hover { color: var(--gold); }
+    #mobile-menu .btn-wpp-mob {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--wine); color: #fff;
+      font-size: 14px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: 14px 36px; border-radius: 4px; text-decoration: none; margin-top: 8px;
+      transition: background .2s;
+    }
+    #mobile-menu .btn-wpp-mob:hover { background: var(--wine-lt); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh; padding-top: 72px;
+      background: var(--cream);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+
+    /* Silver top border */
+    .hero-top-border {
+      position: absolute; top: 72px; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, transparent, var(--blue) 20%, var(--red) 45%, var(--blue-lt) 75%, transparent);
+    }
+
+    /* Giant "C" mark watermark */
+    .hero-cmark {
+      position: absolute; right: -6%; top: 50%; transform: translateY(-52%);
+      height: 110vh; width: auto;
+      opacity: .06;
+      filter: brightness(0);
+      pointer-events: none; user-select: none;
+    }
+
+    /* Diagonal accent band */
+    .hero-band {
+      position: absolute; right: 0; top: 0; bottom: 0;
+      width: 42%;
+      background: linear-gradient(to bottom left, var(--cream2) 0%, var(--cream) 100%);
+      clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    /* Silver/black vertical accent line */
+    .hero-vline {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 5px;
+      background: linear-gradient(to bottom, transparent, var(--silver) 20%, var(--black) 60%, transparent);
+    }
+
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      padding: 60px 48px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
+    }
+
+    .hero-left {}
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+    }
+    .hero-tag::before {
+      content: ''; display: block; width: 28px; height: 2px;
+      background: linear-gradient(to right, var(--blue), var(--red));
+    }
+
+    .hero-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(52px, 7vw, 96px);
+      font-weight: 900; line-height: .92;
+      letter-spacing: -.01em; text-transform: uppercase;
+      color: var(--blue);
+    }
+    .hero-name .line2 {
+      display: block;
+      -webkit-text-stroke: 2px var(--red);
+      color: var(--red);
+    }
+
+    .hero-subtitle {
+      margin-top: 20px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(18px, 2.5vw, 26px); font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-desc {
+      margin-top: 18px; max-width: 420px;
+      font-size: 16px; font-weight: 400; line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--wine); color: #fff;
+      font-size: 13px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase;
+      padding: 15px 30px; border-radius: 4px; text-decoration: none;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(107,21,32,0.3);
+    }
+    .btn-primary:hover { background: var(--wine-lt); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(107,21,32,0.4); }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 2px solid var(--gold); color: var(--gold);
+      font-size: 13px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase;
+      padding: 13px 28px; border-radius: 4px; text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .btn-outline:hover { background: var(--gold-bg); color: var(--black); }
+
+    /* Hero right: large logo on light bg */
+    .hero-right {
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .hero-logo-frame {
+      position: relative;
+      padding: 40px;
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 4px;
+      box-shadow: 6px 6px 0 var(--silver);
+    }
+    .hero-logo-frame img { width: 100%; max-width: 360px; display: block; }
+    .hero-logo-frame::before {
+      content: 'MANGALARGA MARCHADOR';
+      position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+      white-space: nowrap;
+      background: var(--black); color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+      padding: 4px 16px;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider-gold {
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--blue) 15%, var(--red) 50%, var(--blue-lt) 85%, transparent);
+    }
+    .divider-line {
+      height: 1px; background: rgba(0,0,0,0.10);
+    }
+
+    /* ─── SECTION COMMONS ─── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 14px;
+    }
+    .section-tag::before {
+      content: ''; display: block; width: 20px; height: 2px;
+      background: linear-gradient(to right, var(--black), var(--silver));
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(32px, 5vw, 60px); font-weight: 900;
+      letter-spacing: -.01em; line-height: 1; text-transform: uppercase;
+      color: var(--black);
+    }
+    .section-desc {
+      margin-top: 14px; max-width: 560px;
+      font-size: 16px; line-height: 1.7; color: var(--muted);
+    }
+
+    /* ─── SOBRE ─── */
+    #sobre {
+      padding: 100px 0;
+      background: var(--cream);
+      position: relative; overflow: hidden;
+    }
+    .sobre-inner {
+      display: grid; grid-template-columns: 1fr 2px 1fr; gap: 64px; align-items: start;
+    }
+    .sobre-sep {
+      background: linear-gradient(to bottom, transparent, var(--silver) 30%, var(--silver) 70%, transparent);
+      align-self: stretch;
+    }
+    .sobre-text p {
+      font-size: 17px; line-height: 1.8; color: var(--muted); margin-bottom: 16px;
+    }
+    .sobre-text p strong { color: var(--black); font-weight: 600; }
+    .sobre-numbers {
+      display: flex; flex-direction: column; gap: 32px;
+    }
+    .sobre-num-item {
+      padding-left: 20px; border-left: 3px solid var(--gold-lt);
+    }
+    .sobre-num-item .num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 52px; font-weight: 900; line-height: 1;
+      color: var(--black); letter-spacing: -.02em;
+    }
+    .sobre-num-item .num span { color: var(--silver); }
+    .sobre-num-item .label {
+      font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--muted); margin-top: 4px;
+    }
+
+    /* ─── SERVIÇOS ─── */
+    #servicos {
+      padding: 100px 0;
+      background: var(--blue);
+      position: relative; overflow: hidden;
+    }
+    #servicos .section-title { color: var(--white); }
+    #servicos .section-tag { color: var(--silver); }
+    #servicos .section-tag::before { background: linear-gradient(to right, var(--blue-lt), var(--blue)); }
+    #servicos .section-desc { color: rgba(255,255,255,0.45); }
+
+    /* Big "C" bg */
+    .srv-cmark {
+      position: absolute; right: -5%; top: 50%; transform: translateY(-50%);
+      height: 120%; width: auto; opacity: .03;
+      filter: brightness(0) invert(1);
+      pointer-events: none;
+    }
+
+    .srv-grid {
+      margin-top: 56px;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px;
+    }
+    .srv-card {
+      padding: 48px 40px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative; overflow: hidden;
+      transition: background .3s;
+    }
+    .srv-card::after {
+      content: ''; position: absolute;
+      bottom: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--blue-lt), var(--blue));
+      transform: scaleX(0); transform-origin: left; transition: transform .35s;
+    }
+    .srv-card:hover { background: rgba(255,255,255,0.055); }
+    .srv-card:hover::after { transform: scaleX(1); }
+
+    .srv-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 64px; font-weight: 900; line-height: 1;
+      color: rgba(200,205,213,0.14); letter-spacing: -.03em;
+      margin-bottom: 12px; display: block;
+    }
+    .srv-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 26px; font-weight: 800; text-transform: uppercase; letter-spacing: .02em;
+      color: var(--white); margin-bottom: 12px;
+    }
+    .srv-card p {
+      font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.45);
+    }
+
+    /* ─── CTA ─── */
+    #contato {
+      padding: 0;
+      background: var(--cream);
+      position: relative; overflow: hidden;
+    }
+    .cta-inner {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 560px;
+    }
+    .cta-left {
+      background: var(--red);
+      padding: 80px 64px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-left::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 0% 50%, rgba(200,205,213,0.07) 0%, transparent 70%);
+    }
+    .cta-left .cmark-bg {
+      position: absolute; right: -60px; bottom: -20px;
+      height: 80%; width: auto; opacity: .07;
+      filter: brightness(0) invert(1);
+      pointer-events: none;
+    }
+    .cta-left h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(36px, 5vw, 64px); font-weight: 900;
+      text-transform: uppercase; line-height: .95;
+      color: #fff; position: relative; z-index: 1;
+    }
+    .cta-left h2 em {
+      font-style: normal; color: var(--blue-lt);
+    }
+    .cta-left p {
+      margin-top: 20px; font-size: 16px; line-height: 1.7;
+      color: rgba(255,255,255,0.65); max-width: 360px; position: relative; z-index: 1;
+    }
+    .cta-left .cta-btns {
+      margin-top: 36px; display: flex; flex-direction: column; gap: 14px;
+      position: relative; z-index: 1;
+    }
+    .btn-wpp-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #fff; color: var(--black);
+      font-size: 13px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase;
+      padding: 15px 28px; border-radius: 4px; text-decoration: none;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      align-self: flex-start;
+    }
+    .btn-wpp-cta:hover { background: var(--silver2); transform: translateY(-2px); }
+    .btn-ig-cta {
+      display: inline-flex; align-items: center; gap: 12px;
+      border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8);
+      font-size: 13px; font-weight: 600; letter-spacing: .10em; text-transform: uppercase;
+      padding: 13px 28px; border-radius: 4px; text-decoration: none;
+      transition: border-color .2s, color .2s, background .2s;
+      align-self: flex-start;
+    }
+    .btn-ig-cta:hover { border-color: rgba(255,255,255,0.6); color: #fff; background: rgba(255,255,255,0.06); }
+
+    .cta-right {
+      background: var(--cream2);
+      padding: 80px 64px;
+      display: flex; flex-direction: column; justify-content: center;
+      border-left: none; position: relative;
+    }
+    .cta-right::before {
+      content: ''; position: absolute; left: 0; top: 20%; bottom: 20%;
+      width: 1px; background: rgba(138,107,16,0.25);
+    }
+    .cta-right h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 34px; font-weight: 800; text-transform: uppercase;
+      color: var(--black); margin-bottom: 28px; letter-spacing: .02em;
+    }
+    .cta-detail-list { display: flex; flex-direction: column; gap: 18px; }
+    .cta-detail-item {
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .cta-detail-icon {
+      width: 40px; height: 40px; flex-shrink: 0;
+      background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 4px; display: flex; align-items: center; justify-content: center;
+      color: var(--black);
+    }
+    .cta-detail-item .info strong {
+      display: block; font-size: 13px; font-weight: 700; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--black); margin-bottom: 2px;
+    }
+    .cta-detail-item .info span {
+      font-size: 14px; color: var(--muted);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: linear-gradient(135deg, rgba(11,59,138,0.98) 0%, rgba(225,29,72,0.94) 100%);
+      padding: 48px 0;
+      border-top: 2px solid rgba(225,29,72,0.45);
+    }
+    .footer-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 24px;
+    }
+    .footer-logo img { height: 40px; width: auto; filter: brightness(0) invert(1); }
+    .footer-links {
+      display: flex; gap: 24px; flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); text-decoration: none; transition: color .2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.8); }
+    .footer-copy { font-size: 11px; color: rgba(255,255,255,0.25); }
+    .footer-copy span { color: var(--silver); }
+
+    /* ─── FLOATING WPP ─── */
+    .float-wpp {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: #25d366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.45);
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .float-wpp:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.55); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 960px) {
+      .container { padding: 0 24px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; padding: 40px 24px; }
+      .hero-right { order: -1; }
+      .hero-logo-frame { padding: 24px; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 40px; }
+      .sobre-sep { display: none; }
+      .srv-grid { grid-template-columns: 1fr; }
+      .cta-inner { grid-template-columns: 1fr; }
+      .cta-left { padding: 56px 32px; }
+      .cta-right { padding: 56px 32px; }
+      nav.desk { display: none; }
+      .btn-wpp-hdr { display: none; }
+      #menu-toggle { display: flex; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (max-width: 600px) {
+      .hero-name { letter-spacing: -.01em; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+      section { padding: 72px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header id="site-header">
+  <a href="#hero" class="hdr-logo" aria-label="Cristiano Ladeira">
+    <img src="logo/logo-cristiano-ladeira-1.png" alt="Cristiano Ladeira"/>
+  </a>
+
+  <nav class="desk" aria-label="Navegação principal">
+    <a href="#sobre">Sobre</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <a href="https://wa.me/5531998516114?text=Ol%C3%A1%21+Vim+pelo+LinkBio+do+Cristiano+Ladeira+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+eventos+do+Mangalarga+Marchador."
+     class="btn-wpp-hdr" target="_blank" rel="noopener" data-track="header-wpp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="15" height="15">
+      <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+    </svg>
+    Fale Conosco
+  </a>
+
+  <button id="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <path id="icon-open" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      <path id="icon-close" stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" style="display:none"/>
+    </svg>
+  </button>
+</header>
+
+<nav id="mobile-menu">
+  <a href="#sobre" class="mob-link">Sobre</a>
+  <a href="#servicos" class="mob-link">Serviços</a>
+  <a href="#contato" class="mob-link">Contato</a>
+  <a href="https://wa.me/5531998516114?text=Ol%C3%A1%21+Vim+pelo+LinkBio+do+Cristiano+Ladeira+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+eventos+do+Mangalarga+Marchador."
+     class="btn-wpp-mob" target="_blank" rel="noopener" data-track="mobile-wpp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="18" height="18">
+      <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+    </svg>
+    Falar no WhatsApp
+  </a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-top-border"></div>
+  <div class="hero-band"></div>
+  <div class="hero-vline"></div>
+  <img class="hero-cmark" src="logo/logo-cristiano-ladeira-3.png" alt="" aria-hidden="true"/>
+
+  <div class="hero-inner">
+    <div class="hero-left">
+      <p class="hero-tag">OS MELHORES EVENTOS DO MANGALARGA MARCHADOR</p>
+      <h1 class="hero-name">
+        Cristiano<span class="line2">Ladeira</span>
+      </h1>
+      <p class="hero-subtitle">Promoção &amp; Eventos</p>
+      <p class="hero-desc">
+        Especialistas em organizar, promover e executar eventos do universo do cavalo Mangalarga Marchador. Do planejamento à execução, cada detalhe é pensado para o melhor espetáculo da raça.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/5531998516114?text=Ol%C3%A1%21+Vim+pelo+LinkBio+do+Cristiano+Ladeira+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+eventos+do+Mangalarga+Marchador."
+           class="btn-primary" target="_blank" rel="noopener" data-track="hero-wpp">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="17" height="17">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+          </svg>
+          Solicitar Evento
+        </a>
+        <a href="#servicos" class="btn-outline" data-track="hero-servicos">
+          Nossos Serviços
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-logo-frame">
+        <img src="logo/logo-cristiano-ladeira-1.png" alt="Cristiano Ladeira – Promoção &amp; Eventos"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-gold"></div>
+
+<!-- ═══ SOBRE ═══ -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-inner">
+      <div class="sobre-text">
+        <div style="margin-bottom:40px">
+          <p class="section-tag">Quem somos</p>
+          <h2 class="section-title">Tradição em<br/>cada evento</h2>
+        </div>
+        <p>
+          A <strong>Cristiano Ladeira Promoção &amp; Eventos</strong> é especializada em organizar e promover os melhores eventos do universo do cavalo Mangalarga Marchador.
+        </p>
+        <p>
+          Com experiência e paixão pela raça, cuidamos de cada detalhe — do planejamento à execução — para que criadores, cavaleiros e entusiastas vivam experiências únicas e inesquecíveis.
+        </p>
+        <p>
+          Nosso compromisso é elevar o padrão dos eventos equestres, conectando pessoas, animais e negócios no cenário nacional do Marchador.
+        </p>
+        <div style="margin-top:32px">
+          <a href="https://wa.me/5531998516114?text=Ol%C3%A1%21+Vim+pelo+LinkBio+do+Cristiano+Ladeira+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+eventos+do+Mangalarga+Marchador."
+             class="btn-primary" target="_blank" rel="noopener" data-track="sobre-wpp">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="16" height="16">
+              <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+            </svg>
+            Entrar em contato
+          </a>
+        </div>
+      </div>
+
+      <div class="sobre-sep"></div>
+
+      <div class="sobre-numbers">
+        <div class="sobre-num-item">
+          <div class="num">Anos<span>.</span></div>
+          <div class="label">de experiência no segmento</div>
+        </div>
+        <div class="sobre-num-item">
+          <div class="num">100<span>%</span></div>
+          <div class="label">foco em Mangalarga Marchador</div>
+        </div>
+        <div class="sobre-num-item">
+          <div class="num">Alta<span>.</span></div>
+          <div class="label">qualidade de organização</div>
+        </div>
+        <div class="sobre-num-item">
+          <div class="num">CONEXÃO<span>.</span></div>
+          <div class="label">COM O MERCADO EQUESTRE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-line"></div>
+
+<!-- ═══ SERVIÇOS ═══ -->
+<section id="servicos">
+  <img class="srv-cmark" src="logo/logo-cristiano-ladeira-3.png" alt="" aria-hidden="true"/>
+  <div class="container">
+    <p class="section-tag">O que fazemos</p>
+    <h2 class="section-title" style="color:#fff">Nossos<br/>serviços</h2>
+    <p class="section-desc">Planejamento completo para os maiores eventos do Mangalarga Marchador.</p>
+
+    <div class="srv-grid">
+      <div class="srv-card">
+        <span class="srv-num">01</span>
+        <h3>LIVES E LEILÕES</h3>
+        <p>Organização completa de leilões presenciais e online, conectando compradores e criadores com excelência e segurança.</p>
+      </div>
+      <div class="srv-card">
+        <span class="srv-num">02</span>
+        <h3>Campeonatos &amp; Shows</h3>
+        <p>Ele produz shows com excelência — como modão e outras apresentações — do planejamento à premiação, garantindo um espetáculo completo para o público.</p>
+      </div>
+      <div class="srv-card">
+        <span class="srv-num">03</span>
+        <h3>Copas e Exposições</h3>
+        <p>Organização de copas e exposições, com programação completa para expositores e público — do alinhamento ao grande dia.</p>
+      </div>
+      <div class="srv-card">
+        <span class="srv-num">04</span>
+        <h3>Eventos Corporativos</h3>
+        <p>Experiências equestres para empresas, confraternizações, lançamentos e ações de relacionamento no universo do Marchador.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-gold"></div>
+
+<!-- ═══ CONTATO / CTA ═══ -->
+<section id="contato">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <img class="cmark-bg" src="logo/logo-cristiano-ladeira-3.png" alt="" aria-hidden="true"/>
+      <h2>Vamos fazer<br/>um <em>grande</em><br/>evento?</h2>
+      <p>Entre em contato e descubra como podemos criar juntos uma experiência inesquecível para o universo do Mangalarga Marchador.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/5531998516114?text=Ol%C3%A1%21+Vim+pelo+LinkBio+do+Cristiano+Ladeira+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+eventos+do+Mangalarga+Marchador."
+           class="btn-wpp-cta" target="_blank" rel="noopener" data-track="cta-wpp">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="18" height="18">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+          </svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <div class="cta-right">
+      <h3>Informações</h3>
+      <div class="cta-detail-list">
+        <div class="cta-detail-item">
+          <div class="cta-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+            </svg>
+          </div>
+          <div class="info">
+            <strong>WhatsApp</strong>
+            <span>Consulte disponibilidade e orçamento</span>
+          </div>
+        </div>
+
+        <div class="cta-detail-item">
+          <div class="cta-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div class="info">
+            <strong>Área de atuação</strong>
+            <span>Todo o território nacional</span>
+          </div>
+        </div>
+
+        <div class="cta-detail-item">
+          <div class="cta-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+            </svg>
+          </div>
+          <div class="info">
+            <strong>Especialidade</strong>
+            <span>Eventos do Mangalarga Marchador</span>
+          </div>
+        </div>
+
+        <div class="cta-detail-item">
+          <div class="cta-detail-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </div>
+          <div class="info">
+            <strong>Instagram</strong>
+            <span>
+              <a href="https://instagram.com/cristianoladeira_eventos" target="_blank" rel="noopener"
+                 style="color:var(--black);text-decoration:none;font-weight:600"
+                 data-track="instagram-link">@cristianoladeira_eventos</a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="#hero" class="footer-logo" aria-label="Cristiano Ladeira">
+        <img src="logo/logo-cristiano-ladeira-1.png" alt="Cristiano Ladeira"/>
+      </a>
+      <div class="footer-links">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#contato">Contato</a>
+        <a href="https://instagram.com/cristianoladeira_eventos" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://wa.me/5531998516114?text=Ol%C3%A1%21+Vim+pelo+LinkBio+do+Cristiano+Ladeira+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+eventos+do+Mangalarga+Marchador." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <p class="footer-copy">© 2025 <span>Cristiano Ladeira</span>. Promoção &amp; Eventos.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ FLOATING WHATSAPP ═══ -->
+<a href="https://wa.me/5531998516114?text=Ol%C3%A1%21+Vim+pelo+LinkBio+do+Cristiano+Ladeira+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+eventos+do+Mangalarga+Marchador."
+   class="float-wpp" target="_blank" rel="noopener" aria-label="WhatsApp" data-track="float-wpp">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" width="28" height="28">
+    <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+  </svg>
+</a>
+
+<script>
+  const hdr = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  const toggle = document.getElementById('menu-toggle');
+  const mob    = document.getElementById('mobile-menu');
+  const iOpen  = document.getElementById('icon-open');
+  const iClose = document.getElementById('icon-close');
+
+  toggle.addEventListener('click', () => {
+    const open = mob.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+    iOpen.style.display  = open ? 'none'  : 'block';
+    iClose.style.display = open ? 'block' : 'none';
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('#mobile-menu .mob-link').forEach(l => {
+    l.addEventListener('click', () => {
+      mob.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      iOpen.style.display = 'block'; iClose.style.display = 'none';
+      document.body.style.overflow = '';
+    });
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
+</body>
+</html>

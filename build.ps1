@@ -43,7 +43,7 @@ Copy-Item -Path $adminSrc -Destination $adminDst -Recurse -Force
 Write-Host "  [OK] admin/"
 
 # Subdomínios
-$subdomains = @("paty", "marcosblea", "equusvita")
+$subdomains = @("paty", "marcosblea", "equusvita", "racaemarcha", "cristianoladeira", "puramarcha", "fafs")
 foreach ($name in $subdomains) {
     $src = Join-Path $root $name
     $dst = Join-Path $dist $name

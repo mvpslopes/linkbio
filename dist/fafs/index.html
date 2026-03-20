@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FAFS | Nutrição e Cuidado Animal</title>
+  <meta name="description" content="FAFS – Nutrição de Precisão para Máxima Performance e Bem-Estar Animal. Suplementos para equinos, suínos, galináceos e cães e gatos."/>
+  <meta property="og:title"       content="FAFS | Nutrição e Cuidado Animal"/>
+  <meta property="og:description" content="Suplementos de alta performance para equinos, suínos, galináceos e pets. Empresa familiar com gestão jovem e foco em excelência."/>
+  <meta property="og:image"       content="logo/logo-fafs-1.png"/>
+  <link rel="icon" type="image/png" href="logo/logo-fafs-2.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Barlow+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:    #b8862a;
+      --gold-lt: #d4a44a;
+      --gold-dk: #8a6015;
+      --gold-bg: rgba(184,134,42,0.08);
+      --gold-bg2: rgba(184,134,42,0.14);
+      --charcoal: #2d2d2d;
+      --charcoal2: #404040;
+      --body:    #fafaf8;
+      --surface: #ffffff;
+      --surface2: #f4f1eb;
+      --text:    #1a1a1a;
+      --text2:   #4a4a4a;
+      --muted:   #7a7a7a;
+      --border:  rgba(184,134,42,0.18);
+      --border2: rgba(0,0,0,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--body);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--surface2); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(250,250,248,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border2);
+      box-shadow: 0 1px 16px rgba(0,0,0,0.05);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .header-logo img { height: 44px; width: auto; object-fit: contain; }
+    nav.desk { display: flex; align-items: center; gap: 32px; }
+    nav.desk a {
+      font-size: 13px; font-weight: 600; letter-spacing: .04em;
+      color: var(--text2);
+      transition: color .2s;
+    }
+    nav.desk a:hover { color: var(--gold); }
+
+    .btn-wpp-hdr {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--gold); color: #fff;
+      font-size: 13px; font-weight: 700; letter-spacing: .06em;
+      padding: 10px 20px; border-radius: 4px;
+      transition: background .2s, transform .15s;
+    }
+    .btn-wpp-hdr:hover { background: var(--gold-lt); transform: translateY(-1px); }
+
+    #menu-toggle {
+      display: none; align-items: center; justify-content: center;
+      width: 40px; height: 40px; background: none; border: 1px solid var(--border2);
+      border-radius: 6px; cursor: pointer; color: var(--charcoal);
+    }
+
+    /* ─── MOBILE MENU ─── */
+    #mobile-menu {
+      display: none; flex-direction: column; align-items: center;
+      gap: 20px; padding: 40px 24px 32px;
+      position: fixed; inset: 0; z-index: 49;
+      background: rgba(250,250,248,0.98);
+      backdrop-filter: blur(16px);
+    }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu .mob-close {
+      position: absolute; top: 20px; right: 20px;
+      background: none; border: none; cursor: pointer; color: var(--charcoal);
+      font-size: 24px;
+    }
+    #mobile-menu a.mob-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 32px; font-weight: 700; color: var(--charcoal); letter-spacing: .02em;
+      transition: color .2s;
+    }
+    #mobile-menu a.mob-link:hover { color: var(--gold); }
+    #mobile-menu .btn-mob-wpp {
+      margin-top: 8px;
+      display: flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #fff;
+      font-size: 14px; font-weight: 700; letter-spacing: .06em;
+      padding: 14px 36px; border-radius: 4px;
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      background: var(--charcoal);
+      background-image:
+        radial-gradient(ellipse at 60% 40%, rgba(184,134,42,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse at 10% 80%, rgba(184,134,42,0.08) 0%, transparent 40%);
+      padding: 100px 0 90px;
+      position: relative; overflow: hidden;
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(184,134,42,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184,134,42,0.05) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-inner {
+      position: relative;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 10px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold-lt); margin-bottom: 20px;
+    }
+    .hero-tag::before {
+      content: ''; display: block; width: 24px; height: 2px;
+      background: var(--gold);
+    }
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(38px, 5vw, 62px);
+      font-weight: 800; line-height: 1.05; letter-spacing: .01em;
+      color: #ffffff;
+    }
+    .hero-title em {
+      font-style: normal; color: var(--gold-lt);
+    }
+    .hero-sub {
+      margin-top: 18px; max-width: 480px;
+      font-size: 16px; line-height: 1.75; color: rgba(255,255,255,0.65);
+    }
+    .hero-actions {
+      margin-top: 36px; display: flex; flex-wrap: wrap; gap: 14px;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: #fff;
+      font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: 14px 28px; border-radius: 4px;
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(184,134,42,0.35);
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(184,134,42,0.45); }
+    .btn-outline-light {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.85);
+      font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      padding: 14px 28px; border-radius: 4px;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline-light:hover { border-color: var(--gold); background: rgba(184,134,42,0.1); }
+
+    .hero-stats {
+      margin-top: 40px; display: flex; gap: 32px;
+    }
+    .hero-stat { }
+    .hero-stat strong {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px; font-weight: 800; color: var(--gold-lt); display: block; line-height: 1;
+    }
+    .hero-stat span { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 4px; display: block; }
+
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center; position: relative;
+    }
+    .hero-shield-wrap {
+      position: relative; width: 300px; height: 300px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-shield-ring {
+      position: absolute; inset: -30px; border-radius: 50%;
+      border: 1px solid rgba(184,134,42,0.15);
+      animation: ring-pulse 3.5s ease-in-out infinite;
+    }
+    .hero-shield-ring2 {
+      position: absolute; inset: -60px; border-radius: 50%;
+      border: 1px solid rgba(184,134,42,0.08);
+      animation: ring-pulse 3.5s ease-in-out infinite .8s;
+    }
+    @keyframes ring-pulse {
+      0%, 100% { opacity: .4; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.04); }
+    }
+    .hero-shield-glow {
+      position: absolute; inset: -20px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(184,134,42,0.18) 0%, transparent 65%);
+      animation: ring-pulse 3.5s ease-in-out infinite .4s;
+    }
+    .hero-shield-wrap img {
+      width: 220px; height: auto;
+      filter: drop-shadow(0 12px 40px rgba(184,134,42,0.4));
+      position: relative; z-index: 1;
+      animation: float-shield 4s ease-in-out infinite;
+    }
+    @keyframes float-shield {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold) 30%, var(--gold-lt) 50%, var(--gold) 70%, transparent);
+      opacity: .25;
+    }
+
+    /* ─── SECTION COMMONS ─── */
+    .sec-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 10px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+    }
+    .sec-label::before {
+      content: ''; display: block; width: 22px; height: 2px;
+      background: linear-gradient(to right, var(--gold-dk), var(--gold));
+    }
+    .sec-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(30px, 4vw, 48px); font-weight: 700; line-height: 1.1; letter-spacing: .01em;
+      color: var(--charcoal);
+    }
+    .sec-desc {
+      margin-top: 12px; max-width: 540px;
+      font-size: 16px; line-height: 1.7; color: var(--text2);
+    }
+
+    /* ─── LINHAS ─── */
+    #linhas {
+      padding: 100px 0;
+      background: var(--surface);
+    }
+    .linhas-grid {
+      margin-top: 52px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    .linha-card {
+      border: 1px solid var(--border2);
+      border-radius: 12px; padding: 28px 22px;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+      background: var(--surface);
+    }
+    .linha-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 8px 32px rgba(184,134,42,0.12);
+      transform: translateY(-4px);
+    }
+    .linha-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: var(--gold-bg2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .linha-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px; font-weight: 700; letter-spacing: .02em;
+      color: var(--charcoal);
+    }
+    .linha-card p { font-size: 13px; line-height: 1.65; color: var(--muted); flex: 1; }
+    .linha-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--gold); margin-top: 4px;
+      transition: gap .2s;
+    }
+    .linha-card:hover .linha-link { gap: 10px; }
+
+    /* ─── PRODUTOS DESTAQUE ─── */
+    #produtos {
+      padding: 100px 0;
+      background: var(--surface2);
+    }
+    .prod-grid {
+      margin-top: 52px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .prod-card {
+      background: var(--surface); border: 1px solid var(--border2);
+      border-radius: 14px; padding: 32px 28px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: border-color .3s, box-shadow .3s, transform .3s;
+    }
+    .prod-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 12px 40px rgba(184,134,42,0.13);
+      transform: translateY(-5px);
+    }
+    .prod-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--gold-bg2); color: var(--gold-dk);
+      font-size: 10px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 20px; width: fit-content;
+    }
+    .prod-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 24px; font-weight: 800; letter-spacing: .02em;
+      color: var(--charcoal);
+    }
+    .prod-card .prod-sub {
+      font-size: 13px; font-weight: 600; color: var(--gold);
+      letter-spacing: .04em;
+    }
+    .prod-card p {
+      font-size: 14px; line-height: 1.7; color: var(--text2); flex: 1;
+    }
+    .prod-benefits {
+      display: flex; flex-direction: column; gap: 8px; margin-top: 4px;
+    }
+    .prod-benefit {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 13px; color: var(--text2);
+    }
+    .prod-benefit::before {
+      content: '';
+      display: block; width: 6px; height: 6px;
+      background: var(--gold); border-radius: 50%; flex-shrink: 0; margin-top: 5px;
+    }
+    .prod-cta {
+      margin-top: 8px;
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--gold);
+      transition: gap .2s;
+    }
+    .prod-card:hover .prod-cta { gap: 10px; }
+
+    /* ─── DIFERENCIAIS ─── */
+    #diferenciais {
+      padding: 100px 0;
+      background: var(--charcoal);
+      position: relative; overflow: hidden;
+    }
+    #diferenciais::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 80% 50%, rgba(184,134,42,0.1) 0%, transparent 55%);
+    }
+    #diferenciais .sec-title { color: #fff; }
+    #diferenciais .sec-desc { color: rgba(255,255,255,0.6); }
+    #diferenciais .sec-label { color: var(--gold-lt); }
+    #diferenciais .sec-label::before { background: var(--gold-lt); }
+
+    .dif-grid {
+      margin-top: 52px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    }
+    .dif-item {
+      padding: 36px 30px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: background .3s, border-color .3s;
+    }
+    .dif-item:hover {
+      background: rgba(184,134,42,0.07);
+      border-color: rgba(184,134,42,0.2);
+    }
+    .dif-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 48px; font-weight: 900; line-height: 1;
+      color: rgba(184,134,42,0.15);
+      margin-bottom: 12px;
+    }
+    .dif-item h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20px; font-weight: 700; letter-spacing: .02em;
+      color: #fff; margin-bottom: 10px;
+    }
+    .dif-item p { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.55); }
+
+    /* ─── SOBRE ─── */
+    #sobre {
+      padding: 100px 0;
+      background: var(--surface);
+    }
+    .sobre-inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .sobre-logo-wrap {
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sobre-logo-wrap img {
+      max-width: 320px; width: 100%;
+      filter: drop-shadow(0 8px 32px rgba(184,134,42,0.15));
+    }
+    .sobre-text p {
+      font-size: 16px; line-height: 1.8; color: var(--text2); margin-bottom: 16px;
+    }
+    .sobre-text p strong { color: var(--charcoal); font-weight: 700; }
+    .sobre-chips {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px;
+    }
+    .chip {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 20px;
+      background: var(--gold-bg2); color: var(--gold-dk);
+      border: 1px solid rgba(184,134,42,0.2);
+    }
+
+    /* ─── CTA ─── */
+    #cta {
+      padding: 100px 0;
+      background: var(--body);
+    }
+    .cta-inner {
+      background: var(--charcoal);
+      background-image: radial-gradient(ellipse at 70% 50%, rgba(184,134,42,0.14) 0%, transparent 55%);
+      border-radius: 16px;
+      padding: 72px 64px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .cta-left h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(30px, 4vw, 48px); font-weight: 800; line-height: 1.1;
+      color: #fff; letter-spacing: .01em; margin-bottom: 16px;
+    }
+    .cta-left h2 em { font-style: normal; color: var(--gold-lt); }
+    .cta-left p { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.6); }
+    .cta-btns { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px; }
+
+    .cta-right {
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .cta-link-card {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px; padding: 18px 22px;
+      transition: border-color .2s, background .2s;
+    }
+    .cta-link-card:hover {
+      border-color: var(--gold);
+      background: rgba(184,134,42,0.08);
+    }
+    .cta-link-icon {
+      width: 42px; height: 42px; border-radius: 8px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cta-link-card .info p { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 2px; }
+    .cta-link-card .info span { font-size: 14px; font-weight: 600; color: #fff; }
+    .cta-link-card:hover .info span { color: var(--gold-lt); }
+    .ml-auto { margin-left: auto; }
+    .arr-icon { color: rgba(255,255,255,0.25); transition: color .2s; }
+    .cta-link-card:hover .arr-icon { color: var(--gold-lt); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #1a1a1a;
+      border-top: 1px solid rgba(184,134,42,0.2);
+      padding: 48px 0 32px;
+    }
+    .footer-inner {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .footer-logo img { height: 36px; width: auto; }
+    .footer-desc {
+      font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 8px; max-width: 260px;
+    }
+    .footer-links {
+      display: flex; gap: 24px;
+    }
+    .footer-links a {
+      font-size: 12px; color: rgba(255,255,255,0.4);
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--gold-lt); }
+    .footer-copy {
+      margin-top: 32px; padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      font-size: 11px; color: rgba(255,255,255,0.25);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    /* ─── FLOAT WPP ─── */
+    .float-wpp {
+      position: fixed; bottom: 24px; right: 24px; z-index: 40;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25d366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.45);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .float-wpp:hover { transform: scale(1.1); box-shadow: 0 8px 32px rgba(37,211,102,0.55); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .linhas-grid { grid-template-columns: repeat(2, 1fr); }
+      .prod-grid   { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+      header .container { padding: 0 20px; }
+      nav.desk { display: none; }
+      .btn-wpp-hdr { display: none; }
+      #menu-toggle { display: flex; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 48px; }
+      .hero-actions { justify-content: center; }
+      .hero-stats  { justify-content: center; }
+      .hero-tag    { justify-content: center; }
+      .sobre-inner { grid-template-columns: 1fr; gap: 40px; }
+      .sobre-logo-wrap { order: -1; }
+      .cta-inner { grid-template-columns: 1fr; gap: 40px; padding: 48px 32px; }
+      .dif-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      #hero { padding: 72px 0 64px; }
+      .prod-grid { grid-template-columns: 1fr; }
+      .linhas-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HEADER ═══ -->
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <a href="#hero" class="header-logo">
+          <img src="logo/logo-fafs-1.png" alt="FAFS Nutrição e Cuidado Animal"/>
+        </a>
+        <nav class="desk" aria-label="Navegação principal">
+          <a href="#linhas">Linhas</a>
+          <a href="#produtos">Produtos</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#cta">Contato</a>
+        </nav>
+        <a href="https://wa.me/5511944938165?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+FAFS+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+suplementos."
+           class="btn-wpp-hdr" target="_blank" rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="16" height="16">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+          </svg>
+          Fale conosco
+        </a>
+        <button id="menu-toggle" aria-label="Abrir menu">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ MOBILE MENU ═══ -->
+  <div id="mobile-menu" role="dialog" aria-label="Menu">
+    <button class="mob-close" id="menu-close" aria-label="Fechar menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+    <a href="#linhas"   class="mob-link">Linhas</a>
+    <a href="#produtos" class="mob-link">Produtos</a>
+    <a href="#sobre"    class="mob-link">Sobre</a>
+    <a href="#cta"      class="mob-link">Contato</a>
+    <a href="https://wa.me/5511944938165?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+FAFS+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+suplementos."
+       class="btn-mob-wpp" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="16" height="16">
+        <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+      </svg>
+      Fale conosco
+    </a>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section id="hero">
+    <div class="hero-pattern"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <p class="hero-tag">Nutrição de Precisão</p>
+          <h1 class="hero-title">
+            TRANSFORMANDO<br/>
+            NUTRIÇÃO EM<br/>
+            <em>RESULTADOS</em>
+          </h1>
+          <p class="hero-sub">
+            Suplementos de alta performance para equinos, suínos, galináceos e pets. Empresa familiar com gestão jovem e foco em excelência científica.
+          </p>
+          <div class="hero-actions">
+            <a href="https://wa.me/5511944938165?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+FAFS+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+suplementos."
+               class="btn-primary" target="_blank" rel="noopener" data-track="hero-wpp">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="16" height="16">
+                <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+              </svg>
+              Fale conosco
+            </a>
+            <a href="https://fafsnutrianimal.com.br/" target="_blank" rel="noopener" class="btn-outline-light" data-track="hero-site">
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+              </svg>
+              Ver loja online
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>4</strong>
+              <span>Linhas de produto</span>
+            </div>
+            <div class="hero-stat">
+              <strong>Todo Brasil</strong>
+              <span>Entrega rápida</span>
+            </div>
+            <div class="hero-stat">
+              <strong>100%</strong>
+              <span>Foco em ciência</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-shield-wrap">
+            <div class="hero-shield-ring"></div>
+            <div class="hero-shield-ring2"></div>
+            <div class="hero-shield-glow"></div>
+            <img src="logo/logo-fafs-2.png" alt="Escudo FAFS"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ LINHAS ═══ -->
+  <section id="linhas">
+    <div class="container">
+      <p class="sec-label">Nossas linhas</p>
+      <h2 class="sec-title">Nutrição para cada espécie</h2>
+      <p class="sec-desc">Produtos cuidadosamente desenvolvidos com ingredientes selecionados para a saúde e performance de cada animal.</p>
+
+      <div class="linhas-grid">
+        <div class="linha-card">
+          <div class="linha-icon">
+            <!-- medal / competition – equinos -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b8862a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="6"/>
+              <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+            </svg>
+          </div>
+          <h3>Equinos</h3>
+          <p>Suplementos de alta performance para cavalos atletas, reprodutores e potros em crescimento. Tecnologia de biodisponibilidade total.</p>
+          <a href="https://fafsnutrianimal.com.br/loja/fafs-nutricao-para-equinos/" target="_blank" rel="noopener" class="linha-link" data-track="linha-equinos">
+            Ver produtos
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+        <div class="linha-card">
+          <div class="linha-icon">
+            <!-- feather – avicultura -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b8862a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
+              <line x1="16" y1="8" x2="2" y2="22"/>
+              <line x1="17.5" y1="15" x2="9" y2="15"/>
+            </svg>
+          </div>
+          <h3>Avicultura</h3>
+          <p>Soluções nutricionais para saúde intestinal, imunidade e produtividade em aves de corte e postura.</p>
+          <a href="https://fafsnutrianimal.com.br/loja/avicultura/" target="_blank" rel="noopener" class="linha-link" data-track="linha-aves">
+            Ver produtos
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+        <div class="linha-card">
+          <div class="linha-icon">
+            <!-- seedling / growth – suinocultura -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b8862a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22V13"/>
+              <path d="M12 13C10 10 6 9 4 6c2.5-.5 5.5.5 8 7z"/>
+              <path d="M12 13C14 10 18 9 20 6c-2.5-.5-5.5.5-8 7z"/>
+            </svg>
+          </div>
+          <h3>Suinocultura</h3>
+          <p>Produtos para proteção, imunidade e máxima eficiência produtiva em suínos nas diferentes fases de criação.</p>
+          <a href="https://fafsnutrianimal.com.br/loja/suinocultura/" target="_blank" rel="noopener" class="linha-link" data-track="linha-suinos">
+            Ver produtos
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+        <div class="linha-card">
+          <div class="linha-icon">
+            <!-- heart – cães e gatos -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b8862a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </div>
+          <h3>Cães e Gatos</h3>
+          <p>Suplementos e probióticos para a saúde digestiva, imunidade e bem-estar de cães e gatos.</p>
+          <a href="https://fafsnutrianimal.com.br/loja/caes-e-gatos/" target="_blank" rel="noopener" class="linha-link" data-track="linha-pets">
+            Ver produtos
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ PRODUTOS DESTAQUE ═══ -->
+  <section id="produtos">
+    <div class="container">
+      <p class="sec-label">Produtos em destaque</p>
+      <h2 class="sec-title">Linha Equinos FAFS</h2>
+      <p class="sec-desc">Formulações técnicas com minerais orgânicos quelatados, probióticos esporulados e adsorventes de micotoxinas para o cavalo de alta exigência.</p>
+
+      <div class="prod-grid">
+
+        <!-- EquiPower Performance -->
+        <div class="prod-card">
+          <span class="prod-badge">⚡ Performance</span>
+          <div>
+            <p class="prod-sub">Atletas &amp; Reprodutores</p>
+            <h3>EquiPower Performance</h3>
+          </div>
+          <p>Ferramenta nutricional estratégica para fechar os gaps metabólicos de animais de alto estresse. Potência, recuperação e integridade fisiológica.</p>
+          <div class="prod-benefits">
+            <div class="prod-benefit">Probióticos esporulados termoestáveis para máxima saúde intestinal</div>
+            <div class="prod-benefit">Minerais orgânicos glicinados de alta biodisponibilidade</div>
+            <div class="prod-benefit">Adsorvente de micotoxinas de amplo espectro</div>
+            <div class="prod-benefit">L-Lisina e L-Triptofano para topline e equilíbrio comportamental</div>
+            <div class="prod-benefit">Vitamina E + Selênio orgânico para recuperação muscular</div>
+          </div>
+          <a href="https://fafsnutrianimal.com.br/" target="_blank" rel="noopener" class="prod-cta" data-track="prod-equipower">
+            Saiba mais
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <!-- EquiVital -->
+        <div class="prod-card">
+          <span class="prod-badge">✨ Casco &amp; Pelagem</span>
+          <div>
+            <p class="prod-sub">Saúde Intestinal &amp; Beleza</p>
+            <h3>EquiVital</h3>
+          </div>
+          <p>A pelagem brilhante e os cascos fortes que você procura começam no intestino. Tríplice blindagem intestinal para absorção máxima dos nutrientes.</p>
+          <div class="prod-benefits">
+            <div class="prod-benefit">Biotina e Metionina em níveis ótimos para queratina dos cascos</div>
+            <div class="prod-benefit">Probióticos + Prebióticos (MOS e Beta-glucanos) para flora intestinal</div>
+            <div class="prod-benefit">Adsorvente de micotoxinas protegendo o fígado</div>
+            <div class="prod-benefit">Minerais inorgânicos + orgânicos quelatados para absorção dupla</div>
+            <div class="prod-benefit">Indicado também para éguas gestantes (dois terços iniciais)</div>
+          </div>
+          <a href="https://fafsnutrianimal.com.br/" target="_blank" rel="noopener" class="prod-cta" data-track="prod-equivital">
+            Saiba mais
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+        <!-- EquiGrowth -->
+        <div class="prod-card">
+          <span class="prod-badge">🌱 Crescimento</span>
+          <div>
+            <p class="prod-sub">Potros de 4 a 36 meses</p>
+            <h3>EquiGrowth</h3>
+          </div>
+          <p>A janela de ouro do desenvolvimento. Estrutura óssea, articular e muscular consolidada na fase mais crítica da vida do seu futuro campeão.</p>
+          <div class="prod-benefits">
+            <div class="prod-benefit">Cálcio de Algas Marinhas para densidade óssea e proteção gástrica</div>
+            <div class="prod-benefit">Colágeno hidrolisado para prevenção de doenças ortopédicas</div>
+            <div class="prod-benefit">Probiótico + Parede Celular de Levedura contra vazio imunológico pós-desmame</div>
+            <div class="prod-benefit">Cobre, Zinco e Manganês glicinados para cartilagem e aprumos</div>
+            <div class="prod-benefit">Indica também para adultos em recuperação articular</div>
+          </div>
+          <a href="https://fafsnutrianimal.com.br/" target="_blank" rel="noopener" class="prod-cta" data-track="prod-equigrowth">
+            Saiba mais
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ DIFERENCIAIS ═══ -->
+  <section id="diferenciais">
+    <div class="container">
+      <p class="sec-label">Por que FAFS</p>
+      <h2 class="sec-title">A ciência por trás do rótulo</h2>
+      <p class="sec-desc">Não usamos ingredientes genéricos. Cada componente tem uma função técnica precisa para resultados reais.</p>
+
+      <div class="dif-grid">
+        <div class="dif-item">
+          <div class="dif-num">01</div>
+          <h3>Minerais Orgânicos Quelatados</h3>
+          <p>Ferro, Cobre, Zinco, Manganês e Selênio complexados com aminoácidos (Glicinatos). Absorção superior aos minerais inorgânicos tradicionais, sem antagonismos no intestino.</p>
+        </div>
+        <div class="dif-item">
+          <div class="dif-num">02</div>
+          <h3>Probiótico Esporulado Termoestável</h3>
+          <p>Cepas de Bacillus coagulans que sobrevivem ao pH ácido do estômago e chegam viáveis ao intestino — onde modulam a microbiota, reforçam a imunidade e melhoram a digestibilidade.</p>
+        </div>
+        <div class="dif-item">
+          <div class="dif-num">03</div>
+          <h3>Adsorção de Micotoxinas</h3>
+          <p>Tecnologia de amplo espectro com glucomananos esterificados e aluminossilicatos. Sequestra aflatoxinas, fumonisinas, zearalenona e tricotecenos antes que atinjam o fígado.</p>
+        </div>
+        <div class="dif-item">
+          <div class="dif-num">04</div>
+          <h3>Cálcio de Algas Marinhas</h3>
+          <p>Lithothamnium de estrutura porosa com efeito tamponante gástrico natural — superior ao calcário calcítico. Protege contra úlceras e promove densidade óssea superior.</p>
+        </div>
+        <div class="dif-item">
+          <div class="dif-num">05</div>
+          <h3>Biocolina (Hepatoproteção)</h3>
+          <p>Fonte vegetal de fosfolipídios — diferente do Cloreto de Colina sintético. Otimiza o metabolismo de gorduras, protege o fígado e não irrita a mucosa intestinal.</p>
+        </div>
+        <div class="dif-item">
+          <div class="dif-num">06</div>
+          <h3>Entrega Rápida em Todo Brasil</h3>
+          <p>Suplementos equinos com frete grátis acima de R$ 1.000. Parcelamento em até 3x sem juros. Compra 100% segura pela loja online oficial.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SOBRE ═══ -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-inner">
+        <div class="sobre-logo-wrap">
+          <img src="logo/logo-fafs-1.png" alt="FAFS Nutrição e Cuidado Animal"/>
+        </div>
+        <div class="sobre-text">
+          <p class="sec-label">Quem somos</p>
+          <h2 class="sec-title" style="margin-bottom: 20px;">Empresa familiar,<br/>gestão jovem</h2>
+          <p>Na <strong>FAFS</strong>, acreditamos que a nutrição e o bem-estar dos animais são fundamentais para seu desempenho e saúde. Oferecemos soluções de alta qualidade para apoiar o crescimento e a vitalidade dos seus animais.</p>
+          <p>Nossa linha de produtos é cuidadosamente desenvolvida com ingredientes selecionados, para entregar o melhor em nutrição e cuidado. Cada produto reflete nosso compromisso com a excelência — aliando ciência de ponta à gestão ágil de uma empresa familiar com visão moderna.</p>
+          <div class="sobre-chips">
+            <span class="chip">Equinos</span>
+            <span class="chip">Suinocultura</span>
+            <span class="chip">Avicultura</span>
+            <span class="chip">Cães &amp; Gatos</span>
+            <span class="chip">Entrega nacional</span>
+            <span class="chip">Empresa familiar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ CTA ═══ -->
+  <section id="cta">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-left">
+          <h2>Nutrição que<br/><em>transforma</em><br/>resultados reais</h2>
+          <p>Fale com a nossa equipe, acesse a loja online ou siga o Instagram para ficar por dentro das novidades e conteúdos técnicos.</p>
+          <div class="cta-btns">
+            <a href="https://wa.me/5511944938165?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+FAFS+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+suplementos."
+               class="btn-primary" target="_blank" rel="noopener" data-track="cta-wpp">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" width="16" height="16">
+                <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+              </svg>
+              Falar no WhatsApp
+            </a>
+          </div>
+        </div>
+        <div class="cta-right">
+          <a href="https://fafsnutrianimal.com.br/" target="_blank" rel="noopener" class="cta-link-card" data-track="cta-site">
+            <div class="cta-link-icon" style="background: rgba(184,134,42,0.15);">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#b8862a" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+              </svg>
+            </div>
+            <div class="info">
+              <p>Loja Online</p>
+              <span>fafsnutrianimal.com.br</span>
+            </div>
+            <div class="ml-auto arr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </div>
+          </a>
+          <a href="https://www.instagram.com/fafsnutrianimal/" target="_blank" rel="noopener" class="cta-link-card" data-track="cta-instagram">
+            <div class="cta-link-icon" style="background: linear-gradient(135deg,rgba(240,148,51,0.2),rgba(220,39,67,0.2),rgba(188,24,136,0.2));">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#e1306c" stroke-width="1.7">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.7"/>
+                <circle cx="12" cy="12" r="5" stroke-width="1.7"/>
+                <circle cx="17.5" cy="6.5" r=".8" fill="#e1306c"/>
+              </svg>
+            </div>
+            <div class="info">
+              <p>Instagram</p>
+              <span>@fafsnutrianimal</span>
+            </div>
+            <div class="ml-auto arr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </div>
+          </a>
+          <a href="https://wa.me/5511944938165?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+FAFS+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+suplementos."
+             target="_blank" rel="noopener" class="cta-link-card" data-track="cta-wpp2">
+            <div class="cta-link-icon" style="background: rgba(37,211,102,0.15);">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="#25d366" width="20" height="20">
+                <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+              </svg>
+            </div>
+            <div class="info">
+              <p>WhatsApp</p>
+              <span>(11) 94493-8165</span>
+            </div>
+            <div class="ml-auto arr-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <div class="footer-logo">
+            <img src="logo/logo-fafs-1.png" alt="FAFS" style="filter: brightness(0) invert(1); opacity: .7;"/>
+          </div>
+          <p class="footer-desc">Nutrição de Precisão para Máxima Performance e Bem-Estar Animal.</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://fafsnutrianimal.com.br/" target="_blank" rel="noopener">Loja Online</a>
+          <a href="https://www.instagram.com/fafsnutrianimal/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://wa.me/5511944938165?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+FAFS+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+suplementos." target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-copy">
+        <span>© <span id="year"></span> FAFS Nutrição e Cuidado Animal. Todos os direitos reservados.</span>
+        <span>Itu – SP &nbsp;·&nbsp; Entrega para todo o Brasil</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══ FLOAT WPP ═══ -->
+  <a href="https://wa.me/5511944938165?text=Ol%C3%A1%21+Vim+pelo+LinkBio+da+FAFS+e+gostaria+de+mais+informa%C3%A7%C3%B5es+sobre+os+suplementos."
+     class="float-wpp" target="_blank" rel="noopener" aria-label="WhatsApp" data-track="float-wpp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="white" width="26" height="26">
+      <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+    </svg>
+  </a>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const toggle = document.getElementById('menu-toggle');
+    const mob    = document.getElementById('mobile-menu');
+    const close  = document.getElementById('menu-close');
+    toggle.addEventListener('click', () => mob.classList.add('open'));
+    close.addEventListener('click',  () => mob.classList.remove('open'));
+    mob.querySelectorAll('.mob-link, .btn-mob-wpp').forEach(l =>
+      l.addEventListener('click', () => mob.classList.remove('open'))
+    );
+  </script>
+
+  <script src="https://linkbio.api.br/tracker.js" data-slug="fafs" defer></script>
+</body>
+</html>

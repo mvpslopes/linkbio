@@ -43,6 +43,42 @@ INSERT IGNORE INTO `users` (`username`, `password_hash`, `role`, `page_slug`, `n
     'client',
     'equusvita',
     'EquusVita Centro de Reprodução Equina'
+),
+
+-- Cliente: Raça e Marcha (placeholder - ajustar hash em produção)
+(
+    'racaemarcha',
+    '$2y$12$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXPLACEHOLDERHASHXXXXXX',
+    'client',
+    'racaemarcha',
+    'Raça e Marcha – Mangalarga Marchador'
+),
+
+-- Cliente: Cristiano Ladeira (placeholder - ajustar hash em produção)
+(
+    'cristianoladeira',
+    '$2y$12$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXPLACEHOLDERHASHXXXXXX',
+    'client',
+    'cristianoladeira',
+    'Cristiano Ladeira Promoção & Eventos'
+),
+
+-- Cliente: Pura Marcha (placeholder - ajustar hash em produção)
+(
+    'puramarcha',
+    '$2y$12$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXPLACEHOLDERHASHXXXXXX',
+    'client',
+    'puramarcha',
+    'Pura Marcha – Canal de Notícias'
+),
+
+-- Cliente: FAFS (placeholder - ajustar hash em produção)
+(
+    'fafs',
+    '$2y$12$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXPLACEHOLDERHASHXXXXXX',
+    'client',
+    'fafs',
+    'FAFS Nutrição e Cuidado Animal'
 );
 
 -- ATENÇÃO: os hashes dos clientes acima são placeholders.
