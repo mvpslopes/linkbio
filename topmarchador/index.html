@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Top Marchador | Venda, Assessoria e Leilão de Mangalarga Marchador</title>
-  <meta name="description" content="Fazendo história na raça que mais cresce no Brasil. Venda, assessoria, gestão de redes sociais e leilões de Mangalarga Marchador." />
+  <title>Top Marchador | História no Mangalarga Marchador</title>
+  <meta name="description" content="Conectamos criadores, compradores e oportunidades com conteúdo, assessoria e presença digital no Marchador. Cobertura de eventos, leilões, lives e gestão de mídias." />
   <link rel="canonical" href="https://topmarchador.linkbio.api.br/" />
   <link rel="icon" href="logo/topmarchador-logo-1.png" type="image/png" />
 
@@ -12,7 +12,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://topmarchador.linkbio.api.br/" />
   <meta property="og:title" content="Top Marchador | Mangalarga Marchador" />
-  <meta property="og:description" content="Venda, assessoria, gestão de mídias sociais e leilões de Mangalarga Marchador." />
+  <meta property="og:description" content="Divulgação, cobertura de eventos, assessoria comercial e gestão de mídias no Mangalarga Marchador." />
   <meta property="og:image" content="https://topmarchador.linkbio.api.br/logo/topmarchador-logo-1.png" />
 
   <!-- Google Fonts -->
@@ -190,6 +190,49 @@
       user-select: none;
       color: var(--gold);
     }
+
+    /* ── fotos / galeria ── */
+    .hero-photo-wrap {
+      position: relative;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(200,164,90,.12);
+    }
+    .hero-photo-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(6,10,28,.25) 0%, transparent 45%, rgba(6,10,28,.35) 100%);
+      pointer-events: none;
+    }
+    .hero-photo-wrap img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      max-height: min(78vh, 620px);
+      object-fit: cover;
+    }
+    .photo-tile {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.02);
+      transition: transform .35s ease, border-color .35s ease;
+    }
+    .photo-tile:hover {
+      transform: translateY(-3px);
+      border-color: rgba(200,164,90,.25);
+    }
+    .photo-tile img {
+      width: 100%;
+      height: 100%;
+      min-height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    @media (min-width: 1024px) {
+      .horse-deco { opacity: .035; }
+    }
   </style>
 </head>
 
@@ -274,6 +317,7 @@
     </div>
 
     <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 sm:py-28 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 xl:gap-16 items-center">
       <div class="max-w-2xl space-y-8">
 
         <div data-animate>
@@ -286,58 +330,88 @@
         </div>
 
         <div data-animate data-animate-delay="1">
-          <h1 class="font-display font-black uppercase leading-[.85]">
-            <span class="block text-[64px] sm:text-[86px] lg:text-[96px] text-white">Fazendo</span>
-            <span class="block text-[64px] sm:text-[86px] lg:text-[96px] text-gold italic">História</span>
-            <span class="block text-[64px] sm:text-[86px] lg:text-[96px] text-white">na Raça.</span>
+          <h1 class="font-display font-black uppercase leading-[.92] text-white text-[clamp(2rem,6vw,3.75rem)] sm:text-[clamp(2.5rem,5.5vw,4.25rem)] tracking-tight">
+            Fazendo história no<br/>
+            <span class="text-gold italic">Mangalarga Marchador</span>
           </h1>
         </div>
 
         <div data-animate data-animate-delay="2">
-          <p class="text-[16px] sm:text-[18px] text-slate-300 leading-relaxed max-w-lg">
-            Venda, assessoria e leilões do cavalo que mais cresce no Brasil — com gestão profissional de mídias sociais para quem leva a raça a sério.
+          <p class="text-[16px] sm:text-[17px] text-slate-300 leading-relaxed max-w-2xl">
+            Conectamos criadores, compradores e grandes oportunidades através de conteúdo, assessoria e presença digital estratégica no mercado do Marchador.
           </p>
         </div>
 
         <div data-animate data-animate-delay="3" class="flex flex-col sm:flex-row gap-3">
-          <a href="https://www.instagram.com/top_marchador/" target="_blank" rel="noopener noreferrer"
+          <a href="https://wa.me/5531997659092?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Top%20Marchador%20e%20quero%20divulgar%20meus%20animais."
+            target="_blank" rel="noopener noreferrer"
             class="inline-flex items-center justify-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080C24] shadow-[0_0_40px_rgba(200,164,90,0.35)] hover:opacity-90 transition"
             style="background: linear-gradient(135deg, #C8A45A, #E2C27D);">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="2"/>
-              <circle cx="12" cy="12" r="5" stroke-width="2"/>
-              <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 32 32" fill="currentColor">
+              <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
             </svg>
-            Seguir no Instagram
+            Divulgar meus animais
           </a>
-          <a href="#servicos"
+          <a href="#sobre"
             class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-4 text-[15px] font-semibold text-white hover:bg-white/10 hover:border-white/25 transition">
-            Nossos serviços
+            Conhecer o TOP
           </a>
         </div>
 
-        <!-- chips -->
-        <div data-animate data-animate-delay="4" class="flex flex-wrap gap-2.5">
-          <span class="flex items-center gap-2 rounded-full border border-white/8 bg-white/4 px-3.5 py-1.5 text-[12px] text-slate-300">
-            <svg class="h-3.5 w-3.5 text-[#C8A45A] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-            </svg>
-            Venda &amp; Assessoria
-          </span>
-          <span class="flex items-center gap-2 rounded-full border border-white/8 bg-white/4 px-3.5 py-1.5 text-[12px] text-slate-300">
-            <svg class="h-3.5 w-3.5 text-[#C8A45A] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-            </svg>
-            Leilões
-          </span>
-          <span class="flex items-center gap-2 rounded-full border border-white/8 bg-white/4 px-3.5 py-1.5 text-[12px] text-slate-300">
-            <svg class="h-3.5 w-3.5 text-[#C8A45A] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-            </svg>
-            Gestão de Redes Sociais
-          </span>
+        <!-- Área de atuação -->
+        <div data-animate data-animate-delay="4" class="space-y-3 pt-2">
+          <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">Área de atuação</p>
+          <div class="flex flex-wrap gap-2.5">
+            <span class="flex items-center gap-2 rounded-full border border-white/8 bg-white/4 px-3.5 py-1.5 text-[12px] text-slate-300">
+              <span class="h-1 w-1 rounded-full bg-[#C8A45A] shrink-0" aria-hidden="true"></span>
+              Cobertura de eventos
+            </span>
+            <span class="flex items-center gap-2 rounded-full border border-white/8 bg-white/4 px-3.5 py-1.5 text-[12px] text-slate-300">
+              <span class="h-1 w-1 rounded-full bg-[#C8A45A] shrink-0" aria-hidden="true"></span>
+              Leilões e lives
+            </span>
+            <span class="flex items-center gap-2 rounded-full border border-white/8 bg-white/4 px-3.5 py-1.5 text-[12px] text-slate-300">
+              <span class="h-1 w-1 rounded-full bg-[#C8A45A] shrink-0" aria-hidden="true"></span>
+              Assessoria comercial
+            </span>
+            <span class="flex items-center gap-2 rounded-full border border-white/8 bg-white/4 px-3.5 py-1.5 text-[12px] text-slate-300">
+              <span class="h-1 w-1 rounded-full bg-[#C8A45A] shrink-0" aria-hidden="true"></span>
+              Gestão de mídias sociais
+            </span>
+          </div>
         </div>
 
+      </div>
+
+        <!-- Foto destaque (desktop) -->
+        <div data-animate data-animate-delay="2" class="hidden lg:block relative">
+          <div class="hero-photo-wrap">
+            <img
+              src="fotos/IMG_6829.PNG"
+              alt="Cobertura Top Marchador — Mangalarga Marchador"
+              width="600"
+              height="750"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+          <p class="mt-3 text-[11px] text-slate-500 text-center uppercase tracking-widest">Presença em eventos e na raça</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Prévia mobile: faixa com foto -->
+    <div class="lg:hidden relative z-10 px-4 pb-10 -mt-4">
+      <div class="hero-photo-wrap max-w-md mx-auto">
+        <img
+          src="fotos/IMG_6829.PNG"
+          alt=""
+          width="600"
+          height="400"
+          style="min-height:220px;max-height:280px;object-fit:cover;width:100%"
+          loading="eager"
+          decoding="async"
+        />
       </div>
     </div>
 
@@ -347,27 +421,52 @@
 
   <!-- ═══ STRIP ═══ -->
   <div class="bg-[#0B0F2E] border-b border-white/5 overflow-hidden">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-wrap justify-around divide-x divide-white/5">
-        <div class="flex-1 min-w-[140px] flex flex-col items-center justify-center py-7 gap-1">
-          <span class="font-display font-black text-[42px] leading-none text-gold">+1</span>
-          <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Raça que cresce</span>
-        </div>
-        <div class="flex-1 min-w-[140px] flex flex-col items-center justify-center py-7 gap-1">
-          <span class="font-display font-black text-[42px] leading-none text-gold">360°</span>
-          <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Assessoria completa</span>
-        </div>
-        <div class="flex-1 min-w-[140px] flex flex-col items-center justify-center py-7 gap-1">
-          <span class="font-display font-black text-[42px] leading-none text-gold">Top</span>
-          <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Marchador</span>
-        </div>
-        <div class="flex-1 min-w-[140px] flex flex-col items-center justify-center py-7 gap-1">
-          <span class="font-display font-black text-[42px] leading-none text-gold">MG</span>
-          <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Brasil</span>
-        </div>
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-6">
+      <p class="text-center text-[11px] font-bold uppercase tracking-[0.22em] text-slate-500 mb-4">Presença estratégica no Marchador</p>
+      <div class="flex flex-wrap justify-center gap-x-10 gap-y-3 text-[13px] text-slate-400 font-medium">
+        <span class="text-white/90">Cobertura de eventos</span>
+        <span class="hidden sm:inline text-white/20">·</span>
+        <span class="text-white/90">Leilões e lives</span>
+        <span class="hidden sm:inline text-white/20">·</span>
+        <span class="text-white/90">Assessoria comercial</span>
+        <span class="hidden sm:inline text-white/20">·</span>
+        <span class="text-white/90">Gestão de mídias sociais</span>
       </div>
     </div>
   </div>
+
+  <!-- ═══ GALERIA (fotos do projeto) ═══ -->
+  <section id="momentos" class="py-16 sm:py-24 bg-[#060A18] border-t border-white/5">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div data-animate class="mb-10 text-center lg:text-left">
+        <span class="tag-pill">Galeria</span>
+        <h2 class="font-display font-black text-[36px] sm:text-[44px] uppercase leading-[.95] mt-4 text-white">
+          Na pista e nos <span class="text-gold italic">bastidores</span>
+        </h2>
+        <p class="mt-3 text-[14px] text-slate-500 max-w-xl mx-auto lg:mx-0">
+          Registros reais de cobertura, eventos e presença do Top Marchador no universo do Mangalarga Marchador.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
+        <figure data-animate data-animate-delay="1" class="photo-tile col-span-2 md:col-span-2">
+          <img src="fotos/IMG_6829.PNG" alt="Top Marchador — cobertura de evento" loading="lazy" decoding="async" class="min-h-[200px] md:min-h-[260px]" />
+        </figure>
+        <figure data-animate data-animate-delay="2" class="photo-tile">
+          <img src="fotos/342051021_117493601315661_930970055128347110_n.webp" alt="Top Marchador" loading="lazy" decoding="async" />
+        </figure>
+        <figure data-animate data-animate-delay="3" class="photo-tile">
+          <img src="fotos/WhatsApp%20Image%202026-03-10%20at%2022.22.52.jpeg" alt="Top Marchador — Marchador" loading="lazy" decoding="async" />
+        </figure>
+        <figure data-animate data-animate-delay="4" class="photo-tile">
+          <img src="fotos/WhatsApp%20Image%202026-03-10%20at%2022.23.51.jpeg" alt="Top Marchador — presença na raça" loading="lazy" decoding="async" />
+        </figure>
+        <figure data-animate data-animate-delay="5" class="photo-tile">
+          <img src="fotos/137280093_844132389487666_5363235907440653709_n.jpg.jpeg" alt="Top Marchador — Mangalarga Marchador" loading="lazy" decoding="async" />
+        </figure>
+      </div>
+    </div>
+  </section>
 
   <!-- ═══ SOBRE ═══ -->
   <section id="sobre" class="py-20 sm:py-28" style="background: linear-gradient(180deg, #0B0F2E 0%, #080C22 100%);">
@@ -395,17 +494,13 @@
         <div data-animate data-animate-delay="1" class="space-y-6">
           <div>
             <span class="tag-pill">Quem somos</span>
-            <h2 class="font-display font-black text-[48px] sm:text-[58px] uppercase leading-[.9] mt-5">
-              A raça que<br/>
-              <span class="text-gold italic">mais cresce</span><br/>
-              no Brasil
+            <h2 class="font-display font-black text-[32px] sm:text-[40px] lg:text-[44px] uppercase leading-[1.05] mt-5 text-white">
+              Somos muito mais que<br/>
+              <span class="text-gold italic">divulgação.</span>
             </h2>
           </div>
-          <p class="text-[15px] text-slate-400 leading-relaxed">
-            O Top Marchador nasceu da paixão pelo Mangalarga Marchador e da missão de conectar criadores, compradores e entusiastas da raça mais elegante do Brasil.
-          </p>
-          <p class="text-[15px] text-slate-400 leading-relaxed">
-            Com atuação em venda, assessoria especializada e gestão profissional de mídias sociais, ajudamos haras, criadores e leiloeiros a se posicionarem com autoridade no mercado equestre.
+          <p class="text-[15px] sm:text-[16px] text-slate-400 leading-relaxed">
+            O Top Marchador atua como uma ponte entre <strong class="text-slate-200 font-semibold">visibilidade</strong>, <strong class="text-slate-200 font-semibold">negócios</strong> e <strong class="text-slate-200 font-semibold">posicionamento</strong> dentro da raça. Unimos produção de conteúdo, cobertura de eventos e estratégia comercial para gerar valor real para criadores, haras e empresas do segmento.
           </p>
           <div class="pt-2 space-y-3">
             <div class="flex items-center gap-3 text-[14px] text-slate-300">
@@ -415,7 +510,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" style="stroke: #C8A45A;"/>
                 </svg>
               </span>
-              <span>Especialistas no universo do <strong class="text-white">Mangalarga Marchador</strong></span>
+              <span>Conteúdo, eventos e <strong class="text-white">estratégia comercial</strong> integrados</span>
             </div>
             <div class="flex items-center gap-3 text-[14px] text-slate-300">
               <span class="h-6 w-6 rounded-full flex items-center justify-center shrink-0 border"
@@ -424,7 +519,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" style="stroke: #C8A45A;"/>
                 </svg>
               </span>
-              <span>Presença digital e <strong class="text-white">estratégia de vendas</strong> para criadores</span>
+              <span>Foco em <strong class="text-white">valor real</strong> para criadores e marcas</span>
             </div>
             <div class="flex items-center gap-3 text-[14px] text-slate-300">
               <span class="h-6 w-6 rounded-full flex items-center justify-center shrink-0 border"
@@ -433,7 +528,7 @@
                   <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" style="stroke: #C8A45A;"/>
                 </svg>
               </span>
-              <span>Leilões com <strong class="text-white">organização e alcance</strong> no segmento equestre</span>
+              <span>Atuação no <strong class="text-white">Mangalarga Marchador</strong> em todo o Brasil</span>
             </div>
           </div>
         </div>
@@ -449,86 +544,95 @@
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
       <div data-animate class="mb-14">
-        <span class="tag-pill">Serviços</span>
+        <span class="tag-pill">O que fazemos</span>
         <h2 class="font-display font-black text-[50px] sm:text-[62px] uppercase leading-[.88] mt-5">
-          O que fazemos<br/>
-          <span class="text-gold italic">por você</span>
+          Serviços por<br/>
+          <span class="text-gold italic">pilares</span>
         </h2>
+        <p class="mt-4 text-[14px] text-slate-500 max-w-xl">Quatro frentes de atuação para visibilidade, autoridade e resultado no Mangalarga Marchador.</p>
       </div>
 
-      <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid gap-5 md:grid-cols-2">
 
-        <!-- Venda -->
-        <div data-animate data-animate-delay="1" class="srv-card p-7 space-y-5 relative">
+        <!-- Pilar 1 -->
+        <div data-animate data-animate-delay="1" class="srv-card p-7 space-y-4 relative">
           <span class="num-accent">01</span>
           <div class="srv-icon">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
             </svg>
           </div>
-          <div class="space-y-2">
-            <h3 class="text-[18px] font-bold text-white">Venda de Cavalos</h3>
-            <p class="text-[13px] text-slate-400 leading-relaxed">
-              Conectamos compradores e vendedores com curadoria especializada no Mangalarga Marchador — negociações com segurança, transparência e resultado.
-            </p>
-          </div>
+          <h3 class="text-[17px] font-bold text-white leading-snug">Divulgação &amp; Mídia do Marchador</h3>
+          <ul class="space-y-2 text-[13px] text-slate-400 leading-relaxed list-none pl-0">
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Publicação de animais</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Divulgação de criatórios</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Alcance qualificado no público da raça</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Estratégia de exposição</li>
+          </ul>
+          <p class="text-[12px] text-slate-300 leading-relaxed border-l-2 border-[#C8A45A]/60 pl-4 italic">
+            Ideal para quem quer vender, posicionar ou ganhar visibilidade.
+          </p>
         </div>
 
-        <!-- Assessoria -->
-        <div data-animate data-animate-delay="2" class="srv-card p-7 space-y-5 relative">
+        <!-- Pilar 2 -->
+        <div data-animate data-animate-delay="2" class="srv-card p-7 space-y-4 relative">
           <span class="num-accent">02</span>
           <div class="srv-icon">
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.882v6.236a1 1 0 01-1.447.894L15 14M5 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H7a2 2 0 01-2-2V8z"/>
             </svg>
           </div>
-          <div class="space-y-2">
-            <h3 class="text-[18px] font-bold text-white">Assessoria Especializada</h3>
-            <p class="text-[13px] text-slate-400 leading-relaxed">
-              Orientação completa para criadores, haras e investidores que querem se posicionar com autoridade no mercado do Marchador.
-            </p>
-          </div>
+          <h3 class="text-[17px] font-bold text-white leading-snug">Cobertura de Eventos &amp; Leilões</h3>
+          <ul class="space-y-2 text-[13px] text-slate-400 leading-relaxed list-none pl-0">
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Cobertura profissional (foto e vídeo)</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Bastidores, pista e transmissões</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Lives e conteúdo em tempo real</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Entrega de material para redes sociais</li>
+          </ul>
+          <p class="text-[12px] text-slate-300 leading-relaxed border-l-2 border-[#C8A45A]/60 pl-4 italic">
+            Transformamos presença em autoridade.
+          </p>
         </div>
 
-        <!-- Leilão -->
-        <div data-animate data-animate-delay="3" class="srv-card p-7 space-y-5 relative">
+        <!-- Pilar 3 -->
+        <div data-animate data-animate-delay="3" class="srv-card p-7 space-y-4 relative">
           <span class="num-accent">03</span>
           <div class="srv-icon">
-            <!-- martelo de leilão -->
             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536M9 13l6-6m-9 9l2.5-2.5M3 21l4-4m8-8l-3-3a2 2 0 00-2.828 0l-1 1a2 2 0 000 2.828l6 6a2 2 0 002.828 0l1-1a2 2 0 000-2.828z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
             </svg>
           </div>
-          <div class="space-y-2">
-            <h3 class="text-[18px] font-bold text-white">Leilão</h3>
-            <p class="text-[13px] text-slate-400 leading-relaxed">
-              Organização e divulgação de leilões com alcance no segmento equestre — do planejamento à entrega, com credibilidade e audiência qualificada.
-            </p>
-          </div>
+          <h3 class="text-[17px] font-bold text-white leading-snug">Assessoria Comercial na Raça</h3>
+          <ul class="space-y-2 text-[13px] text-slate-400 leading-relaxed list-none pl-0">
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Intermediação de negócios</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Conexão com compradores qualificados</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Curadoria de animais</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Estratégia de venda</li>
+          </ul>
+          <p class="text-[12px] text-slate-300 leading-relaxed border-l-2 border-[#C8A45A]/60 pl-4 italic">
+            Mais do que vender: vender certo.
+          </p>
         </div>
 
-        <!-- Gestão de Mídias -->
-        <div data-animate data-animate-delay="4" class="srv-card p-7 space-y-5 relative md:col-span-2 lg:col-span-3">
+        <!-- Pilar 4 -->
+        <div data-animate data-animate-delay="4" class="srv-card p-7 space-y-4 relative">
           <span class="num-accent">04</span>
-          <div class="flex flex-col sm:flex-row gap-6 items-start">
-            <div class="srv-icon shrink-0">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
-              </svg>
-            </div>
-            <div class="flex-1 space-y-2">
-              <h3 class="text-[18px] font-bold text-white">Gestão de Mídias Sociais</h3>
-              <p class="text-[13px] text-slate-400 leading-relaxed max-w-2xl">
-                Criação de conteúdo estratégico, produção audiovisual, gestão de perfis e campanhas direcionadas ao público equestre — para haras, criadores e empresas do segmento Mangalarga Marchador crescerem na presença digital com identidade e consistência.
-              </p>
-              <div class="flex flex-wrap gap-2 pt-2">
-                <span class="text-[11px] text-[#C8A45A] bg-[rgba(200,164,90,0.08)] border border-[rgba(200,164,90,0.2)] rounded-full px-3 py-1 font-semibold">Conteúdo estratégico</span>
-                <span class="text-[11px] text-[#C8A45A] bg-[rgba(200,164,90,0.08)] border border-[rgba(200,164,90,0.2)] rounded-full px-3 py-1 font-semibold">Produção audiovisual</span>
-                <span class="text-[11px] text-[#C8A45A] bg-[rgba(200,164,90,0.08)] border border-[rgba(200,164,90,0.2)] rounded-full px-3 py-1 font-semibold">Instagram &amp; TikTok</span>
-                <span class="text-[11px] text-[#C8A45A] bg-[rgba(200,164,90,0.08)] border border-[rgba(200,164,90,0.2)] rounded-full px-3 py-1 font-semibold">Identidade de marca</span>
-              </div>
-            </div>
+          <div class="srv-icon">
+            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+            </svg>
           </div>
+          <h3 class="text-[17px] font-bold text-white leading-snug">Gestão de Mídias Sociais</h3>
+          <ul class="space-y-2 text-[13px] text-slate-400 leading-relaxed list-none pl-0">
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Planejamento estratégico</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Produção de conteúdo</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Artes profissionais</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Edição de vídeos comerciais</li>
+            <li class="flex gap-2"><span class="text-[#C8A45A] shrink-0">·</span> Gestão de Instagram</li>
+          </ul>
+          <p class="text-[12px] text-slate-300 leading-relaxed border-l-2 border-[#C8A45A]/60 pl-4">
+            Construímos marcas fortes dentro do Marchador.
+          </p>
         </div>
 
       </div>
@@ -559,62 +663,51 @@
             </svg>
           </div>
           <p class="text-[15px] font-bold text-white">Autoridade na raça</p>
-          <p class="text-[13px] text-slate-400 leading-relaxed">Conhecimento profundo do mercado, da genética e das particularidades do Mangalarga Marchador.</p>
+          <p class="text-[13px] text-slate-400 leading-relaxed">Conhecimento real do mercado, da dinâmica comercial e do que gera valor dentro do Marchador.</p>
         </div>
 
         <div data-animate data-animate-delay="2" class="dif-card p-6 space-y-3">
           <div class="h-10 w-10 rounded-xl flex items-center justify-center"
             style="background: rgba(200,164,90,.08); border: 1px solid rgba(200,164,90,.2);">
             <svg class="h-5 w-5" style="color:#C8A45A;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
           </div>
-          <p class="text-[15px] font-bold text-white">Atendimento próximo</p>
-          <p class="text-[13px] text-slate-400 leading-relaxed">Relacionamento direto e personalizado com cada cliente, do primeiro contato ao pós-venda.</p>
+          <p class="text-[15px] font-bold text-white">Audiência qualificada</p>
+          <p class="text-[13px] text-slate-400 leading-relaxed">Não é sobre alcance — é sobre alcançar as pessoas certas.</p>
         </div>
 
         <div data-animate data-animate-delay="3" class="dif-card p-6 space-y-3">
           <div class="h-10 w-10 rounded-xl flex items-center justify-center"
             style="background: rgba(200,164,90,.08); border: 1px solid rgba(200,164,90,.2);">
             <svg class="h-5 w-5" style="color:#C8A45A;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
           </div>
-          <p class="text-[15px] font-bold text-white">Resultado e visibilidade</p>
-          <p class="text-[13px] text-slate-400 leading-relaxed">Estratégias focadas em geração de valor real, com presença digital que amplia o alcance da sua marca.</p>
+          <p class="text-[15px] font-bold text-white">Presença ativa nos eventos</p>
+          <p class="text-[13px] text-slate-400 leading-relaxed">Estamos onde a raça acontece.</p>
         </div>
 
         <div data-animate data-animate-delay="4" class="dif-card p-6 space-y-3">
           <div class="h-10 w-10 rounded-xl flex items-center justify-center"
             style="background: rgba(200,164,90,.08); border: 1px solid rgba(200,164,90,.2);">
             <svg class="h-5 w-5" style="color:#C8A45A;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
             </svg>
           </div>
-          <p class="text-[15px] font-bold text-white">Rede qualificada</p>
-          <p class="text-[13px] text-slate-400 leading-relaxed">Conexão com criadores, compradores e parceiros em todo o Brasil no universo do Marchador.</p>
+          <p class="text-[15px] font-bold text-white">Visão estratégica</p>
+          <p class="text-[13px] text-slate-400 leading-relaxed">Cada postagem, vídeo ou divulgação tem um objetivo claro: gerar resultado.</p>
         </div>
 
-        <div data-animate data-animate-delay="5" class="dif-card p-6 space-y-3">
+        <div data-animate data-animate-delay="5" class="dif-card p-6 space-y-3 sm:col-span-2 lg:col-span-1">
           <div class="h-10 w-10 rounded-xl flex items-center justify-center"
             style="background: rgba(200,164,90,.08); border: 1px solid rgba(200,164,90,.2);">
             <svg class="h-5 w-5" style="color:#C8A45A;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.882v6.236a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.882v6.236a1 1 0 01-1.447.894L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H7a2 2 0 01-2-2V8z"/>
             </svg>
           </div>
-          <p class="text-[15px] font-bold text-white">Produção visual de alto nível</p>
-          <p class="text-[13px] text-slate-400 leading-relaxed">Fotos e vídeos que valorizam os seus cavalos e elevam a percepção de qualidade do seu haras.</p>
-        </div>
-
-        <div data-animate data-animate-delay="5" class="dif-card p-6 space-y-3">
-          <div class="h-10 w-10 rounded-xl flex items-center justify-center"
-            style="background: rgba(200,164,90,.08); border: 1px solid rgba(200,164,90,.2);">
-            <svg class="h-5 w-5" style="color:#C8A45A;" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-            </svg>
-          </div>
-          <p class="text-[15px] font-bold text-white">Paixão pela raça</p>
-          <p class="text-[13px] text-slate-400 leading-relaxed">Mais do que um serviço — uma missão. Fazemos história junto com quem ama o Mangalarga Marchador.</p>
+          <p class="text-[15px] font-bold text-white">Produção profissional</p>
+          <p class="text-[13px] text-slate-400 leading-relaxed">Conteúdos que elevam o nível da sua marca e dos seus animais.</p>
         </div>
 
       </div>
@@ -638,34 +731,37 @@
           <img src="logo/topmarchador-logo-3.png" alt="" aria-hidden="true" class="w-full h-auto object-contain" />
         </div>
 
-        <div class="relative space-y-6 max-w-xl">
+        <div class="relative space-y-6 max-w-2xl">
           <span class="tag-pill">Próximo passo</span>
-          <h2 class="font-display font-black text-[50px] sm:text-[62px] uppercase leading-[.88]">
-            Vamos fazer<br/>
-            <span class="text-gold italic">história juntos?</span>
+          <h2 class="font-display font-black text-[36px] sm:text-[48px] lg:text-[52px] uppercase leading-[.95]">
+            Chegou a hora de valorizar<br/>
+            <span class="text-gold italic">seus animais e seu criatório</span>
           </h2>
-          <p class="text-[15px] text-slate-400 max-w-md">
-            Siga o Top Marchador no Instagram e entre em contato — estamos prontos para levar sua presença no mundo do Mangalarga Marchador a outro nível.
+          <p class="text-[15px] text-slate-400 max-w-xl leading-relaxed">
+            Se você quer vender melhor, se posicionar com autoridade ou aumentar sua visibilidade dentro da raça, o próximo passo é simples.
           </p>
-          <div class="flex flex-col sm:flex-row gap-3 pt-2">
-            <a href="https://www.instagram.com/top_marchador/" target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold text-[#080C24] shadow-[0_0_40px_rgba(200,164,90,0.3)] hover:opacity-90 transition"
+          <div class="flex flex-col sm:flex-row gap-3 pt-2 flex-wrap">
+            <a href="#sobre"
+              class="inline-flex items-center justify-center gap-2.5 rounded-full px-8 py-4 text-[15px] font-bold uppercase tracking-wide text-[#080C24] shadow-[0_0_40px_rgba(200,164,90,0.3)] hover:opacity-90 transition"
               style="background: linear-gradient(135deg, #C8A45A, #E2C27D);">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4.5 w-4.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="2" width="20" height="20" rx="5"/>
-                <circle cx="12" cy="12" r="5"/>
-                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-              </svg>
-              Seguir no Instagram
+              Conheça o TOP
             </a>
-            <a href="https://wa.me/5531997659092?text=Ol%C3%A1%21%20Vim%20pelo%20LinkBio%20do%20Top%20Marchador%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os."
+            <a href="https://wa.me/5531997659092?text=Ol%C3%A1%21%20Vim%20pelo%20site%20do%20Top%20Marchador%20e%20gostaria%20de%20saber%20mais."
               target="_blank" rel="noopener noreferrer"
               class="inline-flex items-center justify-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-8 py-4 text-[15px] font-semibold text-white hover:bg-white/10 transition">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 32 32" fill="currentColor">
                 <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
               </svg>
-              Falar pelo WhatsApp
+              Falar no WhatsApp
             </a>
+          </div>
+          <div class="pt-6 border-t border-white/10 space-y-2">
+            <p class="text-[15px] text-slate-300 font-medium leading-relaxed">
+              O Mangalarga Marchador cresce todos os dias.
+            </p>
+            <p class="text-[15px] text-slate-500 leading-relaxed">
+              E quem entende de posicionamento cresce junto.
+            </p>
           </div>
         </div>
       </div>
