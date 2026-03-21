@@ -79,6 +79,15 @@ INSERT IGNORE INTO `users` (`username`, `password_hash`, `role`, `page_slug`, `n
     'client',
     'fafs',
     'FAFS Nutrição e Cuidado Animal'
+),
+
+-- Cliente: Top Marchador (placeholder - ajustar hash em produção)
+(
+    'topmarchador',
+    '$2y$12$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXPLACEHOLDERHASHXXXXXX',
+    'client',
+    'topmarchador',
+    'Top Marchador'
 );
 
 -- ATENÇÃO: os hashes dos clientes acima são placeholders.

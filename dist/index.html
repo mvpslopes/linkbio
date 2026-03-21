@@ -65,11 +65,11 @@
         border: 1px solid transparent;
       }
 
-      /* Phone ambient glow */
-      .phone-wrap::before {
+      /* Mockup hero — glow + leve flutuação */
+      .hero-mockup-wrap::before {
         content: '';
         position: absolute;
-        inset: -60px;
+        inset: -50px -40px -40px -40px;
         background: radial-gradient(circle, rgba(47,128,237,0.22) 0%, transparent 65%);
         border-radius: 50%;
         z-index: 0;
@@ -81,34 +81,15 @@
         50%       { opacity: 1; transform: scale(1.08); }
       }
 
-      /* Flutuação dos phones */
-      @keyframes float-a {
-        0%, 100% { transform: rotate(-3deg) translateY(0px); }
-        50%       { transform: rotate(-3deg) translateY(-14px); }
+      @keyframes float-mockup {
+        0%, 100% { transform: translateY(0); }
+        50%       { transform: translateY(-12px); }
       }
-      @keyframes float-b {
-        0%, 100% { transform: rotate(4deg) translateX(18px) translateY(0px); }
-        50%       { transform: rotate(4deg) translateX(18px) translateY(-10px); }
+      .hero-mockup-inner {
+        position: relative;
+        z-index: 1;
+        animation: float-mockup 5s ease-in-out infinite;
       }
-      .phone-front { animation: float-a 4s ease-in-out infinite; }
-      .phone-back  { animation: float-b 5s ease-in-out infinite .8s; }
-
-      /* Crossfade das imagens — contain para não cortar a imagem */
-      .phone-back .relative,
-      .phone-front .relative {
-        background: #0f172a;
-      }
-      .mockup-img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        object-position: center top;
-        transition: opacity .9s ease;
-      }
-      .mockup-img.hidden-img { opacity: 0; }
-      .mockup-img.visible-img { opacity: 1; }
 
       /* Scroll animations */
       [data-animate] {
@@ -331,31 +312,15 @@
               </div>
             </div>
 
-            <!-- Mockups reais -->
-            <div data-animate data-animate-delay="200" class="flex justify-center lg:justify-end">
-              <div class="phone-wrap relative h-[420px] sm:h-[480px] w-[280px] sm:w-[320px]">
-
-                <!-- Mockup de trás -->
-                <div id="phone-back" class="phone-back absolute top-6 right-0 w-[200px] sm:w-[230px] rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_30px_70px_rgba(0,0,0,0.55)]" style="z-index: 1;">
-                  <div class="relative" style="padding-top: 216%;">
-                    <img id="back-a" src="public/site02.jpeg" alt="Exemplo LinkBio" class="mockup-img visible-img" loading="eager" />
-                    <img id="back-b" src="public/site03.jpeg" alt="Exemplo LinkBio" class="mockup-img hidden-img"  loading="eager" />
-                    <img id="back-c" src="public/site01.jpeg" alt="Exemplo LinkBio" class="mockup-img hidden-img"  loading="eager" />
-                  </div>
-                </div>
-
-                <!-- Mockup da frente -->
-                <div id="phone-front" class="phone-front absolute bottom-0 left-0 w-[210px] sm:w-[240px] rounded-[2rem] overflow-hidden border border-white/15 shadow-[0_35px_80px_rgba(0,0,0,0.65)]" style="z-index: 2;">
-                  <div class="relative" style="padding-top: 216%;">
-                    <img id="front-a" src="public/site01.jpeg" alt="Exemplo LinkBio" class="mockup-img visible-img" loading="eager" />
-                    <img id="front-b" src="public/site02.jpeg" alt="Exemplo LinkBio" class="mockup-img hidden-img"  loading="eager" />
-                    <img id="front-c" src="public/site03.jpeg" alt="Exemplo LinkBio" class="mockup-img hidden-img"  loading="eager" />
-                  </div>
-                </div>
-
-                <!-- Glow reflexo -->
-                <div class="absolute bottom-0 left-1/2 -translate-x-1/2 h-16 w-48 rounded-full bg-primary/20 blur-2xl" style="z-index: 0;"></div>
-
+            <!-- Mockup -->
+            <div data-animate data-animate-delay="200" class="hero-mockup-wrap relative flex justify-center lg:justify-end min-h-[280px] sm:min-h-[340px]">
+              <div class="hero-mockup-inner w-full max-w-[min(100%,440px)]">
+                <img
+                  src="public/mockup.png"
+                  alt="Exemplo LinkBio"
+                  class="w-full h-auto object-contain drop-shadow-[0_28px_70px_rgba(0,0,0,0.5)]"
+                  loading="eager"
+                />
               </div>
             </div>
 
@@ -482,58 +447,47 @@
           <div class="grid gap-6 md:grid-cols-3">
 
             <article data-animate data-animate-delay="100" class="group rounded-3xl bg-background border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
-              <div class="self-start space-y-0.5">
+              <div class="self-start space-y-0.5 w-full">
                 <span class="text-[11px] font-semibold text-primary bg-primary/8 px-2.5 py-1 rounded-full">Criadora de conteúdo</span>
                 <p class="text-xs text-secondary/60 pt-1.5 pl-0.5">personal.linkbio.api.br</p>
               </div>
-              <div class="w-[200px] rounded-[1.7rem] bg-slate-900 p-2 border border-slate-800 shadow-soft group-hover:border-primary/60 transition">
-                <div class="rounded-[1.3rem] bg-slate-950 p-3 flex flex-col gap-2.5">
-                  <div class="flex flex-col items-center gap-1.5">
-                    <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-primary to-pink-500 p-0.5">
-                      <div class="h-full w-full rounded-full bg-slate-950 flex items-center justify-center"><span class="text-xs font-bold text-white">P</span></div>
-                    </div>
-                    <div class="text-center"><p class="text-[11px] font-bold text-white">Paty Criadora</p><p class="text-[9px] text-slate-400">Vlogs · Lifestyle · Conteúdo</p></div>
-                  </div>
-                  <button class="w-full rounded-full bg-primary py-1.5 text-[10px] font-bold text-white">Último vídeo no YouTube</button>
-                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">Meu Instagram</button>
-                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">Agenda de parcerias</button>
-                </div>
+              <div class="w-full flex justify-center">
+                <img
+                  src="public/mockup (1).png"
+                  alt="Exemplo LinkBio — Criadora de conteúdo"
+                  class="w-full max-w-[220px] h-auto object-contain rounded-2xl shadow-[0_20px_50px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/80 group-hover:ring-primary/30 transition"
+                  loading="lazy"
+                />
               </div>
             </article>
 
             <article data-animate data-animate-delay="200" class="group rounded-3xl bg-background border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
-              <div class="self-start space-y-0.5">
+              <div class="self-start space-y-0.5 w-full">
                 <span class="text-[11px] font-semibold text-emerald-600 bg-emerald-500/10 px-2.5 py-1 rounded-full">Loja física + online</span>
                 <p class="text-xs text-secondary/60 pt-1.5 pl-0.5">loja.linkbio.api.br</p>
               </div>
-              <div class="w-[200px] rounded-[1.7rem] bg-slate-900 p-2 border border-slate-800 shadow-soft group-hover:border-primary/60 transition">
-                <div class="rounded-[1.3rem] bg-slate-950 p-3 flex flex-col gap-2.5">
-                  <div class="flex flex-col items-center gap-1.5">
-                    <div class="h-10 w-10 rounded-full bg-emerald-400/90 flex items-center justify-center"><span class="text-xs font-bold text-slate-900">F</span></div>
-                    <div class="text-center"><p class="text-[11px] font-bold text-white">Farmácia Central</p><p class="text-[9px] text-slate-400">Atendimento 24h</p></div>
-                  </div>
-                  <button class="w-full rounded-full bg-primary py-1.5 text-[10px] font-bold text-white">Loja online</button>
-                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">WhatsApp para pedidos</button>
-                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">Como chegar</button>
-                </div>
+              <div class="w-full flex justify-center">
+                <img
+                  src="public/mockup (2).png"
+                  alt="Exemplo LinkBio — Loja física e online"
+                  class="w-full max-w-[220px] h-auto object-contain rounded-2xl shadow-[0_20px_50px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/80 group-hover:ring-emerald-500/30 transition"
+                  loading="lazy"
+                />
               </div>
             </article>
 
             <article data-animate data-animate-delay="300" class="group rounded-3xl bg-background border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
-              <div class="self-start space-y-0.5">
+              <div class="self-start space-y-0.5 w-full">
                 <span class="text-[11px] font-semibold text-sky-600 bg-sky-500/10 px-2.5 py-1 rounded-full">Profissional da saúde</span>
                 <p class="text-xs text-secondary/60 pt-1.5 pl-0.5">profissional.linkbio.api.br</p>
               </div>
-              <div class="w-[200px] rounded-[1.7rem] bg-slate-900 p-2 border border-slate-800 shadow-soft group-hover:border-primary/60 transition">
-                <div class="rounded-[1.3rem] bg-slate-950 p-3 flex flex-col gap-2.5">
-                  <div class="flex flex-col items-center gap-1.5">
-                    <div class="h-10 w-10 rounded-full bg-sky-400/90 flex items-center justify-center"><span class="text-xs font-bold text-slate-900">J</span></div>
-                    <div class="text-center"><p class="text-[11px] font-bold text-white">Dr. João Silva</p><p class="text-[9px] text-slate-400">Clínico geral</p></div>
-                  </div>
-                  <button class="w-full rounded-full bg-primary py-1.5 text-[10px] font-bold text-white">Agendar consulta</button>
-                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">Telemedicina</button>
-                  <button class="w-full rounded-full bg-white/5 py-1.5 text-[10px] font-semibold text-white border border-white/5">Local da clínica</button>
-                </div>
+              <div class="w-full flex justify-center">
+                <img
+                  src="public/mockup (3).png"
+                  alt="Exemplo LinkBio — Profissional da saúde"
+                  class="w-full max-w-[220px] h-auto object-contain rounded-2xl shadow-[0_20px_50px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/80 group-hover:ring-sky-500/30 transition"
+                  loading="lazy"
+                />
               </div>
             </article>
 
@@ -1030,39 +984,6 @@
       }), { threshold: 0.1 });
       document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
 
-      // Crossfade dinâmico dos mockups — 3 imagens em ciclo
-      (function () {
-        const front = [
-          document.getElementById('front-a'), // site01
-          document.getElementById('front-b'), // site02
-          document.getElementById('front-c'), // site03
-        ];
-        const back = [
-          document.getElementById('back-a'),  // site02
-          document.getElementById('back-b'),  // site03
-          document.getElementById('back-c'),  // site01
-        ];
-        if (!front[0]) return;
-
-        // Estado inicial: front[0] e back[0] visíveis
-        let state = 0;
-
-        function showState(s) {
-          front.forEach((el, i) => {
-            el.classList.toggle('visible-img', i === s);
-            el.classList.toggle('hidden-img',  i !== s);
-          });
-          back.forEach((el, i) => {
-            el.classList.toggle('visible-img', i === s);
-            el.classList.toggle('hidden-img',  i !== s);
-          });
-        }
-
-        setInterval(() => {
-          state = (state + 1) % 3;
-          showState(state);
-        }, 3000);
-      })();
     </script>
 
   <!-- Analytics LinkBio -->

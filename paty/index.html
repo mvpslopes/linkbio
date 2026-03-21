@@ -9,16 +9,16 @@
     <link rel="canonical" href="https://paty.linkbio.api.br/" />
     <link rel="icon" href="logo/favicon-paty.png" type="image/png" />
 
-    <!-- Open Graph / redes sociais -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://paty.linkbio.api.br/" />
     <meta property="og:title" content="Paty Silva – Personal Trainer em Ouro Branco | Treino e Saúde da Mulher" />
     <meta property="og:description" content="Personal trainer em Ouro Branco, MG. Treinos personalizados, Muay Thai, funcional e saúde da mulher. Agende seu horário pelo WhatsApp." />
-    <meta property="og:image" content="https://paty.linkbio.api.br/hero.png" />
+    <meta property="og:image" content="https://paty.linkbio.api.br/fotos/Fotos%20(5).jpeg" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content="Paty Silva – Personal Trainer" />
 
-    <!-- Dados estruturados (Google) -->
+    <!-- Dados estruturados -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -27,19 +27,10 @@
       "jobTitle": "Personal Trainer",
       "description": "Bacharel em Educação Física, pós-graduada em Saúde da Mulher, especialista em Muay Thai e Treinamento Funcional. Atende em Ouro Branco, MG.",
       "url": "https://paty.linkbio.api.br/",
-      "image": "https://paty.linkbio.api.br/hero.png",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Ouro Branco",
-        "addressRegion": "MG",
-        "addressCountry": "BR"
-      },
+      "image": "https://paty.linkbio.api.br/fotos/Fotos%20(5).jpeg",
+      "address": { "@type": "PostalAddress", "addressLocality": "Ouro Branco", "addressRegion": "MG", "addressCountry": "BR" },
       "knowsAbout": ["Personal training", "Saúde da Mulher", "Muay Thai", "Treinamento Funcional"],
-      "hasCredential": {
-        "@type": "EducationalOccupationalCredential",
-        "credentialCategory": "Professional certification",
-        "name": "CREF 044877-G/MG"
-      }
+      "hasCredential": { "@type": "EducationalOccupationalCredential", "credentialCategory": "Professional certification", "name": "CREF 044877-G/MG" }
     }
     </script>
     <script type="application/ld+json">
@@ -49,23 +40,18 @@
       "name": "Paty Silva – Personal Trainer",
       "description": "Personal trainer em Ouro Branco, MG. Treinos personalizados, Muay Thai, funcional e saúde da mulher.",
       "url": "https://paty.linkbio.api.br/",
-      "image": "https://paty.linkbio.api.br/hero.png",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Ouro Branco",
-        "addressRegion": "MG",
-        "addressCountry": "BR"
-      },
+      "image": "https://paty.linkbio.api.br/fotos/Fotos%20(5).jpeg",
+      "address": { "@type": "PostalAddress", "addressLocality": "Ouro Branco", "addressRegion": "MG", "addressCountry": "BR" },
       "areaServed": { "@type": "City", "name": "Ouro Branco", "containedInPlace": { "@type": "State", "name": "Minas Gerais" } },
       "priceRange": "Consulte",
       "telephone": "+553191414666"
     }
     </script>
 
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -73,16 +59,9 @@
       tailwind.config = {
         theme: {
           extend: {
-            fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
-            colors: {
-              primary: '#EE5991',
-              primaryLight: '#E8859A',
-              darkbg: '#021736',
-            },
-            boxShadow: {
-              soft:    '0 22px 45px rgba(2,23,54,0.35)',
-              'glow':  '0 0 50px rgba(238,89,145,0.35)',
-              'glow-sm': '0 0 25px rgba(238,89,145,0.2)',
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif'],
+              display: ['Barlow Condensed', 'ui-sans-serif'],
             },
           },
         },
@@ -90,194 +69,179 @@
     </script>
 
     <style>
-      html { scroll-behavior: smooth; }
+      :root { --pink: #EE5991; --pink-glow: rgba(238,89,145,0.35); }
+      html  { scroll-behavior: smooth; }
+      body  { background: #080810; }
 
-      /* Fundo com grid de pontos */
-      .hero-grid {
-        background-image:
-          radial-gradient(circle at 50% -10%, rgba(238,89,145,0.12) 0%, transparent 55%),
-          linear-gradient(rgba(238,89,145,0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(238,89,145,0.04) 1px, transparent 1px);
-        background-size: 100% 100%, 44px 44px, 44px 44px;
-      }
+      /* ── typography ── */
+      .font-display { font-family: 'Barlow Condensed', sans-serif; }
 
-      /* Gradient text (#EE5991 → #E8859A) */
-      .text-gradient {
-        background: linear-gradient(135deg, #EE5991 0%, #E8859A 60%, #f0a5b5 100%);
+      .text-grad {
+        background: linear-gradient(120deg, #EE5991 0%, #f9a8c9 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
 
-      /* Badge com borda gradiente */
-      .badge-gradient {
-        background: linear-gradient(#021736, #021736) padding-box,
-                    linear-gradient(135deg, rgba(238,89,145,0.8), rgba(232,133,154,0.4)) border-box;
+      /* ── tag pill ── */
+      .tag-pill {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: rgba(238,89,145,.1);
+        border: 1px solid rgba(238,89,145,.35);
+        border-radius: 999px;
+        padding: 5px 14px;
+        font-size: 11px; font-weight: 700; letter-spacing: .1em;
+        text-transform: uppercase; color: #EE5991;
+      }
+
+      /* ── HERO split layout ── */
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        min-height: 100svh;
+      }
+      @media (min-width: 1024px) {
+        .hero-grid { grid-template-columns: 1fr 1fr; }
+      }
+
+      .hero-text-col {
+        display: flex; flex-direction: column; justify-content: center;
+        padding: 3.5rem 2rem 3.5rem 2rem;
+        order: 2;
+      }
+      @media (min-width: 640px) { .hero-text-col { padding: 4rem 3rem; } }
+      @media (min-width: 1024px) { .hero-text-col { padding: 5rem 3.5rem 5rem 4rem; order: 1; } }
+
+      .hero-photo-col {
+        position: relative; overflow: hidden;
+        height: 68vw; max-height: 500px; min-height: 260px;
+        order: 1;
+      }
+      @media (min-width: 1024px) {
+        .hero-photo-col {
+          height: auto; max-height: none; min-height: 100svh;
+          order: 2;
+          clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+        }
+      }
+      /* Prioriza rosto/cabeça (zona superior ~1/3 da foto) */
+      .hero-photo-col img {
+        width: 100%; height: 100%;
+        object-fit: cover;
+        object-position: center 22%;
+      }
+      .hero-photo-col::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(to bottom, transparent 40%, #080810 100%);
+      }
+      @media (min-width: 1024px) {
+        .hero-photo-col::after {
+          background: linear-gradient(to right, #080810 0%, transparent 30%),
+                      linear-gradient(to top, #080810 0%, transparent 25%);
+        }
+      }
+
+      /* ── stat strip ── */
+      .stat-item + .stat-item { border-left: 1px solid rgba(255,255,255,.07); }
+
+      /* ── card with gradient border ── */
+      .card-border {
+        background: linear-gradient(#0d0d18, #0d0d18) padding-box,
+                    linear-gradient(135deg, rgba(238,89,145,.5) 0%, transparent 55%) border-box;
         border: 1px solid transparent;
+        border-radius: 1rem;
+        transition: transform .3s ease, border-color .3s ease;
       }
-
-      /* Splash — fundo animado + logo + barra */
-      #splash-paty {
-        position: fixed;
-        inset: 0;
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-        overflow: hidden;
-        transition: opacity 0.6s ease, visibility 0.6s ease;
-      }
-      #splash-paty::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(135deg, #021736 0%, #031d42 35%, #010d1f 70%, #000912 100%);
-        background-size: 400% 400%;
-        animation: splash-bg 8s ease-in-out infinite;
-      }
-      #splash-paty::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image:
-          radial-gradient(ellipse 80% 50% at 50% 20%, rgba(238,89,145,0.15) 0%, transparent 55%),
-          linear-gradient(rgba(238,89,145,0.04) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(238,89,145,0.04) 1px, transparent 1px);
-        background-size: 100% 100%, 32px 32px, 32px 32px;
-        opacity: 0.9;
-        animation: splash-glow 4s ease-in-out infinite alternate;
-        pointer-events: none;
-      }
-      @keyframes splash-bg {
-        0%, 100% { background-position: 0% 50%; }
-        50%      { background-position: 100% 50%; }
-      }
-      @keyframes splash-glow {
-        from { opacity: 0.7; }
-        to   { opacity: 1; }
-      }
-      #splash-paty.hide {
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-      }
-      #splash-paty .splash-logo-wrap {
-        position: relative;
-        z-index: 1;
-        filter: drop-shadow(0 0 30px rgba(238,89,145,0.25));
-      }
-      #splash-paty .splash-logo-wrap img {
-        max-width: 220px;
-        width: 75%;
-        height: auto;
-        animation: splash-logo 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-      }
-      @keyframes splash-logo {
-        0%   { opacity: 0; transform: scale(0.7); }
-        60%  { opacity: 1; transform: scale(1.05); }
-        100% { opacity: 1; transform: scale(1); }
-      }
-      #splash-paty .splash-bar {
-        position: relative;
-        z-index: 1;
-        width: 160px;
-        height: 3px;
-        border-radius: 999px;
-        background: rgba(255,255,255,0.08);
-        overflow: hidden;
-      }
-      #splash-paty .splash-bar-fill {
-        height: 100%;
-        border-radius: 999px;
-        background: linear-gradient(90deg, #EE5991, #E8859A);
-        width: 0;
-        animation: splash-fill 1.4s ease-out forwards;
-      }
-      @keyframes splash-fill {
-        to { width: 100%; }
-      }
-
-      /* Scroll animations — entrada suave com leve scale */
-      [data-animate] {
-        opacity: 0;
-        transform: translateY(28px) scale(0.98);
-        transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-      [data-animate].is-visible {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-      [data-animate-delay="100"] { transition-delay: .08s; }
-      [data-animate-delay="200"] { transition-delay: .16s; }
-      [data-animate-delay="300"] { transition-delay: .24s; }
-      [data-animate-delay="400"] { transition-delay: .32s; }
-
-      /* Efeito hover nos cards */
-      .card-hover {
-        transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
-      }
-      .card-hover:hover {
+      .card-border:hover {
         transform: translateY(-4px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.25), 0 0 0 1px rgba(238,89,145,0.15);
+        border-color: rgba(238,89,145,.5);
+        border-image: none;
+        border: 1px solid rgba(238,89,145,.5);
+        background: #0d0d18;
+        border-radius: 1rem;
       }
 
-      /* Galeria: overlay escuro + efeito no hover */
-      .gallery-item { position: relative; overflow: hidden; }
-      .gallery-item::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(2,23,54,0.6), transparent 50%);
-        opacity: 1;
-        transition: opacity .3s ease;
+      /* ── galeria: cover sem “comer” o rosto (âncora acima do centro) ── */
+      .gal-item {
+        overflow: hidden;
+        border-radius: .875rem;
+        background: #0f0f14;
       }
-      .gallery-item:hover::after { opacity: 0; }
-      .gallery-item img { transition: transform .6s ease; }
-      .gallery-item:hover img { transform: scale(1.07); }
+      .gal-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 28%;
+        transition: transform .6s ease;
+        transform-origin: center 28%;
+      }
+      .gal-item:hover img { transform: scale(1.04); }
+      /* Blocos grandes: prioriza ainda mais a parte superior (corrida / plano geral) */
+      .gal-item--feature img {
+        object-position: center 22%;
+        transform-origin: center 22%;
+      }
+
+      /* ── scroll animations ── */
+      [data-animate] {
+        opacity: 0; transform: translateY(22px);
+        transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1);
+      }
+      [data-animate].is-visible { opacity: 1; transform: none; }
+      [data-animate-delay="1"] { transition-delay: .08s; }
+      [data-animate-delay="2"] { transition-delay: .16s; }
+      [data-animate-delay="3"] { transition-delay: .24s; }
+      [data-animate-delay="4"] { transition-delay: .32s; }
+
+      /* ── splash ── */
+      #splash {
+        position: fixed; inset: 0; z-index: 9999;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+        background: #080810;
+        transition: opacity .6s ease, visibility .6s ease;
+      }
+      #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+      #splash img {
+        max-width: 200px; width: 70%; height: auto;
+        animation: splIn 1.1s cubic-bezier(.34,1.56,.64,1) both;
+        filter: drop-shadow(0 0 24px rgba(238,89,145,.3));
+      }
+      @keyframes splIn { 0%{opacity:0;transform:scale(.75)} 100%{opacity:1;transform:scale(1)} }
+      .spl-bar { width: 140px; height: 2px; border-radius: 999px; background: rgba(255,255,255,.06); overflow: hidden; }
+      .spl-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #EE5991, #f9a8c9); width: 0; animation: splFill 1.5s ease-out forwards; }
+      @keyframes splFill { to { width: 100%; } }
+
+      /* ── mobile menu ── */
+      #mobile-menu { display: none; }
+      #mobile-menu.open { display: block; }
     </style>
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y83GLV10G1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-Y83GLV10G1');
-  </script>
   </head>
 
-  <body class="bg-[#021736] text-slate-50 font-sans antialiased">
+  <body class="text-white antialiased">
 
-    <!-- Splash com logo e barra de carregamento -->
-    <div id="splash-paty">
-      <div class="splash-logo-wrap">
-        <img src="logo/logo-paty-original.png" alt="Paty Silva - Personal Trainer" />
-      </div>
-      <div class="splash-bar">
-        <div class="splash-bar-fill"></div>
-      </div>
+    <!-- ═══ SPLASH ═══ -->
+    <div id="splash">
+      <img src="logo/logo-paty-original.png" alt="Paty Silva" />
+      <div class="spl-bar"><div class="spl-fill"></div></div>
     </div>
 
-    <!-- ═══════ HEADER / NAV ═══════ -->
-    <header class="sticky top-0 z-30 bg-[#021736]/90 backdrop-blur-md border-b border-white/8">
-      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between gap-4">
-
-        <a href="#" class="flex items-center shrink-0" aria-label="Paty Silva - Personal Trainer">
-          <img
-            src="logo/logo-paty-original.png"
-            alt="Paty Silva - Personal Trainer"
-            class="h-12 w-auto max-h-14 object-contain"
-          />
+    <!-- ═══ HEADER ═══ -->
+    <header class="sticky top-0 z-30 bg-[#080810]/90 backdrop-blur-md border-b border-white/6">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+        <a href="#" aria-label="Paty Silva Personal Trainer">
+          <img src="logo/logo-paty-original.png" alt="Paty Silva" class="h-11 w-auto object-contain" />
         </a>
 
+        <nav class="hidden md:flex items-center gap-6 text-[13px] font-medium text-slate-400">
+          <a href="#sobre" class="hover:text-white transition">Sobre</a>
+          <a href="#modalidades" class="hover:text-white transition">Modalidades</a>
+          <a href="#galeria" class="hover:text-white transition">Galeria</a>
+        </nav>
+
         <div class="flex items-center gap-2">
-          <a
-            href="https://www.instagram.com/patysilva_personal/"
-            target="_blank" rel="noopener noreferrer"
-            class="hidden sm:inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[13px] font-medium text-slate-200 hover:bg-white/10 hover:border-white/20 transition"
-          >
-            <!-- Instagram SVG -->
+          <a href="https://www.instagram.com/patysilva_personal/" target="_blank" rel="noopener noreferrer"
+            class="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/4 px-4 py-2 text-[13px] font-medium text-slate-300 hover:bg-white/8 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.6"/>
               <circle cx="12" cy="12" r="5" stroke-width="1.6"/>
@@ -285,177 +249,185 @@
             </svg>
             Instagram
           </a>
-          <a
-            href="https://wa.me/553191414666?text=Ol%C3%A1%20Paty%2C%20quero%20agendar%20meu%20treino%20personalizado.%20Vim%20pelo%20LinkBio%20da%20Paty."
+          <a href="https://wa.me/553191414666?text=Ol%C3%A1%20Paty%2C%20quero%20agendar%20meu%20treino%20personalizado.%20Vim%20pelo%20LinkBio%20da%20Paty."
             target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-4 py-2 text-[13px] font-semibold text-white shadow-glow-sm hover:bg-primary/90 transition"
-          >
+            class="inline-flex items-center justify-center gap-2 rounded-full bg-[#EE5991] px-4 py-2 text-[13px] font-bold text-white hover:bg-[#d94a80] transition">
             Agendar treino
           </a>
         </div>
       </div>
     </header>
 
-    <!-- ═══════ HERO ═══════ -->
-    <section class="relative overflow-hidden">
+    <!-- ═══ HERO ═══ -->
+    <section class="hero-grid bg-[#080810] relative">
 
-      <!-- ── DESKTOP: foto de fundo espelhada (oculta no mobile) ── -->
-      <img
-        src="hero.png"
-        alt=""
-        aria-hidden="true"
-        class="hidden lg:block absolute inset-0 h-full w-full object-cover object-top"
-        style="transform: scaleX(-1); min-height: 780px;"
-        loading="eager"
-      />
-      <!-- Overlays desktop -->
-      <div class="hidden lg:block absolute inset-0 bg-gradient-to-r from-[#021736] via-[#021736]/85 to-[#021736]/15"></div>
-      <div class="hidden lg:block absolute inset-0 bg-gradient-to-t from-[#021736] via-transparent to-[#021736]/50"></div>
+      <!-- Lado texto -->
+      <div class="hero-text-col space-y-7">
 
-      <!-- ── MOBILE: foto visível empilhada acima do texto ── -->
-      <div class="lg:hidden relative w-full" style="height: 65vw; max-height: 340px; min-height: 220px;">
-        <img
-          src="hero.png"
-          alt="Paty Silva – Personal Trainer"
-          class="absolute inset-0 h-full w-full object-cover object-top"
-          loading="eager"
-        />
-        <!-- fade no rodapé para fundir com o fundo escuro -->
-        <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#021736] to-transparent"></div>
-      </div>
-
-      <!-- Conteúdo -->
-      <div class="relative z-10 mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 flex items-center lg:min-h-[780px]">
-        <div class="w-full max-w-xl pb-16 pt-4 lg:py-24 space-y-7">
-
-          <div data-animate>
-            <span class="badge-gradient inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[11px] font-semibold text-slate-200 tracking-wide uppercase">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.09 6.41H21l-5.46 3.97 2.09 6.41L12 16.25l-5.63 3.54 2.09-6.41L3 9.41h6.91L12 3z"/>
-              </svg>
-              Personal Trainer · Saúde da Mulher
-            </span>
-          </div>
-
-          <div data-animate data-animate-delay="100">
-            <h1 class="text-[38px] sm:text-[52px] md:text-[62px] font-extrabold tracking-tight leading-[1.05] text-white">
-              Treinos que cuidam
-              <span class="text-gradient block">da sua saúde física, mental e estética</span>
-            </h1>
-            <p class="mt-4 text-[15px] sm:text-[16px] text-slate-300 leading-relaxed">
-              Bacharel em Educação Física desde 2019, especialista em Muay Thai, treinamento funcional e musculação, com atendimento a domicílio e em academias e studios. Anos de experiência atendendo adultos, idosos e crianças com cuidado, segurança, acolhimento e carinho.
-            </p>
-          </div>
-
-          <!-- CTAs -->
-          <div data-animate data-animate-delay="200" class="flex flex-col sm:flex-row gap-3">
-            <a
-              href="https://wa.me/553191414666?text=Ol%C3%A1%20Paty%2C%20quero%20agendar%20meu%20treino%20personalizado.%20Vim%20pelo%20LinkBio%20da%20Paty."
-              target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2.5 rounded-full bg-primary px-7 py-3.5 text-[15px] font-bold text-white shadow-glow hover:bg-primary/90 transition"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 32 32" fill="currentColor">
-                <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
-              </svg>
-              Falar com a Paty
-            </a>
-            <a
-              href="#sobre"
-              class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/8 backdrop-blur-sm px-7 py-3.5 text-[15px] font-semibold text-white hover:bg-white/15 hover:border-white/30 transition"
-            >
-              Ver especialidades
-            </a>
-          </div>
-
-          <!-- Badges de confiança -->
-          <div data-animate data-animate-delay="300" class="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-slate-300">
-            <span class="flex items-center gap-1.5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              Atendendo em <strong class="text-white">Ouro Branco, MG</strong>
-            </span>
-            <span class="flex items-center gap-1.5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              Presencial e online
-            </span>
-            <span class="flex items-center gap-1.5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              CREF 044877-G/MG
-            </span>
-            <span class="flex items-center gap-1.5">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-              Planos sob medida
-            </span>
-          </div>
-
-          <!-- Links Instagram -->
-          <div data-animate data-animate-delay="400" class="flex flex-wrap gap-2.5">
-            <a
-              href="https://www.instagram.com/patysilva2708/"
-              target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/30 backdrop-blur-sm px-3.5 py-2 text-[13px] font-medium text-slate-200 hover:border-primary/50 hover:bg-primary/15 hover:text-white transition"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.7"/>
-                <circle cx="12" cy="12" r="5" stroke-width="1.7"/>
-                <circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/>
-              </svg>
-              Perfil pessoal
-            </a>
-            <a
-              href="https://www.instagram.com/patysilva_personal/"
-              target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center gap-2 rounded-full border border-primary/50 bg-primary/20 backdrop-blur-sm px-3.5 py-2 text-[13px] font-semibold text-white hover:bg-primary/35 hover:border-primary transition"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.7"/>
-                <circle cx="12" cy="12" r="5" stroke-width="1.7"/>
-                <circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/>
-              </svg>
-              Perfil profissional
-            </a>
-          </div>
-
+        <div data-animate>
+          <span class="tag-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.09 6.41H21l-5.46 3.97 2.09 6.41L12 16.25l-5.63 3.54 2.09-6.41L3 9.41h6.91L12 3z"/>
+            </svg>
+            Personal Trainer · Saúde da Mulher
+          </span>
         </div>
+
+        <div data-animate data-animate-delay="1">
+          <h1 class="font-display font-black uppercase leading-[.88]">
+            <span class="block text-[58px] sm:text-[76px] lg:text-[84px] text-white">Treinos que</span>
+            <span class="block text-[58px] sm:text-[76px] lg:text-[84px] text-grad italic">transformam</span>
+            <span class="block text-[58px] sm:text-[76px] lg:text-[84px] text-white">de verdade.</span>
+          </h1>
+        </div>
+
+        <div data-animate data-animate-delay="2">
+          <p class="text-[15px] sm:text-[16px] text-slate-400 leading-relaxed max-w-lg">
+            Bacharel em Educação Física, especialista em Muay Thai, treinamento funcional e musculação. Atendimento a domicílio, academias e studios — com cuidado, acolhimento e resultados reais.
+          </p>
+        </div>
+
+        <div data-animate data-animate-delay="3" class="flex flex-col sm:flex-row gap-3">
+          <a href="https://wa.me/553191414666?text=Ol%C3%A1%20Paty%2C%20quero%20agendar%20meu%20treino%20personalizado.%20Vim%20pelo%20LinkBio%20da%20Paty."
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#EE5991] px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_0_40px_rgba(238,89,145,0.4)] hover:bg-[#d94a80] transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 32 32" fill="currentColor">
+              <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+            </svg>
+            Falar com a Paty
+          </a>
+          <a href="#sobre"
+            class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-[15px] font-semibold text-white hover:bg-white/10 hover:border-white/25 transition">
+            Ver especialidades
+          </a>
+        </div>
+
+        <!-- chips de confiança -->
+        <div data-animate data-animate-delay="4" class="flex flex-wrap gap-2">
+          <span class="flex items-center gap-1.5 rounded-full bg-white/5 border border-white/8 px-3 py-1.5 text-[12px] text-slate-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Ouro Branco, MG
+          </span>
+          <span class="flex items-center gap-1.5 rounded-full bg-white/5 border border-white/8 px-3 py-1.5 text-[12px] text-slate-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Presencial &amp; Online
+          </span>
+          <span class="flex items-center gap-1.5 rounded-full bg-white/5 border border-white/8 px-3 py-1.5 text-[12px] text-slate-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            CREF 044877-G/MG
+          </span>
+          <span class="flex items-center gap-1.5 rounded-full bg-white/5 border border-white/8 px-3 py-1.5 text-[12px] text-slate-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-emerald-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+            Planos sob medida
+          </span>
+        </div>
+
+        <!-- instagram links -->
+        <div data-animate data-animate-delay="4" class="flex flex-wrap gap-2.5">
+          <a href="https://www.instagram.com/patysilva2708/" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border border-white/12 bg-black/30 px-3.5 py-2 text-[13px] font-medium text-slate-300 hover:border-[#EE5991]/50 hover:text-white transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#EE5991]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.7"/><circle cx="12" cy="12" r="5" stroke-width="1.7"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/>
+            </svg>
+            Perfil pessoal
+          </a>
+          <a href="https://www.instagram.com/patysilva_personal/" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border border-[#EE5991]/40 bg-[#EE5991]/12 px-3.5 py-2 text-[13px] font-semibold text-white hover:bg-[#EE5991]/25 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-[#EE5991]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.7"/><circle cx="12" cy="12" r="5" stroke-width="1.7"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/>
+            </svg>
+            Perfil profissional
+          </a>
+        </div>
+
       </div>
+
+      <!-- Lado foto -->
+      <div class="hero-photo-col">
+        <img src="fotos/Fotos (5).jpeg" alt="Paty Silva – Personal Trainer" loading="eager" />
+      </div>
+
     </section>
 
-    <!-- ═══════ SOBRE ═══════ -->
-    <section id="sobre" class="py-14 sm:py-20 bg-gradient-to-b from-[#021736] via-[#031d42] to-[#021736]">
-      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div class="grid gap-10 lg:grid-cols-2 items-start">
+    <!-- ═══ STATS BAR ═══ -->
+    <div class="bg-[#0d0d18] border-y border-white/6">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap justify-around">
+          <div class="stat-item flex-1 min-w-[130px] flex flex-col items-center justify-center py-6 gap-1">
+            <span class="font-display font-black text-[38px] sm:text-[46px] text-grad leading-none">+5</span>
+            <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Anos de exp.</span>
+          </div>
+          <div class="stat-item flex-1 min-w-[130px] flex flex-col items-center justify-center py-6 gap-1">
+            <span class="font-display font-black text-[38px] sm:text-[46px] text-grad leading-none">360°</span>
+            <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Cuidado integral</span>
+          </div>
+          <div class="stat-item flex-1 min-w-[130px] flex flex-col items-center justify-center py-6 gap-1">
+            <span class="font-display font-black text-[38px] sm:text-[46px] text-grad leading-none">3</span>
+            <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Especialidades</span>
+          </div>
+          <div class="stat-item flex-1 min-w-[130px] flex flex-col items-center justify-center py-6 gap-1">
+            <span class="font-display font-black text-[38px] sm:text-[46px] text-grad leading-none">100%</span>
+            <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Personalizado</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
-          <div data-animate class="space-y-4">
-            <p class="text-xs font-bold text-primary tracking-widest uppercase">Quem é a Paty?</p>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Especialista em movimento e saúde feminina</h2>
-            <p class="text-[15px] text-slate-300 leading-relaxed">
-              Patrícia é uma mulher apaixonada pelo movimento corporal, sempre praticante de alguma modalidade esportiva. Já competiu e viveu experiências nesse meio, o que traz uma melhor capacidade para cuidar do outro porque se cuida também.
-            </p>
-            <p class="text-[15px] text-slate-300 leading-relaxed">
-              Pós-graduada em Saúde da Mulher, consegue entender melhor os momentos e ciclos da vida feminina, com cuidado especial. Trabalha com aulas coletivas e individuais, atendendo com dedicação e comprometimento.
-            </p>
-            <p class="text-[15px] text-slate-300 leading-relaxed">
-              Com experiência em treinos presenciais e semipresenciais, une conhecimento técnico, escuta atenta e treinos que respeitam o seu momento de vida — seja para emagrecimento, estética, saúde ou performance.
-            </p>
+    <!-- ═══ SOBRE ═══ -->
+    <section id="sobre" class="py-16 sm:py-24 bg-[#080810]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-12 lg:grid-cols-2 items-center">
+
+          <!-- foto + badge flutuante -->
+          <div data-animate class="relative">
+            <div class="relative rounded-2xl overflow-hidden aspect-[3/4] max-w-sm mx-auto lg:mx-0">
+              <img src="fotos/Fotos (4).jpeg" alt="Paty Silva" class="w-full h-full object-cover object-[center_30%]" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#080810]/70 via-transparent to-transparent"></div>
+            </div>
+            <div class="absolute bottom-4 left-4 sm:left-6 right-4 sm:right-auto bg-[#0d0d18]/95 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 max-w-[240px]">
+              <p class="text-[11px] text-[#EE5991] font-bold uppercase tracking-wider mb-0.5">Credencial</p>
+              <p class="text-[13px] text-white font-semibold">CREF 044877-G/MG</p>
+              <p class="text-[11px] text-slate-400 mt-0.5">Pós-graduada · Saúde da Mulher</p>
+            </div>
           </div>
 
-          <div data-animate data-animate-delay="100" class="rounded-2xl border border-white/10 bg-white/4 px-6 py-6 space-y-4">
-            <p class="text-xs font-bold text-primary tracking-widest uppercase">Formação</p>
-            <ul class="space-y-3 text-[14px] text-slate-300">
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                <span><span class="font-semibold text-white">Bacharel em Educação Física</span></span>
+          <!-- texto -->
+          <div data-animate data-animate-delay="1" class="space-y-6">
+            <div>
+              <span class="tag-pill">Quem é a Paty?</span>
+              <h2 class="font-display font-black text-[46px] sm:text-[56px] uppercase leading-[.9] mt-4">
+                Especialista em<br/>
+                <span class="text-grad italic">movimento</span> e<br/>
+                saúde feminina
+              </h2>
+            </div>
+            <p class="text-[15px] text-slate-400 leading-relaxed">
+              Patrícia é uma mulher apaixonada pelo movimento corporal, sempre praticante de alguma modalidade esportiva. Já competiu e viveu experiências nesse meio, o que traz uma melhor capacidade para cuidar do outro porque se cuida também.
+            </p>
+            <p class="text-[15px] text-slate-400 leading-relaxed">
+              Pós-graduada em Saúde da Mulher, consegue entender melhor os momentos e ciclos da vida feminina. Trabalha com aulas coletivas e individuais, atendendo com dedicação e comprometimento.
+            </p>
+            <p class="text-[15px] text-slate-400 leading-relaxed">
+              Une conhecimento técnico, escuta atenta e treinos que respeitam o seu momento de vida — seja para emagrecimento, estética, saúde ou performance.
+            </p>
+            <ul class="space-y-2.5 pt-2">
+              <li class="flex items-center gap-3 text-[14px] text-slate-300">
+                <span class="h-5 w-5 rounded-full bg-[#EE5991]/15 border border-[#EE5991]/30 flex items-center justify-center shrink-0">
+                  <svg class="h-3 w-3 text-[#EE5991]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span><strong class="text-white">Bacharel em Educação Física</strong></span>
               </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                <span>CREF: <span class="font-semibold text-white">044877-G/MG</span></span>
+              <li class="flex items-center gap-3 text-[14px] text-slate-300">
+                <span class="h-5 w-5 rounded-full bg-[#EE5991]/15 border border-[#EE5991]/30 flex items-center justify-center shrink-0">
+                  <svg class="h-3 w-3 text-[#EE5991]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span>Especialista em <strong class="text-white">Muay Thai</strong>, <strong class="text-white">Funcional</strong> e <strong class="text-white">Musculação</strong></span>
               </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                <span><span class="font-semibold text-white">Pós-graduação em Saúde da Mulher</span></span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-                <span>Especialista em <span class="font-semibold text-white">Muay Thai</span>, <span class="font-semibold text-white">Treinamento Funcional</span> e <span class="font-semibold text-white">Musculação</span></span>
+              <li class="flex items-center gap-3 text-[14px] text-slate-300">
+                <span class="h-5 w-5 rounded-full bg-[#EE5991]/15 border border-[#EE5991]/30 flex items-center justify-center shrink-0">
+                  <svg class="h-3 w-3 text-[#EE5991]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span>Atendimento <strong class="text-white">presencial e online</strong></span>
               </li>
             </ul>
           </div>
@@ -464,45 +436,54 @@
       </div>
     </section>
 
-    <!-- ═══════ MODALIDADES ═══════ -->
-    <section class="py-14 sm:py-20 bg-[#021736]">
-      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <!-- ═══ MODALIDADES ═══ -->
+    <section id="modalidades" class="py-16 sm:py-24 bg-[#0d0d18]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
-        <div data-animate class="text-center max-w-xl mx-auto mb-10">
-          <p class="text-xs font-bold text-primary tracking-widest uppercase mb-2">Modalidades</p>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Como a Paty pode te ajudar</h2>
-          <p class="mt-3 text-[15px] text-slate-400">Treinos para diferentes objetivos e fases da vida da mulher.</p>
+        <div data-animate class="mb-12">
+          <span class="tag-pill">Modalidades</span>
+          <h2 class="font-display font-black text-[46px] sm:text-[56px] uppercase leading-[.9] mt-4">
+            Como a Paty<br/><span class="text-grad italic">pode te ajudar</span>
+          </h2>
         </div>
 
         <div class="grid gap-4 md:grid-cols-3">
-          <div data-animate data-animate-delay="100" class="group rounded-2xl border border-white/8 bg-white/4 px-5 py-6 space-y-3 card-hover">
-            <div class="h-10 w-10 rounded-xl bg-primary/15 flex items-center justify-center">
-              <!-- flame / emagrecimento -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 2c0 0-4 4-4 8a4 4 0 008 0c0-2-1-3.5-1-3.5S17 9 17 13a5 5 0 01-10 0c0-5 5-11 5-11z"/>
-              </svg>
+          <div data-animate data-animate-delay="1" class="card-border p-6 space-y-4">
+            <div class="flex items-start justify-between">
+              <div class="h-11 w-11 rounded-xl bg-[#EE5991]/12 border border-[#EE5991]/20 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#EE5991]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 2c0 0-4 4-4 8a4 4 0 008 0c0-2-1-3.5-1-3.5S17 9 17 13a5 5 0 01-10 0c0-5 5-11 5-11z"/>
+                </svg>
+              </div>
+              <span class="font-display font-black text-[48px] leading-none text-white/5 select-none">01</span>
             </div>
-            <p class="text-[15px] font-bold text-white">Emagrecimento saudável</p>
+            <p class="text-[16px] font-bold text-white">Emagrecimento saudável</p>
             <p class="text-[13px] text-slate-400 leading-relaxed">Combinação de treinos funcionais e cardiorrespiratórios para reduzir gordura sem perder saúde.</p>
           </div>
-          <div data-animate data-animate-delay="200" class="group rounded-2xl border border-white/8 bg-white/4 px-5 py-6 space-y-3 card-hover">
-            <div class="h-10 w-10 rounded-xl bg-primary/15 flex items-center justify-center">
-              <!-- dumbbell / força -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 8h1M6 16h1M17 8h1M17 16h1M3 10v4M21 10v4M7 9h10v6H7z"/>
-              </svg>
+
+          <div data-animate data-animate-delay="2" class="card-border p-6 space-y-4">
+            <div class="flex items-start justify-between">
+              <div class="h-11 w-11 rounded-xl bg-[#EE5991]/12 border border-[#EE5991]/20 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#EE5991]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 8h1M6 16h1M17 8h1M17 16h1M3 10v4M21 10v4M7 9h10v6H7z"/>
+                </svg>
+              </div>
+              <span class="font-display font-black text-[48px] leading-none text-white/5 select-none">02</span>
             </div>
-            <p class="text-[15px] font-bold text-white">Força &amp; hipertrofia</p>
+            <p class="text-[16px] font-bold text-white">Força &amp; hipertrofia</p>
             <p class="text-[13px] text-slate-400 leading-relaxed">Planos progressivos para ganhar massa magra e fortalecer todo o corpo com segurança.</p>
           </div>
-          <div data-animate data-animate-delay="300" class="group rounded-2xl border border-white/8 bg-white/4 px-5 py-6 space-y-3 card-hover">
-            <div class="h-10 w-10 rounded-xl bg-primary/15 flex items-center justify-center">
-              <!-- shield / muay thai -->
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v5c0 4.418-2.986 8.166-7 9-4.014-.834-7-4.582-7-9V7l7-4z"/>
-              </svg>
+
+          <div data-animate data-animate-delay="3" class="card-border p-6 space-y-4">
+            <div class="flex items-start justify-between">
+              <div class="h-11 w-11 rounded-xl bg-[#EE5991]/12 border border-[#EE5991]/20 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#EE5991]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l7 4v5c0 4.418-2.986 8.166-7 9-4.014-.834-7-4.582-7-9V7l7-4z"/>
+                </svg>
+              </div>
+              <span class="font-display font-black text-[48px] leading-none text-white/5 select-none">03</span>
             </div>
-            <p class="text-[15px] font-bold text-white">Muay Thai &amp; condicionamento</p>
+            <p class="text-[16px] font-bold text-white">Muay Thai &amp; condicionamento</p>
             <p class="text-[13px] text-slate-400 leading-relaxed">Aulas que unem defesa pessoal, explosão e gasto calórico em treinos dinâmicos e divertidos.</p>
           </div>
         </div>
@@ -510,66 +491,88 @@
       </div>
     </section>
 
-    <!-- ═══════ GALERIA ═══════ -->
-    <section class="py-14 sm:py-20 bg-gradient-to-b from-[#021736] via-[#031d42] to-[#021736]">
-      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <!-- ═══ GALERIA ═══ -->
+    <section id="galeria" class="py-16 sm:py-24 bg-[#080810]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
-        <div data-animate class="text-center max-w-xl mx-auto mb-10">
-          <p class="text-xs font-bold text-primary tracking-widest uppercase mb-2">Galeria</p>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Paty em ação</h2>
-          <p class="mt-3 text-[15px] text-slate-400">Momentos dos treinos e competições.</p>
+        <div data-animate class="mb-12">
+          <span class="tag-pill">Galeria</span>
+          <h2 class="font-display font-black text-[46px] sm:text-[56px] uppercase leading-[.9] mt-4">
+            Paty em<br/><span class="text-grad italic">ação</span>
+          </h2>
         </div>
 
-        <div data-animate class="grid gap-3 sm:gap-4 md:grid-cols-3">
-          <div class="gallery-item rounded-2xl border border-white/10 aspect-[4/5]">
-              <img
-                src="fotos/img(1).PNG"
-                alt="Paty treinando"
-                class="h-full w-full object-cover rounded-2xl"
-                loading="lazy"
-              />
+        <!-- Grid assimétrico: item grande + pequenos -->
+        <div data-animate class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 auto-rows-[200px] sm:auto-rows-[230px] md:auto-rows-[220px]">
+          <div class="gal-item gal-item--feature col-span-2 row-span-2">
+            <img src="fotos/Fotos (1).jpeg" alt="Paty treinando" loading="lazy" />
           </div>
-          <div class="gallery-item rounded-2xl border border-white/10 aspect-[4/5]">
-              <img
-                src="fotos/img(2).PNG"
-                alt="Paty em treino"
-                class="h-full w-full object-cover rounded-2xl"
-                loading="lazy"
-              />
+          <div class="gal-item">
+            <img src="fotos/Fotos (2).jpeg" alt="Paty treinando" loading="lazy" />
           </div>
-          <div class="gallery-item rounded-2xl border border-white/10 aspect-[4/5]">
-              <img
-                src="fotos/img(3).PNG"
-                alt="Paty em competição"
-                class="h-full w-full object-cover rounded-2xl"
-                loading="lazy"
-              />
+          <div class="gal-item">
+            <img src="fotos/Fotos (3).jpeg" alt="Paty em treino" loading="lazy" />
+          </div>
+          <div class="gal-item">
+            <img src="fotos/Fotos (6).jpeg" alt="Paty em treino" loading="lazy" />
+          </div>
+          <div class="gal-item">
+            <img src="fotos/Fotos (7).jpeg" alt="Paty em competição" loading="lazy" />
+          </div>
+          <!-- linha extra -->
+          <div class="gal-item">
+            <img src="fotos/Fotos (8).jpeg" alt="Paty em ação" loading="lazy" />
+          </div>
+          <div class="gal-item">
+            <img src="fotos/Fotos (9).jpeg" alt="Paty em ação" loading="lazy" />
+          </div>
+          <div class="gal-item gal-item--feature col-span-2">
+            <img src="fotos/Fotos (4).jpeg" alt="Paty treinando" loading="lazy" />
           </div>
         </div>
 
       </div>
     </section>
 
-    <!-- ═══════ POR QUE TREINAR ═══════ -->
-    <section class="py-14 sm:py-20 bg-[#021736]">
-      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+    <!-- ═══ DIFERENCIAIS ═══ -->
+    <section class="py-16 sm:py-24 bg-[#0d0d18]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
-        <div data-animate class="text-center max-w-xl mx-auto mb-10">
-          <p class="text-xs font-bold text-primary tracking-widest uppercase mb-2">Diferenciais</p>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-white">Por que treinar com a Paty?</h2>
+        <div data-animate class="mb-12">
+          <span class="tag-pill">Diferenciais</span>
+          <h2 class="font-display font-black text-[46px] sm:text-[56px] uppercase leading-[.9] mt-4">
+            Por que treinar<br/><span class="text-grad italic">com a Paty?</span>
+          </h2>
         </div>
 
-        <div class="grid gap-4 md:grid-cols-3">
-          <div data-animate data-animate-delay="100" class="rounded-2xl border border-white/8 bg-white/4 px-5 py-6 card-hover">
-            <p class="text-[15px] font-bold text-white mb-2">Acompanhamento próximo</p>
+        <div class="grid gap-4 sm:grid-cols-3">
+          <div data-animate data-animate-delay="1" class="card-border p-6 space-y-3">
+            <div class="h-10 w-10 rounded-xl bg-[#EE5991]/12 border border-[#EE5991]/20 flex items-center justify-center">
+              <svg class="h-5 w-5 text-[#EE5991]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/>
+              </svg>
+            </div>
+            <p class="text-[16px] font-bold text-white">Acompanhamento próximo</p>
             <p class="text-[13px] text-slate-400 leading-relaxed">Ajustes frequentes de treino e suporte para manter constância e evolução.</p>
           </div>
-          <div data-animate data-animate-delay="200" class="rounded-2xl border border-white/8 bg-white/4 px-5 py-6 card-hover">
-            <p class="text-[15px] font-bold text-white mb-2">Treinos realistas</p>
+
+          <div data-animate data-animate-delay="2" class="card-border p-6 space-y-3">
+            <div class="h-10 w-10 rounded-xl bg-[#EE5991]/12 border border-[#EE5991]/20 flex items-center justify-center">
+              <svg class="h-5 w-5 text-[#EE5991]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+              </svg>
+            </div>
+            <p class="text-[16px] font-bold text-white">Treinos realistas</p>
             <p class="text-[13px] text-slate-400 leading-relaxed">Planos que cabem na sua rotina real, sem propostas impossíveis ou radicais.</p>
           </div>
-          <div data-animate data-animate-delay="300" class="rounded-2xl border border-white/8 bg-white/4 px-5 py-6 card-hover">
-            <p class="text-[15px] font-bold text-white mb-2">Foco na saúde da mulher</p>
+
+          <div data-animate data-animate-delay="3" class="card-border p-6 space-y-3">
+            <div class="h-10 w-10 rounded-xl bg-[#EE5991]/12 border border-[#EE5991]/20 flex items-center justify-center">
+              <svg class="h-5 w-5 text-[#EE5991]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <p class="text-[16px] font-bold text-white">Foco na saúde da mulher</p>
             <p class="text-[13px] text-slate-400 leading-relaxed">Olhar especializado para ciclos, dores, fases de vida e objetivos femininos.</p>
           </div>
         </div>
@@ -577,89 +580,70 @@
       </div>
     </section>
 
-    <!-- ═══════ CTA FINAL ═══════ -->
-    <section class="py-14 sm:py-20 bg-gradient-to-b from-[#021736] via-[#031d42] to-[#021736]">
-      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div data-animate class="relative overflow-hidden rounded-3xl border border-primary/25 bg-gradient-to-br from-primary/10 via-[#031d42] to-[#021736] px-6 py-10 sm:px-10 sm:py-12 flex flex-col md:flex-row items-center gap-8">
-
-          <div class="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/20 blur-[70px] pointer-events-none"></div>
-          <div class="absolute -left-16  bottom-0  h-48 w-48 rounded-full bg-primary/10 blur-[70px] pointer-events-none"></div>
-
-          <div class="relative flex-1 space-y-4 text-center md:text-left">
-            <p class="text-xs font-bold text-primary tracking-widest uppercase">Próximo passo</p>
-            <h2 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
-              Vamos organizar seu<br class="hidden sm:block" />
-              <span class="text-gradient">plano de treino?</span>
+    <!-- ═══ CTA FINAL ═══ -->
+    <section class="py-16 sm:py-24 bg-[#080810]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div data-animate class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#EE5991]/12 via-[#0d0d18] to-[#080810] border border-[#EE5991]/20 p-8 sm:p-14">
+          <div class="absolute -top-28 -right-28 w-80 h-80 rounded-full bg-[#EE5991]/15 blur-[90px] pointer-events-none"></div>
+          <div class="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-[#EE5991]/8 blur-[70px] pointer-events-none"></div>
+          <div class="relative space-y-6 max-w-xl">
+            <span class="tag-pill">Próximo passo</span>
+            <h2 class="font-display font-black text-[48px] sm:text-[60px] uppercase leading-[.88]">
+              Vamos montar<br/><span class="text-grad italic">seu plano?</span>
             </h2>
-            <p class="text-[15px] text-slate-300 max-w-md">
+            <p class="text-[15px] text-slate-400 max-w-md">
               Me manda uma mensagem, conta seu objetivo e montamos juntas o melhor caminho para você.
             </p>
-            <div class="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
-              <a
-                href="https://wa.me/553191414666?text=Ol%C3%A1%20Paty%2C%20quero%20come%C3%A7ar%20a%20treinar%20com%20voc%C3%AA."
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+              <a href="https://wa.me/553191414666?text=Ol%C3%A1%20Paty%2C%20quero%20come%C3%A7ar%20a%20treinar%20com%20voc%C3%AA."
                 target="_blank" rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-[15px] font-bold text-white shadow-glow hover:bg-primary/90 transition"
-              >
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-[#EE5991] px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_0_40px_rgba(238,89,145,0.35)] hover:bg-[#d94a80] transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 32 32" fill="currentColor">
                   <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
                 </svg>
                 Falar com a Paty agora
               </a>
-              <a
-                href="https://www.instagram.com/patysilva_personal/"
-                target="_blank" rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3.5 text-[15px] font-semibold text-white hover:bg-white/10 transition"
-              >
+              <a href="https://www.instagram.com/patysilva_personal/" target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-[15px] font-semibold text-white hover:bg-white/10 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.7"/>
-                  <circle cx="12" cy="12" r="5" stroke-width="1.7"/>
-                  <circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/>
+                  <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.7"/><circle cx="12" cy="12" r="5" stroke-width="1.7"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/>
                 </svg>
                 Ver no Instagram
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ═══════ FOOTER ═══════ -->
-    <footer class="border-t border-white/8 bg-[#021736] py-8">
-      <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-4">
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="border-t border-white/6 bg-[#080810] py-8">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 space-y-4">
         <p class="text-center text-[13px] text-slate-400">
           Quer uma página como esta para o seu negócio?
-          <a
-            href="https://wa.me/553191414666?text=Ol%C3%A1%2C%20quero%20uma%20p%C3%A1gina%20como%20esta%20para%20meu%20neg%C3%B3cio.%20Vim%20pelo%20LinkBio%20da%20Paty."
-            target="_blank"
-            rel="noopener noreferrer"
-            class="font-semibold text-primary hover:text-primaryLight transition underline underline-offset-2"
-          >Clique aqui</a>
+          <a href="https://wa.me/553191414666?text=Ol%C3%A1%2C%20quero%20uma%20p%C3%A1gina%20como%20esta%20para%20meu%20neg%C3%B3cio.%20Vim%20pelo%20LinkBio%20da%20Paty."
+            target="_blank" rel="noopener noreferrer"
+            class="font-semibold text-[#EE5991] hover:text-pink-400 transition underline underline-offset-2">Clique aqui</a>
           e fale conosco pelo WhatsApp.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-[12px] text-slate-500 pt-2 border-t border-white/5">
           <p>© <span id="year"></span> Paty Silva · Personal Trainer · CREF 044877-G/MG</p>
-          <div class="flex items-center gap-4">
-            <a href="https://www.instagram.com/patysilva_personal/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 hover:text-slate-300 transition">
+          <a href="https://www.instagram.com/patysilva_personal/" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 hover:text-slate-300 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.7"/>
-              <circle cx="12" cy="12" r="5" stroke-width="1.7"/>
-              <circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/>
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke-width="1.7"/><circle cx="12" cy="12" r="5" stroke-width="1.7"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor"/>
             </svg>
             @patysilva_personal
           </a>
-          </div>
         </div>
       </div>
     </footer>
 
     <!-- WhatsApp flutuante -->
-    <a
-      href="https://wa.me/553191414666?text=Ol%C3%A1%20Paty%2C%20quero%20agendar%20meu%20treino%20personalizado.%20Vim%20pelo%20LinkBio%20da%20Paty."
+    <a href="https://wa.me/553191414666?text=Ol%C3%A1%20Paty%2C%20quero%20agendar%20meu%20treino%20personalizado.%20Vim%20pelo%20LinkBio%20da%20Paty."
       target="_blank" rel="noopener noreferrer"
       aria-label="Falar com a Paty no WhatsApp"
-      class="fixed bottom-5 right-5 z-40 h-14 w-14 rounded-full bg-emerald-500 flex items-center justify-center shadow-[0_8px_30px_rgba(16,185,129,0.45)] hover:bg-emerald-600 hover:scale-105 transition"
-    >
+      class="fixed bottom-5 right-5 z-40 h-14 w-14 rounded-full bg-emerald-500 flex items-center justify-center shadow-[0_8px_30px_rgba(16,185,129,0.45)] hover:bg-emerald-600 hover:scale-105 transition">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" viewBox="0 0 32 32" fill="currentColor">
         <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
       </svg>
@@ -668,20 +652,27 @@
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
 
-      // Splash: esconde após a barra preencher e um breve tempo
       window.addEventListener('load', function () {
         setTimeout(function () {
-          var s = document.getElementById('splash-paty');
+          var s = document.getElementById('splash');
           if (s) { s.classList.add('hide'); s.addEventListener('transitionend', function () { s.remove(); }, { once: true }); }
         }, 2200);
       });
 
-      // Scroll animations
       const obs = new IntersectionObserver(entries => entries.forEach(e => {
         if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-      }), { threshold: 0.1 });
+      }), { threshold: 0.08 });
       document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
     </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y83GLV10G1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y83GLV10G1');
+  </script>
   <!-- Analytics LinkBio -->
   <script src="https://linkbio.api.br/tracker.js" data-slug="paty"></script>
   </body>

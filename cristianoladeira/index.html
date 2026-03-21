@@ -24,11 +24,11 @@
       --gold:    #6b7280;
       --gold-lt: #9ca3af;
       --gold-bg: rgba(107,114,128,0.10);
-      --blue:    #0b3b8a;
-      --blue-lt: #1f6fd6;
+      --blue:    #003874;
+      --blue-lt: #005899;
       --red:     #ff0000;
-      --wine:    #0b3b8a;
-      --wine-lt: #1f6fd6;
+      --wine:    #003874;
+      --wine-lt: #005899;
       --white:   #ffffff;
       --muted:   #6b7280;
       --silver:  #c8cdd5;
@@ -62,8 +62,8 @@
       background: rgba(245,245,245,0.98);
       border-bottom-color: rgba(0,0,0,0.14);
     }
-    .hdr-logo img { height: 46px; width: auto; display: block; }
-    header.scrolled .hdr-logo img { height: 40px; }
+    .hdr-logo img { height: 52px; width: auto; max-width: 200px; display: block; object-fit: contain; }
+    header.scrolled .hdr-logo img { height: 46px; }
 
     nav.desk { display: flex; align-items: center; gap: 32px; }
     nav.desk a {
@@ -108,9 +108,10 @@
     #mobile-menu .btn-wpp-mob:hover { background: var(--wine-lt); }
 
     /* ─── HERO ─── */
+    /* Fundo em gradiente suave (sem segunda camada com clip-path — evita “corte” diagonal entre dois cinzas) */
     #hero {
       min-height: 100vh; padding-top: 72px;
-      background: var(--cream);
+      background: linear-gradient(118deg, var(--cream) 0%, var(--cream) 38%, #f0f0f0 55%, var(--cream2) 100%);
       display: flex; align-items: center;
       position: relative; overflow: hidden;
     }
@@ -122,21 +123,13 @@
       background: linear-gradient(to right, transparent, var(--blue) 20%, var(--red) 45%, var(--blue-lt) 75%, transparent);
     }
 
-    /* Giant "C" mark watermark */
+    /* Ícone do cavalo (C) — marca d'água */
     .hero-cmark {
-      position: absolute; right: -6%; top: 50%; transform: translateY(-52%);
-      height: 110vh; width: auto;
-      opacity: .06;
-      filter: brightness(0);
+      position: absolute; right: 2%; top: 50%; transform: translateY(-50%);
+      width: min(48vw, 420px); height: auto; max-height: 85vh;
+      opacity: .10;
       pointer-events: none; user-select: none;
-    }
-
-    /* Diagonal accent band */
-    .hero-band {
-      position: absolute; right: 0; top: 0; bottom: 0;
-      width: 42%;
-      background: linear-gradient(to bottom left, var(--cream2) 0%, var(--cream) 100%);
-      clip-path: polygon(18% 0, 100% 0, 100% 100%, 0 100%);
+      z-index: 1;
     }
 
     /* Silver/black vertical accent line */
@@ -202,9 +195,9 @@
       font-size: 13px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase;
       padding: 15px 30px; border-radius: 4px; text-decoration: none;
       transition: background .2s, transform .15s, box-shadow .2s;
-      box-shadow: 0 4px 20px rgba(107,21,32,0.3);
+      box-shadow: 0 4px 20px rgba(0,56,116,0.35);
     }
-    .btn-primary:hover { background: var(--wine-lt); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(107,21,32,0.4); }
+    .btn-primary:hover { background: var(--wine-lt); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,56,116,0.45); }
 
     .btn-outline {
       display: inline-flex; align-items: center; gap: 10px;
@@ -228,7 +221,7 @@
       border-radius: 4px;
       box-shadow: 6px 6px 0 var(--silver);
     }
-    .hero-logo-frame img { width: 100%; max-width: 360px; display: block; }
+    .hero-logo-frame img { width: 100%; max-width: 360px; display: block; margin: 0 auto; }
     .hero-logo-frame::before {
       content: 'MANGALARGA MARCHADOR';
       position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
@@ -311,13 +304,14 @@
     }
     #servicos .section-title { color: var(--white); }
     #servicos .section-tag { color: var(--silver); }
-    #servicos .section-tag::before { background: linear-gradient(to right, var(--blue-lt), var(--blue)); }
+    #servicos .section-tag::before { background: linear-gradient(to right, rgba(255,255,255,0.45), rgba(255,255,255,0.1)); }
     #servicos .section-desc { color: rgba(255,255,255,0.45); }
 
-    /* Big "C" bg */
+    /* Ícone cavalo — marca d'água na seção serviços */
     .srv-cmark {
-      position: absolute; right: -5%; top: 50%; transform: translateY(-50%);
-      height: 120%; width: auto; opacity: .03;
+      position: absolute; right: 2%; top: 50%; transform: translateY(-50%);
+      width: min(42vw, 380px); height: auto; max-height: 70vh;
+      opacity: .06;
       filter: brightness(0) invert(1);
       pointer-events: none;
     }
@@ -357,45 +351,39 @@
       font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.45);
     }
 
-    /* ─── CTA ─── */
+    /* ─── CTA / CONTATO (uma seção — fundo cinza; headline + informações) ─── */
     #contato {
-      padding: 0;
-      background: var(--cream);
-      position: relative; overflow: hidden;
+      padding: 88px 0;
+      background: #e8e8e8;
+      position: relative;
+      overflow: hidden;
     }
     .cta-inner {
-      display: grid; grid-template-columns: 1fr 1fr; min-height: 560px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 56px;
+      align-items: start;
+      position: relative;
+      z-index: 1;
     }
-    .cta-left {
-      background: var(--red);
-      padding: 80px 64px;
-      display: flex; flex-direction: column; justify-content: center;
-      position: relative; overflow: hidden;
+    .cta-intro {
+      position: relative;
+      overflow: visible;
     }
-    .cta-left::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 80% at 0% 50%, rgba(200,205,213,0.07) 0%, transparent 70%);
-    }
-    .cta-left .cmark-bg {
-      position: absolute; right: -60px; bottom: -20px;
-      height: 80%; width: auto; opacity: .07;
-      filter: brightness(0) invert(1);
-      pointer-events: none;
-    }
-    .cta-left h2 {
+    .cta-intro h2 {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: clamp(36px, 5vw, 64px); font-weight: 900;
       text-transform: uppercase; line-height: .95;
-      color: #fff; position: relative; z-index: 1;
+      color: var(--blue); position: relative; z-index: 1;
     }
-    .cta-left h2 em {
-      font-style: normal; color: var(--blue-lt);
+    .cta-intro h2 em {
+      font-style: normal; color: var(--red);
     }
-    .cta-left p {
+    .cta-intro > p {
       margin-top: 20px; font-size: 16px; line-height: 1.7;
-      color: rgba(255,255,255,0.65); max-width: 360px; position: relative; z-index: 1;
+      color: var(--muted); max-width: 420px; position: relative; z-index: 1;
     }
-    .cta-left .cta-btns {
+    .cta-intro .cta-btns {
       margin-top: 36px; display: flex; flex-direction: column; gap: 14px;
       position: relative; z-index: 1;
     }
@@ -404,35 +392,30 @@
       background: #fff; color: var(--black);
       font-size: 13px; font-weight: 700; letter-spacing: .10em; text-transform: uppercase;
       padding: 15px 28px; border-radius: 4px; text-decoration: none;
-      transition: background .2s, transform .15s;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: background .2s, transform .15s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
       align-self: flex-start;
+      border: 1px solid rgba(0,0,0,0.06);
     }
-    .btn-wpp-cta:hover { background: var(--silver2); transform: translateY(-2px); }
+    .btn-wpp-cta:hover { background: var(--silver2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.12); }
     .btn-ig-cta {
       display: inline-flex; align-items: center; gap: 12px;
-      border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.8);
+      border: 2px solid rgba(0,0,0,0.12); color: var(--black);
       font-size: 13px; font-weight: 600; letter-spacing: .10em; text-transform: uppercase;
       padding: 13px 28px; border-radius: 4px; text-decoration: none;
       transition: border-color .2s, color .2s, background .2s;
       align-self: flex-start;
+      background: rgba(255,255,255,0.5);
     }
-    .btn-ig-cta:hover { border-color: rgba(255,255,255,0.6); color: #fff; background: rgba(255,255,255,0.06); }
+    .btn-ig-cta:hover { border-color: var(--blue); color: var(--blue); background: rgba(255,255,255,0.9); }
 
-    .cta-right {
-      background: var(--cream2);
-      padding: 80px 64px;
-      display: flex; flex-direction: column; justify-content: center;
-      border-left: none; position: relative;
+    .cta-details {
+      position: relative;
     }
-    .cta-right::before {
-      content: ''; position: absolute; left: 0; top: 20%; bottom: 20%;
-      width: 1px; background: rgba(138,107,16,0.25);
-    }
-    .cta-right h3 {
+    .cta-details h3 {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 34px; font-weight: 800; text-transform: uppercase;
-      color: var(--black); margin-bottom: 28px; letter-spacing: .02em;
+      font-size: 32px; font-weight: 800; text-transform: uppercase;
+      color: var(--black); margin-bottom: 24px; letter-spacing: .02em;
     }
     .cta-detail-list { display: flex; flex-direction: column; gap: 18px; }
     .cta-detail-item {
@@ -454,15 +437,15 @@
 
     /* ─── FOOTER ─── */
     footer {
-      background: linear-gradient(135deg, rgba(11,59,138,0.98) 0%, rgba(225,29,72,0.94) 100%);
+      background: linear-gradient(135deg, #003874 0%, #001f42 55%, #003874 100%);
       padding: 48px 0;
-      border-top: 2px solid rgba(225,29,72,0.45);
+      border-top: 2px solid rgba(255,255,255,0.12);
     }
     .footer-inner {
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 24px;
     }
-    .footer-logo img { height: 40px; width: auto; filter: brightness(0) invert(1); }
+    .footer-logo img { height: 40px; width: auto; max-width: 260px; object-fit: contain; filter: brightness(0) invert(1); }
     .footer-links {
       display: flex; gap: 24px; flex-wrap: wrap;
     }
@@ -495,9 +478,11 @@
       .sobre-inner { grid-template-columns: 1fr; gap: 40px; }
       .sobre-sep { display: none; }
       .srv-grid { grid-template-columns: 1fr; }
-      .cta-inner { grid-template-columns: 1fr; }
-      .cta-left { padding: 56px 32px; }
-      .cta-right { padding: 56px 32px; }
+      .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+      .cta-details {
+        padding-top: 40px;
+        border-top: 1px solid rgba(0,0,0,0.1);
+      }
       nav.desk { display: none; }
       .btn-wpp-hdr { display: none; }
       #menu-toggle { display: flex; }
@@ -557,9 +542,8 @@
 <!-- ═══ HERO ═══ -->
 <section id="hero">
   <div class="hero-top-border"></div>
-  <div class="hero-band"></div>
   <div class="hero-vline"></div>
-  <img class="hero-cmark" src="logo/logo-cristiano-ladeira-3.png" alt="" aria-hidden="true"/>
+  <img class="hero-cmark" src="logo/logo-cristiano-ladeira-5.png" alt="" aria-hidden="true"/>
 
   <div class="hero-inner">
     <div class="hero-left">
@@ -652,7 +636,7 @@
 
 <!-- ═══ SERVIÇOS ═══ -->
 <section id="servicos">
-  <img class="srv-cmark" src="logo/logo-cristiano-ladeira-3.png" alt="" aria-hidden="true"/>
+  <img class="srv-cmark" src="logo/logo-cristiano-ladeira-5.png" alt="" aria-hidden="true"/>
   <div class="container">
     <p class="section-tag">O que fazemos</p>
     <h2 class="section-title" style="color:#fff">Nossos<br/>serviços</h2>
@@ -685,11 +669,10 @@
 
 <div class="divider-gold"></div>
 
-<!-- ═══ CONTATO / CTA ═══ -->
+<!-- ═══ CONTATO / CTA (seção única) ═══ -->
 <section id="contato">
-  <div class="cta-inner">
-    <div class="cta-left">
-      <img class="cmark-bg" src="logo/logo-cristiano-ladeira-3.png" alt="" aria-hidden="true"/>
+  <div class="container cta-inner">
+    <div class="cta-intro">
       <h2>Vamos fazer<br/>um <em>grande</em><br/>evento?</h2>
       <p>Entre em contato e descubra como podemos criar juntos uma experiência inesquecível para o universo do Mangalarga Marchador.</p>
       <div class="cta-btns">
@@ -703,7 +686,7 @@
       </div>
     </div>
 
-    <div class="cta-right">
+    <div class="cta-details">
       <h3>Informações</h3>
       <div class="cta-detail-list">
         <div class="cta-detail-item">
