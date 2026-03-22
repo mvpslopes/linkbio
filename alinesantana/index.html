@@ -79,7 +79,30 @@
       background: rgba(250,246,241,.92); backdrop-filter: blur(16px);
       padding: 10px 24px; box-shadow: 0 1px 20px rgba(0,0,0,.06);
     }
-    .nav-name { font-family: 'Playfair Display', serif; font-size: 18px; color: #2d4a30; font-weight: 600; }
+    /* Wordmark (sem logo) */
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;
+    }
+    .nav-brand-monogram {
+      width: 42px; height: 42px; flex-shrink: 0;
+      border-radius: 14px;
+      background: linear-gradient(145deg, #5a8f60 0%, #3d6642 50%, #2d4a30 100%);
+      color: #fff; font-family: 'Playfair Display', serif; font-weight: 700;
+      font-size: 14px; letter-spacing: -0.02em;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 14px rgba(45,74,48,.28);
+      border: 1px solid rgba(255,255,255,.2);
+    }
+    .nav-brand-text { display: flex; flex-direction: column; gap: 1px; line-height: 1.15; }
+    .nav-brand-line1 {
+      font-family: 'Playfair Display', serif; font-size: 17px; color: #2d4a30;
+      font-weight: 600; letter-spacing: -0.02em;
+    }
+    .nav-brand-line1 em { font-style: italic; font-weight: 500; color: #4d7a52; }
+    .nav-brand-line2 {
+      font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+      color: #6b8f6f;
+    }
     .nav-cta {
       display: inline-flex; align-items: center; gap: 6px;
       background: #4d7a52; color: #fff; font-size: 13px; font-weight: 600;
@@ -111,14 +134,29 @@
     .photo-frame:hover { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
     .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* Floating card */
-    .float-card {
-      position: absolute; background: #fff; border-radius: 16px;
-      padding: 14px 18px; box-shadow: 0 8px 30px rgba(0,0,0,.1);
-      animation: float 4s ease-in-out infinite;
+    /* Cards sob a foto (não sobrepõem o rosto) */
+    .hero-badges {
+      margin-top: 1.5rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      align-items: center;
     }
-    .float-card-2 { animation-delay: -2s; }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @media (min-width: 1024px) {
+      .hero-badges { align-items: flex-end; }
+    }
+    @media (min-width: 640px) {
+      .hero-badges { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 0.75rem; }
+      @media (min-width: 1024px) {
+        .hero-badges { justify-content: flex-end; }
+      }
+    }
+    .hero-badge-card {
+      background: #fff; border-radius: 16px;
+      padding: 14px 18px; box-shadow: 0 8px 30px rgba(0,0,0,.1);
+      border: 1px solid rgba(122,158,126,.12);
+      animation: float 5s ease-in-out infinite;
+    }
+    .hero-badge-card:nth-child(2) { animation-delay: -2.5s; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 
     /* Tag pill */
     .tag-pill {
@@ -313,7 +351,13 @@
 
 <!-- ═══ NAVBAR ═══ -->
 <nav id="navbar">
-  <span class="nav-name">Aline Santana</span>
+  <a href="#hero" class="nav-brand">
+    <span class="nav-brand-monogram" aria-hidden="true">AS</span>
+    <span class="nav-brand-text">
+      <span class="nav-brand-line1">Aline <em>Santana</em></span>
+      <span class="nav-brand-line2">Nutrição &amp; bem-estar</span>
+    </span>
+  </a>
   <a href="https://wa.me/5531991603278?text=Ol%C3%A1%2C+Aline%21+Vim+pelo+seu+site+e+gostaria+de+saber+mais+sobre+os+atendimentos."
      target="_blank" rel="noopener noreferrer" class="nav-cta">
     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
@@ -322,7 +366,7 @@
 </nav>
 
 <!-- ═══ HERO ═══ -->
-<section class="hero-section pt-20 pb-16">
+<section id="hero" class="hero-section pt-20 pb-16">
   <div class="hero-blob hero-blob-1"></div>
   <div class="hero-blob hero-blob-2"></div>
 
@@ -380,25 +424,26 @@
         </div>
       </div>
 
-      <!-- Foto -->
+      <!-- Foto (cards abaixo da imagem para não cobrir o rosto) -->
       <div class="order-1 lg:order-2 flex justify-center lg:justify-end" data-animate data-animate-delay="1">
-        <div class="relative max-w-sm w-full">
+        <div class="w-full max-w-sm">
           <div class="photo-frame">
             <img src="foto-aline.PNG" alt="Aline Santana, nutricionista" loading="eager" width="500" height="667" />
           </div>
-          <!-- floating cards -->
-          <div class="float-card" style="bottom: 32px; left: -24px; min-width: 160px;">
-            <p class="text-xs text-gray-400 mb-1">Atendimento</p>
-            <p class="text-sm font-bold text-forest">Presencial &amp; Online</p>
-          </div>
-          <div class="float-card float-card-2" style="top: 40px; right: -20px;">
-            <div class="flex items-center gap-3">
-              <div class="hero-mini-icon" aria-hidden="true">
-                <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
-              </div>
-              <div>
-                <p class="text-xs text-gray-400">Sua última</p>
-                <p class="text-sm font-bold text-forest">nutri</p>
+          <div class="hero-badges">
+            <div class="hero-badge-card w-full sm:w-auto sm:min-w-[200px]">
+              <p class="text-xs text-gray-400 mb-1">Atendimento</p>
+              <p class="text-sm font-bold text-forest">Presencial &amp; Online</p>
+            </div>
+            <div class="hero-badge-card w-full sm:w-auto sm:min-w-[200px]">
+              <div class="flex items-center gap-3">
+                <div class="hero-mini-icon" aria-hidden="true">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+                </div>
+                <div>
+                  <p class="text-xs text-gray-400">Sua última</p>
+                  <p class="text-sm font-bold text-forest">nutri</p>
+                </div>
               </div>
             </div>
           </div>
