@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Aline Santana | Nutricionista – Autonomia Alimentar</title>
+  <meta name="description" content="Aline Santana, nutricionista especializada em Nutrição Funcional e Comportamento Alimentar. Te ajudo a sair do ciclo das dietas e criar autonomia alimentar. Atendimento presencial e online." />
+  <meta name="keywords" content="nutricionista, nutrição funcional, comportamento alimentar, autonomia alimentar, Aline Santana, nutrição esportiva, dieta, saúde" />
+  <link rel="canonical" href="https://alinesantana.linkbio.api.br/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://alinesantana.linkbio.api.br/" />
+  <meta property="og:title" content="Aline Santana | Nutricionista – Autonomia Alimentar" />
+  <meta property="og:description" content="Te ajudo a sair do ciclo das dietas e criar autonomia alimentar. Atendimento presencial e online." />
+  <meta property="og:locale" content="pt_BR" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter','ui-sans-serif','system-ui'],
+            serif: ['Playfair Display','Georgia','serif'],
+          },
+          colors: {
+            sage:    { DEFAULT:'#7a9e7e', light:'#a8c5ab', dark:'#4d7a52' },
+            cream:   { DEFAULT:'#faf6f1', dark:'#f0e8dc' },
+            blush:   { DEFAULT:'#e8c4b0', light:'#f2ddd0', dark:'#c99070' },
+            forest:  { DEFAULT:'#2d4a30', light:'#3d6642' },
+            clay:    { DEFAULT:'#b07050', light:'#cc9070' },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #faf6f1; color: #2a2a2a; overflow-x: hidden; }
+
+    /* ── Splash ── */
+    #splash {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #faf6f1;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity .5s ease, visibility .5s ease;
+    }
+    #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    .splash-inner { text-align: center; }
+    .splash-leaf {
+      width: 56px; height: 56px; margin: 0 auto 16px;
+      animation: leafSpin 1.2s ease-in-out infinite alternate;
+    }
+    @keyframes leafSpin { from { transform: rotate(-10deg) scale(.95); } to { transform: rotate(10deg) scale(1.05); } }
+    .splash-text { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: #4d7a52; }
+
+    /* ── Scroll animate ── */
+    [data-animate] { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
+    [data-animate].visible { opacity: 1; transform: none; }
+    [data-animate-delay="1"] { transition-delay: .1s; }
+    [data-animate-delay="2"] { transition-delay: .2s; }
+    [data-animate-delay="3"] { transition-delay: .3s; }
+    [data-animate-delay="4"] { transition-delay: .4s; }
+    [data-animate-delay="5"] { transition-delay: .5s; }
+
+    /* ── Navbar ── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(250,246,241,0); backdrop-filter: blur(0px);
+      transition: background .3s, backdrop-filter .3s, padding .3s, box-shadow .3s;
+    }
+    #navbar.scrolled {
+      background: rgba(250,246,241,.92); backdrop-filter: blur(16px);
+      padding: 10px 24px; box-shadow: 0 1px 20px rgba(0,0,0,.06);
+    }
+    .nav-name { font-family: 'Playfair Display', serif; font-size: 18px; color: #2d4a30; font-weight: 600; }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #4d7a52; color: #fff; font-size: 13px; font-weight: 600;
+      padding: 8px 18px; border-radius: 100px; text-decoration: none;
+      transition: background .2s, transform .2s;
+    }
+    .nav-cta:hover { background: #3d6642; transform: scale(1.03); }
+
+    /* ── Hero ── */
+    .hero-section {
+      min-height: 100svh;
+      background: linear-gradient(160deg, #e8f0e9 0%, #faf6f1 55%, #f5e8dc 100%);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .hero-blob {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: .45; pointer-events: none;
+    }
+    .hero-blob-1 { width: 500px; height: 500px; background: #a8c5ab; top: -100px; right: -100px; }
+    .hero-blob-2 { width: 400px; height: 400px; background: #e8c4b0; bottom: -80px; left: -80px; }
+
+    /* Organic photo frame */
+    .photo-frame {
+      position: relative; border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+      overflow: hidden; aspect-ratio: 3/4;
+      box-shadow: 0 30px 80px rgba(45,74,48,.20);
+      transition: border-radius .8s ease;
+    }
+    .photo-frame:hover { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+    .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Floating card */
+    .float-card {
+      position: absolute; background: #fff; border-radius: 16px;
+      padding: 14px 18px; box-shadow: 0 8px 30px rgba(0,0,0,.1);
+      animation: float 4s ease-in-out infinite;
+    }
+    .float-card-2 { animation-delay: -2s; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+
+    /* Tag pill */
+    .tag-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(77,122,82,.12); color: #2d4a30; border: 1px solid rgba(77,122,82,.25);
+      font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: 100px;
+    }
+
+    /* ── Section titles ── */
+    .section-tag {
+      display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: #4d7a52; background: rgba(77,122,82,.1);
+      padding: 4px 12px; border-radius: 100px; margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: #1a2e1c; line-height: 1.2; font-weight: 700;
+    }
+    .section-title em { font-style: italic; color: #4d7a52; }
+
+    /* ── Sobre ── */
+    .about-section { background: #fff; }
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 48px; }
+    @media(min-width:768px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* ── Timeline ── */
+    .timeline { position: relative; padding-left: 32px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 8px; top: 8px; bottom: 8px;
+      width: 2px; background: linear-gradient(to bottom, #a8c5ab, #e8c4b0);
+    }
+    .timeline-item { position: relative; margin-bottom: 36px; }
+    .timeline-dot {
+      position: absolute; left: -28px; top: 4px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #4d7a52; border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #4d7a52;
+    }
+    .timeline-label {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: #4d7a52; margin-bottom: 4px;
+    }
+    .timeline-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: #1a2e1c; margin-bottom: 8px; }
+    .timeline-text { font-size: 14px; color: #555; line-height: 1.75; }
+
+    /* ── Philosophy cards ── */
+    .phil-card {
+      background: linear-gradient(135deg, #f5f9f5 0%, #fff 100%);
+      border: 1px solid rgba(77,122,82,.15);
+      border-radius: 20px; padding: 28px; position: relative; overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .phil-card:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(45,74,48,.12); }
+    .phil-card::before {
+      content: ''; position: absolute; top: -30px; right: -30px;
+      width: 100px; height: 100px; border-radius: 50%;
+      background: rgba(168,197,171,.15);
+    }
+    .phil-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: linear-gradient(135deg, #a8c5ab, #4d7a52);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; color: #fff;
+    }
+    .phil-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: #1a2e1c; margin-bottom: 8px; }
+    .phil-text { font-size: 14px; color: #666; line-height: 1.75; }
+
+    /* ── Serviços ── */
+    .services-section { background: linear-gradient(160deg, #2d4a30 0%, #1a2e1c 100%); position: relative; overflow: hidden; }
+    .services-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .service-card {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px; padding: 32px;
+      transition: background .25s, transform .25s, border-color .25s;
+      position: relative; overflow: hidden;
+    }
+    .service-card:hover { background: rgba(255,255,255,.1); transform: translateY(-4px); border-color: rgba(168,197,171,.4); }
+    .service-num {
+      font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900;
+      color: rgba(168,197,171,.2); position: absolute; top: 16px; right: 20px; line-height: 1;
+    }
+    .service-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(168,197,171,.3), rgba(77,122,82,.4));
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; color: #a8c5ab;
+    }
+    .service-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: #fff; margin-bottom: 12px; }
+    .service-text { font-size: 14px; color: rgba(255,255,255,.6); line-height: 1.8; }
+
+    /* ── Testimonials ── */
+    .testimonials-section { background: #f5f0e8; }
+    .testi-card {
+      background: #fff; border-radius: 20px; padding: 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,.06);
+      transition: transform .25s, box-shadow .25s;
+      position: relative;
+    }
+    .testi-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,.1); }
+    .testi-quote {
+      font-family: 'Playfair Display', serif; font-size: 4rem;
+      color: #a8c5ab; line-height: .8; margin-bottom: 12px;
+    }
+    .testi-text { font-size: 14px; color: #555; line-height: 1.8; font-style: italic; margin-bottom: 16px; }
+    .testi-author { font-size: 13px; font-weight: 700; color: #2d4a30; }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, #a8c5ab 0%, #7a9e7e 40%, #4d7a52 100%);
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,.15) 0%, transparent 60%);
+    }
+
+    /* ── Contato ── */
+    .contact-section { background: #2d4a30; }
+    .contact-item {
+      display: flex; align-items: center; gap: 16px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px; padding: 20px 24px;
+      transition: background .2s;
+      text-decoration: none;
+    }
+    .contact-item:hover { background: rgba(255,255,255,.1); }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+      background: rgba(168,197,171,.2);
+      display: flex; align-items: center; justify-content: center; color: #a8c5ab;
+    }
+    .contact-label { font-size: 11px; color: rgba(255,255,255,.45); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+    .contact-value { font-size: 14px; color: #fff; font-weight: 500; margin-top: 2px; }
+
+    /* ── Footer ── */
+    .footer-promo {
+      width: 100%; text-align: center; margin-top: 28px; padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.1);
+      font-size: 12px; color: rgba(255,255,255,.4); line-height: 1.6;
+    }
+    .footer-promo a { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,.75); font-weight: 600; text-decoration: none; margin-top: 8px; }
+    .footer-promo a:hover { color: #fff; }
+    .footer-promo img { height: 26px; width: auto; object-fit: contain; }
+
+    /* ── Divider leaf ── */
+    .leaf-divider { text-align: center; color: #a8c5ab; margin: 8px 0; }
+
+    /* WhatsApp float */
+    #wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 50;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25d366; box-shadow: 0 6px 24px rgba(37,211,102,.45);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    #wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,.6); }
+  </style>
+</head>
+<body>
+
+<!-- ═══ SPLASH ═══ -->
+<div id="splash">
+  <div class="splash-inner">
+    <svg class="splash-leaf" viewBox="0 0 56 56" fill="none">
+      <path d="M28 4C28 4 10 14 10 30c0 10 8 18 18 18s18-8 18-18C46 14 28 4 28 4z" fill="#a8c5ab" opacity=".8"/>
+      <path d="M28 52V28M28 28C22 22 16 18 12 16" stroke="#4d7a52" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <p class="splash-text">Aline Santana</p>
+  </div>
+</div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="navbar">
+  <span class="nav-name">Aline Santana</span>
+  <a href="https://wa.me/5531991603278?text=Ol%C3%A1%2C+Aline%21+Vim+pelo+seu+site+e+gostaria+de+saber+mais+sobre+os+atendimentos."
+     target="_blank" rel="noopener noreferrer" class="nav-cta">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+    Agendar consulta
+  </a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero-section pt-20 pb-16">
+  <div class="hero-blob hero-blob-1"></div>
+  <div class="hero-blob hero-blob-2"></div>
+
+  <div class="relative z-10 mx-auto max-w-6xl px-6 w-full">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- Texto -->
+      <div class="space-y-7 order-2 lg:order-1">
+        <div data-animate>
+          <span class="tag-pill">
+            <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2c0 0-7 4-7 10a7 7 0 0014 0C17 6 10 2 10 2z"/></svg>
+            Nutricionista &amp; Bem-estar
+          </span>
+        </div>
+
+        <div data-animate data-animate-delay="1">
+          <h1 class="font-serif font-bold leading-tight text-[clamp(2.2rem,5.5vw,3.8rem)] text-forest">
+            Sua última<br/>
+            <em>nutri.</em>
+          </h1>
+        </div>
+
+        <div data-animate data-animate-delay="2">
+          <p class="text-[17px] text-gray-600 leading-relaxed max-w-lg">
+            Te ajudo a sair do ciclo das dietas e criar <strong class="text-forest font-semibold">autonomia alimentar</strong> de forma leve, consciente e duradoura.
+          </p>
+        </div>
+
+        <div data-animate data-animate-delay="3" class="flex flex-wrap gap-4">
+          <a href="https://wa.me/5531991603278?text=Ol%C3%A1%2C+Aline%21+Gostaria+de+agendar+uma+consulta."
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 bg-forest text-white font-semibold px-8 py-4 rounded-full text-[15px] hover:bg-[#3d6642] transition shadow-lg shadow-forest/20">
+            Quero começar agora
+          </a>
+          <a href="#sobre"
+             class="inline-flex items-center gap-2 border border-forest/30 text-forest font-semibold px-8 py-4 rounded-full text-[15px] hover:bg-forest/5 transition">
+            Conhecer a Aline
+          </a>
+        </div>
+
+        <!-- Mini badges -->
+        <div data-animate data-animate-delay="4" class="flex flex-wrap gap-3 pt-2">
+          <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm text-sm text-gray-600">
+            <svg class="h-4 w-4 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+            Nutrição Funcional
+          </div>
+          <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm text-sm text-gray-600">
+            <svg class="h-4 w-4 text-blush-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            Comportamento Alimentar
+          </div>
+          <div class="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm text-sm text-gray-600">
+            <svg class="h-4 w-4 text-sage" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            Nutrição Esportiva
+          </div>
+        </div>
+      </div>
+
+      <!-- Foto -->
+      <div class="order-1 lg:order-2 flex justify-center lg:justify-end" data-animate data-animate-delay="1">
+        <div class="relative max-w-sm w-full">
+          <div class="photo-frame">
+            <img src="foto-aline.jpeg" alt="Aline Santana, nutricionista" loading="eager" width="500" height="667"
+                 onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#a8c5ab,#4d7a52)'; this.parentElement.innerHTML += '<div style=\'display:flex;align-items:center;justify-content:center;height:100%;min-height:400px;\'><svg viewBox=\'0 0 56 56\' fill=\'none\' width=\'80\' style=\'opacity:.4\'><path d=\'M28 4C28 4 10 14 10 30c0 10 8 18 18 18s18-8 18-18C46 14 28 4 28 4z\' fill=\'white\'/></svg></div>'"/>
+          </div>
+          <!-- floating cards -->
+          <div class="float-card" style="bottom: 32px; left: -24px; min-width: 160px;">
+            <p class="text-xs text-gray-400 mb-1">Atendimento</p>
+            <p class="text-sm font-bold text-forest">Presencial &amp; Online</p>
+          </div>
+          <div class="float-card float-card-2" style="top: 40px; right: -20px;">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">🌿</span>
+              <div>
+                <p class="text-xs text-gray-400">Sua última</p>
+                <p class="text-sm font-bold text-forest">nutri</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOBRE ═══ -->
+<section id="sobre" class="about-section py-20 px-6">
+  <div class="mx-auto max-w-6xl">
+    <div class="text-center mb-16" data-animate>
+      <span class="section-tag">Sobre mim</span>
+      <h2 class="section-title">Olá, sou <em>Aline Santana</em></h2>
+    </div>
+
+    <div class="about-grid">
+      <!-- Texto principal -->
+      <div class="space-y-6" data-animate data-animate-delay="1">
+        <p class="text-[16px] text-gray-600 leading-relaxed">
+          Uma nutricionista <strong class="text-forest">apaixonada por transformar vidas</strong> através da alimentação.
+        </p>
+        <p class="text-[16px] text-gray-600 leading-relaxed">
+          Se você está cansada de dietas que não funcionam e busca um suporte genuíno para mudar sua relação com a comida, estou aqui para te apoiar.
+        </p>
+        <p class="text-[16px] text-gray-600 leading-relaxed">
+          Sou formada pela <strong class="text-forest">Fasar</strong>, com especialização em <strong class="text-forest">Nutrição Funcional e Comportamento Alimentar</strong>, além de uma pós-graduação em <strong class="text-forest">Nutrição Esportiva</strong> pela Unibh.
+        </p>
+
+        <!-- Destaque numérico -->
+        <div class="grid grid-cols-2 gap-4 pt-4">
+          <div class="bg-sage/10 border border-sage/20 rounded-2xl p-5 text-center">
+            <p class="font-serif font-bold text-4xl text-forest">+6</p>
+            <p class="text-sm text-gray-500 mt-1">depoimentos<br/>transformadores</p>
+          </div>
+          <div class="bg-blush/20 border border-blush/30 rounded-2xl p-5 text-center">
+            <p class="font-serif font-bold text-4xl text-clay">100%</p>
+            <p class="text-sm text-gray-500 mt-1">abordagem<br/>personalizada</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline de trajetória -->
+      <div data-animate data-animate-delay="2">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <p class="timeline-label">O começo de tudo…</p>
+            <h3 class="timeline-title">Primeiro contato</h3>
+            <p class="timeline-text">Conheci a nutrição em uma feira de profissões na UFOP. Me apaixonei no estande de nutrição e decidi pela graduação.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <p class="timeline-label">Graduação</p>
+            <h3 class="timeline-title">Formação sólida</h3>
+            <p class="timeline-text">Durante a faculdade, realizei cursos, pesquisas e desenvolvi minha própria prática dentro do universo da nutrição.</p>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <p class="timeline-label">Início da carreira</p>
+            <h3 class="timeline-title">Uma abordagem diferente</h3>
+            <p class="timeline-text">Percebi que prescrever uma dieta não bastava. Passei a incorporar dinâmicas focadas em mentalidade. O impacto ficou evidente quando as pacientes sorriam e comentavam que o processo era diferente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FILOSOFIA ═══ -->
+<section class="py-20 px-6" style="background: linear-gradient(160deg, #f0ede6 0%, #faf6f1 100%);">
+  <div class="mx-auto max-w-6xl">
+    <div class="text-center mb-14" data-animate>
+      <span class="section-tag">Minha filosofia</span>
+      <h2 class="section-title">O que me <em>move</em></h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="phil-card" data-animate data-animate-delay="1">
+        <div class="phil-icon">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <p class="section-tag mb-2">Missão</p>
+        <h3 class="phil-title">Transformar vidas</h3>
+        <p class="phil-text">Auxiliar meus pacientes a transformarem suas vidas através da nutrição, promovendo saúde real e duradoura.</p>
+      </div>
+
+      <div class="phil-card" data-animate data-animate-delay="2">
+        <div class="phil-icon">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+        </div>
+        <p class="section-tag mb-2">Visão</p>
+        <h3 class="phil-title">Instrumento de transformação</h3>
+        <p class="phil-text">Ser um instrumento para que as pessoas saiam da zona de conforto e alcancem sua melhor versão.</p>
+      </div>
+
+      <div class="phil-card" data-animate data-animate-delay="3">
+        <div class="phil-icon">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <p class="section-tag mb-2">Objetivo</p>
+        <h3 class="phil-title">Mudança profunda</h3>
+        <p class="phil-text">Promover uma mudança sustentável de mentalidade, capaz de impactar todas as áreas da sua vida.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVIÇOS ═══ -->
+<section class="services-section py-20 px-6">
+  <div class="mx-auto max-w-6xl relative z-10">
+    <div class="text-center mb-14" data-animate>
+      <span class="inline-block text-[11px] font-bold tracking-[.14em] uppercase text-sage-light bg-white/10 px-3 py-1 rounded-full mb-3">O que ofereço</span>
+      <h2 class="font-serif font-bold text-[clamp(1.8rem,4vw,2.8rem)] text-white leading-tight">
+        Serviços que tenho<br/><em class="text-[#a8c5ab] italic">o prazer de oferecer</em>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="service-card" data-animate data-animate-delay="1">
+        <span class="service-num">01</span>
+        <div class="service-icon">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+        </div>
+        <h3 class="service-title">Teste genético</h3>
+        <p class="service-text">Identificação de predisposições genéticas que influenciam seu metabolismo e escolhas alimentares, permitindo recomendações nutricionais personalizadas.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card" data-animate data-animate-delay="2">
+        <span class="service-num">02</span>
+        <div class="service-icon">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+        </div>
+        <h3 class="service-title">Programa nutricional</h3>
+        <p class="service-text">Elaboração de um plano alimentar individualizado, focado em suas metas de saúde e estilo de vida, promovendo uma alimentação equilibrada e sustentável.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card" data-animate data-animate-delay="3">
+        <span class="service-num">03</span>
+        <div class="service-icon">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3 class="service-title">Consultoria de exames</h3>
+        <p class="service-text">Avaliação e interpretação detalhada de exames laboratoriais para ajustar seu plano alimentar com base nas suas necessidades nutricionais e saúde atual.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA CENTRAL ═══ -->
+<section class="cta-section py-20 px-6 text-center">
+  <div class="relative z-10 mx-auto max-w-3xl" data-animate>
+    <p class="font-serif font-bold text-[clamp(1.7rem,4vw,2.8rem)] text-white leading-tight mb-4">
+      A sua melhor versão<br/><em>começa aqui!</em>
+    </p>
+    <p class="text-white/80 text-[16px] mb-8 max-w-xl mx-auto leading-relaxed">
+      Vamos iniciar essa transformação juntas, de forma leve e duradoura.<br/>
+      <strong class="text-white">Consulta presencial e on-line.</strong>
+    </p>
+    <a href="https://wa.me/5531991603278?text=Ol%C3%A1%2C+Aline%21+Quero+iniciar+minha+transforma%C3%A7%C3%A3o+com+voc%C3%AA."
+       target="_blank" rel="noopener noreferrer"
+       class="inline-flex items-center gap-3 bg-white text-forest font-bold px-10 py-4 rounded-full text-[16px] hover:bg-cream transition shadow-xl">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-[#25d366]" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+      Agendar minha consulta
+    </a>
+  </div>
+</section>
+
+<!-- ═══ DEPOIMENTOS ═══ -->
+<section class="testimonials-section py-20 px-6">
+  <div class="mx-auto max-w-6xl">
+    <div class="text-center mb-14" data-animate>
+      <span class="section-tag">Depoimentos</span>
+      <h2 class="section-title">O que dizem<br/><em>meus pacientes</em></h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Depoimento 1 -->
+      <div class="testi-card" data-animate data-animate-delay="1">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Antes de iniciar o acompanhamento com a Aline, eu me sentia constantemente cansado e com baixa disposição. Agora minha energia aumentou consideravelmente e minha saúde melhorou muito. Não só perdi peso, mas também me sinto mais equilibrado e saudável.</p>
+        <p class="testi-author">Pablo, 30+ 🌿</p>
+      </div>
+
+      <!-- Depoimento 2 -->
+      <div class="testi-card" data-animate data-animate-delay="2">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">O que mais me surpreendeu foi o quanto ela realmente escuta e entende as nossas necessidades. Seu acompanhamento é super personalizado — ela cria um plano que se adapta perfeitamente ao meu estilo de vida. Sinto que cada sessão me deixa mais motivada.</p>
+        <p class="testi-author">Meirelaine, 40+ 🌸</p>
+      </div>
+
+      <!-- Depoimento 3 -->
+      <div class="testi-card" data-animate data-animate-delay="3">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Além do conhecimento técnico, a Aline tem uma habilidade incrível de motivar e apoiar emocionalmente. Nos momentos em que me sentia desanimada, ela estava lá, sempre disponível. Isso fez toda a diferença no meu processo de transformação.</p>
+        <p class="testi-author">Cláudia, 60+ 💚</p>
+      </div>
+
+      <!-- Depoimento 4 -->
+      <div class="testi-card" data-animate data-animate-delay="1">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Consegui voltar para a academia depois de mais de um ano afastada. Tudo o que a Aline me ensinou estou colocando em prática, aos poucos, com aquilo que tenho. Sou profundamente grata a Deus pela vida dela e por tudo que aprendi.</p>
+        <p class="testi-author">Zuleica, 30+ 🙏</p>
+      </div>
+
+      <!-- Depoimento 5 -->
+      <div class="testi-card" data-animate data-animate-delay="2">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Não consigo descrever o tamanho da minha alegria, chego a ficar com os olhos lacrimejando. Há algum tempo, eu não acreditava que conseguiria, e sozinha realmente não teria sido possível. Aline é parte fundamental da minha mudança.</p>
+        <p class="testi-author">Denise, 40+ ✨</p>
+      </div>
+
+      <!-- Depoimento 6 -->
+      <div class="testi-card" data-animate data-animate-delay="3">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Estou extremamente satisfeita com o acompanhamento da Aline Santana. Ela vai além das dietas tradicionais, oferecendo um suporte completo. Hoje enxergo a nutrição de forma mais leve e sustentável. Aline é dedicada, atenciosa e uma excelente profissional!</p>
+        <p class="testi-author">Daniela Ferrari, 40+ 🌿</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONTATO ═══ -->
+<section id="contato" class="contact-section py-20 px-6">
+  <div class="mx-auto max-w-3xl">
+    <div class="text-center mb-12" data-animate>
+      <span class="inline-block text-[11px] font-bold tracking-[.14em] uppercase text-sage-light bg-white/10 px-3 py-1 rounded-full mb-3 text-[#a8c5ab]">Onde me encontrar</span>
+      <h2 class="font-serif font-bold text-[clamp(1.8rem,4vw,2.8rem)] text-white leading-tight">
+        Vamos conversar?
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      <!-- WhatsApp -->
+      <a href="https://wa.me/5531991603278?text=Ol%C3%A1%2C+Aline%21+Vim+pelo+seu+site+e+gostaria+de+saber+mais."
+         target="_blank" rel="noopener noreferrer" class="contact-item" data-animate data-animate-delay="1">
+        <div class="contact-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+        </div>
+        <div>
+          <p class="contact-label">WhatsApp / Telefone</p>
+          <p class="contact-value">(31) 991603278</p>
+        </div>
+        <svg class="h-4 w-4 ml-auto text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/alinesantana.nutri"
+         target="_blank" rel="noopener noreferrer" class="contact-item" data-animate data-animate-delay="2">
+        <div class="contact-icon">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </div>
+        <div>
+          <p class="contact-label">Instagram</p>
+          <p class="contact-value">@alinesantana.nutri</p>
+        </div>
+        <svg class="h-4 w-4 ml-auto text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+
+      <!-- Email -->
+      <a href="mailto:suaultimanutrialine@gmail.com" class="contact-item" data-animate data-animate-delay="3">
+        <div class="contact-icon">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        </div>
+        <div>
+          <p class="contact-label">E-mail</p>
+          <p class="contact-value">suaultimanutrialine@gmail.com</p>
+        </div>
+        <svg class="h-4 w-4 ml-auto text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Footer promo -->
+    <div class="footer-promo">
+      Quer uma página como esta para o seu negócio?<br/>
+      <a href="https://todaarte.com.br/" target="_blank" rel="noopener noreferrer">
+        <img src="logo-todaarte.png" alt="Toda Arte" loading="lazy" width="120" height="36"/>
+        <span>Conheça a Toda Arte</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WhatsApp floating ═══ -->
+<a id="wa-float" href="https://wa.me/5531991603278?text=Ol%C3%A1%2C+Aline%21+Vim+pelo+seu+site+e+gostaria+de+saber+mais."
+   target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+</a>
+
+<script>
+  // Splash
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('splash').classList.add('hide'), 1200);
+  });
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Scroll animate
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+</script>
+
+<script src="https://linkbio.api.br/tracker.js" data-slug="alinesantana" defer></script>
+</body>
+</html>
