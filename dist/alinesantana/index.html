@@ -39,6 +39,14 @@
   </script>
 
   <style>
+    @font-face {
+      font-family: 'Andrea Bellarosa';
+      src: url("Andrea Bellarosa.ttf") format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: #faf6f1; color: #2a2a2a; overflow-x: hidden; }
 
@@ -67,42 +75,36 @@
     [data-animate-delay="4"] { transition-delay: .4s; }
     [data-animate-delay="5"] { transition-delay: .5s; }
 
-    /* ── Navbar ── */
+    /* ── Navbar (largura alinhada ao hero: max-w-6xl + px-6) ── */
     #navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 16px 24px;
-      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0;
       background: rgba(250,246,241,0); backdrop-filter: blur(0px);
       transition: background .3s, backdrop-filter .3s, padding .3s, box-shadow .3s;
     }
     #navbar.scrolled {
       background: rgba(250,246,241,.92); backdrop-filter: blur(16px);
-      padding: 10px 24px; box-shadow: 0 1px 20px rgba(0,0,0,.06);
+      padding: 10px 0; box-shadow: 0 1px 20px rgba(0,0,0,.06);
     }
-    /* Wordmark (sem logo) */
-    .nav-brand {
-      display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit;
+    .nav-inner {
+      max-width: 72rem; /* = max-w-6xl */
+      margin-left: auto; margin-right: auto;
+      padding-left: 1.5rem; padding-right: 1.5rem; /* = px-6 */
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     }
-    .nav-brand-monogram {
-      width: 42px; height: 42px; flex-shrink: 0;
-      border-radius: 14px;
-      background: linear-gradient(145deg, #5a8f60 0%, #3d6642 50%, #2d4a30 100%);
-      color: #fff; font-family: 'Playfair Display', serif; font-weight: 700;
-      font-size: 14px; letter-spacing: -0.02em;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 14px rgba(45,74,48,.28);
-      border: 1px solid rgba(255,255,255,.2);
+    /* Nome no header — Andrea Bellarosa (arquivo local) */
+    .nav-title {
+      font-family: 'Andrea Bellarosa', 'Segoe Script', cursive;
+      font-size: clamp(2rem, 4.5vw, 2.85rem);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: #2d4a30;
+      text-decoration: none;
+      line-height: 1.05;
+      padding-top: 0.15rem;
     }
-    .nav-brand-text { display: flex; flex-direction: column; gap: 1px; line-height: 1.15; }
-    .nav-brand-line1 {
-      font-family: 'Playfair Display', serif; font-size: 17px; color: #2d4a30;
-      font-weight: 600; letter-spacing: -0.02em;
-    }
-    .nav-brand-line1 em { font-style: italic; font-weight: 500; color: #4d7a52; }
-    .nav-brand-line2 {
-      font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
-      color: #6b8f6f;
-    }
+    .nav-title:hover { color: #4d7a52; }
     .nav-cta {
       display: inline-flex; align-items: center; gap: 6px;
       background: #4d7a52; color: #fff; font-size: 13px; font-weight: 600;
@@ -351,18 +353,14 @@
 
 <!-- ═══ NAVBAR ═══ -->
 <nav id="navbar">
-  <a href="#hero" class="nav-brand">
-    <span class="nav-brand-monogram" aria-hidden="true">AS</span>
-    <span class="nav-brand-text">
-      <span class="nav-brand-line1">Aline <em>Santana</em></span>
-      <span class="nav-brand-line2">Nutrição &amp; bem-estar</span>
-    </span>
-  </a>
-  <a href="https://wa.me/5531991603278?text=Ol%C3%A1%2C+Aline%21+Vim+pelo+seu+site+e+gostaria+de+saber+mais+sobre+os+atendimentos."
-     target="_blank" rel="noopener noreferrer" class="nav-cta">
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
-    Agendar consulta
-  </a>
+  <div class="nav-inner">
+    <a href="#hero" class="nav-title">Aline Santana</a>
+    <a href="https://wa.me/5531991603278?text=Ol%C3%A1%2C+Aline%21+Vim+pelo+seu+site+e+gostaria+de+saber+mais+sobre+os+atendimentos."
+       target="_blank" rel="noopener noreferrer" class="nav-cta shrink-0">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+      Agendar consulta
+    </a>
+  </div>
 </nav>
 
 <!-- ═══ HERO ═══ -->
