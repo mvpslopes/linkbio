@@ -59,10 +59,46 @@
     }
     #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
     .splash-inner { text-align: center; }
+    .splash-logo-wrap {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .splash-ring {
+      position: absolute;
+      inset: -14px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(77,122,82,.12);
+      border-top-color: rgba(45,74,48,.38);
+      animation: splashSpin 4.2s linear infinite;
+      filter: drop-shadow(0 10px 24px rgba(45,74,48,.10));
+      pointer-events: none;
+    }
+    .splash-ring::after {
+      content: '';
+      position: absolute;
+      inset: 9px;
+      border-radius: 9999px;
+      border: 1.5px solid rgba(168,197,171,.14);
+      border-left-color: rgba(45,74,48,.12);
+      animation: splashSpinReverse 6s linear infinite;
+    }
     .splash-leaf {
       width: 56px; height: 56px; margin: 0 auto 16px;
       animation: leafSpin 1.2s ease-in-out infinite alternate;
     }
+    .splash-logo-img {
+      width: clamp(150px, 26vw, 230px);
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 24px rgba(45,74,48,.18));
+      margin-bottom: 0;
+      animation: splashLogoPulse 2.4s ease-in-out infinite;
+    }
+    @keyframes splashSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes splashSpinReverse { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+    @keyframes splashLogoPulse { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-3px) scale(1.02); } }
     @keyframes leafSpin { from { transform: rotate(-10deg) scale(.95); } to { transform: rotate(10deg) scale(1.05); } }
     .splash-text { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: #4d7a52; }
 
@@ -102,9 +138,20 @@
       color: #2d4a30;
       text-decoration: none;
       line-height: 1.05;
-      padding-top: 0.15rem;
+      padding-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
     }
     .nav-title:hover { color: #4d7a52; }
+
+    .nav-title-logo {
+      width: clamp(72px, 9.5vw, 128px);
+      height: clamp(72px, 9.5vw, 128px);
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(0 10px 24px rgba(45,74,48,.12));
+    }
     .nav-cta {
       display: inline-flex; align-items: center; gap: 6px;
       background: #4d7a52; color: #fff; font-size: 13px; font-weight: 600;
@@ -343,18 +390,31 @@
 <!-- ═══ SPLASH ═══ -->
 <div id="splash">
   <div class="splash-inner">
-    <svg class="splash-leaf" viewBox="0 0 56 56" fill="none">
-      <path d="M28 4C28 4 10 14 10 30c0 10 8 18 18 18s18-8 18-18C46 14 28 4 28 4z" fill="#a8c5ab" opacity=".8"/>
-      <path d="M28 52V28M28 28C22 22 16 18 12 16" stroke="#4d7a52" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-    <p class="splash-text">Aline Santana</p>
+    <div class="splash-logo-wrap" aria-hidden="true">
+      <span class="splash-ring"></span>
+      <img
+        class="splash-logo-img"
+      src="logo-aline-1.png"
+        alt="Aline Santana"
+        loading="eager"
+        onerror="this.style.display='none';"
+      />
+    </div>
   </div>
 </div>
 
 <!-- ═══ NAVBAR ═══ -->
 <nav id="navbar">
   <div class="nav-inner">
-    <a href="#hero" class="nav-title">Aline Santana</a>
+    <a href="#hero" class="nav-title">
+      <img
+        class="nav-title-logo"
+        src="logo-aline-1.png"
+        alt="Logo Aline Santana"
+        loading="eager"
+        onerror="this.style.display='none';"
+      />
+    </a>
     <a href="https://wa.me/5531991603278?text=Ol%C3%A1%2C+Aline%21+Vim+pelo+seu+site+e+gostaria+de+saber+mais+sobre+os+atendimentos."
        target="_blank" rel="noopener noreferrer" class="nav-cta shrink-0">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
