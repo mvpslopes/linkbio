@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Oriel Silvano | Aulas particulares de teclado</title>
+  <meta name="description" content="Oriel Silvano: professor de teclado com mais de 20 anos de experiência. Aulas particulares com didática excelente, para qualquer pessoa aprender. Atendimento presencial e on-line." />
+
+  <link rel="canonical" href="https://orielsilvano.linkbio.api.br/" />
+  <link rel="icon" type="image/png" href="logo/logo-oriel-silvano-2.png" />
+  <link rel="apple-touch-icon" href="logo/logo-oriel-silvano-2.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: '#070707',
+            ink2: '#0c0c0c',
+            fog: '#cfcfcf',
+            smoke: '#9a9a9a',
+            line: 'rgba(255,255,255,.14)',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'Segoe UI', 'Arial', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          boxShadow: {
+            glow: '0 0 0 1px rgba(255,255,255,.08), 0 24px 80px rgba(0,0,0,.7)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root { color-scheme: dark; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 800px at 10% 10%, rgba(255,255,255,.10), transparent 55%),
+                  radial-gradient(900px 600px at 85% 30%, rgba(255,255,255,.08), transparent 60%),
+                  linear-gradient(180deg, #050505 0%, #090909 40%, #050505 100%);
+      color: #fff;
+      font-family: Inter, system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── Splash ── */
+    #splash {
+      position: fixed; inset: 0; z-index: 100;
+      background: radial-gradient(1000px 650px at 50% 35%, rgba(255,255,255,.10), transparent 65%),
+                  linear-gradient(180deg, #050505 0%, #0a0a0a 100%);
+      display: grid; place-items: center;
+      transition: opacity .45s ease, visibility .45s ease;
+    }
+    #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    .splash-inner { width: min(520px, 92vw); text-align: center; }
+    .splash-logo {
+      width: 92px; height: 92px; border-radius: 26px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 30px 90px rgba(0,0,0,.65);
+      display: inline-flex; align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .splash-logo::before {
+      content: '';
+      position: absolute; inset: -60%;
+      background: conic-gradient(from 180deg, rgba(255,255,255,.0), rgba(255,255,255,.20), rgba(255,255,255,.0));
+      animation: splashSpin 2.8s linear infinite;
+      opacity: .55;
+    }
+    @keyframes splashSpin { to { transform: rotate(360deg); } }
+    .splash-logo img { width: 64px; height: 64px; position: relative; z-index: 1; }
+
+    .splash-title {
+      margin-top: 14px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      letter-spacing: .02em;
+      font-size: 22px;
+      color: rgba(255,255,255,.92);
+    }
+    .splash-sub { margin-top: 6px; font-size: 12px; color: rgba(255,255,255,.55); letter-spacing: .08em; text-transform: uppercase; }
+
+    /* Teclado animado no splash */
+    .splash-keys {
+      width: min(460px, 92vw);
+      margin: 18px auto 0;
+      padding: 14px 14px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 24px 90px rgba(0,0,0,.55);
+    }
+    .keys-grid {
+      display: grid;
+      grid-template-columns: repeat(14, 1fr);
+      gap: 6px;
+      align-items: end;
+    }
+    .key {
+      height: 26px;
+      border-radius: 8px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(0);
+      animation: keyGlow 2.4s ease-in-out infinite;
+      animation-delay: calc(var(--d) * 0.08s);
+    }
+    .key::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.22), transparent 60%);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    @keyframes keyGlow {
+      0%, 100% { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.10); box-shadow: none; }
+      45% { background: rgba(255,255,255,.11); border-color: rgba(255,255,255,.18); box-shadow: 0 0 0 1px rgba(255,255,255,.08), 0 14px 40px rgba(255,255,255,.08); }
+      55% { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.10); box-shadow: none; }
+    }
+
+    /* ── Navbar ── */
+    #navbar {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(0,0,0,.12);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner { max-width: 1100px; margin: 0 auto; padding: 12px 18px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; }
+    .brand img { width: 34px; height: 34px; border-radius: 12px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.10); }
+    .brand strong { font-weight: 800; letter-spacing: .02em; }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 14px; border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,.08));
+      border: 1px solid rgba(255,255,255,.18);
+      color: #fff; text-decoration: none; font-weight: 700;
+      transition: transform .18s ease, filter .18s ease;
+    }
+    .nav-cta:hover { transform: translateY(-1px); filter: brightness(1.08); }
+
+    /* ── WhatsApp float ── */
+    #wa-float {
+      position: fixed; bottom: 22px; right: 22px; z-index: 60;
+      width: 58px; height: 58px; border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,.26), rgba(255,255,255,.10));
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 10px 42px rgba(0,0,0,.55);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; text-decoration: none;
+      transition: transform .18s ease, filter .18s ease;
+    }
+    #wa-float:hover { transform: scale(1.07); filter: brightness(1.08); }
+
+    /* ── Footer (LinkBio) ── */
+    .footer-promo {
+      width: 100%; text-align: center; margin-top: 28px; padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      font-size: 12px; color: rgba(255,255,255,.50); line-height: 1.6;
+    }
+    .footer-promo a { display: inline-flex; align-items: center; gap: 8px; color: rgba(255,255,255,.82); font-weight: 700; text-decoration: none; margin-top: 8px; }
+    .footer-promo a:hover { color: #fff; }
+    .footer-promo img { height: 26px; width: auto; object-fit: contain; filter: grayscale(1) contrast(1.1); opacity: .9; }
+  </style>
+</head>
+
+<body>
+  <!-- Splash -->
+  <div id="splash" aria-hidden="true">
+    <div class="splash-inner">
+      <div class="splash-logo">
+        <img src="logo/logo-oriel-silvano-2.png" alt="" loading="eager" />
+      </div>
+      <div class="splash-title">Oriel Silvano</div>
+      <div class="splash-sub">Aulas particulares de teclado</div>
+
+      <div class="splash-keys" aria-hidden="true">
+        <div class="keys-grid">
+          <div class="key" style="--d:1"></div><div class="key" style="--d:2"></div><div class="key" style="--d:3"></div><div class="key" style="--d:4"></div><div class="key" style="--d:5"></div><div class="key" style="--d:6"></div><div class="key" style="--d:7"></div>
+          <div class="key" style="--d:8"></div><div class="key" style="--d:9"></div><div class="key" style="--d:10"></div><div class="key" style="--d:11"></div><div class="key" style="--d:12"></div><div class="key" style="--d:13"></div><div class="key" style="--d:14"></div>
+          <div class="key" style="--d:15"></div><div class="key" style="--d:16"></div><div class="key" style="--d:17"></div><div class="key" style="--d:18"></div><div class="key" style="--d:19"></div><div class="key" style="--d:20"></div><div class="key" style="--d:21"></div>
+          <div class="key" style="--d:22"></div><div class="key" style="--d:23"></div><div class="key" style="--d:24"></div><div class="key" style="--d:25"></div><div class="key" style="--d:26"></div><div class="key" style="--d:27"></div><div class="key" style="--d:28"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a class="brand" href="#hero" aria-label="Ir para o início">
+        <img src="logo/logo-oriel-silvano-2.png" alt="Ícone Oriel Silvano" loading="eager" />
+        <div class="leading-tight">
+          <strong>Oriel Silvano</strong><br/>
+          <span class="text-[11px] text-white/60 tracking-wide">Professor de teclado</span>
+        </div>
+      </a>
+      <a class="nav-cta" href="https://wa.me/5513981780247?text=Ol%C3%A1%2C+Oriel%21+Quero+saber+mais+sobre+as+aulas+de+teclado."
+         target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero" class="relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute -top-40 -left-40 h-[420px] w-[420px] rounded-full bg-white/10 blur-3xl"></div>
+      <div class="absolute top-20 -right-40 h-[520px] w-[520px] rounded-full bg-white/10 blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10 mx-auto max-w-6xl px-6 pt-16 pb-14">
+      <div class="grid lg:grid-cols-2 gap-10 items-center">
+        <div class="space-y-7">
+          <div class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs text-white/75">
+            <span class="inline-block h-2 w-2 rounded-full bg-white/60"></span>
+            20+ anos de experiência · Aulas particulares
+          </div>
+
+          <h1 class="font-serif font-bold text-[clamp(2.1rem,5vw,3.4rem)] leading-tight">
+            Teclado do zero,<br/>
+            <span class="text-white/70">com didática que te faz</span> <span class="text-white">tocar de verdade</span>.
+          </h1>
+
+          <p class="text-white/70 text-[16px] leading-relaxed max-w-xl">
+            Sou o <strong class="text-white">Oriel Silvano</strong>, professor de teclado. Tenho mais de <strong class="text-white">20 anos de experiência</strong> e uma didática que é meu diferencial:
+            <strong class="text-white">qualquer pessoa consegue aprender</strong> — com o método certo e constância.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a href="https://wa.me/5513981780247?text=Ol%C3%A1%2C+Oriel%21+Quero+agendar+uma+aula+particular+de+teclado."
+               target="_blank" rel="noopener noreferrer"
+               class="inline-flex items-center gap-3 rounded-full px-7 py-4 font-bold text-[15px] text-black bg-white hover:bg-white/90 transition shadow-glow">
+              Agendar uma aula
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#galeria"
+               class="inline-flex items-center gap-3 rounded-full px-7 py-4 font-bold text-[15px] text-white border border-white/20 bg-white/5 hover:bg-white/8 transition">
+              Ver fotos
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-3 gap-3 pt-3">
+            <div class="rounded-2xl border border-white/12 bg-white/5 p-4">
+              <p class="text-[11px] text-white/55 uppercase tracking-widest">Nível</p>
+              <p class="font-bold mt-1">Iniciante ao avançado</p>
+            </div>
+            <div class="rounded-2xl border border-white/12 bg-white/5 p-4">
+              <p class="text-[11px] text-white/55 uppercase tracking-widest">Foco</p>
+              <p class="font-bold mt-1">Tocar músicas reais</p>
+            </div>
+            <div class="rounded-2xl border border-white/12 bg-white/5 p-4">
+              <p class="text-[11px] text-white/55 uppercase tracking-widest">Aulas</p>
+              <p class="font-bold mt-1">Particulares</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="absolute -inset-2 rounded-[28px] bg-gradient-to-br from-white/10 to-white/0 blur-xl"></div>
+          <div class="relative rounded-[28px] overflow-hidden border border-white/15 bg-white/5 shadow-glow">
+            <img src="fotos/Img%20(1).jpeg" alt="Oriel Silvano tocando teclado" loading="eager" class="w-full h-[520px] object-cover object-center" />
+          </div>
+          <div class="mt-4 grid grid-cols-2 gap-3">
+            <div class="rounded-2xl border border-white/12 bg-white/5 p-4">
+              <p class="text-[11px] text-white/55 uppercase tracking-widest">Diferencial</p>
+              <p class="font-bold mt-1">Didática excelente</p>
+            </div>
+            <div class="rounded-2xl border border-white/12 bg-white/5 p-4">
+              <p class="text-[11px] text-white/55 uppercase tracking-widest">Para quem</p>
+              <p class="font-bold mt-1">Qualquer pessoa</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diferenciais -->
+  <section id="diferenciais" class="mx-auto max-w-6xl px-6 py-16">
+    <div class="flex items-end justify-between gap-6 flex-wrap">
+      <div>
+        <p class="text-white/55 tracking-widest uppercase text-[11px]">Por que funciona</p>
+        <h2 class="font-serif font-bold text-[clamp(1.6rem,3.2vw,2.3rem)] mt-2">Uma aula que te destrava</h2>
+      </div>
+      <a href="https://wa.me/5513981780247?text=Ol%C3%A1%2C+Oriel%21+Quero+entender+como+funciona+o+seu+m%C3%A9todo+de+aulas."
+         target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 rounded-full border border-white/18 bg-white/6 px-5 py-3 font-bold text-sm text-white hover:bg-white/10 transition">
+        Saber como funciona
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 mt-10">
+      <div class="rounded-3xl border border-white/12 bg-white/5 p-6">
+        <p class="font-bold text-lg">Didática simples</p>
+        <p class="text-white/65 mt-2 leading-relaxed">Você entende o “porquê” das coisas e aplica na prática. Sem enrolação, sem travar.</p>
+      </div>
+      <div class="rounded-3xl border border-white/12 bg-white/5 p-6">
+        <p class="font-bold text-lg">Plano do seu jeito</p>
+        <p class="text-white/65 mt-2 leading-relaxed">Aulas particulares pensadas no seu nível, no seu objetivo e no seu ritmo.</p>
+      </div>
+      <div class="rounded-3xl border border-white/12 bg-white/5 p-6">
+        <p class="font-bold text-lg">Resultado em música</p>
+        <p class="text-white/65 mt-2 leading-relaxed">O foco é tocar músicas reais, com evolução visível e motivação constante.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Galeria -->
+  <section id="galeria" class="mx-auto max-w-6xl px-6 pb-16">
+    <div class="rounded-[34px] border border-white/12 bg-white/4 p-7 md:p-10">
+      <div class="flex items-end justify-between gap-6 flex-wrap">
+        <div>
+          <p class="text-white/55 tracking-widest uppercase text-[11px]">Fotos</p>
+          <h2 class="font-serif font-bold text-[clamp(1.6rem,3.2vw,2.3rem)] mt-2">Um pouco do meu dia a dia</h2>
+        </div>
+        <p class="text-white/60 max-w-xl">Aulas particulares e momentos tocando teclado. O importante é você começar e seguir com constância.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10">
+        <img class="w-full h-56 object-cover rounded-2xl border border-white/10" src="fotos/Img%20(2).jpeg" alt="Foto Oriel 2" loading="lazy" />
+        <img class="w-full h-56 object-cover rounded-2xl border border-white/10" src="fotos/Img%20(3).jpeg" alt="Foto Oriel 3" loading="lazy" />
+        <img class="w-full h-56 object-cover rounded-2xl border border-white/10" src="fotos/Img%20(4).jpeg" alt="Foto Oriel 4" loading="lazy" />
+        <img class="w-full h-56 object-cover rounded-2xl border border-white/10" src="fotos/Img%20(5).jpeg" alt="Foto Oriel 5" loading="lazy" />
+        <img class="w-full h-56 object-cover rounded-2xl border border-white/10" src="fotos/Img%20(6).jpeg" alt="Foto Oriel 6" loading="lazy" />
+        <img class="w-full h-56 object-cover rounded-2xl border border-white/10" src="fotos/Img%20(7).jpeg" alt="Foto Oriel 7" loading="lazy" />
+        <img class="w-full h-56 object-cover rounded-2xl border border-white/10" src="fotos/Img%20(8).jpeg" alt="Foto Oriel 8" loading="lazy" />
+        <div class="w-full h-56 rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 to-white/0 flex items-center justify-center text-center p-6">
+          <div>
+            <p class="font-bold text-lg">Vamos começar?</p>
+            <p class="text-white/65 mt-1 text-sm">Me chama no WhatsApp e me diga seu objetivo.</p>
+            <a class="inline-flex items-center gap-2 mt-4 rounded-full bg-white text-black font-bold px-5 py-3 text-sm hover:bg-white/90 transition"
+               href="https://wa.me/5513981780247?text=Ol%C3%A1%2C+Oriel%21+Quero+come%C3%A7ar+do+zero+no+teclado."
+               target="_blank" rel="noopener noreferrer">
+              Falar com Oriel
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-promo">
+        Quer uma página como esta para o seu negócio?<br/>
+        <a href="https://linkbio.api.br" target="_blank" rel="noopener noreferrer">
+          <img src="logo-linkbio.png" alt="LinkBio" loading="lazy" width="120" height="36"/>
+          <span>Conheça o LinkBio</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WhatsApp floating -->
+  <a id="wa-float"
+     href="https://wa.me/5513981780247?text=Ol%C3%A1%2C+Oriel%21+Quero+saber+mais+sobre+as+aulas+de+teclado."
+     target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+  </a>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('splash')?.classList.add('hide'), 1300);
+    });
+  </script>
+</body>
+</html>
