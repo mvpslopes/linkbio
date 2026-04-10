@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sheila Domingues | Nutricionista · Emagrecimento e saúde · Itapecerica da Serra</title>
+  <meta name="description" content="Nutricionista com 8 anos de formação e mais de 3 mil pessoas acompanhadas. Nutrição clínica funcional, saúde da mulher e estética. Atendimento online e presencial em Itapecerica da Serra (SP)." />
+  <meta name="keywords" content="Sheila Domingues, nutricionista, emagrecimento, nutrição funcional, Itapecerica da Serra, consulta nutricional, bioimpedância" />
+  <link rel="canonical" href="https://nutrisheiladomingues.linkbio.api.br/" />
+
+  <link rel="icon" type="image/png" href="logo/icone.png?v=1" />
+  <link rel="apple-touch-icon" href="logo/icone.png?v=1" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nutrisheiladomingues.linkbio.api.br/" />
+  <meta property="og:title" content="Sheila Domingues | Nutricionista · Emagrecimento com estratégia e acolhimento" />
+  <meta property="og:description" content="Mais de 3 mil histórias de mudança de estilo de vida. Plano de acompanhamento, grupos online, consulta avulsa e bioimpedância. Online e presencial." />
+  <meta property="og:locale" content="pt_BR" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Outfit', 'ui-sans-serif', 'system-ui'],
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            display: ['Playfair Display', 'Georgia', 'serif'],
+          },
+          colors: {
+            brand: {
+              teal: '#0d5c5c',
+              'teal-dark': '#084242',
+              'teal-soft': '#e6f2f1',
+              rose: '#c9958c',
+              'rose-soft': '#f5e8e5',
+              slate: '#2c3a44',
+              mint: '#b8d4ce',
+              paper: '#f7faf9',
+            },
+          },
+          boxShadow: {
+            'soft': '0 22px 60px rgba(13, 92, 92, 0.12)',
+            'card': '0 4px 24px rgba(44, 58, 68, 0.06)',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: #f7faf9; color: #2c3a44; overflow-x: hidden; }
+
+    #splash {
+      position: fixed; inset: 0; z-index: 9999;
+      background:
+        radial-gradient(ellipse 90% 55% at 50% 0%, rgba(255, 255, 255, 0.07) 0%, transparent 55%),
+        linear-gradient(165deg, #0b5959 0%, #053838 42%, #021212 100%);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity .55s ease, visibility .55s ease;
+    }
+    #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    .splash-inner { text-align: center; padding: 1.5rem; }
+    .splash-logo {
+      width: clamp(168px, 38vw, 280px);
+      height: auto;
+      object-fit: contain;
+      /* Versão branca da arte (PNG com transparência) */
+      filter: brightness(0) invert(1) drop-shadow(0 10px 28px rgba(0, 0, 0, 0.35));
+      animation: splashPulse 2.2s ease-in-out infinite;
+    }
+    .splash-bar {
+      width: min(200px, 50vw);
+      height: 3px;
+      margin: 1.75rem auto 0;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+    }
+    .splash-bar-fill {
+      display: block;
+      height: 100%;
+      width: 35%;
+      border-radius: 9999px;
+      background: linear-gradient(90deg, #7ec4c4, #d4a89e);
+      animation: splashLoad 1.1s ease-in-out infinite;
+    }
+    @keyframes splashPulse {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-4px) scale(1.02); }
+    }
+    @keyframes splashLoad {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(320%); }
+    }
+
+    [data-animate] { opacity: 0; transform: translateY(26px); transition: opacity .65s ease, transform .65s ease; }
+    [data-animate].in-view { opacity: 1; transform: none; }
+    [data-animate-delay="1"] { transition-delay: .08s; }
+    [data-animate-delay="2"] { transition-delay: .16s; }
+    [data-animate-delay="3"] { transition-delay: .24s; }
+    [data-animate-delay="4"] { transition-delay: .32s; }
+
+    #site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      transition: background .3s, box-shadow .3s;
+    }
+    #site-header.is-scrolled {
+      background: rgba(247, 250, 249, 0.92);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(13, 92, 92, 0.06);
+    }
+
+    /* Logo larga (375×142): caixa quadrada + object-contain criava faixas vazias; altura + w-auto elimina isso */
+    #site-header .header-logo {
+      display: block;
+      width: auto;
+      height: auto;
+      max-height: 3rem;
+      max-width: min(100%, 11rem);
+      object-fit: contain;
+      object-position: left center;
+    }
+    @media (min-width: 640px) {
+      #site-header .header-logo { max-height: 3.5rem; max-width: min(100%, 13rem); }
+    }
+    @media (min-width: 768px) {
+      #site-header .header-logo { max-height: 4rem; max-width: min(100%, 15rem); }
+    }
+
+    /* Título hero: serif alto contraste — verde da marca */
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      background-image: linear-gradient(100deg, #084242 0%, #0d5c5c 45%, #127a7a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+      .hero-title { color: #0d5c5c; background-image: none; }
+    }
+    .hero-title em {
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    /* Fundo do hero: mobile em telas médias/pequenas, desktop em wide */
+    .hero-bg {
+      background-image: url('hero/hero-desktop.png');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+    @media (max-width: 1023px) {
+      .hero-bg {
+        background-image: url('hero/hero-mobile.png');
+        /* Recorta um pouco mais alto: rosto sobe na moldura e libera área em baixo para o texto */
+        background-position: center 22%;
+      }
+    }
+
+    /* Mobile/tablet: bloco de texto encostado em baixo + véu para leitura sobre a foto */
+    @media (max-width: 1023px) {
+      #inicio.hero-section {
+        display: flex;
+        flex-direction: column;
+        min-height: min(78svh, 44rem);
+      }
+      #inicio.hero-section .hero-content-wrap {
+        margin-top: auto;
+        width: 100%;
+        padding-top: 1rem;
+        padding-bottom: 0.25rem;
+      }
+      #inicio.hero-section .hero-title-mobile {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      #inicio.hero-section .hero-mobile-scrim {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(
+          to bottom,
+          rgba(247, 250, 249, 0) 0%,
+          rgba(247, 250, 249, 0) 28%,
+          rgba(247, 250, 249, 0.55) 58%,
+          rgba(247, 250, 249, 0.94) 100%
+        );
+      }
+    }
+
+    /* Arco: mesma cor que bg-brand-paper (#f7faf9); overlap + sombra tapam o “fio” escuro na junção */
+    .medical-curve {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      z-index: 2;
+      height: calc(clamp(48px, 8vw, 88px) + 3px);
+      background: #f7faf9;
+      border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+      transform: translateZ(0) scaleX(1.15);
+      transform-origin: center bottom;
+      pointer-events: none;
+      /* cobre 1px de folga subpixel para a secção seguinte (mesmo hex) */
+      box-shadow: 0 3px 0 0 #f7faf9;
+    }
+
+    .service-card {
+      background: #fff;
+      border-radius: 1.25rem;
+      padding: 1.5rem 1.35rem;
+      border: 1px solid rgba(13, 92, 92, 0.08);
+      box-shadow: 0 4px 24px rgba(44, 58, 68, 0.05);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s;
+    }
+    .service-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(13, 92, 92, 0.1);
+      border-color: rgba(201, 149, 140, 0.35);
+    }
+
+    .wa-float {
+      position: fixed; bottom: 1.25rem; right: 1.25rem; z-index: 90;
+      width: 3.5rem; height: 3.5rem;
+      border-radius: 9999px;
+      background: linear-gradient(145deg, #0d5c5c, #0a4a4a);
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 10px 30px rgba(13, 92, 92, 0.35);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .wa-float:hover { transform: scale(1.06); box-shadow: 0 14px 36px rgba(13, 92, 92, 0.42); }
+
+    #site-footer .footer-logo {
+      display: block;
+      width: auto;
+      height: auto;
+      max-height: 2.5rem;
+      max-width: min(100%, 11rem);
+      object-fit: contain;
+      object-position: left center;
+    }
+    @media (min-width: 640px) {
+      #site-footer .footer-logo { max-height: 3rem; max-width: min(100%, 13rem); }
+    }
+  </style>
+</head>
+<body>
+  <div id="splash" aria-hidden="true">
+    <div class="splash-inner">
+      <img src="logo/logo-sheila.png" alt="" class="splash-logo" width="280" height="120" loading="eager" decoding="async" />
+      <div class="splash-bar" aria-hidden="true"><span class="splash-bar-fill"></span></div>
+    </div>
+  </div>
+
+  <header id="site-header" class="px-4 sm:px-6 py-3 sm:py-4">
+    <div class="mx-auto max-w-6xl flex items-center justify-between gap-4">
+      <a href="#inicio" class="flex min-w-0 items-center shrink leading-none">
+        <img src="logo/icone.png" alt="Sheila Domingues, nutricionista" class="header-logo shrink-0" width="375" height="142" loading="eager" decoding="async" />
+      </a>
+      <nav class="hidden lg:flex items-center gap-8 text-[14px] font-medium text-brand-slate/85" aria-label="Seções">
+        <a href="#sobre" class="hover:text-brand-teal transition-colors">Sobre</a>
+        <a href="#diferenciais" class="hover:text-brand-teal transition-colors">Diferenciais</a>
+        <a href="#servicos" class="hover:text-brand-teal transition-colors">Serviços</a>
+        <a href="#contato" class="hover:text-brand-teal transition-colors">Contato</a>
+      </nav>
+      <a href="https://wa.me/5511942684210?text=Ol%C3%A1%2C%20Sheila!%20Vim%20pelo%20site.%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20acompanhamento%20nutricional."
+         target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2 self-center rounded-full bg-brand-teal text-white text-sm font-semibold px-4 py-2 sm:px-5 shadow-soft hover:bg-brand-teal-dark transition-colors shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-[18px] w-[18px] shrink-0" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+        <span class="hidden sm:inline">Agendar</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero: imagem em hero/hero-desktop.png (adicione hero/hero-mobile.png para recorte mobile) -->
+    <section id="inicio" class="hero-section relative pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-10 lg:pb-16 overflow-hidden">
+      <div class="hero-bg absolute inset-0 z-0" aria-hidden="true"></div>
+      <div class="hero-mobile-scrim lg:hidden" aria-hidden="true"></div>
+      <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 hero-content-wrap">
+        <div data-animate>
+          <p class="hidden lg:block text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-brand-teal mb-3">Nutrição clínica · Emagrecimento · Saúde</p>
+          <h1 class="hero-title hero-title-mobile text-[clamp(2.2rem,7.2vw,3.2rem)] lg:text-[clamp(2rem,5.2vw,3.35rem)] mb-0 lg:mb-7 max-w-[22rem] sm:max-w-xl lg:max-w-xl lg:text-left">
+            Emagrecimento<br />
+            <span class="mt-1 block tracking-[-0.02em]">com <em>método</em></span>
+          </h1>
+          <div class="hidden lg:block">
+            <p class="text-base text-brand-slate/80 leading-relaxed max-w-xl mb-8 mt-7">
+              O foco é você: <strong class="font-semibold text-brand-slate">emagrecimento</strong> e <strong class="font-semibold text-brand-slate">saúde</strong> com tempo de conversa, plano alinhado à sua rotina e acolhimento de verdade em cada etapa. Atendimento online ou presencial.
+            </p>
+            <div class="flex flex-wrap gap-3 mb-8">
+              <span class="inline-flex items-center rounded-full bg-white/90 border border-brand-teal/10 px-4 py-2 text-sm text-brand-slate shadow-sm">8 anos de formação</span>
+              <span class="inline-flex items-center rounded-full bg-white/90 border border-brand-teal/10 px-4 py-2 text-sm text-brand-slate shadow-sm">+ de 3 mil pessoas acompanhadas</span>
+              <span class="inline-flex items-center rounded-full bg-white/90 border border-brand-rose/25 px-4 py-2 text-sm text-brand-slate shadow-sm">Online e presencial</span>
+            </div>
+            <div class="flex flex-wrap gap-4">
+              <a href="https://wa.me/5511942684210?text=Ol%C3%A1%2C%20Sheila!%20Vim%20pelo%20site.%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20acompanhamento%20nutricional."
+                 target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-teal text-white font-semibold px-7 py-3.5 shadow-soft hover:bg-brand-teal-dark transition-colors">
+                Falar no WhatsApp
+              </a>
+              <a href="#servicos" class="inline-flex items-center justify-center rounded-full border-2 border-brand-teal bg-white/90 text-brand-teal font-semibold px-7 py-3.5 shadow-sm hover:bg-brand-teal hover:text-white transition-colors">
+                Ver serviços
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="medical-curve" aria-hidden="true"></div>
+    </section>
+
+    <!-- Mobile/tablet: restante do conteúdo que no desktop fica no hero -->
+    <section class="relative z-[5] -mt-[2px] lg:mt-0 lg:hidden px-4 sm:px-6 pt-10 pb-12 bg-brand-paper" aria-label="Apresentação">
+      <div class="mx-auto max-w-6xl space-y-8" data-animate>
+        <p class="text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-brand-teal">Nutrição clínica · Emagrecimento · Saúde</p>
+        <p class="text-base text-brand-slate/80 leading-relaxed">
+          O foco é você: <strong class="font-semibold text-brand-slate">emagrecimento</strong> e <strong class="font-semibold text-brand-slate">saúde</strong> com tempo de conversa, plano alinhado à sua rotina e acolhimento de verdade em cada etapa. Atendimento online ou presencial.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <span class="inline-flex items-center rounded-full bg-white border border-brand-teal/10 px-4 py-2 text-sm text-brand-slate shadow-sm">8 anos de formação</span>
+          <span class="inline-flex items-center rounded-full bg-white border border-brand-teal/10 px-4 py-2 text-sm text-brand-slate shadow-sm">+ de 3 mil pessoas acompanhadas</span>
+          <span class="inline-flex items-center rounded-full bg-white border border-brand-rose/25 px-4 py-2 text-sm text-brand-slate shadow-sm">Online e presencial</span>
+        </div>
+        <div class="flex flex-wrap gap-4">
+          <a href="https://wa.me/5511942684210?text=Ol%C3%A1%2C%20Sheila!%20Vim%20pelo%20site.%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20acompanhamento%20nutricional."
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-2 rounded-full bg-brand-teal text-white font-semibold px-7 py-3.5 shadow-soft hover:bg-brand-teal-dark transition-colors">
+            Falar no WhatsApp
+          </a>
+          <a href="#servicos" class="inline-flex items-center justify-center rounded-full border-2 border-brand-teal/30 text-brand-teal font-semibold px-7 py-3.5 hover:bg-brand-teal-soft transition-colors">
+            Ver serviços
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Faixa de confiança (inspirada em landing de saúde) -->
+    <section class="relative z-10 -mt-6 px-4 sm:px-6 pb-14">
+      <div class="mx-auto max-w-5xl grid sm:grid-cols-3 gap-4">
+        <div class="rounded-2xl bg-white border border-brand-teal/8 px-6 py-5 text-center shadow-card" data-animate>
+          <p class="font-serif text-3xl sm:text-4xl font-semibold text-brand-teal">8+</p>
+          <p class="text-sm text-brand-slate/75 mt-1">Anos de atuação como nutricionista</p>
+        </div>
+        <div class="rounded-2xl bg-white border border-brand-teal/8 px-6 py-5 text-center shadow-card" data-animate data-animate-delay="1">
+          <p class="font-serif text-3xl sm:text-4xl font-semibold text-brand-teal">3k+</p>
+          <p class="text-sm text-brand-slate/75 mt-1">Pessoas acompanhadas na jornada de emagrecimento</p>
+        </div>
+        <div class="rounded-2xl bg-white border border-brand-teal/8 px-6 py-5 text-center shadow-card" data-animate data-animate-delay="2">
+          <p class="font-serif text-2xl sm:text-3xl font-semibold text-brand-teal leading-tight">2 pós</p>
+          <p class="text-sm text-brand-slate/75 mt-1">Clínica funcional · Mulher, saúde e estética</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="py-16 sm:py-20 px-4 sm:px-6 bg-brand-paper">
+      <div class="mx-auto max-w-6xl grid lg:grid-cols-12 gap-12 items-start">
+        <div class="lg:col-span-5" data-animate>
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-rose mb-2">Sobre a profissional</p>
+          <h2 class="font-display italic text-[clamp(1.85rem,3.5vw,2.65rem)] font-semibold text-brand-slate leading-tight mb-5">
+            Ciência, escuta e caminho claro para o seu objetivo
+          </h2>
+          <p class="text-brand-slate/80 leading-relaxed mb-4">
+            Sou nutricionista há <strong class="text-brand-slate">8 anos</strong>. Nessa trajetória, somando todos os atendimentos, já foram <strong class="text-brand-slate">mais de 3 mil pessoas</strong> que emagreceram e mudaram o estilo de vida com acompanhamento próximo e estratégias realistas.
+          </p>
+          <p class="text-brand-slate/80 leading-relaxed">
+            Tenho pós-graduação em <strong class="text-brand-slate">nutrição clínica funcional</strong> e em <strong class="text-brand-slate">nutrição clínica na saúde da mulher e estética</strong>, para integrar protocolo, rotina e suas particularidades com segurança.
+          </p>
+        </div>
+        <div class="lg:col-span-7 space-y-4" data-animate data-animate-delay="1">
+          <div class="rounded-2xl bg-white border border-brand-teal/8 p-6 sm:p-8 shadow-card">
+            <h3 class="font-semibold text-brand-teal text-lg mb-3">O que eu faço</h3>
+            <p class="text-brand-slate/80 leading-relaxed">
+              Realizo <strong class="text-brand-slate">atendimento nutricional</strong> com foco em <strong class="text-brand-slate">emagrecimento</strong> e <strong class="text-brand-slate">promoção da saúde</strong>, priorizando educação alimentar, consistência e bem-estar, sem promessas vazias.
+            </p>
+          </div>
+          <div class="rounded-2xl bg-brand-teal-soft/80 border border-brand-teal/10 p-6 sm:p-8">
+            <h3 class="font-semibold text-brand-slate text-lg mb-3">Como você será atendida (o)</h3>
+            <ul class="space-y-2 text-brand-slate/85">
+              <li class="flex gap-3"><span class="text-brand-rose font-bold">·</span> <span><strong class="text-brand-slate">Online</strong>: flexibilidade para quem prefere consulta à distância.</span></li>
+              <li class="flex gap-3"><span class="text-brand-rose font-bold">·</span> <span><strong class="text-brand-slate">Presencial</strong>: em Itapecerica da Serra (SP), com acolhimento presencial.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="diferenciais" class="py-16 sm:py-20 px-4 sm:px-6 bg-white">
+      <div class="mx-auto max-w-6xl">
+        <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-14" data-animate>
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-teal mb-2">Por que escolher</p>
+          <h2 class="font-display italic text-[clamp(1.85rem,3.5vw,2.65rem)] font-semibold text-brand-slate">Diferenciais que fazem diferença no processo</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="service-card" data-animate data-animate-delay="1">
+            <div class="w-11 h-11 rounded-xl bg-brand-teal-soft flex items-center justify-center text-brand-teal mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <h3 class="font-semibold text-brand-slate text-lg mb-2">Foco em resultado sustentável</h3>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Estratégias eficazes para ir do ponto A ao B, respeitando seu momento de vida, sem atalhos que comprometem a saúde.</p>
+          </article>
+          <article class="service-card" data-animate data-animate-delay="2">
+            <div class="w-11 h-11 rounded-xl bg-brand-rose-soft flex items-center justify-center text-brand-rose mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
+            </div>
+            <h3 class="font-semibold text-brand-slate text-lg mb-2">Acolhimento e escuta ativa</h3>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Cada plano nasce da sua história: tempo de conversa, compreensão de rotina e construção de autoconhecimento alimentar.</p>
+          </article>
+          <article class="service-card" data-animate data-animate-delay="3">
+            <div class="w-11 h-11 rounded-xl bg-brand-teal-soft flex items-center justify-center text-brand-teal mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <h3 class="font-semibold text-brand-slate text-lg mb-2">Formação de ponta</h3>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Base em nutrição clínica funcional e linha de cuidado voltada à mulher, saúde e estética, sempre alinhada à evidência.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos" class="py-16 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-brand-paper to-white">
+      <div class="mx-auto max-w-6xl">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10 sm:mb-12" data-animate>
+          <div>
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-teal mb-2">Serviços</p>
+            <h2 class="font-display italic text-[clamp(1.85rem,3.5vw,2.65rem)] font-semibold text-brand-slate">Como posso te acompanhar</h2>
+          </div>
+          <a href="https://wa.me/5511942684210?text=Ol%C3%A1%2C%20Sheila!%20Vim%20pelo%20site.%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20acompanhamento%20nutricional."
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 text-sm font-semibold text-brand-teal hover:text-brand-teal-dark">
+            Solicitar informações
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <article class="service-card sm:col-span-2 lg:col-span-1 ring-2 ring-brand-teal/15 bg-gradient-to-br from-white to-brand-teal-soft/50" data-animate>
+            <span class="text-[10px] font-bold tracking-widest uppercase text-brand-rose">Principal</span>
+            <h3 class="font-semibold text-brand-slate text-xl mt-2 mb-2">Plano de acompanhamento</h3>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Acompanhamento contínuo com revisões, ajustes e suporte na construção de novos hábitos: o núcleo do trabalho com resultados consistentes.</p>
+          </article>
+          <article class="service-card" data-animate data-animate-delay="1">
+            <h3 class="font-semibold text-brand-slate text-lg mb-2">Grupos online de emagrecimento</h3>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Jornada em grupo com orientações, comunidade e motivação para manter o foco no dia a dia.</p>
+          </article>
+          <article class="service-card" data-animate data-animate-delay="2">
+            <h3 class="font-semibold text-brand-slate text-lg mb-2">Plano alimentar por formulário</h3>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Protocolo estruturado a partir do seu perfil, ideal para quem busca direcionamento com autonomia inicial.</p>
+          </article>
+          <article class="service-card" data-animate data-animate-delay="3">
+            <h3 class="font-semibold text-brand-slate text-lg mb-2">Consulta avulsa</h3>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Um ponto de partida ou revisão pontual, com orientações claras para a sua próxima etapa.</p>
+          </article>
+          <article class="service-card sm:col-span-2" data-animate data-animate-delay="4">
+            <h3 class="font-semibold text-brand-slate text-lg mb-2">Avaliação por bioimpedância</h3>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Medição de composição corporal com <strong class="text-brand-slate">interpretação dos resultados</strong>, para entender massa magra, gordura, hidratação e evolução com mais precisão.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA estilo capa médica -->
+    <section class="py-16 sm:py-20 px-4 sm:px-6 relative overflow-hidden bg-brand-teal text-white">
+      <div class="absolute inset-0 opacity-[0.12] bg-[radial-gradient(circle_at_20%_50%,#c9958c,transparent_45%),radial-gradient(circle_at_80%_30%,#fff,transparent_40%)]" aria-hidden="true"></div>
+      <div class="relative mx-auto max-w-3xl text-center" data-animate>
+        <h2 class="font-display italic text-[clamp(1.9rem,4vw,2.75rem)] font-semibold leading-tight mb-4">
+          Pronta (o) para cuidar do seu corpo com método e acolhimento?
+        </h2>
+        <p class="text-white/85 text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto">
+          Envie uma mensagem no WhatsApp e conte seu objetivo. Retorno com próximos passos para consulta online ou presencial.
+        </p>
+        <a href="https://wa.me/5511942684210?text=Ol%C3%A1%2C%20Sheila!%20Vim%20pelo%20site.%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20acompanhamento%20nutricional."
+           target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center justify-center gap-2 rounded-full bg-white text-brand-teal font-semibold px-8 py-4 shadow-lg hover:bg-brand-rose-soft transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+          Agendar pelo WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <section id="contato" class="py-16 sm:py-20 px-4 sm:px-6 bg-brand-paper">
+      <div class="mx-auto max-w-6xl grid lg:grid-cols-2 gap-12">
+        <div data-animate>
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-teal mb-2">Contato</p>
+          <h2 class="font-display italic text-[clamp(1.85rem,3.5vw,2.5rem)] font-semibold text-brand-slate mb-6">Onde me encontrar</h2>
+          <div class="space-y-4">
+            <a href="https://wa.me/5511942684210?text=Ol%C3%A1%2C%20Sheila!%20Vim%20pelo%20site.%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20acompanhamento%20nutricional." target="_blank" rel="noopener noreferrer" class="flex items-start gap-4 rounded-2xl bg-white border border-brand-teal/8 p-4 shadow-card hover:border-brand-teal/25 transition-colors">
+              <span class="w-10 h-10 rounded-xl bg-brand-teal-soft flex items-center justify-center text-brand-teal shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+              </span>
+              <div>
+                <p class="font-semibold text-brand-slate">WhatsApp</p>
+                <p class="text-sm text-brand-slate/70">(11) 94268-4210 · clique para conversar</p>
+              </div>
+            </a>
+            <div class="flex items-start gap-4 rounded-2xl bg-white border border-brand-teal/8 p-4 shadow-card">
+              <span class="w-10 h-10 rounded-xl bg-brand-rose-soft flex items-center justify-center text-brand-rose shrink-0">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </span>
+              <div>
+                <p class="font-semibold text-brand-slate">Endereço (presencial)</p>
+                <p class="text-sm text-brand-slate/70">Rua Treze de Maio, 198, Itapecerica da Serra, São Paulo</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Rua+Treze+de+Maio+198+Itapecerica+da+Serra+SP" target="_blank" rel="noopener noreferrer" class="text-sm font-semibold text-brand-teal mt-2 inline-block hover:underline">Abrir no Google Maps</a>
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-3 mt-8">
+            <a href="https://www.instagram.com/nutrisheiladomingues" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border border-brand-teal/15 bg-white px-4 py-2 text-sm font-medium text-brand-slate hover:border-brand-teal/35 transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              Instagram
+            </a>
+            <a href="https://www.facebook.com/sheiladominguesnutri/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border border-brand-teal/15 bg-white px-4 py-2 text-sm font-medium text-brand-slate hover:border-brand-teal/35 transition-colors">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+              Facebook
+            </a>
+          </div>
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-brand-teal/10 shadow-soft min-h-[280px] bg-white" data-animate data-animate-delay="1">
+          <iframe title="Mapa: Rua Treze de Maio, 198, Itapecerica da Serra" class="w-full h-full min-h-[320px] lg:min-h-[400px]" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Rua+Treze+de+Maio+198+Itapecerica+da+Serra+SP&output=embed"></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="py-10 px-4 sm:px-6 border-t border-brand-teal/10 bg-white">
+    <div class="mx-auto max-w-6xl flex flex-col sm:flex-row items-center justify-between gap-6 text-sm text-brand-slate/65">
+      <div class="flex flex-col items-center sm:items-start gap-2 text-center sm:text-left">
+        <img src="logo/icone.png" alt="Sheila Domingues" width="375" height="142" class="footer-logo opacity-95 shrink-0" loading="lazy" decoding="async" />
+        <span>© <span id="y"></span> Sheila Domingues · Nutricionista</span>
+      </div>
+      <p class="text-center sm:text-right">Landing desenvolvida com <a href="https://linkbio.api.br" class="text-brand-teal font-medium hover:underline" target="_blank" rel="noopener noreferrer">LinkBio</a></p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/5511942684210?text=Ol%C3%A1%2C%20Sheila!%20Vim%20pelo%20site.%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20acompanhamento%20nutricional." class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Conversar no WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+  </a>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    window.addEventListener('load', function () {
+      setTimeout(function () { document.getElementById('splash').classList.add('hide'); }, 1000);
+    });
+
+    var header = document.getElementById('site-header');
+    function onScroll() {
+      header.classList.toggle('is-scrolled', window.scrollY > 24);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('[data-animate]').forEach(function (el) { io.observe(el); });
+  </script>
+  <script src="https://linkbio.api.br/tracker.js" data-slug="nutrisheiladomingues" defer></script>
+</body>
+</html>

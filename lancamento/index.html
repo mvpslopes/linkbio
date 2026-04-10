@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcus Lopes Dev | Crie sua presença digital em minutos</title>
+  <meta name="description" content="Desenvolvedor especializado em criar landing pages, páginas de venda e sites profissionais. Entrega rápida, design moderno e preço justo.">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            primary: '#14b8a6',
+            secondary: '#0f172a',
+            accent: '#c59847',
+          },
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 50%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 50%, #8b5cf6 100%);
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(20, 184, 166, 0.2);
+    }
+    
+    .glow {
+      box-shadow: 0 0 60px rgba(20, 184, 166, 0.3);
+    }
+    
+    .section-padding {
+      padding: 80px 24px;
+    }
+    
+    @media (min-width: 768px) {
+      .section-padding {
+        padding: 100px 48px;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .section-padding {
+        padding: 120px 64px;
+      }
+    }
+    
+    .grid-pattern {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(20, 184, 166, 0.3); }
+      50% { box-shadow: 0 0 40px rgba(20, 184, 166, 0.6); }
+    }
+    
+    .pulse-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 glass">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="text-xl font-bold gradient-text">Marcus Lopes</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#servicos" class="text-sm text-gray-300 hover:text-white transition">Serviços</a>
+        <a href="#diferenciais" class="text-sm text-gray-300 hover:text-white transition">Diferenciais</a>
+        <a href="#planos" class="text-sm text-gray-300 hover:text-white transition">Planos</a>
+        <a href="#portfolio" class="text-sm text-gray-300 hover:text-white transition">Portfólio</a>
+        <a href="#faq" class="text-sm text-gray-300 hover:text-white transition">FAQ</a>
+      </div>
+      <a href="https://wa.me/5531982304737" target="_blank" class="gradient-bg px-6 py-2.5 rounded-full text-sm font-semibold text-white hover:opacity-90 transition">
+        Fale Comigo
+      </a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center relative overflow-hidden pt-20">
+    <div class="absolute inset-0 grid-pattern opacity-30"></div>
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="space-y-8">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm">
+          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+          Disponível para novos projetos
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+          Crie sua <span class="gradient-text">presença digital</span> em minutos
+        </h1>
+        
+        <p class="text-lg text-gray-400 max-w-lg">
+          Landing pages, páginas de venda e sites profissionais que convertem visitantes em clientes. Design moderno, entrega rápida e preço justo.
+        </p>
+        
+        <div class="flex flex-wrap gap-4">
+          <a href="https://wa.me/5531982304737?text=Olá!%20Quero%20criar%20minha%20página%20com%20você." target="_blank" class="gradient-bg px-8 py-4 rounded-full font-semibold text-white hover:opacity-90 transition pulse-glow">
+            Quero Minha Página
+          </a>
+          <a href="#portfolio" class="px-8 py-4 rounded-full font-semibold border border-white/20 hover:bg-white/5 transition">
+            Ver Portfólio
+          </a>
+        </div>
+        
+        <div class="flex items-center gap-6 pt-4">
+          <div class="flex -space-x-3">
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-black flex items-center justify-center text-xs font-bold">P</div>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-purple-600 border-2 border-black flex items-center justify-center text-xs font-bold">M</div>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-amber-400 to-orange-600 border-2 border-black flex items-center justify-center text-xs font-bold">E</div>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 border-2 border-black flex items-center justify-center text-xs font-bold">J</div>
+          </div>
+          <p class="text-sm text-gray-400">+100 páginas criadas</p>
+        </div>
+      </div>
+      
+      <div class="relative">
+        <div class="absolute inset-0 gradient-bg rounded-3xl blur-2xl opacity-20"></div>
+        <div class="relative glass rounded-3xl p-2 animate-float">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop" alt="Dashboard Preview" class="rounded-2xl w-full">
+          
+          <div class="absolute -bottom-6 -left-6 glass rounded-2xl p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+                <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400">Taxa de conversão</p>
+                <p class="font-bold">+40% em média</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="absolute -top-6 -right-6 glass rounded-2xl p-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-teal-500/20 flex items-center justify-center">
+                <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+              </div>
+              <div>
+                <p class="text-xs text-gray-400">Entrega</p>
+                <p class="font-bold">7 dias úteis</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="servicos" class="section-padding bg-neutral-900/50">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">O que eu <span class="gradient-text">crio</span> para você</h2>
+        <p class="text-gray-400">Soluções completas para sua presença digital, do primeiro contato até a conversão.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="glass rounded-3xl p-8 card-hover">
+          <div class="w-14 h-14 rounded-2xl gradient-bg flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Landing Pages</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Páginas de captura otimizadas para conversão. Design persuasivo, formulários inteligentes e integração com WhatsApp e e-mail.</p>
+          <ul class="mt-6 space-y-2 text-sm text-gray-400">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Design responsivo</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Copy persuasiva</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Analytics integrado</li>
+          </ul>
+        </div>
+        
+        <div class="glass rounded-3xl p-8 card-hover">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Páginas de Venda</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Páginas de vendas completas com seções estratégicas: proposta de valor, benefícios, prova social, garantia e call-to-action.</p>
+          <ul class="mt-6 space-y-2 text-sm text-gray-400">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Seções estratégicas</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Depoimentos</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Botões de compra</li>
+          </ul>
+        </div>
+        
+        <div class="glass rounded-3xl p-8 card-hover">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3">Páginas Profissionais</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Sites institucionais e portfólios profissionais. Apresente sua marca, serviços e conquistas de forma elegante e moderna.</p>
+          <ul class="mt-6 space-y-2 text-sm text-gray-400">
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Identidade visual</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Múltiplas seções</li>
+            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Integração social</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diferenciais Section -->
+  <section id="diferenciais" class="section-padding">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">Por que escolher o <span class="gradient-text">Marcus Lopes Dev</span>?</h2>
+          <p class="text-gray-400 mb-8">Mais de 100 projetos entregues com qualidade, no prazo e dentro do orçamento. Cada página é desenvolvida com atenção aos detalhes e foco em resultados.</p>
+          
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="glass rounded-2xl p-5">
+              <div class="w-10 h-10 rounded-xl gradient-bg flex items-center justify-center mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+              </div>
+              <h4 class="font-semibold mb-1">100% Responsivo</h4>
+              <p class="text-sm text-gray-400">Perfeito em todos os dispositivos: desktop, tablet e mobile.</p>
+            </div>
+            
+            <div class="glass rounded-2xl p-5">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+              </div>
+              <h4 class="font-semibold mb-1">Totalmente Ajustável</h4>
+              <p class="text-sm text-gray-400">Alterações e ajustes até você ficar 100% satisfeito.</p>
+            </div>
+            
+            <div class="glass rounded-2xl p-5">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
+              <h4 class="font-semibold mb-1">Econômico</h4>
+              <p class="text-sm text-gray-400">Preço justo sem custos ocultos. Pagamento facilitado.</p>
+            </div>
+            
+            <div class="glass rounded-2xl p-5">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center mb-3">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zM12 9v4m0 0v4m0-4h4m-4 0H9"></path></svg>
+              </div>
+              <h4 class="font-semibold mb-1">Suporte Pós-Entrega</h4>
+              <p class="text-sm text-gray-400">7 dias de suporte gratuito após a entrega do projeto.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <div class="absolute inset-0 gradient-bg rounded-3xl blur-3xl opacity-20"></div>
+          <div class="relative glass rounded-3xl p-6">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop" alt="Developer at work" class="rounded-2xl w-full">
+            
+            <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 glass rounded-2xl px-6 py-3 flex items-center gap-4">
+              <div class="flex items-center gap-2">
+                <span class="text-2xl font-bold gradient-text">100+</span>
+                <span class="text-sm text-gray-400">Projetos<br>Entregues</span>
+              </div>
+              <div class="w-px h-10 bg-white/10"></div>
+              <div class="flex items-center gap-2">
+                <span class="text-2xl font-bold gradient-text">7</span>
+                <span class="text-sm text-gray-400">Dias<br>Média</span>
+              </div>
+              <div class="w-px h-10 bg-white/10"></div>
+              <div class="flex items-center gap-2">
+                <span class="text-2xl font-bold gradient-text">98%</span>
+                <span class="text-sm text-gray-400">Clientes<br>Satisfeitos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tecnologias -->
+  <section class="section-padding bg-neutral-900/50">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Tecnologias <span class="gradient-text">modernas</span></h2>
+        <p class="text-gray-400">Utilizo as melhores tecnologias do mercado para garantir performance, segurança e escalabilidade.</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div class="glass rounded-2xl p-6 text-center card-hover">
+          <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-blue-500/20 flex items-center justify-center">
+            <svg class="w-6 h-6 text-blue-400" viewBox="0 0 24 24" fill="currentColor"><path d="M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.68-1.94.64-.15 1.315-.283 2.015-.394zm7.26.004c.695.108 1.365.246 2.005.394-.18.63-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.154zm3.43.44c.536.216 1.055.465 1.543.74-.23.333-.48.673-.74 1.014-.41.06-.82.128-1.23.203.25-.646.35-1.318.428-1.957zm-13.54.002c.066.59.156 1.147.272 1.725-.41-.075-.82-.143-1.23-.202-.26-.34-.51-.68-.74-1.013.49-.276 1.01-.526 1.545-.742zm11.06 2.495c.44.06.89.13 1.345.22-.1.28-.2.56-.31.84-.18.47-.38.93-.59 1.38-.55-.37-1.12-.72-1.71-1.05.38-.48.73-.97 1.06-1.46zm-11.28.004c.33.49.68.97 1.06 1.46-.59.33-1.16.68-1.71 1.05-.21-.45-.41-.91-.59-1.38-.11-.28-.21-.56-.31-.84.455-.09.905-.16 1.35-.22zm7.47 2.156c.49.21 1.03.4 1.56.58.01.12.01.25.01.37 0 .56-.08 1.11-.22 1.64-.38-.26-.77-.53-1.16-.82-.48-.36-.96-.75-1.4-1.16.04-.14.08-.27.11-.41zm-3.44.004c.03.14.07.27.11.41-.44.41-.92.8-1.4 1.16-.39.29-.78.56-1.16.82-.14-.53-.22-1.08-.22-1.64 0-.12 0-.25.01-.37.53-.18 1.07-.37 1.56-.58zM12 16.8c.52 0 1.03.04 1.53.12-.3.55-.61 1.09-.95 1.6-.34.5-.7.99-1.08 1.46-.38-.47-.74-.96-1.08-1.46-.34-.51-.65-1.05-.95-1.6.5-.08 1.01-.12 1.53-.12z"/></svg>
+          </div>
+          <span class="text-sm font-medium">React</span>
+        </div>
+        
+        <div class="glass rounded-2xl p-6 text-center card-hover">
+          <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-red-500/20 flex items-center justify-center">
+            <svg class="w-6 h-6 text-red-400" viewBox="0 0 24 24" fill="currentColor"><path d="M9.931 12.645h4.138c-.205-.565-.669-1.087-1.449-1.087-.982 0-1.459.657-1.689 1.087zm7.727-3.09l.024.052c.141.306.284.682.284 1.288 0 1.471-.767 2.356-1.863 2.943l-.033.013c-.904.393-1.838.534-2.738.534h-7.486l.244-1.164h7.228c.977 0 1.813-.173 2.496-.531.667-.35 1.087-.847 1.087-1.641 0-.712-.398-1.246-1.076-1.594-.686-.353-1.588-.502-2.664-.502h-4.854l.247-1.164h8.022c1.244 0 2.311.23 3.1.647.8.424 1.266 1.055 1.266 1.921 0 .879-.478 1.515-1.117 1.908-.224.141-.467.264-.721.371l-.027.01zm-9.23 5.76h4.777c.678 0 1.285-.128 1.793-.375.521-.254.867-.615 1.069-1.07.07-.166.115-.34.137-.52h1.803c-.03.46-.172.895-.425 1.295-.362.569-.919 1.012-1.625 1.313-.697.296-1.528.453-2.459.453H6.886l.542-2.096zm9.68-9.415H7.994l.246-1.164h10.163c1.374 0 2.513.287 3.318.838.82.561 1.23 1.341 1.23 2.273 0 .87-.355 1.596-.995 2.161-.27.236-.586.437-.945.602l-.024.01c-.93.424-2.072.628-3.368.628H8.914l.247-1.164h8.85c1.019 0 1.886-.161 2.539-.477.666-.322 1.047-.773 1.047-1.404 0-.665-.463-1.178-1.233-1.488-.772-.311-1.83-.48-3.083-.48h-7.08l.246-1.164h9.063c.29 0 .569.014.835.042l.027.003c.896.102 1.692.32 2.352.643.684.333 1.19.768 1.493 1.302.303.533.44 1.133.44 1.763 0 .886-.334 1.627-.973 2.187-.267.227-.578.422-.932.584l-.03.013c-1.002.47-2.255.698-3.681.698H9.624l.542-2.096h7.047c.573 0 1.097-.06 1.556-.177.472-.12.881-.305 1.215-.553.338-.25.59-.543.75-.876.16-.333.241-.69.241-1.067 0-.494-.148-.922-.445-1.279-.298-.357-.723-.637-1.271-.836-.548-.198-1.2-.302-1.947-.302h-6.15l.542-2.096z"/></svg>
+          </div>
+          <span class="text-sm font-medium">Angular</span>
+        </div>
+        
+        <div class="glass rounded-2xl p-6 text-center card-hover">
+          <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+            <svg class="w-6 h-6 text-emerald-400" viewBox="0 0 24 24" fill="currentColor"><path d="M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z"/></svg>
+          </div>
+          <span class="text-sm font-medium">Vue.js</span>
+        </div>
+        
+        <div class="glass rounded-2xl p-6 text-center card-hover">
+          <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-blue-600/20 flex items-center justify-center">
+            <svg class="w-6 h-6 text-blue-500" viewBox="0 0 24 24" fill="currentColor"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.42 1.268.67.375.252.695.537.959.857.263.32.466.681.609 1.086.143.404.214.863.214 1.377 0 .537-.078 1.027-.234 1.47-.156.444-.383.827-.682 1.15-.3.323-.666.58-1.101.771-.435.19-.933.286-1.496.286-.66 0-1.252-.064-1.777-.193a6.77 6.77 0 0 1-1.395-.499v-2.595c.39.232.802.418 1.238.557.436.14.88.21 1.333.21.573 0 1.01-.108 1.31-.323.3-.215.45-.527.45-.935 0-.167-.043-.315-.13-.443a1.2 1.2 0 0 0-.356-.356 2.02 2.02 0 0 0-.566-.288c-.223-.084-.478-.177-.766-.277a10.69 10.69 0 0 1-.954-.396 5.43 5.43 0 0 1-.853-.519 3.53 3.53 0 0 1-.679-.691 2.95 2.95 0 0 1-.452-.936 3.82 3.82 0 0 1-.172-1.138c0-.49.074-.941.223-1.35.148-.41.36-.766.635-1.07.276-.303.612-.544 1.01-.721.397-.177.848-.265 1.355-.265zM12.052 4.75h2.26l-4.355 14.5h-2.26l4.355-14.5zM5.816 4.75h6.012v2.15H8.213v3.2h3.204v2.15H8.213v4.8h-2.397V4.75z"/></svg>
+          </div>
+          <span class="text-sm font-medium">TypeScript</span>
+        </div>
+        
+        <div class="glass rounded-2xl p-6 text-center card-hover">
+          <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-green-600/20 flex items-center justify-center">
+            <svg class="w-6 h-6 text-green-500" viewBox="0 0 24 24" fill="currentColor"><path d="M12.002 0C5.375 0 0 5.373 0 12.002c0 5.265 3.402 9.72 8.126 11.332-.112-.914-.214-2.32.044-3.32.233-.833.15-2.65.15-2.65s-.383-.766-.383-1.9c0-1.78 1.032-3.11 2.317-3.11 1.093 0 1.622.82 1.622 1.806 0 1.1-.7 2.744-1.06 4.27-.302 1.276.64 2.316 1.896 2.316 2.276 0 3.8-2.916 3.8-6.35 0-2.625-1.78-4.6-5.002-4.6-3.65 0-5.935 2.718-5.935 5.654 0 1.035.302 1.765.773 2.33.216.257.25.36.17.656-.058.22-.19.755-.244.966-.08.305-.327.415-.6.302-1.676-.685-2.457-2.52-2.457-4.59 0-3.415 2.87-7.51 8.53-7.51 5.044 0 8.35 3.672 8.35 7.616 0 5.23-2.903 9.142-7.166 9.142-1.44 0-2.794-.794-3.256-1.71l-.886 3.38c-.32 1.228-1.185 2.764-1.762 3.7 1.324.41 2.727.632 4.17.632 6.626 0 12.002-5.375 12.002-12.002C24.002 5.373 18.627 0 12.002 0z"/></svg>
+          </div>
+          <span class="text-sm font-medium">Node.js</span>
+        </div>
+        
+        <div class="glass rounded-2xl p-6 text-center card-hover">
+          <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-cyan-500/20 flex items-center justify-center">
+            <svg class="w-6 h-6 text-cyan-400" viewBox="0 0 24 24" fill="currentColor"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,17.2,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C15.535,6.182,14.175,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,4.712,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.535,13.382,9.175,12,6.001,12z"/></svg>
+          </div>
+          <span class="text-sm font-medium">Tailwind CSS</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Planos Section -->
+  <section id="planos" class="section-padding">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Investimento <span class="gradient-text">acessível</span></h2>
+        <p class="text-gray-400">Escolha o plano ideal para seu projeto. Todos incluem suporte pós-entrega e ajustes.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <!-- Básico -->
+        <div class="glass rounded-3xl p-8 card-hover">
+          <div class="text-center mb-8">
+            <h3 class="text-xl font-bold mb-2">Básico</h3>
+            <p class="text-sm text-gray-400">Ideal para quem está começando</p>
+          </div>
+          
+          <div class="text-center mb-8">
+            <span class="text-4xl font-bold">R$297</span>
+            <span class="text-gray-400">/único</span>
+          </div>
+          
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Landing Page (1 página)
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Design responsivo
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Formulário de contato
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Integração WhatsApp
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Entrega em 7 dias
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              7 dias de suporte
+            </li>
+          </ul>
+          
+          <a href="https://wa.me/5531982304737?text=Olá!%20Quero%20o%20plano%20BÁSICO%20para%20minha%20página." target="_blank" class="block w-full py-3 rounded-full border border-white/20 text-center font-semibold hover:bg-white/5 transition">
+            Quero Este Plano
+          </a>
+        </div>
+        
+        <!-- Profissional - Popular -->
+        <div class="relative">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 gradient-bg px-4 py-1 rounded-full text-sm font-semibold">
+            Mais Popular
+          </div>
+          <div class="glass rounded-3xl p-8 card-hover border-2 border-teal-500/30">
+            <div class="text-center mb-8">
+              <h3 class="text-xl font-bold mb-2">Profissional</h3>
+              <p class="text-sm text-gray-400">Para quem quer resultado</p>
+            </div>
+            
+            <div class="text-center mb-8">
+              <span class="text-4xl font-bold gradient-text">R$497</span>
+              <span class="text-gray-400">/único</span>
+            </div>
+            
+            <ul class="space-y-4 mb-8">
+              <li class="flex items-center gap-3 text-sm">
+                <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Página de Venda (até 3 seções)
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Design premium com animações
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Copywriting persuasivo
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Integração PIX/Boleto
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                SEO otimizado
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Analytics configurado
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                Entrega em 10 dias
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                14 dias de suporte
+              </li>
+            </ul>
+            
+            <a href="https://wa.me/5531982304737?text=Olá!%20Quero%20o%20plano%20PROFISSIONAL%20para%20minha%20página." target="_blank" class="block w-full py-3 rounded-full gradient-bg text-center font-semibold text-white hover:opacity-90 transition pulse-glow">
+              Quero Este Plano
+            </a>
+          </div>
+        </div>
+        
+        <!-- Premium -->
+        <div class="glass rounded-3xl p-8 card-hover">
+          <div class="text-center mb-8">
+            <h3 class="text-xl font-bold mb-2">Premium</h3>
+            <p class="text-sm text-gray-400">A experiência completa</p>
+          </div>
+          
+          <div class="text-center mb-8">
+            <span class="text-4xl font-bold">R$997</span>
+            <span class="text-gray-400">/único</span>
+          </div>
+          
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Site Completo (até 5 páginas)
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Design exclusivo e único
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Sistema de blog integrado
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Painel administrativo
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Integração completa
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              E-mail profissional
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              Entrega em 15 dias
+            </li>
+            <li class="flex items-center gap-3 text-sm">
+              <svg class="w-5 h-5 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              30 dias de suporte
+            </li>
+          </ul>
+          
+          <a href="https://wa.me/5531982304737?text=Olá!%20Quero%20o%20plano%20PREMIUM%20para%20meu%20projeto." target="_blank" class="block w-full py-3 rounded-full border border-white/20 text-center font-semibold hover:bg-white/5 transition">
+            Quero Este Plano
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="section-padding bg-neutral-900/50">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Alguns dos <span class="gradient-text">projetos entregues</span></h2>
+        <p class="text-gray-400">Cada página é desenvolvida com foco em conversão e experiência do usuário.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <a href="https://paty.linkbio.api.br" target="_blank" class="group relative rounded-2xl overflow-hidden card-hover">
+          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=400&fit=crop" alt="Paty - Landing Page" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <span class="text-xs text-teal-400 font-semibold">Criadora de Conteúdo</span>
+            <h3 class="text-lg font-bold">Paty</h3>
+            <p class="text-sm text-gray-400">Landing Page para centralizar presença digital</p>
+          </div>
+        </a>
+        
+        <a href="https://marcosblea.linkbio.api.br" target="_blank" class="group relative rounded-2xl overflow-hidden card-hover">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop" alt="Marcos Blea - Página Profissional" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <span class="text-xs text-amber-400 font-semibold">Ministério & Eventos</span>
+            <h3 class="text-lg font-bold">Marcos Blea</h3>
+            <p class="text-sm text-gray-400">Página profissional com agenda e contato</p>
+          </div>
+        </a>
+        
+        <a href="https://emmanueladv.linkbio.api.br" target="_blank" class="group relative rounded-2xl overflow-hidden card-hover">
+          <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&h=400&fit=crop" alt="Emmanuel Valle - Site Profissional" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <span class="text-xs text-amber-400 font-semibold">Advocacia</span>
+            <h3 class="text-lg font-bold">Emmanuel Valle</h3>
+            <p class="text-sm text-gray-400">Site institucional premium</p>
+          </div>
+        </a>
+        
+        <a href="https://jessicapersonal.linkbio.api.br" target="_blank" class="group relative rounded-2xl overflow-hidden card-hover">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop" alt="Jessica Personal - Página de Venda" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <span class="text-xs text-rose-400 font-semibold">Personal Trainer</span>
+            <h3 class="text-lg font-bold">Jessica Personal</h3>
+            <p class="text-sm text-gray-400">Página de vendas para consultoria fitness</p>
+          </div>
+        </a>
+        
+        <a href="https://topmarchador.linkbio.api.br" target="_blank" class="group relative rounded-2xl overflow-hidden card-hover">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=400&fit=crop" alt="Top Marchador - Portal" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <span class="text-xs text-red-400 font-semibold">Cavalo Marchador</span>
+            <h3 class="text-lg font-bold">Top Marchador</h3>
+            <p class="text-sm text-gray-400">Portal de notícias e eventos</p>
+          </div>
+        </a>
+        
+        <a href="https://equusvita.linkbio.api.br" target="_blank" class="group relative rounded-2xl overflow-hidden card-hover">
+          <img src="https://images.unsplash.com/photo-1598974357801-cbca100e65d3?w=600&h=400&fit=crop" alt="EquusVita - Clínica Veterinária" class="w-full h-64 object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+            <span class="text-xs text-emerald-400 font-semibold">Saúde Equina</span>
+            <h3 class="text-lg font-bold">EquusVita</h3>
+            <p class="text-sm text-gray-400">Site institucional para clínica veterinária</p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="https://linkbio.api.br" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-white/20 font-semibold hover:bg-white/5 transition">
+          Ver Todos os Projetos
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="section-padding">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Perguntas <span class="gradient-text">frequentes</span></h2>
+        <p class="text-gray-400">Tire suas dúvidas sobre o processo de criação.</p>
+      </div>
+      
+      <div class="space-y-4">
+        <div class="glass rounded-2xl overflow-hidden">
+          <button class="w-full px-6 py-5 flex items-center justify-between text-left" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+            <span class="font-semibold">Quanto tempo leva para criar a página?</span>
+            <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="hidden px-6 pb-5 text-gray-400 text-sm">
+            Depende do plano escolhido: Básico (7 dias), Profissional (10 dias) e Premium (15 dias). Esse prazo começa a contar após a aprovação do layout e envio de todo o material necessário.
+          </div>
+        </div>
+        
+        <div class="glass rounded-2xl overflow-hidden">
+          <button class="w-full px-6 py-5 flex items-center justify-between text-left" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+            <span class="font-semibold">Preciso ter domínio e hospedagem?</span>
+            <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="hidden px-6 pb-5 text-gray-400 text-sm">
+            Não é obrigatório! Posso hospedar sua página gratuitamente em um subdomain (seunome.linkbio.api.br). Se quiser domínio próprio, posso orientar na compra e configuração.
+          </div>
+        </div>
+        
+        <div class="glass rounded-2xl overflow-hidden">
+          <button class="w-full px-6 py-5 flex items-center justify-between text-left" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+            <span class="font-semibold">Como funciona o pagamento?</span>
+            <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="hidden px-6 pb-5 text-gray-400 text-sm">
+            50% na aprovação do layout e 50% na entrega final. Aceito PIX, transferência bancária ou cartão (com pequena taxa de acordo). Parcelamento disponível para planos Profissional e Premium.
+          </div>
+        </div>
+        
+        <div class="glass rounded-2xl overflow-hidden">
+          <button class="w-full px-6 py-5 flex items-center justify-between text-left" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+            <span class="font-semibold">Posso pedir alterações depois de pronto?</span>
+            <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="hidden px-6 pb-5 text-gray-400 text-sm">
+            Sim! Durante o período de suporte incluído no seu plano, você pode solicitar ajustes sem custo adicional. Após esse período, alterações são cobradas separadamente de forma justa.
+          </div>
+        </div>
+        
+        <div class="glass rounded-2xl overflow-hidden">
+          <button class="w-full px-6 py-5 flex items-center justify-between text-left" onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+            <span class="font-semibold">A página fica responsiva para celular?</span>
+            <svg class="w-5 h-5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="hidden px-6 pb-5 text-gray-400 text-sm">
+            Sim, todas as páginas são 100% responsivas! Funcionam perfeitamente em desktop, tablet e smartphone. Testo em múltiplos dispositivos para garantir a melhor experiência.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-padding relative overflow-hidden">
+    <div class="absolute inset-0 gradient-bg opacity-10"></div>
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6">Pronto para criar sua <span class="gradient-text">presença digital</span>?</h2>
+      <p class="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
+        Vamos conversar sobre seu projeto. Respondo em poucas horas e já começamos a transformar sua ideia em uma página que converte.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="https://wa.me/5531982304737?text=Olá!%20Quero%20criar%20minha%20página%20com%20você.%20Meu%20projeto%20é:%20" target="_blank" class="gradient-bg px-8 py-4 rounded-full font-semibold text-white hover:opacity-90 transition pulse-glow inline-flex items-center gap-3">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Falar no WhatsApp
+        </a>
+        <a href="mailto:contato@marcuslopes.dev" class="px-8 py-4 rounded-full border border-white/20 font-semibold hover:bg-white/5 transition inline-flex items-center gap-3">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          Enviar E-mail
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 py-12">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-12">
+        <div class="md:col-span-2">
+          <a href="#" class="text-2xl font-bold gradient-text">Marcus Lopes</a>
+          <p class="mt-4 text-gray-400 text-sm max-w-sm">
+            Desenvolvedor especializado em criar landing pages e sites que convertem visitantes em clientes.
+          </p>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Links Rápidos</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#servicos" class="hover:text-white transition">Serviços</a></li>
+            <li><a href="#planos" class="hover:text-white transition">Planos</a></li>
+            <li><a href="#portfolio" class="hover:text-white transition">Portfólio</a></li>
+            <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="font-semibold mb-4">Contato</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li>
+              <a href="https://wa.me/5531982304737" target="_blank" class="hover:text-white transition inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                WhatsApp
+              </a>
+            </li>
+            <li>
+              <a href="mailto:contato@marcuslopes.dev" class="hover:text-white transition inline-flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                contato@marcuslopes.dev
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="text-sm text-gray-400">© 2024 Marcus Lopes Dev. Todos os direitos reservados.</p>
+        <p class="text-sm text-gray-400">Desenvolvido com 💚 em Minas Gerais</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Animate on scroll
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
