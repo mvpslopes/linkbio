@@ -216,6 +216,19 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
       </div>
       <?php endforeach; ?>
 
+      <?php if (($isRoot && $selected === 'cristianoladeira') || (!$isRoot && ($user['page_slug'] ?? '') === 'cristianoladeira')): ?>
+      <p class="px-3 pt-4 pb-1 text-[10px] font-semibold text-slate-600 uppercase tracking-widest">Formulários</p>
+      <a href="/admin/planeje_forms.php?page=cristianoladeira"
+        class="flex items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-medium text-slate-400 hover:text-white hover:bg-white/5 transition">
+        <span class="h-6 w-6 rounded-lg shrink-0 flex items-center justify-center bg-white/8">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+          </svg>
+        </span>
+        Planeje espaço (inscrições)
+      </a>
+      <?php endif; ?>
+
       <?php if ($isRoot): ?>
       <p class="px-3 pt-4 pb-1 text-[10px] font-semibold text-slate-600 uppercase tracking-widest">Administração</p>
       <a href="/admin/users.php"

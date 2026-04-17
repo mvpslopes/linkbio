@@ -254,6 +254,24 @@
     @media (min-width: 640px) {
       #site-footer .footer-logo { max-height: 3rem; max-width: min(100%, 13rem); }
     }
+
+    /* Sobre: foto em moldura editorial, alinhada ao texto ao lado */
+    #sobre .sobre-photo {
+      margin: 0;
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid rgba(13, 92, 92, 0.1);
+      box-shadow: 0 22px 50px rgba(13, 92, 92, 0.11);
+      background: rgba(255, 255, 255, 0.6);
+    }
+    #sobre .sobre-photo img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center 22%;
+    }
   </style>
 </head>
 <body>
@@ -267,7 +285,7 @@
   <header id="site-header" class="px-4 sm:px-6 py-3 sm:py-4">
     <div class="mx-auto max-w-6xl flex items-center justify-between gap-4">
       <a href="#inicio" class="flex min-w-0 items-center shrink leading-none">
-        <img src="logo/icone.png" alt="Sheila Domingues, nutricionista" class="header-logo shrink-0" width="375" height="142" loading="eager" decoding="async" />
+        <img src="logo/logo-sheila.png" alt="Sheila Domingues, nutricionista" class="header-logo shrink-0" width="375" height="142" loading="eager" decoding="async" />
       </a>
       <nav class="hidden lg:flex items-center gap-8 text-[14px] font-medium text-brand-slate/85" aria-label="Seções">
         <a href="#sobre" class="hover:text-brand-teal transition-colors">Sobre</a>
@@ -291,18 +309,17 @@
       <div class="hero-mobile-scrim lg:hidden" aria-hidden="true"></div>
       <div class="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 hero-content-wrap">
         <div data-animate>
-          <p class="hidden lg:block text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-brand-teal mb-3">Nutrição clínica · Emagrecimento · Saúde</p>
           <h1 class="hero-title hero-title-mobile text-[clamp(2.2rem,7.2vw,3.2rem)] lg:text-[clamp(2rem,5.2vw,3.35rem)] mb-0 lg:mb-7 max-w-[22rem] sm:max-w-xl lg:max-w-xl lg:text-left">
             Emagrecimento<br />
             <span class="mt-1 block tracking-[-0.02em]">com <em>método</em></span>
           </h1>
           <div class="hidden lg:block">
-            <p class="text-base text-brand-slate/80 leading-relaxed max-w-xl mb-8 mt-7">
-              O foco é você: <strong class="font-semibold text-brand-slate">emagrecimento</strong> e <strong class="font-semibold text-brand-slate">saúde</strong> com tempo de conversa, plano alinhado à sua rotina e acolhimento de verdade em cada etapa. Atendimento online ou presencial.
-            </p>
+            <div class="text-base text-brand-slate/80 leading-relaxed max-w-xl mb-8 mt-7 space-y-4">
+              <p>Chega de mais uma tentativa de emagrecer ou mais uma dieta de internet.</p>
+              <p>Eu tenho um método de atendimento que eleva sua saúde, transforma sua relação com a comida e traz o emagrecimento que você tanto busca.</p>
+            </div>
             <div class="flex flex-wrap gap-3 mb-8">
-              <span class="inline-flex items-center rounded-full bg-white/90 border border-brand-teal/10 px-4 py-2 text-sm text-brand-slate shadow-sm">8 anos de formação</span>
-              <span class="inline-flex items-center rounded-full bg-white/90 border border-brand-teal/10 px-4 py-2 text-sm text-brand-slate shadow-sm">+ de 3 mil pessoas acompanhadas</span>
+              <span class="inline-flex items-center rounded-full bg-white/90 border border-brand-teal/10 px-4 py-2 text-sm text-brand-slate shadow-sm">+ de 3 mil pessoas transformadas</span>
               <span class="inline-flex items-center rounded-full bg-white/90 border border-brand-rose/25 px-4 py-2 text-sm text-brand-slate shadow-sm">Online e presencial</span>
             </div>
             <div class="flex flex-wrap gap-4">
@@ -324,13 +341,12 @@
     <!-- Mobile/tablet: restante do conteúdo que no desktop fica no hero -->
     <section class="relative z-[5] -mt-[2px] lg:mt-0 lg:hidden px-4 sm:px-6 pt-10 pb-12 bg-brand-paper" aria-label="Apresentação">
       <div class="mx-auto max-w-6xl space-y-8" data-animate>
-        <p class="text-[11px] sm:text-xs font-semibold tracking-[0.2em] uppercase text-brand-teal">Nutrição clínica · Emagrecimento · Saúde</p>
-        <p class="text-base text-brand-slate/80 leading-relaxed">
-          O foco é você: <strong class="font-semibold text-brand-slate">emagrecimento</strong> e <strong class="font-semibold text-brand-slate">saúde</strong> com tempo de conversa, plano alinhado à sua rotina e acolhimento de verdade em cada etapa. Atendimento online ou presencial.
-        </p>
+        <div class="text-base text-brand-slate/80 leading-relaxed space-y-4">
+          <p>Chega de mais uma tentativa de emagrecer ou mais uma dieta de internet.</p>
+          <p>Eu tenho um método de atendimento que eleva sua saúde, transforma sua relação com a comida e traz o emagrecimento que você tanto busca.</p>
+        </div>
         <div class="flex flex-wrap gap-3">
-          <span class="inline-flex items-center rounded-full bg-white border border-brand-teal/10 px-4 py-2 text-sm text-brand-slate shadow-sm">8 anos de formação</span>
-          <span class="inline-flex items-center rounded-full bg-white border border-brand-teal/10 px-4 py-2 text-sm text-brand-slate shadow-sm">+ de 3 mil pessoas acompanhadas</span>
+          <span class="inline-flex items-center rounded-full bg-white border border-brand-teal/10 px-4 py-2 text-sm text-brand-slate shadow-sm">+ de 3 mil pessoas transformadas</span>
           <span class="inline-flex items-center rounded-full bg-white border border-brand-rose/25 px-4 py-2 text-sm text-brand-slate shadow-sm">Online e presencial</span>
         </div>
         <div class="flex flex-wrap gap-4">
@@ -346,51 +362,51 @@
       </div>
     </section>
 
-    <!-- Faixa de confiança (inspirada em landing de saúde) -->
-    <section class="relative z-10 -mt-6 px-4 sm:px-6 pb-14">
-      <div class="mx-auto max-w-5xl grid sm:grid-cols-3 gap-4">
-        <div class="rounded-2xl bg-white border border-brand-teal/8 px-6 py-5 text-center shadow-card" data-animate>
-          <p class="font-serif text-3xl sm:text-4xl font-semibold text-brand-teal">8+</p>
-          <p class="text-sm text-brand-slate/75 mt-1">Anos de atuação como nutricionista</p>
-        </div>
-        <div class="rounded-2xl bg-white border border-brand-teal/8 px-6 py-5 text-center shadow-card" data-animate data-animate-delay="1">
-          <p class="font-serif text-3xl sm:text-4xl font-semibold text-brand-teal">3k+</p>
-          <p class="text-sm text-brand-slate/75 mt-1">Pessoas acompanhadas na jornada de emagrecimento</p>
-        </div>
-        <div class="rounded-2xl bg-white border border-brand-teal/8 px-6 py-5 text-center shadow-card" data-animate data-animate-delay="2">
-          <p class="font-serif text-2xl sm:text-3xl font-semibold text-brand-teal leading-tight">2 pós</p>
-          <p class="text-sm text-brand-slate/75 mt-1">Clínica funcional · Mulher, saúde e estética</p>
-        </div>
+    <section class="relative z-10 -mt-6 px-4 sm:px-6 pb-14" aria-label="Experiência">
+      <div class="mx-auto max-w-3xl text-center rounded-2xl bg-white border border-brand-teal/8 px-6 py-8 sm:py-10 shadow-card" data-animate>
+        <p class="font-display italic text-[clamp(1.2rem,2.8vw,1.65rem)] font-semibold text-brand-slate leading-snug">
+          Mais de 8 anos transformando vidas através da Nutrição.
+        </p>
       </div>
     </section>
 
     <section id="sobre" class="py-16 sm:py-20 px-4 sm:px-6 bg-brand-paper">
-      <div class="mx-auto max-w-6xl grid lg:grid-cols-12 gap-12 items-start">
-        <div class="lg:col-span-5" data-animate>
+      <div class="mx-auto max-w-6xl">
+        <header class="mb-10 md:mb-12 max-w-3xl" data-animate>
           <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-rose mb-2">Sobre a profissional</p>
-          <h2 class="font-display italic text-[clamp(1.85rem,3.5vw,2.65rem)] font-semibold text-brand-slate leading-tight mb-5">
+          <h2 class="font-display italic text-[clamp(1.85rem,3.5vw,2.65rem)] font-semibold text-brand-slate leading-tight">
             Ciência, escuta e caminho claro para o seu objetivo
           </h2>
-          <p class="text-brand-slate/80 leading-relaxed mb-4">
-            Sou nutricionista há <strong class="text-brand-slate">8 anos</strong>. Nessa trajetória, somando todos os atendimentos, já foram <strong class="text-brand-slate">mais de 3 mil pessoas</strong> que emagreceram e mudaram o estilo de vida com acompanhamento próximo e estratégias realistas.
-          </p>
-          <p class="text-brand-slate/80 leading-relaxed">
-            Tenho pós-graduação em <strong class="text-brand-slate">nutrição clínica funcional</strong> e em <strong class="text-brand-slate">nutrição clínica na saúde da mulher e estética</strong>, para integrar protocolo, rotina e suas particularidades com segurança.
-          </p>
-        </div>
-        <div class="lg:col-span-7 space-y-4" data-animate data-animate-delay="1">
-          <div class="rounded-2xl bg-white border border-brand-teal/8 p-6 sm:p-8 shadow-card">
-            <h3 class="font-semibold text-brand-teal text-lg mb-3">O que eu faço</h3>
-            <p class="text-brand-slate/80 leading-relaxed">
-              Realizo <strong class="text-brand-slate">atendimento nutricional</strong> com foco em <strong class="text-brand-slate">emagrecimento</strong> e <strong class="text-brand-slate">promoção da saúde</strong>, priorizando educação alimentar, consistência e bem-estar, sem promessas vazias.
-            </p>
+        </header>
+
+        <div class="grid md:grid-cols-12 gap-8 md:gap-10 lg:gap-14 items-start mb-10 md:mb-12">
+          <div class="order-2 md:order-1 md:col-span-5 lg:col-span-4 max-w-sm mx-auto md:max-w-none md:mx-0 w-full" data-animate>
+            <figure class="sobre-photo">
+              <img src="fotos/Fotos%20(2).jpeg" alt="Sheila Domingues, nutricionista" loading="lazy" decoding="async" />
+            </figure>
           </div>
-          <div class="rounded-2xl bg-brand-teal-soft/80 border border-brand-teal/10 p-6 sm:p-8">
-            <h3 class="font-semibold text-brand-slate text-lg mb-3">Como você será atendida (o)</h3>
-            <ul class="space-y-2 text-brand-slate/85">
-              <li class="flex gap-3"><span class="text-brand-rose font-bold">·</span> <span><strong class="text-brand-slate">Online</strong>: flexibilidade para quem prefere consulta à distância.</span></li>
-              <li class="flex gap-3"><span class="text-brand-rose font-bold">·</span> <span><strong class="text-brand-slate">Presencial</strong>: em Itapecerica da Serra (SP), com acolhimento presencial.</span></li>
-            </ul>
+          <div class="order-1 md:order-2 md:col-span-7 lg:col-span-8 space-y-4 md:pt-1" data-animate>
+            <p class="text-brand-slate/80 leading-relaxed text-[1.02rem]">
+              Sou nutricionista há <strong class="text-brand-slate">8 anos</strong>. Nessa trajetória, somando todos os atendimentos, já foram <strong class="text-brand-slate">mais de 3 mil pessoas</strong> que emagreceram e mudaram o estilo de vida com acompanhamento próximo e estratégias realistas.
+            </p>
+            <p class="text-brand-slate/80 leading-relaxed">
+              Tenho pós-graduação em <strong class="text-brand-slate">nutrição clínica funcional</strong> e em <strong class="text-brand-slate">nutrição clínica na saúde da mulher e estética</strong>, para integrar protocolo, rotina e suas particularidades com segurança.
+            </p>
+            <div class="grid sm:grid-cols-2 gap-4 lg:gap-6 pt-2" data-animate data-animate-delay="1">
+              <div class="rounded-2xl bg-white border border-brand-teal/8 p-6 sm:p-8 shadow-card h-full">
+                <h3 class="font-semibold text-brand-teal text-lg mb-3">O que eu faço</h3>
+                <p class="text-brand-slate/80 leading-relaxed">
+                  Realizo <strong class="text-brand-slate">atendimento nutricional</strong> com foco em <strong class="text-brand-slate">emagrecimento</strong> e <strong class="text-brand-slate">promoção da saúde</strong>, priorizando educação alimentar, consistência e bem-estar, sem promessas vazias.
+                </p>
+              </div>
+              <div class="rounded-2xl bg-brand-teal-soft/80 border border-brand-teal/10 p-6 sm:p-8 h-full">
+                <h3 class="font-semibold text-brand-slate text-lg mb-3">Como você será atendida (o)</h3>
+                <ul class="space-y-2 text-brand-slate/85">
+                  <li class="flex gap-3"><span class="text-brand-rose font-bold">·</span> <span><strong class="text-brand-slate">Online</strong>: flexibilidade para quem prefere consulta à distância.</span></li>
+                  <li class="flex gap-3"><span class="text-brand-rose font-bold">·</span> <span><strong class="text-brand-slate">Presencial</strong>: em Itapecerica da Serra (SP), com acolhimento presencial.</span></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -399,8 +415,7 @@
     <section id="diferenciais" class="py-16 sm:py-20 px-4 sm:px-6 bg-white">
       <div class="mx-auto max-w-6xl">
         <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-14" data-animate>
-          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-brand-teal mb-2">Por que escolher</p>
-          <h2 class="font-display italic text-[clamp(1.85rem,3.5vw,2.65rem)] font-semibold text-brand-slate">Diferenciais que fazem diferença no processo</h2>
+          <h2 class="font-display italic text-[clamp(1.85rem,3.5vw,2.65rem)] font-semibold text-brand-slate">Diferenciais que facilitam o seu tratamento</h2>
         </div>
         <div class="grid md:grid-cols-3 gap-6">
           <article class="service-card" data-animate data-animate-delay="1">
@@ -408,21 +423,21 @@
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
             <h3 class="font-semibold text-brand-slate text-lg mb-2">Foco em resultado sustentável</h3>
-            <p class="text-sm text-brand-slate/75 leading-relaxed">Estratégias eficazes para ir do ponto A ao B, respeitando seu momento de vida, sem atalhos que comprometem a saúde.</p>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Mais que ter um plano alimentar, em cada atendimento trabalho para melhorar sua relação com a comida, garantindo que seus resultados sejam duradouros.</p>
           </article>
           <article class="service-card" data-animate data-animate-delay="2">
             <div class="w-11 h-11 rounded-xl bg-brand-rose-soft flex items-center justify-center text-brand-rose mb-4">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
             </div>
-            <h3 class="font-semibold text-brand-slate text-lg mb-2">Acolhimento e escuta ativa</h3>
-            <p class="text-sm text-brand-slate/75 leading-relaxed">Cada plano nasce da sua história: tempo de conversa, compreensão de rotina e construção de autoconhecimento alimentar.</p>
+            <h3 class="font-semibold text-brand-slate text-lg mb-2">Acompanhamento anti desistência</h3>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Acompanhamento da sua evolução dentro e fora da consulta que driblam suas dificuldades e elevam seus resultados.</p>
           </article>
           <article class="service-card" data-animate data-animate-delay="3">
             <div class="w-11 h-11 rounded-xl bg-brand-teal-soft flex items-center justify-center text-brand-teal mb-4">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
             </div>
-            <h3 class="font-semibold text-brand-slate text-lg mb-2">Formação de ponta</h3>
-            <p class="text-sm text-brand-slate/75 leading-relaxed">Base em nutrição clínica funcional e linha de cuidado voltada à mulher, saúde e estética, sempre alinhada à evidência.</p>
+            <h3 class="font-semibold text-brand-slate text-lg mb-2">Segurança que vc merece</h3>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Cada estratégia é definida com base em evidência clínica, respeitando sua individualidade, sua saúde e a segurança do seu processo.</p>
           </article>
         </div>
       </div>

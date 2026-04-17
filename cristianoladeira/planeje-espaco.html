@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Planeje seu espaço na 43 Nacional – Cristiano Ladeira</title>
+  <meta name="description" content="Questionário para planejamento de espaço na 43 Nacional — Haras/Empresa, infraestrutura e identidade visual."/>
+  <link rel="icon" href="logo/logo-cristiano-ladeira-1.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <!-- tracker omitido nesta página: evita CORS com file:// e origem null ao abrir arquivo local -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #f5f5f5;
+      --black: #0a0a0a;
+      --muted: #6b7280;
+      --blue: #003874;
+      --blue-lt: #005899;
+      --red: #ff0000;
+      --white: #fff;
+      --border: rgba(0,0,0,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .page-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(245,245,245,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .page-header a.logo { display: flex; align-items: center; text-decoration: none; }
+    .page-header img { height: 44px; width: auto; max-width: 200px; object-fit: contain; }
+    .back-link {
+      font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+    }
+    .back-link:hover { color: var(--blue); }
+
+    .form-wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+    .form-head h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -.02em;
+      line-height: 1.05;
+      color: var(--blue);
+    }
+    .form-head h1 em { font-style: normal; color: var(--red); }
+    .form-lead {
+      margin-top: 16px;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+    .form-note {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 12px 14px;
+      background: rgba(0,56,116,0.06);
+      border-radius: 4px;
+      border-left: 3px solid var(--blue);
+    }
+
+    fieldset {
+      border: none;
+      margin: 0;
+      padding: 0;
+    }
+    legend.sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    .block {
+      margin-top: 32px;
+      padding: 28px 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .block-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(0,56,116,0.15);
+    }
+
+    .field { margin-bottom: 20px; }
+    .field:last-child { margin-bottom: 0; }
+    label.q {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    label.q .num { color: var(--muted); font-weight: 500; margin-right: 4px; }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,56,116,0.12);
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    .hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+
+    .radios {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .radio-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .radio-row input { width: 18px; height: 18px; accent-color: var(--blue); cursor: pointer; }
+
+    .radios-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+    }
+    .radios-inline .radio-row { flex-direction: row; }
+
+    #origem-outros-wrap {
+      margin-top: 12px;
+      display: none;
+    }
+    #origem-outros-wrap.is-visible { display: block; }
+
+    .submit-bar {
+      margin-top: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 16px 28px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 20px rgba(0,56,116,0.35);
+    }
+    .btn-submit:hover:not(:disabled) { background: var(--blue-lt); transform: translateY(-1px); }
+    .btn-submit:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+    .btn-submit:disabled { opacity: 0.72; cursor: not-allowed; transform: none; }
+    .btn-submit.is-loading { pointer-events: none; }
+
+    .form-error {
+      display: none;
+      padding: 12px 14px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 4px;
+      color: #991b1b;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .form-error.is-visible { display: block; }
+
+    .file-protocol-banner {
+      display: none;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      background: #fffbeb;
+      border: 1px solid #fcd34d;
+      border-radius: 6px;
+      color: #92400e;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .file-protocol-banner.is-visible { display: block; }
+
+    /* Overlay pós-envio bem-sucedido */
+    .form-done-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(10, 10, 10, 0.55);
+      backdrop-filter: blur(6px);
+    }
+    .form-done-overlay.is-visible { display: flex; }
+    .form-done-card {
+      max-width: 420px;
+      width: 100%;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 32px 28px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
+    }
+    .form-done-card h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 26px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .form-done-card p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+    .form-done-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .form-done-actions a,
+    .form-done-actions button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 14px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .form-done-actions a {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+    }
+    .form-done-actions a:hover { background: var(--blue-lt); }
+    .form-done-actions button {
+      background: transparent;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+    .form-done-actions button:hover { background: rgba(0, 56, 116, 0.06); }
+    .form-done-actions .btn-wa {
+      background: #ecfdf5;
+      color: #047857;
+      border: 2px solid #10b981;
+    }
+    .form-done-actions .btn-wa:hover { background: #d1fae5; }
+
+    footer.form-foot {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<header class="page-header">
+  <a href="index.html" class="logo" aria-label="Cristiano Ladeira – início">
+    <img src="logo/logo-cristiano-ladeira-1.png" alt="Cristiano Ladeira"/>
+  </a>
+  <a href="index.html" class="back-link">← Voltar ao LinkBio</a>
+</header>
+
+<main class="form-wrap">
+  <div class="form-head">
+    <h1>Planeje seu espaço na <em>43 Nacional</em></h1>
+    <p class="form-lead">
+      Este questionário visa entender as necessidades para a montagem e operação de um espaço para <strong>Haras/Empresa</strong>,
+      incluindo infraestrutura, serviços e identidade visual. Responda cada questão com atenção para garantir um planejamento eficiente.
+    </p>
+    <p class="form-note">
+      Ao enviar, suas respostas são registradas para a equipe.
+      Não coletamos dados automaticamente — apenas o que você preencher abaixo.
+    </p>
+    <div id="file-protocol-warning" class="file-protocol-banner" role="status">
+      <strong>Modo arquivo local (file://):</strong> o navegador bloqueia o envio à planilha e o analytics.
+      Para testar, abra esta página pelo <strong>site publicado</strong> (https) ou por um servidor local (ex.: extensão Live Server no VS Code).
+    </div>
+  </div>
+
+  <div id="form-error" class="form-error" role="alert"></div>
+
+  <form id="form-planeje" novalidate>
+    <div class="block">
+      <p class="block-title">Seus dados</p>
+
+      <div class="field">
+        <label class="q" for="nome"><span class="num">1.</span> Qual o seu nome?</label>
+        <input type="text" id="nome" name="nome" required autocomplete="name" placeholder="Insira sua resposta"/>
+      </div>
+      <div class="field">
+        <label class="q" for="email"><span class="num">2.</span> Qual o seu e-mail para contato?</label>
+        <input type="email" id="email" name="email" required autocomplete="email" placeholder="Insira sua resposta"/>
+      </div>
+      <div class="field">
+        <label class="q" for="telefone"><span class="num">3.</span> Qual o seu telefone para contato?</label>
+        <input type="tel" id="telefone" name="telefone" required autocomplete="tel" placeholder="Insira sua resposta"/>
+      </div>
+
+      <fieldset>
+        <legend class="sr-only">Origem</legend>
+        <div class="field">
+          <span class="q"><span class="num">4.</span> Por onde você veio?</span>
+          <div class="radios">
+            <label class="radio-row"><input type="radio" name="origem" value="LR EVENTOS" required/> LR EVENTOS</label>
+            <label class="radio-row"><input type="radio" name="origem" value="TODA ARTE MARKETING"/> TODA ARTE MARKETING</label>
+            <label class="radio-row"><input type="radio" name="origem" value="INSTAGRAM"/> INSTAGRAM</label>
+            <label class="radio-row"><input type="radio" name="origem" value="INDICAÇÃO"/> INDICAÇÃO</label>
+            <label class="radio-row"><input type="radio" name="origem" value="OUTROS" id="origem-outros-radio"/> OUTROS</label>
+          </div>
+          <div id="origem-outros-wrap">
+            <label class="q" for="origem-outros-texto">Especifique de onde veio</label>
+            <input type="text" id="origem-outros-texto" name="origem_outros_texto" placeholder="De onde você nos conheceu?" autocomplete="off"/>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="block">
+      <p class="block-title">Espaço e equipe</p>
+
+      <div class="field">
+        <label class="q" for="haras-empresa"><span class="num">5.</span> Quantos Haras/Empresa participarão do seu espaço e quais serão?</label>
+        <textarea id="haras-empresa" name="haras_empresa" required placeholder="Insira sua resposta"></textarea>
+      </div>
+      <div class="field">
+        <label class="q" for="baias"><span class="num">6.</span> Quantas baias você precisará?</label>
+        <input type="text" class="input-digits" id="baias" name="baias" required inputmode="numeric" pattern="[0-9]+" autocomplete="off" placeholder="Somente números"/>
+        <p class="hint">Apenas números inteiros (0 ou mais).</p>
+      </div>
+      <div class="field">
+        <label class="q" for="colaboradores"><span class="num">7.</span> Pretende alojar quantos colaboradores?</label>
+        <input type="text" class="input-digits" id="colaboradores" name="colaboradores" required inputmode="numeric" pattern="[0-9]+" autocomplete="off" placeholder="Somente números"/>
+        <p class="hint">Apenas números inteiros (0 ou mais).</p>
+      </div>
+    </div>
+
+    <div class="block">
+      <p class="block-title">Infraestrutura e serviços</p>
+
+      <fieldset class="field">
+        <legend class="q"><span class="num">8.</span> Pretende colocar banheiro com sanitário e chuveiro?</legend>
+        <div class="radios-inline">
+          <label class="radio-row"><input type="radio" name="banheiro" value="Sim" required/> Sim</label>
+          <label class="radio-row"><input type="radio" name="banheiro" value="Não"/> Não</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend class="q"><span class="num">9.</span> Pretende montar cozinha?</legend>
+        <div class="radios-inline">
+          <label class="radio-row"><input type="radio" name="cozinha" value="Sim" required/> Sim</label>
+          <label class="radio-row"><input type="radio" name="cozinha" value="Não"/> Não</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend class="q"><span class="num">10.</span> Pretende montar receptivo?</legend>
+        <div class="radios-inline">
+          <label class="radio-row"><input type="radio" name="receptivo" value="Sim" required/> Sim</label>
+          <label class="radio-row"><input type="radio" name="receptivo" value="Não"/> Não</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend class="q"><span class="num">11.</span> Precisa de segurança?</legend>
+        <div class="radios-inline">
+          <label class="radio-row"><input type="radio" name="seguranca" value="Sim" required/> Sim</label>
+          <label class="radio-row"><input type="radio" name="seguranca" value="Não"/> Não</label>
+        </div>
+      </fieldset>
+
+      <fieldset class="field">
+        <legend class="q"><span class="num">12.</span> Precisa de limpeza periódica?</legend>
+        <div class="radios-inline">
+          <label class="radio-row"><input type="radio" name="limpeza" value="Sim" required/> Sim</label>
+          <label class="radio-row"><input type="radio" name="limpeza" value="Não"/> Não</label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="block">
+      <p class="block-title">Demais informações</p>
+
+      <div class="field">
+        <label class="q" for="demanda"><span class="num">13.</span> Alguma demanda específica?</label>
+        <textarea id="demanda" name="demanda" placeholder="Insira sua resposta"></textarea>
+      </div>
+
+      <fieldset class="field">
+        <legend class="q"><span class="num">14.</span> Pretende fazer identidade visual?</legend>
+        <div class="radios-inline">
+          <label class="radio-row"><input type="radio" name="identidade" value="Sim" required/> Sim</label>
+          <label class="radio-row"><input type="radio" name="identidade" value="Não"/> Não</label>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="submit-bar">
+      <button type="submit" class="btn-submit" data-track="form-planeje-enviar">
+        Enviar respostas
+      </button>
+    </div>
+  </form>
+
+  <footer class="form-foot">
+    Cristiano Ladeira Promoção &amp; Eventos · <a href="index.html" style="color:var(--blue);">Voltar ao início</a>
+  </footer>
+</main>
+
+<!-- POST ao Apps Script em iframe oculto (sem abrir nova aba) -->
+<iframe name="planeje-gas-frame" id="planeje-gas-frame" title=""
+  style="position:absolute;width:0;height:0;border:0;clip:rect(0,0,0,0);overflow:hidden"
+  aria-hidden="true"></iframe>
+<form id="planeje-gas-form" method="post" target="planeje-gas-frame"
+  style="display:none" enctype="application/x-www-form-urlencoded" action="#">
+  <input type="hidden" name="payload" id="planeje-gas-payload" value=""/>
+</form>
+
+<div id="form-done-overlay" class="form-done-overlay" role="dialog" aria-modal="true" aria-labelledby="form-done-title" aria-hidden="true">
+  <div class="form-done-card">
+    <h2 id="form-done-title">Envio concluído</h2>
+    <p>Obrigado. Suas respostas foram registradas com sucesso.</p>
+    <div class="form-done-actions">
+      <a href="index.html">Voltar ao LinkBio</a>
+      <button type="button" id="form-done-reset">Preencher novamente</button>
+      <button type="button" class="btn-wa" id="form-done-wa" hidden>Enviar cópia no WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  /**
+   * Google Sheets: crie o Web App (veja google-apps-script/PlanejeEspacoAppend.gs) e preencha URL + token.
+   * Se deixar vazio, apenas o WhatsApp será usado (comportamento anterior).
+   */
+  var CONFIG = {
+    /** Salva no painel LinkBio (MySQL); mesma origem CORS que o tracker */
+    phpApiUrl: 'https://linkbio.api.br/admin/api/planeje_submit.php',
+    sheetsWebAppUrl: 'https://script.google.com/macros/s/AKfycbwx_FgOT4r_vX3DFGcyBO2167-gTHJWcXUc9_vE4isyMldOvJ314vRf1tTli8J1hDD9/exec',
+    sheetsToken: 'N6&k9#zP2!mX5*qR8@vT1$yW4^bL7(jQ',
+    whatsappNumber: '5531998516114',
+    /** true = abre WhatsApp automaticamente após envio (geralmente intrusivo; use o botão no overlay) */
+    openWhatsappAfter: false
+  };
+
+  var form = document.getElementById('form-planeje');
+  var errBox = document.getElementById('form-error');
+  var outrosRadio = document.getElementById('origem-outros-radio');
+  var outrosWrap = document.getElementById('origem-outros-wrap');
+  var outrosTexto = document.getElementById('origem-outros-texto');
+  var submitBtn = form.querySelector('.btn-submit');
+  var doneOverlay = document.getElementById('form-done-overlay');
+  var formDoneReset = document.getElementById('form-done-reset');
+  var formDoneWa = document.getElementById('form-done-wa');
+  var fileBanner = document.getElementById('file-protocol-warning');
+  var lastWhatsappText = '';
+
+  if (location.protocol === 'file:') {
+    fileBanner.classList.add('is-visible');
+  }
+
+  /** Baias e colaboradores: só dígitos (teclado, colar, bloqueio de letras) */
+  (function bindDigitsOnly() {
+    var ids = ['baias', 'colaboradores'];
+    ids.forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      function strip() {
+        var v = el.value.replace(/\D/g, '');
+        if (el.value !== v) el.value = v;
+      }
+      el.addEventListener('input', strip);
+      el.addEventListener('paste', function (e) {
+        e.preventDefault();
+        var t = (e.clipboardData || window.clipboardData).getData('text') || '';
+        el.value = t.replace(/\D/g, '');
+      });
+      el.addEventListener('keydown', function (e) {
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+        var k = e.key;
+        if (k.length === 1 && !/[0-9]/.test(k)) e.preventDefault();
+      });
+    });
+  })();
+
+  function showDoneOverlay() {
+    doneOverlay.classList.add('is-visible');
+    doneOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (CONFIG.whatsappNumber && String(CONFIG.whatsappNumber).trim() && lastWhatsappText) {
+      formDoneWa.hidden = false;
+    } else {
+      formDoneWa.hidden = true;
+    }
+    try { formDoneReset.focus(); } catch (e) {}
+  }
+  function hideDoneOverlay() {
+    doneOverlay.classList.remove('is-visible');
+    doneOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    formDoneWa.hidden = true;
+  }
+
+  function showError(msg) {
+    errBox.textContent = msg;
+    errBox.classList.add('is-visible');
+  }
+  function clearError() {
+    errBox.textContent = '';
+    errBox.classList.remove('is-visible');
+  }
+
+  function clearMessages() {
+    clearError();
+    hideDoneOverlay();
+  }
+
+  formDoneReset.addEventListener('click', function () {
+    form.reset();
+    outrosWrap.classList.remove('is-visible');
+    outrosTexto.required = false;
+    lastWhatsappText = '';
+    clearError();
+    hideDoneOverlay();
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, 0); }
+  });
+
+  formDoneWa.addEventListener('click', function () {
+    if (!lastWhatsappText || !CONFIG.whatsappNumber) return;
+    var waUrl = 'https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(lastWhatsappText);
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+  });
+
+  document.querySelectorAll('input[name="origem"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      var on = outrosRadio.checked;
+      outrosWrap.classList.toggle('is-visible', on);
+      outrosTexto.required = on;
+      if (!on) outrosTexto.value = '';
+    });
+  });
+
+  function buildWhatsappText(data) {
+    var lines = [
+      '*Planeje seu espaço – 43 Nacional*',
+      '',
+      '1. Nome: ' + data.nome,
+      '2. E-mail: ' + data.email,
+      '3. Telefone: ' + data.telefone,
+      '4. Por onde veio: ' + data.origem,
+      '5. Haras/Empresa (quantos e quais): ' + data.harasEmpresa,
+      '6. Baias: ' + data.baias,
+      '7. Colaboradores (alojamento): ' + data.colaboradores,
+      '8. Banheiro (sanitário + chuveiro): ' + data.banheiro,
+      '9. Cozinha: ' + data.cozinha,
+      '10. Receptivo: ' + data.receptivo,
+      '11. Segurança: ' + data.seguranca,
+      '12. Limpeza periódica: ' + data.limpeza,
+      '13. Demanda específica: ' + (data.demanda || '—'),
+      '14. Identidade visual: ' + data.identidade
+    ];
+    return lines.join('\n');
+  }
+
+  function buildPayload(origemVal) {
+    return {
+      nome: document.getElementById('nome').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      telefone: document.getElementById('telefone').value.trim(),
+      origem: origemVal,
+      harasEmpresa: document.getElementById('haras-empresa').value.trim(),
+      baias: document.getElementById('baias').value,
+      colaboradores: document.getElementById('colaboradores').value,
+      banheiro: form.querySelector('input[name="banheiro"]:checked').value,
+      cozinha: form.querySelector('input[name="cozinha"]:checked').value,
+      receptivo: form.querySelector('input[name="receptivo"]:checked').value,
+      seguranca: form.querySelector('input[name="seguranca"]:checked').value,
+      limpeza: form.querySelector('input[name="limpeza"]:checked').value,
+      demanda: document.getElementById('demanda').value.trim(),
+      identidade: form.querySelector('input[name="identidade"]:checked').value
+    };
+  }
+
+  /** POST urlencoded → Apps Script; resposta carrega no iframe oculto (sem nova aba). */
+  function sendToGoogleSheetsViaForm(payload) {
+    return new Promise(function (resolve) {
+      var url = (CONFIG.sheetsWebAppUrl || '').trim();
+      var tok = (CONFIG.sheetsToken || '').trim();
+      if (!url || !tok) {
+        resolve({ skipped: true });
+        return;
+      }
+      var gasForm = document.getElementById('planeje-gas-form');
+      var gasInput = document.getElementById('planeje-gas-payload');
+      gasForm.action = url;
+      gasForm.target = 'planeje-gas-frame';
+      var withToken = Object.assign({}, payload, { token: CONFIG.sheetsToken });
+      gasInput.value = JSON.stringify(withToken);
+      gasForm.submit();
+      resolve({ ok: true });
+    });
+  }
+
+  function sendToPhpApi(payload) {
+    var url = (CONFIG.phpApiUrl || '').trim();
+    if (!url) return Promise.resolve({ skipped: true });
+    var body = Object.assign({}, payload, {
+      token: CONFIG.sheetsToken,
+      page_slug: 'cristianoladeira'
+    });
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (j) {
+          return { ok: r.ok && j && j.ok === true, status: r.status, body: j };
+        });
+      })
+      .catch(function () {
+        return { ok: false, status: 0 };
+      });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearMessages();
+
+    if (location.protocol === 'file:') {
+      showError('Abra esta página pelo site publicado (https) ou por um servidor local. O modo arquivo (file://) impede o envio à planilha e gera erro no navegador.');
+      return;
+    }
+
+    if (!form.reportValidity()) return;
+
+    var origemVal = (form.querySelector('input[name="origem"]:checked') || {}).value;
+    if (origemVal === 'OUTROS') {
+      var det = (outrosTexto.value || '').trim();
+      if (!det) {
+        showError('Informe de onde você veio ao selecionar OUTROS.');
+        outrosTexto.focus();
+        return;
+      }
+      origemVal = 'OUTROS: ' + det;
+    }
+
+    var payload = buildPayload(origemVal);
+    var waText = buildWhatsappText(payload);
+
+    if (waText.length > 3500) {
+      showError('O texto ficou muito longo para o WhatsApp. Encurte alguma resposta e tente de novo.');
+      return;
+    }
+
+    var useSheet = CONFIG.sheetsWebAppUrl && CONFIG.sheetsToken;
+    if (useSheet && !CONFIG.sheetsWebAppUrl.trim().startsWith('https://script.google.com/macros/')) {
+      showError('URL do Google Apps Script inválida (deve começar com https://script.google.com/macros/).');
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add('is-loading');
+    var label = submitBtn.innerHTML;
+
+    function finish() {
+      submitBtn.disabled = false;
+      submitBtn.classList.remove('is-loading');
+      submitBtn.innerHTML = label;
+    }
+
+    submitBtn.innerHTML = 'Enviando…';
+
+    var pSheet = useSheet ? sendToGoogleSheetsViaForm(payload) : Promise.resolve({ skipped: true });
+    var pPhp = sendToPhpApi(payload);
+
+    Promise.all([pSheet, pPhp]).then(function (results) {
+      var phpRes = results[1];
+      var phpConfigured = CONFIG.phpApiUrl && String(CONFIG.phpApiUrl).trim() !== '';
+      var submissionOk = !phpConfigured || (phpRes && phpRes.ok);
+
+      setTimeout(function () {
+        if (!submissionOk) {
+          showError('Não foi possível concluir o envio. Verifique sua conexão e tente de novo.');
+          finish();
+          return;
+        }
+        lastWhatsappText = waText;
+        showDoneOverlay();
+        if (CONFIG.openWhatsappAfter && CONFIG.whatsappNumber) {
+          var waUrl = 'https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(waText);
+          window.open(waUrl, '_blank', 'noopener,noreferrer');
+        }
+        finish();
+      }, 280);
+    }).catch(function () {
+      showError('Erro ao enviar. Tente de novo em instantes.');
+      finish();
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -42,6 +42,14 @@ if (Test-Path $adminDst) { Remove-Item $adminDst -Recurse -Force }
 Copy-Item -Path $adminSrc -Destination $adminDst -Recurse -Force
 Write-Host "  [OK] admin/"
 
+# Faixa do Cristiano: imagem opcional na raiz do repositório
+$eventoBgRoot = Join-Path $root "evento-bg.png"
+$eventoBgDest = Join-Path $root "cristianoladeira\evento-bg.png"
+if (Test-Path $eventoBgRoot) {
+    Copy-Item -Path $eventoBgRoot -Destination $eventoBgDest -Force
+    Write-Host "  [OK] evento-bg.png -> cristianoladeira/"
+}
+
 # Subdomínios
 $subdomains = @("paty", "marcosblea", "equusvita", "racaemarcha", "cristianoladeira", "puramarcha", "fafs", "topmarchador", "alinesantana", "orielsilvano", "jessicapersonal", "emmanueladv", "maludias", "lancamento", "nutrisheiladomingues")
 foreach ($name in $subdomains) {
