@@ -88,6 +88,33 @@ INSERT IGNORE INTO `users` (`username`, `password_hash`, `role`, `page_slug`, `n
     'client',
     'topmarchador',
     'Top Marchador'
+),
+
+-- Cliente: Aliancce (placeholder - ajustar hash em produção)
+(
+    'aliancce',
+    '$2y$12$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXPLACEHOLDERHASHXXXXXX',
+    'client',
+    'aliancce',
+    'Aliancce — Gestão de Eventos Equestres'
+),
+
+-- Cliente: Master Agro (placeholder - ajustar hash em produção)
+(
+    'masteragro',
+    '$2y$12$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXPLACEHOLDERHASHXXXXXX',
+    'client',
+    'masteragro',
+    'Master Agro — Tecnologia Equestre'
+),
+
+-- Cliente: Haras Pariz (placeholder - ajustar hash em produção)
+(
+    'haraspariz',
+    '$2y$12$XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXPLACEHOLDERHASHXXXXXX',
+    'client',
+    'haraspariz',
+    'Haras Pariz — Mangalarga Marchador'
 );
 
 -- ATENÇÃO: os hashes dos clientes acima são placeholders.

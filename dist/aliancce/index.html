@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aliancce — Gestão de Eventos Equestres</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --gold:        #C9A96E;
+      --gold-light:  #E8D5A3;
+      --gold-dim:    #8A6F3E;
+      --black:       #090909;
+      --deep:        #100E0A;
+      --dark:        #1A1610;
+      --mid:         #2A2318;
+      --cream:       #F5F0E8;
+      --muted:       #7A7060;
+      --white:       #FDFAF5;
+
+      --font-title:  'Cinzel', serif;
+      --font-serif:  'Cormorant Garamond', serif;
+      --font-sans:   'Jost', sans-serif;
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ─── CUSTOM CURSOR ──────────────────────────────────────── */
+    .cursor {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      pointer-events: none;
+    }
+    .cursor-dot {
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(201,169,110,0.5);
+      border-radius: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      transition: transform 0.12s ease, width 0.3s, height 0.3s, border-color 0.3s;
+    }
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring {
+      width: 56px; height: 56px;
+      border-color: var(--gold);
+    }
+
+    /* ─── NOISE OVERLAY ──────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 1;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 28px 60px;
+      background: linear-gradient(to bottom, rgba(9,9,9,0.95) 0%, transparent 100%);
+      transition: padding 0.4s, background 0.4s;
+    }
+    nav.scrolled {
+      padding: 18px 60px;
+      background: rgba(10,9,7,0.96);
+      border-bottom: 1px solid rgba(201,169,110,0.12);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--font-title);
+      font-size: 1.3rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .nav-links {
+      display: flex; gap: 42px; list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      opacity: 0.7;
+      transition: opacity 0.25s, color 0.25s;
+    }
+    .nav-links a:hover { opacity: 1; color: var(--gold); }
+    .nav-cta {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 10px 24px;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+
+    /* SVG horse background illustration */
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(201,169,110,0.07) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(201,169,110,0.04) 0%, transparent 60%),
+        linear-gradient(160deg, #0D0B08 0%, #100E0A 50%, #0A0807 100%);
+    }
+
+    /* Large decorative horse silhouette */
+    .horse-silhouette {
+      position: absolute;
+      right: -2%;
+      top: 50%;
+      transform: translateY(-52%);
+      width: 55vw;
+      max-width: 900px;
+      opacity: 0.12;
+      animation: horseFloat 8s ease-in-out infinite;
+    }
+    @keyframes horseFloat {
+      0%, 100% { transform: translateY(-52%) }
+      50%       { transform: translateY(-50%) }
+    }
+
+    /* Gold vertical line accent */
+    .hero-line {
+      position: absolute;
+      left: 58px;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent 0%, var(--gold) 25%, var(--gold) 75%, transparent 100%);
+      opacity: 0.3;
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      padding: 0 120px;
+      max-width: 760px;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      display: flex; align-items: center; gap: 16px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 36px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: var(--font-title);
+      font-size: clamp(3.2rem, 6vw, 6.5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.5s forwards;
+    }
+    .hero-title em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--gold);
+      font-size: 1.08em;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-serif);
+      font-size: clamp(1.1rem, 2vw, 1.55rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--gold-light);
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.7s forwards;
+    }
+
+    .hero-desc {
+      font-size: 0.88rem;
+      line-height: 1.9;
+      color: rgba(245,240,232,0.65);
+      max-width: 480px;
+      margin-bottom: 52px;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.9s forwards;
+    }
+
+    .hero-actions {
+      display: flex; gap: 20px; align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.9s 1.1s forwards;
+    }
+    .btn-primary {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--gold);
+      padding: 17px 40px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .btn-ghost {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      opacity: 0.7;
+      display: inline-flex; align-items: center; gap: 10px;
+      transition: opacity 0.25s, gap 0.3s;
+    }
+    .btn-ghost:hover { opacity: 1; gap: 16px; }
+    .btn-ghost svg { transition: transform 0.3s; }
+    .btn-ghost:hover svg { transform: translateX(4px); }
+
+    /* hero stats strip */
+    .hero-stats {
+      position: absolute;
+      bottom: 48px; left: 120px; right: 120px;
+      z-index: 2;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(201,169,110,0.15);
+      opacity: 0;
+      animation: fadeUp 0.9s 1.3s forwards;
+    }
+    .stat {
+      background: rgba(10,9,7,0.7);
+      backdrop-filter: blur(8px);
+      padding: 24px 32px;
+      border-top: 1px solid rgba(201,169,110,0.2);
+    }
+    .stat-number {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      right: 60px; bottom: 60px;
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      opacity: 0.45;
+    }
+    .scroll-indicator span {
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%   { transform: scaleY(0); transform-origin: top; opacity: 0; }
+      50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+      100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── DIVIDER ────────────────────────────────────────────── */
+    .gold-divider {
+      display: flex; align-items: center; gap: 20px;
+      margin-bottom: 20px;
+    }
+    .gold-divider::before, .gold-divider::after {
+      content: ''; flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dim));
+    }
+    .gold-divider::after {
+      background: linear-gradient(to left, transparent, var(--gold-dim));
+    }
+    .divider-icon { color: var(--gold); font-size: 0.7rem; letter-spacing: 0.3em; }
+
+    /* ─── SECTION BASE ───────────────────────────────────────── */
+    section { position: relative; z-index: 2; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 60px; }
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .section-title {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .section-title em { font-family: var(--font-serif); font-style: italic; color: var(--gold); }
+    .section-body {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      line-height: 1.85;
+      color: rgba(245,240,232,0.65);
+      max-width: 560px;
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────────────── */
+    #about {
+      padding: 130px 0;
+      background: var(--deep);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+      height: 540px;
+    }
+    .about-frame {
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(201,169,110,0.2);
+    }
+    .about-frame::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: -12px; right: 12px; bottom: 12px;
+      border: 1px solid rgba(201,169,110,0.08);
+    }
+    .about-inner {
+      position: absolute;
+      inset: 24px;
+      background: var(--mid);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    /* SVG horse artwork in the about panel */
+    .about-horse-svg {
+      width: 85%; opacity: 0.75;
+      filter: drop-shadow(0 0 40px rgba(201,169,110,0.2));
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: var(--gold);
+      color: var(--black);
+      padding: 20px 28px;
+      font-family: var(--font-title);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .about-text { padding-right: 20px; }
+    .about-values {
+      margin-top: 40px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .value-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 20px;
+      border: 1px solid rgba(201,169,110,0.1);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .value-item:hover {
+      border-color: rgba(201,169,110,0.3);
+      background: rgba(201,169,110,0.04);
+    }
+    .value-icon {
+      width: 36px; height: 36px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+    }
+    .value-text h4 {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 4px;
+    }
+    .value-text p {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* ─── SERVICES ───────────────────────────────────────────── */
+    #services {
+      padding: 130px 0;
+      background: var(--black);
+      overflow: hidden;
+    }
+    .services-header {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+    .services-header .section-label {
+      justify-content: center;
+    }
+    .services-header .section-label::before { display: none; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(201,169,110,0.1);
+    }
+    .service-card {
+      background: var(--deep);
+      padding: 52px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.4s;
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .service-card:hover { background: var(--dark); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-number {
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(201,169,110,0.1);
+      line-height: 1;
+      margin-bottom: 24px;
+      transition: color 0.4s;
+    }
+    .service-card:hover .service-number { color: rgba(201,169,110,0.18); }
+
+    .service-icon {
+      margin-bottom: 20px;
+      color: var(--gold);
+    }
+    .service-name {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .service-desc {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: var(--muted);
+    }
+    .service-arrow {
+      position: absolute;
+      bottom: 36px; right: 36px;
+      color: var(--gold);
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateX(-8px);
+    }
+    .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
+
+    /* ─── DIFFERENTIALS MARQUEE ──────────────────────────────── */
+    #marquee-section {
+      padding: 28px 0;
+      background: var(--gold);
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 30s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 24px;
+      padding: 0 40px;
+      font-family: var(--font-title);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--black);
+    }
+    .marquee-dot {
+      width: 4px; height: 4px;
+      background: rgba(0,0,0,0.35);
+      border-radius: 50%;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── EVENTS SHOWCASE ────────────────────────────────────── */
+    #events {
+      padding: 130px 0;
+      background: var(--deep);
+    }
+    .events-layout {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .events-list {
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid rgba(201,169,110,0.15);
+    }
+    .event-item {
+      padding: 24px 28px;
+      border-bottom: 1px solid rgba(201,169,110,0.1);
+      cursor: pointer;
+      transition: background 0.3s;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .event-item:last-child { border-bottom: none; }
+    .event-item.active, .event-item:hover { background: rgba(201,169,110,0.07); }
+    .event-item.active .event-item-bar {
+      background: var(--gold);
+    }
+    .event-item-bar {
+      width: 2px; height: 40px; flex-shrink: 0;
+      background: rgba(201,169,110,0.2);
+      transition: background 0.3s;
+    }
+    .event-item-text h4 {
+      font-family: var(--font-title);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .event-item-text span {
+      font-size: 0.7rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    .event-detail {
+      position: relative;
+    }
+    .event-detail-visual {
+      background: var(--mid);
+      height: 320px;
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 40px;
+    }
+    .event-detail-visual svg {
+      width: 60%; opacity: 0.5;
+      filter: drop-shadow(0 0 60px rgba(201,169,110,0.3));
+    }
+    .event-detail-tag {
+      position: absolute;
+      top: 24px; left: 24px;
+      background: rgba(9,9,9,0.8);
+      border: 1px solid var(--gold);
+      padding: 6px 14px;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .event-detail h3 {
+      font-family: var(--font-title);
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+    .event-detail p {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: rgba(245,240,232,0.6);
+    }
+    .event-features {
+      margin-top: 28px;
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .event-tag {
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201,169,110,0.3);
+      padding: 6px 14px;
+    }
+
+    /* ─── TESTIMONIALS ───────────────────────────────────────── */
+    #testimonials {
+      padding: 130px 0;
+      background: var(--black);
+      text-align: center;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 70px;
+    }
+    .testimonial-card {
+      border: 1px solid rgba(201,169,110,0.12);
+      padding: 44px 36px;
+      text-align: left;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .testimonial-card:hover {
+      border-color: rgba(201,169,110,0.3);
+      transform: translateY(-6px);
+    }
+    .quote-mark {
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--gold);
+      opacity: 0.3;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .testimonial-text {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-style: italic;
+      line-height: 1.85;
+      color: rgba(245,240,232,0.7);
+      margin-bottom: 28px;
+    }
+    .testimonial-author {
+      display: flex; align-items: center; gap: 14px;
+    }
+    .author-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--mid);
+      border: 1px solid rgba(201,169,110,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-title);
+      font-size: 0.7rem;
+      color: var(--gold);
+    }
+    .author-info h5 {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+    }
+    .author-info span {
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+    .stars {
+      position: absolute; top: 36px; right: 28px;
+      color: var(--gold);
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+    }
+
+    /* ─── INSTAGRAM STRIP ────────────────────────────────────── */
+    #instagram {
+      padding: 90px 0;
+      background: var(--deep);
+      text-align: center;
+    }
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 4px;
+      margin-top: 48px;
+    }
+    .insta-cell {
+      aspect-ratio: 1;
+      background: var(--mid);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .insta-cell::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(201,169,110,0.7);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .insta-cell:hover::after { opacity: 1; }
+    .insta-cell svg {
+      opacity: 0.15;
+      transition: opacity 0.3s;
+    }
+    .insta-cell:hover svg { opacity: 0; }
+    .insta-overlay-icon {
+      position: absolute; inset: 0; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--black);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .insta-cell:hover .insta-overlay-icon { opacity: 1; }
+
+    /* ─── CTA BAND ───────────────────────────────────────────── */
+    #cta {
+      padding: 120px 0;
+      background: var(--dark);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-eyebrow {
+      font-family: var(--font-sans);
+      font-size: 0.62rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .cta-title {
+      font-family: var(--font-title);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+    .cta-title em {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--gold);
+    }
+    .cta-sub {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: rgba(245,240,232,0.5);
+      margin-bottom: 52px;
+    }
+    .cta-actions {
+      display: flex; align-items: center; justify-content: center; gap: 20px;
+    }
+    .cta-note {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 24px;
+      letter-spacing: 0.08em;
+    }
+
+    /* ─── CONTACT ────────────────────────────────────────────── */
+    #contact {
+      padding: 130px 0;
+      background: var(--black);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 100px;
+    }
+    .contact-info h3 {
+      font-family: var(--font-title);
+      font-size: 1.6rem;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .contact-info p {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+    .contact-detail {
+      display: flex; align-items: center; gap: 14px;
+      margin-bottom: 20px;
+      color: var(--cream);
+    }
+    .contact-detail svg { color: var(--gold); flex-shrink: 0; }
+    .contact-detail span {
+      font-size: 0.82rem;
+      color: rgba(245,240,232,0.65);
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--mid);
+      border: 1px solid rgba(201,169,110,0.15);
+      color: var(--cream);
+      padding: 14px 18px;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.3s;
+      resize: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group select option { background: var(--dark); }
+    .form-submit {
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      padding: 18px 44px;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--deep);
+      border-top: 1px solid rgba(201,169,110,0.1);
+      padding: 60px 0 32px;
+      position: relative; z-index: 2;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .nav-logo {
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+    .footer-brand p {
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .social-links { display: flex; gap: 12px; }
+    .social-link {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(201,169,110,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+    .footer-col h5 {
+      font-family: var(--font-title);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-col ul a:hover { color: var(--cream); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(201,169,110,0.08);
+      padding-top: 28px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-bottom p {
+      font-size: 0.72rem;
+      color: rgba(122,112,96,0.6);
+      letter-spacing: 0.05em;
+    }
+    .instagram-handle {
+      font-size: 0.72rem;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      opacity: 0.7;
+      transition: opacity 0.25s;
+    }
+    .instagram-handle:hover { opacity: 1; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-content { padding: 0 60px; }
+      .hero-stats { left: 60px; right: 60px; }
+      nav { padding: 24px 40px; }
+      .container { padding: 0 40px; }
+      .about-grid, .events-layout, .contact-grid { grid-template-columns: 1fr; gap: 60px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 20px 24px; }
+      .nav-links { display: none; }
+      .hero-content { padding: 0 24px; }
+      .hero-stats { left: 24px; right: 24px; grid-template-columns: 1fr; display: none; }
+      .container { padding: 0 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      body { cursor: auto; }
+      .cursor { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor">
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">ALIANCCE</a>
+  <ul class="nav-links">
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#services">Serviços</a></li>
+    <li><a href="#events">Eventos</a></li>
+    <li><a href="#contact">Contato</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Solicitar Proposta</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+
+  <!-- Horse silhouette SVG -->
+  <svg class="horse-silhouette" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" fill="none">
+    <!-- Elegant horse in motion silhouette -->
+    <g fill="#C9A96E">
+      <!-- Body -->
+      <ellipse cx="420" cy="330" rx="155" ry="80" />
+      <!-- Neck -->
+      <path d="M330 280 Q310 220 290 170 Q310 160 330 165 Q355 220 370 275 Z"/>
+      <!-- Head -->
+      <path d="M268 170 Q255 140 258 120 Q275 105 295 108 Q315 112 320 135 Q322 158 305 170 Z"/>
+      <!-- Muzzle -->
+      <path d="M255 138 Q248 145 250 160 Q262 168 270 162 Q265 150 262 138 Z"/>
+      <!-- Ear -->
+      <path d="M290 108 Q292 88 300 82 Q308 88 305 105 Z"/>
+      <!-- Mane flowing -->
+      <path d="M290 170 Q305 195 310 220 Q295 215 280 200 Q270 185 280 170 Z" opacity="0.7"/>
+      <path d="M300 175 Q320 200 325 230 Q308 222 295 208 Z" opacity="0.5"/>
+      <!-- Front legs -->
+      <path d="M370 395 Q365 430 358 470 Q350 480 345 470 Q350 430 355 395 Z"/>
+      <path d="M350 395 Q340 435 330 470 Q322 480 318 470 Q326 435 338 395 Z"/>
+      <!-- Rear legs -->
+      <path d="M490 395 Q495 440 498 475 Q490 483 485 475 Q482 440 487 395 Z"/>
+      <path d="M508 390 Q518 435 522 468 Q514 476 509 468 Q506 435 502 390 Z"/>
+      <!-- Hooves -->
+      <ellipse cx="352" cy="472" rx="10" ry="5"/>
+      <ellipse cx="324" cy="472" rx="10" ry="5"/>
+      <ellipse cx="492" cy="477" rx="10" ry="5"/>
+      <ellipse cx="516" cy="470" rx="10" ry="5"/>
+      <!-- Tail -->
+      <path d="M570 330 Q610 310 640 270 Q650 255 648 240 Q638 242 630 260 Q610 295 580 320 Z" opacity="0.8"/>
+      <path d="M568 345 Q615 340 648 310 Q658 295 652 280 Q642 285 633 302 Q605 328 570 335 Z" opacity="0.6"/>
+      <path d="M565 360 Q612 365 644 340 Q652 325 648 310 Q637 318 625 335 Q598 355 566 355 Z" opacity="0.4"/>
+    </g>
+    <!-- Decorative elements -->
+    <circle cx="280" cy="260" r="1.5" fill="#C9A96E" opacity="0.6"/>
+    <circle cx="420" cy="240" r="1" fill="#C9A96E" opacity="0.4"/>
+  </svg>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Gestão de Eventos Equestres</p>
+    <h1 class="hero-title">
+      A arte de criar<br/>
+      <em>experiências</em><br/>
+      inesquecíveis
+    </h1>
+    <p class="hero-subtitle">onde o cavalo é protagonista</p>
+    <p class="hero-desc">
+      Especialistas em planejamento e execução de eventos no universo equestre. 
+      Da logística à emoção, transformamos cada competição e celebração 
+      em uma memória que dura para sempre.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Falar com um especialista</a>
+      <a href="#services" class="btn-ghost">
+        Conheça nossos serviços
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+          <path d="M1 5h14M10 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Stats -->
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-number">200<span style="font-size:1.6rem">+</span></div>
+      <div class="stat-label">Eventos Realizados</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">12</div>
+      <div class="stat-label">Anos de Experiência</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">98<span style="font-size:1.2rem">%</span></div>
+      <div class="stat-label">Clientes Satisfeitos</div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div id="marquee-section">
+  <div class="marquee-track" id="marquee">
+    <span class="marquee-item">Rodeios<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Competições Equestres<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Show Jumping<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Polo<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Exposições<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Dressage<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Team Penning<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Eventos Corporativos<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Rodeios<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Competições Equestres<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Show Jumping<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Polo<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Exposições<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Dressage<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Team Penning<span class="marquee-dot"></span></span>
+    <span class="marquee-item">Eventos Corporativos<span class="marquee-dot"></span></span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-frame">
+          <div class="about-inner">
+            <!-- Decorative equestrian SVG artwork -->
+            <svg class="about-horse-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Circular badge style artwork -->
+              <circle cx="200" cy="200" r="170" stroke="#C9A96E" stroke-width="0.5" opacity="0.4"/>
+              <circle cx="200" cy="200" r="155" stroke="#C9A96E" stroke-width="1" opacity="0.25"/>
+              <circle cx="200" cy="200" r="140" stroke="#C9A96E" stroke-width="0.5" opacity="0.2"/>
+              <!-- Horse head portrait -->
+              <g fill="#C9A96E" opacity="0.85">
+                <!-- Neck -->
+                <path d="M175 280 Q165 240 160 200 Q168 190 180 190 Q192 220 200 265 Z"/>
+                <!-- Jaw -->
+                <path d="M160 200 Q148 185 145 165 Q150 155 162 155 Q172 170 175 190 Z"/>
+                <!-- Head -->
+                <path d="M145 165 Q138 148 140 130 Q155 115 170 118 Q183 125 185 145 Q182 165 168 175 Q157 178 148 172 Z"/>
+                <!-- Muzzle/Nose -->
+                <path d="M138 148 Q132 152 132 165 Q140 175 148 172 Q143 162 140 150 Z"/>
+                <!-- Eye -->
+                <circle cx="165" cy="138" r="5" fill="#1A1610"/>
+                <circle cx="163" cy="136" r="1.5" fill="#C9A96E"/>
+                <!-- Ear -->
+                <path d="M162 118 Q163 100 170 94 Q178 100 175 116 Z"/>
+                <!-- Nostril -->
+                <ellipse cx="137" cy="162" rx="3" ry="4" opacity="0.6"/>
+                <!-- Mane details -->
+                <path d="M170 118 Q185 130 192 155 Q180 152 168 142 Q160 132 162 120 Z" opacity="0.6"/>
+                <path d="M192 155 Q205 170 205 190 Q195 185 185 172 Q178 160 183 148 Z" opacity="0.4"/>
+              </g>
+              <!-- Decorative laurel branches -->
+              <g stroke="#C9A96E" stroke-width="0.8" fill="none" opacity="0.5">
+                <path d="M60 200 Q55 190 50 185 Q55 183 60 188"/>
+                <path d="M60 200 Q50 195 44 192 Q48 188 55 193"/>
+                <path d="M60 200 Q52 205 48 210 Q53 212 59 207"/>
+                <path d="M60 200 Q55 210 52 218 Q57 218 61 212"/>
+                <path d="M60 200 Q62 212 66 220 Q70 218 67 211"/>
+                <path d="M340 200 Q345 190 350 185 Q345 183 340 188"/>
+                <path d="M340 200 Q350 195 356 192 Q352 188 345 193"/>
+                <path d="M340 200 Q348 205 352 210 Q347 212 341 207"/>
+                <path d="M340 200 Q345 210 348 218 Q343 218 339 212"/>
+                <path d="M340 200 Q338 212 334 220 Q330 218 333 211"/>
+              </g>
+              <!-- Text arc -->
+              <path id="arcTop" d="M 55 200 A 145 145 0 0 1 345 200" fill="none"/>
+              <text font-family="Cinzel, serif" font-size="10" fill="#C9A96E" letter-spacing="4" opacity="0.7">
+                <textPath href="#arcTop" startOffset="10%">ALIANCCE · GESTÃO DE EVENTOS · EQUESTRE</textPath>
+              </text>
+              <path id="arcBottom" d="M 75 215 A 130 130 0 0 0 325 215" fill="none"/>
+              <text font-family="Cinzel, serif" font-size="8" fill="#C9A96E" letter-spacing="3" opacity="0.45">
+                <textPath href="#arcBottom" startOffset="15%">EXCELÊNCIA · PAIXÃO · TRADIÇÃO</textPath>
+              </text>
+              <!-- Stars -->
+              <text x="185" y="298" fill="#C9A96E" font-size="8" opacity="0.5">✦ ✦ ✦</text>
+            </svg>
+          </div>
+        </div>
+        <div class="about-badge">
+          DESDE<br/><strong style="font-size:1.8rem;letter-spacing:0.05em">2012</strong>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <p class="section-label reveal">Nossa história</p>
+        <h2 class="section-title reveal">
+          Paixão pelo<br/><em>universo equestre</em><br/>em cada detalhe
+        </h2>
+        <p class="section-body reveal">
+          A Aliancce nasceu da paixão genuína pelo mundo dos cavalos e da 
+          determinação de elevar o padrão dos eventos equestres no Brasil. 
+          Com mais de uma década de experiência, somos referência em organização, 
+          logística e produção de eventos que unem tradição e modernidade.
+        </p>
+
+        <div class="about-values">
+          <div class="value-item reveal">
+            <div class="value-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <div class="value-text">
+              <h4>Excelência Operacional</h4>
+              <p>Planejamento minucioso e execução impecável em cada etapa do evento.</p>
+            </div>
+          </div>
+          <div class="value-item reveal">
+            <div class="value-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+            <div class="value-text">
+              <h4>Amor pelos Cavalos</h4>
+              <p>Respeito e cuidado genuíno com o bem-estar animal em todos os eventos.</p>
+            </div>
+          </div>
+          <div class="value-item reveal">
+            <div class="value-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <div class="value-text">
+              <h4>Parceria e Confiança</h4>
+              <p>Relacionamentos duradouros construídos sobre transparência e comprometimento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <p class="section-label reveal">O que fazemos</p>
+      <h2 class="section-title reveal" style="text-align:center">
+        Serviços <em>completos</em><br/>para seu evento
+      </h2>
+    </div>
+  </div>
+
+  <div class="container" style="max-width:100%;padding:0;">
+    <div class="services-grid">
+
+      <div class="service-card reveal">
+        <div class="service-number">01</div>
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+            <line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/>
+            <line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Planejamento Estratégico</h3>
+        <p class="service-desc">Cronograma detalhado, orçamento preciso e gestão de fornecedores para garantir que cada aspecto do evento seja executado com perfeição.</p>
+        <div class="service-arrow">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
+            <path d="M1 6h18M13 1l6 5-6 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">02</div>
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Competições & Rodeios</h3>
+        <p class="service-desc">Organização completa de competições equestres, rodeios e shows, com infraestrutura adequada para atletas, cavalos e público.</p>
+        <div class="service-arrow">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
+            <path d="M1 6h18M13 1l6 5-6 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">03</div>
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Infraestrutura & Logística</h3>
+        <p class="service-desc">Montagem de estruturas, arenas, baias, áreas VIP e toda a infraestrutura necessária para eventos de pequeno a grande porte.</p>
+        <div class="service-arrow">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
+            <path d="M1 6h18M13 1l6 5-6 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">04</div>
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Patrocínio & Marketing</h3>
+        <p class="service-desc">Captação de patrocinadores, gestão de marcas, ativações e estratégias de comunicação para maximizar a visibilidade do evento.</p>
+        <div class="service-arrow">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
+            <path d="M1 6h18M13 1l6 5-6 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">05</div>
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/>
+            <path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+            <path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/>
+            <path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/>
+            <path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/>
+            <path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/>
+            <path d="M10 9.5C10 8.67 9.33 8 8.5 8h-5C2.67 8 2 8.67 2 9.5S2.67 11 3.5 11h5c.83 0 1.5-.67 1.5-1.5z"/>
+            <path d="M8.5 5H10V3.5C10 2.67 9.33 2 8.5 2S7 2.67 7 3.5 7.67 5 8.5 5z"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Eventos Corporativos</h3>
+        <p class="service-desc">Experiências exclusivas no campo equestre para empresas — team building, confraternizações e entretenimento para executivos e clientes.</p>
+        <div class="service-arrow">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
+            <path d="M1 6h18M13 1l6 5-6 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-number">06</div>
+        <div class="service-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3">
+            <path d="M23 7l-7 5 7 5V7z"/>
+            <rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>
+          </svg>
+        </div>
+        <h3 class="service-name">Transmissão & Mídia</h3>
+        <p class="service-desc">Cobertura audiovisual profissional, transmissões ao vivo e conteúdo para redes sociais, levando seu evento a uma audiência global.</p>
+        <div class="service-arrow">
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none">
+            <path d="M1 6h18M13 1l6 5-6 5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events">
+  <div class="container">
+    <p class="section-label reveal">Portfólio</p>
+    <h2 class="section-title reveal">Eventos que <em>marcam</em> história</h2>
+    <br/><br/>
+
+    <div class="events-layout">
+      <div class="events-list" id="eventList">
+        <div class="event-item active" onclick="selectEvent(0, this)">
+          <div class="event-item-bar"></div>
+          <div class="event-item-text">
+            <h4>Campeonato Brasileiro de Rodeio</h4>
+            <span>Organização Completa · Nacional</span>
+          </div>
+        </div>
+        <div class="event-item" onclick="selectEvent(1, this)">
+          <div class="event-item-bar"></div>
+          <div class="event-item-text">
+            <h4>Copa Equestre de Salto</h4>
+            <span>Produção Executiva · Regional</span>
+          </div>
+        </div>
+        <div class="event-item" onclick="selectEvent(2, this)">
+          <div class="event-item-bar"></div>
+          <div class="event-item-text">
+            <h4>Exposição Agropecuária & Cavalos</h4>
+            <span>Gestão Total · Estadual</span>
+          </div>
+        </div>
+        <div class="event-item" onclick="selectEvent(3, this)">
+          <div class="event-item-bar"></div>
+          <div class="event-item-text">
+            <h4>Polo Day Corporativo</h4>
+            <span>Evento Exclusivo · Corporativo</span>
+          </div>
+        </div>
+        <div class="event-item" onclick="selectEvent(4, this)">
+          <div class="event-item-bar"></div>
+          <div class="event-item-text">
+            <h4>Festival de Dressage</h4>
+            <span>Organização Técnica · Internacional</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-detail" id="eventDetail">
+        <div class="event-detail-visual">
+          <!-- Dynamic horse SVG for event -->
+          <svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <defs>
+              <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#C9A96E" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#C9A96E" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="250" cy="150" r="200" fill="url(#glow)"/>
+            <!-- Rider on horse -->
+            <g fill="#C9A96E" opacity="0.7">
+              <!-- Horse body -->
+              <ellipse cx="255" cy="195" rx="90" ry="48"/>
+              <!-- Neck -->
+              <path d="M195 175 Q185 148 182 125 Q192 118 202 122 Q210 145 218 170 Z"/>
+              <!-- Head -->
+              <path d="M180 125 Q174 110 176 95 Q186 83 198 86 Q208 92 210 108 Q208 125 196 132 Q187 135 181 130 Z"/>
+              <!-- Ear -->
+              <path d="M188 86 Q190 72 196 67 Q202 73 200 85 Z"/>
+              <!-- Legs in motion -->
+              <path d="M215 232 Q210 255 206 275 Q200 282 196 274 Q200 253 207 232 Z"/>
+              <path d="M235 235 Q226 258 220 278 Q214 284 210 276 Q216 255 225 235 Z"/>
+              <path d="M285 232 Q290 256 293 275 Q286 282 282 274 Q279 255 281 232 Z"/>
+              <path d="M305 228 Q314 252 318 272 Q311 278 307 271 Q304 252 299 228 Z"/>
+              <!-- Tail -->
+              <path d="M340 195 Q368 180 385 158 Q392 148 390 138 Q382 140 375 154 Q360 172 342 188 Z" opacity="0.7"/>
+              <!-- Rider body -->
+              <ellipse cx="225" cy="150" rx="16" ry="22"/>
+              <!-- Rider head -->
+              <circle cx="225" cy="122" r="12"/>
+              <!-- Helmet -->
+              <path d="M213 122 Q213 110 225 108 Q237 110 237 122 Z"/>
+              <!-- Arms -->
+              <path d="M225 135 Q210 145 195 148 Q192 142 197 138 Q210 134 222 130 Z"/>
+              <path d="M225 135 Q240 142 250 145 Q252 151 247 153 Q233 148 222 140 Z"/>
+            </g>
+            <!-- Decorative line elements -->
+            <line x1="50" y1="280" x2="450" y2="280" stroke="#C9A96E" stroke-width="0.5" opacity="0.3"/>
+            <line x1="50" y1="275" x2="450" y2="275" stroke="#C9A96E" stroke-width="0.3" opacity="0.15"/>
+          </svg>
+          <div class="event-detail-tag" id="eventTag">Organização Completa</div>
+        </div>
+
+        <h3 id="eventTitle">Campeonato Brasileiro de Rodeio</h3>
+        <p id="eventDesc">Organização e execução completa de uma das maiores competições de rodeio do Brasil, com mais de 15.000 espectadores, 300 competidores e transmissão nacional. Gerenciamos toda a logística de arena, credenciamento, hospedagem de atletas e animais, além da programação artística e gastronômica.</p>
+        <div class="event-features" id="eventFeatures">
+          <span class="event-tag">15.000+ Espectadores</span>
+          <span class="event-tag">300 Competidores</span>
+          <span class="event-tag">Transmissão Nacional</span>
+          <span class="event-tag">3 Dias</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <p class="section-label reveal" style="justify-content:center">
+      <span style="display:none">-</span>Depoimentos
+    </p>
+    <h2 class="section-title reveal" style="text-align:center">
+      O que nossos clientes<br/><em>dizem sobre nós</em>
+    </h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <span class="quote-mark">"</span>
+        <p class="testimonial-text">A Aliancce transformou completamente nossa competição. A atenção aos detalhes e a profissionalidade da equipe são incomparáveis no mercado equestre.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RC</div>
+          <div class="author-info">
+            <h5>Roberto Cavalcante</h5>
+            <span>Presidente — Associação Equestre SP</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <span class="quote-mark">"</span>
+        <p class="testimonial-text">Nossa empresa realizou um Polo Day com a Aliancce e o resultado foi excepcional. Os clientes ainda falam sobre a experiência meses depois.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AM</div>
+          <div class="author-info">
+            <h5>Ana Mendes</h5>
+            <span>Diretora de Marketing — Grupo Meridian</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card reveal">
+        <div class="stars">★★★★★</div>
+        <span class="quote-mark">"</span>
+        <p class="testimonial-text">Cinco anos consecutivos confiando na Aliancce para nosso festival de dressage. Cada edição supera a anterior em organização e qualidade.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">LF</div>
+          <div class="author-info">
+            <h5>Luisa Furtado</h5>
+            <span>Atleta Olímpica de Dressage</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM STRIP -->
+<section id="instagram">
+  <div class="container">
+    <p class="section-label reveal" style="justify-content:center">
+      Nos acompanhe
+    </p>
+    <h2 class="section-title reveal" style="text-align:center; font-size:1.8rem;">
+      <em>@aliancce.gestaoeeventos</em>
+    </h2>
+
+    <div class="instagram-grid">
+      <!-- Each cell simulates an Instagram post -->
+      <a class="insta-cell" href="https://www.instagram.com/aliancce.gestaoeeventos/" target="_blank">
+        <svg viewBox="0 0 80 80" fill="none" width="50">
+          <g fill="#C9A96E"><ellipse cx="40" cy="48" rx="22" ry="14"/><path d="M28 42 Q25 32 26 22 Q32 18 38 20 Q43 32 45 42 Z"/><path d="M26 22 Q28 12 36 8 Q42 10 44 18 Q38 26 30 28 Z"/></g>
+        </svg>
+        <div class="insta-overlay-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+        </div>
+      </a>
+      <a class="insta-cell" href="https://www.instagram.com/aliancce.gestaoeeventos/" target="_blank">
+        <svg viewBox="0 0 80 80" fill="none" width="50"><g fill="#C9A96E"><circle cx="40" cy="40" r="20" opacity="0.3"/><path d="M30 60 Q28 45 30 35 Q36 28 44 30 Q50 38 48 52 Z" opacity="0.8"/></g></svg>
+        <div class="insta-overlay-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a class="insta-cell" href="https://www.instagram.com/aliancce.gestaoeeventos/" target="_blank">
+        <svg viewBox="0 0 80 80" fill="none" width="50"><g fill="#C9A96E"><rect x="15" y="30" width="50" height="35" rx="4" opacity="0.2"/><path d="M22 48 Q24 36 28 30 Q36 24 44 26 Q50 34 48 50 Q38 58 28 54 Z" opacity="0.7"/></g></svg>
+        <div class="insta-overlay-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a class="insta-cell" href="https://www.instagram.com/aliancce.gestaoeeventos/" target="_blank">
+        <svg viewBox="0 0 80 80" fill="none" width="50"><g fill="#C9A96E"><ellipse cx="40" cy="44" rx="20" ry="12" opacity="0.4"/><path d="M32 42 Q30 28 34 20 Q40 16 46 20 Q48 30 46 42 Z" opacity="0.8"/><circle cx="42" cy="30" r="6" opacity="0.3"/></g></svg>
+        <div class="insta-overlay-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a class="insta-cell" href="https://www.instagram.com/aliancce.gestaoeeventos/" target="_blank">
+        <svg viewBox="0 0 80 80" fill="none" width="50"><g fill="#C9A96E"><path d="M20 60 Q18 45 22 35 Q28 28 36 28 Q44 30 46 42 Q44 56 36 60 Z" opacity="0.6"/><path d="M36 28 Q42 20 50 18 Q56 24 54 34 Q48 38 40 36 Z" opacity="0.5"/></g></svg>
+        <div class="insta-overlay-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+      <a class="insta-cell" href="https://www.instagram.com/aliancce.gestaoeeventos/" target="_blank">
+        <svg viewBox="0 0 80 80" fill="none" width="50"><g fill="#C9A96E"><ellipse cx="42" cy="46" rx="18" ry="10" opacity="0.3"/><path d="M26 46 Q24 34 28 26 Q34 20 42 22 Q50 28 50 42 Z" opacity="0.75"/><circle cx="38" cy="32" r="5" opacity="0.4"/></g></svg>
+        <div class="insta-overlay-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></div>
+      </a>
+    </div>
+
+    <p style="margin-top:28px; font-size:0.75rem; color:var(--muted); letter-spacing:0.1em;">
+      Siga-nos no Instagram para novidades e bastidores dos nossos eventos
+    </p>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta">
+  <div class="container">
+    <p class="cta-eyebrow reveal">Vamos criar algo extraordinário</p>
+    <h2 class="cta-title reveal">Seu próximo evento<br/><em>começa aqui</em></h2>
+    <p class="cta-sub reveal">Fale conosco e receba uma proposta personalizada</p>
+    <div class="cta-actions reveal">
+      <a href="#contact" class="btn-primary">Solicitar Proposta Gratuita</a>
+      <a href="https://www.instagram.com/aliancce.gestaoeeventos/" target="_blank" class="btn-ghost">
+        Ver nosso Instagram
+        <svg width="16" height="10" viewBox="0 0 16 10" fill="none">
+          <path d="M1 5h14M10 1l4 4-4 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+    <p class="cta-note reveal">Atendemos em todo o Brasil · Resposta em até 24h</p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-label reveal">Entre em contato</p>
+        <h2 class="section-title reveal" style="font-size:2rem;">
+          Pronto para criar<br/><em>algo único?</em>
+        </h2>
+        <p class="reveal">
+          Nossa equipe está pronta para transformar sua visão em um evento 
+          memorável. Conte-nos sobre seu projeto e receba uma proposta 
+          completamente personalizada.
+        </p>
+
+        <div class="contact-detail reveal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.72a16 16 0 0 0 6 6l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16 Z"/>
+          </svg>
+          <span>(11) 9 9999-9999</span>
+        </div>
+        <div class="contact-detail reveal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span>contato@aliancce.com.br</span>
+        </div>
+        <div class="contact-detail reveal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Brasil · Atendimento Nacional</span>
+        </div>
+        <div class="contact-detail reveal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          <span>@aliancce.gestaoeeventos</span>
+        </div>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome completo</label>
+            <input type="text" placeholder="Seu nome"/>
+          </div>
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" placeholder="seu@email.com"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Telefone / WhatsApp</label>
+            <input type="tel" placeholder="(xx) xxxxx-xxxx"/>
+          </div>
+          <div class="form-group">
+            <label>Tipo de evento</label>
+            <select>
+              <option value="" disabled selected>Selecione</option>
+              <option>Rodeio</option>
+              <option>Competição de Salto</option>
+              <option>Dressage</option>
+              <option>Polo</option>
+              <option>Exposição Agropecuária</option>
+              <option>Evento Corporativo</option>
+              <option>Outro</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Data estimada do evento</label>
+          <input type="text" placeholder="Ex: Março de 2026"/>
+        </div>
+        <div class="form-group">
+          <label>Conte-nos sobre seu evento</label>
+          <textarea rows="5" placeholder="Descreva seu evento, número estimado de participantes, localização e qualquer detalhe importante..."></textarea>
+        </div>
+        <button type="button" class="form-submit">Enviar Mensagem</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">ALIANCCE</a>
+        <p>Especialistas em gestão de eventos equestres.<br/>
+        Tradição, paixão e excelência em cada realização.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/aliancce.gestaoeeventos/" target="_blank" class="social-link" title="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <a href="https://wa.me/5511999999999" target="_blank" class="social-link" title="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Serviços</h5>
+        <ul>
+          <li><a href="#services">Planejamento Estratégico</a></li>
+          <li><a href="#services">Competições & Rodeios</a></li>
+          <li><a href="#services">Infraestrutura</a></li>
+          <li><a href="#services">Patrocínio & Marketing</a></li>
+          <li><a href="#services">Eventos Corporativos</a></li>
+          <li><a href="#services">Transmissão & Mídia</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="#about">Sobre Nós</a></li>
+          <li><a href="#events">Portfólio</a></li>
+          <li><a href="#testimonials">Depoimentos</a></li>
+          <li><a href="#contact">Contato</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Especialidades</h5>
+        <ul>
+          <li><a href="#">Rodeios</a></li>
+          <li><a href="#">Show Jumping</a></li>
+          <li><a href="#">Dressage</a></li>
+          <li><a href="#">Polo</a></li>
+          <li><a href="#">Team Penning</a></li>
+          <li><a href="#">Exposições</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Aliancce Gestão de Eventos. Todos os direitos reservados.</p>
+      <a href="https://www.instagram.com/aliancce.gestaoeeventos/" target="_blank" class="instagram-handle">
+        @aliancce.gestaoeeventos
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script>
+  /* ── Custom cursor ── */
+  const dot  = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    dot.style.left  = mouseX + 'px';
+    dot.style.top   = mouseY + 'px';
+  });
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top  = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  /* ── Navbar scroll ── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ── Scroll reveal ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // stagger siblings
+        const siblings = e.target.parentElement.querySelectorAll('.reveal');
+        siblings.forEach((s, i) => {
+          s.style.transitionDelay = (i * 0.08) + 's';
+        });
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── Event selector ── */
+  const events = [
+    {
+      title: 'Campeonato Brasileiro de Rodeio',
+      tag: 'Organização Completa',
+      desc: 'Organização e execução completa de uma das maiores competições de rodeio do Brasil, com mais de 15.000 espectadores, 300 competidores e transmissão nacional. Gerenciamos toda a logística de arena, credenciamento, hospedagem de atletas e animais.',
+      features: ['15.000+ Espectadores','300 Competidores','Transmissão Nacional','3 Dias']
+    },
+    {
+      title: 'Copa Equestre de Salto',
+      tag: 'Produção Executiva',
+      desc: 'Produção executiva de campeonato regional de salto com obstáculos, reunindo os melhores cavaleiros do estado. Arena completa, juízes internacionais e cerimônias de premiação de alto nível.',
+      features: ['8.000 Espectadores','120 Atletas','Juízes Internacionais','2 Dias']
+    },
+    {
+      title: 'Exposição Agropecuária & Cavalos',
+      tag: 'Gestão Total',
+      desc: 'Gestão total do setor equestre de uma das maiores exposições agropecuárias do estado, incluindo julgamento de raças, desfiles e apresentações culturais com o cavalo como protagonista.',
+      features: ['50.000+ Visitantes','200 Animais','10 Raças','7 Dias']
+    },
+    {
+      title: 'Polo Day Corporativo',
+      tag: 'Evento Exclusivo',
+      desc: 'Experiência exclusiva de polo para 200 executivos de uma multinacional, com aulas introdutórias, jogo demonstrativo, área gourmet e lounge premium. Um evento de relacionamento inesquecível.',
+      features: ['200 Convidados','Área VIP','Open Bar Premium','Experiência Imersiva']
+    },
+    {
+      title: 'Festival de Dressage',
+      tag: 'Organização Técnica',
+      desc: 'Festival internacional de dressage com participantes de 8 países, transmissão online e cobertura especializada. Técnica apurada, elegância e beleza em cada reprize.',
+      features: ['8 Países','60 Cavaleiros','Transmissão Online','4 Dias']
+    }
+  ];
+
+  function selectEvent(idx, el) {
+    document.querySelectorAll('.event-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    const ev = events[idx];
+    document.getElementById('eventTitle').textContent   = ev.title;
+    document.getElementById('eventTag').textContent     = ev.tag;
+    document.getElementById('eventDesc').textContent    = ev.desc;
+    const feat = document.getElementById('eventFeatures');
+    feat.innerHTML = ev.features.map(f => `<span class="event-tag">${f}</span>`).join('');
+  }
+
+  /* ── Form submit feedback ── */
+  document.querySelector('.form-submit').addEventListener('click', function () {
+    const original = this.textContent;
+    this.textContent = 'Mensagem Enviada ✓';
+    this.style.background = '#4A7C5F';
+    this.style.color = '#fff';
+    setTimeout(() => {
+      this.textContent = original;
+      this.style.background = '';
+      this.style.color = '';
+    }, 3000);
+  });
+</script>
+
+  <script src="https://linkbio.api.br/tracker.js" data-slug="aliancce" defer></script>
+
+</body>
+</html>
