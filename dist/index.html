@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LinkBio — Sua landing page na bio do Instagram</title>
+    <title>LinkBio - Sua landing page personalizada na Bio do Instagram</title>
     <meta name="description" content="Crie uma landing page completa com subdomínio próprio como suaempresa.linkbio.api.br. Links, agenda, produtos e contatos em uma única página." />
     <meta name="keywords"    content="link na bio, linkbio, landing page, instagram, whatsapp, bio personalizada" />
     <meta name="author"      content="LinkBio" />
@@ -41,13 +41,143 @@
     <style>
       html { scroll-behavior: smooth; }
 
-      /* Grid hero background */
-      .hero-grid {
-        background-image:
-          radial-gradient(circle at 50% -10%, rgba(47,128,237,0.18) 0%, transparent 55%),
-          linear-gradient(rgba(47,128,237,0.05) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(47,128,237,0.05) 1px, transparent 1px);
-        background-size: 100% 100%, 44px 44px, 44px 44px;
+      /* Hero Section - Video Background */
+      .hero {
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .bg-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: cover;
+        z-index: 0;
+      }
+      
+      .mobile-video {
+        display: none;
+      }
+      
+      @media (max-width: 768px) {
+        .desktop-video {
+          display: none;
+        }
+        .mobile-video {
+          display: block;
+        }
+      }
+      
+      .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 1;
+      }
+      
+      .hero-content {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        z-index: 10;
+        color: white;
+        text-align: left;
+        width: 90%;
+        max-width: 800px;
+        padding-left: 5%;
+      }
+      
+      /* Mobile hero content below video */
+      @media (max-width: 768px) {
+        .hero {
+          height: auto;
+          min-height: 100vh;
+        }
+        
+        .hero-content {
+          position: relative;
+          top: auto;
+          transform: none;
+          z-index: 10;
+          color: white;
+          text-align: center;
+          width: 100%;
+          max-width: none;
+          padding: 40px 20px;
+          background: #082eb5;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        .mobile-video {
+          position: relative;
+          top: auto;
+          left: auto;
+          transform: none;
+          min-height: 60vh;
+          width: 100%;
+        }
+        
+        .overlay {
+          display: none;
+        }
+        
+        /* Adjust text colors for mobile blue background */
+        .hero-content h1 {
+          color: white !important;
+        }
+        
+        .hero-content p {
+          color: rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        .hero-content span[style*="color: rgba(255,255,255,0.8)"] {
+          color: rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        .hero-content span[style*="color: white"] {
+          color: white !important;
+        }
+        
+        /* Center and equalize buttons in mobile */
+        .hero-content div[style*="display: flex"] {
+          justify-content: center !important;
+          flex-wrap: wrap !important;
+          gap: 12px !important;
+        }
+        
+        .hero-content div[style*="display: flex"] a {
+          min-width: 200px !important;
+          justify-content: center !important;
+          text-align: center !important;
+        }
+        
+        /* Fix investment card layout in mobile */
+        @media (max-width: 768px) {
+          #pricing .flex.items-center.justify-center.gap-12 {
+            flex-direction: column !important;
+            gap: 24px !important;
+          }
+          
+          #pricing .text-3xl.text-slate-300 {
+            transform: rotate(90deg) !important;
+            margin: 0 !important;
+          }
+          
+          #pricing .text-center {
+            text-align: center !important;
+          }
+        }
       }
 
       /* Gradient text */
@@ -121,10 +251,8 @@
         z-index: 9999;
         background: #080c18;
         background-image:
-          radial-gradient(circle at 50% 40%, rgba(47,128,237,.13) 0%, transparent 55%),
-          linear-gradient(rgba(47,128,237,.045) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(47,128,237,.045) 1px, transparent 1px);
-        background-size: 100% 100%, 44px 44px, 44px 44px;
+          radial-gradient(circle at 50% 40%, rgba(47,128,237,.13) 0%, transparent 55%);
+        background-size: 100% 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -132,6 +260,21 @@
         gap: 28px;
         transition: opacity .5s ease, visibility .5s ease;
       }
+      
+      /* Mobile splash with background image */
+      @media (max-width: 1023px) {
+        #splash {
+          background: url('splash/Splash%20820%20x%201180.png') center/cover no-repeat;
+        }
+      }
+      
+      /* Desktop splash with background image */
+      @media (min-width: 1024px) {
+        #splash {
+          background: url('splash/Splash%202560x1440.png') center/cover no-repeat;
+        }
+      }
+      
       #splash.hide {
         opacity: 0;
         visibility: hidden;
@@ -186,7 +329,9 @@
       }
       #clientes .client-card-desc {
         display: -webkit-box;
+        display: -webkit-box;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
         line-height: 1.5;
@@ -227,7 +372,6 @@
           <nav class="hidden md:flex items-center gap-8 text-[14px] font-medium">
             <a href="#features"     class="text-secondary/70 hover:text-secondary transition">Recursos</a>
             <a href="#examples"     class="text-secondary/70 hover:text-secondary transition">Exemplos</a>
-            <a href="#clientes"     class="text-secondary/70 hover:text-secondary transition">Clientes</a>
             <a href="#how-it-works" class="text-secondary/70 hover:text-secondary transition">Como funciona</a>
             <a href="#pricing"      class="text-secondary/70 hover:text-secondary transition">Preços</a>
           </nav>
@@ -261,7 +405,6 @@
         <nav class="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-1">
           <a href="#features"     class="mobile-link rounded-xl px-4 py-3 text-[15px] font-medium text-secondary/80 hover:text-secondary hover:bg-slate-50 transition">Recursos</a>
           <a href="#examples"     class="mobile-link rounded-xl px-4 py-3 text-[15px] font-medium text-secondary/80 hover:text-secondary hover:bg-slate-50 transition">Exemplos</a>
-          <a href="#clientes"     class="mobile-link rounded-xl px-4 py-3 text-[15px] font-medium text-secondary/80 hover:text-secondary hover:bg-slate-50 transition">Clientes</a>
           <a href="#how-it-works" class="mobile-link rounded-xl px-4 py-3 text-[15px] font-medium text-secondary/80 hover:text-secondary hover:bg-slate-50 transition">Como funciona</a>
           <a href="#pricing"      class="mobile-link rounded-xl px-4 py-3 text-[15px] font-medium text-secondary/80 hover:text-secondary hover:bg-slate-50 transition">Preços</a>
           <div class="mt-2 pt-2 border-t border-slate-100 space-y-2">
@@ -289,127 +432,79 @@
     <main>
 
       <!-- ══════════════════════ HERO ══════════════════════ -->
-      <section id="hero" class="hero-grid relative overflow-hidden bg-[#080c18] pt-12 sm:pt-20 pb-20 sm:pb-32">
-
-        <div class="absolute -right-24 top-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary/10 blur-[120px] pointer-events-none"></div>
-        <div class="absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-cyan-500/8 blur-[80px] pointer-events-none"></div>
-
-        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative">
-          <div class="grid gap-14 lg:grid-cols-[minmax(0,1.15fr),minmax(0,0.85fr)] items-center">
-
-            <!-- Copy -->
-            <div class="space-y-7">
-
-              <div data-animate>
-                <span class="badge-gradient inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold text-slate-200 tracking-wide uppercase">
-                  <span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
-                  Para criadores · lojas · profissionais
-                </span>
-              </div>
-
-              <div data-animate data-animate-delay="100">
-                <h1 class="text-[42px] sm:text-[56px] md:text-[68px] font-extrabold tracking-tight leading-[1.05] text-white">
-                  Todos os seus<br />
-                  links em um
-                  <span class="text-gradient block sm:inline"> único lugar</span>
-                </h1>
-                <p class="mt-5 max-w-xl text-[15px] sm:text-[17px] text-slate-400 leading-relaxed">
-                  Tenha uma landing page completa no formato link da bio, com subdomínio próprio como
-                  <span class="text-slate-100 font-medium">suaempresa.linkbio.api.br</span>, sem precisar registrar domínio nem contratar hospedagem.
-                </p>
-              </div>
-
-              <div data-animate data-animate-delay="200" class="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                <a
-                  href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio.%20Vim%20pelo%20site%20linkbio.api.br."
-                  target="_blank" rel="noopener noreferrer"
-                  class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3.5 text-[15px] sm:text-[16px] font-bold text-white shadow-glow hover:bg-primary/90 transition"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
-                  Criar minha página agora
-                </a>
-                <a
-                  href="#examples"
-                  class="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-7 py-3.5 text-[15px] sm:text-[16px] font-semibold text-slate-200 hover:bg-white/10 hover:border-white/20 transition"
-                >
-                  Ver exemplos
-                </a>
-              </div>
-
-              <div data-animate data-animate-delay="300" class="flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-slate-400">
-                <span class="flex items-center gap-1.5"><span class="text-emerald-400 font-bold">✓</span> Entrega em poucos dias</span>
-                <span class="flex items-center gap-1.5"><span class="text-emerald-400 font-bold">✓</span> Criação por R$ 99</span>
-                <span class="flex items-center gap-1.5"><span class="text-emerald-400 font-bold">✓</span> Manutenção por R$ 9,99/mês</span>
-              </div>
-            </div>
-
-            <!-- Mockup -->
-            <div data-animate data-animate-delay="200" class="hero-mockup-wrap relative flex justify-center lg:justify-end min-h-[280px] sm:min-h-[340px]">
-              <div class="hero-mockup-inner w-full max-w-[min(100%,440px)]">
-                <img
-                  src="public/mockup.png"
-                  alt="Exemplo LinkBio"
-                  class="w-full h-auto object-contain drop-shadow-[0_28px_70px_rgba(0,0,0,0.5)]"
-                  loading="eager"
-                />
-              </div>
-            </div>
-
+      <section class="hero">
+        
+        <!-- Video Background -->
+        <video
+          src="hero/Hero%202560x1440.mp4"
+          class="bg-video desktop-video"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+        
+        <!-- Mobile Video -->
+        <video
+          src="hero/Video_Hero_mobile.mp4"
+          class="bg-video mobile-video"
+          autoplay
+          muted
+          loop
+          playsinline
+        ></video>
+        
+        
+        <!-- Content -->
+        <div class="hero-content">
+          
+          <!-- Badge -->
+          <div style="margin-bottom: 24px;">
+            <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 9999px; font-size: 12px; font-weight: 600; color: white; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+              <span style="width: 8px; height: 8px; border-radius: 50%; background: #2F80ED; animation: pulse 2s infinite;"></span>
+              PARA CRIADORES · LOJAS · PROFISSIONAIS
+            </span>
           </div>
+          
+          <!-- Title -->
+          <h1 style="font-size: 42px; font-weight: 800; margin-bottom: 20px; line-height: 1.1; color: white;">
+            Sua bio, agora<br />
+            com aparência de
+            <span style="background: linear-gradient(135deg, #2F80ED 0%, #60a5fa 60%, #38bdf8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;"> site</span>
+          </h1>
+          
+          <!-- Description -->
+          <p style="font-size: 17px; color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 0 32px; line-height: 1.6;">
+            Tenha uma landing page completa direto na sua bio, com link personalizado e sem precisar comprar domínio
+          </p>
+          
+          <!-- Buttons -->
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 16px;">
+            <a href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio." 
+               target="_blank" 
+               style="display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 9999px; background: #2F80ED; color: white; font-weight: 700; text-decoration: none; box-shadow: 0 0 30px rgba(47,128,237,0.4); transition: all 0.3s;">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4z"/></svg>
+              Criar minha página agora
+            </a>
+            <a href="#examples" 
+               style="display: inline-flex; align-items: center; padding: 14px 28px; border-radius: 9999px; background: rgba(255,255,255,0.1); color: white; font-weight: 600; text-decoration: none; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s;">
+              Ver exemplos
+            </a>
+          </div>
+          
         </div>
+        
       </section>
 
-      <!-- ══════════════════ SOCIAL PROOF ══════════════════ -->
-      <section class="bg-white border-b border-slate-100 py-6">
-        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div data-animate class="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-12">
-
-            <div class="flex items-center gap-3">
-              <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H4v-2a4 4 0 015-3.87M12 12a4 4 0 100-8 4 4 0 000 8z"/></svg>
-              </div>
-              <div>
-                <p class="text-lg font-extrabold text-secondary leading-none">+100</p>
-                <p class="text-xs text-secondary/60 mt-0.5">páginas criadas</p>
-              </div>
-            </div>
-
-            <div class="hidden sm:block h-10 w-px bg-slate-100"></div>
-
-            <div class="flex items-center gap-3">
-              <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
-              </div>
-              <div>
-                <p class="text-lg font-extrabold text-secondary leading-none">+20 mil</p>
-                <p class="text-xs text-secondary/60 mt-0.5">cliques registrados</p>
-              </div>
-            </div>
-
-            <div class="hidden sm:block h-10 w-px bg-slate-100"></div>
-
-            <div class="flex items-center gap-3">
-              <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
-              </div>
-              <div>
-                <p class="text-lg font-extrabold text-secondary leading-none">4,9 / 5</p>
-                <p class="text-xs text-secondary/60 mt-0.5">avaliação média</p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
+      
       <!-- ══════════════════ FEATURES ══════════════════ -->
-      <section id="features" class="py-16 sm:py-24 bg-gradient-to-b from-[#080c18] via-[#0b1020] to-[#080c18] relative overflow-hidden">
+      <section id="features" class="py-16 sm:py-24 bg-white relative overflow-hidden">
         <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/6 blur-[120px] pointer-events-none"></div>
 
         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative">
           <div data-animate class="text-center max-w-2xl mx-auto mb-14">
-            <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-3">Recursos</p>
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+            <p class="text-xs font-semibold text-slate-500 tracking-widest uppercase mb-3">Recursos</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-primary">
               Tudo o que você precisa<br class="hidden sm:block" /> em uma única bio
             </h2>
             <p class="mt-4 text-[16px] text-slate-400">
@@ -419,8 +514,8 @@
 
           <div class="grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
 
-            <div data-animate data-animate-delay="100" class="group relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-white/7 transition duration-300">
-              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary group-hover:bg-primary/25 transition">
+            <div data-animate data-animate-delay="100" class="group relative rounded-2xl border border-white/20 bg-[#082eb5] px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-white/40 hover:bg-[#082eb5]/90 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white group-hover:bg-white/30 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M7 7h10M7 11h6m-6 4h4"/><rect x="3.5" y="4.5" width="17" height="15" rx="3" stroke-width="1.8"/></svg>
               </div>
               <div>
@@ -429,8 +524,8 @@
               </div>
             </div>
 
-            <div data-animate data-animate-delay="200" class="group relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-white/7 transition duration-300">
-              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary group-hover:bg-primary/25 transition">
+            <div data-animate data-animate-delay="200" class="group relative rounded-2xl border border-white/20 bg-[#082eb5] px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-white/40 hover:bg-[#082eb5]/90 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white group-hover:bg-white/30 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.172 14.828a4 4 0 010-5.656l1.414-1.414a4 4 0 015.656 5.656l-1.414 1.414M14.828 9.172a4 4 0 010 5.656l-1.414 1.414a4 4 0 01-5.656-5.656l1.414-1.414"/></svg>
               </div>
               <div>
@@ -439,8 +534,8 @@
               </div>
             </div>
 
-            <div data-animate data-animate-delay="300" class="group relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-white/7 transition duration-300">
-              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary group-hover:bg-primary/25 transition">
+            <div data-animate data-animate-delay="300" class="group relative rounded-2xl border border-white/20 bg-[#082eb5] px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-white/40 hover:bg-[#082eb5]/90 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white group-hover:bg-white/30 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 19h16M7 10v6M12 6v10M17 13v3"/></svg>
               </div>
               <div>
@@ -449,8 +544,8 @@
               </div>
             </div>
 
-            <div data-animate data-animate-delay="400" class="group relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-primary/40 hover:bg-white/7 transition duration-300">
-              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary/15 text-primary group-hover:bg-primary/25 transition">
+            <div data-animate data-animate-delay="400" class="group relative rounded-2xl border border-white/20 bg-[#082eb5] px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-white/40 hover:bg-[#082eb5]/90 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white group-hover:bg-white/30 transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 5h16v14H4z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 9h16"/><circle cx="7" cy="7" r=".75"/><circle cx="10" cy="7" r=".75"/><circle cx="13" cy="7" r=".75"/></svg>
               </div>
               <div>
@@ -464,61 +559,70 @@
       </section>
 
       <!-- ══════════════════ EXAMPLES ══════════════════ -->
-      <section id="examples" class="py-16 sm:py-24 bg-white">
+      <section id="examples" class="py-16 sm:py-24 bg-[#082eb5]">
         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
           <div data-animate class="text-center max-w-2xl mx-auto mb-14">
             <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-3">Exemplos reais</p>
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-secondary">Exemplos de páginas LinkBio</h2>
-            <p class="mt-4 text-[16px] text-secondary/70">
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Exemplos de páginas LinkBio</h2>
+            <p class="mt-4 text-[16px] text-slate-200">
               Veja como criadores, lojas e profissionais usam o LinkBio para facilitar o acesso do público.
             </p>
           </div>
 
           <div class="grid gap-6 md:grid-cols-3">
 
-            <article data-animate data-animate-delay="100" class="group rounded-3xl bg-background border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
-              <div class="self-start space-y-0.5 w-full">
-                <span class="text-[11px] font-semibold text-primary bg-primary/8 px-2.5 py-1 rounded-full">Criadora de conteúdo</span>
-                <p class="text-xs text-secondary/60 pt-1.5 pl-0.5">personal.linkbio.api.br</p>
+            <article data-animate data-animate-delay="100" class="group rounded-3xl bg-white border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
+              <div class="text-center space-y-2 w-full">
+                <span class="text-[11px] font-semibold text-white bg-[#082eb5] px-2.5 py-1 rounded-full">Personal Trainer</span>
+                <br />
+                <a href="https://jessicapersonal.linkbio.api.br" target="_blank" class="text-xs text-slate-600 hover:text-primary transition">jessicapersonal.linkbio.api.br</a>
               </div>
               <div class="w-full flex justify-center">
-                <img
-                  src="public/mockup (1).png"
-                  alt="Exemplo LinkBio — Criadora de conteúdo"
-                  class="w-full max-w-[220px] h-auto object-contain rounded-2xl shadow-[0_20px_50px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/80 group-hover:ring-primary/30 transition"
-                  loading="lazy"
-                />
+                <a href="https://jessicapersonal.linkbio.api.br" target="_blank">
+                  <img
+                    src="public/exemplo01.jpeg"
+                    alt="Exemplo LinkBio — Jéssica Personal"
+                    class="w-full max-w-[220px] h-auto object-contain rounded-2xl shadow-[0_20px_50px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/80 group-hover:ring-primary/30 transition cursor-pointer hover:scale-105"
+                    loading="lazy"
+                  />
+                </a>
               </div>
             </article>
 
-            <article data-animate data-animate-delay="200" class="group rounded-3xl bg-background border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
-              <div class="self-start space-y-0.5 w-full">
-                <span class="text-[11px] font-semibold text-emerald-600 bg-emerald-500/10 px-2.5 py-1 rounded-full">Loja física + online</span>
-                <p class="text-xs text-secondary/60 pt-1.5 pl-0.5">loja.linkbio.api.br</p>
+            <article data-animate data-animate-delay="200" class="group rounded-3xl bg-white border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
+              <div class="text-center space-y-2 w-full">
+                <span class="text-[11px] font-semibold text-white bg-[#082eb5] px-2.5 py-1 rounded-full">Nutricionista</span>
+                <br />
+                <a href="https://alinesantana.linkbio.api.br" target="_blank" class="text-xs text-slate-600 hover:text-primary transition">alinesantana.linkbio.api.br</a>
               </div>
               <div class="w-full flex justify-center">
-                <img
-                  src="public/mockup (2).png"
-                  alt="Exemplo LinkBio — Loja física e online"
-                  class="w-full max-w-[220px] h-auto object-contain rounded-2xl shadow-[0_20px_50px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/80 group-hover:ring-emerald-500/30 transition"
-                  loading="lazy"
-                />
+                <a href="https://alinesantana.linkbio.api.br" target="_blank">
+                  <img
+                    src="public/exemplo02.jpeg"
+                    alt="Exemplo LinkBio — Aline Nutricionista"
+                    class="w-full max-w-[220px] h-auto object-contain rounded-2xl shadow-[0_20px_50px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/80 group-hover:ring-emerald-500/30 transition cursor-pointer hover:scale-105"
+                    loading="lazy"
+                  />
+                </a>
               </div>
             </article>
 
-            <article data-animate data-animate-delay="300" class="group rounded-3xl bg-background border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
-              <div class="self-start space-y-0.5 w-full">
-                <span class="text-[11px] font-semibold text-sky-600 bg-sky-500/10 px-2.5 py-1 rounded-full">Profissional da saúde</span>
-                <p class="text-xs text-secondary/60 pt-1.5 pl-0.5">profissional.linkbio.api.br</p>
+            <article data-animate data-animate-delay="300" class="group rounded-3xl bg-white border border-slate-100 p-5 sm:p-6 flex flex-col items-center gap-5 hover:-translate-y-1.5 hover:shadow-soft transition duration-300">
+              <div class="text-center space-y-2 w-full">
+                <span class="text-[11px] font-semibold text-white bg-[#082eb5] px-2.5 py-1 rounded-full">Personal Trainer</span>
+                <br />
+                <a href="https://paty.linkbio.api.br" target="_blank" class="text-xs text-slate-600 hover:text-primary transition">paty.linkbio.api.br</a>
               </div>
               <div class="w-full flex justify-center">
-                <img
-                  src="public/mockup (3).png"
-                  alt="Exemplo LinkBio — Profissional da saúde"
-                  class="w-full max-w-[220px] h-auto object-contain rounded-2xl shadow-[0_20px_50px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/80 group-hover:ring-sky-500/30 transition"
-                  loading="lazy"
-                />
+                <a href="https://paty.linkbio.api.br" target="_blank">
+                  <img
+                    src="public/exemplo03.jpeg"
+                    alt="Exemplo LinkBio — Paty Personal"
+                    class="w-full max-w-[220px] h-auto object-contain rounded-2xl shadow-[0_20px_50px_rgba(15,23,42,0.12)] ring-1 ring-slate-200/80 group-hover:ring-sky-500/30 transition cursor-pointer hover:scale-105"
+                    loading="lazy"
+                  />
+                </a>
               </div>
             </article>
 
@@ -526,424 +630,78 @@
         </div>
       </section>
 
-      <!-- ══════════════════ CLIENTES ══════════════════ -->
-      <section id="clientes" class="py-12 sm:py-20 bg-gradient-to-b from-[#080c18] via-[#0b1020] to-[#080c18] relative overflow-hidden">
-        <div class="absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[700px] rounded-full bg-primary/6 blur-[120px] pointer-events-none"></div>
-
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative">
-
-          <div data-animate class="text-center max-w-2xl mx-auto mb-10">
-            <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-3">Portfólio</p>
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Quem já usa o LinkBio</h2>
-            <p class="mt-4 text-[16px] text-slate-400">
-              Criadores de conteúdo, profissionais e marcas que centralizaram sua presença digital com a gente.
-            </p>
-          </div>
-
-          <div class="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-
-            <!-- Paty -->
-            <a href="https://paty.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="100"
-               class="client-card group relative flex flex-col border border-pink-500/30 bg-gradient-to-br from-pink-500/10 to-purple-500/10 p-4 gap-3 hover:-translate-y-1 hover:border-pink-400/50 hover:from-pink-500/20 hover:to-purple-500/20 transition duration-300 no-underline shadow-md shadow-pink-500/10">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="paty/logo/logo-paty-1.png" alt="Paty" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-primary/80 tracking-widest uppercase mb-0.5">Criadora de conteúdo</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Paty</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Vlogs, lifestyle e conteúdo criativo para um público engajado nas redes sociais.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">paty.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Marcos Blea -->
-            <a href="https://marcosblea.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="200"
-               class="client-card group relative flex flex-col border border-amber-500/30 bg-gradient-to-br from-amber-600/10 to-orange-600/10 p-4 gap-3 hover:-translate-y-1 hover:border-amber-400/50 hover:from-amber-600/20 hover:to-orange-600/20 transition duration-300 no-underline shadow-md shadow-amber-500/10">
-              <div class="flex items-start gap-3">
-                <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-600 to-amber-900 ring-1 ring-amber-500/40 shadow-sm">
-                  <span class="text-sm font-extrabold text-amber-50">MB</span>
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-amber-500/80 tracking-widest uppercase mb-0.5">Ministério & Eventos</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Marcos Blea</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Pregações, agenda de eventos, músicas e contato direto com o ministério.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">marcosblea.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- EquusVita -->
-            <a href="https://equusvita.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="300"
-               class="client-card group relative flex flex-col border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 p-4 gap-3 hover:-translate-y-1 hover:border-emerald-400/50 hover:from-emerald-500/20 hover:to-teal-500/20 transition duration-300 no-underline shadow-md shadow-emerald-500/10">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="equusvita/public/logo/logo-equusvita-1.png" alt="EquusVita" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-emerald-500/80 tracking-widest uppercase mb-0.5">Saúde Equina</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">EquusVita</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Clínica veterinária especializada em equinos — serviços, contato e agenda.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">equusvita.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Raça e Marcha -->
-            <a href="https://racaemarcha.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="100"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="racaemarcha/logo/logo-raca-e-marcha-2.png" alt="Raça e Marcha" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-red-500/80 tracking-widest uppercase mb-0.5">Mangalarga Marchador</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Raça e Marcha</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Canal de comunicação e parcerias para o universo do Mangalarga Marchador.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">racaemarcha.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Cristiano Ladeira -->
-            <a href="https://cristianoladeira.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="200"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="cristianoladeira/logo/logo-cristiano-ladeira-1.png" alt="Cristiano Ladeira" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-slate-400/80 tracking-widest uppercase mb-0.5">Eventos Equestres</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Cristiano Ladeira</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Empresa especializada em promoção e eventos do Cavalo Mangalarga Marchador.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">cristianoladeira.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Pura Marcha -->
-            <a href="https://puramarcha.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="300"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="puramarcha/logo-pura-marcha-1.png" alt="Pura Marcha" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-amber-600/80 tracking-widest uppercase mb-0.5">Canal de Notícias</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Pura Marcha</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Canal de notícias do Mangalarga Marchador e do Agronegócio Brasileiro.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">puramarcha.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- FAFS -->
-            <a href="https://fafs.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="100"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="fafs/logo/logo-fafs-2.png" alt="FAFS" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-yellow-500/80 tracking-widest uppercase mb-0.5">Nutrição Animal</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">FAFS</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Suplementos de alta performance para equinos, suínos, galináceos e pets. Ciência em cada produto.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">fafs.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Top Marchador -->
-            <a href="https://topmarchador.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="200"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="topmarchador/logo/topmarchador-logo-1.png" alt="Top Marchador" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-red-500/80 tracking-widest uppercase mb-0.5">Cavalo Marchador</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Top Marchador</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Cobertura de eventos, notícias e destaques do universo do Mangalarga Marchador.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">topmarchador.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Aline Santana -->
-            <a href="https://alinesantana.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="300"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="alinesantana/logo/logo-aline-1.png" alt="Aline Santana" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-pink-500/80 tracking-widest uppercase mb-0.5">Criadora de Conteúdo</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Aline Santana</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Lifestyle, viagens e conteúdo inspirador com dicas e experiências pessoais.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">alinesantana.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Oriel Silvano -->
-            <a href="https://orielsilvano.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="100"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="orielsilvano/logo/logo-oriel-silvano-1.png" alt="Oriel Silvano" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-blue-500/80 tracking-widest uppercase mb-0.5">Música & Eventos</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Oriel Silvano</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Música, agenda de shows e contato direto para eventos e parcerias.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">orielsilvano.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Jessica Personal -->
-            <a href="https://jessicapersonal.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="200"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="jessicapersonal/logo/logo-jessica-3.png" alt="Jessica Personal" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-rose-500/80 tracking-widest uppercase mb-0.5">Personal Trainer</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Jessica Personal</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Treinos personalizados, consultoria fitness e transformação física com acompanhamento.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">jessicapersonal.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Emmanuel Valle -->
-            <a href="https://emmanueladv.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="300"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="emmanueladv/logo/logo-emmanuel-6.png" alt="Emmanuel Valle" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-amber-500/80 tracking-widest uppercase mb-0.5">Advocacia</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Emmanuel Valle</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Advogado especialista em Direito Civil, Trânsito e Consumidor. Consultoria jurídica estratégica.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">emmanueladv.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Aliancce -->
-            <a href="https://aliancce.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="100"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="aliancce/logo/logo.png" alt="Aliancce" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-amber-600/80 tracking-widest uppercase mb-0.5">Eventos equestres</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Aliancce</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Gestão e produção de eventos equestres, rodeios e experiências corporativas.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">aliancce.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Master Agro -->
-            <a href="https://masteragro.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="200"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect fill='%230A0A0A' width='120' height='120' rx='14'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23C8A84B' font-family='system-ui,sans-serif' font-size='22' font-weight='700'%3EMA%3C/text%3E%3C/svg%3E" alt="Master Agro" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-lime-500/80 tracking-widest uppercase mb-0.5">Tecnologia equestre</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Master Agro</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Representação de equipamentos e soluções para reprodução e desempenho equino.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">masteragro.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-            <!-- Haras Pariz -->
-            <a href="https://haraspariz.linkbio.api.br" target="_blank" rel="noopener noreferrer"
-               data-animate data-animate-delay="300"
-               class="client-card group relative flex flex-col border border-white/8 bg-white/4 p-4 gap-3 hover:-translate-y-1 hover:border-primary/40 hover:bg-white/7 transition duration-300 no-underline">
-              <div class="flex items-start gap-3">
-                <div class="client-logo-slot">
-                  <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect fill='%233a2410' width='120' height='120' rx='14'/%3E%3Ctext x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' fill='%23c9a84c' font-family='Georgia,serif' font-size='18' font-weight='600'%3EHP%3C/text%3E%3C/svg%3E" alt="Haras Pariz" loading="lazy" />
-                </div>
-                <div class="min-w-0">
-                  <p class="text-[10px] font-bold text-orange-500/80 tracking-widest uppercase mb-0.5">Haras · Marchador</p>
-                  <h3 class="text-[15px] font-bold text-white leading-tight">Haras Pariz</h3>
-                </div>
-              </div>
-              <p class="client-card-desc text-[12px] sm:text-[13px] text-slate-400">Criação Mangalarga Marchador em Jaguaré, ES — plantel, serviços e contato.</p>
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] text-slate-500 font-medium">haraspariz.linkbio.api.br</span>
-                <span class="inline-flex items-center gap-1 text-[12px] font-semibold text-primary group-hover:gap-2 transition-all">
-                  Ver página
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                </span>
-              </div>
-            </a>
-
-          </div>
-
-          <!-- CTA embaixo -->
-          <div data-animate class="mt-10 text-center">
-            <p class="text-[14px] text-slate-400 mb-4">Sua marca pode ser a próxima. Criação rápida, preço acessível.</p>
-            <a
-              href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio.%20Vim%20pelo%20site%20linkbio.api.br."
-              target="_blank" rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-[14px] font-bold text-white shadow-glow hover:bg-primary/90 transition"
-            >
-              Quero minha página também
-            </a>
-          </div>
-
-        </div>
-      </section>
-
+                
       <!-- ══════════════════ HOW IT WORKS ══════════════════ -->
-      <section id="how-it-works" class="py-16 sm:py-24 bg-gradient-to-b from-[#080c18] via-[#0b1020] to-[#080c18] relative overflow-hidden">
-        <div class="absolute right-0 top-0 h-96 w-96 rounded-full bg-primary/8 blur-[100px] pointer-events-none"></div>
+      <section id="how-it-works" class="py-16 sm:py-24 bg-white relative overflow-hidden">
+        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-primary/6 blur-[120px] pointer-events-none"></div>
 
         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 relative">
-
-          <div data-animate class="text-center max-w-xl mx-auto mb-14">
-            <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-3">Processo</p>
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Como funciona</h2>
+          <div data-animate class="text-center max-w-2xl mx-auto mb-14">
+            <p class="text-xs font-semibold text-slate-500 tracking-widest uppercase mb-3">Processo</p>
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-primary">
+              Como funciona
+            </h2>
             <p class="mt-4 text-[16px] text-slate-400">
               Em poucos dias, sua página está pronta para colocar na bio e começar a converter.
             </p>
           </div>
 
-          <div class="grid gap-5 md:grid-cols-3 relative">
+          <div class="grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-3">
 
-            <div data-animate data-animate-delay="100" class="relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 hover:border-primary/40 hover:bg-white/6 transition duration-300">
-              <div class="flex items-center gap-3 mb-4">
-                <div class="h-9 w-9 rounded-xl bg-primary text-white text-sm font-extrabold flex items-center justify-center shadow-glow-sm flex-shrink-0">1</div>
-                <div class="h-px flex-1 bg-gradient-to-r from-primary/40 to-transparent hidden md:block"></div>
+            <!-- Primeira linha: 3 cards -->
+            <div data-animate data-animate-delay="100" class="group relative rounded-2xl border border-white/20 bg-[#082eb5] px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-white/40 hover:bg-[#082eb5]/90 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white group-hover:bg-white/30 transition">
+                <span class="text-sm font-extrabold">1</span>
               </div>
-              <h3 class="text-[15px] font-bold text-white mb-2">Fale com a gente</h3>
-              <p class="text-[14px] text-slate-400 leading-relaxed">Mande mensagem pelo WhatsApp, conte sobre o seu negócio e o que precisa na sua página.</p>
+              <div>
+                <h3 class="text-[15px] font-bold text-white mb-1.5">Fale com a gente</h3>
+                <p class="text-[14px] text-slate-400 leading-relaxed">Mande mensagem pelo WhatsApp, conte sobre o seu negócio e o que precisa na sua página.</p>
+              </div>
             </div>
 
-            <div data-animate data-animate-delay="200" class="relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 hover:border-primary/40 hover:bg-white/6 transition duration-300">
-              <div class="flex items-center gap-3 mb-4">
-                <div class="h-9 w-9 rounded-xl bg-primary text-white text-sm font-extrabold flex items-center justify-center shadow-glow-sm flex-shrink-0">2</div>
-                <div class="h-px flex-1 bg-gradient-to-r from-primary/40 to-transparent hidden md:block"></div>
+            <div data-animate data-animate-delay="200" class="group relative rounded-2xl border border-white/20 bg-[#082eb5] px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-white/40 hover:bg-[#082eb5]/90 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white group-hover:bg-white/30 transition">
+                <span class="text-sm font-extrabold">2</span>
               </div>
-              <h3 class="text-[15px] font-bold text-white mb-2">Criamos sua página</h3>
-              <p class="text-[14px] text-slate-400 leading-relaxed">Montamos tudo para você: subdomínio, layout, links, agenda, produtos e identidade visual.</p>
+              <div>
+                <h3 class="text-[15px] font-bold text-white mb-1.5">Criamos sua página</h3>
+                <p class="text-[14px] text-slate-400 leading-relaxed">Montamos tudo para você: subdomínio, layout, links, agenda, produtos e identidade visual.</p>
+              </div>
             </div>
 
-            <div data-animate data-animate-delay="300" class="relative rounded-2xl border border-white/8 bg-white/4 px-6 py-7 hover:border-primary/40 hover:bg-white/6 transition duration-300">
-              <div class="flex items-center gap-3 mb-4">
-                <div class="h-9 w-9 rounded-xl bg-primary text-white text-sm font-extrabold flex items-center justify-center shadow-glow-sm flex-shrink-0">3</div>
+            <div data-animate data-animate-delay="300" class="group relative rounded-2xl border border-white/20 bg-[#082eb5] px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-white/40 hover:bg-[#082eb5]/90 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white group-hover:bg-white/30 transition">
+                <span class="text-sm font-extrabold">3</span>
               </div>
-              <h3 class="text-[15px] font-bold text-white mb-2">Coloque na bio</h3>
-              <p class="text-[14px] text-slate-400 leading-relaxed">Você recebe seu link <span class="text-slate-200">suaempresa.linkbio.api.br</span> e coloca na bio do Instagram, WhatsApp e onde mais quiser.</p>
+              <div>
+                <h3 class="text-[15px] font-bold text-white mb-1.5">Receba seu link</h3>
+                <p class="text-[14px] text-slate-400 leading-relaxed">Seu endereço exclusivo <span class="text-slate-200 font-medium">suaempresa.linkbio.api.br</span> pronto para usar.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Segunda linha: 2 cards centralizados -->
+          <div class="grid gap-5 sm:gap-6 md:grid-cols-2 lg:grid-cols-2 lg:max-w-2xl lg:mx-auto mt-5 sm:mt-6">
+
+            <div data-animate data-animate-delay="400" class="group relative rounded-2xl border border-white/20 bg-[#082eb5] px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-white/40 hover:bg-[#082eb5]/90 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white group-hover:bg-white/30 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-[15px] font-bold text-white mb-1.5">Painel de gestão</h3>
+                <p class="text-[14px] text-slate-400 leading-relaxed">Acompanhe cliques e tráfego em tempo real pelo seu painel.</p>
+              </div>
+            </div>
+
+            <div data-animate data-animate-delay="500" class="group relative rounded-2xl border border-white/20 bg-[#082eb5] px-6 py-7 flex flex-col gap-4 hover:-translate-y-1.5 hover:border-white/40 hover:bg-[#082eb5]/90 transition duration-300">
+              <div class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white/20 text-white group-hover:bg-white/30 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <div>
+                <h3 class="text-[15px] font-bold text-white mb-1.5">Resultado rápido</h3>
+                <p class="text-[14px] text-slate-400 leading-relaxed">Página profissional no ar em poucos dias, pronta para converter.</p>
+              </div>
             </div>
 
           </div>
@@ -951,113 +709,106 @@
       </section>
 
       <!-- ══════════════════ PRICING ══════════════════ -->
-      <section id="pricing" class="py-16 sm:py-24 bg-white">
+      <section id="pricing" class="py-16 sm:py-24 bg-[#082eb5]">
         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
           <div data-animate class="text-center max-w-xl mx-auto mb-14">
             <p class="text-xs font-semibold text-primary tracking-widest uppercase mb-3">Preços</p>
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-secondary">Investimento acessível</h2>
-            <p class="mt-4 text-[16px] text-secondary/70">
-              Você paga uma única vez pela criação e uma mensalidade irrisória para manter sempre ativa.
+            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Investimento acessível</h2>
+            <p class="mt-4 text-[16px] text-slate-200">
+              Pague uma única vez pela criação e uma pequena mensalidade para manter tudo funcionando.
             </p>
           </div>
 
-          <div class="grid gap-6 md:grid-cols-2 max-w-3xl mx-auto">
+          <!-- Investimento completo em um único card -->
+          <div data-animate class="mt-10 max-w-3xl mx-auto">
+            <div class="relative flex flex-col rounded-3xl border border-slate-100 bg-white px-8 py-10 shadow-sm hover:shadow-soft hover:-translate-y-1 transition duration-300">
+              
+              <!-- Cabeçalho com valores -->
+              <div class="text-center mb-8">
+                <div class="flex items-center justify-center gap-12 flex-wrap">
+                  <div class="text-center">
+                    <div class="flex items-center gap-3 justify-center mb-3">
+                      <div class="h-10 w-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                      </div>
+                      <span class="text-lg font-semibold text-slate-600">Criação</span>
+                    </div>
+                    <div class="text-5xl font-extrabold text-slate-900">R$ 99</div>
+                    <p class="text-sm text-slate-500">pagamento único</p>
+                  </div>
+                  
+                  <div class="text-3xl text-slate-300">+</div>
+                  
+                  <div class="text-center">
+                    <div class="flex items-center gap-3 justify-center mb-3">
+                      <div class="h-10 w-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                      </div>
+                      <span class="text-lg font-semibold text-slate-600">Manutenção</span>
+                    </div>
+                    <div class="text-5xl font-extrabold text-slate-900">R$ 9,99</div>
+                    <p class="text-sm text-slate-500">por mês</p>
+                  </div>
+                </div>
+              </div>
 
-            <!-- Card 1: Criação -->
-            <div data-animate class="relative flex flex-col rounded-3xl border border-slate-200 bg-background px-7 py-8 shadow-sm hover:shadow-soft hover:-translate-y-1 transition duration-300">
-              <div class="flex items-start justify-between mb-5">
+              <!-- Benefícios unificados -->
+              <div class="space-y-6 mb-8">
                 <div>
-                  <p class="text-[11px] font-bold text-secondary/50 tracking-widest uppercase mb-1">Pagamento único</p>
-                  <h3 class="text-xl font-extrabold text-secondary">Criação da página</h3>
+                  <h4 class="text-sm font-semibold text-slate-700 mb-3 flex items-center gap-2">
+                    <span class="h-5 w-5 rounded bg-emerald-100 text-emerald-600 text-xs font-bold flex items-center justify-center">✓</span>
+                    O que você recebe na criação:
+                  </h4>
+                  <ul class="space-y-2 text-sm text-slate-600 ml-7">
+                    <li>• Subdomínio exclusivo: <span class="font-semibold">seunome.linkbio.api.br</span></li>
+                    <li>• Landing page completa com links, agenda e produtos</li>
+                    <li>• Aplicação da sua identidade visual (logo, cores, foto)</li>
+                    <li>• Entrega em poucos dias, pronta para a bio</li>
+                    <li>• <span class="text-emerald-600 font-semibold">Você só paga depois que sua página estiver pronta e no ar</span></li>
+                  </ul>
                 </div>
-                <div class="h-10 w-10 rounded-xl bg-secondary/8 flex items-center justify-center text-secondary/50">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+
+                <div>
+                  <h4 class="text-sm font-semibold text-slate-700 mb-3 flex items-center gap-2">
+                    <span class="h-5 w-5 rounded bg-primary/10 text-primary text-xs font-bold flex items-center justify-center">∞</span>
+                    O que você recebe na manutenção:
+                  </h4>
+                  <ul class="space-y-2 text-sm text-slate-600 ml-7">
+                    <li>• Hospedagem e página ativa 24h/7 dias</li>
+                    <li>• Painel com cliques e métricas de acesso</li>
+                    <li>• Suporte para trocar links, textos e botões</li>
+                    <li>• Melhorias contínuas na plataforma</li>
+                    <li>• <span class="text-emerald-600 font-semibold">Sem fidelidade, cancele quando quiser</span></li>
+                    <li>• <span class="text-emerald-600 font-semibold">Você começa a pagar só 30 dias depois da página estar online</span></li>
+                  </ul>
                 </div>
               </div>
 
-              <div class="flex items-baseline gap-1.5 mb-1">
-                <span class="text-4xl font-extrabold text-secondary">R$ 99</span>
-                <span class="text-sm text-secondary/50">única vez</span>
-              </div>
-              <p class="text-[12px] text-secondary/50 mb-6">Você só paga novamente se quiser uma nova página.</p>
-
-              <ul class="space-y-3 text-[14px] text-secondary/80 mb-8">
-                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Subdomínio <span class="font-semibold">cliente.linkbio.api.br</span></span></li>
-                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Landing page completa: links, agenda, produtos e contatos</span></li>
-                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Aplicação da sua identidade visual (logo, cores, foto)</span></li>
-                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Entrega em poucos dias, pronta para a bio</span></li>
-              </ul>
-
+              <!-- CTA único -->
               <div class="mt-auto">
                 <a
                   href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio.%20Vim%20pelo%20site%20linkbio.api.br."
                   target="_blank" rel="noopener noreferrer"
-                  class="inline-flex w-full items-center justify-center rounded-full border-2 border-secondary px-4 py-3 text-[15px] font-bold text-secondary hover:bg-secondary hover:text-white transition"
-                >
-                  Quero criar minha página
-                </a>
-              </div>
-            </div>
-
-            <!-- Card 2: Mensalidade -->
-            <div data-animate data-animate-delay="100" class="relative flex flex-col rounded-3xl border border-primary/25 bg-gradient-to-b from-primary/6 via-white to-white px-7 py-8 shadow-soft hover:-translate-y-1 transition duration-300 overflow-hidden">
-              <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary/10 blur-2xl pointer-events-none"></div>
-              <div class="absolute -left-10 bottom-0  h-40 w-40 rounded-full bg-cyan-500/6  blur-2xl pointer-events-none"></div>
-
-              <div class="relative flex items-start justify-between mb-5">
-                <div>
-                  <p class="text-[11px] font-bold text-primary/80 tracking-widest uppercase mb-1">Recorrente</p>
-                  <h3 class="text-xl font-extrabold text-secondary">Manter página ativa</h3>
-                </div>
-                <span class="inline-flex items-center rounded-full bg-primary/12 px-2.5 py-1 text-[10px] font-bold text-primary">IRRISÓRIO</span>
-              </div>
-
-              <div class="relative flex items-baseline gap-1.5 mb-1">
-                <span class="text-4xl font-extrabold text-secondary">R$ 9,99</span>
-                <span class="text-sm text-secondary/50">/mês</span>
-              </div>
-              <p class="relative text-[12px] text-emerald-600 font-semibold mb-6">Menos que um café — sua página no ar 24h por dia.</p>
-
-              <ul class="relative space-y-3 text-[14px] text-secondary/80 mb-8">
-                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Hospedagem e página ativa 24h/7 dias</span></li>
-                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Painel com cliques por link e métricas básicas de acesso</span></li>
-                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Suporte para trocar links, textos e botões</span></li>
-                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Melhorias contínuas na plataforma LinkBio</span></li>
-                <li class="flex items-start gap-2.5"><span class="text-emerald-500 font-bold mt-0.5">✓</span><span>Sem fidelidade — cancele quando quiser</span></li>
-              </ul>
-
-              <div class="relative mt-auto">
-                <a
-                  href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio.%20Vim%20pelo%20site%20linkbio.api.br."
-                  target="_blank" rel="noopener noreferrer"
-                  class="inline-flex w-full items-center justify-center rounded-full bg-primary px-4 py-3 text-[15px] font-bold text-white shadow-glow hover:bg-primary/90 transition"
+                  class="inline-flex w-full items-center justify-center rounded-full bg-primary px-6 py-4 text-[16px] font-bold text-white shadow-glow hover:bg-primary/90 transition"
                 >
                   Criar minha página agora
                 </a>
-                <p class="mt-2.5 text-[11px] text-secondary/50 text-center">Sem fidelidade. Cancele quando quiser.</p>
+                <p class="mt-3 text-xs text-slate-500 text-center">
+                  <span class="text-emerald-600 font-semibold">Por menos que um lanche por mês</span>, sua página online 24h
+                </p>
               </div>
             </div>
-
           </div>
 
-          <!-- Comparação -->
-          <div data-animate class="mt-10 max-w-3xl mx-auto rounded-2xl border border-slate-100 bg-background px-6 py-5 flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
-            <div class="h-10 w-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center flex-shrink-0">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
-            </div>
-            <p class="text-[14px] text-secondary/70 text-center sm:text-left">
-              <span class="font-bold text-secondary">Muito mais barato que um site ou landing page tradicional.</span> Um site WordPress simples custa R$ 800–2.000 de criação + R$ 50–150/mês de hospedagem. Com o LinkBio você tem o essencial por R$ 99 + R$ 9,99/mês, <span class="text-emerald-600 font-semibold">sem precisar de domínio, desenvolvedor ou hospedagem.</span>
-            </p>
-          </div>
-
+          
         </div>
       </section>
 
       <!-- ══════════════════ CTA ══════════════════ -->
-      <section id="cta" class="py-16 sm:py-24 bg-background">
+      <section id="cta" class="py-16 sm:py-24 bg-white">
         <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div data-animate class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0b1120] via-[#080c18] to-[#0b1120] px-8 py-12 sm:px-12 sm:py-14 flex flex-col md:flex-row items-center gap-10 border border-white/5">
+          <div data-animate class="relative overflow-hidden rounded-3xl bg-[#082eb5] px-8 py-12 sm:px-12 sm:py-14 flex flex-col md:flex-row items-center gap-10 border border-white/20">
 
             <div class="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-primary/30 blur-[80px] pointer-events-none"></div>
             <div class="absolute -left-16  bottom-0  h-56 w-56 rounded-full bg-cyan-500/15 blur-[80px] pointer-events-none"></div>
@@ -1067,7 +818,7 @@
                 Crie sua página de links<br class="hidden sm:block" />
                 <span class="text-gradient">agora mesmo</span>
               </h2>
-              <p class="text-[16px] text-slate-300 max-w-lg">
+              <p class="text-[16px] text-slate-200 max-w-lg">
                 Centralize seus links, acompanhe cliques e facilite a vida de quem te acompanha. Criação por <span class="text-white font-bold">R$ 99</span> e só <span class="text-white font-bold">R$ 9,99/mês</span> para manter ativa.
               </p>
               <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
@@ -1079,35 +830,35 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
                   Criar minha página agora
                 </a>
-                <a href="#examples" class="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-[15px] sm:text-[16px] font-semibold text-white/90 hover:bg-white/10 transition">
+                <a href="#examples" class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-7 py-3.5 text-[15px] sm:text-[16px] font-semibold text-white/90 hover:bg-white/20 transition">
                   Ver exemplos
                 </a>
               </div>
-              <p class="text-[12px] text-slate-400">Não precisa de domínio · Sem contrato · R$ 9,99/mês</p>
+              <p class="text-[12px] text-slate-300">Não precisa de domínio · Sem contrato · R$ 9,99/mês</p>
             </div>
 
             <div class="relative w-full max-w-xs hidden md:block">
-              <div class="rounded-2xl bg-white/5 border border-white/10 px-5 py-4 space-y-3">
+              <div class="rounded-2xl bg-white/10 border border-white/20 px-5 py-4 space-y-3">
                 <div class="flex items-center justify-between">
                   <span class="text-sm font-bold text-white">linkbio.api.br</span>
                   <span class="text-[11px] text-emerald-400 font-semibold">+328 cliques hoje</span>
                 </div>
-                <div class="h-px bg-white/8"></div>
+                <div class="h-px bg-white/20"></div>
                 <div class="space-y-2">
                   <div class="flex items-center justify-between text-[12px]">
-                    <span class="text-slate-400">WhatsApp</span>
-                    <div class="flex items-center gap-2"><div class="h-1.5 w-20 rounded-full bg-white/10 overflow-hidden"><div class="h-full w-[62%] bg-primary rounded-full"></div></div><span class="text-slate-200 font-semibold">62%</span></div>
+                    <span class="text-slate-300">WhatsApp</span>
+                    <div class="flex items-center gap-2"><div class="h-1.5 w-20 rounded-full bg-white/20 overflow-hidden"><div class="h-full w-[62%] bg-primary rounded-full"></div></div><span class="text-white font-semibold">62%</span></div>
                   </div>
                   <div class="flex items-center justify-between text-[12px]">
-                    <span class="text-slate-400">Instagram</span>
-                    <div class="flex items-center gap-2"><div class="h-1.5 w-20 rounded-full bg-white/10 overflow-hidden"><div class="h-full w-[23%] bg-cyan-400 rounded-full"></div></div><span class="text-slate-200 font-semibold">23%</span></div>
+                    <span class="text-slate-300">Instagram</span>
+                    <div class="flex items-center gap-2"><div class="h-1.5 w-20 rounded-full bg-white/20 overflow-hidden"><div class="h-full w-[23%] bg-cyan-400 rounded-full"></div></div><span class="text-white font-semibold">23%</span></div>
                   </div>
                   <div class="flex items-center justify-between text-[12px]">
-                    <span class="text-slate-400">Outros</span>
-                    <div class="flex items-center gap-2"><div class="h-1.5 w-20 rounded-full bg-white/10 overflow-hidden"><div class="h-full w-[15%] bg-emerald-400 rounded-full"></div></div><span class="text-slate-200 font-semibold">15%</span></div>
+                    <span class="text-slate-300">Outros</span>
+                    <div class="flex items-center gap-2"><div class="h-1.5 w-20 rounded-full bg-white/20 overflow-hidden"><div class="h-full w-[15%] bg-emerald-400 rounded-full"></div></div><span class="text-white font-semibold">15%</span></div>
                   </div>
                 </div>
-                <p class="text-[11px] text-slate-500 pt-1">Dados em tempo real da sua página LinkBio</p>
+                <p class="text-[11px] text-slate-400 pt-1">Dados em tempo real da sua página LinkBio</p>
               </div>
             </div>
 
@@ -1118,24 +869,24 @@
     </main>
 
     <!-- ══════════════════ FOOTER ══════════════════ -->
-    <footer class="bg-[#080c18] border-t border-white/5">
+    <footer class="bg-[#082eb5] border-t border-white/10">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
         <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div class="space-y-2.5">
             <img src="logo/logo-link-bio-2.png" alt="Logo LinkBio" class="h-7 w-auto object-contain" loading="lazy" />
-            <p class="text-[13px] text-slate-500 max-w-sm">
+            <p class="text-[13px] text-slate-300 max-w-sm">
               A forma mais simples de ter uma landing page completa no formato link da bio, sem domínio nem hospedagem.
             </p>
           </div>
 
           <div class="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8">
-            <nav class="flex gap-5 text-[13px] text-slate-400">
+            <nav class="flex gap-5 text-[13px] text-slate-300">
               <a href="#" class="hover:text-white transition">Sobre</a>
               <a href="#" class="hover:text-white transition">Termos</a>
               <a href="#" class="hover:text-white transition">Contato</a>
             </nav>
             <div class="flex items-center gap-3">
-              <a href="#" aria-label="Instagram" class="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary/50 hover:text-primary transition">
+              <a href="https://www.instagram.com/linkbio.api" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-primary/50 hover:text-primary transition">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="4" y="4" width="16" height="16" rx="5" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke-width="1.6"/><circle cx="17" cy="7" r=".8" fill="currentColor"/></svg>
               </a>
               <a href="https://wa.me/5531982304737?text=Ol%C3%A1%2C%20quero%20criar%20minha%20p%C3%A1gina%20LinkBio.%20Vim%20pelo%20site%20linkbio.api.br." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center text-slate-400 hover:border-emerald-500/50 hover:text-emerald-400 transition">
@@ -1145,9 +896,9 @@
           </div>
         </div>
 
-        <div class="mt-8 border-t border-white/5 pt-6 text-[12px] text-slate-600 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <div class="mt-8 border-t border-white/10 pt-6 text-[12px] text-slate-400 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
           <p>© <span id="year"></span> LinkBio. Todos os direitos reservados.</p>
-          <p>Feito para criadores, lojas e profissionais que querem simplificar a bio.</p>
+          <p>Feito para criadores, lojas e profissionais que querem transformar sua bio em uma página profissional.</p>
         </div>
       </div>
     </footer>

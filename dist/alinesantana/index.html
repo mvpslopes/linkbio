@@ -188,6 +188,67 @@
       box-shadow: 0 4px 14px rgba(184,146,46,.35);
     }
     .nav-cta:hover { background: linear-gradient(135deg, #d4b85a 0%, #b8922e 55%, #8f6f22 100%); transform: scale(1.03); box-shadow: 0 6px 18px rgba(184,146,46,.45); }
+    .nav-menu {
+      display: none;
+      align-items: center;
+      gap: 1rem;
+    }
+    .nav-link {
+      color: #3d3830;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      transition: color .2s ease;
+    }
+    .nav-link:hover { color: #8f6f22; }
+    .nav-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(184,146,46,.35);
+      background: rgba(255,255,255,.75);
+      color: #8f6f22;
+      cursor: pointer;
+      transition: background .2s ease, border-color .2s ease;
+    }
+    .nav-toggle:hover { background: rgba(255,255,255,.95); border-color: rgba(184,146,46,.55); }
+    .nav-mobile {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 1.5rem;
+      left: 1.5rem;
+      background: rgba(250,246,241,.98);
+      border: 1px solid rgba(184,146,46,.22);
+      border-radius: 16px;
+      box-shadow: 0 12px 28px rgba(42,38,34,.12);
+      padding: 10px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .nav-mobile.is-open { display: flex; }
+    .nav-mobile-link {
+      color: #3d3830;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 12px;
+      border-radius: 10px;
+      transition: background .2s ease, color .2s ease;
+    }
+    .nav-mobile-link:hover { background: rgba(184,146,46,.12); color: #8f6f22; }
+    @media (min-width: 1024px) {
+      .nav-menu { display: flex; }
+      .nav-toggle,
+      .nav-mobile { display: none !important; }
+    }
+    @media (max-width: 1023px) {
+      .nav-cta { display: none; }
+    }
 
     /* ── Hero ── */
     .hero-section {
@@ -490,11 +551,34 @@
         onerror="this.style.display='none';"
       />
     </a>
+    <div class="nav-menu" aria-label="Menu principal">
+      <a href="#hero" class="nav-link">Início</a>
+      <a href="#galeria" class="nav-link">Galeria</a>
+      <a href="#sobre" class="nav-link">Sobre</a>
+      <a href="#servicos" class="nav-link">Serviços</a>
+      <a href="#grupo-vip" class="nav-link">Grupo VIP</a>
+      <a href="#depoimentos" class="nav-link">Depoimentos</a>
+      <a href="#contato" class="nav-link">Contato</a>
+    </div>
+    <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-mobile-menu">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
     <a href="https://wa.me/5531991603278?text=Ol%C3%A1%2C+Aline%21+Vim+pelo+seu+site+e+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o."
        target="_blank" rel="noopener noreferrer" class="nav-cta shrink-0">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
       Agendar avaliação
     </a>
+  </div>
+  <div id="nav-mobile-menu" class="nav-mobile" aria-label="Menu mobile">
+    <a href="#hero" class="nav-mobile-link">Início</a>
+    <a href="#galeria" class="nav-mobile-link">Galeria</a>
+    <a href="#sobre" class="nav-mobile-link">Sobre</a>
+    <a href="#servicos" class="nav-mobile-link">Serviços</a>
+    <a href="#grupo-vip" class="nav-mobile-link">Grupo VIP</a>
+    <a href="#depoimentos" class="nav-mobile-link">Depoimentos</a>
+    <a href="#contato" class="nav-mobile-link">Contato</a>
   </div>
 </nav>
 
@@ -723,7 +807,7 @@
 </section>
 
 <!-- ═══ SERVIÇOS ═══ -->
-<section class="services-section py-20 px-6">
+<section id="servicos" class="services-section py-20 px-6">
   <div class="mx-auto max-w-6xl relative z-10">
     <div class="text-center mb-14" data-animate>
       <span class="inline-block text-[11px] font-bold tracking-[.14em] uppercase text-sage-light bg-white/10 px-3 py-1 rounded-full mb-3">O que ofereço</span>
@@ -784,8 +868,37 @@
   </div>
 </section>
 
+<!-- ═══ GRUPO VIP ═══ -->
+<section id="grupo-vip" class="py-20 px-6" style="background: linear-gradient(160deg, #f5f1ea 0%, #faf8f5 100%);">
+  <div class="mx-auto max-w-4xl">
+    <div class="rounded-3xl bg-white border border-[#e8dbc5] p-8 sm:p-12 shadow-[0_20px_60px_rgba(42,38,34,.08)]" data-animate>
+      <div class="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+        <figure class="w-full max-w-xs sm:max-w-sm md:max-w-none mx-auto rounded-[1.75rem] overflow-hidden border border-[#e8dbc5] shadow-[0_16px_40px_rgba(42,38,34,.12)]">
+        <img src="Fotos/Fotos%20(8).jpeg" alt="Aline Santana no Grupo VIP" loading="lazy" decoding="async" class="block w-full h-auto object-cover" />
+        </figure>
+        <div class="text-center md:text-left">
+          <span class="inline-block text-[11px] font-bold tracking-[.14em] uppercase text-gold-dark bg-gold/10 px-3 py-1 rounded-full mb-4">
+            Grupo VIP Gratuito
+          </span>
+          <h2 class="font-serif font-bold text-[clamp(1.8rem,4vw,2.6rem)] text-forest leading-tight mb-4">
+            Comunidade fechada no WhatsApp
+          </h2>
+          <p class="text-gray-600 text-[16px] leading-relaxed mb-8">
+            É um grupo fechado no WhatsApp onde compartilho orientações práticas e respondo dúvidas para te ajudar a manter constância no processo de emagrecimento.
+          </p>
+          <a href="https://chat.whatsapp.com/DufTXOHxFXp8gv9pLUejbN?mode=gi_t"
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 bg-gold text-white font-semibold px-8 py-4 rounded-full text-[15px] hover:bg-gold-dark transition shadow-lg shadow-gold/25">
+            Entrar no Grupo VIP Gratuito
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ DEPOIMENTOS ═══ -->
-<section class="testimonials-section py-20 px-6">
+<section id="depoimentos" class="testimonials-section py-20 px-6">
   <div class="mx-auto max-w-6xl">
     <div class="text-center mb-14" data-animate>
       <span class="section-tag">Depoimentos</span>
@@ -880,9 +993,24 @@
         <svg class="h-4 w-4 ml-auto text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </a>
 
+      <!-- Grupo VIP Gratuito -->
+      <a href="https://chat.whatsapp.com/DufTXOHxFXp8gv9pLUejbN?mode=gi_t"
+         target="_blank" rel="noopener noreferrer" class="contact-item" data-animate data-animate-delay="2">
+        <div class="contact-icon">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5V4H2v16h5m10 0v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6m10 0H7"/>
+          </svg>
+        </div>
+        <div>
+          <p class="contact-label">Grupo VIP Gratuito</p>
+          <p class="contact-value">Grupo fechado no WhatsApp com orientações e tira-dúvidas.</p>
+        </div>
+        <svg class="h-4 w-4 ml-auto text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+
       <!-- Instagram -->
       <a href="https://instagram.com/alinesantana.nutri"
-         target="_blank" rel="noopener noreferrer" class="contact-item" data-animate data-animate-delay="2">
+         target="_blank" rel="noopener noreferrer" class="contact-item" data-animate data-animate-delay="3">
         <div class="contact-icon">
           <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </div>
@@ -894,7 +1022,7 @@
       </a>
 
       <!-- Email -->
-      <a href="mailto:alinecrsantana@yahoo.com.br" class="contact-item" data-animate data-animate-delay="3">
+      <a href="mailto:alinecrsantana@yahoo.com.br" class="contact-item" data-animate data-animate-delay="4">
         <div class="contact-icon">
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
         </div>
@@ -934,6 +1062,22 @@
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 40);
   }, { passive: true });
+
+  // Menu mobile (hambúrguer)
+  const navToggle = document.getElementById('nav-toggle');
+  const navMobileMenu = document.getElementById('nav-mobile-menu');
+  if (navToggle && navMobileMenu) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navMobileMenu.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    navMobileMenu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        navMobileMenu.classList.remove('is-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 
   // Scroll animate
   const observer = new IntersectionObserver((entries) => {

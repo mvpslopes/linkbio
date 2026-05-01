@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Giulia Dias | Revendedora Multimarcas – Boticário, Eudora, Natura, Avon, Cacau Show &amp; Semi Jóias</title>
+  <meta name="description" content="Giulia Dias – Revendedora autorizada multimarcas. Produtos originais de beleza, chocolates e semi jóias. Finalize pelo WhatsApp." />
+  <link rel="icon" type="image/png" href="logo/logo-giulia-1.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
+          colors: {
+            pk: {
+              50: '#FFF1F6', 100: '#FFE4EE', 200: '#FFCADE',
+              300: '#FFA0C3', 400: '#F4A6BE', 500: '#E8899A',
+              600: '#D4698A', 700: '#B84F73', 800: '#9A3D60', 900: '#7C2E4E',
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --pk:    #F4A6BE;
+      --pk-d:  #D4698A;
+      --pk-dd: #B84F73;
+      --pk-l:  #FFF1F6;
+      --rose-grad: linear-gradient(140deg, #fdeef3 0%, #f8d5e2 32%, #f4a6be 66%, #d4698a 100%);
+      --dark-grad:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08) 0%, transparent 35%),
+        radial-gradient(circle at 80% 80%, rgba(244,166,190,0.14) 0%, transparent 42%),
+        linear-gradient(135deg, #050505 0%, #101010 38%, #1a1a1a 100%);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin:0; padding:0; }
+    html { scroll-behavior: smooth; }
+    body { background: #f9f9f9; font-family: 'Inter', system-ui; color: #1a1a1a; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-thumb { background: var(--pk); border-radius: 3px; }
+
+    /* ── SPLASH ── */
+    .splash {
+      position:fixed; inset:0; z-index:200;
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(90deg, #B84F73 0%, #D4698A 38%, #F4A6BE 70%, #FDEEF3 100%);
+      transition: opacity .6s ease, visibility .6s ease;
+    }
+    .splash.hide { opacity:0; visibility:hidden; pointer-events:none; }
+    .splash-logo { width: min(70vw, 320px); filter: drop-shadow(0 4px 24px rgba(180,80,115,.18)); }
+    .splash-bar {
+      width:160px; height:3px; border-radius:999px;
+      background:rgba(255,255,255,.35); overflow:hidden;
+      margin: 18px auto 0;
+    }
+    .splash-bar span {
+      display:block; width:40%; height:100%; border-radius:999px;
+      background:#fff;
+      animation: barMove 1.1s ease-in-out infinite;
+    }
+    @keyframes barMove { 0%{transform:translateX(-120%)} 100%{transform:translateX(380%)} }
+    .splash-label { color:rgba(255,255,255,.85); font-size:12px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; margin-top:12px; }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: linear-gradient(90deg, #B84F73 0%, #D4698A 38%, #F4A6BE 70%, #FDEEF3 100%);
+      position: sticky; top:0; z-index:50;
+      border-bottom: 1px solid rgba(212,105,138,.25);
+    }
+
+    /* ── HERO BANNER ── */
+    .hero-banner {
+      background:
+        linear-gradient(90deg, rgba(5,5,5,0.78) 0%, rgba(16,16,16,0.56) 42%, rgba(26,26,26,0.28) 100%),
+        url('hero/hero.png') center/cover no-repeat;
+      position: relative; overflow: hidden;
+      min-height: 320px;
+    }
+    .hero-tag {
+      display:inline-block;
+      border:1.5px solid rgba(255,255,255,.7);
+      color:rgba(255,255,255,.95);
+      font-size:11px; font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+      padding:4px 14px; border-radius:999px; margin-bottom:16px;
+    }
+
+    /* ── PILLS (marcas filtro) ── */
+    .brand-pill {
+      display:flex; align-items:center; gap:8px;
+      padding:8px 16px; border-radius:999px;
+      border:1.5px solid #f0d6e0;
+      background:#fff; cursor:pointer;
+      transition: all .2s; white-space:nowrap;
+    }
+    .brand-pill:hover, .brand-pill.on {
+      background: var(--pk); border-color: var(--pk);
+      color:#fff; box-shadow: 0 4px 14px rgba(244,166,190,.45);
+    }
+    .brand-pill img { width:22px; height:22px; object-fit:contain; border-radius:4px; }
+
+    /* ── PRODUCT CARD ── */
+    .pcard {
+      background:#fff; border-radius:12px;
+      border:1px solid #f0e8ec;
+      overflow:hidden;
+      transition: transform .25s, box-shadow .25s;
+      display:flex; flex-direction:column;
+      position:relative;
+    }
+    .pcard:hover { transform:translateY(-4px); box-shadow:0 12px 32px rgba(212,105,138,.16); }
+    .pcard:hover .wish-btn { opacity:1; }
+
+    .pcard-img {
+      aspect-ratio:1/1;
+      display:flex; align-items:center; justify-content:center;
+      position:relative;
+    }
+    .pcard-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .pcard-icon-fallback {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .disc-badge {
+      position:absolute; top:10px; left:10px;
+      background:#e63946; color:#fff;
+      font-size:11px; font-weight:700;
+      padding:3px 8px; border-radius:4px;
+      letter-spacing:.02em; z-index:2;
+    }
+    .wish-btn {
+      position:absolute; top:10px; right:10px; z-index:2;
+      width:30px; height:30px; border-radius:50%;
+      background:rgba(255,255,255,.92); border:1px solid #f0d6e0;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer; opacity:0; transition:opacity .2s;
+      color: #c4758e;
+    }
+    .wish-btn:hover { background:#fff0f5; }
+    .wish-btn.on { opacity:1; color:var(--pk-d); }
+    .wish-btn.on svg { fill:var(--pk-d); }
+
+    .pcard-body { padding:12px; display:flex; flex-direction:column; flex:1; }
+    .brand-label { font-size:10px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; margin-bottom:4px; }
+    .pcard-name {
+      font-size:13px; font-weight:500; color:#1a1a1a; line-height:1.4;
+      display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;
+      margin-bottom:6px; min-height:2.8em;
+    }
+    .pcard-stars { color:#f59e0b; font-size:12px; letter-spacing:-1px; margin-bottom:8px; }
+    .price-from { font-size:11px; color:#9ca3af; text-decoration:line-through; line-height:1.2; }
+    .price-now { font-size:18px; font-weight:700; color:var(--pk-dd); line-height:1.2; margin-bottom:10px; }
+    .buy-btn {
+      width:100%; padding:9px;
+      border-radius:8px;
+      background: var(--rose-grad);
+      color:#fff; font-size:13px; font-weight:600;
+      border:none; cursor:pointer;
+      transition: opacity .2s, transform .15s;
+      margin-top:auto;
+    }
+    .buy-btn:hover { opacity:.9; transform:scale(1.01); }
+    .buy-btn:active { transform:scale(.98); }
+
+    /* ── STATS BAR ── */
+    .stats-bar { background:#1a1a1a; }
+    .stat-pill {
+      padding:14px 32px; border-radius:999px;
+      font-weight:800; text-align:center;
+    }
+    .stat-pill.dark { background:#111; color:#fff; }
+    .stat-pill.pink { background: var(--pk); color:#fff; }
+    .stat-num { font-size:28px; line-height:1; display:block; }
+    .stat-lbl { font-size:12px; font-weight:500; opacity:.85; display:block; margin-top:2px; }
+
+    /* ── FILTER TABS ── */
+    .ftab { transition:all .2s; }
+    .ftab.on { background:var(--pk); color:#fff; border-color:transparent; box-shadow:0 4px 12px rgba(244,166,190,.4); }
+
+    /* ── CART DRAWER ── */
+    .drawer { transition:transform .35s cubic-bezier(.4,0,.2,1); transform:translateX(100%); }
+    .drawer.open { transform:translateX(0); }
+    .backdrop { transition:opacity .3s; opacity:0; pointer-events:none; }
+    .backdrop.on { opacity:1; pointer-events:all; }
+    .qbtn {
+      width:28px; height:28px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      background:#FFE4EE; color:var(--pk-dd); font-weight:700;
+      cursor:pointer; border:none; font-size:16px; transition:background .2s;
+    }
+    .qbtn:hover { background:var(--pk); color:#fff; }
+    .wabtn { background:linear-gradient(135deg,#25D366,#128C7E); transition:transform .2s,box-shadow .2s; }
+    .wabtn:hover { transform:scale(1.02); box-shadow:0 8px 20px rgba(37,211,102,.3); }
+
+    /* ── TOAST ── */
+    @keyframes toastIn  { from{opacity:0;transform:translateX(-50%) translateY(16px)} to{opacity:1;transform:translateX(-50%) translateY(0)} }
+    @keyframes toastOut { from{opacity:1;transform:translateX(-50%) translateY(0)} to{opacity:0;transform:translateX(-50%) translateY(16px)} }
+    .toast-in  { animation:toastIn  .3s ease forwards; }
+    .toast-out { animation:toastOut .3s ease forwards; }
+
+    /* ── FAB ── */
+    @keyframes pfab { 0%,100%{box-shadow:0 0 0 0 rgba(244,166,190,.5)} 70%{box-shadow:0 0 0 12px rgba(244,166,190,0)} }
+    .fab-pulse { animation:pfab 2s ease infinite; }
+
+    /* ── FOOTER ── */
+    .site-footer { background: var(--rose-grad); }
+
+    /* ── Brand top colors ── */
+    .pt-boticario { background:linear-gradient(135deg,#EDE7F6,#D1C4E9); }
+    .pt-eudora    { background:linear-gradient(135deg,#FCE4EC,#F8BBD9); }
+    .pt-natura    { background:linear-gradient(135deg,#E8F5E9,#C8E6C9); }
+    .pt-avon      { background:linear-gradient(135deg,#FFEBEE,#FFCDD2); }
+    .pt-cacaushow { background:linear-gradient(135deg,#EFEBE9,#D7CCC8); }
+    .pt-semijoia  { background:linear-gradient(135deg,#FFF9C4,#FFF176); }
+    .bb-boticario { background:linear-gradient(135deg,#7B2D8B,#9B3FB5); }
+    .bb-eudora    { background:linear-gradient(135deg,#8B1A4A,#B02060); }
+    .bb-natura    { background:linear-gradient(135deg,#2D6A4F,#40916C); }
+    .bb-avon      { background:linear-gradient(135deg,#B71C1C,#D32F2F); }
+    .bb-cacaushow { background:linear-gradient(135deg,#5D4037,#795548); }
+    .bb-semijoia  { background:linear-gradient(135deg,#B8860B,#DAA520); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .site-header { padding: 10px 12px; }
+      .hero-banner { min-height: 380px; background-position: 70% center; }
+      .hero-tag { font-size: 10px; letter-spacing: .14em; padding: 3px 10px; margin-bottom: 12px; }
+      .splash-label { letter-spacing: .14em; font-size: 11px; }
+      .brand-pill { padding: 7px 12px; font-size: 12px; }
+      .brand-pill img { width: 18px; height: 18px; }
+      .pcard-body { padding: 10px; }
+      .pcard-name { font-size: 12px; min-height: 2.6em; }
+      .price-now { font-size: 16px; }
+      .buy-btn { padding: 8px; font-size: 12px; }
+      .stat-pill { padding: 12px 20px; min-width: 46%; }
+      .stat-num { font-size: 22px; }
+      .stat-lbl { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash" class="splash">
+  <div class="text-center px-6">
+    <img src="logo/logo-giulia-2.png" alt="Giulia Dias" class="splash-logo mx-auto" />
+    <p class="splash-label">Carregando loja</p>
+    <div class="splash-bar"><span></span></div>
+  </div>
+</div>
+
+<!-- BACKDROP -->
+<div id="backdrop" class="backdrop fixed inset-0 bg-black/40 z-40" onclick="closeCart()"></div>
+
+<!-- TOAST -->
+<div id="toast" class="hidden fixed bottom-28 left-1/2 z-50 -translate-x-1/2 px-5 py-3 rounded-full bg-white shadow-xl border border-pk-200 flex items-center gap-2 text-sm font-semibold text-pk-800 pointer-events-none whitespace-nowrap">
+  <svg class="w-4 h-4 text-pk-500" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+  <span id="toast-msg">Produto adicionado!</span>
+</div>
+
+<!-- CART DRAWER -->
+<div id="drawer" class="drawer fixed right-0 top-0 h-full w-full max-w-sm bg-white z-50 shadow-2xl flex flex-col">
+  <div class="flex items-center justify-between px-5 py-4 border-b border-pk-100">
+    <div>
+      <h2 class="text-base font-bold text-pk-900">Meu Carrinho</h2>
+      <p id="d-count" class="text-xs text-gray-400 mt-0.5">0 itens</p>
+    </div>
+    <button onclick="closeCart()" class="w-9 h-9 flex items-center justify-center rounded-full bg-pk-50 hover:bg-pk-100 transition-colors text-pk-700">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div id="d-items" class="flex-1 overflow-y-auto px-5 py-4"></div>
+  <div id="d-footer" class="hidden px-5 py-5 border-t border-pk-100 space-y-4 bg-pk-50">
+    <div class="flex items-center justify-between text-sm">
+      <span class="text-gray-500">Subtotal</span>
+      <span id="d-sub" class="font-semibold text-pk-900">R$ 0,00</span>
+    </div>
+    <div class="flex items-center justify-between">
+      <span class="font-bold text-pk-900">Total</span>
+      <span id="d-total" class="font-bold text-xl text-pk-700">R$ 0,00</span>
+    </div>
+    <button onclick="checkout()" class="wabtn w-full py-4 rounded-2xl text-white font-semibold flex items-center justify-center gap-3 text-base shadow-lg">
+      <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.552 4.112 1.519 5.845L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.83 9.83 0 01-5.032-1.384l-.36-.215-3.757.98 1.004-3.652-.235-.375A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/>
+      </svg>
+      Finalizar pelo WhatsApp
+    </button>
+    <p class="text-xs text-center text-gray-400">Você será redirecionado para o WhatsApp da Giulia</p>
+  </div>
+</div>
+
+<!-- ══════════════ HEADER ══════════════ -->
+<header class="site-header px-4 py-3">
+  <div class="max-w-6xl mx-auto flex items-center justify-between gap-4">
+    <a href="#"><img src="logo/logo-giulia-2.png" alt="Giulia Dias" class="h-8 md:h-10 w-auto" /></a>
+    <nav class="hidden md:flex items-center gap-7">
+      <a href="#marcas"   class="text-sm font-medium text-white/85 hover:text-pk-200 transition-colors">Marcas</a>
+      <a href="#vitrine"  class="text-sm font-medium text-white/85 hover:text-pk-200 transition-colors">Produtos</a>
+      <a href="#contato"  class="text-sm font-medium text-white/85 hover:text-pk-200 transition-colors">Contato</a>
+    </nav>
+    <button onclick="openCart()" class="relative flex items-center gap-2 px-3 md:px-4 py-2 md:py-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 text-white transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+      </svg>
+      <span class="text-xs md:text-sm font-semibold">Carrinho</span>
+      <span id="h-badge" class="hidden absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-pk-700 text-white text-xs font-bold flex items-center justify-center">0</span>
+    </button>
+  </div>
+</header>
+
+<!-- ══════════════ HERO BANNER ══════════════ -->
+<section class="hero-banner">
+  <div class="max-w-6xl mx-auto px-4 md:px-6 py-14 md:py-20">
+    <div class="max-w-2xl relative z-10 text-center md:text-left">
+      <span class="hero-tag">Revendedora Autorizada</span>
+      <h1 class="text-3xl md:text-6xl font-extrabold text-white leading-tight tracking-tight mb-4" style="text-shadow:0 2px 16px rgba(180,80,115,.25)">
+        EXPLORE<br/>A BELEZA
+      </h1>
+      <p class="text-white/85 text-sm md:text-lg max-w-md mb-6 md:mb-8 leading-relaxed">
+        Produtos originais das melhores marcas do Brasil. Escolha, adicione ao carrinho e finalize pelo WhatsApp com atendimento personalizado.
+      </p>
+      <div class="flex flex-col sm:flex-row flex-wrap gap-3 justify-center md:justify-start">
+        <a href="#vitrine" class="w-full sm:w-auto text-center px-8 py-3.5 rounded-full bg-white text-pk-700 font-bold text-sm shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5">
+          Ver Coleção
+        </a>
+        <a href="https://wa.me/5531971370551" target="_blank" class="w-full sm:w-auto text-center px-8 py-3.5 rounded-full bg-white/20 border border-white/50 text-white font-semibold text-sm hover:bg-white/30 transition-all">
+          Falar conosco
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ MARCAS PARCEIRAS ══════════════ -->
+<section id="marcas" class="py-12 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Marcas Parceiras</h2>
+      <div class="w-12 h-1 rounded-full mx-auto mt-3" style="background:var(--rose-grad)"></div>
+    </div>
+    <div class="flex md:flex-wrap gap-3 overflow-x-auto md:overflow-visible justify-start md:justify-center pb-1 md:pb-0">
+      <button onclick="setFilter('all')" id="f-all" class="brand-pill on text-sm font-semibold text-gray-700">
+        Todos os Produtos
+      </button>
+      <button onclick="setFilter('boticario')" id="f-boticario" class="brand-pill text-sm font-semibold text-gray-700">
+        <img src="marcas/o-boticario.jpg" alt="Boticário" />
+        O Boticário
+      </button>
+      <button onclick="setFilter('eudora')" id="f-eudora" class="brand-pill text-sm font-semibold text-gray-700">
+        <img src="marcas/eudora.png" alt="Eudora" />
+        Eudora
+      </button>
+      <button onclick="setFilter('natura')" id="f-natura" class="brand-pill text-sm font-semibold text-gray-700">
+        <img src="marcas/natura.png" alt="Natura" />
+        Natura
+      </button>
+      <button onclick="setFilter('avon')" id="f-avon" class="brand-pill text-sm font-semibold text-gray-700">
+        <img src="marcas/avon.png" alt="Avon" />
+        Avon
+      </button>
+      <button onclick="setFilter('cacaushow')" id="f-cacaushow" class="brand-pill text-sm font-semibold text-gray-700">
+        <img src="marcas/cacau-show.jpg" alt="Cacau Show" />
+        Cacau Show
+      </button>
+      <button onclick="setFilter('semijoia')" id="f-semijoia" class="brand-pill text-sm font-semibold text-gray-700">
+        <img src="marcas/semi-joias.jpg" alt="Semi Jóias" />
+        Semi Jóias
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ VITRINE ══════════════ -->
+<section id="vitrine" class="py-12 bg-gray-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex items-center justify-between mb-8 flex-wrap gap-3">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-800">Nova Coleção</h2>
+        <p id="p-count" class="text-sm text-gray-400 mt-1"></p>
+      </div>
+    </div>
+    <div id="prod-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4"></div>
+  </div>
+</section>
+
+<!-- ══════════════ STATS ══════════════ -->
+<section class="stats-bar py-10">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <div class="stat-pill dark">
+        <span class="stat-num">6+</span>
+        <span class="stat-lbl">Marcas Parceiras</span>
+      </div>
+      <div class="stat-pill pink">
+        <span class="stat-num">5.000+</span>
+        <span class="stat-lbl">Clientes Satisfeitas</span>
+      </div>
+      <div class="stat-pill dark">
+        <span class="stat-num">27+</span>
+        <span class="stat-lbl">Produtos Disponíveis</span>
+      </div>
+      <div class="stat-pill pink">
+        <span class="stat-num">100%</span>
+        <span class="stat-lbl">Produtos Originais</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer id="contato" class="site-footer py-12">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-8 pb-8 border-b border-pk-300/40">
+      <div class="text-center md:text-left">
+        <img src="logo/logo-giulia-1.png" alt="Giulia Dias" class="h-16 w-auto mx-auto md:mx-0 mb-3 drop-shadow" />
+        <p class="text-sm font-bold text-pk-900">Revendedora Autorizada Multimarcas</p>
+        <p class="text-xs text-pk-700 mt-1">Boticário · Eudora · Natura · Avon · Cacau Show · Semi Jóias</p>
+      </div>
+      <div class="flex flex-col items-center gap-3">
+        <a href="https://wa.me/5531971370551" target="_blank" rel="noopener"
+           class="wabtn inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-bold shadow-lg text-sm">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.552 4.112 1.519 5.845L0 24l6.335-1.652A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.83 9.83 0 01-5.032-1.384l-.36-.215-3.757.98 1.004-3.652-.235-.375A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z"/>
+          </svg>
+          (31) 97137-0551
+        </a>
+      </div>
+    </div>
+    <p class="text-center text-xs text-pk-700 mt-6">© 2025 Giulia Dias · Todos os direitos reservados</p>
+  </div>
+</footer>
+
+<!-- FAB -->
+<button id="cart-fab" onclick="openCart()" class="hidden fixed bottom-6 right-6 z-30 w-14 h-14 rounded-full shadow-xl flex items-center justify-center text-white fab-pulse" style="background:var(--rose-grad)">
+  <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+  </svg>
+  <span id="fab-badge" class="hidden absolute -top-1 -right-1 w-5 h-5 bg-pk-900 text-white text-xs font-bold rounded-full flex items-center justify-center">0</span>
+</button>
+
+<!-- ══════════════ JAVASCRIPT ══════════════ -->
+<script>
+'use strict';
+
+// ── Ícones SVG por categoria ───────────────────────────────────
+const ICONS = {
+  'Perfumaria': `<svg class="w-14 h-14" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="13" y="20" width="18" height="20" rx="3" fill="currentColor" fill-opacity=".1"/><rect x="16" y="14" width="12" height="6" rx="2" fill="currentColor" fill-opacity=".08"/><rect x="18" y="10" width="8" height="4" rx="1.5"/><path d="M26 12 Q34 12 34 7"/><circle cx="34" cy="6.5" r="1.5" fill="currentColor" stroke="none"/><path d="M17 28h10M17 32h6"/></svg>`,
+  'Cuidados':   `<svg class="w-14 h-14" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="11" y="20" width="22" height="18" rx="3" fill="currentColor" fill-opacity=".1"/><rect x="17" y="14" width="10" height="6" rx="2" fill="currentColor" fill-opacity=".08"/><rect x="13" y="10" width="18" height="4" rx="2" fill="currentColor" fill-opacity=".08"/><path d="M20 10 Q20 6 22 6"/><path d="M15 28h14M15 32h9"/></svg>`,
+  'Maquiagem':  `<svg class="w-14 h-14" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="17" y="26" width="10" height="14" rx="2.5" fill="currentColor" fill-opacity=".1"/><rect x="17" y="19" width="10" height="7" rx="1" fill="currentColor" fill-opacity=".08"/><path d="M17 19 L19.5 11 Q22 8 24.5 11 L27 19" fill="currentColor" fill-opacity=".12"/></svg>`,
+  'Presentes':  `<svg class="w-14 h-14" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="20" width="30" height="18" rx="2" fill="currentColor" fill-opacity=".1"/><rect x="5" y="14" width="34" height="6" rx="2" fill="currentColor" fill-opacity=".08"/><path d="M22 14v24"/><path d="M22 14 Q18 5 12 8 Q10 13 22 14"/><path d="M22 14 Q26 5 32 8 Q34 13 22 14"/></svg>`,
+  'Chocolates': `<svg class="w-14 h-14" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="11" width="32" height="22" rx="3" fill="currentColor" fill-opacity=".1"/><path d="M6 19h32M6 27h32"/><path d="M16 11v22M27 11v22"/></svg>`,
+  'Colares':    `<svg class="w-14 h-14" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10 Q7 26 22 34 Q37 26 34 10"/><circle cx="22" cy="36" r="4" fill="currentColor" fill-opacity=".15"/><circle cx="22" cy="9.5" r="2.5"/></svg>`,
+  'Brincos':    `<svg class="w-14 h-14" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 9 Q9 13 11 20 L11 32"/><circle cx="11" cy="35" r="3.5" fill="currentColor" fill-opacity=".15"/><path d="M31 9 Q35 13 33 20 L33 32"/><circle cx="33" cy="35" r="3.5" fill="currentColor" fill-opacity=".15"/></svg>`,
+  'Pulseiras':  `<svg class="w-14 h-14" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="22" cy="22" r="13" stroke-dasharray="5 3"/><circle cx="22" cy="22" r="13" fill="currentColor" fill-opacity=".06" stroke="none"/><circle cx="22" cy="35" r="3" fill="currentColor" fill-opacity=".2"/></svg>`,
+  'Anéis':      `<svg class="w-14 h-14" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 26 Q11 36 22 36 Q33 36 33 26 Q33 16 22 16 Q11 16 11 26"/><path d="M16 16 L19 8 L25 8 L28 16"/><polygon points="22,5.5 28,13 22,16 16,13" fill="currentColor" fill-opacity=".18"/></svg>`,
+  'Conjuntos':  `<svg class="w-14 h-14" viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13 Q7 23 15 27 Q22 31 29 27 Q37 23 36 13"/><circle cx="22" cy="33" r="3.5" fill="currentColor" fill-opacity=".2"/><circle cx="9" cy="12" r="3" fill="currentColor" fill-opacity=".15"/><circle cx="35" cy="12" r="3" fill="currentColor" fill-opacity=".15"/></svg>`,
+};
+
+const BRAND_ICON_COLOR = {
+  boticario:'#7B2D8B', eudora:'#8B1A4A', natura:'#2D6A4F',
+  avon:'#B71C1C', cacaushow:'#5D4037', semijoia:'#B8860B',
+};
+const CAT_IMAGES = {
+  'Perfumaria': 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=80',
+  'Cuidados': 'https://images.unsplash.com/photo-1571781926291-c477ebfd024b?auto=format&fit=crop&w=900&q=80',
+  'Maquiagem': 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=900&q=80',
+  'Presentes': 'https://images.unsplash.com/photo-1513885535751-8b9238bd345a?auto=format&fit=crop&w=900&q=80',
+  'Chocolates': 'https://images.unsplash.com/photo-1549007953-2f2dc0b24019?auto=format&fit=crop&w=900&q=80',
+  'Colares': 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=80',
+  'Brincos': 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=900&q=80',
+  'Pulseiras': 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80',
+  'Anéis': 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=900&q=80',
+  'Conjuntos': 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?auto=format&fit=crop&w=900&q=80',
+};
+
+// ── Produtos ───────────────────────────────────────────────────
+const PRODS = [
+  { id:1,  name:'Egeo Dolce EDT 90ml',              brand:'boticario', bl:'O Boticário', cat:'Perfumaria', price:149.90, from:189.90, disc:21, desc:'Fragrância floral gourmand irresistível'         },
+  { id:2,  name:'Malbec Gold EDT 100ml',             brand:'boticario', bl:'O Boticário', cat:'Perfumaria', price:199.90, from:249.90, disc:20, desc:'Perfume amadeirado sensual e marcante'            },
+  { id:3,  name:'Nativa Spa Óleo Argan 200ml',       brand:'boticario', bl:'O Boticário', cat:'Cuidados',   price:89.90,  from:null,   disc:0,  desc:'Óleo nutritivo e restaurador para corpo e cabelo' },
+  { id:4,  name:'Make B. Base Líquida FPS30',        brand:'boticario', bl:'O Boticário', cat:'Maquiagem',  price:79.90,  from:99.90,  disc:20, desc:'Cobertura leve e natural com proteção solar'      },
+  { id:5,  name:'Nativa Spa Sérum Vitamina C',       brand:'boticario', bl:'O Boticário', cat:'Cuidados',   price:119.90, from:149.90, disc:20, desc:'Ilumina e uniformiza o tom da pele'               },
+  { id:6,  name:'Glamour EDP 75ml',                  brand:'eudora',    bl:'Eudora',      cat:'Perfumaria', price:139.90, from:174.90, disc:20, desc:'Fragrância feminina sofisticada e envolvente'     },
+  { id:7,  name:'Hidratante Luminus 400ml',          brand:'eudora',    bl:'Eudora',      cat:'Cuidados',   price:64.90,  from:null,   disc:0,  desc:'Hidratação profunda com efeito luminoso'          },
+  { id:8,  name:'Rímel Volume & Curvatura',          brand:'eudora',    bl:'Eudora',      cat:'Maquiagem',  price:49.90,  from:69.90,  disc:29, desc:'Cílios volumosos e curvados por 24h'              },
+  { id:9,  name:'Batom Matte Cremoso Eudora',        brand:'eudora',    bl:'Eudora',      cat:'Maquiagem',  price:39.90,  from:null,   disc:0,  desc:'12h de duração, super pigmentado'                 },
+  { id:10, name:'Kaiak Oceano EDT 100ml',            brand:'natura',    bl:'Natura',      cat:'Perfumaria', price:119.90, from:149.90, disc:20, desc:'Frescor intenso de mar e brisa atlântica'         },
+  { id:11, name:'Tododia Leite Pitanga 400ml',       brand:'natura',    bl:'Natura',      cat:'Cuidados',   price:54.90,  from:null,   disc:0,  desc:'Hidratação diária, pele macia e perfumada'        },
+  { id:12, name:'Chronos Creme Antissinais FPS30',   brand:'natura',    bl:'Natura',      cat:'Cuidados',   price:134.90, from:169.90, disc:21, desc:'Redução de linhas finas em 4 semanas'             },
+  { id:13, name:'Una Base Mousse FPS50',             brand:'natura',    bl:'Natura',      cat:'Maquiagem',  price:89.90,  from:null,   disc:0,  desc:'Textura aerada, acabamento natural e duradouro'   },
+  { id:14, name:'Ekos Sabonete Castanha 200g',       brand:'natura',    bl:'Natura',      cat:'Cuidados',   price:34.90,  from:44.90,  disc:22, desc:'Hidrata e nutre enquanto limpa suavemente'        },
+  { id:15, name:'Far Away EDP 50ml',                 brand:'avon',      bl:'Avon',        cat:'Perfumaria', price:99.90,  from:129.90, disc:23, desc:'Ícone da perfumaria feminina Avon'                },
+  { id:16, name:'Renew Creme Noturno Antissinais',   brand:'avon',      bl:'Avon',        cat:'Cuidados',   price:84.90,  from:null,   disc:0,  desc:'Regeneração celular intensa durante o sono'       },
+  { id:17, name:'True Color Batom Hidratante',       brand:'avon',      bl:'Avon',        cat:'Maquiagem',  price:34.90,  from:44.90,  disc:22, desc:'Cor intensa com hidratação profunda'              },
+  { id:18, name:'Naturals Loção Corporal 400ml',     brand:'avon',      bl:'Avon',        cat:'Cuidados',   price:44.90,  from:null,   disc:0,  desc:'Fragrâncias naturais para pele sedosa e macia'    },
+  { id:19, name:'Kit Presente Clássico',             brand:'cacaushow', bl:'Cacau Show',  cat:'Presentes',  price:89.90,  from:109.90, disc:18, desc:'Seleção de chocolates finos em caixa especial'    },
+  { id:20, name:'Cesta Dia das Mães Premium',        brand:'cacaushow', bl:'Cacau Show',  cat:'Presentes',  price:179.90, from:219.90, disc:18, desc:'Cesta recheada de chocolates e mimo especial'     },
+  { id:21, name:'Bombons Sortidos 250g',             brand:'cacaushow', bl:'Cacau Show',  cat:'Chocolates', price:59.90,  from:null,   disc:0,  desc:'Mix irresistível de sabores e recheios'           },
+  { id:22, name:'Chocolate Trufado 200g',            brand:'cacaushow', bl:'Cacau Show',  cat:'Chocolates', price:49.90,  from:null,   disc:0,  desc:'Recheio cremoso com cobertura extra fina'         },
+  { id:23, name:'Colar Choker Cristal Rosa',         brand:'semijoia',  bl:'Semi Jóias',  cat:'Colares',    price:79.90,  from:99.90,  disc:20, desc:'Banhado ouro 18k com pedras naturais rosas'       },
+  { id:24, name:'Brinco Argola Dourada',             brand:'semijoia',  bl:'Semi Jóias',  cat:'Brincos',    price:59.90,  from:null,   disc:0,  desc:'Argola elegante banhada a ouro 18k'               },
+  { id:25, name:'Pulseira Berloques Prata',          brand:'semijoia',  bl:'Semi Jóias',  cat:'Pulseiras',  price:89.90,  from:109.90, disc:18, desc:'Berloques delicados banhados a prata 925'         },
+  { id:26, name:'Anel Solitário Zircônia',           brand:'semijoia',  bl:'Semi Jóias',  cat:'Anéis',      price:69.90,  from:null,   disc:0,  desc:'Pedra lapidada com brilho espelhado natural'      },
+  { id:27, name:'Conjunto Colar + Brinco Rose Gold', brand:'semijoia',  bl:'Semi Jóias',  cat:'Conjuntos',  price:119.90, from:149.90, disc:20, desc:'Conjunto delicado banhado em ouro rose 18k'      },
+];
+
+// ── Carrinho ───────────────────────────────────────────────────
+let cart = [];
+
+function renderProds(filter) {
+  const list  = filter === 'all' ? PRODS : PRODS.filter(p => p.brand === filter);
+  const grid  = document.getElementById('prod-grid');
+  const count = document.getElementById('p-count');
+  count.textContent = `${list.length} produto${list.length !== 1 ? 's' : ''} encontrado${list.length !== 1 ? 's' : ''}`;
+
+  grid.innerHTML = list.map(p => `
+    <article class="pcard">
+      <div class="pcard-img pt-${p.brand}" style="color:${BRAND_ICON_COLOR[p.brand]}">
+        <img class="pcard-photo" src="${CAT_IMAGES[p.cat] || CAT_IMAGES['Cuidados']}" alt="${p.name}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <div class="pcard-icon-fallback">${ICONS[p.cat] || ICONS['Cuidados']}</div>
+        ${p.disc ? `<span class="disc-badge">-${p.disc}%</span>` : ''}
+        <button onclick="toggleWish(this)" class="wish-btn" title="Favoritar">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </button>
+      </div>
+      <div class="pcard-body">
+        <p class="brand-label" style="color:${BRAND_ICON_COLOR[p.brand]}">${p.bl}</p>
+        <h3 class="pcard-name">${p.name}</h3>
+        <div class="pcard-stars">★★★★★</div>
+        <div class="mb-3">
+          ${p.from ? `<p class="price-from">R$&nbsp;${fmt(p.from)}</p>` : ''}
+          <p class="price-now">R$&nbsp;${fmt(p.price)}</p>
+          <p class="text-xs text-green-600 font-semibold mt-0.5">Frete grátis</p>
+        </div>
+        <button onclick="addCart(${p.id})" class="buy-btn">Comprar Agora</button>
+      </div>
+    </article>
+  `).join('');
+}
+
+function setFilter(f) {
+  document.querySelectorAll('.brand-pill').forEach(b => b.classList.remove('on'));
+  const btn = document.getElementById(`f-${f}`);
+  if (btn) btn.classList.add('on');
+  renderProds(f);
+  document.getElementById('vitrine').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function addCart(id) {
+  const p = PRODS.find(x => x.id === id);
+  if (!p) return;
+  const ex = cart.find(x => x.id === id);
+  if (ex) ex.qty++;
+  else cart.push({ ...p, qty:1 });
+  refreshCart();
+  showToast(`${p.name} adicionado!`);
+}
+
+function removeCart(id) { cart = cart.filter(x => x.id !== id); refreshCart(); }
+
+function changeQty(id, d) {
+  const item = cart.find(x => x.id === id);
+  if (!item) return;
+  item.qty += d;
+  if (item.qty <= 0) removeCart(id);
+  else refreshCart();
+}
+
+function refreshCart() {
+  const qty   = cart.reduce((s,x) => s + x.qty, 0);
+  const total = cart.reduce((s,x) => s + x.price * x.qty, 0);
+
+  ['h-badge','fab-badge'].forEach(id => {
+    const el = document.getElementById(id);
+    if (qty > 0) { el.textContent = qty; el.classList.remove('hidden'); }
+    else el.classList.add('hidden');
+  });
+  document.getElementById('cart-fab')[qty > 0 ? 'classList' : 'classList'][qty > 0 ? 'remove' : 'add']('hidden');
+  if (qty > 0) document.getElementById('cart-fab').classList.remove('hidden');
+  else document.getElementById('cart-fab').classList.add('hidden');
+
+  document.getElementById('d-count').textContent = `${qty} item${qty !== 1 ? 's' : ''}`;
+  document.getElementById('d-sub').textContent   = `R$ ${fmt(total)}`;
+  document.getElementById('d-total').textContent = `R$ ${fmt(total)}`;
+
+  const items  = document.getElementById('d-items');
+  const footer = document.getElementById('d-footer');
+
+  if (!cart.length) {
+    footer.classList.add('hidden');
+    items.innerHTML = `
+      <div class="flex flex-col items-center justify-center h-full text-center py-10 gap-3">
+        <div class="w-16 h-16 rounded-full bg-pk-50 flex items-center justify-center text-pk-400">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/>
+          </svg>
+        </div>
+        <p class="font-bold text-pk-800">Carrinho vazio</p>
+        <p class="text-sm text-gray-400">Adicione produtos para continuar</p>
+        <button onclick="closeCart()" class="mt-1 px-6 py-2.5 rounded-full text-white text-sm font-semibold shadow" style="background:var(--rose-grad)">
+          Ver Produtos
+        </button>
+      </div>`;
+    return;
+  }
+
+  footer.classList.remove('hidden');
+  items.innerHTML = cart.map(item => `
+    <div class="flex gap-3 py-4 border-b border-pk-50 last:border-0">
+      <div class="pt-${item.brand} w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0" style="color:${BRAND_ICON_COLOR[item.brand]}">
+        ${(ICONS[item.cat] || '').replace(/w-14 h-14/g, 'w-7 h-7')}
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="text-xs font-bold uppercase tracking-wider" style="color:${BRAND_ICON_COLOR[item.brand]}">${item.bl}</p>
+        <p class="text-sm font-semibold text-gray-800 leading-tight mt-0.5">${item.name}</p>
+        <div class="flex items-center justify-between mt-2">
+          <div class="flex items-center gap-2">
+            <button class="qbtn" onclick="changeQty(${item.id},-1)">−</button>
+            <span class="text-sm font-bold w-5 text-center">${item.qty}</span>
+            <button class="qbtn" onclick="changeQty(${item.id},1)">+</button>
+          </div>
+          <span class="text-sm font-bold text-pk-700">R$&nbsp;${fmt(item.price * item.qty)}</span>
+        </div>
+      </div>
+      <button onclick="removeCart(${item.id})" class="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-full hover:bg-red-50 text-gray-300 hover:text-red-400 transition-colors self-start mt-0.5">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  `).join('');
+}
+
+function openCart() {
+  document.getElementById('drawer').classList.add('open');
+  document.getElementById('backdrop').classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeCart() {
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('backdrop').classList.remove('on');
+  document.body.style.overflow = '';
+}
+
+function checkout() {
+  if (!cart.length) return;
+  const total = cart.reduce((s,x) => s + x.price * x.qty, 0);
+  let msg = `Olá Giulia! Gostaria de fazer um pedido:\n\n*PEDIDO:*\n`;
+  cart.forEach(x => {
+    msg += `- ${x.name} (${x.bl}) x${x.qty} = R$ ${fmt(x.price * x.qty)}\n`;
+  });
+  msg += `\n*Total: R$ ${fmt(total)}*\n\nAguardo as instruções. Obrigada!`;
+  window.open(`https://wa.me/5531971370551?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function toggleWish(btn) {
+  btn.classList.toggle('on');
+  const svg = btn.querySelector('svg');
+  svg.setAttribute('fill', btn.classList.contains('on') ? 'currentColor' : 'none');
+}
+
+let toastTmr;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  el.classList.remove('hidden','toast-out');
+  el.classList.add('toast-in');
+  clearTimeout(toastTmr);
+  toastTmr = setTimeout(() => {
+    el.classList.remove('toast-in');
+    el.classList.add('toast-out');
+    setTimeout(() => { el.classList.add('hidden'); el.classList.remove('toast-out'); }, 300);
+  }, 2500);
+}
+
+function fmt(n) { return n.toFixed(2).replace('.', ','); }
+
+renderProds('all');
+refreshCart();
+
+window.addEventListener('load', () => {
+  setTimeout(() => document.getElementById('splash').classList.add('hide'), 2400);
+});
+</script>
+</body>
+</html>

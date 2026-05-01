@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Willian Douglas | Personal Trainer em Ouro Branco – Metodologia C.A.O.S.</title>
+    <meta name="description" content="Personal trainer em Ouro Branco, MG. Willian Douglas – Transformando seu objetivo físico em meta palpável com metodologia C.A.O.S. Treino personalizado presencial e online." />
+    <meta name="keywords" content="personal trainer Ouro Branco, personal Ouro Branco, treino personalizado Ouro Branco, Willian Douglas personal, metodologia CAOS, personal trainer masculino, musculação Ouro Branco, CREF MG" />
+    <link rel="canonical" href="https://willianpersonal.linkbio.api.br/" />
+    <link rel="icon" href="logo/logo-favicon.png" type="image/png" sizes="32x32" />
+<link rel="icon" href="logo/logo-favicon.png" type="image/png" sizes="16x16" />
+<link rel="apple-touch-icon" href="logo/logo-favicon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://willianpersonal.linkbio.api.br/" />
+    <meta property="og:title" content="Willian Douglas – Personal Trainer em Ouro Branco | Metodologia C.A.O.S." />
+    <meta property="og:description" content="Personal trainer em Ouro Branco, MG. Transformando seu objetivo físico em meta palpável. Treinos personalizados com metodologia C.A.O.S." />
+    <meta property="og:image" content="https://willianpersonal.linkbio.api.br/fotos/Fotos%20(1).jpeg" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Willian Douglas – Personal Trainer" />
+
+    <!-- Dados estruturados -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Willian Douglas",
+      "jobTitle": "Personal Trainer",
+      "description": "Personal Trainer especializado em transformação física com metodologia C.A.O.S. Atende em Ouro Branco, MG.",
+      "url": "https://willianpersonal.linkbio.api.br/",
+      "image": "https://willianpersonal.linkbio.api.br/fotos/Fotos%20(1).jpeg",
+      "address": { "@type": "PostalAddress", "streetAddress": "Av. Patriótica, 49 - loja 04", "addressLocality": "Ouro Branco", "addressRegion": "MG", "postalCode": "36420-000", "addressCountry": "BR" },
+      "knowsAbout": ["Personal training", "Musculação", "Metodologia C.A.O.S.", "Transformação física"],
+      "telephone": "+5531983821533"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Willian Douglas – Personal Trainer",
+      "description": "Personal trainer em Ouro Branco, MG. Treinos personalizados com metodologia C.A.O.S.",
+      "url": "https://willianpersonal.linkbio.api.br/",
+      "image": "https://willianpersonal.linkbio.api.br/fotos/Fotos%20(1).jpeg",
+      "address": { "@type": "PostalAddress", "streetAddress": "Av. Patriótica, 49 - loja 04", "addressLocality": "Ouro Branco", "addressRegion": "MG", "postalCode": "36420-000", "addressCountry": "BR" },
+      "areaServed": { "@type": "City", "name": "Ouro Branco", "containedInPlace": { "@type": "State", "name": "Minas Gerais" } },
+      "priceRange": "Consulte",
+      "telephone": "+5531983821533"
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;0,900;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif'],
+              display: ['Barlow Condensed', 'ui-sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root { --green: #22c55e; --green-glow: rgba(34,197,94,0.35); }
+      html  { scroll-behavior: smooth; }
+      body  { background: #080810; }
+
+      /* ── typography ── */
+      .font-display { font-family: 'Barlow Condensed', sans-serif; }
+
+      .text-grad {
+        background: linear-gradient(120deg, #22c55e 0%, #4ade80 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* ── tag pill ── */
+      .tag-pill {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: rgba(34,197,94,.1);
+        border: 1px solid rgba(34,197,94,.35);
+        border-radius: 999px;
+        padding: 5px 14px;
+        font-size: 11px; font-weight: 700; letter-spacing: .1em;
+        text-transform: uppercase; color: #22c55e;
+      }
+
+      /* ── HERO centered overlay layout ── */
+      .hero-centered {
+        position: relative;
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .hero-bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 25%;
+        filter: brightness(0.4) saturate(1.1);
+      }
+      .hero-bg::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(8,8,16,0.3) 0%, rgba(8,8,16,0.7) 50%, #080810 100%);
+      }
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        padding: 6rem 1.5rem 4rem;
+        max-width: 900px;
+      }
+      .hero-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        border: 3px solid rgba(34,197,94,0.5);
+        overflow: hidden;
+        margin: 0 auto 1.5rem;
+        box-shadow: 0 0 60px rgba(34,197,94,0.3);
+      }
+      .hero-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 20%;
+      }
+      @media (min-width: 768px) {
+        .hero-avatar { width: 180px; height: 180px; }
+        .hero-content { padding: 8rem 2rem 5rem; }
+      }
+
+      /* ── stat strip ── */
+      .stat-item + .stat-item { border-left: 1px solid rgba(255,255,255,.07); }
+
+      /* ── card glassmorphism style ── */
+      .card-glass {
+        background: rgba(13, 13, 24, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(34,197,94,.2);
+        border-radius: 1.25rem;
+        transition: all .35s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .card-glass::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(34,197,94,.6), transparent);
+      }
+      .card-glass:hover {
+        transform: translateY(-6px) scale(1.01);
+        border-color: rgba(34,197,94,.5);
+        box-shadow: 0 20px 40px rgba(34,197,94,.15), 0 0 60px rgba(34,197,94,.1);
+        background: rgba(13, 13, 24, 0.8);
+      }
+
+      /* ── galeria masonry style ── */
+      .masonry-grid {
+        column-count: 2;
+        column-gap: 0.75rem;
+      }
+      @media (min-width: 768px) {
+        .masonry-grid { column-count: 3; column-gap: 1rem; }
+      }
+      @media (min-width: 1024px) {
+        .masonry-grid { column-count: 4; column-gap: 1rem; }
+      }
+      .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 0.75rem;
+        border-radius: 1rem;
+        overflow: hidden;
+        background: #0f0f14;
+        position: relative;
+      }
+      @media (min-width: 768px) {
+        .masonry-item { margin-bottom: 1rem; }
+      }
+      .masonry-item img {
+        width: 100%;
+        display: block;
+        transition: transform .5s ease, filter .3s ease;
+      }
+      .masonry-item:hover img {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+      }
+      .masonry-item::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(8,8,16,0.6) 0%, transparent 50%);
+        opacity: 0;
+        transition: opacity .3s ease;
+      }
+      .masonry-item:hover::after { opacity: 1; }
+
+      /* ── scroll animations ── */
+      [data-animate] {
+        opacity: 0; transform: translateY(22px);
+        transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1);
+      }
+      [data-animate].is-visible { opacity: 1; transform: none; }
+      [data-animate-delay="1"] { transition-delay: .08s; }
+      [data-animate-delay="2"] { transition-delay: .16s; }
+      [data-animate-delay="3"] { transition-delay: .24s; }
+      [data-animate-delay="4"] { transition-delay: .32s; }
+
+      /* ── splash ── */
+      #splash {
+        position: fixed; inset: 0; z-index: 9999;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+        background: #080810;
+        transition: opacity .6s ease, visibility .6s ease;
+      }
+      #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+      #splash img {
+        max-width: 200px; width: 70%; height: auto;
+        animation: splIn 1.1s cubic-bezier(.34,1.56,.64,1) both;
+        filter: drop-shadow(0 0 24px rgba(34,197,94,.3));
+      }
+      @keyframes splIn { 0%{opacity:0;transform:scale(.75)} 100%{opacity:1;transform:scale(1)} }
+      .spl-bar { width: 140px; height: 2px; border-radius: 999px; background: rgba(255,255,255,.06); overflow: hidden; }
+      .spl-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #22c55e, #4ade80); width: 0; animation: splFill 1.5s ease-out forwards; }
+      @keyframes splFill { to { width: 100%; } }
+    </style>
+  </head>
+
+  <body class="text-white antialiased">
+
+    <!-- ═══ SPLASH ═══ -->
+    <div id="splash">
+      <img src="logo/logo-willian.png" alt="Willian Douglas" />
+      <div class="spl-bar"><div class="spl-fill"></div></div>
+    </div>
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="sticky top-0 z-30 bg-[#080810]/90 backdrop-blur-md border-b border-white/6">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+        <a href="#" aria-label="Willian Douglas Personal Trainer">
+          <img src="logo/logo-willian.png" alt="Willian Douglas" class="h-11 w-auto object-contain" />
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-[13px] font-medium text-slate-400">
+          <a href="#sobre" class="hover:text-white transition">Sobre</a>
+          <a href="#modalidades" class="hover:text-white transition">Modalidades</a>
+          <a href="#galeria" class="hover:text-white transition">Galeria</a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a href="https://wa.me/5531983821533?text=Olá%20vim%20pelo%20LinkBio,%20quero%20mais%20informações%20sobre%20os%20seus%20serviços!"
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 rounded-full bg-[#22c55e] px-4 py-2 text-[13px] font-bold text-white hover:bg-[#16a34a] transition">
+            Agendar treino
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══ HERO CENTERED ═══ -->
+    <section class="hero-centered bg-[#080810]">
+      
+      <div class="hero-bg">
+        <img src="fotos/Fotos (11).jpeg" alt="Willian Douglas – Personal Trainer" loading="eager" />
+      </div>
+
+      <div class="hero-content space-y-6">
+        
+        <div data-animate class="hero-avatar">
+          <img src="fotos/Fotos (14).jpeg" alt="Willian Douglas" />
+        </div>
+
+        <div data-animate data-animate-delay="1">
+          <span class="tag-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l2.09 6.41H21l-5.46 3.97 2.09 6.41L12 16.25l-5.63 3.54 2.09-6.41L3 9.41h6.91L12 3z"/>
+            </svg>
+            Personal Trainer · Metodologia C.A.O.S.
+          </span>
+        </div>
+
+        <div data-animate data-animate-delay="2">
+          <h1 class="font-display font-black uppercase leading-[.9]">
+            <span class="block text-[48px] sm:text-[64px] lg:text-[76px] text-white">Transforme seu</span>
+            <span class="block text-[48px] sm:text-[64px] lg:text-[76px] text-grad italic">objetivo</span>
+            <span class="block text-[48px] sm:text-[64px] lg:text-[76px] text-white">em realidade.</span>
+          </h1>
+        </div>
+
+        <div data-animate data-animate-delay="3">
+          <p class="text-[16px] sm:text-[18px] text-slate-300 leading-relaxed max-w-2xl mx-auto">
+            Seu amanhã começa hoje. Treinos personalizados com metodologia C.A.O.S. que respeitam seu corpo e aceleram seus resultados.
+          </p>
+        </div>
+
+        <div data-animate data-animate-delay="4" class="flex flex-col sm:flex-row gap-3 justify-center pt-4">
+          <a href="https://wa.me/5531983821533?text=Olá%20vim%20pelo%20LinkBio,%20quero%20mais%20informações%20sobre%20os%20seus%20serviços!"
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2.5 rounded-full bg-[#22c55e] px-8 py-4 text-[16px] font-bold text-white shadow-[0_0_50px_rgba(34,197,94,0.5)] hover:bg-[#16a34a] hover:scale-105 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="currentColor">
+              <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+            </svg>
+            Começar agora
+          </a>
+          <a href="#sobre"
+            class="inline-flex items-center justify-center rounded-full border-2 border-white/20 bg-white/5 px-8 py-4 text-[16px] font-semibold text-white hover:bg-white/10 hover:border-[#22c55e]/50 transition">
+            Conhecer método
+          </a>
+        </div>
+
+        <!-- stats mini -->
+        <div data-animate data-animate-delay="4" class="flex flex-wrap justify-center gap-6 pt-6">
+          <div class="text-center">
+            <span class="block font-display font-black text-2xl text-[#22c55e]">100%</span>
+            <span class="text-[11px] text-slate-400 uppercase tracking-wide">Personalizado</span>
+          </div>
+          <div class="w-px h-10 bg-white/10"></div>
+          <div class="text-center">
+            <span class="block font-display font-black text-2xl text-[#22c55e]">C.A.O.S.</span>
+            <span class="text-[11px] text-slate-400 uppercase tracking-wide">Metodologia</span>
+          </div>
+          <div class="w-px h-10 bg-white/10"></div>
+          <div class="text-center">
+            <span class="block font-display font-black text-2xl text-[#22c55e]">MG</span>
+            <span class="text-[11px] text-slate-400 uppercase tracking-wide">Ouro Branco</span>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ═══ STATS BAR ═══ -->
+    <div class="bg-[#0d0d18] border-y border-white/6">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap justify-around">
+          <div class="stat-item flex-1 min-w-[130px] flex flex-col items-center justify-center py-6 gap-1">
+            <span class="font-display font-black text-[38px] sm:text-[46px] text-grad leading-none">C.A.O.S.</span>
+            <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Metodologia</span>
+          </div>
+          <div class="stat-item flex-1 min-w-[130px] flex flex-col items-center justify-center py-6 gap-1">
+            <span class="font-display font-black text-[38px] sm:text-[46px] text-grad leading-none">100%</span>
+            <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Personalizado</span>
+          </div>
+          <div class="stat-item flex-1 min-w-[130px] flex flex-col items-center justify-center py-6 gap-1">
+            <span class="font-display font-black text-[38px] sm:text-[46px] text-grad leading-none">+5</span>
+            <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Anos de exp.</span>
+          </div>
+          <div class="stat-item flex-1 min-w-[130px] flex flex-col items-center justify-center py-6 gap-1">
+            <span class="font-display font-black text-[38px] sm:text-[46px] text-grad leading-none">Meta</span>
+            <span class="text-[11px] text-slate-500 uppercase tracking-widest font-semibold">Palpável</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SOBRE ═══ -->
+    <section id="sobre" class="py-16 sm:py-24 bg-[#080810]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-12 lg:grid-cols-2 items-center">
+
+          <!-- foto + badge flutuante -->
+          <div data-animate class="relative">
+            <div class="relative rounded-2xl overflow-hidden aspect-[3/4] max-w-sm mx-auto lg:mx-0">
+              <img src="fotos/Fotos (2).jpeg" alt="Willian Douglas" class="w-full h-full object-cover object-[center_30%]" loading="lazy" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#080810]/70 via-transparent to-transparent"></div>
+            </div>
+            <div class="absolute bottom-4 left-4 sm:left-6 right-4 sm:right-auto bg-[#0d0d18]/95 backdrop-blur-sm border border-white/10 rounded-xl px-4 py-3 max-w-[260px]">
+              <p class="text-[11px] text-[#22c55e] font-bold uppercase tracking-wider mb-0.5">Metodologia</p>
+              <p class="text-[13px] text-white font-semibold">C.A.O.S.</p>
+              <p class="text-[11px] text-slate-400 mt-0.5">Consistência · Ação · Objetivo · Superação</p>
+            </div>
+          </div>
+
+          <!-- texto -->
+          <div data-animate data-animate-delay="1" class="space-y-6">
+            <div>
+              <span class="tag-pill">Quem é o Willian?</span>
+              <h2 class="font-display font-black text-[46px] sm:text-[56px] uppercase leading-[.9] mt-4">
+                Especialista em<br/>
+                <span class="text-grad italic">transformação</span><br/>
+                física
+              </h2>
+            </div>
+            <p class="text-[15px] text-slate-400 leading-relaxed">
+              Willian Douglas é personal trainer dedicado a transformar objetivos físicos em metas palpáveis. Com sua metodologia C.A.O.S., ele desenvolve treinos que respeitam os limites do corpo enquanto impulsionam resultados reais e duradouros.
+            </p>
+            <p class="text-[15px] text-slate-400 leading-relaxed">
+              Bacharel em Educação Física pela UNIPAC Lafaiete, com especializações em grupos especiais na musculação e certificação internacional em personal trainer. Sua formação inclui ainda certificação de Formação de Treinador do Missão Crossfit, tornando-o um profissional completo e atualizado.
+            </p>
+            <ul class="space-y-2.5 pt-2">
+              <li class="flex items-center gap-3 text-[14px] text-slate-300">
+                <span class="h-5 w-5 rounded-full bg-[#22c55e]/15 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+                  <svg class="h-3 w-3 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span><strong class="text-white">Metodologia C.A.O.S.</strong> própria</span>
+              </li>
+              <li class="flex items-center gap-3 text-[14px] text-slate-300">
+                <span class="h-5 w-5 rounded-full bg-[#22c55e]/15 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+                  <svg class="h-3 w-3 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span>Especialista em <strong class="text-white">hipertrofia</strong> e <strong class="text-white">emagrecimento</strong></span>
+              </li>
+              <li class="flex items-center gap-3 text-[14px] text-slate-300">
+                <span class="h-5 w-5 rounded-full bg-[#22c55e]/15 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+                  <svg class="h-3 w-3 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                </span>
+                <span>Atendimento <strong class="text-white">presencial e online</strong></span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ METODOLOGIA C.A.O.S. ═══ -->
+    <section id="metodologia" class="py-16 sm:py-24 bg-[#0a0a14]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div data-animate class="text-center mb-12">
+          <span class="tag-pill">Metodologia</span>
+          <h2 class="font-display font-black text-[46px] sm:text-[56px] uppercase leading-[.9] mt-4">
+            C.A.O.S.<br/><span class="text-grad italic">Método Willian</span>
+          </h2>
+          <p class="text-[15px] text-slate-400 mt-4 max-w-2xl mx-auto">
+            Uma metodologia científica que estrutura seu treinamento desde a avaliação sistêmica até a consolidação de hábitos duradouros.
+          </p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-2">
+          <!-- Card C -->
+          <div data-animate data-animate-delay="1" class="card-glass p-6 hover:scale-[1.02] transition-transform duration-300">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="h-16 w-16 rounded-2xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+                <svg class="h-8 w-8 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-[22px] font-black text-white">C</p>
+                <p class="text-[18px] font-bold text-white">Consolidação Sistêmica</p>
+                <p class="text-[13px] text-[#22c55e] font-medium">A base estrutural</p>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <svg class="h-4 w-4 text-[#22c55e] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <p class="text-[14px] font-semibold text-white">Sistema Articular</p>
+                  <p class="text-[12px] text-slate-400">Mobilidade e estabilidade articular</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <svg class="h-4 w-4 text-[#22c55e] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <p class="text-[14px] font-semibold text-white">Sistema Muscular</p>
+                  <p class="text-[12px] text-slate-400">Força e capacidade muscular</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <svg class="h-4 w-4 text-[#22c55e] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <p class="text-[14px] font-semibold text-white">Sistema Fisiológico</p>
+                  <p class="text-[12px] text-slate-400">Funcionamento metabólico</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card A -->
+          <div data-animate data-animate-delay="2" class="card-glass p-6 hover:scale-[1.02] transition-transform duration-300">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="h-16 w-16 rounded-2xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+                <svg class="h-8 w-8 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-[22px] font-black text-white">A</p>
+                <p class="text-[18px] font-bold text-white">Acolhimento Estrutural</p>
+                <p class="text-[13px] text-[#22c55e] font-medium">Compreensão individual</p>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <svg class="h-4 w-4 text-[#22c55e] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <p class="text-[14px] font-semibold text-white">Entender a Estrutura</p>
+                  <p class="text-[12px] text-slate-400">Análise da constituição física</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <svg class="h-4 w-4 text-[#22c55e] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <p class="text-[14px] font-semibold text-white">Limitações e Potencialidades</p>
+                  <p class="text-[12px] text-slate-400">O que pode e não pode</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <svg class="h-4 w-4 text-[#22c55e] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <p class="text-[14px] font-semibold text-white">Disfunção/Síndrome</p>
+                  <p class="text-[12px] text-slate-400">Padrões disfuncionais</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card O -->
+          <div data-animate data-animate-delay="3" class="card-glass p-6 hover:scale-[1.02] transition-transform duration-300">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="h-16 w-16 rounded-2xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+                <svg class="h-8 w-8 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-[22px] font-black text-white">O</p>
+                <p class="text-[18px] font-bold text-white">Organização Funcional</p>
+                <p class="text-[13px] text-[#22c55e] font-medium">Otimização do movimento</p>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <svg class="h-4 w-4 text-[#22c55e] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <p class="text-[14px] font-semibold text-white">Prioridade Funcional</p>
+                  <p class="text-[12px] text-slate-400">Sequência de ativação muscular</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <svg class="h-4 w-4 text-[#22c55e] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <p class="text-[14px] font-semibold text-white">Capacidade Global</p>
+                  <p class="text-[12px] text-slate-400">Integração de sistemas</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card S -->
+          <div data-animate data-animate-delay="4" class="card-glass p-6 hover:scale-[1.02] transition-transform duration-300">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="h-16 w-16 rounded-2xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+                <svg class="h-8 w-8 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-[22px] font-black text-white">S</p>
+                <p class="text-[18px] font-bold text-white">Solidificação Habitual</p>
+                <p class="text-[13px] text-[#22c55e] font-medium">Construção de rotinas</p>
+              </div>
+            </div>
+            <div class="space-y-3">
+              <div class="flex items-start gap-3">
+                <svg class="h-4 w-4 text-[#22c55e] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <p class="text-[14px] font-semibold text-white">Hábitos Bons e Ruins</p>
+                  <p class="text-[12px] text-slate-400">Padrões comportamentais</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <svg class="h-4 w-4 text-[#22c55e] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <p class="text-[14px] font-semibold text-white">Construção de Hábitos</p>
+                  <p class="text-[12px] text-slate-400">Rotinas sustentáveis</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <svg class="h-4 w-4 text-[#22c55e] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <div>
+                  <p class="text-[14px] font-semibold text-white">Frequência/Constância</p>
+                  <p class="text-[12px] text-slate-400">Sono, Alimentação, Treino</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div data-animate data-animate-delay="5" class="mt-12 text-center">
+          <div class="inline-flex items-center gap-4 px-6 py-3 rounded-full bg-[#22c55e]/10 border border-[#22c55e]/20">
+            <svg class="h-5 w-5 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+            <p class="text-[14px] text-white font-medium">
+              <strong class="text-[#22c55e]">C.A.O.S.</strong> é a metodologia científica que estrutura sua transformação física
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CREDENCIAIS ═══ -->
+    <section id="credenciais" class="py-16 sm:py-24 bg-[#0a0a14]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div data-animate class="text-center mb-12">
+          <span class="tag-pill">Formação</span>
+          <h2 class="font-display font-black text-[46px] sm:text-[56px] uppercase leading-[.9] mt-4">
+            Credenciais &<br/><span class="text-grad italic">Certificações</span>
+          </h2>
+          <p class="text-[15px] text-slate-400 mt-4 max-w-2xl mx-auto">
+            Formação acadêmica sólida e certificações internacionais que garantem um atendimento de excelência e resultados comprovados.
+          </p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div data-animate data-animate-delay="1" class="card-glass p-6 flex items-start gap-4">
+            <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+              <svg class="h-6 w-6 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[16px] font-bold text-white">Bacharel em Educação Física</p>
+              <p class="text-[13px] text-[#22c55e] mt-0.5">UNIPAC Lafaiete</p>
+              <p class="text-[12px] text-slate-400 mt-1">Formação acadêmica completa em ciências do esporte</p>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="2" class="card-glass p-6 flex items-start gap-4">
+            <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+              <svg class="h-6 w-6 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[16px] font-bold text-white">Especialização em Grupos Especiais</p>
+              <p class="text-[13px] text-[#22c55e] mt-0.5">Musculação</p>
+              <p class="text-[12px] text-slate-400 mt-1">Treinamento adaptado para necessidades especiais</p>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="3" class="card-glass p-6 flex items-start gap-4">
+            <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+              <svg class="h-6 w-6 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[16px] font-bold text-white">Certificação Missão Crossfit</p>
+              <p class="text-[13px] text-[#22c55e] mt-0.5">Formação de Treinador</p>
+              <p class="text-[12px] text-slate-400 mt-1">Treinamento funcional de alta intensidade</p>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="4" class="card-glass p-6 flex items-start gap-4">
+            <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+              <svg class="h-6 w-6 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[16px] font-bold text-white">Especialista em Emagrecimento</p>
+              <p class="text-[13px] text-[#22c55e] mt-0.5">Transformação Física</p>
+              <p class="text-[12px] text-slate-400 mt-1">Protocolos comprovados para perda de gordura</p>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="5" class="card-glass p-6 flex items-start gap-4 sm:col-span-2 lg:col-span-2">
+            <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center shrink-0">
+              <svg class="h-6 w-6 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[16px] font-bold text-white">Certificação Internacional em Personal Trainer</p>
+              <p class="text-[13px] text-[#22c55e] mt-0.5">Certificação Internacional</p>
+              <p class="text-[12px] text-slate-400 mt-1">Reconhecimento internacional das melhores práticas em treinamento personalizado</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ MODALIDADES ═══ -->
+    <section id="modalidades" class="py-16 sm:py-24 bg-[#0d0d18]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="mb-12">
+          <span class="tag-pill">Modalidades</span>
+          <h2 class="font-display font-black text-[46px] sm:text-[56px] uppercase leading-[.9] mt-4">
+            Como o Willian<br/><span class="text-grad italic">pode te ajudar</span>
+          </h2>
+        </div>
+
+        <div class="grid gap-5 md:grid-cols-3">
+          <div data-animate data-animate-delay="1" class="card-glass p-7 space-y-5">
+            <div class="flex items-start justify-between">
+              <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+              </div>
+              <span class="font-display font-black text-[56px] leading-none text-white/5 select-none">01</span>
+            </div>
+            <p class="text-[18px] font-bold text-white">Personal Trainer</p>
+            <p class="text-[14px] text-slate-400 leading-relaxed">Acompanhamento individual presencial ou online, com treinos 100% personalizados para seu objetivo.</p>
+            <div class="pt-2">
+              <span class="text-[12px] text-[#22c55e] font-medium">A partir de R$ 60/aula</span>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="2" class="card-glass p-7 space-y-5">
+            <div class="flex items-start justify-between">
+              <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                </svg>
+              </div>
+              <span class="font-display font-black text-[56px] leading-none text-white/5 select-none">02</span>
+            </div>
+            <p class="text-[18px] font-bold text-white">Consultoria Fitness</p>
+            <p class="text-[14px] text-slate-400 leading-relaxed">Montagem de planilha de treino completa com vídeos, periodização e ajustes mensais.</p>
+            <div class="pt-2">
+              <span class="text-[12px] text-[#22c55e] font-medium">R$ 150/mês</span>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="3" class="card-glass p-7 space-y-5">
+            <div class="flex items-start justify-between">
+              <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+              </div>
+              <span class="font-display font-black text-[56px] leading-none text-white/5 select-none">03</span>
+            </div>
+            <p class="text-[18px] font-bold text-white">Duplas e Trios</p>
+            <p class="text-[14px] text-slate-400 leading-relaxed">Treine com um parceiro! Ideal para quem busca economia sem perder a qualidade do atendimento.</p>
+            <div class="pt-2">
+              <span class="text-[12px] text-[#22c55e] font-medium">R$ 40/pessoa</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ GALERIA ═══ -->
+    <section id="galeria" class="py-16 sm:py-24 bg-[#080810]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="mb-12">
+          <span class="tag-pill">Galeria</span>
+          <h2 class="font-display font-black text-[46px] sm:text-[56px] uppercase leading-[.9] mt-4">
+            Willian em<br/><span class="text-grad italic">ação</span>
+          </h2>
+        </div>
+
+        <!-- Masonry layout -->
+        <div data-animate class="masonry-grid">
+          <div class="masonry-item">
+            <img src="fotos/Fotos (3).jpeg" alt="Willian treinando" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (4).jpeg" alt="Willian treinando" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (5).jpeg" alt="Willian em treino" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (6).jpeg" alt="Willian em treino" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (7).jpeg" alt="Willian em treino" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (8).jpeg" alt="Willian em ação" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (9).jpeg" alt="Willian em ação" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (10).jpeg" alt="Willian treinando" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (11).jpeg" alt="Willian em ação" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (12).jpeg" alt="Willian em ação" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (13).jpeg" alt="Willian em ação" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (14).jpeg" alt="Willian em ação" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (15).jpeg" alt="Willian em ação" loading="lazy" />
+          </div>
+          <div class="masonry-item">
+            <img src="fotos/Fotos (16).jpeg" alt="Willian em ação" loading="lazy" />
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ DIFERENCIAIS ═══ -->
+    <section class="py-16 sm:py-24 bg-[#0d0d18]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="mb-12">
+          <span class="tag-pill">Diferenciais</span>
+          <h2 class="font-display font-black text-[46px] sm:text-[56px] uppercase leading-[.9] mt-4">
+            Por que treinar<br/><span class="text-grad italic">com o Willian?</span>
+          </h2>
+        </div>
+
+        <div class="grid gap-5 sm:grid-cols-3">
+          <div data-animate data-animate-delay="1" class="card-glass p-7 space-y-4">
+            <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center">
+              <svg class="h-6 w-6 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <p class="text-[18px] font-bold text-white">Metodologia C.A.O.S.</p>
+            <p class="text-[14px] text-slate-400 leading-relaxed">Método próprio baseado em Consistência, Ação, Objetivo e Superação para resultados duradouros.</p>
+          </div>
+
+          <div data-animate data-animate-delay="2" class="card-glass p-7 space-y-4">
+            <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center">
+              <svg class="h-6 w-6 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <p class="text-[18px] font-bold text-white">Flexibilidade total</p>
+            <p class="text-[14px] text-slate-400 leading-relaxed">Treinos no horário que funciona para você, respeitando sua rotina de trabalho e vida pessoal.</p>
+          </div>
+
+          <div data-animate data-animate-delay="3" class="card-glass p-7 space-y-4">
+            <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-[#22c55e]/20 to-[#22c55e]/5 border border-[#22c55e]/30 flex items-center justify-center">
+              <svg class="h-6 w-6 text-[#22c55e]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <p class="text-[18px] font-bold text-white">Resultados reais</p>
+            <p class="text-[14px] text-slate-400 leading-relaxed">Foco em transformações mensuráveis, com acompanhamento de evolução constante.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ RESULTADOS ═══ -->
+    <section class="py-16 sm:py-24 bg-[#0d0d18]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div data-animate class="text-center mb-12">
+          <span class="tag-pill">Resultados</span>
+          <h2 class="font-display font-black text-[46px] sm:text-[56px] uppercase leading-[.9] mt-4">
+            Transformações<br/><span class="text-grad italic">reais</span>
+          </h2>
+          <p class="text-[15px] text-slate-400 mt-4 max-w-xl mx-auto">
+            Alunos que transformaram seus objetivos em realidade com a metodologia C.A.O.S.
+          </p>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div data-animate data-animate-delay="1" class="card-glass p-6 text-center">
+            <div class="font-display font-black text-[48px] text-[#22c55e] leading-none mb-2">+50</div>
+            <div class="text-[14px] font-semibold text-white">Alunos ativos</div>
+            <div class="text-[12px] text-slate-400 mt-1">Treinando hoje</div>
+          </div>
+          <div data-animate data-animate-delay="2" class="card-glass p-6 text-center">
+            <div class="font-display font-black text-[48px] text-[#22c55e] leading-none mb-2">100%</div>
+            <div class="text-[14px] font-semibold text-white">Foco individual</div>
+            <div class="text-[12px] text-slate-400 mt-1">Cada aluno é único</div>
+          </div>
+          <div data-animate data-animate-delay="3" class="card-glass p-6 text-center">
+            <div class="font-display font-black text-[48px] text-[#22c55e] leading-none mb-2">5+</div>
+            <div class="text-[14px] font-semibold text-white">Anos de experiência</div>
+            <div class="text-[12px] text-slate-400 mt-1">Especialização</div>
+          </div>
+          <div data-animate data-animate-delay="4" class="card-glass p-6 text-center">
+            <div class="font-display font-black text-[48px] text-[#22c55e] leading-none mb-2">C.A.O.S.</div>
+            <div class="text-[14px] font-semibold text-white">Metodologia própria</div>
+            <div class="text-[12px] text-slate-400 mt-1">Resultados garantidos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA FINAL ═══ -->
+    <section class="py-16 sm:py-24 bg-[#080810]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div data-animate class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#22c55e]/12 via-[#0d0d18] to-[#080810] border border-[#22c55e]/20 p-8 sm:p-14">
+          <div class="absolute -top-28 -right-28 w-80 h-80 rounded-full bg-[#22c55e]/15 blur-[90px] pointer-events-none"></div>
+          <div class="absolute -bottom-20 -left-20 w-60 h-60 rounded-full bg-[#22c55e]/8 blur-[70px] pointer-events-none"></div>
+          <div class="relative space-y-6 max-w-xl">
+            <span class="tag-pill">Próximo passo</span>
+            <h2 class="font-display font-black text-[48px] sm:text-[60px] uppercase leading-[.88]">
+              Vamos transformar<br/><span class="text-grad italic">seu físico?</span>
+            </h2>
+            <p class="text-[15px] text-slate-400 max-w-md">
+              Seu amanhã começa hoje. Me manda uma mensagem e vamos juntos construir seu melhor shape.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+              <a href="https://wa.me/5531983821533?text=Olá%20vim%20pelo%20LinkBio,%20quero%20mais%20informações%20sobre%20os%20seus%20serviços!"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-[#22c55e] px-7 py-3.5 text-[15px] font-bold text-white shadow-[0_0_40px_rgba(34,197,94,0.35)] hover:bg-[#16a34a] transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 32 32" fill="currentColor">
+                  <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+                </svg>
+                Falar com o Willian agora
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="border-t border-white/6 bg-[#080810]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <!-- Logo e descrição -->
+          <div class="lg:col-span-2">
+            <img src="logo/logo-willian.png" alt="Willian Douglas" class="h-12 w-auto object-contain mb-4" />
+            <p class="text-[14px] text-slate-400 leading-relaxed max-w-sm">
+              Transformando objetivos físicos em metas palpáveis. Metodologia C.A.O.S. para resultados reais e duradouros.
+            </p>
+            <div class="flex items-center gap-2 mt-4">
+              <a href="https://wa.me/5531983821533" target="_blank" class="h-9 w-9 rounded-full bg-[#22c55e]/10 border border-[#22c55e]/30 flex items-center justify-center hover:bg-[#22c55e]/20 transition">
+                <svg class="h-4 w-4 text-[#22c55e]" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4z"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Links rápidos -->
+          <div>
+            <h4 class="text-[13px] font-bold text-white uppercase tracking-wider mb-4">Links</h4>
+            <ul class="space-y-2">
+              <li><a href="#sobre" class="text-[14px] text-slate-400 hover:text-[#22c55e] transition">Sobre</a></li>
+              <li><a href="#modalidades" class="text-[14px] text-slate-400 hover:text-[#22c55e] transition">Modalidades</a></li>
+              <li><a href="#galeria" class="text-[14px] text-slate-400 hover:text-[#22c55e] transition">Galeria</a></li>
+            </ul>
+          </div>
+
+          <!-- Contato -->
+          <div>
+            <h4 class="text-[13px] font-bold text-white uppercase tracking-wider mb-4">Contato</h4>
+            <ul class="space-y-2">
+              <li class="text-[14px] text-slate-400">Av. Patriótica, 49 - loja 04</li>
+              <li class="text-[14px] text-slate-400">Ouro Branco - MG</li>
+              <li class="text-[14px] text-slate-400">(31) 98382-1533</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-white/5 mt-10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p class="text-[12px] text-slate-500">© <span id="year"></span> Willian Douglas · Personal Trainer</p>
+          <a href="https://linkbio.api.br" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-[12px] text-slate-400 hover:text-white transition">
+            <span>Feito com</span>
+            <img src="https://linkbio.api.br/logo/logo-link-bio-2.png" alt="LinkBio" class="h-4 w-auto opacity-70" />
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- WhatsApp flutuante -->
+    <a href="https://wa.me/5531983821533?text=Olá%20vim%20pelo%20LinkBio,%20quero%20mais%20informações%20sobre%20os%20seus%20serviços!"
+      target="_blank" rel="noopener noreferrer"
+      aria-label="Falar com o Willian no WhatsApp"
+      class="fixed bottom-5 right-5 z-40 h-14 w-14 rounded-full bg-emerald-500 flex items-center justify-center shadow-[0_8px_30px_rgba(16,185,129,0.45)] hover:bg-emerald-600 hover:scale-105 transition">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" viewBox="0 0 32 32" fill="currentColor">
+        <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+      </svg>
+    </a>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          var s = document.getElementById('splash');
+          if (s) { s.classList.add('hide'); s.addEventListener('transitionend', function () { s.remove(); }, { once: true }); }
+        }, 2200);
+      });
+
+      const obs = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      }), { threshold: 0.08 });
+      document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
+    </script>
+
+  <!-- Analytics LinkBio -->
+  <script src="https://linkbio.api.br/tracker.js" data-slug="willianpersonal"></script>
+  </body>
+</html>

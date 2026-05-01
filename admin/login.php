@@ -32,18 +32,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     };
   </script>
   <style>
-    .grid-bg {
-      background-image:
-        radial-gradient(circle at 50% 0%, rgba(47,128,237,.12) 0%, transparent 55%),
-        linear-gradient(rgba(47,128,237,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(47,128,237,.04) 1px, transparent 1px);
-      background-size: 100% 100%, 44px 44px, 44px 44px;
+    .splash-bg {
+      background: url('/splash/Splash%20820%20x%201180.png') center/cover no-repeat;
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    .splash-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(8, 12, 24, 0.4);
+      z-index: 1;
+    }
+    
+    .splash-content {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* Desktop splash background */
+    @media (min-width: 1024px) {
+      .splash-bg {
+        background: url('/splash/Splash%202560x1440.png') center/cover no-repeat;
+      }
     }
   </style>
 </head>
-<body class="min-h-screen bg-[#080c18] grid-bg flex items-center justify-center px-4 font-sans">
+<body class="min-h-screen splash-bg flex items-center justify-center px-4 font-sans">
 
-  <div class="w-full max-w-sm">
+  <div class="splash-content w-full max-w-sm">
 
     <!-- Logo -->
     <div class="flex flex-col items-center mb-8">

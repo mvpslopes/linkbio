@@ -35,6 +35,24 @@ if (Test-Path $publicSrc) {
     Write-Host "  [OK] public/"
 }
 
+# Hero (vídeos do hero)
+$heroSrc = Join-Path $root "hero"
+$heroDst = Join-Path $dist "hero"
+if (Test-Path $heroSrc) {
+    if (Test-Path $heroDst) { Remove-Item $heroDst -Recurse -Force }
+    Copy-Item -Path $heroSrc -Destination $heroDst -Recurse -Force
+    Write-Host "  [OK] hero/"
+}
+
+# Splash (imagens de splash)
+$splashSrc = Join-Path $root "splash"
+$splashDst = Join-Path $dist "splash"
+if (Test-Path $splashSrc) {
+    if (Test-Path $splashDst) { Remove-Item $splashDst -Recurse -Force }
+    Copy-Item -Path $splashSrc -Destination $splashDst -Recurse -Force
+    Write-Host "  [OK] splash/"
+}
+
 # Admin (sistema interno)
 $adminSrc = Join-Path $root "admin"
 $adminDst = Join-Path $dist "admin"
@@ -51,7 +69,7 @@ if (Test-Path $eventoBgRoot) {
 }
 
 # Subdomínios
-$subdomains = @("paty", "marcosblea", "equusvita", "racaemarcha", "cristianoladeira", "puramarcha", "fafs", "topmarchador", "alinesantana", "orielsilvano", "jessicapersonal", "emmanueladv", "maludias", "lancamento", "nutrisheiladomingues", "aliancce", "masteragro", "haraspariz")
+$subdomains = @("paty", "marcosblea", "equusvita", "racaemarcha", "cristianoladeira", "puramarcha", "fafs", "topmarchador", "alinesantana", "orielsilvano", "jessicapersonal", "emmanueladv", "maludias", "lancamento", "willianpersonal", "nutrisheiladomingues", "aliancce", "masteragro", "haraspariz", "giuliadias")
 foreach ($name in $subdomains) {
     $src = Join-Path $root $name
     $dst = Join-Path $dist $name

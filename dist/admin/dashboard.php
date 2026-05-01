@@ -151,28 +151,28 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
   <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','ui-sans-serif'] } } } };</script>
   <style>
-    body { background: #080c18; }
-    .sidebar-link.active { background: rgba(47,128,237,.15); color:#fff; border-color:rgba(47,128,237,.4); }
-    .card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 1rem; }
-    .bar-track { height:6px; background:rgba(255,255,255,.07); border-radius:99px; overflow:hidden; }
+    body { background: #1e40af; }
+    .sidebar-link.active { background: rgba(255,255,255,.2); color:#1e40af; border-color:rgba(255,255,255,.3); }
+    .card { background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15); border-radius: 1rem; }
+    .bar-track { height:6px; background:rgba(255,255,255,.2); border-radius:99px; overflow:hidden; }
     .bar-fill  { height:100%; border-radius:99px; transition:width .4s ease; }
     .period-btn { border-radius:.6rem; padding:.35rem .85rem; font-size:.75rem; font-weight:600; transition:background .15s,color .15s; }
-    .period-btn.active { background:#2F80ED; color:#fff; }
-    .period-btn:not(.active) { background:rgba(255,255,255,.06); color:#64748b; }
-    .period-btn:not(.active):hover { background:rgba(255,255,255,.1); color:#cbd5e1; }
+    .period-btn.active { background:#ffffff; color:#1e40af; }
+    .period-btn:not(.active) { background:rgba(255,255,255,.1); color:#e0e7ff; }
+    .period-btn:not(.active):hover { background:rgba(255,255,255,.2); color:#ffffff; }
     /* Mobile: contraste do seletor de página e período */
-    .mobile-select { background:#0f172a !important; color:#e2e8f0 !important; border-color:rgba(148,163,184,.3) !important; }
-    .mobile-select option { background:#0f172a; color:#e2e8f0; }
+    .mobile-select { background:#1e3a8a !important; color:#ffffff !important; border-color:rgba(255,255,255,.3) !important; }
+    .mobile-select option { background:#1e3a8a; color:#ffffff; }
   </style>
 </head>
 <body class="text-slate-100 font-sans antialiased min-h-screen flex">
 
   <!-- Barra mobile: logo + Sair (sidebar fica escondida no mobile) -->
-  <header class="md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 border-b border-white/10 bg-[#060a14]">
+  <header class="md:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 py-3 border-b border-white/20 bg-[#1e3a8a]">
     <a href="?page=<?= urlencode($selected) ?>&period=<?= urlencode($period) ?>" class="flex items-center gap-2 min-w-0">
       <img src="/logo/logo-link-bio-2.png" alt="LinkBio" class="h-6 w-auto max-w-[120px] object-contain"/>
     </a>
-    <a href="/admin/logout.php" class="shrink-0 flex items-center gap-2 rounded-lg px-3 py-2 text-[13px] font-medium text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition">
+    <a href="/admin/logout.php" class="shrink-0 flex items-center gap-2 rounded-lg px-3 py-2 text-[13px] font-medium text-white hover:text-red-300 hover:bg-red-500/20 transition">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
         <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"/>
       </svg>
@@ -181,34 +181,34 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
   </header>
 
   <!-- ── Sidebar ─────────────────────────────────────── -->
-  <aside class="hidden md:flex flex-col w-60 shrink-0 border-r border-white/8 bg-[#060a14] px-3 py-5 gap-5">
+  <aside class="hidden md:flex flex-col w-60 shrink-0 border-r border-white/20 bg-[#1e3a8a] px-3 py-5 gap-5">
 
     <div class="px-2 pt-1">
       <img src="/logo/logo-link-bio-2.png" alt="LinkBio" class="h-7 w-auto max-w-[140px] object-contain"/>
     </div>
 
     <nav class="flex flex-col gap-0.5 flex-1 overflow-y-auto">
-      <p class="px-3 pt-1 pb-1 text-[10px] font-semibold text-slate-600 uppercase tracking-widest">Páginas</p>
+      <p class="px-3 pt-1 pb-1 text-[10px] font-semibold text-blue-200 uppercase tracking-widest">Páginas</p>
 
       <?php foreach ($slugs as $s):
         $isActive = $s['page_slug'] === $selected;
         $label    = $s['name'] ?: $s['page_slug'];
         $initials = strtoupper(substr(preg_replace('/[^a-zA-Z]/','',$label), 0, 2));
       ?>
-      <div class="flex items-center gap-1 group rounded-xl <?= $isActive ? 'bg-[#2F80ED]/12 border border-[#2F80ED]/30' : 'border border-transparent hover:bg-white/5' ?> transition">
+      <div class="flex items-center gap-1 group rounded-xl <?= $isActive ? 'bg-white/20 border border-white/30' : 'border border-transparent hover:bg-white/10' ?> transition">
         <a href="?page=<?= urlencode($s['page_slug']) ?>&period=<?= $period ?>"
-          class="flex items-center gap-2.5 flex-1 min-w-0 px-3 py-2.5 <?= $isActive ? 'text-white' : 'text-slate-400 hover:text-white' ?> transition">
+          class="flex items-center gap-2.5 flex-1 min-w-0 px-3 py-2.5 <?= $isActive ? 'text-white' : 'text-blue-100 hover:text-white' ?> transition">
           <span class="h-6 w-6 rounded-lg shrink-0 flex items-center justify-center text-[10px] font-bold"
-            style="background:<?= $isActive ? 'rgba(47,128,237,.25)' : 'rgba(255,255,255,.08)' ?>;color:<?= $isActive ? '#7eb8f7' : '#94a3b8' ?>">
+            style="background:<?= $isActive ? 'rgba(255,255,255,.25)' : 'rgba(255,255,255,.15)' ?>;color:<?= $isActive ? '#1e40af' : '#e0e7ff' ?>">
             <?= $initials ?>
           </span>
           <div class="min-w-0">
             <p class="text-[13px] font-medium leading-tight truncate"><?= htmlspecialchars($label) ?></p>
-            <p class="text-[10px] text-slate-600 truncate"><?= htmlspecialchars($s['page_slug']) ?>.linkbio.api.br</p>
+            <p class="text-[10px] text-blue-200 truncate"><?= htmlspecialchars($s['page_slug']) ?>.linkbio.api.br</p>
           </div>
         </a>
         <a href="https://<?= $s['page_slug'] ?>.linkbio.api.br" target="_blank" title="Abrir página"
-          class="shrink-0 px-2 py-2.5 text-slate-600 hover:text-[#2F80ED] transition opacity-0 group-hover:opacity-100">
+          class="shrink-0 px-2 py-2.5 text-blue-200 hover:text-white transition opacity-0 group-hover:opacity-100">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
           </svg>
@@ -217,11 +217,11 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
       <?php endforeach; ?>
 
       <?php if (($isRoot && $selected === 'cristianoladeira') || (!$isRoot && ($user['page_slug'] ?? '') === 'cristianoladeira')): ?>
-      <p class="px-3 pt-4 pb-1 text-[10px] font-semibold text-slate-600 uppercase tracking-widest">Formulários</p>
+      <p class="px-3 pt-4 pb-1 text-[10px] font-semibold text-white uppercase tracking-widest">Formulários</p>
       <a href="/admin/planeje_forms.php?page=cristianoladeira"
-        class="flex items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-medium text-slate-400 hover:text-white hover:bg-white/5 transition">
+        class="flex items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-medium text-white hover:text-white hover:bg-white/5 transition">
         <span class="h-6 w-6 rounded-lg shrink-0 flex items-center justify-center bg-white/8">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
           </svg>
         </span>
@@ -230,29 +230,29 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
       <?php endif; ?>
 
       <?php if ($isRoot): ?>
-      <p class="px-3 pt-4 pb-1 text-[10px] font-semibold text-slate-600 uppercase tracking-widest">Administração</p>
+      <p class="px-3 pt-4 pb-1 text-[10px] font-semibold text-white uppercase tracking-widest">Administração</p>
       <a href="/admin/users.php"
-        class="flex items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-medium text-slate-400 hover:text-white hover:bg-white/5 transition">
+        class="flex items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-medium text-white hover:text-white hover:bg-white/5 transition">
         <span class="h-6 w-6 rounded-lg shrink-0 flex items-center justify-center bg-white/8">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H4v-2a4 4 0 015-3.87M12 12a4 4 0 100-8 4 4 0 000 8z"/>
           </svg>
         </span>
         Usuários
       </a>
       <a href="/admin/validate_db.php"
-        class="flex items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-medium text-slate-400 hover:text-white hover:bg-white/5 transition">
+        class="flex items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-medium text-white hover:text-white hover:bg-white/5 transition">
         <span class="h-6 w-6 rounded-lg shrink-0 flex items-center justify-center bg-white/8">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
           </svg>
         </span>
         Validar banco
       </a>
       <a href="/admin/diagnostico_tracker.php"
-        class="flex items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-medium text-slate-400 hover:text-white hover:bg-white/5 transition">
+        class="flex items-center gap-2.5 rounded-xl border border-transparent px-3 py-2.5 text-[13px] font-medium text-white hover:text-white hover:bg-white/5 transition">
         <span class="h-6 w-6 rounded-lg shrink-0 flex items-center justify-center bg-white/8">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
           </svg>
         </span>
@@ -267,12 +267,12 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
           <?= strtoupper(substr($user['username'], 0, 2)) ?>
         </span>
         <div class="min-w-0">
-          <p class="text-[12px] font-semibold text-slate-300 truncate"><?= htmlspecialchars($user['name'] ?: $user['username']) ?></p>
-          <p class="text-[10px] text-slate-600"><?= $isRoot ? 'Administrador' : 'Cliente' ?></p>
+          <p class="text-[12px] font-semibold text-white truncate"><?= htmlspecialchars($user['name'] ?: $user['username']) ?></p>
+          <p class="text-[10px] text-blue-200"><?= $isRoot ? 'Administrador' : 'Cliente' ?></p>
         </div>
       </div>
       <a href="/admin/logout.php"
-        class="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13px] text-slate-500 hover:text-red-400 hover:bg-red-500/8 transition">
+        class="flex items-center gap-2.5 rounded-xl px-3 py-2 text-[13px] text-white hover:text-red-300 hover:bg-red-500/20 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
           <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h6a2 2 0 012 2v1"/>
         </svg>
@@ -304,9 +304,9 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
           <input type="hidden" name="period" value="<?= htmlspecialchars($period) ?>"/>
         </form>
         <?php endif; ?>
-        <p class="text-[11px] text-slate-500 uppercase tracking-widest mb-1">Analytics</p>
+        <p class="text-[11px] text-white uppercase tracking-widest mb-1">Analytics</p>
         <h1 class="text-xl font-bold text-white leading-tight"><?= htmlspecialchars($slugName) ?></h1>
-        <p class="text-[12px] text-slate-600 mt-0.5"><?= htmlspecialchars($selected) ?>.linkbio.api.br</p>
+        <p class="text-[12px] text-blue-200 mt-0.5"><?= htmlspecialchars($selected) ?>.linkbio.api.br</p>
       </div>
       <div class="flex flex-wrap items-center gap-3">
         <!-- Online agora -->
@@ -346,7 +346,7 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
       ?>
       <div class="card px-5 py-4">
         <div class="flex items-center justify-between mb-3">
-          <p class="text-[11px] text-slate-500 font-medium"><?= $label ?></p>
+          <p class="text-[11px] text-white font-medium"><?= $label ?></p>
           <div class="h-8 w-8 rounded-xl flex items-center justify-center shrink-0" style="background:<?= $color ?>22">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="<?= $color ?>" stroke-width="1.8">
               <path stroke-linecap="round" stroke-linejoin="round" d="<?= $path ?>"/>
@@ -354,14 +354,14 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
           </div>
         </div>
         <p class="text-2xl font-extrabold text-white"><?= $value ?></p>
-        <p class="text-[11px] text-slate-600 mt-1"><?= $sub ?></p>
+        <p class="text-[11px] text-blue-200 mt-1"><?= $sub ?></p>
       </div>
       <?php endforeach; ?>
     </div>
 
     <!-- Gráfico visitantes ao longo do tempo -->
     <div class="card px-5 py-5">
-      <p class="text-[13px] font-semibold text-slate-300 mb-4">Visitantes ao longo do tempo — <?= $periodLabels[$period] ?></p>
+      <p class="text-[13px] font-semibold text-white mb-4">Visitantes ao longo do tempo — <?= $periodLabels[$period] ?></p>
       <canvas id="chart" height="80"></canvas>
     </div>
 
@@ -370,7 +370,7 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
 
       <!-- Horários de pico -->
       <div class="card px-5 py-5">
-        <p class="text-[13px] font-semibold text-slate-300 mb-4">Horários de pico</p>
+        <p class="text-[13px] font-semibold text-white mb-4">Horários de pico</p>
         <div class="space-y-1.5">
           <?php for ($h = 0; $h < 24; $h++):
             $hVal = 0;
@@ -378,11 +378,11 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
             $pct = $peak_max > 0 ? round($hVal / $peak_max * 100) : 0;
           ?>
           <div class="flex items-center gap-2 text-[11px]">
-            <span class="w-10 text-right text-slate-600 shrink-0"><?= str_pad($h,2,'0',STR_PAD_LEFT) ?>:00</span>
+            <span class="w-10 text-right text-blue-200 shrink-0"><?= str_pad($h,2,'0',STR_PAD_LEFT) ?>:00</span>
             <div class="flex-1 bar-track">
               <div class="bar-fill" style="width:<?= $pct ?>%;background:#2F80ED<?= $hVal>0?'':'00' ?>"></div>
             </div>
-            <span class="w-5 text-slate-500 shrink-0"><?= $hVal > 0 ? $hVal : '' ?></span>
+            <span class="w-5 text-white shrink-0"><?= $hVal > 0 ? $hVal : '' ?></span>
           </div>
           <?php endfor; ?>
         </div>
@@ -390,18 +390,18 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
 
       <!-- Atividade por dia da semana -->
       <div class="card px-5 py-5">
-        <p class="text-[13px] font-semibold text-slate-300 mb-4">Atividade por dia da semana</p>
+        <p class="text-[13px] font-semibold text-white mb-4">Atividade por dia da semana</p>
         <div class="space-y-2.5">
           <?php for ($d = 1; $d <= 7; $d++):
             $dVal = $dow_data[$d];
             $pct  = $dow_max > 0 ? round($dVal / $dow_max * 100) : 0;
           ?>
           <div class="flex items-center gap-3 text-[12px]">
-            <span class="w-8 text-slate-500 shrink-0"><?= $dow_names[$d-1] ?></span>
+            <span class="w-8 text-white shrink-0"><?= $dow_names[$d-1] ?></span>
             <div class="flex-1 bar-track">
               <div class="bar-fill" style="width:<?= $pct ?>%;background:linear-gradient(90deg,#10b981,#34d399)"></div>
             </div>
-            <span class="w-6 text-right text-slate-400 shrink-0"><?= $dVal ?></span>
+            <span class="w-6 text-right text-white shrink-0"><?= $dVal ?></span>
           </div>
           <?php endfor; ?>
         </div>
@@ -413,7 +413,7 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
 
       <!-- Dispositivos -->
       <div class="card px-5 py-5">
-        <p class="text-[13px] font-semibold text-slate-300 mb-4">Dispositivos</p>
+        <p class="text-[13px] font-semibold text-white mb-4">Dispositivos</p>
         <?php
           $devColors = ['mobile'=>'#2F80ED','desktop'=>'#10b981','tablet'=>'#f59e0b'];
           $devIcons  = [
@@ -433,53 +433,53 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="<?= $dCol ?>" stroke-width="1.8">
                 <path stroke-linecap="round" stroke-linejoin="round" d="<?= $dPath ?>"/>
               </svg>
-              <span class="text-[13px] text-slate-300 capitalize"><?= $dName ?></span>
+              <span class="text-[13px] text-white capitalize"><?= $dName ?></span>
             </div>
-            <span class="text-[12px] text-slate-400"><?= $dv['total'] ?> <span class="text-slate-600">(<?= $dPct ?>%)</span></span>
+            <span class="text-[12px] text-white"><?= $dv['total'] ?> <span class="text-blue-200">(<?= $dPct ?>%)</span></span>
           </div>
           <div class="bar-track">
             <div class="bar-fill" style="width:<?= $dPct ?>%;background:<?= $dCol ?>"></div>
           </div>
         </div>
         <?php endforeach; ?>
-        <?php if (empty($devices)): ?><p class="text-[12px] text-slate-600">Sem dados ainda.</p><?php endif; ?>
+        <?php if (empty($devices)): ?><p class="text-[12px] text-blue-200">Sem dados ainda.</p><?php endif; ?>
       </div>
 
       <!-- Browsers -->
       <div class="card px-5 py-5">
-        <p class="text-[13px] font-semibold text-slate-300 mb-4">Navegadores</p>
+        <p class="text-[13px] font-semibold text-white mb-4">Navegadores</p>
         <div class="space-y-3">
           <?php foreach ($browsers as $br):
             $pct = round($br['total']/$br_total*100);
           ?>
           <div>
             <div class="flex items-center justify-between mb-1">
-              <span class="text-[13px] text-slate-300"><?= htmlspecialchars($br['browser']) ?></span>
-              <span class="text-[12px] text-slate-400"><?= $br['total'] ?> <span class="text-slate-600">(<?= $pct ?>%)</span></span>
+              <span class="text-[13px] text-white"><?= htmlspecialchars($br['browser']) ?></span>
+              <span class="text-[12px] text-white"><?= $br['total'] ?> <span class="text-blue-200">(<?= $pct ?>%)</span></span>
             </div>
             <div class="bar-track"><div class="bar-fill" style="width:<?= $pct ?>%;background:#8b5cf6"></div></div>
           </div>
           <?php endforeach; ?>
-          <?php if (empty($browsers)): ?><p class="text-[12px] text-slate-600">Sem dados ainda.</p><?php endif; ?>
+          <?php if (empty($browsers)): ?><p class="text-[12px] text-blue-200">Sem dados ainda.</p><?php endif; ?>
         </div>
       </div>
 
       <!-- Sistemas Operacionais -->
       <div class="card px-5 py-5">
-        <p class="text-[13px] font-semibold text-slate-300 mb-4">Sistemas Operacionais</p>
+        <p class="text-[13px] font-semibold text-white mb-4">Sistemas Operacionais</p>
         <div class="space-y-3">
           <?php foreach ($os_rows as $os):
             $pct = round($os['total']/$os_total*100);
           ?>
           <div>
             <div class="flex items-center justify-between mb-1">
-              <span class="text-[13px] text-slate-300"><?= htmlspecialchars($os['os']) ?></span>
-              <span class="text-[12px] text-slate-400"><?= $os['total'] ?> <span class="text-slate-600">(<?= $pct ?>%)</span></span>
+              <span class="text-[13px] text-white"><?= htmlspecialchars($os['os']) ?></span>
+              <span class="text-[12px] text-white"><?= $os['total'] ?> <span class="text-blue-200">(<?= $pct ?>%)</span></span>
             </div>
             <div class="bar-track"><div class="bar-fill" style="width:<?= $pct ?>%;background:#f59e0b"></div></div>
           </div>
           <?php endforeach; ?>
-          <?php if (empty($os_rows)): ?><p class="text-[12px] text-slate-600">Sem dados ainda.</p><?php endif; ?>
+          <?php if (empty($os_rows)): ?><p class="text-[12px] text-blue-200">Sem dados ainda.</p><?php endif; ?>
         </div>
       </div>
     </div>
@@ -489,7 +489,7 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
 
       <!-- Origem do tráfego -->
       <div class="card px-5 py-5">
-        <p class="text-[13px] font-semibold text-slate-300 mb-4">Origem do tráfego</p>
+        <p class="text-[13px] font-semibold text-white mb-4">Origem do tráfego</p>
         <?php
           $trColors = ['Redes Sociais'=>'#2F80ED','Buscadores'=>'#10b981','Direto'=>'#8b5cf6','Outros'=>'#64748b'];
           foreach ($traffic as $tr):
@@ -498,46 +498,46 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
         ?>
         <div class="mb-3">
           <div class="flex items-center justify-between mb-1">
-            <span class="text-[13px] text-slate-300"><?= $tr['source'] ?></span>
-            <span class="text-[12px] text-slate-400"><?= $tr['total'] ?> <span class="text-slate-600">(<?= $pct ?>%)</span></span>
+            <span class="text-[13px] text-white"><?= $tr['source'] ?></span>
+            <span class="text-[12px] text-white"><?= $tr['total'] ?> <span class="text-blue-200">(<?= $pct ?>%)</span></span>
           </div>
           <div class="bar-track"><div class="bar-fill" style="width:<?= $pct ?>%;background:<?= $col ?>"></div></div>
         </div>
         <?php endforeach; ?>
-        <?php if (empty($traffic)): ?><p class="text-[12px] text-slate-600">Sem dados ainda.</p><?php endif; ?>
+        <?php if (empty($traffic)): ?><p class="text-[12px] text-blue-200">Sem dados ainda.</p><?php endif; ?>
       </div>
 
       <!-- Países -->
       <div class="card px-5 py-5">
-        <p class="text-[13px] font-semibold text-slate-300 mb-4">Acessos por país</p>
+        <p class="text-[13px] font-semibold text-white mb-4">Acessos por país</p>
         <div class="space-y-2">
           <?php foreach ($countries as $c): ?>
           <div class="flex items-center justify-between text-[12px]">
-            <span class="text-slate-300 truncate"><?= htmlspecialchars($c['country']) ?></span>
+            <span class="text-white truncate"><?= htmlspecialchars($c['country']) ?></span>
             <div class="text-right shrink-0 ml-2">
-              <span class="text-slate-300 font-medium"><?= $c['visitors'] ?></span>
-              <span class="text-slate-600 ml-1"><?= $c['views'] ?> views</span>
+              <span class="text-white font-medium"><?= $c['visitors'] ?></span>
+              <span class="text-blue-200 ml-1"><?= $c['views'] ?> views</span>
             </div>
           </div>
           <?php endforeach; ?>
-          <?php if (empty($countries)): ?><p class="text-[12px] text-slate-600">Sem dados ainda. Os países aparecem conforme novos acessos chegarem.</p><?php endif; ?>
+          <?php if (empty($countries)): ?><p class="text-[12px] text-blue-200">Sem dados ainda. Os países aparecem conforme novos acessos chegarem.</p><?php endif; ?>
         </div>
       </div>
 
       <!-- Cidades -->
       <div class="card px-5 py-5">
-        <p class="text-[13px] font-semibold text-slate-300 mb-4">Acessos por cidade</p>
+        <p class="text-[13px] font-semibold text-white mb-4">Acessos por cidade</p>
         <div class="space-y-2">
           <?php foreach ($cities as $c): ?>
           <div class="flex items-center justify-between text-[12px]">
             <div class="min-w-0">
-              <span class="text-slate-300 truncate block"><?= htmlspecialchars($c['city']) ?></span>
-              <span class="text-slate-600 text-[10px]"><?= htmlspecialchars($c['country']) ?></span>
+              <span class="text-white truncate block"><?= htmlspecialchars($c['city']) ?></span>
+              <span class="text-blue-200 text-[10px]"><?= htmlspecialchars($c['country']) ?></span>
             </div>
-            <span class="text-slate-400 shrink-0 ml-2"><?= $c['visitors'] ?> <?= $c['visitors']==1?'sessão':'sessões' ?></span>
+            <span class="text-white shrink-0 ml-2"><?= $c['visitors'] ?> <?= $c['visitors']==1?'sessão':'sessões' ?></span>
           </div>
           <?php endforeach; ?>
-          <?php if (empty($cities)): ?><p class="text-[12px] text-slate-600">Sem dados de cidade ainda.</p><?php endif; ?>
+          <?php if (empty($cities)): ?><p class="text-[12px] text-blue-200">Sem dados de cidade ainda.</p><?php endif; ?>
         </div>
       </div>
     </div>
@@ -545,7 +545,7 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
     <!-- Top cliques -->
     <?php if (!empty($top_clicks)): ?>
     <div class="card px-5 py-5">
-      <p class="text-[13px] font-semibold text-slate-300 mb-4">Elementos mais clicados</p>
+      <p class="text-[13px] font-semibold text-white mb-4">Elementos mais clicados</p>
       <div class="space-y-2">
         <?php
           $maxClicks = (int)($top_clicks[0]['total'] ?? 1);
@@ -553,12 +553,12 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
             $pct = round($ck['total']/$maxClicks*100);
         ?>
         <div class="flex items-center gap-3">
-          <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold bg-white/8 text-slate-400 shrink-0"><?= htmlspecialchars($ck['element_type']) ?></span>
+          <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-semibold bg-white/8 text-white shrink-0"><?= htmlspecialchars($ck['element_type']) ?></span>
           <div class="flex-1 min-w-0">
-            <p class="text-[12px] text-slate-300 truncate"><?= htmlspecialchars($ck['element_text'] ?: '—') ?></p>
+            <p class="text-[12px] text-white truncate"><?= htmlspecialchars($ck['element_text'] ?: '—') ?></p>
             <div class="bar-track mt-1"><div class="bar-fill" style="width:<?= $pct ?>%;background:#f59e0b"></div></div>
           </div>
-          <span class="text-[13px] font-bold text-slate-300 shrink-0"><?= $ck['total'] ?></span>
+          <span class="text-[13px] font-bold text-white shrink-0"><?= $ck['total'] ?></span>
         </div>
         <?php endforeach; ?>
       </div>
@@ -593,8 +593,8 @@ $periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias
           responsive: true,
           plugins: { legend: { display: false } },
           scales: {
-            x: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#475569', font: { size: 11 } } },
-            y: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#475569', font: { size: 11 }, stepSize: 1 }, beginAtZero: true }
+            x: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#ffffff', font: { size: 11 } } },
+            y: { grid: { color: 'rgba(255,255,255,.04)' }, ticks: { color: '#ffffff', font: { size: 11 }, stepSize: 1 }, beginAtZero: true }
           }
         }
       });
