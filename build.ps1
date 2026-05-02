@@ -13,6 +13,16 @@ if (-not (Test-Path $dist)) { New-Item -ItemType Directory -Path $dist | Out-Nul
 Copy-Item -Path (Join-Path $root "index.html") -Destination $dist -Force
 Write-Host "  [OK] index.html"
 
+# Páginas institucionais
+$pages = @("sobre.html", "termos.html", "contato.html")
+foreach ($page in $pages) {
+    $pagePath = Join-Path $root $page
+    if (Test-Path $pagePath) {
+        Copy-Item -Path $pagePath -Destination $dist -Force
+        Write-Host "  [OK] $page"
+    }
+}
+
 # Tracker
 Copy-Item -Path (Join-Path $root "tracker.js") -Destination $dist -Force
 Write-Host "  [OK] tracker.js"
