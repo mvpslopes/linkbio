@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato — LinkBio</title>
+  <meta name="description" content="Fale com o LinkBio pelo WhatsApp. Tire dúvidas, solicite alterações ou crie sua página agora.">
+  <link rel="icon" href="/logo/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] },
+          colors: {
+            primary: '#2F80ED',
+            brand: '#082eb5',
+            wa: '#25D366',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-white text-slate-900 antialiased font-sans text-[15px] sm:text-base leading-relaxed">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-[0_1px_12px_rgba(15,23,42,0.06)]">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="/" class="flex items-center gap-2">
+          <img src="/logo/logo-link-bio-1.png" alt="Logo LinkBio" class="h-8 w-auto object-contain" loading="lazy">
+        </a>
+        <nav class="hidden md:flex items-center gap-8 text-[14px] font-medium">
+          <a href="/#features" class="text-slate-600 hover:text-slate-900 transition">Recursos</a>
+          <a href="/#examples" class="text-slate-600 hover:text-slate-900 transition">Exemplos</a>
+          <a href="/#pricing" class="text-slate-600 hover:text-slate-900 transition">Preços</a>
+          <a href="/sobre.html" class="text-slate-600 hover:text-slate-900 transition">Sobre</a>
+          <a href="/contato.html" class="text-slate-900 font-semibold transition">Contato</a>
+        </nav>
+        <a href="https://wa.me/5531982304737?text=Olá, quero criar minha página LinkBio." 
+           target="_blank" 
+           class="hidden sm:inline-flex items-center gap-2 rounded-full bg-[#082eb5] px-5 py-2.5 text-[13px] font-semibold text-white hover:bg-[#061f8a] transition shadow-lg shadow-blue-900/20">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.21.72 4.25 1.94 5.9L2 22l4.45-1.17A9.88 9.88 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          Criar minha página
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="bg-[#082eb5] relative overflow-hidden">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(47,128,237,0.15)_0%,transparent_60%)]"></div>
+      <div class="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
+        <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/80 text-[12px] font-semibold tracking-wide uppercase mb-6">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          Fale com a gente
+        </span>
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4">
+          Estamos no WhatsApp,<br>prontos para te ajudar
+        </h1>
+        <p class="text-lg text-blue-100/80 max-w-2xl mx-auto">
+          Tire dúvidas, solicite alterações na sua página ou comece agora mesmo a criar a sua.
+        </p>
+      </div>
+    </section>
+
+    <!-- WhatsApp Section -->
+    <section class="bg-white py-12 md:py-16">
+      <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        
+        <!-- WhatsApp Card -->
+        <div class="bg-[#082eb5] rounded-3xl p-8 md:p-12 shadow-2xl shadow-blue-900/20 mb-12">
+          <div class="flex flex-col md:flex-row md:items-center gap-8">
+            <div class="shrink-0">
+              <div class="w-20 h-20 rounded-2xl bg-[#25D366] flex items-center justify-center shadow-lg">
+                <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.02z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="flex-1">
+              <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">WhatsApp</h2>
+              <p class="text-blue-100/80 mb-4">Respondemos normalmente de segunda a sábado, das 9h às 18h. Mensagens fora desse horário serão respondidas no próximo dia útil.</p>
+              <div class="text-2xl font-bold text-white mb-4">(31) 98230-4737</div>
+              <a href="https://wa.me/5531982304737?text=Olá! Vim pelo site do LinkBio e gostaria de falar com vocês." 
+                 target="_blank"
+                 class="inline-flex items-center gap-2 bg-[#25D366] text-white font-semibold px-6 py-3 rounded-full hover:bg-[#128C7E] transition shadow-lg">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12c0 2.21.72 4.25 1.94 5.9L2 22l4.45-1.17A9.88 9.88 0 0012 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-6h2v6zm4 0h-2V7h2v10z"/>
+                </svg>
+                Abrir conversa no WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="mb-12">
+          <h3 class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Ou escolha o motivo do contato</h3>
+          <div class="grid md:grid-cols-3 gap-4">
+            <a href="https://wa.me/5531982304737?text=Olá! Quero criar minha página LinkBio. Vim pelo site linkbio.api.br." 
+               target="_blank"
+               class="group bg-slate-50 border border-slate-200 rounded-2xl p-6 hover:bg-white hover:border-[#082eb5]/30 hover:shadow-lg transition">
+              <div class="w-12 h-12 rounded-xl bg-[#082eb5]/10 flex items-center justify-center mb-4 group-hover:bg-[#082eb5]/20 transition">
+                <svg class="w-6 h-6 text-[#082eb5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-slate-900 mb-1">Quero criar minha página</h4>
+              <p class="text-sm text-slate-500">Começar do zero</p>
+            </a>
+            <a href="https://wa.me/5531982304737?text=Olá! Preciso alterar algo na minha página LinkBio." 
+               target="_blank"
+               class="group bg-slate-50 border border-slate-200 rounded-2xl p-6 hover:bg-white hover:border-[#082eb5]/30 hover:shadow-lg transition">
+              <div class="w-12 h-12 rounded-xl bg-[#082eb5]/10 flex items-center justify-center mb-4 group-hover:bg-[#082eb5]/20 transition">
+                <svg class="w-6 h-6 text-[#082eb5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.433-4.32A2.001 2.001 0 0015 7h-1.086a1 1 0 00-.707.293l-3.5 3.5a1 1 0 000 1.414l1.5 1.5a1 1 0 001.414 0l3.5-3.5A1 1 0 0015 8.414V7.2a.2.2 0 01.353-.145l2.857 2.857a2 2 0 010 2.828l-5 5"/>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-slate-900 mb-1">Preciso alterar minha página</h4>
+              <p class="text-sm text-slate-500">Já sou cliente</p>
+            </a>
+            <a href="https://wa.me/5531982304737?text=Olá! Tenho uma dúvida sobre o LinkBio." 
+               target="_blank"
+               class="group bg-slate-50 border border-slate-200 rounded-2xl p-6 hover:bg-white hover:border-[#082eb5]/30 hover:shadow-lg transition">
+              <div class="w-12 h-12 rounded-xl bg-[#082eb5]/10 flex items-center justify-center mb-4 group-hover:bg-[#082eb5]/20 transition">
+                <svg class="w-6 h-6 text-[#082eb5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 17l.01 0"/>
+                </svg>
+              </div>
+              <h4 class="font-semibold text-slate-900 mb-1">Tenho uma dúvida</h4>
+              <p class="text-sm text-slate-500">Sobre preços, funcionamento etc.</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Info Grid -->
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+            <div class="w-10 h-10 rounded-lg bg-[#082eb5]/10 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-[#082eb5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-slate-900 mb-2">Horário de atendimento</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Segunda a sábado<br>das 9h às 18h.<br>Respondemos no próximo dia útil fora desse horário.</p>
+          </div>
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+            <div class="w-10 h-10 rounded-lg bg-[#082eb5]/10 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-[#082eb5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-slate-900 mb-2">Tempo de resposta</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Em média respondemos em até 2 horas durante o horário comercial.</p>
+          </div>
+          <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100">
+            <div class="w-10 h-10 rounded-lg bg-[#082eb5]/10 flex items-center justify-center mb-4">
+              <svg class="w-5 h-5 text-[#082eb5]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.433-4.32A2.001 2.001 0 0015 7h-1.086a1 1 0 00-.707.293l-3.5 3.5a1 1 0 000 1.414l1.5 1.5a1 1 0 001.414 0l3.5-3.5A1 1 0 0015 8.414V7.2a.2.2 0 01.353-.145l2.857 2.857a2 2 0 010 2.828l-5 5"/>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-slate-900 mb-2">Alterações na página</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">Clientes ativos têm suporte para troca de links, textos e botões em até 3 dias úteis.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#082eb5] border-t border-white/10">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div class="space-y-2">
+          <img src="/logo/logo-link-bio-2.png" alt="Logo LinkBio" class="h-7 w-auto object-contain" loading="lazy">
+          <p class="text-[13px] text-slate-300 max-w-sm">
+            A forma mais simples de ter uma landing page completa no formato link da bio.
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8">
+          <nav class="flex gap-5 text-[13px] text-slate-300">
+            <a href="/sobre.html" class="hover:text-white transition">Sobre</a>
+            <a href="/termos.html" class="hover:text-white transition">Termos</a>
+            <a href="/contato.html" class="text-white font-medium hover:text-white transition">Contato</a>
+          </nav>
+        </div>
+      </div>
+      <div class="mt-8 border-t border-white/10 pt-6 text-[12px] text-slate-400 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+        <p>© 2025 LinkBio. Todos os direitos reservados.</p>
+        <p>Marcus Vinicius Pereira da Silva Lopes · Ouro Branco, MG</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

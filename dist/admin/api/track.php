@@ -5,7 +5,11 @@ $allowed = $origin !== '' && preg_match('#^https?://([a-z0-9\-]+\.)?linkbio\.(ap
 if ($allowed) {
     header('Access-Control-Allow-Origin: ' . $origin);
     header('Access-Control-Allow-Credentials: true');
+} elseif ($origin === '' || $origin === 'null') {
+    // Arquivos locais ou origem null - não envia credenciais
+    header('Access-Control-Allow-Origin: null');
 } else {
+    // Outras origens - permite sem credenciais
     header('Access-Control-Allow-Origin: *');
 }
 header('Access-Control-Allow-Methods: POST, OPTIONS');
