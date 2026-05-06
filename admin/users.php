@@ -88,7 +88,14 @@ $users = $pdo->query('SELECT id, username, role, page_slug, name, created_at FRO
   <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','ui-sans-serif'] } } } };</script>
   <style>
-    body { background: #080c18; }
+    :root {
+      --sidebar: #1e3a8a;
+      --main-bg: #ffffff;
+      --main-border: #e2e8f0;
+      --main-text: #0f172a;
+      --main-subtle: #64748b;
+    }
+    body { background: #0f172a; }
     .card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); border-radius: 1rem; }
     .sidebar-link.active { background: rgba(47,128,237,.15); color:#fff; border-color:rgba(47,128,237,.4); }
     .input { width:100%; border-radius:.75rem; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.05); padding:.65rem 1rem; font-size:.875rem; color:#fff; outline:none; transition:border .2s; }
@@ -100,6 +107,25 @@ $users = $pdo->query('SELECT id, username, role, page_slug, name, created_at FRO
     .btn-danger:hover { background:rgba(239,68,68,.22); }
     .btn-ghost { background:rgba(255,255,255,.05); color:#94a3b8; border:1px solid rgba(255,255,255,.1); font-weight:600; border-radius:.75rem; padding:.4rem .85rem; font-size:.8rem; transition:background .2s; }
     .btn-ghost:hover { background:rgba(255,255,255,.1); color:#fff; }
+
+    /* Sidebar azul com textos claros */
+    aside { background: var(--sidebar) !important; border-right: 1px solid rgba(255,255,255,.2) !important; }
+    aside .text-slate-600, aside .text-slate-500, aside .text-slate-400, aside .text-slate-300 { color: #dbeafe !important; }
+    aside .bg-white\/8 { background: rgba(255,255,255,.15) !important; }
+    aside .text-slate-400 svg, aside .text-slate-500 svg { color: #dbeafe !important; }
+
+    /* Painel principal branco */
+    .main-panel { background: var(--main-bg); color: var(--main-text); border-radius: 0; }
+    .main-panel .card { background: #fff; border: 1px solid var(--main-border); box-shadow: 0 6px 18px rgba(15, 23, 42, .04); }
+    .main-panel .text-white { color: var(--main-text) !important; }
+    .main-panel .text-slate-500 { color: var(--main-subtle) !important; }
+    .main-panel .text-slate-400 { color: #475569 !important; }
+    .main-panel .text-slate-300 { color: #334155 !important; }
+    .main-panel .text-slate-600 { color: #475569 !important; }
+    .main-panel .input { border: 1px solid #cbd5e1; background: #fff; color: #0f172a; }
+    .main-panel .input:focus { border-color: #2F80ED; background: #fff; }
+    .main-panel .btn-ghost { background: #f8fafc; color: #334155; border-color: #cbd5e1; }
+    .main-panel .btn-ghost:hover { background: #e2e8f0; color: #0f172a; }
   </style>
 </head>
 <body class="text-slate-100 font-sans antialiased min-h-screen flex">
@@ -177,7 +203,7 @@ $users = $pdo->query('SELECT id, username, role, page_slug, name, created_at FRO
   </aside>
 
   <!-- Main -->
-  <main class="flex-1 min-w-0 px-4 sm:px-8 py-8 space-y-6 overflow-auto">
+  <main class="main-panel flex-1 min-w-0 px-4 sm:px-8 py-8 space-y-6 overflow-auto">
 
     <div>
       <p class="text-[11px] text-slate-500 uppercase tracking-widest mb-1">Administração</p>

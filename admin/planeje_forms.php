@@ -16,6 +16,22 @@ if (!$isRoot && ($user['page_slug'] ?? '') !== 'cristianoladeira') {
     exit;
 }
 
+$flash = null;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete_submission') {
+    $deleteId = (int) ($_POST['id'] ?? 0);
+    if ($deleteId > 0) {
+        $del = $pdo->prepare('DELETE FROM planeje_submissions WHERE id = ? AND page_slug = ? LIMIT 1');
+        $del->execute([$deleteId, $slug]);
+        if ($del->rowCount() > 0) {
+            $flash = ['type' => 'success', 'message' => 'Registro excluído com sucesso.'];
+        } else {
+            $flash = ['type' => 'error', 'message' => 'Registro não encontrado ou sem permissão para excluir.'];
+        }
+    } else {
+        $flash = ['type' => 'error', 'message' => 'ID inválido para exclusão.'];
+    }
+}
+
 $rows = $pdo->prepare(
     'SELECT id, nome, email, telefone, origem, created_at
      FROM planeje_submissions
@@ -129,15 +145,33 @@ $maxBan = h_max($byBanheiro);
   <link rel="icon" href="/logo/favicon.png"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>body { background: #080c18; }</style>
+  <style>
+    body { background: #ffffff; color: #0f172a; }
+    .panel-card { background: #ffffff; border: 1px solid #e2e8f0; }
+    .soft-text { color: #64748b; }
+    .line-soft { border-color: #e2e8f0; }
+    .metric-card { border: 1px solid #dbeafe; border-radius: .9rem; padding: .9rem 1rem; background: linear-gradient(180deg, #f8fbff 0%, #eef6ff 100%); }
+    .metric-label { color: #475569; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .04em; }
+    .metric-value { color: #0f172a; font-size: 1.55rem; font-weight: 800; line-height: 1.1; margin-top: .25rem; }
+    .bar-bg { background: #e2e8f0; }
+    .table-head { color: #475569; border-color: #e2e8f0; }
+    .table-row { border-color: #f1f5f9; }
+    .table-row:hover { background: #f8fafc; }
+    .text-slate-600 { color: #475569 !important; }
+    .text-slate-500 { color: #64748b !important; }
+    .text-slate-400 { color: #64748b !important; }
+    .text-slate-300 { color: #334155 !important; }
+    .text-slate-200 { color: #0f172a !important; }
+    .text-white { color: #0f172a !important; }
+  </style>
 </head>
-<body class="text-slate-100 font-sans antialiased min-h-screen">
+<body class="font-sans antialiased min-h-screen">
   <div class="max-w-6xl mx-auto px-4 py-8">
     <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
       <div>
-        <a href="/admin/dashboard.php?page=<?= urlencode($slug) ?>" class="text-sm text-slate-500 hover:text-white">← Painel</a>
+        <a href="/admin/dashboard.php?page=<?= urlencode($slug) ?>" class="text-sm soft-text hover:text-slate-900">← Painel</a>
         <h1 class="text-2xl font-bold mt-2">Planeje seu espaço — inscrições</h1>
-        <p class="text-slate-500 text-sm mt-1"><?= h($slug) ?>.linkbio.api.br</p>
+        <p class="soft-text text-sm mt-1"><?= h($slug) ?>.linkbio.api.br</p>
       </div>
       <a href="/admin/planeje_export.php?page=<?= urlencode($slug) ?>"
         class="inline-flex items-center gap-2 rounded-xl bg-[#2F80ED] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#2569c4] transition">
@@ -145,31 +179,39 @@ $maxBan = h_max($byBanheiro);
       </a>
     </div>
 
+    <?php if ($flash): ?>
+    <div class="mb-6 rounded-xl border px-4 py-3 text-sm <?= $flash['type'] === 'success'
+        ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300'
+        : 'border-red-500/40 bg-red-500/10 text-red-300' ?>">
+      <?= h($flash['message']) ?>
+    </div>
+    <?php endif; ?>
+
     <!-- Dashboard resumo -->
-    <section class="mb-8 rounded-2xl border border-white/10 bg-white/[0.04] p-5 sm:p-6" aria-labelledby="dash-title">
-      <h2 id="dash-title" class="text-sm font-semibold uppercase tracking-wider text-slate-500 mb-4">Resumo das respostas</h2>
+    <section class="panel-card mb-8 rounded-2xl p-5 sm:p-6" aria-labelledby="dash-title">
+      <h2 id="dash-title" class="text-sm font-semibold uppercase tracking-wider soft-text mb-4">Resumo das respostas</h2>
 
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
-        <div class="rounded-xl bg-[#0c1224] border border-white/10 px-4 py-3">
-          <p class="text-[11px] font-medium uppercase tracking-wide text-slate-500">Total</p>
-          <p class="text-2xl font-bold text-white tabular-nums"><?= $totalCount ?></p>
+        <div class="metric-card">
+          <p class="metric-label">Total</p>
+          <p class="metric-value tabular-nums"><?= $totalCount ?></p>
         </div>
-        <div class="rounded-xl bg-[#0c1224] border border-white/10 px-4 py-3">
-          <p class="text-[11px] font-medium uppercase tracking-wide text-slate-500">Últimas 24 h</p>
-          <p class="text-2xl font-bold text-[#7eb8f7] tabular-nums"><?= $count24h ?></p>
+        <div class="metric-card">
+          <p class="metric-label">Últimas 24 h</p>
+          <p class="metric-value tabular-nums" style="color:#1d4ed8"><?= $count24h ?></p>
         </div>
-        <div class="rounded-xl bg-[#0c1224] border border-white/10 px-4 py-3">
-          <p class="text-[11px] font-medium uppercase tracking-wide text-slate-500">Últimos 7 dias</p>
-          <p class="text-2xl font-bold text-slate-200 tabular-nums"><?= $count7d ?></p>
+        <div class="metric-card">
+          <p class="metric-label">Últimos 7 dias</p>
+          <p class="metric-value tabular-nums"><?= $count7d ?></p>
         </div>
-        <div class="rounded-xl bg-[#0c1224] border border-white/10 px-4 py-3">
-          <p class="text-[11px] font-medium uppercase tracking-wide text-slate-500">Últimos 30 dias</p>
-          <p class="text-2xl font-bold text-slate-200 tabular-nums"><?= $count30d ?></p>
+        <div class="metric-card">
+          <p class="metric-label">Últimos 30 dias</p>
+          <p class="metric-value tabular-nums"><?= $count30d ?></p>
         </div>
       </div>
 
       <?php if ($totalCount > 0): ?>
-      <div class="flex flex-wrap gap-6 text-sm text-slate-400 mb-6 pb-6 border-b border-white/10">
+      <div class="flex flex-wrap gap-6 text-sm soft-text mb-6 pb-6 border-b line-soft">
         <div><span class="text-slate-600">Primeira:</span> <?= h((string) $range['first_at']) ?></div>
         <div><span class="text-slate-600">Mais recente:</span> <?= h((string) $range['last_at']) ?></div>
         <?php if ($avgBaias !== null || $avgColab !== null): ?>
@@ -183,20 +225,20 @@ $maxBan = h_max($byBanheiro);
       <?php endif; ?>
 
       <?php if ($totalCount === 0): ?>
-      <p class="text-slate-500 text-sm">Quando houver inscrições, aqui aparecem totais, períodos e distribuições.</p>
+      <p class="soft-text text-sm">Quando houver inscrições, aqui aparecem totais, períodos e distribuições.</p>
       <?php else: ?>
       <div class="grid md:grid-cols-2 gap-6">
         <div>
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Por onde veio</h3>
+          <h3 class="text-xs font-semibold uppercase tracking-wider soft-text mb-3">Por onde veio</h3>
           <ul class="space-y-2.5">
             <?php foreach ($byOrigem as $o): ?>
             <?php $pct = bar_pct((int) $o['c'], $maxOrigem); ?>
             <li>
               <div class="flex justify-between text-xs mb-0.5 gap-2">
-                <span class="text-slate-300 truncate" title="<?= h($o['canal']) ?>"><?= h($o['canal']) ?></span>
+                <span class="text-slate-700 truncate" title="<?= h($o['canal']) ?>"><?= h($o['canal']) ?></span>
                 <span class="text-slate-500 shrink-0 tabular-nums"><?= (int) $o['c'] ?></span>
               </div>
-              <div class="h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <div class="h-1.5 rounded-full bar-bg overflow-hidden">
                 <div class="h-full rounded-full bg-[#2F80ED]" style="width:<?= $pct ?>%"></div>
               </div>
             </li>
@@ -205,16 +247,16 @@ $maxBan = h_max($byBanheiro);
         </div>
         <div class="space-y-6">
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Identidade visual</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-wider soft-text mb-3">Identidade visual</h3>
             <ul class="space-y-2">
               <?php foreach ($byIdentidade as $r): ?>
               <?php $pct = bar_pct((int) $r['c'], max(1, $maxIdent)); ?>
               <li>
                 <div class="flex justify-between text-xs mb-0.5">
-                  <span class="text-slate-300"><?= h($r['label']) ?></span>
+                  <span class="text-slate-700"><?= h($r['label']) ?></span>
                   <span class="text-slate-500 tabular-nums"><?= (int) $r['c'] ?></span>
                 </div>
-                <div class="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div class="h-1.5 rounded-full bar-bg overflow-hidden">
                   <div class="h-full rounded-full bg-emerald-500/80" style="width:<?= $pct ?>%"></div>
                 </div>
               </li>
@@ -222,16 +264,16 @@ $maxBan = h_max($byBanheiro);
             </ul>
           </div>
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Limpeza periódica</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-wider soft-text mb-3">Limpeza periódica</h3>
             <ul class="space-y-2">
               <?php foreach ($byLimpeza as $r): ?>
               <?php $pct = bar_pct((int) $r['c'], max(1, $maxLimp)); ?>
               <li>
                 <div class="flex justify-between text-xs mb-0.5">
-                  <span class="text-slate-300"><?= h($r['label']) ?></span>
+                  <span class="text-slate-700"><?= h($r['label']) ?></span>
                   <span class="text-slate-500 tabular-nums"><?= (int) $r['c'] ?></span>
                 </div>
-                <div class="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div class="h-1.5 rounded-full bar-bg overflow-hidden">
                   <div class="h-full rounded-full bg-amber-500/80" style="width:<?= $pct ?>%"></div>
                 </div>
               </li>
@@ -239,16 +281,16 @@ $maxBan = h_max($byBanheiro);
             </ul>
           </div>
           <div>
-            <h3 class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Banheiro (sanitário + chuveiro)</h3>
+            <h3 class="text-xs font-semibold uppercase tracking-wider soft-text mb-3">Banheiro (sanitário + chuveiro)</h3>
             <ul class="space-y-2">
               <?php foreach ($byBanheiro as $r): ?>
               <?php $pct = bar_pct((int) $r['c'], max(1, $maxBan)); ?>
               <li>
                 <div class="flex justify-between text-xs mb-0.5">
-                  <span class="text-slate-300"><?= h($r['label']) ?></span>
+                  <span class="text-slate-700"><?= h($r['label']) ?></span>
                   <span class="text-slate-500 tabular-nums"><?= (int) $r['c'] ?></span>
                 </div>
-                <div class="h-1.5 rounded-full bg-white/10 overflow-hidden">
+                <div class="h-1.5 rounded-full bar-bg overflow-hidden">
                   <div class="h-full rounded-full bg-violet-500/75" style="width:<?= $pct ?>%"></div>
                 </div>
               </li>
@@ -260,28 +302,47 @@ $maxBan = h_max($byBanheiro);
       <?php endif; ?>
     </section>
 
-    <div class="rounded-2xl border border-white/10 bg-white/[0.04] overflow-hidden">
+    <div class="panel-card rounded-2xl overflow-hidden">
       <div class="overflow-x-auto">
-        <table class="w-full text-sm text-left">
-          <thead class="text-slate-400 border-b border-white/10">
+        <table class="w-full text-sm text-left" style="table-layout:fixed">
+          <colgroup>
+            <col style="width:155px"/>
+            <col style="width:160px"/>
+            <col/>
+            <col style="width:135px"/>
+            <col style="width:160px"/>
+            <col style="width:90px"/>
+          </colgroup>
+          <thead class="table-head border-b">
             <tr>
-              <th class="px-4 py-3 font-medium">Data</th>
+              <th class="px-4 py-3 font-medium whitespace-nowrap">Data</th>
               <th class="px-4 py-3 font-medium">Nome</th>
               <th class="px-4 py-3 font-medium">E-mail</th>
-              <th class="px-4 py-3 font-medium">Telefone</th>
+              <th class="px-4 py-3 font-medium whitespace-nowrap">Telefone</th>
               <th class="px-4 py-3 font-medium">Por onde veio</th>
+              <th class="px-4 py-3 font-medium text-right">Ações</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-white/5">
+          <tbody class="divide-y table-row">
             <?php if (!$list): ?>
-            <tr><td colspan="5" class="px-4 py-8 text-center text-slate-500">Nenhuma inscrição ainda.</td></tr>
+            <tr><td colspan="6" class="px-4 py-8 text-center soft-text">Nenhuma inscrição ainda.</td></tr>
             <?php else: foreach ($list as $r): ?>
-            <tr class="hover:bg-white/[0.03]">
-              <td class="px-4 py-3 text-slate-400 whitespace-nowrap"><?= h($r['created_at']) ?></td>
-              <td class="px-4 py-3"><?= h($r['nome']) ?></td>
-              <td class="px-4 py-3"><?= h($r['email']) ?></td>
+            <tr class="table-row">
+              <td class="px-4 py-3 soft-text whitespace-nowrap"><?= h($r['created_at']) ?></td>
+              <td class="px-4 py-3 truncate"><?= h($r['nome']) ?></td>
+              <td class="px-4 py-3 truncate"><?= h($r['email']) ?></td>
               <td class="px-4 py-3 whitespace-nowrap"><?= h($r['telefone']) ?></td>
-              <td class="px-4 py-3 max-w-[220px] truncate" title="<?= h($r['origem']) ?>"><?= h($r['origem']) ?></td>
+              <td class="px-4 py-3 truncate" title="<?= h($r['origem']) ?>"><?= h($r['origem']) ?></td>
+              <td class="px-4 py-3 text-right">
+                <form method="POST" class="inline-block" onsubmit="return confirm('Tem certeza que deseja excluir este registro?');">
+                  <input type="hidden" name="action" value="delete_submission"/>
+                  <input type="hidden" name="id" value="<?= (int) $r['id'] ?>"/>
+                  <button type="submit"
+                    class="inline-flex items-center rounded-lg border border-red-500/40 bg-red-500/10 px-2.5 py-1.5 text-xs font-semibold text-red-300 hover:bg-red-500/20 hover:text-red-200 transition">
+                    Excluir
+                  </button>
+                </form>
+              </td>
             </tr>
             <?php endforeach; endif; ?>
           </tbody>

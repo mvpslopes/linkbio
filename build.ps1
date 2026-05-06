@@ -79,7 +79,7 @@ if (Test-Path $eventoBgRoot) {
 }
 
 # Subdomínios
-$subdomains = @("paty", "marcosblea", "equusvita", "racaemarcha", "cristianoladeira", "puramarcha", "fafs", "topmarchador", "alinesantana", "orielsilvano", "jessicapersonal", "emmanueladv", "maludias", "lancamento", "willianpersonal", "nutrisheiladomingues", "aliancce", "masteragro", "haraspariz", "giuliadias")
+$subdomains = @("paty", "marcosblea", "equusvita", "racaemarcha", "cristianoladeira", "puramarcha", "fafs", "topmarchador", "alinesantana", "orielsilvano", "jessicapersonal", "emmanueladv", "maludias", "lancamento", "willianpersonal", "nutrisheiladomingues", "aliancce", "masteragro", "haraspariz", "giuliadias", "ruanabatistapersonal")
 foreach ($name in $subdomains) {
     $src = Join-Path $root $name
     $dst = Join-Path $dist $name
