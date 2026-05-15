@@ -347,8 +347,20 @@ $pageUrl = 'https://'.$selected.'.linkbio.api.br';
     <?php endif; ?>
 
     <?php if ($isRoot): ?>
-    <?php $isUsersPage = basename(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '') === 'users.php'; ?>
+    <?php
+    $isBriefingForms = basename(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '') === 'briefing_forms.php';
+    $isUsersPage = basename(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '') === 'users.php';
+    ?>
     <p class="px-2 pt-4 pb-2 text-[10px] font-semibold text-slate-700 uppercase tracking-widest">Administração</p>
+    <a href="/admin/briefing_forms.php"
+      class="flex items-center gap-2.5 nav-item px-2.5 py-2.5 text-[13px] <?= $isBriefingForms ? 'bg-white/20 border border-white/30 text-white' : 'text-slate-400 hover:text-white' ?> transition">
+      <span class="h-7 w-7 rounded-lg shrink-0 flex items-center justify-center" style="background:<?= $isBriefingForms ? 'rgba(255,255,255,.25)' : 'rgba(255,255,255,.08)' ?>">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 <?= $isBriefingForms ? 'text-white' : 'text-slate-500' ?>" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+        </svg>
+      </span>
+      Briefings (criar página)
+    </a>
     <a href="/admin/users.php" class="flex items-center gap-2.5 nav-item px-2.5 py-2.5 text-[13px] <?= $isUsersPage ? 'bg-white/20 border border-white/30 text-white' : 'text-slate-400 hover:text-white' ?> transition">
       <span class="h-7 w-7 rounded-lg shrink-0 flex items-center justify-center" style="background:<?= $isUsersPage ? 'rgba(255,255,255,.25)' : 'rgba(255,255,255,.08)' ?>">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 <?= $isUsersPage ? 'text-white' : 'text-slate-500' ?>" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">

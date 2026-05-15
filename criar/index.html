@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Criar minha página LinkBio — Briefing</title>
+  <meta name="description" content="Preencha o briefing para criarmos sua landing page personalizada no LinkBio."/>
+  <link rel="icon" href="https://linkbio.api.br/logo/favicon.png" type="image/png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #2F80ED;
+      --primary-dark: #2569c4;
+      --bg: #F5F7FA;
+      --white: #fff;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .page-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    .page-header img { height: 40px; width: auto; }
+    .back-link {
+      font-size: 12px; font-weight: 600;
+      color: var(--muted); text-decoration: none;
+    }
+    .back-link:hover { color: var(--primary); }
+    .form-wrap { max-width: 720px; margin: 0 auto; padding: 40px 24px 80px; }
+    .form-head h1 {
+      font-size: clamp(26px, 5vw, 36px);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+    .form-head h1 span { color: var(--primary); }
+    .form-lead { margin-top: 14px; font-size: 16px; color: var(--muted); line-height: 1.75; }
+    .form-note {
+      margin-top: 14px; font-size: 13px; color: var(--muted);
+      padding: 12px 14px;
+      background: rgba(47,128,237,0.06);
+      border-radius: 8px;
+      border-left: 3px solid var(--primary);
+    }
+    .block {
+      margin-top: 28px;
+      padding: 28px 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(15,23,42,0.04);
+    }
+    .block-title {
+      font-size: 12px; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(47,128,237,0.15);
+    }
+    .field { margin-bottom: 20px; }
+    .field:last-child { margin-bottom: 0; }
+    label.q {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    label.q .req { color: #dc2626; margin-left: 2px; }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="url"], textarea, select {
+      width: 100%;
+      padding: 12px 14px;
+      font-family: inherit;
+      font-size: 15px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(47,128,237,0.15);
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    input[type="file"] {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      background: #fafbfc;
+      cursor: pointer;
+    }
+    input[type="file"]::file-selector-button {
+      margin-right: 12px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 6px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .file-list { margin-top: 8px; font-size: 13px; color: var(--muted); }
+    .hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+    .row-2 { display: grid; gap: 16px; }
+    @media (min-width: 560px) { .row-2 { grid-template-columns: 1fr 1fr; } }
+    .checkbox-grid {
+      display: grid;
+      gap: 10px;
+    }
+    @media (min-width: 480px) { .checkbox-grid { grid-template-columns: 1fr 1fr; } }
+    .check-row {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 14px; cursor: pointer;
+    }
+    .check-row input { width: 18px; height: 18px; margin-top: 2px; accent-color: var(--primary); flex-shrink: 0; }
+    .radios { display: flex; flex-direction: column; gap: 10px; }
+    .radio-row { display: flex; align-items: center; gap: 10px; font-size: 15px; cursor: pointer; }
+    .radio-row input { accent-color: var(--primary); }
+    #origem-outros-wrap { margin-top: 12px; display: none; }
+    #origem-outros-wrap.is-visible { display: block; }
+    .hp { position: absolute; left: -9999px; opacity: 0; height: 0; overflow: hidden; }
+    .btn-submit {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      font-size: 14px; font-weight: 700;
+      padding: 16px 28px;
+      border: none; border-radius: 10px;
+      cursor: pointer;
+      transition: background .2s, transform .15s;
+      box-shadow: 0 4px 20px rgba(47,128,237,0.35);
+    }
+    .btn-submit:hover:not(:disabled) { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn-submit:disabled { opacity: 0.72; cursor: not-allowed; transform: none; }
+    .form-error {
+      display: none;
+      padding: 12px 14px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      color: #991b1b;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+    .form-error.is-visible { display: block; }
+    .form-done-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      display: none; align-items: center; justify-content: center;
+      padding: 24px;
+      background: rgba(15,23,42,0.55);
+      backdrop-filter: blur(6px);
+    }
+    .form-done-overlay.is-visible { display: flex; }
+    .form-done-card {
+      max-width: 420px; width: 100%;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 32px 28px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+    .form-done-card h2 { font-size: 24px; font-weight: 800; color: var(--primary); margin-bottom: 12px; }
+    .form-done-card p { font-size: 15px; color: var(--muted); margin-bottom: 24px; line-height: 1.65; }
+    .form-done-actions { display: flex; flex-direction: column; gap: 12px; }
+    .form-done-actions a, .form-done-actions button {
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700;
+      padding: 14px 20px; border-radius: 8px;
+      cursor: pointer; text-decoration: none;
+    }
+    .form-done-actions a { background: var(--primary); color: #fff; }
+    .form-done-actions button { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+    .form-done-actions .btn-wa { background: #ecfdf5; color: #047857; border: 2px solid #10b981; }
+    footer.form-foot {
+      margin-top: 40px; padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--muted);
+      text-align: center;
+    }
+    footer.form-foot a { color: var(--primary); }
+  </style>
+</head>
+<body>
+
+<header class="page-header">
+  <a href="https://linkbio.api.br" aria-label="LinkBio">
+    <img src="https://linkbio.api.br/logo/logo-link-bio-1.png" alt="LinkBio"/>
+  </a>
+  <a href="https://linkbio.api.br" class="back-link">← linkbio.api.br</a>
+</header>
+
+<main class="form-wrap">
+  <div class="form-head">
+    <h1>Crie sua página <span>LinkBio</span></h1>
+    <p class="form-lead">
+      Preencha este briefing com calma. Quanto mais completo, mais rápido montamos sua landing page personalizada
+      (textos, links, WhatsApp e estrutura visual).
+    </p>
+    <p class="form-note">
+      Os dados são usados apenas para desenvolver sua página. Ao enviar, você concorda com nossa
+      <a href="https://linkbio.api.br/termos.html" target="_blank" rel="noopener">política de privacidade</a>.
+    </p>
+  </div>
+
+  <div id="form-error" class="form-error" role="alert"></div>
+
+  <form id="form-briefing" novalidate enctype="multipart/form-data">
+    <div class="hp" aria-hidden="true">
+      <label for="website">Website</label>
+      <input type="text" id="website" name="website" tabindex="-1" autocomplete="off"/>
+    </div>
+
+    <div class="block">
+      <p class="block-title">1 — Seus dados</p>
+      <div class="field">
+        <label class="q" for="nome">Nome completo <span class="req">*</span></label>
+        <input type="text" id="nome" required autocomplete="name" placeholder="Seu nome"/>
+      </div>
+      <div class="row-2">
+        <div class="field">
+          <label class="q" for="email">E-mail <span class="req">*</span></label>
+          <input type="email" id="email" required autocomplete="email" placeholder="seu@email.com"/>
+        </div>
+        <div class="field">
+          <label class="q" for="telefone">WhatsApp / telefone <span class="req">*</span></label>
+          <input type="tel" id="telefone" required autocomplete="tel" placeholder="(31) 99999-9999"/>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q" for="profissao">Profissão ou nicho</label>
+        <input type="text" id="profissao" placeholder="Ex.: Personal trainer, nutricionista, advogado"/>
+      </div>
+      <div class="row-2">
+        <div class="field">
+          <label class="q" for="cidade">Cidade</label>
+          <input type="text" id="cidade" placeholder="Ex.: Belo Horizonte"/>
+        </div>
+        <div class="field">
+          <label class="q" for="estado">Estado (UF)</label>
+          <input type="text" id="estado" maxlength="2" placeholder="MG"/>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q" for="instagram">Instagram (ou rede principal)</label>
+        <input type="text" id="instagram" placeholder="@seuusuario ou link completo"/>
+      </div>
+      <fieldset class="field">
+        <span class="q">Como nos conheceu?</span>
+        <div class="radios">
+          <label class="radio-row"><input type="radio" name="origem" value="Instagram" required/> Instagram</label>
+          <label class="radio-row"><input type="radio" name="origem" value="Indicação"/> Indicação</label>
+          <label class="radio-row"><input type="radio" name="origem" value="Google"/> Google</label>
+          <label class="radio-row"><input type="radio" name="origem" value="WhatsApp"/> WhatsApp</label>
+          <label class="radio-row"><input type="radio" name="origem" value="OUTROS" id="origem-outros-radio"/> Outros</label>
+        </div>
+        <div id="origem-outros-wrap">
+          <input type="text" id="origem-outros-texto" placeholder="Conte como nos encontrou"/>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="block">
+      <p class="block-title">2 — Sua página</p>
+      <div class="field">
+        <label class="q" for="subdominio">Subdomínio desejado</label>
+        <input type="text" id="subdominio" pattern="[a-z0-9\-]+" autocomplete="off" placeholder="meunome"/>
+        <p class="hint">Só letras minúsculas, números e hífen. Ex.: <strong>meunome</strong> → meunome.linkbio.api.br</p>
+      </div>
+      <div class="field">
+        <label class="q" for="headline">Título principal (headline)</label>
+        <input type="text" id="headline" placeholder="Frase de impacto no topo da página"/>
+      </div>
+      <div class="field">
+        <label class="q" for="subtitulo">Subtítulo</label>
+        <input type="text" id="subtitulo" placeholder="Complemento curto abaixo do título"/>
+      </div>
+      <div class="field">
+        <label class="q" for="sobre">Sobre você / sua marca</label>
+        <textarea id="sobre" placeholder="Quem você é, o que faz, para quem atende…"></textarea>
+      </div>
+      <div class="field">
+        <label class="q" for="diferencial">Seu diferencial</label>
+        <textarea id="diferencial" placeholder="O que te destaca da concorrência?"></textarea>
+      </div>
+    </div>
+
+    <div class="block">
+      <p class="block-title">3 — Serviços e conversão</p>
+      <div class="field">
+        <label class="q" for="servicos">Serviços oferecidos</label>
+        <textarea id="servicos" placeholder="Liste cada serviço com nome e descrição curta (um por linha)."></textarea>
+      </div>
+      <div class="field">
+        <label class="q" for="formacao">Formação, credenciais e certificações</label>
+        <textarea id="formacao" placeholder="CREF, CRM, graduação, cursos…"></textarea>
+      </div>
+      <div class="field">
+        <label class="q" for="faq">Perguntas frequentes (FAQ)</label>
+        <textarea id="faq" placeholder="Pergunta 1 / Resposta 1 (um bloco por linha ou parágrafo)"></textarea>
+      </div>
+      <div class="row-2">
+        <div class="field">
+          <label class="q" for="cta_texto">Texto do botão principal</label>
+          <input type="text" id="cta_texto" placeholder="Ex.: Quero começar agora"/>
+        </div>
+        <div class="field">
+          <label class="q" for="whatsapp_msg">Mensagem padrão do WhatsApp</label>
+          <input type="text" id="whatsapp_msg" placeholder="Olá! Vim pelo LinkBio e quero…"/>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q" for="links_extras">Outros links importantes</label>
+        <textarea id="links_extras" placeholder="Agenda, site, loja, YouTube… (um por linha)"></textarea>
+      </div>
+    </div>
+
+    <div class="block">
+      <p class="block-title">4 — Visual e mídia</p>
+      <div class="field">
+        <label class="q" for="cores">Cores ou estilo visual preferido</label>
+        <input type="text" id="cores" placeholder="Ex.: verde e preto, minimalista, confio no designer"/>
+      </div>
+      <div class="field">
+        <label class="q" for="referencias">Sites ou referências que gosta</label>
+        <textarea id="referencias" placeholder="Links ou descrição do estilo desejado"></textarea>
+      </div>
+      <div class="field">
+        <label class="q" for="arquivos">Enviar logo e arquivos <span style="font-weight:500;color:var(--muted)">(opcional)</span></label>
+        <input type="file" id="arquivos" name="arquivos[]" multiple
+          accept=".jpg,.jpeg,.png,.gif,.webp,.svg,.pdf,.zip,image/*"/>
+        <p class="hint">Logo, fotos, PDF ou ZIP. Até 12 arquivos, 10 MB cada (JPG, PNG, WEBP, SVG, GIF, PDF, ZIP).</p>
+        <p id="file-list" class="file-list" hidden></p>
+      </div>
+      <div class="field">
+        <label class="q" for="midia_link">Ou link para pasta na nuvem</label>
+        <input type="url" id="midia_link" placeholder="Google Drive, WeTransfer, Dropbox…"/>
+        <p class="hint">Use o upload acima ou cole um link com logo, fotos e vídeos.</p>
+      </div>
+    </div>
+
+    <div class="block">
+      <p class="block-title">5 — Seções e finalização</p>
+      <fieldset class="field">
+        <span class="q">Seções que deseja na página</span>
+        <div class="checkbox-grid">
+          <label class="check-row"><input type="checkbox" name="secoes" value="Hero"/> Hero (topo)</label>
+          <label class="check-row"><input type="checkbox" name="secoes" value="Sobre"/> Sobre</label>
+          <label class="check-row"><input type="checkbox" name="secoes" value="Serviços"/> Serviços</label>
+          <label class="check-row"><input type="checkbox" name="secoes" value="Formação"/> Formação</label>
+          <label class="check-row"><input type="checkbox" name="secoes" value="Depoimentos"/> Depoimentos</label>
+          <label class="check-row"><input type="checkbox" name="secoes" value="Antes e depois"/> Antes e depois</label>
+          <label class="check-row"><input type="checkbox" name="secoes" value="Galeria de fotos"/> Galeria</label>
+          <label class="check-row"><input type="checkbox" name="secoes" value="FAQ"/> FAQ</label>
+          <label class="check-row"><input type="checkbox" name="secoes" value="Contato / WhatsApp"/> Contato</label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label class="q" for="observacoes">Observações extras</label>
+        <textarea id="observacoes" placeholder="Algo que não coube acima?"></textarea>
+      </div>
+      <div class="field">
+        <label class="check-row">
+          <input type="checkbox" id="lgpd" required/>
+          <span>Autorizo o uso destes dados para criação da minha página LinkBio, conforme os <a href="https://linkbio.api.br/termos.html" target="_blank" rel="noopener">termos</a>. <span class="req">*</span></span>
+        </label>
+      </div>
+    </div>
+
+    <div style="margin-top:28px">
+      <button type="submit" class="btn-submit">Enviar briefing</button>
+    </div>
+  </form>
+
+  <footer class="form-foot">
+    LinkBio · <a href="https://linkbio.api.br">linkbio.api.br</a>
+  </footer>
+</main>
+
+<div id="form-done-overlay" class="form-done-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="form-done-card">
+    <h2>Briefing enviado!</h2>
+    <p>Obrigado. Recebemos suas informações e em breve entraremos em contato para dar sequência ao seu projeto.</p>
+    <div class="form-done-actions">
+      <a href="https://linkbio.api.br">Ir para o site</a>
+      <button type="button" id="form-done-reset">Enviar outro briefing</button>
+      <button type="button" class="btn-wa" id="form-done-wa" hidden>Copiar resumo no WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var CONFIG = {
+    phpApiUrl: 'https://linkbio.api.br/admin/api/briefing_submit.php',
+    submitToken: 'Lb8#kCriar2026!mX9@briefing$vT2',
+    whatsappNumber: '5531982304737'
+  };
+
+  var form = document.getElementById('form-briefing');
+  var errBox = document.getElementById('form-error');
+  var outrosRadio = document.getElementById('origem-outros-radio');
+  var outrosWrap = document.getElementById('origem-outros-wrap');
+  var outrosTexto = document.getElementById('origem-outros-texto');
+  var submitBtn = form.querySelector('.btn-submit');
+  var doneOverlay = document.getElementById('form-done-overlay');
+  var formDoneReset = document.getElementById('form-done-reset');
+  var formDoneWa = document.getElementById('form-done-wa');
+  var lastWhatsappText = '';
+  var fileInput = document.getElementById('arquivos');
+  var fileListEl = document.getElementById('file-list');
+
+  fileInput.addEventListener('change', function () {
+    var files = fileInput.files;
+    if (!files || !files.length) {
+      fileListEl.hidden = true;
+      fileListEl.textContent = '';
+      return;
+    }
+    var parts = [];
+    for (var i = 0; i < files.length; i++) {
+      var f = files[i];
+      var mb = (f.size / (1024 * 1024)).toFixed(2);
+      parts.push(f.name + ' (' + mb + ' MB)');
+    }
+    fileListEl.textContent = files.length + ' arquivo(s): ' + parts.join(', ');
+    fileListEl.hidden = false;
+  });
+
+  document.getElementById('subdominio').addEventListener('input', function () {
+    this.value = this.value.toLowerCase().replace(/[^a-z0-9\-]/g, '');
+  });
+
+  document.querySelectorAll('input[name="origem"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      var on = outrosRadio.checked;
+      outrosWrap.classList.toggle('is-visible', on);
+      if (!on) outrosTexto.value = '';
+    });
+  });
+
+  function showError(msg) {
+    errBox.textContent = msg;
+    errBox.classList.add('is-visible');
+    errBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+  function clearError() {
+    errBox.textContent = '';
+    errBox.classList.remove('is-visible');
+  }
+  function showDone() {
+    doneOverlay.classList.add('is-visible');
+    doneOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    formDoneWa.hidden = !(CONFIG.whatsappNumber && lastWhatsappText);
+  }
+  function hideDone() {
+    doneOverlay.classList.remove('is-visible');
+    doneOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  formDoneReset.addEventListener('click', function () {
+    form.reset();
+    fileListEl.hidden = true;
+    fileListEl.textContent = '';
+    outrosWrap.classList.remove('is-visible');
+    lastWhatsappText = '';
+    clearError();
+    hideDone();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  formDoneWa.addEventListener('click', function () {
+    if (!lastWhatsappText || !CONFIG.whatsappNumber) return;
+    window.open('https://wa.me/' + CONFIG.whatsappNumber + '?text=' + encodeURIComponent(lastWhatsappText), '_blank', 'noopener,noreferrer');
+  });
+
+  function getSecoes() {
+    var list = [];
+    form.querySelectorAll('input[name="secoes"]:checked').forEach(function (c) {
+      list.push(c.value);
+    });
+    return list;
+  }
+
+  function buildPayload(origemVal) {
+    return {
+      website: document.getElementById('website').value,
+      nome: document.getElementById('nome').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      telefone: document.getElementById('telefone').value.trim(),
+      profissao: document.getElementById('profissao').value.trim(),
+      cidade: document.getElementById('cidade').value.trim(),
+      estado: document.getElementById('estado').value.trim().toUpperCase(),
+      instagram: document.getElementById('instagram').value.trim(),
+      origem: origemVal,
+      subdominio: document.getElementById('subdominio').value.trim(),
+      headline: document.getElementById('headline').value.trim(),
+      subtitulo: document.getElementById('subtitulo').value.trim(),
+      sobre: document.getElementById('sobre').value.trim(),
+      diferencial: document.getElementById('diferencial').value.trim(),
+      servicos: document.getElementById('servicos').value.trim(),
+      formacao: document.getElementById('formacao').value.trim(),
+      faq: document.getElementById('faq').value.trim(),
+      cta_texto: document.getElementById('cta_texto').value.trim(),
+      whatsapp_msg: document.getElementById('whatsapp_msg').value.trim(),
+      links_extras: document.getElementById('links_extras').value.trim(),
+      cores: document.getElementById('cores').value.trim(),
+      referencias: document.getElementById('referencias').value.trim(),
+      midia_link: document.getElementById('midia_link').value.trim(),
+      secoes: getSecoes(),
+      observacoes: document.getElementById('observacoes').value.trim(),
+      lgpd_consent: document.getElementById('lgpd').checked
+    };
+  }
+
+  function buildWhatsappText(data) {
+    var lines = [
+      '*Briefing LinkBio — nova página*',
+      '',
+      'Nome: ' + data.nome,
+      'E-mail: ' + data.email,
+      'Telefone: ' + data.telefone,
+      'Profissão: ' + (data.profissao || '—'),
+      'Subdomínio: ' + (data.subdominio ? data.subdominio + '.linkbio.api.br' : '—'),
+      'Origem: ' + data.origem,
+      '',
+      'Headline: ' + (data.headline || '—'),
+      'Mídia (link): ' + (data.midia_link || '—'),
+      'Arquivos: ' + (data._fileCount ? data._fileCount + ' enviado(s)' : 'nenhum'),
+      '',
+      '_Enviado pelo formulário criar.linkbio.api.br_'
+    ];
+    return lines.join('\n');
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    clearError();
+
+    if (!form.reportValidity()) return;
+
+    var origemVal = (form.querySelector('input[name="origem"]:checked') || {}).value;
+    if (origemVal === 'OUTROS') {
+      var det = (outrosTexto.value || '').trim();
+      if (!det) {
+        showError('Informe como nos conheceu ao selecionar Outros.');
+        return;
+      }
+      origemVal = 'Outros: ' + det;
+    }
+
+    var payload = buildPayload(origemVal);
+    var files = fileInput.files;
+    var maxBytes = 10 * 1024 * 1024;
+    if (files && files.length) {
+      if (files.length > 12) {
+        showError('Selecione no máximo 12 arquivos.');
+        return;
+      }
+      for (var fi = 0; fi < files.length; fi++) {
+        if (files[fi].size > maxBytes) {
+          showError('O arquivo "' + files[fi].name + '" passa de 10 MB.');
+          return;
+        }
+      }
+    }
+    payload._fileCount = files ? files.length : 0;
+    lastWhatsappText = buildWhatsappText(payload);
+
+    var fd = new FormData();
+    fd.append('token', CONFIG.submitToken);
+    Object.keys(payload).forEach(function (k) {
+      if (k === 'secoes') {
+        fd.append('secoes', JSON.stringify(payload.secoes));
+      } else if (k === 'lgpd_consent') {
+        fd.append('lgpd_consent', payload.lgpd_consent ? '1' : '0');
+      } else if (k !== '_fileCount') {
+        fd.append(k, payload[k] == null ? '' : String(payload[k]));
+      }
+    });
+    if (files && files.length) {
+      for (var fj = 0; fj < files.length; fj++) {
+        fd.append('arquivos[]', files[fj], files[fj].name);
+      }
+    }
+
+    submitBtn.disabled = true;
+    var label = submitBtn.textContent;
+    submitBtn.textContent = 'Enviando…';
+
+    fetch(CONFIG.phpApiUrl, {
+      method: 'POST',
+      body: fd
+    })
+      .then(function (r) {
+        return r.json().catch(function () { return {}; }).then(function (j) {
+          return { ok: r.ok && j && j.ok === true, status: r.status };
+        });
+      })
+      .then(function (res) {
+        if (!res.ok) {
+          showError('Não foi possível enviar. Verifique sua conexão e tente novamente.');
+          return;
+        }
+        showDone();
+      })
+      .catch(function () {
+        showError('Erro de conexão. Tente novamente em instantes.');
+      })
+      .finally(function () {
+        submitBtn.disabled = false;
+        submitBtn.textContent = label;
+      });
+  });
+})();
+</script>
+</body>
+</html>
