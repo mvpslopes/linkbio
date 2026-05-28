@@ -124,7 +124,343 @@
     @keyframes splashSpinReverse { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
     @keyframes splashLogoPulse { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-3px) scale(1.02); } }
     @keyframes leafSpin { from { transform: rotate(-10deg) scale(.95); } to { transform: rotate(10deg) scale(1.05); } }
+    @keyframes attentionWobble {
+      0%, 72%, 100% { transform: rotate(0deg) scale(1); }
+      8% { transform: rotate(-2.5deg) scale(1.03); }
+      16% { transform: rotate(2.5deg) scale(1.03); }
+      24% { transform: rotate(-2deg) scale(1.02); }
+      32% { transform: rotate(2deg) scale(1.02); }
+      40% { transform: rotate(0deg) scale(1.01); }
+    }
+    .btn-attention {
+      animation: attentionWobble 2.8s ease-in-out infinite;
+      transform-origin: center center;
+    }
+    .btn-attention:hover {
+      animation: none;
+      transform: scale(1.05);
+    }
+    @keyframes attentionPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212,184,90,.25); border-color: rgba(212,184,90,.35); }
+      50% { box-shadow: 0 0 0 8px rgba(212,184,90,.08); border-color: rgba(212,184,90,.7); }
+    }
+    .contact-item-highlight {
+      animation: attentionPulse 2.8s ease-in-out infinite;
+      border-color: rgba(212,184,90,.45);
+    }
+    /* ── Reprograma 7 ── */
+    .reprograma-intro {
+      font-size: 16px;
+      line-height: 1.75;
+      color: #4a4540;
+      margin-bottom: 1.5rem;
+    }
+    .reprograma-intro strong { color: #2a2622; font-weight: 600; }
+    .reprograma-benefits-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #2a2622;
+      margin-bottom: 0.85rem;
+    }
+    .reprograma-benefits {
+      list-style: none;
+      margin: 0 0 1.75rem;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .reprograma-benefits li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #4a4540;
+    }
+    .reprograma-benefits li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 7px;
+      height: 7px;
+      margin-top: 0.45rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d4b85a, #b8922e);
+      box-shadow: 0 0 0 3px rgba(212,184,90,.2);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .btn-attention,
+      .contact-item-highlight,
+      .nav-cta-promo,
+      .hero-promo-card,
+      .promo-float,
+      .promo-bar::after { animation: none; }
+    }
     .splash-text { font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic; color: #8f6f22; }
+
+    /* ── Promo Reprograma 7 (campanha temporária) ── */
+    :root { --promo-bar-height: 44px; }
+    #promo-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 110;
+      height: var(--promo-bar-height);
+      background: linear-gradient(135deg, #8f6f22 0%, #b8922e 45%, #a67c32 100%);
+      color: #fff;
+      overflow: hidden;
+      transition: transform .35s ease, opacity .35s ease;
+    }
+    #promo-bar.is-hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+      pointer-events: none;
+    }
+    #promo-bar::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%);
+      background-size: 220% 100%;
+      animation: promoShimmer 5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes promoShimmer {
+      0%, 100% { background-position: 200% center; }
+      50% { background-position: -200% center; }
+    }
+    .promo-bar-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 100%;
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 2.75rem 0 1rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    .promo-bar-inner:hover { color: #fff; }
+    .promo-bar-badge {
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.22);
+      border: 1px solid rgba(255,255,255,.35);
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+    .promo-bar-text {
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.3;
+      text-align: center;
+    }
+    .promo-bar-btn {
+      flex-shrink: 0;
+      display: none;
+      font-size: 11px;
+      font-weight: 700;
+      background: #fff;
+      color: #8f6f22;
+      padding: 5px 12px;
+      border-radius: 999px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.12);
+    }
+    .promo-bar-close {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 28px;
+      height: 28px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255,255,255,.15);
+      color: #fff;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      transition: background .2s ease;
+    }
+    .promo-bar-close:hover { background: rgba(255,255,255,.28); }
+    @media (min-width: 640px) {
+      .promo-bar-text { font-size: 13px; }
+      .promo-bar-btn { display: inline-block; }
+    }
+    #reprograma-7 {
+      scroll-margin-top: calc(var(--header-offset, 9rem) + 1rem);
+    }
+    body.promo-bar-active #navbar { top: var(--promo-bar-height); }
+    body.promo-bar-active.promo-bar-hidden #navbar { top: 0; }
+    body.promo-bar-active #navbar {
+      background: rgba(250,246,241,.96);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 1px 20px rgba(0,0,0,.06);
+      padding: 10px 0;
+    }
+    .hero-section {
+      padding-top: calc(var(--header-offset, 9rem) + 1.5rem) !important;
+    }
+
+    .nav-actions {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .nav-cta-promo {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      color: #8f6f22;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 14px;
+      border-radius: 100px;
+      text-decoration: none;
+      border: 1.5px solid rgba(184,146,46,.45);
+      transition: background .2s, transform .2s, box-shadow .2s;
+      animation: navPromoPulse 2.8s ease-in-out infinite;
+      white-space: nowrap;
+    }
+    .nav-cta-promo:hover {
+      background: #faf8f5;
+      transform: scale(1.03);
+      animation: none;
+    }
+    @keyframes navPromoPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(184,146,46,.35); }
+      50% { box-shadow: 0 0 0 7px rgba(184,146,46,.08); }
+    }
+    .nav-link-promo {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(184,146,46,.12);
+      color: #8f6f22 !important;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(184,146,46,.28);
+    }
+    .nav-link-promo:hover { background: rgba(184,146,46,.2); }
+    .nav-link-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #b8922e;
+      box-shadow: 0 0 0 0 rgba(184,146,46,.5);
+      animation: navDotPulse 2s ease-in-out infinite;
+    }
+    @keyframes navDotPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(184,146,46,.45); }
+      50% { box-shadow: 0 0 0 5px rgba(184,146,46,.08); }
+    }
+    .nav-mobile-link-promo {
+      background: linear-gradient(135deg, rgba(184,146,46,.16), rgba(212,184,90,.1));
+      border: 1px solid rgba(184,146,46,.28);
+      color: #8f6f22 !important;
+    }
+    .nav-mobile-cta-promo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 6px 0 4px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #c9a03a 0%, #b8922e 55%, #9a7820 100%);
+      color: #fff !important;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(184,146,46,.35);
+      animation: navPromoPulse 2.8s ease-in-out infinite;
+    }
+    .hero-promo-card {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 100%;
+      max-width: 28rem;
+      margin-top: 4px;
+      padding: 14px 18px;
+      border-radius: 18px;
+      text-decoration: none;
+      background: linear-gradient(135deg, rgba(255,255,255,.95), rgba(250,246,241,.92));
+      border: 1.5px solid rgba(184,146,46,.35);
+      box-shadow: 0 8px 28px rgba(184,146,46,.15);
+      animation: navPromoPulse 3s ease-in-out infinite;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .hero-promo-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(184,146,46,.22);
+      animation: none;
+    }
+    .hero-promo-badge {
+      display: inline-flex;
+      align-self: flex-start;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #8f6f22;
+      background: rgba(184,146,46,.14);
+      padding: 3px 8px;
+      border-radius: 999px;
+    }
+    .hero-promo-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #2a2622;
+      line-height: 1.2;
+    }
+    .hero-promo-desc {
+      font-size: 13px;
+      color: #5a554f;
+      line-height: 1.45;
+    }
+    .hero-promo-action {
+      font-size: 13px;
+      font-weight: 700;
+      color: #8f6f22;
+      margin-top: 2px;
+    }
+    .promo-float {
+      position: fixed;
+      bottom: 92px;
+      right: 16px;
+      left: 16px;
+      z-index: 49;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #c9a03a 0%, #b8922e 55%, #9a7820 100%);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 6px 24px rgba(184,146,46,.45);
+      animation: navPromoPulse 2.8s ease-in-out infinite;
+      transition: opacity .3s ease, transform .2s ease;
+    }
+    .promo-float:hover { color: #fff; transform: scale(1.02); }
+    @media (min-width: 1024px) {
+      .nav-actions { display: flex; }
+      .promo-float { display: none !important; }
+    }
 
     /* ── Scroll animate ── */
     [data-animate] { opacity: 0; transform: translateY(28px); transition: opacity .65s ease, transform .65s ease; }
@@ -151,7 +487,7 @@
       margin-left: auto; margin-right: auto;
       padding-left: 1.5rem; padding-right: 1.5rem; /* = px-6 */
       width: 100%;
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      display: flex; align-items: center; justify-content: space-between; gap: .75rem;
     }
     /* Nome no header, Andrea Bellarosa (arquivo local) */
     .nav-title {
@@ -166,18 +502,25 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      flex-shrink: 0;
+      min-width: 0;
     }
     .nav-title:hover { color: #8f6f22; }
 
     .nav-title-logo {
-      width: clamp(72px, 9.5vw, 128px);
-      height: clamp(72px, 9.5vw, 128px);
+      width: clamp(52px, 6.5vw, 84px);
+      height: clamp(52px, 6.5vw, 84px);
       object-fit: contain;
       flex-shrink: 0;
+      transition: width .3s ease, height .3s ease;
       filter:
         drop-shadow(0 2px 8px rgba(212,184,90,.15))
         drop-shadow(0 8px 20px rgba(140,145,153,.12))
         drop-shadow(0 12px 28px rgba(42,38,34,.08));
+    }
+    #navbar.scrolled .nav-title-logo {
+      width: clamp(44px, 5vw, 64px);
+      height: clamp(44px, 5vw, 64px);
     }
     .nav-cta {
       display: inline-flex; align-items: center; gap: 6px;
@@ -191,15 +534,18 @@
     .nav-menu {
       display: none;
       align-items: center;
-      gap: 1rem;
+      gap: .65rem;
+      flex-shrink: 1;
+      min-width: 0;
     }
     .nav-link {
       color: #3d3830;
       text-decoration: none;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       letter-spacing: .02em;
       transition: color .2s ease;
+      white-space: nowrap;
     }
     .nav-link:hover { color: #8f6f22; }
     .nav-toggle {
@@ -245,6 +591,11 @@
       .nav-menu { display: flex; }
       .nav-toggle,
       .nav-mobile { display: none !important; }
+    }
+    @media (min-width: 1024px) and (max-width: 1279px) {
+      .nav-link { font-size: 11px; }
+      .nav-cta-promo { font-size: 11px; padding: 7px 12px; }
+      .nav-cta { font-size: 11px; padding: 7px 14px; }
     }
     @media (max-width: 1023px) {
       .nav-cta { display: none; }
@@ -539,6 +890,16 @@
   </div>
 </div>
 
+<!-- ═══ FAIXA PROMO REPROGRAMA 7 ═══ -->
+<div id="promo-bar">
+  <a href="#reprograma-7" class="promo-bar-inner">
+    <span class="promo-bar-badge">Gratuito · 7 dias</span>
+    <span class="promo-bar-text">Desafio Reprograma 7 — entenda o que trava seus resultados</span>
+    <span class="promo-bar-btn">Participar</span>
+  </a>
+  <button type="button" class="promo-bar-close" id="promo-bar-close" aria-label="Fechar aviso do desafio">&times;</button>
+</div>
+
 <!-- ═══ NAVBAR ═══ -->
 <nav id="navbar">
   <div class="nav-inner">
@@ -556,7 +917,6 @@
       <a href="#galeria" class="nav-link">Galeria</a>
       <a href="#sobre" class="nav-link">Sobre</a>
       <a href="#servicos" class="nav-link">Serviços</a>
-      <a href="#grupo-vip" class="nav-link">Grupo VIP</a>
       <a href="#depoimentos" class="nav-link">Depoimentos</a>
       <a href="#contato" class="nav-link">Contato</a>
     </div>
@@ -576,14 +936,14 @@
     <a href="#galeria" class="nav-mobile-link">Galeria</a>
     <a href="#sobre" class="nav-mobile-link">Sobre</a>
     <a href="#servicos" class="nav-mobile-link">Serviços</a>
-    <a href="#grupo-vip" class="nav-mobile-link">Grupo VIP</a>
+    <a href="#reprograma-7" class="nav-mobile-link nav-mobile-link-promo">Reprograma 7</a>
     <a href="#depoimentos" class="nav-mobile-link">Depoimentos</a>
     <a href="#contato" class="nav-mobile-link">Contato</a>
   </div>
 </nav>
 
 <!-- ═══ HERO ═══ -->
-<section id="hero" class="hero-section pt-20 pb-16">
+<section id="hero" class="hero-section pb-16">
   <div class="hero-blob hero-blob-1"></div>
   <div class="hero-blob hero-blob-2"></div>
 
@@ -621,6 +981,16 @@
           <a href="#sobre"
              class="inline-flex items-center gap-2 border border-gold/40 text-forest font-semibold px-8 py-4 rounded-full text-[15px] hover:bg-gold/10 transition">
             Conhecer a Aline
+          </a>
+        </div>
+
+        <div data-animate data-animate-delay="3">
+          <a href="https://chat.whatsapp.com/IJKnOYh10ts0BFqJfiyKcX?mode=gi_t"
+             target="_blank" rel="noopener noreferrer" class="hero-promo-card">
+            <span class="hero-promo-badge">Gratuito · 7 dias</span>
+            <span class="hero-promo-title">Desafio Reprograma 7</span>
+            <span class="hero-promo-desc">Entenda o que está travando seus resultados com missões práticas diárias.</span>
+            <span class="hero-promo-action">Participar no WhatsApp →</span>
           </a>
         </div>
 
@@ -868,28 +1238,34 @@
   </div>
 </section>
 
-<!-- ═══ GRUPO VIP ═══ -->
-<section id="grupo-vip" class="py-20 px-6" style="background: linear-gradient(160deg, #f5f1ea 0%, #faf8f5 100%);">
+<!-- ═══ DESAFIO REPROGRAMA 7 ═══ -->
+<section id="reprograma-7" class="py-20 px-6" style="background: linear-gradient(160deg, #f5f1ea 0%, #faf8f5 100%);">
   <div class="mx-auto max-w-4xl">
     <div class="rounded-3xl bg-white border border-[#e8dbc5] p-8 sm:p-12 shadow-[0_20px_60px_rgba(42,38,34,.08)]" data-animate>
-      <div class="grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+      <div class="grid md:grid-cols-2 gap-8 md:gap-10 items-start">
         <figure class="w-full max-w-xs sm:max-w-sm md:max-w-none mx-auto rounded-[1.75rem] overflow-hidden border border-[#e8dbc5] shadow-[0_16px_40px_rgba(42,38,34,.12)]">
-        <img src="Fotos/Fotos%20(8).jpeg" alt="Aline Santana no Grupo VIP" loading="lazy" decoding="async" class="block w-full h-auto object-cover" />
+        <img src="Fotos/Fotos%20(8).jpeg" alt="Aline Santana — Desafio Reprograma 7" loading="lazy" decoding="async" class="block w-full h-auto object-cover" />
         </figure>
         <div class="text-center md:text-left">
           <span class="inline-block text-[11px] font-bold tracking-[.14em] uppercase text-gold-dark bg-gold/10 px-3 py-1 rounded-full mb-4">
-            Grupo VIP Gratuito
+            Desafio Reprograma 7
           </span>
-          <h2 class="font-serif font-bold text-[clamp(1.8rem,4vw,2.6rem)] text-forest leading-tight mb-4">
-            Comunidade fechada no WhatsApp
-          </h2>
-          <p class="text-gray-600 text-[16px] leading-relaxed mb-8">
-            É um grupo fechado no WhatsApp onde compartilho orientações práticas e respondo dúvidas para te ajudar a manter constância no processo de emagrecimento.
+          <p class="reprograma-intro">
+            O <strong>Reprograma 7</strong> é um desafio gratuito de 7 dias para mulheres que querem entender o que está travando seus resultados.
           </p>
-          <a href="https://chat.whatsapp.com/DufTXOHxFXp8gv9pLUejbN?mode=gi_t"
+          <p class="reprograma-benefits-title">Durante os 7 dias você terá:</p>
+          <ul class="reprograma-benefits">
+            <li>Missões práticas diárias</li>
+            <li>Ferramentas para identificar gatilhos alimentares</li>
+            <li>Exercícios para entender por que você começa e para</li>
+            <li>Estratégias para ter mais constância</li>
+            <li>Aplicação prática na sua rotina</li>
+          </ul>
+          <a href="https://chat.whatsapp.com/IJKnOYh10ts0BFqJfiyKcX?mode=gi_t"
              target="_blank" rel="noopener noreferrer"
-             class="inline-flex items-center gap-2 bg-gold text-white font-semibold px-8 py-4 rounded-full text-[15px] hover:bg-gold-dark transition shadow-lg shadow-gold/25">
-            Entrar no Grupo VIP Gratuito
+             class="btn-attention inline-flex items-center gap-2 bg-gold text-white font-semibold px-8 py-4 rounded-full text-[15px] hover:bg-gold-dark transition shadow-lg shadow-gold/25">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+            Entrar no Desafio Reprograma 7
           </a>
         </div>
       </div>
@@ -993,17 +1369,15 @@
         <svg class="h-4 w-4 ml-auto text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </a>
 
-      <!-- Grupo VIP Gratuito -->
-      <a href="https://chat.whatsapp.com/DufTXOHxFXp8gv9pLUejbN?mode=gi_t"
-         target="_blank" rel="noopener noreferrer" class="contact-item" data-animate data-animate-delay="2">
+      <!-- Desafio Reprograma 7 -->
+      <a href="https://chat.whatsapp.com/IJKnOYh10ts0BFqJfiyKcX?mode=gi_t"
+         target="_blank" rel="noopener noreferrer" class="contact-item contact-item-highlight" data-animate data-animate-delay="2">
         <div class="contact-icon">
-          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5V4H2v16h5m10 0v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6m10 0H7"/>
-          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
         </div>
         <div>
-          <p class="contact-label">Grupo VIP Gratuito</p>
-          <p class="contact-value">Grupo fechado no WhatsApp com orientações e tira-dúvidas.</p>
+          <p class="contact-label">Desafio Reprograma 7</p>
+          <p class="contact-value">Desafio gratuito de 7 dias — entre no grupo no WhatsApp.</p>
         </div>
         <svg class="h-4 w-4 ml-auto text-white/30" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       </a>
@@ -1045,6 +1419,13 @@
   </div>
 </section>
 
+<!-- ═══ Promo flutuante mobile ═══ -->
+<a id="promo-float" href="https://chat.whatsapp.com/IJKnOYh10ts0BFqJfiyKcX?mode=gi_t"
+   target="_blank" rel="noopener noreferrer" class="promo-float" aria-label="Participar do Desafio Reprograma 7">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/></svg>
+  Reprograma 7
+</a>
+
 <!-- ═══ WhatsApp floating ═══ -->
 <a id="wa-float" href="https://wa.me/5531991603278?text=Ol%C3%A1%2C+Aline%21+Vim+pelo+seu+site+e+gostaria+de+agendar+uma+avalia%C3%A7%C3%A3o."
    target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
@@ -1052,15 +1433,70 @@
 </a>
 
 <script>
+  // Faixa promo Reprograma 7
+  const promoBar = document.getElementById('promo-bar');
+  const promoBarClose = document.getElementById('promo-bar-close');
+  const promoFloat = document.getElementById('promo-float');
+  const navbar = document.getElementById('navbar');
+  const PROMO_BAR_KEY = 'alinesantana-promo-bar-hidden';
+
+  const updateHeaderOffset = () => {
+    let total = navbar?.offsetHeight || 0;
+    if (promoBar && !promoBar.classList.contains('is-hidden')) {
+      total += promoBar.offsetHeight;
+    }
+    document.documentElement.style.setProperty('--header-offset', `${total}px`);
+  };
+
+  if (sessionStorage.getItem(PROMO_BAR_KEY) === '1') {
+    document.body.classList.add('promo-bar-hidden');
+    promoBar?.classList.add('is-hidden');
+  } else {
+    document.body.classList.add('promo-bar-active');
+  }
+
+  promoBarClose?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    promoBar?.classList.add('is-hidden');
+    document.body.classList.add('promo-bar-hidden');
+    sessionStorage.setItem(PROMO_BAR_KEY, '1');
+    setTimeout(updateHeaderOffset, 360);
+  });
+
+  window.addEventListener('load', updateHeaderOffset);
+  window.addEventListener('resize', updateHeaderOffset);
+  if (navbar && 'ResizeObserver' in window) {
+    new ResizeObserver(updateHeaderOffset).observe(navbar);
+  }
+  if (promoBar && 'ResizeObserver' in window) {
+    new ResizeObserver(updateHeaderOffset).observe(promoBar);
+  }
+  updateHeaderOffset();
+
+  // Esconde botão flutuante mobile ao chegar na seção Reprograma 7
+  const reprogramaSection = document.getElementById('reprograma-7');
+  if (promoFloat && reprogramaSection && 'IntersectionObserver' in window) {
+    const promoFloatObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        promoFloat.style.opacity = entry.isIntersecting ? '0' : '1';
+        promoFloat.style.pointerEvents = entry.isIntersecting ? 'none' : 'auto';
+      });
+    }, { threshold: 0.15 });
+    promoFloatObserver.observe(reprogramaSection);
+  }
+
   // Splash
   window.addEventListener('load', () => {
-    setTimeout(() => document.getElementById('splash').classList.add('hide'), 1200);
+    setTimeout(() => {
+      document.getElementById('splash').classList.add('hide');
+      updateHeaderOffset();
+    }, 1200);
   });
 
   // Navbar scroll
-  const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 40);
+    updateHeaderOffset();
   }, { passive: true });
 
   // Menu mobile (hambúrguer)
