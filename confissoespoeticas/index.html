@@ -46,6 +46,11 @@
 
     html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
+    @supports (padding-top: env(safe-area-inset-top)) {
+      #navbar { padding-top: calc(16px + env(safe-area-inset-top)); }
+      #navbar.scrolled { padding-top: calc(10px + env(safe-area-inset-top)); }
+    }
+
     body {
       font-family: 'EB Garamond', Georgia, serif;
       background: #f8f5f0;
@@ -579,6 +584,90 @@
       transition: transform .2s, box-shadow .2s;
     }
     #wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 36px rgba(30,26,22,.28); }
+
+    /* ════════════════════════════
+       MOBILE  ≤ 767 px
+    ════════════════════════════ */
+    @media (max-width: 767px) {
+
+      /* navbar */
+      .nav-cta { display: none; }
+      .nav-title-text { font-size: 1rem; }
+
+      /* hero */
+      .hero-section { padding-top: 4.5rem; }
+      .hero-content { padding: 2rem 1.25rem 3.5rem; }
+      .hero-title {
+        font-size: clamp(2.6rem, 13vw, 3.5rem);
+        letter-spacing: -.02em;
+        line-height: 1;
+      }
+      .hero-title em { font-size: .72em; }
+      .hero-author { margin-bottom: 1.5rem; font-size: 1rem; }
+      .hero-tagline { font-size: 1.05rem; margin-bottom: 2rem; }
+      .hero-ornament { margin-bottom: 1.5rem; }
+      .hero-actions {
+        flex-direction: column; align-items: stretch;
+        gap: 10px;
+      }
+      .btn-ink, .btn-ghost-ink {
+        justify-content: center;
+        padding: 14px 20px; font-size: 12px;
+      }
+      .hero-bg-quote {
+        font-size: clamp(10rem, 55vw, 16rem);
+        top: 42%; left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      /* divisores */
+      .section-divider { gap: 12px; }
+      .section-divider-line { max-width: 60px; }
+
+      /* sobre */
+      .sobre-section.py-24 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+      .sobre-card { text-align: left; }
+      .sobre-pullquote { max-width: 100%; margin: 1.5rem 0; }
+      .sobre-instagram, .sobre-tagline { font-size: 13px; }
+
+      /* verso em destaque */
+      .destaque-inner { padding: 3.5rem 1.25rem; }
+      .destaque-frame { padding: 1.75rem 1.25rem 1.5rem; }
+      .destaque-frame::before, .destaque-frame::after { width: 22px; height: 22px; }
+      .destaque-verse { font-size: 1.05rem; line-height: 1.9; }
+      .destaque-verse::first-letter { font-size: 3.2rem; }
+      .destaque-label { margin-bottom: 1.75rem; }
+
+      /* poemas */
+      .poemas-section.py-24 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+      .poem-card { padding: 22px 18px 20px; }
+      .poem-card-excerpt { -webkit-line-clamp: 3; }
+      .poem-card-excerpt::first-letter { font-size: 2.4rem; }
+
+      /* modal */
+      #poem-modal { padding: 1rem; align-items: flex-end; }
+      .poem-modal-inner {
+        max-height: 88vh;
+        border-radius: 8px 8px 3px 3px;
+        padding: 1.75rem 1.25rem;
+      }
+
+      /* contato */
+      .contato-section.py-24 { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+      .contato-link { padding: 16px 18px; }
+
+      /* wa float */
+      #wa-float { bottom: 18px; right: 18px; width: 48px; height: 48px; }
+
+      /* section headers */
+      .section-header { margin-bottom: 2.5rem; }
+    }
+
+    /* small (≤ 390 px) — reforço extra */
+    @media (max-width: 390px) {
+      .hero-title { font-size: 2.4rem; }
+      .destaque-frame { padding: 1.5rem 1rem 1.25rem; }
+    }
   </style>
 </head>
 <body>
