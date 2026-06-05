@@ -153,14 +153,14 @@
 
     /* Fundo do hero: mobile em telas médias/pequenas, desktop em wide */
     .hero-bg {
-      background-image: url('hero/hero-desktop.png');
+      background-image: url('hero/hero-desktop.png?v=2');
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
     }
     @media (max-width: 1023px) {
       .hero-bg {
-        background-image: url('hero/hero-mobile.png');
+        background-image: url('hero/hero-mobile.png?v=2');
         /* Recorta um pouco mais alto: rosto sobe na moldura e libera área em baixo para o texto */
         background-position: center 22%;
       }
@@ -382,7 +382,7 @@
         <div class="grid md:grid-cols-12 gap-8 md:gap-10 lg:gap-14 items-start mb-10 md:mb-12">
           <div class="order-2 md:order-1 md:col-span-5 lg:col-span-4 max-w-sm mx-auto md:max-w-none md:mx-0 w-full" data-animate>
             <figure class="sobre-photo">
-              <img src="fotos/Fotos%20(2).jpeg" alt="Sheila Domingues, nutricionista" loading="lazy" decoding="async" />
+              <img src="fotos/Fotos%20(2).jpeg?v=2" alt="Sheila Domingues, nutricionista" loading="lazy" decoding="async" />
             </figure>
           </div>
           <div class="order-1 md:order-2 md:col-span-7 lg:col-span-8 space-y-4 md:pt-1" data-animate>
@@ -464,12 +464,13 @@
             <p class="text-sm text-brand-slate/75 leading-relaxed">Acompanhamento contínuo com revisões, ajustes e suporte na construção de novos hábitos: o núcleo do trabalho com resultados consistentes.</p>
           </article>
           <article class="service-card" data-animate data-animate-delay="1">
-            <h3 class="font-semibold text-brand-slate text-lg mb-2">Grupos online de emagrecimento</h3>
+            <span class="inline-flex items-center rounded-full border border-brand-teal/20 bg-brand-teal-soft/80 px-2.5 py-1 text-[10px] font-bold tracking-widest uppercase text-brand-teal">Em breve · nova data</span>
+            <h3 class="font-semibold text-brand-slate text-lg mt-2 mb-2">Grupos online de emagrecimento</h3>
             <p class="text-sm text-brand-slate/75 leading-relaxed">Jornada em grupo com orientações, comunidade e motivação para manter o foco no dia a dia.</p>
           </article>
           <article class="service-card" data-animate data-animate-delay="2">
             <h3 class="font-semibold text-brand-slate text-lg mb-2">Plano alimentar por formulário</h3>
-            <p class="text-sm text-brand-slate/75 leading-relaxed">Plano alimentar estruturado a partir do seu perfil, ideal para quem busca direcionamento com autonomia inicial.</p>
+            <p class="text-sm text-brand-slate/75 leading-relaxed">Plano alimentar estruturado a partir do seu estado nutricional e de saúde preenchido por formulário, ideal para quem busca direcionamento com autonomia inicial.</p>
           </article>
           <article class="service-card" data-animate data-animate-delay="3">
             <h3 class="font-semibold text-brand-slate text-lg mb-2">Consulta avulsa</h3>
