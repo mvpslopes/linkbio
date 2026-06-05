@@ -1,0 +1,1161 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Confissões Poéticas | Vitória Silva – Poesia Autoral</title>
+  <meta name="description" content="Versos nascidos do silêncio. Palavras pra quem sente demais. Poesia autoral de Vitória Silva." />
+  <meta name="keywords" content="confissões poéticas, poesia, Vitória Silva, poesia autoral, versos, literatura" />
+  <link rel="canonical" href="https://confissoespoeticas.linkbio.api.br/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://confissoespoeticas.linkbio.api.br/" />
+  <meta property="og:title" content="Confissões Poéticas | Vitória Silva" />
+  <meta property="og:description" content="Versos nascidos do silêncio. Palavras pra quem sente demais." />
+  <meta property="og:locale" content="pt_BR" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Cormorant Garamond', 'Georgia', 'serif'],
+            prose:   ['EB Garamond', 'Georgia', 'serif'],
+            sans:    ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            ink:    { DEFAULT: '#1a1410', light: '#3a3028', muted: '#7a6e65' },
+            parch:  { DEFAULT: '#f5f0e8', mid: '#ede5d8', dark: '#d6cfc4' },
+            sepia:  { DEFAULT: '#8b6f47', light: '#a88a62', pale: 'rgba(139,111,71,.12)' },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --gold: #9a7a42;
+      --gold-light: #b8944a;
+      --gold-pale: rgba(154,122,66,.12);
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    body {
+      font-family: 'EB Garamond', Georgia, serif;
+      background: #f8f5f0;
+      color: #1e1a16;
+      overflow-x: hidden;
+    }
+
+    /* textura sutil de papel */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      opacity: .03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* ── Splash ── */
+    #splash {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #faf8f5;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+      transition: opacity .7s ease, visibility .7s ease;
+    }
+    #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    .splash-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: #1e1a16;
+      letter-spacing: .04em;
+      text-align: center;
+      line-height: 1.3;
+    }
+    .splash-rule {
+      width: clamp(80px, 18vw, 160px);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      animation: ruleIn 1.4s ease forwards;
+    }
+    .splash-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(30,26,22,.45);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    @keyframes ruleIn { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
+
+    /* ── Navbar ── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 0;
+      transition: background .3s, box-shadow .3s, padding .3s;
+    }
+    #navbar.scrolled {
+      background: rgba(248,245,240,.97);
+      backdrop-filter: blur(14px);
+      padding: 10px 0;
+      box-shadow: 0 1px 0 rgba(154,122,66,.15);
+    }
+    .nav-inner {
+      max-width: 52rem; margin: 0 auto; padding: 0 1.5rem;
+      display: flex; align-items: center; justify-content: flex-start; gap: .5rem;
+    }
+    .nav-title-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 500; font-style: italic;
+      color: #1e1a16; text-decoration: none; letter-spacing: .02em;
+      flex-shrink: 0;
+    }
+    .nav-menu { display: none; align-items: center; gap: 1.25rem; margin-left: auto; }
+    .nav-link {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+      color: rgba(30,26,22,.5); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-link:hover { color: #1e1a16; }
+    .nav-end { display: flex; align-items: center; gap: .5rem; margin-left: auto; }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      border: 1px solid rgba(30,26,22,.22); color: #1e1a16;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 2px; text-decoration: none;
+      transition: background .2s, border-color .2s;
+      flex-shrink: 0;
+    }
+    .nav-cta:hover { background: rgba(30,26,22,.05); border-color: rgba(30,26,22,.4); }
+    .nav-toggle {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px; border-radius: 4px;
+      border: 1px solid rgba(30,26,22,.18); background: transparent;
+      color: #1e1a16; cursor: pointer; transition: background .2s;
+    }
+    .nav-toggle:hover { background: rgba(30,26,22,.05); }
+    .nav-mobile {
+      position: absolute; top: calc(100% + 6px); right: 1.5rem;
+      width: min(280px, calc(100vw - 3rem));
+      background: #fff; border: 1px solid rgba(30,26,22,.1);
+      border-radius: 4px; padding: 8px; display: none; flex-direction: column; gap: 2px;
+      box-shadow: 0 8px 28px rgba(30,26,22,.1);
+    }
+    .nav-mobile.is-open { display: flex; }
+    .nav-mobile-link {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px; font-weight: 500; font-style: italic;
+      color: #3a342e; padding: 10px 14px; border-radius: 3px; text-decoration: none;
+      transition: background .2s;
+    }
+    .nav-mobile-link:hover { background: rgba(30,26,22,.05); color: #1e1a16; }
+    @media (min-width: 768px) {
+      .nav-menu { display: flex; }
+      .nav-end { margin-left: 0; }
+      .nav-toggle, .nav-mobile { display: none !important; }
+    }
+    @media (max-width: 767px) {
+      #navbar { background: rgba(248,245,240,.98); box-shadow: 0 1px 0 rgba(154,122,66,.1); }
+    }
+
+    /* ── Hero ── */
+    .hero-section {
+      min-height: 100svh;
+      background: linear-gradient(170deg, #f8f5f0 0%, #f0ebe2 50%, #e8e0d4 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden; padding-top: 5rem;
+    }
+    .hero-vignette {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 90% 80% at 50% 30%, rgba(255,252,246,.6) 0%, transparent 70%);
+    }
+    .hero-content {
+      position: relative; z-index: 10; text-align: center;
+      padding: 3rem 1.5rem 5rem; max-width: 48rem; margin: 0 auto;
+    }
+    .hero-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px; font-weight: 400; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+    }
+    .hero-ornament {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-ornament-line { flex: 1; max-width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light)); }
+    .hero-ornament-line:last-child { background: linear-gradient(270deg, transparent, var(--gold-light)); }
+    .hero-ornament-diamond {
+      width: 8px; height: 8px; border: 1px solid var(--gold);
+      transform: rotate(45deg); flex-shrink: 0;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(3.5rem, 11vw, 7.5rem);
+      font-weight: 300; line-height: .98;
+      color: #1e1a16; letter-spacing: -.01em;
+      margin-bottom: .4rem; text-transform: uppercase;
+    }
+    .hero-title em {
+      font-style: italic; font-weight: 300; text-transform: none;
+      display: block; font-size: .78em; color: var(--gold-light);
+      letter-spacing: .04em; margin-top: .1em;
+    }
+    .hero-author {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300; font-style: italic;
+      color: rgba(30,26,22,.52);
+      letter-spacing: .1em; margin-bottom: 2.5rem;
+    }
+    .hero-tagline {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      font-style: italic; color: rgba(30,26,22,.58);
+      line-height: 1.75; margin-bottom: 3rem; max-width: 28rem; margin-left: auto; margin-right: auto;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .btn-ink {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #1e1a16; color: #f8f5f0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+      padding: 13px 30px; border-radius: 1px; text-decoration: none;
+      transition: background .2s;
+    }
+    .btn-ink:hover { background: var(--gold); }
+    .btn-ghost-ink {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(154,122,66,.4); color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+      padding: 13px 30px; border-radius: 1px; text-decoration: none;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .btn-ghost-ink:hover { border-color: var(--gold); color: #1e1a16; background: var(--gold-pale); }
+
+    /* ── Aspas decorativas hero ── */
+    .hero-bg-quote {
+      position: absolute; z-index: 1; pointer-events: none;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(14rem, 40vw, 32rem);
+      font-weight: 700; line-height: 1;
+      color: rgba(30,26,22,.045);
+      top: 50%; left: 50%;
+      transform: translate(-60%, -52%);
+      user-select: none; letter-spacing: -.05em;
+    }
+
+    /* ── Divisor ornamental ── */
+    .section-divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 18px; padding: 0 1.5rem;
+      background: var(--div-bg, #fff);
+    }
+    .section-divider-line { flex: 1; max-width: 120px; height: 1px; background: linear-gradient(90deg, transparent, rgba(154,122,66,.35)); }
+    .section-divider-line:last-child { background: linear-gradient(270deg, transparent, rgba(154,122,66,.35)); }
+    .section-divider-ornament {
+      display: flex; align-items: center; gap: 8px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px; color: var(--gold); opacity: .65; font-style: normal; letter-spacing: .45em; text-transform: uppercase;
+    }
+    .section-divider-ornament-dot { width: 4px; height: 4px; border: 1px solid var(--gold); transform: rotate(45deg); }
+
+    /* ── Verso em destaque ── */
+    .destaque-section {
+      background: #1e1a16;
+      position: relative; overflow: hidden;
+    }
+    .destaque-section::before {
+      content: '❝';
+      position: absolute; top: -2rem; left: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(10rem, 22vw, 18rem);
+      font-weight: 700; line-height: 1;
+      color: rgba(154,122,66,.12);
+      pointer-events: none; user-select: none;
+    }
+    .destaque-inner {
+      position: relative; z-index: 10;
+      max-width: 44rem; margin: 0 auto; padding: 5rem 1.5rem;
+    }
+    .destaque-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--gold); opacity: .75; display: block; margin-bottom: 2.5rem;
+      text-align: center;
+    }
+    .destaque-frame {
+      border: 1px solid rgba(232,226,217,.12);
+      border-radius: 2px; padding: 2.5rem 2.5rem 2rem;
+      position: relative;
+    }
+    .destaque-frame::before, .destaque-frame::after {
+      content: ''; position: absolute;
+      width: 32px; height: 32px;
+      border-color: var(--gold);
+      border-style: solid;
+      opacity: .5;
+    }
+    .destaque-frame::before { top: -1px; left: -1px; border-width: 1px 0 0 1px; }
+    .destaque-frame::after  { bottom: -1px; right: -1px; border-width: 0 1px 1px 0; }
+    .destaque-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 600; font-style: italic;
+      color: rgba(232,226,217,.85); margin-bottom: 1.75rem;
+      text-align: center; line-height: 1.2;
+    }
+    .destaque-verse {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      line-height: 2.1; color: rgba(232,226,217,.68);
+      white-space: pre-wrap; text-align: left;
+    }
+    .destaque-verse::first-letter {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.2rem; font-weight: 600; font-style: italic;
+      line-height: .75; float: left; margin-right: .12em; margin-top: .08em;
+      color: var(--gold-light);
+    }
+    .destaque-author {
+      margin-top: 1.75rem; text-align: right;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; font-style: italic;
+      color: rgba(232,226,217,.3); letter-spacing: .08em;
+    }
+    .destaque-cta {
+      text-align: center; margin-top: 2.5rem;
+    }
+    .destaque-cta a {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(154,122,66,.35); color: var(--gold);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+      padding: 10px 24px; border-radius: 1px; text-decoration: none;
+      transition: border-color .2s, color .2s, background .2s;
+    }
+    .destaque-cta a:hover { border-color: rgba(232,226,217,.5); color: rgba(232,226,217,.9); background: rgba(232,226,217,.05); }
+
+    /* ── Sobre enriquecida ── */
+    .sobre-pullquote {
+      border-left: 2px solid var(--gold);
+      margin: 2rem auto;
+      padding: .75rem 0 .75rem 1.5rem;
+      max-width: 28rem;
+      text-align: left;
+    }
+    .sobre-pullquote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 2.5vw, 1.45rem);
+      font-style: italic; font-weight: 400;
+      color: rgba(30,26,22,.65); line-height: 1.65;
+    }
+
+    /* ── Cards enriquecidos ── */
+    .poem-card::before {
+      content: '';
+      display: block; width: 36px; height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 1.25rem;
+      transition: width .35s ease;
+    }
+    .poem-card:hover::before { width: 70px; }
+    .poem-card-excerpt::first-letter {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 600; font-style: italic;
+      line-height: .75; float: left; margin-right: .1em; margin-top: .1em;
+      color: var(--gold);
+    }
+    .poem-card-num { color: var(--gold) !important; opacity: .7; }
+
+    /* ── Scroll animate ── */
+    [data-animate] { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    [data-animate].visible { opacity: 1; transform: none; }
+    [data-animate-delay="1"] { transition-delay: .1s; }
+    [data-animate-delay="2"] { transition-delay: .2s; }
+    [data-animate-delay="3"] { transition-delay: .3s; }
+
+    /* ── Section header ── */
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--gold); display: block; margin-bottom: .75rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 300; font-style: italic; color: #1e1a16;
+      line-height: 1.1;
+    }
+    .section-rule {
+      display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 1rem;
+    }
+    .section-rule-line { width: 40px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light)); }
+    .section-rule-line:last-child { background: linear-gradient(270deg, transparent, var(--gold-light)); }
+    .section-rule-dot { width: 5px; height: 5px; border: 1px solid var(--gold); transform: rotate(45deg); }
+
+    /* ── Sobre ── */
+    .sobre-section { background: #fff; }
+    .sobre-card {
+      max-width: 36rem; margin: 0 auto;
+      text-align: center;
+    }
+    .sobre-text {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.05rem, 2vw, 1.2rem); line-height: 1.85;
+      color: rgba(30,26,22,.72);
+    }
+    .sobre-text em { font-style: italic; }
+    .sobre-instagram {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px; letter-spacing: .06em;
+      color: rgba(30,26,22,.55); text-decoration: none;
+      border-bottom: 1px solid rgba(30,26,22,.2);
+      padding-bottom: 2px; transition: color .2s, border-color .2s;
+    }
+    .sobre-instagram:hover { color: #1e1a16; border-color: rgba(30,26,22,.45); }
+    .sobre-tagline {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      margin-top: 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px; font-style: italic; letter-spacing: .04em;
+      color: rgba(30,26,22,.55);
+    }
+    .sobre-tagline svg { flex-shrink: 0; opacity: .55; }
+
+    /* ── Poemas ── */
+    .poemas-section { background: #f3efe8; }
+    .poemas-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      max-width: 44rem; margin: 0 auto;
+    }
+    @media (min-width: 640px) { .poemas-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .poemas-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .poem-card {
+      background: #fff;
+      border: 1px solid rgba(30,26,22,.08);
+      border-radius: 2px;
+      padding: 28px 24px 24px;
+      cursor: pointer; position: relative;
+      transition: box-shadow .25s, transform .25s, border-color .25s;
+    }
+    .poem-card:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(30,26,22,.08); border-color: rgba(30,26,22,.18); }
+    .poem-card:hover .poem-card-cta { color: var(--gold); }
+    .poem-card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9px; letter-spacing: .35em; text-transform: uppercase;
+      color: var(--gold); opacity: .65; margin-bottom: .75rem; display: block;
+    }
+    .poem-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem; font-weight: 600; font-style: italic;
+      color: #1e1a16; line-height: 1.2; margin-bottom: 1rem;
+    }
+    .poem-card-excerpt {
+      font-family: 'EB Garamond', serif;
+      font-size: .95rem; line-height: 1.8;
+      color: rgba(30,26,22,.55);
+      display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .poem-card-cta {
+      display: inline-flex; align-items: center; gap: 5px;
+      margin-top: 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+      color: rgba(30,26,22,.35);
+      transition: color .2s;
+    }
+    .poem-card-cta svg { transition: transform .2s; }
+    .poem-card:hover .poem-card-cta svg { transform: translateX(4px); }
+
+    /* ── Modal poema ── */
+    #poem-modal {
+      position: fixed; inset: 0; z-index: 9998;
+      background: rgba(30,26,22,.45); backdrop-filter: blur(5px);
+      display: none; align-items: center; justify-content: center;
+      padding: 1.5rem; overflow-y: auto;
+    }
+    #poem-modal.open { display: flex; }
+    .poem-modal-inner {
+      background: #fff;
+      border: 1px solid rgba(30,26,22,.1);
+      border-radius: 3px;
+      max-width: 36rem; width: 100%;
+      padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 5vw, 3rem);
+      position: relative;
+      max-height: 90vh; overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(30,26,22,.12);
+    }
+    .poem-modal-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 34px; height: 34px; border-radius: 2px;
+      background: transparent; border: 1px solid rgba(30,26,22,.15);
+      color: rgba(30,26,22,.5); cursor: pointer; font-size: 16px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, color .2s;
+    }
+    .poem-modal-close:hover { background: rgba(30,26,22,.05); color: #1e1a16; }
+    .poem-modal-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
+      color: rgba(30,26,22,.35); display: block; margin-bottom: .75rem;
+    }
+    .poem-modal-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 600; font-style: italic;
+      color: #1e1a16; line-height: 1.15; margin-bottom: 1.5rem;
+    }
+    .poem-modal-rule { width: 100%; height: 1px; background: rgba(30,26,22,.1); margin-bottom: 1.75rem; }
+    .poem-modal-body {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+      line-height: 2; color: rgba(30,26,22,.78); white-space: pre-wrap;
+    }
+    .poem-modal-author {
+      margin-top: 2rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px; font-style: italic; color: rgba(30,26,22,.38);
+      letter-spacing: .06em;
+    }
+
+    /* ── Contato ── */
+    .contato-section { background: #ebe6de; position: relative; overflow: hidden; }
+    .contato-links { display: flex; flex-direction: column; gap: 12px; max-width: 24rem; margin: 0 auto; }
+    .contato-link {
+      display: flex; align-items: center; gap: 16px;
+      background: #fff; border: 1px solid rgba(30,26,22,.08);
+      border-radius: 3px; padding: 18px 22px; text-decoration: none; color: #1e1a16;
+      transition: background .2s, border-color .2s, box-shadow .2s;
+    }
+    .contato-link:hover { border-color: rgba(30,26,22,.18); box-shadow: 0 6px 20px rgba(30,26,22,.06); }
+    .contato-link-icon {
+      width: 40px; height: 40px; border-radius: 3px;
+      background: rgba(30,26,22,.05); color: rgba(30,26,22,.55);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contato-link-label { font-size: 10px; color: rgba(30,26,22,.38); font-weight: 400; letter-spacing: .12em; text-transform: uppercase; font-family: 'Cormorant Garamond', serif; }
+    .contato-link-value { font-size: 15px; color: #1e1a16; font-family: 'EB Garamond', serif; margin-top: 2px; }
+    .contato-link-arr { margin-left: auto; opacity: .25; }
+
+    /* ── Footer ── */
+    .footer-promo {
+      text-align: center; padding-top: 24px; margin-top: 28px;
+      border-top: 1px solid rgba(30,26,22,.1);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 12px; color: rgba(30,26,22,.38); line-height: 1.6;
+      font-style: italic;
+    }
+    .footer-promo a {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: rgba(30,26,22,.5); text-decoration: none; margin-top: 8px;
+    }
+    .footer-promo a:hover { color: #1e1a16; }
+    .footer-promo img { height: 22px; width: auto; opacity: .45; }
+
+    /* ── WA float ── */
+    #wa-float {
+      position: fixed; bottom: 24px; right: 24px; z-index: 50;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: #1e1a16; border: 1px solid rgba(30,26,22,.1);
+      box-shadow: 0 6px 24px rgba(30,26,22,.2);
+      display: flex; align-items: center; justify-content: center;
+      color: #faf8f5; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    #wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 36px rgba(30,26,22,.28); }
+  </style>
+</head>
+<body>
+
+<!-- ═══ SPLASH ═══ -->
+<div id="splash">
+  <p class="hero-eyebrow">confissões poéticas</p>
+  <p class="splash-title">Versos nascidos<br/>do silêncio</p>
+  <div class="splash-rule"></div>
+  <p class="splash-sub">Vitória Silva</p>
+</div>
+
+<!-- ═══ NAVBAR ═══ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-title-text">Confissões Poéticas</a>
+    <div class="nav-menu" aria-label="Menu principal">
+      <a href="#sobre"  class="nav-link">Sobre</a>
+      <a href="#poemas" class="nav-link">Poemas</a>
+      <a href="#contato" class="nav-link">Contato</a>
+    </div>
+    <div class="nav-end">
+      <a href="https://www.instagram.com/confissoes.poetica/" target="_blank" rel="noopener noreferrer" class="nav-cta">
+        Instagram
+      </a>
+      <button id="nav-toggle" class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-mobile-menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div id="nav-mobile-menu" class="nav-mobile" aria-label="Menu mobile">
+    <a href="#sobre"   class="nav-mobile-link">Sobre</a>
+    <a href="#poemas"  class="nav-mobile-link">Poemas</a>
+    <a href="#contato" class="nav-mobile-link">Contato</a>
+    <a href="https://www.instagram.com/confissoes.poetica/" target="_blank" rel="noopener noreferrer" class="nav-mobile-link">Instagram</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero" class="hero-section">
+  <div class="hero-vignette" aria-hidden="true"></div>
+  <span class="hero-bg-quote" aria-hidden="true">❝</span>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow" data-animate>poesia autoral &nbsp;·&nbsp; vitória silva</p>
+
+    <div class="hero-ornament" data-animate data-animate-delay="1" aria-hidden="true">
+      <span class="hero-ornament-line"></span>
+      <span class="hero-ornament-diamond"></span>
+      <span class="hero-ornament-line"></span>
+    </div>
+
+    <div data-animate data-animate-delay="1">
+      <h1 class="hero-title">
+        Confissões<br/><em>Poéticas</em>
+      </h1>
+      <p class="hero-author">Vitória Silva</p>
+    </div>
+
+    <div data-animate data-animate-delay="2">
+      <p class="hero-tagline">
+        Versos nascidos do silêncio —<br/>
+        <em>palavras pra quem sente demais.</em>
+      </p>
+    </div>
+
+    <div class="hero-actions" data-animate data-animate-delay="3">
+      <a href="#poemas" class="btn-ink">Ler os poemas</a>
+      <a href="https://www.instagram.com/confissoes.poetica/" target="_blank" rel="noopener noreferrer" class="btn-ghost-ink">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @confissoes.poetica
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOBRE ═══ -->
+<section id="sobre" class="sobre-section py-24 px-6">
+  <div class="max-w-2xl mx-auto">
+    <div class="section-header" data-animate>
+      <span class="section-eyebrow">a poetisa</span>
+      <h2 class="section-title">Vitória Silva</h2>
+      <div class="section-rule" aria-hidden="true">
+        <span class="section-rule-line"></span>
+        <span class="section-rule-dot"></span>
+        <span class="section-rule-line"></span>
+      </div>
+    </div>
+    <div class="sobre-card" data-animate>
+      <p class="sobre-text">
+        Há versos que não cabem no silêncio — e foi do silêncio que Vitória Silva aprendeu a escrever.
+      </p>
+
+      <div class="sobre-pullquote">
+        <p>Ela transforma emoções que muitos carregam calados em palavras que chegam aonde a voz não alcança.</p>
+      </div>
+
+      <p class="sobre-text">
+        Em seus versos, a saudade tem textura, o futuro tem peso, e a maturidade chega sem aviso.
+      </p>
+
+      <p class="sobre-tagline">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+        </svg>
+        Poesia autoral · palavras pra quem sente demais.
+      </p>
+      <a href="https://www.instagram.com/confissoes.poetica/" target="_blank" rel="noopener noreferrer" class="sobre-instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        @confissoes.poetica
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── divisor ── -->
+<div class="section-divider py-10" style="--div-bg:#fff;">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-ornament">
+    <span class="section-divider-ornament-dot"></span>
+    <span>v e r s o s</span>
+    <span class="section-divider-ornament-dot"></span>
+  </span>
+  <span class="section-divider-line"></span>
+</div>
+
+<!-- ═══ VERSO EM DESTAQUE ═══ -->
+<section class="destaque-section">
+  <div class="destaque-inner" data-animate>
+    <span class="destaque-label">poema em destaque</span>
+    <div class="destaque-frame">
+      <h2 class="destaque-title">Se um dia…</h2>
+      <p class="destaque-verse">Se um dia quiser voltar,
+Que seja para nunca mais soltar.
+Se um dia sentir minha falta,
+Que a saudade bata firme à sua porta.
+
+Se um dia perceber
+Que ninguém vai te amar como eu soube fazer.
+Se um dia lembrar do meu nome,
+Que a saudade não te assuste.
+
+Se um dia nos encontrarmos outra vez,
+Que o olhar diga o que o orgulho não fez.
+Se um dia perceber o vazio,
+Que lembre-se do calor que ficou frio.
+
+Se esse dia nunca chegar,
+Eu continuarei a sonhar.
+Se um dia o vento soprar,
+A saudade vai me acompanhar.</p>
+      <p class="destaque-author">@vihsilva</p>
+    </div>
+    <div class="destaque-cta">
+      <a href="#poemas">Ver todos os poemas
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── divisor ── -->
+<div class="section-divider py-10" style="--div-bg:#f3efe8;">
+  <span class="section-divider-line"></span>
+  <span class="section-divider-ornament">
+    <span class="section-divider-ornament-dot"></span>
+    <span>o b r a</span>
+    <span class="section-divider-ornament-dot"></span>
+  </span>
+  <span class="section-divider-line"></span>
+</div>
+
+<!-- ═══ POEMAS ═══ -->
+<section id="poemas" class="poemas-section py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="section-header" data-animate>
+      <span class="section-eyebrow">obra poética</span>
+      <h2 class="section-title">Os Poemas</h2>
+      <div class="section-rule" aria-hidden="true">
+        <span class="section-rule-line"></span>
+        <span class="section-rule-dot"></span>
+        <span class="section-rule-line"></span>
+      </div>
+    </div>
+
+    <div class="poemas-grid">
+
+      <div class="poem-card" data-animate data-animate-delay="1"
+           onclick="openPoem('O Peso do Silêncio', 1,
+`A saudade é uma sombra que não se apaga,
+É um silêncio que se alaga.
+Em cada canto, um eco da partida,
+Na alma, a lembrança ainda é vivida.
+
+O que era som, agora se silencia;
+Na ausência, tudo perde a alegria.
+O coração bate, mas de um jeito insano,
+E o mundo gira, sem rumo, sem plano.
+
+Nos olhos, a dor se esconde disfarçada,
+Mas no vento, a dor é sussurrada.
+Cada lágrima é dolorida,
+Mas cada suspiro é uma despedida.
+
+E na espera, o tempo se torna um amigo,
+E na dor, o silêncio é o abrigo.
+Na eternidade, o amor continua a vida,
+E na essência, a alma é querida.`)">
+        <span class="poem-card-num">Poema I</span>
+        <h3 class="poem-card-title">O Peso do Silêncio</h3>
+        <p class="poem-card-excerpt">A saudade é uma sombra que não se apaga,
+É um silêncio que se alaga.
+Em cada canto, um eco da partida,
+Na alma, a lembrança ainda é vivida.</p>
+        <span class="poem-card-cta">Ler completo <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+
+      <div class="poem-card" data-animate data-animate-delay="2"
+           onclick="openPoem('Afundando e Sonhando', 2,
+`Tem dias que minha cabeça se desliga do presente.
+Meu próprio raciocínio se mostra incoerente.
+Só eu conheço a bagunça que se encontra na minha mente,
+E cada pensamento se esconde de repente.
+Ouço conselhos, mas não entram em minha mente.
+Sinto que sou sozinho, mesmo rodeado de tanta gente.
+Cada palavra alheia passa transparente,
+E tudo o que sinto fica dormente.
+Me deito em pensamentos que não sei organizar,
+E mesmo querendo fugir, não sei para onde escapar.
+No caos que está minha mente, ainda tento me encontrar,
+E mesmo perdido, nunca deixo de sonhar.
+Aceito o redemoinho que insiste em me habitar,
+E deixo minha mente livre a vagar.
+Me afundo em um buraco de emoções,
+Procurando respostas para tanta confusão.`)">
+        <span class="poem-card-num">Poema II</span>
+        <h3 class="poem-card-title">Afundando e Sonhando</h3>
+        <p class="poem-card-excerpt">Tem dias que minha cabeça se desliga do presente.
+Meu próprio raciocínio se mostra incoerente.
+Só eu conheço a bagunça que se encontra na minha mente...</p>
+        <span class="poem-card-cta">Ler completo <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+
+      <div class="poem-card" data-animate data-animate-delay="3"
+           onclick="openPoem('Transitórios', 3,
+`Se somos tão transitórios, tão feitos de vento,
+Por que me julgam pelo que já não sou?
+O que fui não é prisão, e sim uma história.
+Cada passo meu reinventa em memória.
+
+Não sou mais aquele que me confundem,
+Não sou mais o que me querem ver.
+Mas insistem em me prender à imagem,
+Ignoram o que carrego na bagagem.
+
+Mudanças me definem, e não o que ficou.
+Sou o que floresce, e não o que parou.
+Não me reduzem a um esqueleto alheio,
+Deixo os passos livres ao meio.
+
+Quem eu me encontro agora, não é o que fui lá atrás.
+Minha vida é estrada que não volta jamais.
+Então vejam-me no que sou visto,
+E não no reflexo do que foi misto.`)">
+        <span class="poem-card-num">Poema III</span>
+        <h3 class="poem-card-title">Transitórios</h3>
+        <p class="poem-card-excerpt">Se somos tão transitórios, tão feitos de vento,
+Por que me julgam pelo que já não sou?
+O que fui não é prisão, e sim uma história...</p>
+        <span class="poem-card-cta">Ler completo <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+
+      <div class="poem-card" data-animate data-animate-delay="1"
+           onclick="openPoem('Se um dia...', 4,
+`Se um dia quiser voltar,
+Que seja para nunca mais soltar.
+Se um dia sentir minha falta,
+Que a saudade bata firme à sua porta.
+
+Se um dia perceber
+Que ninguém vai te amar como eu soube fazer.
+Se um dia lembrar do meu nome,
+Que a saudade não te assuste.
+
+Se um dia nos encontrarmos outra vez,
+Que o olhar diga o que o orgulho não fez.
+Se um dia perceber o vazio,
+Que lembre-se do calor que ficou frio.
+
+Se esse dia nunca chegar,
+Eu continuarei a sonhar.
+Se um dia o vento soprar,
+A saudade vai me acompanhar.`)">
+        <span class="poem-card-num">Poema IV</span>
+        <h3 class="poem-card-title">Se um dia…</h3>
+        <p class="poem-card-excerpt">Se um dia quiser voltar,
+Que seja para nunca mais soltar.
+Se um dia sentir minha falta,
+Que a saudade bata firme à sua porta.</p>
+        <span class="poem-card-cta">Ler completo <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+
+      <div class="poem-card" data-animate data-animate-delay="2"
+           onclick="openPoem('A tal maturidade', 5,
+`A maturidade não tirou meus sonhos,
+Mas me ensinou a lidar.
+Descobri que ouvir é melhor que falar,
+Que o silêncio também sabe aconselhar.
+
+A maturidade chegou sem aviso,
+Mudou meu rumo, ajustou o meu juízo.
+Veio quando eu aprendi que a verdade
+Vale mais quando vem com honestidade.
+
+A maturidade não tirou minha emoção,
+Apenas me ensinou a direção.
+Que crescer é saber ceder
+Sem precisar se perder.
+
+A maturidade é esse recomeço,
+Entre o que soltei e o que mereço.
+Hoje caminho com menos peso,
+Fazendo da calma o meu novo endereço.`)">
+        <span class="poem-card-num">Poema V</span>
+        <h3 class="poem-card-title">A tal maturidade</h3>
+        <p class="poem-card-excerpt">A maturidade não tirou meus sonhos,
+Mas me ensinou a lidar.
+Descobri que ouvir é melhor que falar,
+Que o silêncio também sabe aconselhar.</p>
+        <span class="poem-card-cta">Ler completo <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+
+      <div class="poem-card" data-animate data-animate-delay="3"
+           onclick="openPoem('O futuro', 6,
+`O futuro me assusta,
+Porque não vem com garantias, e sim com cobranças.
+É um espaço em branco
+Que exige coragem
+De quem já está exausto.
+
+Tenho planos reservados
+Em sonhos mal explicados
+Que me encaram em silêncio,
+Esperando por resposta.
+
+O futuro me olha de longe
+E eu finjo que não vejo,
+Como se ignorar
+Fosse uma forma de defesa.
+
+Tenho medo de crescer,
+Sem saber quem vou me tornar,
+De perder minha essência
+Para tentar me encaixar
+Em um mundo que aplaude quem aprende a se moldar.`)">
+        <span class="poem-card-num">Poema VI</span>
+        <h3 class="poem-card-title">O futuro</h3>
+        <p class="poem-card-excerpt">O futuro me assusta,
+Porque não vem com garantias, e sim com cobranças.
+É um espaço em branco que exige coragem...</p>
+        <span class="poem-card-cta">Ler completo <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+
+      <div class="poem-card" data-animate data-animate-delay="1"
+           onclick="openPoem('Viver para sobreviver ou sobreviver para viver', 7,
+`Acordamos todos os dias,
+Sem saber se iremos viver
+Ou apenas sobreviver.
+
+Seguimos dias mecânicos,
+Em atos vazios e automáticos,
+Não por vontade,
+Mas por dura realidade.
+
+Sobreviver para viver,
+É insistir em não desistir,
+É guardar luz na alma,
+Mesmo quando o mundo não acalma.
+
+No fim entendemos:
+Sobreviver é necessário,
+Viver é um ato diário,
+Decidido em silêncio.`)">
+        <span class="poem-card-num">Poema VII</span>
+        <h3 class="poem-card-title">Viver ou Sobreviver</h3>
+        <p class="poem-card-excerpt">Acordamos todos os dias,
+Sem saber se iremos viver
+Ou apenas sobreviver.
+
+Seguimos dias mecânicos, em atos vazios...</p>
+        <span class="poem-card-cta">Ler completo <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+
+      <div class="poem-card" data-animate data-animate-delay="2"
+           onclick="openPoem('Culpa e Perdão', 8,
+`No decorrer dos dias, a culpa se instala
+A carga emocional, os pensamentos sem fim
+Todos os erros são como uma sombra fria
+Atravessando meu ser, sem descanso ou alívio
+
+De todas as formas, tentei fazer o certo
+Mas não consegui ser quem queria ser
+Queria pedir perdão à minha antiga eu
+Perdoa pelas vezes que coloquei a culpa em você
+
+Perdão pelas vezes que você foi dormir chorando
+Achando que você era o erro, o problema
+Perdão por duvidar das suas escolhas e sonhos
+Por não ter visto o valor que você tinha
+
+Hoje, reconecto-me com a menina que já fui
+Afirmando que cuidaria da minha alma
+Peço perdão e sigo me esforçando
+Afinal, eu sou o desfecho da minha história.`)">
+        <span class="poem-card-num">Poema VIII</span>
+        <h3 class="poem-card-title">Culpa e Perdão</h3>
+        <p class="poem-card-excerpt">No decorrer dos dias, a culpa se instala
+A carga emocional, os pensamentos sem fim
+Todos os erros são como uma sombra fria...</p>
+        <span class="poem-card-cta">Ler completo <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+
+      <div class="poem-card" data-animate data-animate-delay="3"
+           onclick="openPoem('Saudade de mim', 9,
+`Hoje senti sua falta,
+Assim como todos os dias
+Falta dos sorrisos sinceros
+E de tanta harmonia
+
+Como todas as noites
+Os pensamentos vêm
+Com suas lembranças
+Das amarelinhas
+Quando criança
+
+Sinto falta do seu brilho
+Da infância bem vivida
+Das brincadeiras animadas
+Que eu sempre estava envolvida
+
+Saudade daquele tempo
+Onde não havia preocupação
+Onde eu corria nos vales
+Com uma certa determinação
+
+Hoje olhei bem dentro de mim
+E percebi que você não estava mais ali
+Então me dei conta de que sou outra
+E não mais aquela pessoa feliz`)">
+        <span class="poem-card-num">Poema IX</span>
+        <h3 class="poem-card-title">Saudade de mim</h3>
+        <p class="poem-card-excerpt">Hoje senti sua falta,
+Assim como todos os dias
+Falta dos sorrisos sinceros
+E de tanta harmonia</p>
+        <span class="poem-card-cta">Ler completo <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Modal poema -->
+<div id="poem-modal" role="dialog" aria-modal="true" aria-label="Poema completo" onclick="closePoemModal(event)">
+  <div class="poem-modal-inner">
+    <button class="poem-modal-close" onclick="closePoemModal()" aria-label="Fechar">&#x2715;</button>
+    <span class="poem-modal-num" id="modal-num"></span>
+    <h2 class="poem-modal-title" id="modal-title"></h2>
+    <div class="poem-modal-rule"></div>
+    <p class="poem-modal-body" id="modal-body"></p>
+    <p class="poem-modal-author">@vihsilva</p>
+  </div>
+</div>
+
+<!-- ═══ CONTATO ═══ -->
+<section id="contato" class="contato-section py-24 px-6">
+  <div class="max-w-xl mx-auto relative z-10">
+    <div class="section-header" data-animate>
+      <span class="section-eyebrow">encontre a Vitória</span>
+      <h2 class="section-title">Onde me encontrar</h2>
+      <div class="section-rule" aria-hidden="true">
+        <span class="section-rule-line"></span>
+        <span class="section-rule-dot"></span>
+        <span class="section-rule-line"></span>
+      </div>
+    </div>
+
+    <div class="contato-links" data-animate>
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/confissoes.poetica/" target="_blank" rel="noopener noreferrer" class="contato-link">
+        <div class="contato-link-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <div>
+          <p class="contato-link-label">Instagram</p>
+          <p class="contato-link-value">@confissoes.poetica</p>
+        </div>
+        <svg class="h-4 w-4 contato-link-arr" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="footer-promo">
+      Quer uma página como esta para o seu negócio?<br/>
+      <a href="https://linkbio.api.br" target="_blank" rel="noopener noreferrer">
+        <img src="logo-linkbio.png" alt="LinkBio" loading="lazy" width="90" height="28" />
+        <span style="font-family:'Cormorant Garamond',serif;">Conheça o LinkBio</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── WhatsApp flutuante (opcional — remove se não quiser) ── -->
+<!-- <a id="wa-float" href="https://wa.me/55..." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2z"/></svg>
+</a> -->
+
+<script>
+  // Splash
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('splash').classList.add('hide'), 1800);
+  });
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // Menu mobile
+  const navToggle = document.getElementById('nav-toggle');
+  const navMobile = document.getElementById('nav-mobile-menu');
+  if (navToggle && navMobile) {
+    navToggle.addEventListener('click', () => {
+      const open = navMobile.classList.toggle('is-open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    navMobile.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      navMobile.classList.remove('is-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
+  }
+
+  // Scroll animate
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('[data-animate]').forEach(el => obs.observe(el));
+
+  // Modal poema
+  const modal    = document.getElementById('poem-modal');
+  const modalNum = document.getElementById('modal-num');
+  const modalTit = document.getElementById('modal-title');
+  const modalBod = document.getElementById('modal-body');
+
+  const romans = ['I','II','III','IV','V','VI','VII','VIII','IX','X'];
+
+  function openPoem(title, num, body) {
+    modalNum.textContent = 'Poema ' + (romans[num - 1] || num);
+    modalTit.textContent = title;
+    modalBod.textContent = body;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePoemModal(e) {
+    if (!e || e.target === modal || e.currentTarget.tagName === 'BUTTON') {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePoemModal(); });
+</script>
+
+<script src="https://linkbio.api.br/tracker.js" data-slug="confissoespoeticas" defer></script>
+</body>
+</html>
+
