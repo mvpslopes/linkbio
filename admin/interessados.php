@@ -148,6 +148,62 @@ if ($tablesOk) {
     $rows = $st->fetchAll();
 }
 
+$dashComissoes = [];
+$totalPendente = 0.0;
+$qtdPendenteTotal = 0;
+
+if ($tablesOk) {
+    $dashRows = $pdo->query(
+        "SELECT u.id, u.name, u.username,
+                COUNT(i.id) AS qtd,
+                COALESCE(SUM(i.comissao), 0) AS total
+         FROM users u
+         LEFT JOIN interessados i ON i.atendente_id = u.id
+             AND i.status_comissao = 'Pendente'
+             AND i.comissao IS NOT NULL
+         WHERE u.role = 'root'
+         GROUP BY u.id, u.name, u.username
+         ORDER BY total DESC, u.name ASC, u.username ASC"
+    )->fetchAll();
+
+    foreach ($dashRows as $d) {
+        $total = (float) $d['total'];
+        $qtd   = (int) $d['qtd'];
+        $totalPendente += $total;
+        $qtdPendenteTotal += $qtd;
+        $label = $d['name'] ?: $d['username'];
+        $dashComissoes[] = [
+            'id'       => (int) $d['id'],
+            'label'    => $label,
+            'initials' => strtoupper(substr(preg_replace('/[^a-zA-Z]/', '', $label), 0, 2) ?: '??'),
+            'qtd'      => $qtd,
+            'total'    => $total,
+        ];
+    }
+
+    $semAtendente = $pdo->query(
+        "SELECT COUNT(*) AS qtd, COALESCE(SUM(comissao), 0) AS total
+         FROM interessados
+         WHERE atendente_id IS NULL
+           AND status_comissao = 'Pendente'
+           AND comissao IS NOT NULL"
+    )->fetch();
+
+    $semTotal = (float) ($semAtendente['total'] ?? 0);
+    $semQtd   = (int) ($semAtendente['qtd'] ?? 0);
+    if ($semQtd > 0) {
+        $totalPendente += $semTotal;
+        $qtdPendenteTotal += $semQtd;
+        $dashComissoes[] = [
+            'id'       => null,
+            'label'    => 'Sem atendente',
+            'initials' => '?',
+            'qtd'      => $semQtd,
+            'total'    => $semTotal,
+        ];
+    }
+}
+
 $statusColors = [
     'Novo'        => 'bg-sky-500/15 text-sky-600',
     'Em contato'  => 'bg-amber-500/15 text-amber-600',
@@ -160,6 +216,8 @@ $comissaoColors = [
     'Paga'      => 'bg-emerald-500/15 text-emerald-600',
     'Cancelada' => 'bg-slate-500/15 text-slate-500',
 ];
+
+$openCreateModal = $_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'create' && $error !== '';
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -202,6 +260,32 @@ $comissaoColors = [
     .tbl tr:hover td { background: #f8fafc; }
     .badge { display: inline-flex; align-items: center; border-radius: 9999px; padding: .2rem .65rem; font-size: 11px; font-weight: 600; }
     .opcao-tag { display: inline-flex; align-items: center; gap: .35rem; border-radius: .5rem; border: 1px solid #e2e8f0; background: #f8fafc; padding: .25rem .5rem; font-size: 12px; color: #334155; }
+    .modal-overlay { background: rgba(15, 23, 42, 0.45); backdrop-filter: blur(4px); }
+    .modal-panel {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+      box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.28);
+      color: #0f172a;
+      scrollbar-width: thin;
+      scrollbar-color: #cbd5e1 transparent;
+    }
+    .modal-panel::-webkit-scrollbar { width: 6px; }
+    .modal-panel::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+    .modal-panel .input { border: 1px solid #cbd5e1; background: #fff; color: #0f172a; }
+    .modal-panel .input:focus { border-color: #2F80ED; box-shadow: 0 0 0 3px rgba(47, 128, 237, 0.12); }
+    .modal-panel .input::placeholder { color: #94a3b8; }
+    .modal-panel .btn-ghost { background: #f8fafc; color: #334155; border-color: #cbd5e1; }
+    .modal-panel .btn-ghost:hover { background: #e2e8f0; color: #0f172a; }
+    .modal-title { color: #0f172a; font-weight: 700; }
+    .modal-subtitle { color: #64748b; }
+    .modal-close { color: #94a3b8; line-height: 1; }
+    .modal-close:hover { color: #475569; }
+    .dash-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 1rem 1.15rem; box-shadow: 0 4px 14px rgba(15,23,42,.04); }
+    .dash-card-total { border-color: #fcd34d; background: linear-gradient(135deg, #fffbeb 0%, #fff 100%); }
+    .dash-avatar { height: 2.25rem; width: 2.25rem; border-radius: .65rem; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; background: #eff6ff; color: #2563eb; shrink: 0; }
+    .dash-value { font-size: 1.35rem; font-weight: 800; color: #b45309; line-height: 1.2; }
+    .dash-value-zero { color: #94a3b8; }
   </style>
 </head>
 <body class="text-slate-100 font-sans antialiased min-h-screen flex">
@@ -239,10 +323,20 @@ $comissaoColors = [
   </aside>
 
   <main class="main-panel flex-1 min-w-0 px-4 sm:px-8 py-8 space-y-6 overflow-auto">
-    <div>
-      <p class="text-[11px] text-slate-500 uppercase tracking-widest mb-1">Administração</p>
-      <h1 class="text-xl font-bold text-white">Interessados</h1>
-      <p class="text-[13px] text-slate-500 mt-1">Controle de leads: cliente, segmento, contato, status, atendente e comissão.</p>
+    <div class="flex flex-wrap items-start justify-between gap-4">
+      <div>
+        <p class="text-[11px] text-slate-500 uppercase tracking-widest mb-1">Administração</p>
+        <h1 class="text-xl font-bold text-white">Interessados</h1>
+        <p class="text-[13px] text-slate-500 mt-1">Controle de leads: cliente, segmento, contato, status, atendente e comissão.</p>
+      </div>
+      <?php if ($tablesOk): ?>
+      <button type="button" onclick="openCreate()" class="btn-primary inline-flex items-center gap-2 shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+        </svg>
+        Novo interessado
+      </button>
+      <?php endif; ?>
     </div>
 
     <?php if (!$tablesOk): ?>
@@ -259,8 +353,45 @@ $comissaoColors = [
       <div class="rounded-xl bg-red-500/10 border border-red-500/25 px-4 py-3 text-[13px] text-red-600"><?= h($error) ?></div>
     <?php endif; ?>
 
-    <div class="grid gap-6 xl:grid-cols-[1fr,360px]">
-      <div class="space-y-4">
+    <!-- Dash comissões pendentes -->
+    <div class="space-y-3">
+      <div class="flex flex-wrap items-end justify-between gap-2">
+        <div>
+          <p class="text-[10px] font-semibold text-slate-500 uppercase tracking-widest">Comissões pendentes</p>
+          <p class="text-[12px] text-slate-500 mt-0.5">Valores com status de comissão <strong class="text-amber-600">Pendente</strong>, por atendente root.</p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+        <div class="dash-card dash-card-total">
+          <p class="text-[10px] font-semibold text-amber-700 uppercase tracking-widest mb-2">Total geral</p>
+          <p class="dash-value"><?= h(fmtComissao($totalPendente)) ?></p>
+          <p class="text-[11px] text-slate-500 mt-1"><?= $qtdPendenteTotal ?> comissão(ões) pendente(s)</p>
+        </div>
+        <?php foreach ($dashComissoes as $dash): ?>
+        <div class="dash-card">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="dash-avatar"><?= h($dash['initials']) ?></span>
+            <div class="min-w-0">
+              <p class="text-[13px] font-semibold text-slate-800 truncate"><?= h($dash['label']) ?></p>
+              <p class="text-[10px] text-slate-500 uppercase tracking-widest">Atendente root</p>
+            </div>
+          </div>
+          <p class="dash-value <?= $dash['total'] <= 0 ? 'dash-value-zero' : '' ?>"><?= h(fmtComissao($dash['total'])) ?></p>
+          <p class="text-[11px] text-slate-500 mt-1">
+            <?= $dash['qtd'] ?> pendente(s)
+            <?php if ($dash['total'] <= 0): ?> · sem valores<?php endif; ?>
+          </p>
+        </div>
+        <?php endforeach; ?>
+        <?php if (!$dashComissoes): ?>
+        <div class="dash-card sm:col-span-2">
+          <p class="text-[13px] text-slate-500">Nenhum usuário root cadastrado para exibir comissões.</p>
+        </div>
+        <?php endif; ?>
+      </div>
+    </div>
+
+    <div class="space-y-4">
         <!-- Filtros -->
         <div class="card px-4 py-4 flex flex-wrap gap-3 items-end">
           <form method="GET" class="flex flex-wrap gap-3 items-end flex-1">
@@ -341,69 +472,6 @@ $comissaoColors = [
             </table>
           </div>
         </div>
-      </div>
-
-      <!-- Formulário novo -->
-      <div class="card px-5 py-5 self-start space-y-4">
-        <p class="text-[13px] font-semibold text-slate-300">Novo interessado</p>
-        <form method="POST" class="space-y-3">
-          <input type="hidden" name="action" value="create"/>
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Nome do cliente *</label>
-            <input type="text" name="nome_cliente" required class="input" placeholder="Ex: Maria Silva"/>
-          </div>
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Segmento</label>
-            <select name="segmento" class="input" style="cursor:pointer">
-              <option value="">— Selecione —</option>
-              <?php foreach ($segmentos as $op): ?>
-              <option value="<?= h($op['valor']) ?>"><?= h($op['valor']) ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Contato</label>
-            <input type="text" name="contato" class="input" placeholder="WhatsApp, e-mail ou telefone"/>
-          </div>
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Status</label>
-            <select name="status" class="input" style="cursor:pointer">
-              <?php foreach ($statusList as $op): ?>
-              <option value="<?= h($op['valor']) ?>" <?= $op['valor'] === 'Novo' ? 'selected' : '' ?>><?= h($op['valor']) ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Atendente</label>
-            <select name="atendente_id" class="input" style="cursor:pointer">
-              <option value="">— Nenhum —</option>
-              <?php foreach ($atendentes as $a): ?>
-              <option value="<?= (int) $a['id'] ?>"><?= h($a['name'] ?: $a['username']) ?></option>
-              <?php endforeach; ?>
-            </select>
-          </div>
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Comissão (R$)</label>
-              <input type="text" name="comissao" class="input" placeholder="0,00"/>
-            </div>
-            <div>
-              <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Status comissão</label>
-              <select name="status_comissao" class="input" style="cursor:pointer">
-                <option value="">—</option>
-                <?php foreach ($statusComissaoList as $op): ?>
-                <option value="<?= h($op['valor']) ?>"><?= h($op['valor']) ?></option>
-                <?php endforeach; ?>
-              </select>
-            </div>
-          </div>
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Observações</label>
-            <textarea name="observacoes" rows="2" class="input" placeholder="Anotações internas"></textarea>
-          </div>
-          <button type="submit" class="btn-primary w-full">Cadastrar</button>
-        </form>
-      </div>
     </div>
 
     <!-- Opções configuráveis -->
@@ -452,10 +520,86 @@ $comissaoColors = [
     <?php endif; ?>
   </main>
 
+  <!-- Modal novo interessado -->
+  <div id="modal-create" class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center px-4 py-6">
+    <div class="modal-panel w-full max-w-lg px-6 py-6 space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <h2 class="modal-title text-[16px]">Novo interessado</h2>
+          <p class="modal-subtitle text-[12px] mt-1">Preencha os dados do lead.</p>
+        </div>
+        <button type="button" onclick="closeCreate()" class="modal-close text-2xl font-light shrink-0" aria-label="Fechar">×</button>
+      </div>
+      <form method="POST" class="space-y-3" id="form-create">
+        <input type="hidden" name="action" value="create"/>
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Nome do cliente *</label>
+          <input type="text" name="nome_cliente" id="create-nome" required class="input" placeholder="Ex: Maria Silva" value="<?= h($_POST['nome_cliente'] ?? '') ?>"/>
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Segmento</label>
+          <select name="segmento" id="create-segmento" class="input" style="cursor:pointer">
+            <option value="">— Selecione —</option>
+            <?php foreach ($segmentos as $op): ?>
+            <option value="<?= h($op['valor']) ?>" <?= ($_POST['segmento'] ?? '') === $op['valor'] ? 'selected' : '' ?>><?= h($op['valor']) ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Contato</label>
+          <input type="text" name="contato" id="create-contato" class="input" placeholder="WhatsApp, e-mail ou telefone" value="<?= h($_POST['contato'] ?? '') ?>"/>
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Status</label>
+          <select name="status" id="create-status" class="input" style="cursor:pointer">
+            <?php foreach ($statusList as $op): ?>
+            <option value="<?= h($op['valor']) ?>" <?= ($_POST['status'] ?? 'Novo') === $op['valor'] ? 'selected' : '' ?>><?= h($op['valor']) ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Atendente</label>
+          <select name="atendente_id" id="create-atendente" class="input" style="cursor:pointer">
+            <option value="">— Nenhum —</option>
+            <?php foreach ($atendentes as $a): ?>
+            <option value="<?= (int) $a['id'] ?>" <?= (int)($_POST['atendente_id'] ?? 0) === (int)$a['id'] ? 'selected' : '' ?>><?= h($a['name'] ?: $a['username']) ?></option>
+            <?php endforeach; ?>
+          </select>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Comissão (R$)</label>
+            <input type="text" name="comissao" id="create-comissao" class="input" placeholder="0,00" value="<?= h($_POST['comissao'] ?? '') ?>"/>
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Status comissão</label>
+            <select name="status_comissao" id="create-status-comissao" class="input" style="cursor:pointer">
+              <option value="">—</option>
+              <?php foreach ($statusComissaoList as $op): ?>
+              <option value="<?= h($op['valor']) ?>" <?= ($_POST['status_comissao'] ?? '') === $op['valor'] ? 'selected' : '' ?>><?= h($op['valor']) ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-widest mb-1">Observações</label>
+          <textarea name="observacoes" id="create-obs" rows="2" class="input" placeholder="Anotações internas"><?= h($_POST['observacoes'] ?? '') ?></textarea>
+        </div>
+        <div class="flex gap-2 pt-1">
+          <button type="submit" class="btn-primary flex-1">Cadastrar</button>
+          <button type="button" onclick="closeCreate()" class="btn-ghost flex-1">Cancelar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <!-- Modal editar -->
-  <div id="modal-edit" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm px-4">
-    <div class="card w-full max-w-lg px-6 py-6 space-y-4 max-h-[90vh] overflow-y-auto">
-      <h2 class="text-[16px] font-bold text-white">Editar interessado</h2>
+  <div id="modal-edit" class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center px-4 py-6">
+    <div class="modal-panel w-full max-w-lg px-6 py-6 space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-start justify-between gap-3">
+        <h2 class="modal-title text-[16px]">Editar interessado</h2>
+        <button type="button" onclick="closeEdit()" class="modal-close text-2xl font-light shrink-0" aria-label="Fechar">×</button>
+      </div>
       <form method="POST" class="space-y-3" id="form-edit">
         <input type="hidden" name="action" value="edit"/>
         <input type="hidden" name="id" id="edit-id"/>
@@ -521,6 +665,21 @@ $comissaoColors = [
   </div>
 
   <script>
+    function openCreate() {
+      const m = document.getElementById('modal-create');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+      document.getElementById('create-nome').focus();
+    }
+    function closeCreate() {
+      const m = document.getElementById('modal-create');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+    document.getElementById('modal-create').addEventListener('click', function(e) {
+      if (e.target === this) closeCreate();
+    });
+
     function openEdit(row) {
       document.getElementById('edit-id').value = row.id;
       document.getElementById('edit-nome').value = row.nome_cliente || '';
@@ -544,6 +703,8 @@ $comissaoColors = [
     document.getElementById('modal-edit').addEventListener('click', function(e) {
       if (e.target === this) closeEdit();
     });
+
+    <?php if ($openCreateModal): ?>openCreate();<?php endif; ?>
   </script>
 </body>
 </html>
