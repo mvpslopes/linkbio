@@ -350,6 +350,7 @@ $pageUrl = 'https://'.$selected.'.linkbio.api.br';
     <?php
     $isBriefingForms = basename(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '') === 'briefing_forms.php';
     $isUsersPage = basename(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '') === 'users.php';
+    $isInteressadosPage = basename(parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH) ?? '') === 'interessados.php';
     ?>
     <p class="px-2 pt-4 pb-2 text-[10px] font-semibold text-slate-700 uppercase tracking-widest">Administração</p>
     <a href="/admin/briefing_forms.php"
@@ -360,6 +361,14 @@ $pageUrl = 'https://'.$selected.'.linkbio.api.br';
         </svg>
       </span>
       Briefings (criar página)
+    </a>
+    <a href="/admin/interessados.php" class="flex items-center gap-2.5 nav-item px-2.5 py-2.5 text-[13px] <?= $isInteressadosPage ? 'bg-white/20 border border-white/30 text-white' : 'text-slate-400 hover:text-white' ?> transition">
+      <span class="h-7 w-7 rounded-lg shrink-0 flex items-center justify-center" style="background:<?= $isInteressadosPage ? 'rgba(255,255,255,.25)' : 'rgba(255,255,255,.08)' ?>">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 <?= $isInteressadosPage ? 'text-white' : 'text-slate-500' ?>" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-5-3.87M9 20H4v-2a4 4 0 015-3.87M12 12a4 4 0 100-8 4 4 0 000 8zm0 0v-1a4 4 0 014-4h2a4 4 0 014 4v1"/>
+        </svg>
+      </span>
+      Interessados
     </a>
     <a href="/admin/users.php" class="flex items-center gap-2.5 nav-item px-2.5 py-2.5 text-[13px] <?= $isUsersPage ? 'bg-white/20 border border-white/30 text-white' : 'text-slate-400 hover:text-white' ?> transition">
       <span class="h-7 w-7 rounded-lg shrink-0 flex items-center justify-center" style="background:<?= $isUsersPage ? 'rgba(255,255,255,.25)' : 'rgba(255,255,255,.08)' ?>">
