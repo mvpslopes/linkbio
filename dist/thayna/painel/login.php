@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/nav.php';
 
 if (thayna_auth_user()) {
     header('Location: /painel/');
@@ -27,7 +28,7 @@ $logoPath = is_file(dirname(__DIR__, 2) . '/logo/logo.png') ? '/logo/logo.png' :
   <meta name="theme-color" content="#6d214f"/>
   <title>Login — Painel Thayna</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/painel/includes/painel.css"/>
+  <?php thayna_painel_head(); ?>
 </head>
 <body class="login-page">
   <div class="login-card">

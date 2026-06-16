@@ -1,15 +1,27 @@
 <?php
 require_once __DIR__ . '/includes/auth.php';
 require_once __DIR__ . '/includes/pdf_report.php';
+require_once __DIR__ . '/includes/clientes.php';
+require_once __DIR__ . '/includes/nav.php';
 
 $user = require_thayna_auth();
 $pdo  = db();
 
 $tableOk = in_array('thayna_relatorios', array_column($pdo->query('SHOW TABLES')->fetchAll(PDO::FETCH_NUM), 0), true);
+$clientesOk = thayna_table_clientes_ok($pdo);
 
 $id = (int) ($_GET['id'] ?? 0);
+$prefillClienteId = (int) ($_GET['cliente_id'] ?? 0);
 $row = null;
 $data = [];
+$clienteId = null;
+
+$clientesLista = [];
+if ($clientesOk) {
+    $clientesLista = $pdo->query(
+        'SELECT id, nome_completo FROM thayna_clientes ORDER BY nome_completo ASC LIMIT 500'
+    )->fetchAll();
+}
 
 if ($tableOk && $id > 0) {
     $st = $pdo->prepare('SELECT * FROM thayna_relatorios WHERE id = ? LIMIT 1');
@@ -17,6 +29,15 @@ if ($tableOk && $id > 0) {
     $row = $st->fetch() ?: null;
     if ($row) {
         $data = thayna_relatorio_prepare($row);
+        $clienteId = !empty($row['cliente_id']) ? (int) $row['cliente_id'] : null;
+    }
+} elseif ($prefillClienteId > 0 && $clientesOk) {
+    $st = $pdo->prepare('SELECT id, nome_completo FROM thayna_clientes WHERE id = ? LIMIT 1');
+    $st->execute([$prefillClienteId]);
+    $cli = $st->fetch();
+    if ($cli) {
+        $clienteId = (int) $cli['id'];
+        $data['cliente_nome'] = $cli['nome_completo'];
     }
 }
 
@@ -25,6 +46,7 @@ $success = '';
 
 if ($tableOk && $_SERVER['REQUEST_METHOD'] === 'POST') {
     $cliente = trim($_POST['cliente_nome'] ?? '');
+    $clienteIdPost = (int) ($_POST['cliente_id'] ?? 0) ?: null;
     if ($cliente === '') {
         $error = 'Informe o nome do cliente.';
     } else {
@@ -37,8 +59,9 @@ if ($tableOk && $_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             if ($editId > 0) {
                 $pdo->prepare(
-                    'UPDATE thayna_relatorios SET cliente_nome=?, data_analise=?, periodo_inicio=?, periodo_termino=?, payload_json=? WHERE id=?'
+                    'UPDATE thayna_relatorios SET cliente_id=?, cliente_nome=?, data_analise=?, periodo_inicio=?, periodo_termino=?, payload_json=? WHERE id=?'
                 )->execute([
+                    $clienteIdPost,
                     $cliente,
                     $dataAnalise,
                     $periodoInicio,
@@ -52,10 +75,11 @@ if ($tableOk && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $codigo = thayna_gerar_codigo_caso($pdo);
             $pdo->prepare(
-                'INSERT INTO thayna_relatorios (codigo_caso, cliente_nome, data_analise, periodo_inicio, periodo_termino, payload_json, created_by)
-                 VALUES (?,?,?,?,?,?,?)'
+                'INSERT INTO thayna_relatorios (codigo_caso, cliente_id, cliente_nome, data_analise, periodo_inicio, periodo_termino, payload_json, created_by)
+                 VALUES (?,?,?,?,?,?,?,?)'
             )->execute([
                 $codigo,
+                $clienteIdPost,
                 $cliente,
                 $dataAnalise,
                 $periodoInicio,
@@ -71,6 +95,7 @@ if ($tableOk && $_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     $data = array_merge($data, thayna_payload_from_post($_POST), ['cliente_nome' => $cliente]);
+    $clienteId = $clienteIdPost;
 }
 
 if (isset($_GET['saved'])) {
@@ -112,22 +137,16 @@ $pontos = array_pad($pontos, 4, '');
   <meta name="theme-color" content="#6d214f"/>
   <title><?= $row ? 'Editar' : 'Novo' ?> relatório — Thayna</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/painel/includes/painel.css"/>
+  <?php thayna_painel_head(); ?>
 </head>
-<body>
-  <header class="top">
-    <div class="top-inner">
-      <div class="top-row">
-        <div>
-          <strong class="title"><?= $row ? 'Editar relatório' : 'Novo relatório' ?></strong>
-          <?php if ($row): ?><p class="sub">Código: <?= h($row['codigo_caso']) ?></p><?php endif; ?>
-        </div>
-        <a href="/painel/" class="back-link">← Lista</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
+<body class="painel-app">
+<?php thayna_painel_layout_start('relatorios', [
+  'title' => $row ? 'Editar relatório' : 'Novo relatório',
+  'subtitle' => $row ? 'Código: ' . h($row['codigo_caso']) : 'Análise comportamental',
+  'user' => $user,
+  'back_href' => '/painel/',
+  'back_label' => '← Lista',
+]); ?>
     <?php if (!$tableOk): ?>
       <div class="warn">Execute <code>admin/sql/09_thayna_relatorios.sql</code> no phpMyAdmin.</div>
     <?php else: ?>
@@ -147,6 +166,15 @@ $pontos = array_pad($pontos, 4, '');
 
       <div class="section">
         <h2>Identificação</h2>
+        <?php if ($clientesOk && $clientesLista): ?>
+        <label class="field-label" for="cliente_id">Cliente cadastrada</label>
+        <select id="cliente_id" name="cliente_id" class="select-field">
+          <option value="">— Selecionar do cadastro (opcional) —</option>
+          <?php foreach ($clientesLista as $cli): ?>
+          <option value="<?= (int)$cli['id'] ?>" <?= $clienteId === (int)$cli['id'] ? 'selected' : '' ?>><?= h($cli['nome_completo']) ?></option>
+          <?php endforeach; ?>
+        </select>
+        <?php endif; ?>
         <div class="grid2">
           <div>
             <label class="field-label" for="cliente_nome">Cliente *</label>
@@ -246,6 +274,24 @@ $pontos = array_pad($pontos, 4, '');
       <?php endif; ?>
     </div>
     <?php endif; ?>
-  </main>
+<?php thayna_painel_layout_end(); ?>
+  <?php if ($clientesOk && $clientesLista): ?>
+  <script>
+    (function() {
+      var sel = document.getElementById('cliente_id');
+      var nome = document.getElementById('cliente_nome');
+      if (!sel || !nome) return;
+      var map = {};
+      <?php foreach ($clientesLista as $cli): ?>
+      map['<?= (int)$cli['id'] ?>'] = <?= json_encode($cli['nome_completo'], JSON_UNESCAPED_UNICODE) ?>;
+      <?php endforeach; ?>
+      sel.addEventListener('change', function() {
+        if (sel.value && map[sel.value]) {
+          nome.value = map[sel.value];
+        }
+      });
+    })();
+  </script>
+  <?php endif; ?>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/nav.php';
 $user = require_thayna_auth();
 $pdo  = db();
 
@@ -42,23 +43,15 @@ function fmtDate(?string $d): string
   <meta name="theme-color" content="#6d214f"/>
   <title>Relatórios — Thayna Freire</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="/painel/includes/painel.css"/>
+  <?php thayna_painel_head(); ?>
 </head>
-<body>
-  <header class="top">
-    <div class="top-inner">
-      <div>
-        <h1>Relatórios</h1>
-        <p><?= h($user['name'] ?: $user['username']) ?> · Análise comportamental</p>
-      </div>
-      <div class="top-actions">
-        <a href="/painel/relatorio.php" class="btn btn-light">+ Novo relatório</a>
-        <a href="/painel/logout.php" class="btn btn-ghost">Sair</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
+<body class="painel-app">
+<?php thayna_painel_layout_start('relatorios', [
+  'title' => 'Relatórios',
+  'subtitle' => h($user['name'] ?: $user['username']) . ' · Análise comportamental',
+  'user' => $user,
+  'actions' => '<a href="/painel/relatorio.php" class="btn btn-primary btn-sm">+ Novo relatório</a>',
+]); ?>
     <?php if (!$tableOk): ?>
       <div class="warn">Execute o script <code>admin/sql/09_thayna_relatorios.sql</code> no phpMyAdmin antes de usar o painel.</div>
     <?php else: ?>
@@ -95,6 +88,6 @@ function fmtDate(?string $d): string
       </div>
       <?php endif; ?>
     <?php endif; ?>
-  </main>
+<?php thayna_painel_layout_end(); ?>
 </body>
 </html>

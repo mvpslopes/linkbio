@@ -1,0 +1,6 @@
+RewriteEngine On
+RewriteBase /termo/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([A-Za-z0-9_-]{12}|[a-fA-F0-9]{48})$ index.php?token=$1 [L,QSA]
