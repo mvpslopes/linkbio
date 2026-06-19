@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Root — Nutrição Integrativa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest:    '#0E1F18',
+            forestMid: '#1B3A2D',
+            green:     '#2D5A3D',
+            gold:      '#C9A84C',
+            goldLight: '#E0C278',
+            cream:     '#FAF7F0',
+            creamMuted:'#D9D4C7',
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body:    ['DM Sans', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #0E1F18;
+      color: #FAF7F0;
+      font-family: 'DM Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Animação fade-up ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+    .fade-up-delay-5 { transition-delay: 0.5s; }
+
+    /* ── Linha divisória dourada ── */
+    .gold-line {
+      display: block;
+      width: 64px;
+      height: 1px;
+      background: #C9A84C;
+      margin: 0 auto;
+    }
+    .gold-line-full {
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #C9A84C 30%, #C9A84C 70%, transparent 100%);
+    }
+    .gold-line-left {
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, #C9A84C 0%, transparent 100%);
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0E1F18; }
+    ::-webkit-scrollbar-thumb { background: #C9A84C44; border-radius: 3px; }
+
+    /* ── Hero overlay ── */
+    .hero-overlay {
+      background: linear-gradient(
+        135deg,
+        rgba(14,31,24,0.92) 0%,
+        rgba(27,58,45,0.80) 50%,
+        rgba(14,31,24,0.88) 100%
+      );
+    }
+
+    /* ── Nav blur ── */
+    .nav-blur {
+      background: rgba(14,31,24,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    /* ── Botão primário ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #C9A84C;
+      color: #0E1F18;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: #E0C278;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(201,168,76,0.30);
+    }
+
+    /* ── Botão outline ── */
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: #C9A84C;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 13px 32px;
+      border-radius: 4px;
+      border: 1px solid #C9A84C;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .btn-outline:hover {
+      background: rgba(201,168,76,0.10);
+    }
+
+    /* ── Card de serviço ── */
+    .service-card {
+      background: #0E1F18;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 4px;
+      padding: 32px 28px;
+      transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .service-card:hover {
+      border-color: #C9A84C;
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(14,31,24,0.6);
+    }
+
+    /* ── Card de plano ── */
+    .plan-card {
+      background: #0E1F18;
+      border: 1px solid rgba(201,168,76,0.20);
+      border-radius: 4px;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .plan-card.featured {
+      border-color: #C9A84C;
+      background: #1B3A2D;
+    }
+    .plan-card:hover {
+      border-color: #C9A84C;
+      transform: translateY(-4px);
+    }
+
+    /* ── Card de depoimento ── */
+    .testimonial-card {
+      background: #1B3A2D;
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 4px;
+      padding: 32px;
+    }
+
+    /* ── Processo step ── */
+    .process-step {
+      position: relative;
+    }
+    .process-step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 28px;
+      right: -50%;
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, #C9A84C 0%, rgba(201,168,76,0.1) 100%);
+    }
+
+    /* ── Stars ── */
+    .star-gold { color: #C9A84C; }
+
+    /* ── Section label ── */
+    .section-label {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #C9A84C;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════ -->
+<nav class="nav-blur fixed top-0 left-0 right-0 z-50 border-b border-gold/10">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-3">
+      <!-- Leaf icon -->
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.5 2 3 7 3 12c0 3.5 1.8 6.6 4.5 8.4L12 22l4.5-1.6C19.2 18.6 21 15.5 21 12c0-5-3.5-10-9-10z" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M12 2v20M12 12c-3 0-5-2-6-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#FAF7F0; letter-spacing:0.06em;">Root</span>
+    </a>
+
+    <!-- Links desktop -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#sobre" class="text-creamMuted hover:text-cream text-sm font-light tracking-wide transition-colors duration-200">Sobre</a>
+      <a href="#servicos" class="text-creamMuted hover:text-cream text-sm font-light tracking-wide transition-colors duration-200">Serviços</a>
+      <a href="#planos" class="text-creamMuted hover:text-cream text-sm font-light tracking-wide transition-colors duration-200">Planos</a>
+      <a href="https://wa.me/5500000000000" target="_blank" class="btn-primary py-2.5 px-6 text-xs">
+        Agendar Consulta
+      </a>
+    </div>
+
+    <!-- Mobile CTA -->
+    <a href="https://wa.me/5500000000000" target="_blank" class="md:hidden btn-primary py-2.5 px-5 text-xs">
+      Agendar
+    </a>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+  <!-- Background foto (placeholder verde gradiente — substitua por uma foto real) -->
+  <div class="absolute inset-0 z-0">
+    <div style="
+      background:
+        radial-gradient(ellipse 60% 70% at 70% 40%, #2D5A3D 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 20% 80%, #1B3A2D 0%, transparent 60%),
+        linear-gradient(135deg, #0E1F18 0%, #1B3A2D 50%, #0E1F18 100%);
+      position: absolute; inset: 0;">
+    </div>
+    <!-- Textura sutil -->
+    <div style="position:absolute;inset:0;background-image:url(data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E);opacity:0.5;"></div>
+  </div>
+
+  <!-- Overlay verde floresta -->
+  <div class="hero-overlay absolute inset-0 z-10"></div>
+
+  <!-- Ornamento dourado superior -->
+  <div class="absolute top-0 left-0 right-0 z-20 h-px" style="background: linear-gradient(90deg, transparent, #C9A84C44, transparent);"></div>
+
+  <!-- Conteúdo -->
+  <div class="relative z-20 max-w-5xl mx-auto px-6 pt-24 pb-16 text-center">
+
+    <div class="fade-up">
+      <span class="section-label">Nutrição Integrativa de Alto Padrão</span>
+      <div class="gold-line mt-4 mb-8 mx-auto"></div>
+    </div>
+
+    <h1 class="fade-up fade-up-delay-1 mb-6" style="font-family:'Fraunces',serif; font-size:clamp(2.8rem,7vw,5.5rem); font-weight:300; font-style:italic; line-height:1.12; color:#FAF7F0;">
+      Saúde que começa<br />
+      <em style="color:#C9A84C; font-style:italic;">na raiz</em>
+    </h1>
+
+    <p class="fade-up fade-up-delay-2 mx-auto mb-10 text-creamMuted font-light leading-relaxed" style="max-width:520px; font-size:1.1rem;">
+      Abordagem funcional e integrativa para quem busca transformação real. 
+      Protocolos personalizados, investigação profunda, resultados duradouros.
+    </p>
+
+    <div class="fade-up fade-up-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="https://wa.me/5500000000000" target="_blank" class="btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="currentColor"/><path d="M5.385 21.616l.46-1.677A8.966 8.966 0 013 12C3 7.03 7.03 3 12 3s9 4.03 9 9-4.03 9-9 9a8.966 8.966 0 01-4.703-1.317l-1.912.933z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Agendar Consulta Inicial
+      </a>
+      <a href="#sobre" class="btn-outline">
+        Conhecer a Abordagem
+      </a>
+    </div>
+
+    <!-- Credenciais -->
+    <div class="fade-up fade-up-delay-4 flex flex-col sm:flex-row items-center justify-center gap-6 mt-14">
+      <div class="flex items-center gap-2 text-creamMuted text-sm font-light">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C9A84C" stroke-width="1.5"/><path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        CRN 00000
+      </div>
+      <span class="hidden sm:block text-gold/30">|</span>
+      <div class="flex items-center gap-2 text-creamMuted text-sm font-light">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#C9A84C" stroke-width="1.5"/><path d="M8 12h8M12 8v8" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Nutrição Funcional e Integrativa
+      </div>
+      <span class="hidden sm:block text-gold/30">|</span>
+      <div class="flex items-center gap-2 text-creamMuted text-sm font-light">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        +500 pacientes atendidos
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 opacity-50">
+    <span class="text-xs text-creamMuted tracking-widest uppercase" style="font-size:0.6rem; letter-spacing:0.2em;">Scroll</span>
+    <div style="width:1px;height:40px;background:linear-gradient(180deg,#C9A84C,transparent);"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     DIVISÓRIA
+════════════════════════════════════════════════ -->
+<div class="max-w-4xl mx-auto px-6 py-2">
+  <span class="gold-line-full"></span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     FILOSOFIA / QUOTE
+════════════════════════════════════════════════ -->
+<section id="filosofia" class="py-24 px-6">
+  <div class="max-w-4xl mx-auto">
+
+    <div class="fade-up text-center mb-16">
+      <span class="section-label">Filosofia de Cuidado</span>
+      <div class="gold-line mt-4"></div>
+    </div>
+
+    <!-- Quote principal -->
+    <div class="fade-up fade-up-delay-1 relative pl-8 md:pl-12 py-4">
+      <!-- Borda dourada esquerda -->
+      <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#C9A84C,rgba(201,168,76,0.2));border-radius:2px;"></div>
+
+      <!-- Aspas decorativas -->
+      <div style="position:absolute;top:-20px;left:16px;font-family:'Fraunces',serif;font-size:6rem;line-height:1;color:rgba(201,168,76,0.12);font-style:italic;user-select:none;">"</div>
+
+      <blockquote class="relative z-10">
+        <p style="font-family:'Fraunces',serif;font-size:clamp(1.3rem,2.5vw,1.75rem);font-weight:300;font-style:italic;line-height:1.6;color:#FAF7F0;">
+          A verdadeira nutrição não trata sintomas isolados. Ela investiga origens, 
+          respeita a bioquímica individual e constrói saúde de dentro para fora — 
+          com ciência, escuta e presença.
+        </p>
+        <footer class="mt-6 flex items-center gap-3">
+          <span class="gold-line-left w-8 inline-block"></span>
+          <cite style="font-family:'DM Sans',sans-serif;font-size:0.875rem;font-weight:400;color:#C9A84C;font-style:normal;letter-spacing:0.05em;">[Nome], Nutricionista Integrativa</cite>
+        </footer>
+      </blockquote>
+    </div>
+
+    <!-- Pilares -->
+    <div class="fade-up fade-up-delay-2 grid grid-cols-1 sm:grid-cols-3 gap-8 mt-20">
+      <div class="text-center">
+        <div class="flex justify-center mb-4">
+          <div style="width:48px;height:48px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.05rem;font-weight:400;color:#FAF7F0;margin-bottom:8px;">Ciência de Precisão</h3>
+        <p class="text-creamMuted font-light text-sm leading-relaxed">Protocolos baseados em evidências, exames funcionais e biomarcadores avançados.</p>
+      </div>
+      <div class="text-center">
+        <div class="flex justify-center mb-4">
+          <div style="width:48px;height:48px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 3 7 3 12c0 3.5 1.8 6.6 4.5 8.4L12 22l4.5-1.6C19.2 18.6 21 15.5 21 12c0-5-3.5-10-9-10z" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 8v4l2 2" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.05rem;font-weight:400;color:#FAF7F0;margin-bottom:8px;">Visão Integrativa</h3>
+        <p class="text-creamMuted font-light text-sm leading-relaxed">O corpo é um sistema. Cada protocolo considera gut-brain, hormônios e estilo de vida.</p>
+      </div>
+      <div class="text-center">
+        <div class="flex justify-center mb-4">
+          <div style="width:48px;height:48px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.05rem;font-weight:400;color:#FAF7F0;margin-bottom:8px;">Resultados Reais</h3>
+        <p class="text-creamMuted font-light text-sm leading-relaxed">Acompanhamento contínuo e reavaliação de metas para garantir evolução sustentável.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     DIVISÓRIA
+════════════════════════════════════════════════ -->
+<div class="max-w-4xl mx-auto px-6 py-2">
+  <span class="gold-line-full"></span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     SOBRE
+════════════════════════════════════════════════ -->
+<section id="sobre" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Foto premium -->
+      <div class="fade-up relative order-2 lg:order-1">
+        <!-- Frame dourado decorativo -->
+        <div style="position:absolute;top:-12px;left:-12px;right:24px;bottom:24px;border:1px solid rgba(201,168,76,0.25);border-radius:4px;z-index:0;"></div>
+        <!-- Foto placeholder -->
+        <div style="position:relative;z-index:1;border-radius:4px;overflow:hidden;aspect-ratio:3/4;background:linear-gradient(160deg,#1B3A2D 0%,#2D5A3D 40%,#1B3A2D 100%);">
+          <!-- Silhueta decorativa -->
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:0;">
+            <svg viewBox="0 0 200 300" width="180" height="280" style="opacity:0.12;" fill="#C9A84C" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="100" cy="70" rx="45" ry="52"/>
+              <path d="M30 300 Q35 190 100 185 Q165 190 170 300Z"/>
+            </svg>
+          </div>
+          <!-- Texto placeholder centralizado -->
+          <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style="opacity:0.4;"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" stroke="#C9A84C" stroke-width="1.5"/></svg>
+            <span style="font-size:0.7rem;color:rgba(201,168,76,0.4);letter-spacing:0.1em;text-transform:uppercase;">Foto da Nutricionista</span>
+          </div>
+        </div>
+        <!-- Badge CRN -->
+        <div style="position:absolute;bottom:36px;right:-16px;z-index:2;background:#0E1F18;border:1px solid rgba(201,168,76,0.4);border-radius:4px;padding:12px 16px;text-align:center;">
+          <div style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:400;color:#C9A84C;line-height:1;">+500</div>
+          <div style="font-size:0.65rem;color:#D9D4C7;letter-spacing:0.08em;text-transform:uppercase;margin-top:2px;">pacientes</div>
+        </div>
+      </div>
+
+      <!-- Texto -->
+      <div class="fade-up fade-up-delay-1 order-1 lg:order-2">
+        <span class="section-label">Sobre</span>
+        <div class="gold-line-left mt-3 mb-6" style="width:40px;"></div>
+
+        <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;font-style:italic;line-height:1.2;color:#FAF7F0;margin-bottom:20px;">
+          [Nome]<br />
+          <span style="font-size:0.6em;color:#C9A84C;font-style:normal;font-weight:400;letter-spacing:0.04em;">Nutricionista Integrativa</span>
+        </h2>
+
+        <p class="text-creamMuted font-light leading-relaxed mb-5" style="font-size:0.97rem;">
+          Graduada em Nutrição pela <strong class="text-cream font-normal">[Faculdade]</strong>, 
+          com pós-graduação em Nutrição Funcional e Integrativa e especialização em 
+          Medicina do Estilo de Vida. CRN 00000.
+        </p>
+        <p class="text-creamMuted font-light leading-relaxed mb-8" style="font-size:0.97rem;">
+          Minha abordagem une a precisão científica ao cuidado humano. Investigo 
+          as raízes dos desequilíbrios — inflamação, disbiose, resistência hormonal — 
+          e construo protocolos que respeitam a singularidade de cada organismo. 
+          Porque saúde não é ausência de doença. É vitalidade plena.
+        </p>
+
+        <!-- Especializações -->
+        <div class="grid grid-cols-2 gap-3 mb-8">
+          <div class="flex items-start gap-2">
+            <span style="width:4px;height:4px;background:#C9A84C;border-radius:50%;margin-top:8px;flex-shrink:0;"></span>
+            <span class="text-creamMuted text-sm font-light">Nutrição Funcional</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span style="width:4px;height:4px;background:#C9A84C;border-radius:50%;margin-top:8px;flex-shrink:0;"></span>
+            <span class="text-creamMuted text-sm font-light">Microbioma Intestinal</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span style="width:4px;height:4px;background:#C9A84C;border-radius:50%;margin-top:8px;flex-shrink:0;"></span>
+            <span class="text-creamMuted text-sm font-light">Saúde Hormonal</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span style="width:4px;height:4px;background:#C9A84C;border-radius:50%;margin-top:8px;flex-shrink:0;"></span>
+            <span class="text-creamMuted text-sm font-light">Medicina do Estilo de Vida</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span style="width:4px;height:4px;background:#C9A84C;border-radius:50%;margin-top:8px;flex-shrink:0;"></span>
+            <span class="text-creamMuted text-sm font-light">Protocolos Detox</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <span style="width:4px;height:4px;background:#C9A84C;border-radius:50%;margin-top:8px;flex-shrink:0;"></span>
+            <span class="text-creamMuted text-sm font-light">Nutrição Esportiva</span>
+          </div>
+        </div>
+
+        <a href="https://wa.me/5500000000000" target="_blank" class="btn-outline inline-flex">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M8 12h8M12 8v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/></svg>
+          Conhecer mais
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     DIVISÓRIA
+════════════════════════════════════════════════ -->
+<div class="max-w-4xl mx-auto px-6 py-2">
+  <span class="gold-line-full"></span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     SERVIÇOS
+════════════════════════════════════════════════ -->
+<section id="servicos" class="py-24 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <div class="fade-up text-center mb-16">
+      <span class="section-label">Especialidades Clínicas</span>
+      <div class="gold-line mt-4 mb-6"></div>
+      <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:300;font-style:italic;color:#FAF7F0;">
+        Serviços
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Card 1: Nutrição Integrativa -->
+      <div class="service-card fade-up">
+        <div style="width:44px;height:44px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.5 2 3 7 3 12c0 3.5 1.8 6.6 4.5 8.4L12 22l4.5-1.6C19.2 18.6 21 15.5 21 12c0-5-3.5-10-9-10z" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 2v20M12 12c-3 0-5-2-6-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:400;color:#FAF7F0;margin-bottom:10px;">Nutrição Integrativa</h3>
+        <p class="text-creamMuted font-light text-sm leading-relaxed mb-5">
+          Protocolo nutricional individualizado que considera genética, hábitos, história clínica e objetivos específicos de saúde.
+        </p>
+        <span class="gold-line-left" style="width:24px;display:inline-block;"></span>
+      </div>
+
+      <!-- Card 2: Investigação Funcional -->
+      <div class="service-card fade-up fade-up-delay-1">
+        <div style="width:44px;height:44px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="#C9A84C" stroke-width="1.5"/><path d="m21 21-4.35-4.35M11 8v3M11 14h.01" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:400;color:#FAF7F0;margin-bottom:10px;">Investigação Funcional</h3>
+        <p class="text-creamMuted font-light text-sm leading-relaxed mb-5">
+          Análise aprofundada de exames laboratoriais com interpretação funcional dos biomarcadores, inflamação e estresse oxidativo.
+        </p>
+        <span class="gold-line-left" style="width:24px;display:inline-block;"></span>
+      </div>
+
+      <!-- Card 3: Saúde do Intestino -->
+      <div class="service-card fade-up fade-up-delay-2">
+        <div style="width:44px;height:44px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3C8 3 5 6.5 5 9c0 1.5.5 3 1.5 4C7.5 14.5 8 16 8 17.5 8 19.5 9.5 21 12 21s4-1.5 4-3.5c0-1.5.5-3 1.5-4.5C18.5 12 19 10.5 19 9c0-2.5-3-6-7-6z" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 21v-4M9.5 13.5c.5 1 1.5 1.5 2.5 1.5s2-.5 2.5-1.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:400;color:#FAF7F0;margin-bottom:10px;">Saúde do Intestino</h3>
+        <p class="text-creamMuted font-light text-sm leading-relaxed mb-5">
+          Reequilíbrio do microbioma, tratamento de disbiose, permeabilidade intestinal e eixo intestino-cérebro com protocolos específicos.
+        </p>
+        <span class="gold-line-left" style="width:24px;display:inline-block;"></span>
+      </div>
+
+      <!-- Card 4: Detox Metabólico -->
+      <div class="service-card fade-up fade-up-delay-1">
+        <div style="width:44px;height:44px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><circle cx="12" cy="12" r="4" stroke="#C9A84C" stroke-width="1.5"/></svg>
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:400;color:#FAF7F0;margin-bottom:10px;">Detox Metabólico</h3>
+        <p class="text-creamMuted font-light text-sm leading-relaxed mb-5">
+          Protocolo de desintoxicação celular baseado em ciência, com foco em fígado, vias de eliminação e restauração energética.
+        </p>
+        <span class="gold-line-left" style="width:24px;display:inline-block;"></span>
+      </div>
+
+      <!-- Card 5: Consulta VIP -->
+      <div class="service-card fade-up fade-up-delay-2" style="border-color: rgba(201,168,76,0.45);">
+        <!-- Badge VIP -->
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px;">
+          <div style="width:44px;height:44px;border:1px solid rgba(201,168,76,0.5);border-radius:4px;display:flex;align-items:center;justify-content:center;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <span style="font-size:0.6rem;background:rgba(201,168,76,0.12);color:#C9A84C;border:1px solid rgba(201,168,76,0.3);padding:3px 8px;border-radius:2px;letter-spacing:0.12em;text-transform:uppercase;font-weight:600;">VIP</span>
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:400;color:#FAF7F0;margin-bottom:10px;">Consulta VIP</h3>
+        <p class="text-creamMuted font-light text-sm leading-relaxed mb-5">
+          Atendimento exclusivo com 90 minutos de duração, análise completa de exames, entrega de plano alimentar personalizado na sessão.
+        </p>
+        <span class="gold-line-left" style="width:24px;display:inline-block;"></span>
+      </div>
+
+      <!-- Card 6: Acompanhamento Clínico -->
+      <div class="service-card fade-up fade-up-delay-3">
+        <div style="width:44px;height:44px;border:1px solid rgba(201,168,76,0.3);border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 14l2 2 4-4" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3 style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:400;color:#FAF7F0;margin-bottom:10px;">Acompanhamento Clínico</h3>
+        <p class="text-creamMuted font-light text-sm leading-relaxed mb-5">
+          Seguimento mensal com reavaliação de exames, ajuste de protocolos e suporte contínuo via plataforma exclusiva.
+        </p>
+        <span class="gold-line-left" style="width:24px;display:inline-block;"></span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     DIVISÓRIA
+════════════════════════════════════════════════ -->
+<div class="max-w-4xl mx-auto px-6 py-2">
+  <span class="gold-line-full"></span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PROCESSO — 4 ETAPAS
+════════════════════════════════════════════════ -->
+<section id="processo" class="py-24 px-6" style="background: rgba(27,58,45,0.25);">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="fade-up text-center mb-16">
+      <span class="section-label">Como Funciona</span>
+      <div class="gold-line mt-4 mb-6"></div>
+      <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:300;font-style:italic;color:#FAF7F0;">
+        O Processo de Cuidado
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      <!-- Step 1 -->
+      <div class="fade-up text-center">
+        <div style="width:56px;height:56px;border:1px solid rgba(201,168,76,0.5);border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <span style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:300;color:#C9A84C;">01</span>
+        </div>
+        <div style="height:1px;background:linear-gradient(90deg,transparent,#C9A84C44,transparent);margin-bottom:16px;display:none;" class="lg:block"></div>
+        <h4 style="font-family:'Fraunces',serif;font-size:1rem;font-weight:400;color:#FAF7F0;margin-bottom:8px;">Anamnese Profunda</h4>
+        <p class="text-creamMuted font-light text-sm leading-relaxed">Consulta inicial de 60 min: história clínica completa, hábitos, objetivos e queixas funcionais.</p>
+      </div>
+
+      <!-- Divisória horizontal (desktop) -->
+
+      <!-- Step 2 -->
+      <div class="fade-up fade-up-delay-1 text-center">
+        <div style="width:56px;height:56px;border:1px solid rgba(201,168,76,0.5);border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <span style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:300;color:#C9A84C;">02</span>
+        </div>
+        <h4 style="font-family:'Fraunces',serif;font-size:1rem;font-weight:400;color:#FAF7F0;margin-bottom:8px;">Investigação Laboratorial</h4>
+        <p class="text-creamMuted font-light text-sm leading-relaxed">Solicitação e interpretação funcional de exames para identificar desequilíbrios e causas raiz.</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="fade-up fade-up-delay-2 text-center">
+        <div style="width:56px;height:56px;border:1px solid rgba(201,168,76,0.5);border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <span style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:300;color:#C9A84C;">03</span>
+        </div>
+        <h4 style="font-family:'Fraunces',serif;font-size:1rem;font-weight:400;color:#FAF7F0;margin-bottom:8px;">Protocolo Personalizado</h4>
+        <p class="text-creamMuted font-light text-sm leading-relaxed">Plano alimentar, suplementação e estilo de vida desenhados para sua bioquímica individual.</p>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="fade-up fade-up-delay-3 text-center">
+        <div style="width:56px;height:56px;border:1px solid rgba(201,168,76,0.5);border-radius:4px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <span style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:300;color:#C9A84C;">04</span>
+        </div>
+        <h4 style="font-family:'Fraunces',serif;font-size:1rem;font-weight:400;color:#FAF7F0;margin-bottom:8px;">Acompanhamento Contínuo</h4>
+        <p class="text-creamMuted font-light text-sm leading-relaxed">Retornos periódicos, reavaliação de metas e ajustes de protocolo conforme sua evolução.</p>
+      </div>
+
+    </div>
+
+    <!-- Linha conectora decorativa (desktop) -->
+    <div class="hidden lg:block relative mt-2" style="margin-top:-180px;pointer-events:none;z-index:0;">
+      <div style="height:1px;background:linear-gradient(90deg,transparent 3%,rgba(201,168,76,0.2) 12.5%,rgba(201,168,76,0.2) 87.5%,transparent 97%);margin:0 28px;"></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     DIVISÓRIA
+════════════════════════════════════════════════ -->
+<div class="max-w-4xl mx-auto px-6 py-2">
+  <span class="gold-line-full"></span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PLANOS
+════════════════════════════════════════════════ -->
+<section id="planos" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="fade-up text-center mb-16">
+      <span class="section-label">Investimento</span>
+      <div class="gold-line mt-4 mb-6"></div>
+      <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:300;font-style:italic;color:#FAF7F0;">
+        Planos de Atendimento
+      </h2>
+      <p class="text-creamMuted font-light mt-4 mx-auto" style="max-width:420px;font-size:0.93rem;">
+        Escolha o plano que melhor se alinha com seus objetivos e a profundidade de cuidado que você merece.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Plano Essencial -->
+      <div class="plan-card fade-up">
+        <div class="p-8">
+          <span class="section-label mb-4 block">Essencial</span>
+          <div class="flex items-end gap-1 mb-2">
+            <span style="font-family:'Fraunces',serif;font-size:2.5rem;font-weight:300;color:#FAF7F0;line-height:1;">R$XXX</span>
+          </div>
+          <p class="text-creamMuted text-xs font-light mb-6">por consulta</p>
+          <span class="gold-line-left mb-6" style="width:32px;display:block;"></span>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Consulta de 45 minutos
+            </li>
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Plano alimentar personalizado
+            </li>
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Orientação de suplementação básica
+            </li>
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Retorno em 30 dias
+            </li>
+          </ul>
+          <a href="https://wa.me/5500000000000" target="_blank" class="btn-outline w-full justify-center">
+            Contratar
+          </a>
+        </div>
+      </div>
+
+      <!-- Plano Premium (destaque) -->
+      <div class="plan-card featured fade-up fade-up-delay-1 relative">
+        <!-- Badge popular -->
+        <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#C9A84C;color:#0E1F18;font-size:0.6rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;padding:4px 16px;border-radius:2px;white-space:nowrap;">
+          Mais escolhido
+        </div>
+        <div class="p-8">
+          <span class="section-label mb-4 block">Premium</span>
+          <div class="flex items-end gap-1 mb-2">
+            <span style="font-family:'Fraunces',serif;font-size:2.5rem;font-weight:300;color:#C9A84C;line-height:1;">R$XXX</span>
+          </div>
+          <p class="text-creamMuted text-xs font-light mb-6">por mês · 3 meses mínimo</p>
+          <span style="display:block;width:32px;height:1px;background:#C9A84C;margin-bottom:24px;"></span>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Consulta inicial de 60 minutos
+            </li>
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Investigação funcional de exames
+            </li>
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Protocolo integrativo completo
+            </li>
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              2 retornos mensais
+            </li>
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Suporte via app exclusivo
+            </li>
+          </ul>
+          <a href="https://wa.me/5500000000000" target="_blank" class="btn-primary w-full justify-center">
+            Contratar
+          </a>
+        </div>
+      </div>
+
+      <!-- Plano VIP -->
+      <div class="plan-card fade-up fade-up-delay-2">
+        <div class="p-8">
+          <span class="section-label mb-4 block">Clínico VIP</span>
+          <div class="flex items-end gap-1 mb-2">
+            <span style="font-family:'Fraunces',serif;font-size:2.5rem;font-weight:300;color:#FAF7F0;line-height:1;">R$XXX</span>
+          </div>
+          <p class="text-creamMuted text-xs font-light mb-6">por mês · 6 meses</p>
+          <span class="gold-line-left mb-6" style="width:32px;display:block;"></span>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Consulta VIP de 90 minutos
+            </li>
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Bioimpedância + exames funcionais
+            </li>
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Protocolo detox + microbioma
+            </li>
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Retornos ilimitados + chat direto
+            </li>
+            <li class="flex items-start gap-2 text-sm text-creamMuted font-light">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4.5 12.75l6 6 9-13.5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Relatório clínico detalhado mensal
+            </li>
+          </ul>
+          <a href="https://wa.me/5500000000000" target="_blank" class="btn-outline w-full justify-center">
+            Contratar
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     DIVISÓRIA
+════════════════════════════════════════════════ -->
+<div class="max-w-4xl mx-auto px-6 py-2">
+  <span class="gold-line-full"></span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     DEPOIMENTOS
+════════════════════════════════════════════════ -->
+<section id="depoimentos" class="py-24 px-6" style="background: rgba(27,58,45,0.20);">
+  <div class="max-w-5xl mx-auto">
+
+    <div class="fade-up text-center mb-16">
+      <span class="section-label">Resultados</span>
+      <div class="gold-line mt-4 mb-6"></div>
+      <h2 style="font-family:'Fraunces',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:300;font-style:italic;color:#FAF7F0;">
+        O que dizem os pacientes
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Depoimento 1 -->
+      <div class="testimonial-card fade-up">
+        <!-- Stars -->
+        <div class="flex gap-1 mb-5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+        </div>
+        <!-- Quote -->
+        <p style="font-family:'Fraunces',serif;font-size:1rem;font-weight:300;font-style:italic;color:#FAF7F0;line-height:1.65;margin-bottom:20px;">
+          "Em 4 meses de acompanhamento, resolvi uma disbiose crônica que carregava há anos. O protocolo foi preciso, humano e transformador."
+        </p>
+        <span class="gold-line-left mb-5" style="width:24px;display:block;"></span>
+        <!-- Autor -->
+        <div class="flex items-center gap-3">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C9A84C" stroke-width="1.5"/><path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p style="font-size:0.82rem;font-weight:500;color:#FAF7F0;">[Nome do Paciente]</p>
+            <p class="text-creamMuted font-light" style="font-size:0.72rem;">Executiva · São Paulo</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 2 -->
+      <div class="testimonial-card fade-up fade-up-delay-1">
+        <div class="flex gap-1 mb-5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+        </div>
+        <p style="font-family:'Fraunces',serif;font-size:1rem;font-weight:300;font-style:italic;color:#FAF7F0;line-height:1.65;margin-bottom:20px;">
+          "Pela primeira vez entendi o que estava acontecendo com meu corpo. A abordagem integrativa mudou minha relação com a alimentação completamente."
+        </p>
+        <span class="gold-line-left mb-5" style="width:24px;display:block;"></span>
+        <div class="flex items-center gap-3">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C9A84C" stroke-width="1.5"/><path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p style="font-size:0.82rem;font-weight:500;color:#FAF7F0;">[Nome do Paciente]</p>
+            <p class="text-creamMuted font-light" style="font-size:0.72rem;">Médica · Rio de Janeiro</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 3 -->
+      <div class="testimonial-card fade-up fade-up-delay-2">
+        <div class="flex gap-1 mb-5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#C9A84C"><path d="M12 2l3 6.5L22 9.3l-5 4.9 1.2 6.8L12 17.7l-6.2 3.3L7 14.2 2 9.3l7-.8L12 2z"/></svg>
+        </div>
+        <p style="font-family:'Fraunces',serif;font-size:1rem;font-weight:300;font-style:italic;color:#FAF7F0;line-height:1.65;margin-bottom:20px;">
+          "O nível de cuidado e atenção ao detalhe é incomparável. Sinto que estou sendo tratado como um todo, não como um conjunto de sintomas."
+        </p>
+        <span class="gold-line-left mb-5" style="width:24px;display:block;"></span>
+        <div class="flex items-center gap-3">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(201,168,76,0.15);border:1px solid rgba(201,168,76,0.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#C9A84C" stroke-width="1.5"/><path d="M4 20c0-3.314 3.582-6 8-6s8 2.686 8 6" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p style="font-size:0.82rem;font-weight:500;color:#FAF7F0;">[Nome do Paciente]</p>
+            <p class="text-creamMuted font-light" style="font-size:0.72rem;">Empresário · Curitiba</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     DIVISÓRIA
+════════════════════════════════════════════════ -->
+<div class="max-w-4xl mx-auto px-6 py-2">
+  <span class="gold-line-full"></span>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════════════ -->
+<section id="cta" class="py-28 px-6 relative overflow-hidden">
+  <!-- Fundo decorativo -->
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,#1B3A2D 0%,#0E1F18 70%);z-index:0;"></div>
+  <div style="position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#C9A84C44,transparent);z-index:1;"></div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#C9A84C44,transparent);z-index:1;"></div>
+
+  <!-- Ornamento circular decorativo -->
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;border-radius:50%;border:1px solid rgba(201,168,76,0.05);pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:350px;height:350px;border-radius:50%;border:1px solid rgba(201,168,76,0.07);pointer-events:none;z-index:0;"></div>
+
+  <div class="relative z-10 max-w-3xl mx-auto text-center">
+    <div class="fade-up">
+      <span class="section-label">Dê o Primeiro Passo</span>
+      <div class="gold-line mt-4 mb-8 mx-auto"></div>
+    </div>
+
+    <h2 class="fade-up fade-up-delay-1 mb-6" style="font-family:'Fraunces',serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:300;font-style:italic;line-height:1.2;color:#FAF7F0;">
+      Sua transformação começa<br />
+      com uma <em style="color:#C9A84C;">única conversa</em>
+    </h2>
+
+    <p class="fade-up fade-up-delay-2 text-creamMuted font-light leading-relaxed mb-10 mx-auto" style="max-width:480px;font-size:1rem;">
+      Agende sua consulta inicial e descubra o que a nutrição integrativa pode fazer pela sua saúde, energia e qualidade de vida.
+    </p>
+
+    <div class="fade-up fade-up-delay-3 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="https://wa.me/5500000000000" target="_blank" class="btn-primary text-sm">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="currentColor"/><path d="M5.385 21.616l.46-1.677A8.966 8.966 0 013 12C3 7.03 7.03 3 12 3s9 4.03 9 9-4.03 9-9 9a8.966 8.966 0 01-4.703-1.317l-1.912.933z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Agendar via WhatsApp
+      </a>
+    </div>
+
+    <!-- Info adicional -->
+    <div class="fade-up fade-up-delay-4 flex flex-col sm:flex-row items-center justify-center gap-6 mt-10 text-sm text-creamMuted font-light">
+      <div class="flex items-center gap-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#C9A84C" stroke-width="1.5"/><path d="M12 7v5l3 3" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Resposta em até 2 horas
+      </div>
+      <span class="hidden sm:block text-gold/30">·</span>
+      <div class="flex items-center gap-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="7" r="4" stroke="#C9A84C" stroke-width="1.5"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Atendimento presencial e online
+      </div>
+      <span class="hidden sm:block text-gold/30">·</span>
+      <div class="flex items-center gap-2">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Sigilo e ética profissional
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer style="background:#0A1812;border-top:1px solid rgba(201,168,76,0.12);">
+  <div class="max-w-6xl mx-auto px-6 py-14">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+
+      <!-- Logo e descrição -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2C6.5 2 3 7 3 12c0 3.5 1.8 6.6 4.5 8.4L12 22l4.5-1.6C19.2 18.6 21 15.5 21 12c0-5-3.5-10-9-10z" stroke="#C9A84C" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M12 2v20M12 12c-3 0-5-2-6-5" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:400;color:#FAF7F0;letter-spacing:0.06em;">Root</span>
+        </div>
+        <p class="text-creamMuted font-light text-sm leading-relaxed" style="max-width:240px;">
+          Nutrição integrativa de alto padrão para quem leva saúde a sério.
+        </p>
+        <div class="flex gap-3 mt-5">
+          <!-- Instagram -->
+          <a href="#" style="width:34px;height:34px;border:1px solid rgba(201,168,76,0.2);border-radius:4px;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.6)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.2)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#C9A84C" stroke-width="1.5"/><circle cx="12" cy="12" r="5" stroke="#C9A84C" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1" fill="#C9A84C"/></svg>
+          </a>
+          <!-- WhatsApp -->
+          <a href="https://wa.me/5500000000000" target="_blank" style="width:34px;height:34px;border:1px solid rgba(201,168,76,0.2);border-radius:4px;display:flex;align-items:center;justify-content:center;transition:border-color 0.2s;" onmouseover="this.style.borderColor='rgba(201,168,76,0.6)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.2)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#C9A84C"/><path d="M5.385 21.616l.46-1.677A8.966 8.966 0 013 12C3 7.03 7.03 3 12 3s9 4.03 9 9-4.03 9-9 9a8.966 8.966 0 01-4.703-1.317l-1.912.933z" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links rápidos -->
+      <div>
+        <h4 style="font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:16px;">Navegação</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#sobre" class="text-creamMuted hover:text-cream text-sm font-light transition-colors">Sobre</a></li>
+          <li><a href="#servicos" class="text-creamMuted hover:text-cream text-sm font-light transition-colors">Serviços</a></li>
+          <li><a href="#processo" class="text-creamMuted hover:text-cream text-sm font-light transition-colors">Processo</a></li>
+          <li><a href="#planos" class="text-creamMuted hover:text-cream text-sm font-light transition-colors">Planos</a></li>
+          <li><a href="#depoimentos" class="text-creamMuted hover:text-cream text-sm font-light transition-colors">Depoimentos</a></li>
+        </ul>
+      </div>
+
+      <!-- Contato -->
+      <div>
+        <h4 style="font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:#C9A84C;margin-bottom:16px;">Contato</h4>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-2 text-creamMuted font-light text-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="#C9A84C"/></svg>
+            (00) 00000-0000
+          </li>
+          <li class="flex items-start gap-2 text-creamMuted font-light text-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#C9A84C" stroke-width="1.5"/><polyline points="22,6 12,13 2,6" stroke="#C9A84C" stroke-width="1.5"/></svg>
+            contato@rootnutricao.com.br
+          </li>
+          <li class="flex items-start gap-2 text-creamMuted font-light text-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;margin-top:2px;"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" stroke="#C9A84C" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke="#C9A84C" stroke-width="1.5"/></svg>
+            [Cidade], [Estado]
+          </li>
+        </ul>
+        <div class="mt-5">
+          <p class="text-creamMuted font-light text-xs">CRN 00000 · Nutricionista registrada</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Linha divisória -->
+    <span class="gold-line-full block mb-6"></span>
+
+    <!-- Copyright -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-creamMuted font-light text-xs">
+        &copy; 2026 Root — Nutrição Integrativa. Todos os direitos reservados.
+      </p>
+      <p class="text-creamMuted font-light text-xs opacity-50">
+        CRN 00000
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT — IntersectionObserver Fade Up
+════════════════════════════════════════════════ -->
+<script>
+  (function () {
+    'use strict';
+
+    // Fade-up com IntersectionObserver
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('.fade-up').forEach(function (el) {
+      observer.observe(el);
+    });
+
+    // Nav transparência no topo
+    var nav = document.querySelector('nav');
+    function updateNav() {
+      if (window.scrollY > 60) {
+        nav.style.borderBottomColor = 'rgba(201,168,76,0.15)';
+      } else {
+        nav.style.borderBottomColor = 'rgba(201,168,76,0.06)';
+      }
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+
+    // Smooth scroll para âncoras
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          var offset = 72;
+          var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

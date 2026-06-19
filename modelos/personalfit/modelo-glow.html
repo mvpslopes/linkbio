@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>[Nome] Personal Trainer — Saúde, Leveza & Bem-estar Feminino</title>
+  <meta name="description" content="Personal trainer especialista em saúde da mulher, emagrecimento e bem-estar. Treino que transforma corpo e mente com leveza e ciência." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif'],
+            serif: ['"Playfair Display"', 'ui-serif'],
+          },
+          colors: {
+            rose: { DEFAULT: '#E8587A', dark: '#C73D5E', light: '#F2849D' },
+            coral: '#F97316',
+            cream: '#FDF6F0',
+            blush: '#FCE7EF',
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --rose: #E8587A;
+      --rose-light: #F2849D;
+      --rose-glow: rgba(232,88,122,0.18);
+      --cream: #FDF6F0;
+      --blush: #FCE7EF;
+      --text: #1a0a10;
+      --muted: #7a4a5a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--cream); color: var(--text); overflow-x: hidden; }
+
+    .font-serif { font-family: 'Playfair Display', serif; }
+
+    /* text gradient */
+    .text-grad {
+      background: linear-gradient(120deg, #E8587A 0%, #F97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* pill */
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--blush);
+      border: 1px solid rgba(232,88,122,.3);
+      border-radius: 999px;
+      padding: 5px 16px;
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--rose);
+    }
+
+    /* nav */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 90;
+      background: rgba(253,246,240,.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(232,88,122,.12);
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    /* HERO — foto full + texto sobre gradiente */
+    .hero-full {
+      position: relative;
+      min-height: 100svh;
+      display: flex; align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg-img {
+      position: absolute; inset: 0;
+    }
+    .hero-bg-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 20%;
+      display: block;
+    }
+    .hero-bg-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 35%,
+        rgba(232,88,122,.12) 55%,
+        rgba(253,246,240,.92) 80%,
+        var(--cream) 100%
+      );
+    }
+    .hero-content {
+      position: relative; z-index: 10;
+      width: 100%;
+      padding: 2.5rem 1.5rem 5rem;
+    }
+    @media(min-width:768px){
+      .hero-content { padding: 3rem 4rem 6rem; max-width: 700px; }
+    }
+
+    /* wavy divider */
+    .wavy {
+      width: 100%; height: 60px;
+      position: relative; overflow: hidden;
+    }
+    .wavy svg { position: absolute; bottom: 0; width: 100%; }
+
+    /* about section — editorial layout */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    @media(min-width:1024px){
+      .about-grid { grid-template-columns: 5fr 7fr; align-items: start; gap: 5rem; }
+    }
+
+    .photo-editorial {
+      position: relative;
+      border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%;
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      max-width: 380px;
+      margin: 0 auto;
+      box-shadow: 0 40px 80px rgba(232,88,122,.18);
+    }
+    .photo-editorial img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 10%;
+    }
+    .photo-editorial::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(232,88,122,.12) 100%);
+      z-index: 1;
+    }
+
+    /* service card — light elegant */
+    .service-card {
+      background: #fff;
+      border: 1px solid rgba(232,88,122,.12);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      transition: all .3s ease;
+      box-shadow: 0 4px 24px rgba(232,88,122,.06);
+      position: relative; overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--blush) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(232,88,122,.14);
+      border-color: rgba(232,88,122,.3);
+    }
+    .service-card:hover::after { opacity: 1; }
+
+    .icon-rose {
+      width: 56px; height: 56px; border-radius: 18px; flex-shrink: 0;
+      background: var(--blush);
+      border: 1px solid rgba(232,88,122,.22);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+    }
+
+    /* stat cards */
+    .stat-badge {
+      background: #fff;
+      border: 1px solid rgba(232,88,122,.15);
+      border-radius: 1.25rem;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(232,88,122,.06);
+    }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; font-weight: 800; line-height: 1;
+      background: linear-gradient(120deg, #E8587A, #F97316);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* timeline steps */
+    .timeline-step {
+      display: flex; gap: 1.25rem; align-items: flex-start;
+    }
+    .timeline-dot {
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+      background: var(--blush);
+      border: 2px solid rgba(232,88,122,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-weight: 800; font-size: 1.1rem;
+      color: var(--rose);
+      position: relative;
+    }
+    .timeline-dot::after {
+      content: '';
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      width: 2px; height: calc(100% + 1.25rem);
+      background: linear-gradient(to bottom, rgba(232,88,122,.3), transparent);
+    }
+    .timeline-step:last-child .timeline-dot::after { display: none; }
+
+    /* testimonial card */
+    .test-card {
+      background: #fff;
+      border-radius: 1.5rem;
+      padding: 1.75rem;
+      box-shadow: 0 4px 24px rgba(232,88,122,.07);
+      border: 1px solid rgba(232,88,122,.1);
+      position: relative;
+    }
+    .test-card::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem; line-height: .8; font-weight: 800;
+      color: var(--rose); opacity: .15;
+      position: absolute; top: .5rem; left: 1rem;
+    }
+
+    /* buttons */
+    .btn-rose {
+      background: linear-gradient(135deg, var(--rose), var(--rose-light));
+      color: #fff; font-weight: 700;
+      border-radius: 999px;
+      padding: .85rem 2rem;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .25s;
+      box-shadow: 0 8px 24px rgba(232,88,122,.35);
+    }
+    .btn-rose:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 36px rgba(232,88,122,.45);
+    }
+    .btn-outline-rose {
+      border: 2px solid var(--rose);
+      color: var(--rose); font-weight: 700;
+      border-radius: 999px;
+      padding: .8rem 2rem;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .25s;
+    }
+    .btn-outline-rose:hover {
+      background: var(--rose); color: #fff;
+    }
+
+    /* section label */
+    .eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--rose);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 28px; height: 2px;
+      background: linear-gradient(90deg, var(--rose), transparent);
+      border-radius: 2px;
+    }
+
+    /* CTA section — rose wave bg */
+    .cta-wave {
+      position: relative;
+      background: linear-gradient(135deg, #4a0a20 0%, #7a1a40 50%, #3a0815 100%);
+      overflow: hidden;
+    }
+    .cta-wave::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -20%;
+      width: 80%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(232,88,122,.25) 0%, transparent 70%);
+      animation: pulseBg 5s ease-in-out infinite alternate;
+    }
+    @keyframes pulseBg {
+      from { transform: scale(1); }
+      to { transform: scale(1.15) translateX(5%); }
+    }
+
+    /* fade-up */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    @media(max-width:640px){
+      .photo-editorial { max-width: 280px; }
+    }
+  </style>
+</head>
+<body class="font-sans">
+
+  <!-- NAV -->
+  <nav class="site-nav" aria-label="Navegação principal">
+    <a href="#home" class="font-serif font-bold text-xl text-grad italic">[Nome] Personal</a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium text-rose-dark/70">
+      <a href="#sobre" class="hover:text-rose-DEFAULT transition-colors" style="color:var(--muted)">Sobre</a>
+      <a href="#servicos" class="hover:text-rose-DEFAULT transition-colors" style="color:var(--muted)">Serviços</a>
+      <a href="#metodo" class="hover:text-rose-DEFAULT transition-colors" style="color:var(--muted)">Método</a>
+      <a href="#depoimentos" class="hover:text-rose-DEFAULT transition-colors" style="color:var(--muted)">Depoimentos</a>
+    </div>
+    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-rose text-sm">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Agendar avaliação
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-full" id="home">
+    <div class="hero-bg-img">
+      <img src="fotos/foto-hero.jpg" alt="[Nome] Personal Trainer"
+           onerror="this.parentElement.style.background='linear-gradient(135deg,#FCE7EF,#FDF6F0)'; this.style.display='none'"/>
+    </div>
+    <div class="hero-content">
+      <div class="flex flex-wrap gap-2 mb-5 fade-up">
+        <span class="pill">Personal Trainer</span>
+        <span class="pill">CREF 000000</span>
+        <span class="pill">Presencial & Online</span>
+      </div>
+
+      <h1 class="font-serif font-black leading-tight mb-4 fade-up"
+          style="font-size:clamp(2.8rem,7vw,5rem); color: var(--text)">
+        Cuide do seu corpo<br/>
+        com quem <em class="text-grad">te entende.</em>
+      </h1>
+
+      <p class="leading-relaxed mb-8 max-w-xl fade-up" style="color:var(--muted); font-size:1.1rem">
+        Especialista em saúde da mulher: treino que respeita seu momento de vida,
+        equilibra hormônios e entrega resultado de verdade.
+      </p>
+
+      <div class="flex flex-wrap gap-3 fade-up">
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-rose">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Quero começar!
+        </a>
+        <a href="#sobre" class="btn-outline-rose">Conheça meu trabalho</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <section class="py-10 px-6" style="background: #fff; border-top: 1px solid rgba(232,88,122,.1); border-bottom: 1px solid rgba(232,88,122,.1)">
+    <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="stat-badge fade-up">
+        <p class="stat-num">300<span style="font-size:1.5rem">+</span></p>
+        <p class="text-xs font-semibold uppercase tracking-wider mt-2" style="color:var(--muted)">Alunas atendidas</p>
+      </div>
+      <div class="stat-badge fade-up" style="transition-delay:.1s">
+        <p class="stat-num">7<span style="font-size:1.5rem">+</span></p>
+        <p class="text-xs font-semibold uppercase tracking-wider mt-2" style="color:var(--muted)">Anos de experiência</p>
+      </div>
+      <div class="stat-badge fade-up" style="transition-delay:.2s">
+        <p class="stat-num">98<span style="font-size:1.5rem">%</span></p>
+        <p class="text-xs font-semibold uppercase tracking-wider mt-2" style="color:var(--muted)">Taxa de satisfação</p>
+      </div>
+      <div class="stat-badge fade-up" style="transition-delay:.3s">
+        <p class="stat-num">12<span style="font-size:1.5rem">+</span></p>
+        <p class="text-xs font-semibold uppercase tracking-wider mt-2" style="color:var(--muted)">Especialidades</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="py-20 px-6 max-w-6xl mx-auto" id="sobre">
+    <div class="about-grid">
+      <div class="fade-up">
+        <div class="photo-editorial">
+          <img src="fotos/foto-sobre.jpg" alt="[Nome] Personal"
+               onerror="this.parentElement.style.background='linear-gradient(135deg,var(--blush),var(--cream))'; this.style.display='none'"/>
+        </div>
+        <!-- floating badge -->
+        <div class="test-card max-w-xs mx-auto mt-6">
+          <div class="flex gap-3 items-center">
+            <div style="background:var(--blush); border-radius:14px; width:48px; height:48px; display:flex; align-items:center; justify-content:center;">
+              <svg width="22" height="22" fill="none" stroke="var(--rose)" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <p class="font-bold text-sm" style="color:var(--text)">CREF Ativo</p>
+              <p class="text-xs" style="color:var(--muted)">Formação em Educação Física</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up" style="transition-delay:.15s">
+        <p class="eyebrow mb-4">Minha história</p>
+        <h2 class="font-serif font-bold leading-tight mb-6" style="font-size:clamp(2rem,4vw,3rem); color:var(--text)">
+          Movimento que <em class="text-grad">transforma</em><br/>mais que o físico.
+        </h2>
+        <p class="leading-relaxed mb-4" style="color:var(--muted)">
+          Olá! Sou [nome], personal trainer apaixonada pela saúde da mulher.
+          Formada em Educação Física pela [faculdade], trago na bagagem [X] anos
+          dedicados a ajudar mulheres a se reconectarem com seus corpos.
+        </p>
+        <p class="leading-relaxed mb-8" style="color:var(--muted)">
+          Minha abordagem combina ciência do exercício com escuta ativa.
+          Porque antes de treinar o corpo, é preciso entender a pessoa — sua rotina,
+          seus medos, suas conquistas.
+        </p>
+
+        <!-- Especialidades -->
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span class="pill">Saúde feminina</span>
+          <span class="pill">Emagrecimento</span>
+          <span class="pill">Hipertrofia</span>
+          <span class="pill">Treino funcional</span>
+          <span class="pill">Gestantes</span>
+          <span class="pill">Pós-parto</span>
+        </div>
+
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-rose">
+          Agendar conversa gratuita
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="py-20 px-6" id="servicos"
+           style="background: linear-gradient(to bottom, var(--cream), var(--blush) 50%, var(--cream))">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14 fade-up">
+        <p class="eyebrow justify-center mb-4">O que ofereço</p>
+        <h2 class="font-serif font-bold leading-tight" style="font-size:clamp(2rem,5vw,3rem); color:var(--text)">
+          Treino feito <em class="text-grad">para você</em>
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="service-card fade-up">
+          <div class="icon-rose mb-4">
+            <svg width="22" height="22" fill="none" stroke="var(--rose)" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 class="font-serif font-bold text-xl mb-3" style="color:var(--text)">Saúde da mulher</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Treino adaptado ao ciclo hormonal, menopausa, gestação e pós-parto. Seu corpo, sua fase.</p>
+        </div>
+        <div class="service-card fade-up" style="transition-delay:.1s">
+          <div class="icon-rose mb-4">
+            <svg width="22" height="22" fill="none" stroke="var(--rose)" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="font-serif font-bold text-xl mb-3" style="color:var(--text)">Emagrecimento</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Protocolo inteligente de perda de gordura sem perder massa muscular. Sem dietas malucas.</p>
+        </div>
+        <div class="service-card fade-up" style="transition-delay:.2s">
+          <div class="icon-rose mb-4">
+            <svg width="22" height="22" fill="none" stroke="var(--rose)" stroke-width="2" viewBox="0 0 24 24"><path d="M6.5 6.5L2 12l4.5 5.5"/><path d="M17.5 6.5L22 12l-4.5 5.5"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
+          <h3 class="font-serif font-bold text-xl mb-3" style="color:var(--text)">Hipertrofia</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Musculação feminina com periodização correta para ganho de massa e definição muscular real.</p>
+        </div>
+        <div class="service-card fade-up" style="transition-delay:.05s">
+          <div class="icon-rose mb-4">
+            <svg width="22" height="22" fill="none" stroke="var(--rose)" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="font-serif font-bold text-xl mb-3" style="color:var(--text)">Consultoria online</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Treino no app com fichas em vídeo, evolução monitorada e acompanhamento no WhatsApp. Onde estiver.</p>
+        </div>
+        <div class="service-card fade-up" style="transition-delay:.15s">
+          <div class="icon-rose mb-4">
+            <svg width="22" height="22" fill="none" stroke="var(--rose)" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3 class="font-serif font-bold text-xl mb-3" style="color:var(--text)">Treino presencial</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Atendimento 1:1 com acompanhamento real de execução, postura e segurança em cada movimento.</p>
+        </div>
+        <div class="service-card fade-up" style="transition-delay:.25s">
+          <div class="icon-rose mb-4">
+            <svg width="22" height="22" fill="none" stroke="var(--rose)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3 class="font-serif font-bold text-xl mb-3" style="color:var(--text)">Planos flexíveis</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Modalidades mensais ou trimestrais com pacotes adequados à sua disponibilidade e objetivo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTODO / JORNADA -->
+  <section class="py-20 px-6" id="metodo">
+    <div class="max-w-5xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-16 items-start">
+        <div class="fade-up">
+          <p class="eyebrow mb-4">Como funciona</p>
+          <h2 class="font-serif font-bold leading-tight mb-10" style="font-size:clamp(2rem,4vw,3rem); color:var(--text)">
+            Sua jornada de<br/><em class="text-grad">transformação</em>
+          </h2>
+
+          <div class="space-y-8">
+            <div class="timeline-step">
+              <div class="timeline-dot">1</div>
+              <div style="padding-top:.25rem">
+                <h4 class="font-bold text-lg mb-1" style="color:var(--text)">Conversa inicial gratuita</h4>
+                <p class="text-sm leading-relaxed" style="color:var(--muted)">Entendemos seus objetivos, histórico de saúde e disponibilidade de treino sem compromisso.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-dot">2</div>
+              <div style="padding-top:.25rem">
+                <h4 class="font-bold text-lg mb-1" style="color:var(--text)">Avaliação corporal</h4>
+                <p class="text-sm leading-relaxed" style="color:var(--muted)">Medidas, composição corporal e análise postural para criar o protocolo certo para você.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-dot">3</div>
+              <div style="padding-top:.25rem">
+                <h4 class="font-bold text-lg mb-1" style="color:var(--text)">Protocolo personalizado</h4>
+                <p class="text-sm leading-relaxed" style="color:var(--muted)">Treino 100% seu: periodizado, progressivo e adequado à sua fase de vida e objetivos.</p>
+              </div>
+            </div>
+            <div class="timeline-step">
+              <div class="timeline-dot">4</div>
+              <div style="padding-top:.25rem">
+                <h4 class="font-bold text-lg mb-1" style="color:var(--text)">Acompanhamento contínuo</h4>
+                <p class="text-sm leading-relaxed" style="color:var(--muted)">Evolução semanal, ajustes de treino e suporte direto via WhatsApp para manter os resultados.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-up" style="transition-delay:.2s">
+          <!-- citação / filosofia -->
+          <div class="test-card mb-6">
+            <div style="padding-top:.5rem">
+              <p class="font-serif italic text-xl leading-relaxed mb-4" style="color:var(--text)">
+                "Não treino corpos, treino pessoas. Cada aluna traz uma história, e é com ela que criamos o protocolo certo."
+              </p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full overflow-hidden" style="background:var(--blush)">
+                  <img src="fotos/foto-perfil.jpg" alt="" class="w-full h-full object-cover"
+                       onerror="this.style.display='none'"/>
+                </div>
+                <div>
+                  <p class="font-bold text-sm" style="color:var(--text)">[Nome], Personal Trainer</p>
+                  <p class="text-xs" style="color:var(--muted)">CREF 000000</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- mini galeria antes/depois placeholder -->
+          <div class="grid grid-cols-2 gap-3">
+            <div class="rounded-2xl overflow-hidden" style="aspect-ratio:3/4; background: var(--blush)">
+              <img src="fotos/resultado-1.jpg" alt="Resultado 1"
+                   class="w-full h-full object-cover"
+                   onerror="this.style.display='none'"/>
+            </div>
+            <div class="rounded-2xl overflow-hidden" style="aspect-ratio:3/4; background: var(--blush)">
+              <img src="fotos/resultado-2.jpg" alt="Resultado 2"
+                   class="w-full h-full object-cover"
+                   onerror="this.style.display='none'"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="py-20 px-6" id="depoimentos" style="background: var(--blush)">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 fade-up">
+        <p class="eyebrow justify-center mb-4">Quem viveu na prática</p>
+        <h2 class="font-serif font-bold leading-tight" style="font-size:clamp(2rem,4vw,3rem); color:var(--text)">
+          Histórias que <em class="text-grad">inspiram</em>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="test-card fade-up">
+          <div class="pt-6">
+            <p class="text-sm leading-relaxed mb-5" style="color:var(--muted)">Depois do parto me senti completamente perdida. A [nome] entendeu meu corpo e minha rotina de mãe. Em 4 meses voltei a me sentir eu mesma.</p>
+            <div class="flex gap-3 items-center">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-serif font-bold text-lg" style="background:var(--blush); color:var(--rose)">P</div>
+              <div>
+                <p class="font-bold text-sm" style="color:var(--text)">Patrícia Souza</p>
+                <p class="text-xs" style="color:var(--muted)">Pós-parto · 5 meses de treino</p>
+              </div>
+              <div class="ml-auto text-sm" style="color:var(--rose)">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card fade-up" style="transition-delay:.1s">
+          <div class="pt-6">
+            <p class="text-sm leading-relaxed mb-5" style="color:var(--muted)">Perdi 14kg em 6 meses sem passar fome e sem abrir mão da minha vida social. O treino encaixou perfeitamente na minha rotina.</p>
+            <div class="flex gap-3 items-center">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-serif font-bold text-lg" style="background:var(--blush); color:var(--rose)">C</div>
+              <div>
+                <p class="font-bold text-sm" style="color:var(--text)">Camila Ferreira</p>
+                <p class="text-xs" style="color:var(--muted)">Emagrecimento · 6 meses</p>
+              </div>
+              <div class="ml-auto text-sm" style="color:var(--rose)">★★★★★</div>
+            </div>
+          </div>
+        </div>
+        <div class="test-card fade-up" style="transition-delay:.2s">
+          <div class="pt-6">
+            <p class="text-sm leading-relaxed mb-5" style="color:var(--muted)">Sou de outra cidade e a consultoria online me surpreendeu. Acompanhamento diário, fichas com vídeo e resultado real em casa!</p>
+            <div class="flex gap-3 items-center">
+              <div class="w-10 h-10 rounded-full flex items-center justify-center font-serif font-bold text-lg" style="background:var(--blush); color:var(--rose)">L</div>
+              <div>
+                <p class="font-bold text-sm" style="color:var(--text)">Larissa Mendes</p>
+                <p class="text-xs" style="color:var(--muted)">Online · 4 meses</p>
+              </div>
+              <div class="ml-auto text-sm" style="color:var(--rose)">★★★★★</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="py-24 px-6 cta-wave">
+    <div class="max-w-3xl mx-auto text-center relative z-10 fade-up">
+      <p class="pill mb-6 inline-flex" style="background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.2); color:#fff">Vagas limitadas</p>
+      <h2 class="font-serif font-bold text-white leading-tight mb-6" style="font-size:clamp(2.2rem,5vw,3.5rem)">
+        Pronta para começar sua<br/><em>transformação?</em>
+      </h2>
+      <p class="text-white/70 mb-10 max-w-md mx-auto leading-relaxed">
+        Avaliação gratuita, sem compromisso. Vamos conversar sobre seus objetivos e criar o plano ideal para você.
+      </p>
+      <a href="https://wa.me/5500000000000" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-3 px-8 py-4 rounded-full font-bold text-lg transition-all"
+         style="background:#fff; color:var(--rose); box-shadow: 0 12px 40px rgba(0,0,0,.3)">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Falar no WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 px-6 text-center" style="background: var(--cream); border-top: 1px solid rgba(232,88,122,.1)">
+    <p class="font-serif font-bold text-xl text-grad italic mb-2">[Nome] Personal</p>
+    <p class="text-xs" style="color:var(--muted)">© 2026 · CREF 000000 · Personal Trainer · Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

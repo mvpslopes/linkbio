@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Modelos Nutricionistas — LinkBio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root { --bg:#0A0A0A; --card:#141414; --border:rgba(255,255,255,.07); --muted:rgba(255,255,255,.4); }
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Space Grotesk',sans-serif; background:var(--bg); color:#fff; min-height:100vh; padding:0 0 5rem; }
+
+    .header { text-align:center; padding:4.5rem 1.5rem 3rem; border-bottom:1px solid var(--border); position:relative; }
+    .header::before { content:''; position:absolute; inset:0; pointer-events:none; background:radial-gradient(ellipse 60% 40% at 50% -10%, rgba(56,197,212,.05), transparent); }
+    .back-link { display:inline-flex; align-items:center; gap:.4rem; font-size:.8rem; color:var(--muted); text-decoration:none; margin-bottom:1.5rem; transition:color .2s; }
+    .back-link:hover { color:#fff; }
+    .badge { display:inline-block; font-family:'Space Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:rgba(56,197,212,.8); background:rgba(56,197,212,.06); border:1px solid rgba(56,197,212,.2); border-radius:999px; padding:5px 16px; margin-bottom:1.25rem; }
+    h1 { font-size:clamp(2rem,5vw,3.25rem); font-weight:700; letter-spacing:-.03em; line-height:1.1; margin-bottom:.85rem; }
+    .sub { color:var(--muted); font-size:.95rem; max-width:460px; margin:0 auto; line-height:1.7; }
+
+    .content { max-width:1100px; margin:0 auto; padding:3.5rem 1.5rem 0; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(290px,1fr)); gap:1.25rem; }
+
+    .card { background:var(--card); border:1px solid var(--border); border-radius:1.25rem; overflow:hidden; text-decoration:none; color:inherit; display:flex; flex-direction:column; transition:all .3s; }
+    .card:hover { transform:translateY(-6px); border-color:rgba(255,255,255,.14); box-shadow:0 24px 60px rgba(0,0,0,.5); }
+
+    .preview { height:200px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+    .plabel { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4rem; z-index:2; }
+    .ptitle { font-family:'Space Mono',monospace; font-size:1.65rem; font-weight:700; letter-spacing:.04em; }
+    .psub { font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; opacity:.6; }
+
+    .prev-natura { background:linear-gradient(160deg,#EAF2EB,#C8DFD0,#A8CCAF); border-bottom:1px solid rgba(74,124,89,.2); }
+    .prev-natura .ptitle { color:#2E6B42; }
+    .prev-natura .psub { color:rgba(74,124,89,.8); }
+
+    .prev-studio { background:linear-gradient(135deg,#1C1C1E,#252525); border-bottom:1px solid rgba(212,168,83,.25); }
+    .prev-studio .ptitle { color:#D4A853; text-shadow:0 0 20px rgba(212,168,83,.3); }
+    .prev-studio .psub { color:rgba(212,168,83,.6); }
+
+    .prev-fresh { background:linear-gradient(135deg,#062630,#0D5C6B); border-bottom:1px solid rgba(56,197,212,.3); }
+    .prev-fresh .ptitle { color:#38C5D4; text-shadow:0 0 20px rgba(56,197,212,.3); }
+    .prev-fresh .psub { color:rgba(56,197,212,.6); }
+
+    .prev-bloom { background:linear-gradient(135deg,#FDF0F7,#EDD9EA); border-bottom:1px solid rgba(196,120,160,.2); }
+    .prev-bloom .ptitle { background:linear-gradient(120deg,#C4789F,#A06AAA); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .prev-bloom .psub { color:rgba(196,120,160,.7); }
+
+    .prev-root { background:linear-gradient(135deg,#0E1F18,#1B3A2D); border-bottom:1px solid rgba(201,168,76,.25); }
+    .prev-root::before { content:''; position:absolute; top:-20px; right:-20px; width:120px; height:120px; border-radius:50%; background:radial-gradient(ellipse,rgba(201,168,76,.15) 0%,transparent 70%); }
+    .prev-root .ptitle { color:#C9A84C; text-shadow:0 0 20px rgba(201,168,76,.25); position:relative; z-index:2; }
+    .prev-root .psub { color:rgba(201,168,76,.65); position:relative; z-index:2; }
+
+    .prev-signal { background:linear-gradient(135deg,#F0FFF8,#E0FAF0); border-bottom:1px solid rgba(0,208,132,.2); }
+    .prev-signal .ptitle { color:#007A42; }
+    .prev-signal .psub { color:rgba(0,208,132,.7); }
+
+    .body { padding:1.35rem 1.5rem; flex:1; }
+    .name { font-weight:700; font-size:1.05rem; margin-bottom:.4rem; }
+    .desc { font-size:.84rem; color:var(--muted); line-height:1.65; margin-bottom:1rem; }
+    .tags { display:flex; flex-wrap:wrap; gap:.35rem; }
+    .tag { font-size:10px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:3px 9px; border-radius:5px; background:rgba(255,255,255,.05); border:1px solid var(--border); color:rgba(255,255,255,.45); }
+
+    .footer-row { padding:.85rem 1.5rem; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .num { font-family:'Space Mono',monospace; font-size:10px; color:rgba(255,255,255,.2); }
+    .btn { display:inline-flex; align-items:center; gap:.4rem; font-size:.8rem; font-weight:700; padding:.5rem 1.1rem; border-radius:7px; transition:all .2s; white-space:nowrap; text-decoration:none; }
+    .btn-green { background:rgba(74,124,89,.12); color:#4A7C59; border:1px solid rgba(74,124,89,.3); }
+    .btn-green:hover { background:rgba(74,124,89,.22); }
+    .btn-amber { background:rgba(212,168,83,.1); color:#D4A853; border:1px solid rgba(212,168,83,.3); }
+    .btn-amber:hover { background:rgba(212,168,83,.2); }
+    .btn-teal { background:rgba(13,92,107,.15); color:#38C5D4; border:1px solid rgba(56,197,212,.3); }
+    .btn-teal:hover { background:rgba(56,197,212,.15); }
+    .btn-mauve { background:rgba(196,120,160,.1); color:#C4789F; border:1px solid rgba(196,120,160,.3); }
+    .btn-mauve:hover { background:rgba(196,120,160,.2); }
+    .btn-gold { background:rgba(201,168,76,.1); color:#C9A84C; border:1px solid rgba(201,168,76,.3); }
+    .btn-gold:hover { background:rgba(201,168,76,.2); }
+    .btn-signal { background:rgba(0,208,132,.08); color:#00A855; border:1px solid rgba(0,208,132,.3); }
+    .btn-signal:hover { background:rgba(0,208,132,.16); }
+
+    .page-footer { text-align:center; margin-top:4rem; padding-top:2rem; border-top:1px solid var(--border); }
+    .page-footer p { font-size:.75rem; color:rgba(255,255,255,.18); font-family:'Space Mono',monospace; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a href="../index.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Voltar à biblioteca
+    </a>
+    <div class="badge">Nutricionistas &amp; Dietistas</div>
+    <h1>6 modelos para<br/><span style="background:linear-gradient(120deg,#4A7C59,#38C5D4,#C9A84C);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">nutricionistas</span></h1>
+    <p class="sub">Seis identidades visuais completamente distintas para diferentes perfis de atuação.</p>
+  </header>
+
+  <main class="content">
+    <div class="grid">
+
+      <a href="modelo-natura.html" class="card">
+        <div class="preview prev-natura"><div class="plabel"><span class="ptitle">NATURA</span><span class="psub">Verde · Creme · Orgânico</span></div></div>
+        <div class="body">
+          <p class="name">Natura</p>
+          <p class="desc">Verde sálvia e creme orgânico, tipografia serif Fraunces. Nutrição holística, plant-based e funcional.</p>
+          <div class="tags"><span class="tag">Verde</span><span class="tag">Orgânico</span><span class="tag">Serif</span><span class="tag">Plant-based</span></div>
+        </div>
+        <div class="footer-row"><span class="num">01/06</span><span class="btn btn-green">Visualizar →</span></div>
+      </a>
+
+      <a href="modelo-studio.html" class="card">
+        <div class="preview prev-studio"><div class="plabel"><span class="ptitle">STUDIO</span><span class="psub">Carvão · Âmbar · Clínico</span></div></div>
+        <div class="body">
+          <p class="name">Studio</p>
+          <p class="desc">Carvão premium com acento âmbar dourado e editorial. Nutricionista clínica de alto padrão.</p>
+          <div class="tags"><span class="tag">Dark</span><span class="tag">Âmbar</span><span class="tag">Clínico</span><span class="tag">Premium</span></div>
+        </div>
+        <div class="footer-row"><span class="num">02/06</span><span class="btn btn-amber">Visualizar →</span></div>
+      </a>
+
+      <a href="modelo-fresh.html" class="card">
+        <div class="preview prev-fresh"><div class="plabel"><span class="ptitle">FRESH</span><span class="psub">Teal · Branco · Esportivo</span></div></div>
+        <div class="body">
+          <p class="name">Fresh</p>
+          <p class="desc">Teal escuro moderno e técnico. Dados de performance em destaque. Nutrição esportiva e emagrecimento.</p>
+          <div class="tags"><span class="tag">Teal</span><span class="tag">Esportivo</span><span class="tag">Performance</span></div>
+        </div>
+        <div class="footer-row"><span class="num">03/06</span><span class="btn btn-teal">Visualizar →</span></div>
+      </a>
+
+      <a href="modelo-bloom.html" class="card">
+        <div class="preview prev-bloom"><div class="plabel"><span class="ptitle">BLOOM</span><span class="psub">Blush · Lavanda · Feminino</span></div></div>
+        <div class="body">
+          <p class="name">Bloom</p>
+          <p class="desc">Blush e lavanda elegante, Cormorant Garamond serif. Saúde hormonal feminina e coaching nutricional.</p>
+          <div class="tags"><span class="tag">Blush</span><span class="tag">Lavanda</span><span class="tag">Feminino</span><span class="tag">Hormonal</span></div>
+        </div>
+        <div class="footer-row"><span class="num">04/06</span><span class="btn btn-mauve">Visualizar →</span></div>
+      </a>
+
+      <a href="modelo-root.html" class="card">
+        <div class="preview prev-root"><div class="plabel"><span class="ptitle">ROOT</span><span class="psub">Floresta · Dourado · Luxury</span></div></div>
+        <div class="body">
+          <p class="name">Root</p>
+          <p class="desc">Verde floresta escuro e detalhes dourados. Nutrição integrativa de luxo e saúde funcional premium.</p>
+          <div class="tags"><span class="tag">Dark green</span><span class="tag">Dourado</span><span class="tag">Luxury</span><span class="tag">Integrativa</span></div>
+        </div>
+        <div class="footer-row"><span class="num">05/06</span><span class="btn btn-gold">Visualizar →</span></div>
+      </a>
+
+      <a href="modelo-signal.html" class="card">
+        <div class="preview prev-signal"><div class="plabel"><span class="ptitle">SIGNAL</span><span class="psub">Branco · Verde neon · Tech</span></div></div>
+        <div class="body">
+          <p class="name">Signal</p>
+          <p class="desc">Branco puro e verde neon. Data-driven, grid técnico e resultados numéricos em destaque. Esportivo tech.</p>
+          <div class="tags"><span class="tag">Branco</span><span class="tag">Neon verde</span><span class="tag">Tech</span><span class="tag">Dados</span></div>
+        </div>
+        <div class="footer-row"><span class="num">06/06</span><span class="btn btn-signal">Visualizar →</span></div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="page-footer">
+    <p>modelos/nutricionistas/ · Substitua [Nome], fotos e contatos antes de publicar</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Biblioteca de Modelos — LinkBio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0A0A0A; --bg2: #111111; --card: #141414;
+      --border: rgba(255,255,255,.07); --muted: rgba(255,255,255,.4);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Space Grotesk', sans-serif; background: var(--bg); color: #fff; min-height: 100vh; padding: 0 0 5rem; }
+
+    .site-header {
+      text-align: center; padding: 5rem 1.5rem 3.5rem;
+      border-bottom: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .site-header::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 60% 40% at 50% -10%, rgba(255,255,255,.04), transparent);
+    }
+    .header-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.5);
+      background: rgba(255,255,255,.05); border: 1px solid var(--border);
+      border-radius: 999px; padding: 5px 16px; margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: clamp(2.25rem, 6vw, 4rem); font-weight: 700;
+      letter-spacing: -.03em; line-height: 1.1; margin-bottom: 1rem;
+    }
+    .header-sub { color: var(--muted); font-size: 1.05rem; max-width: 500px; margin: 0 auto; line-height: 1.7; }
+
+    .stats-row {
+      display: flex; justify-content: center; gap: 3rem; margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-n { font-family: 'Space Mono', monospace; font-size: 2rem; font-weight: 700; }
+    .stat-l { font-size: .72rem; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; margin-top: .2rem; }
+
+    .content { max-width: 1180px; margin: 0 auto; padding: 4rem 1.5rem 0; }
+
+    .category-section { margin-bottom: 5rem; }
+    .category-header {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;
+      padding-bottom: 1.25rem; border-bottom: 1px solid var(--border);
+    }
+    .category-label {
+      font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase; margin-bottom: .4rem;
+    }
+    .category-title { font-size: 1.75rem; font-weight: 700; letter-spacing: -.02em; }
+    .category-count { font-size: .82rem; color: var(--muted); }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .model-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 1.25rem; overflow: hidden;
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column;
+      transition: all .3s;
+    }
+    .model-card:hover {
+      transform: translateY(-6px); border-color: rgba(255,255,255,.14);
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+    }
+
+    .model-preview {
+      height: 200px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .preview-label {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: .4rem; z-index: 2;
+    }
+    .preview-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.65rem; font-weight: 700; letter-spacing: .04em;
+    }
+    .preview-sub {
+      font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; opacity: .65;
+    }
+
+    /* FITNESS previews */
+    .prev-strong { background: linear-gradient(135deg,#0d0500,#1a0a00); border-bottom: 1px solid rgba(255,107,0,.2); }
+    .prev-strong .preview-title { background: linear-gradient(110deg,#FF8C00,#FF4500); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .prev-strong .preview-sub { color: rgba(255,107,0,.65); }
+
+    .prev-glow { background: linear-gradient(135deg,#FDF0F5,#FCE7EF); border-bottom: 1px solid rgba(232,88,122,.2); }
+    .prev-glow .preview-title { background: linear-gradient(120deg,#E8587A,#F97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .prev-glow .preview-sub { color: rgba(232,88,122,.7); }
+
+    .prev-minimal { background: linear-gradient(135deg,#080808,#111); border-bottom: 1px solid rgba(200,255,0,.15); }
+    .prev-minimal .preview-title { color: #C8FF00; text-shadow: 0 0 20px rgba(200,255,0,.4); }
+    .prev-minimal .preview-sub { color: rgba(200,255,0,.55); }
+
+    .prev-aurora { background: linear-gradient(135deg,#060612,#12083a,#051428); border-bottom: 1px solid rgba(139,92,246,.2); }
+    .prev-aurora::before { content:''; position:absolute; top:-40px; right:-40px; width:180px; height:180px; border-radius:50%; background:radial-gradient(ellipse,rgba(139,92,246,.3) 0%,transparent 70%); }
+    .prev-aurora::after { content:''; position:absolute; bottom:-30px; left:-30px; width:140px; height:140px; border-radius:50%; background:radial-gradient(ellipse,rgba(6,182,212,.25) 0%,transparent 70%); }
+    .prev-aurora .preview-title { background:linear-gradient(120deg,#A78BFA,#38BDF8,#34D399); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; position:relative; z-index:2; }
+    .prev-aurora .preview-sub { color:rgba(139,92,246,.7); position:relative; z-index:2; }
+
+    .prev-terra { background: linear-gradient(135deg,#F7EEE4,#EED9C4,#E0C5A8); border-bottom: 1px solid rgba(196,98,58,.2); }
+    .prev-terra .preview-title { color: #C4623A; }
+    .prev-terra .preview-sub { color: rgba(196,98,58,.65); }
+
+    .prev-voltage { background: #080810; border-bottom: 1px solid rgba(255,45,120,.2); }
+    .prev-voltage::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,45,120,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,45,120,.06) 1px,transparent 1px); background-size:24px 24px; }
+    .prev-voltage .preview-title { color:#FF2D78; text-shadow:0 0 20px rgba(255,45,120,.6); position:relative; z-index:2; }
+    .prev-voltage .preview-sub { color:rgba(0,240,255,.65); position:relative; z-index:2; }
+
+    /* NUTRI previews */
+    .prev-natura { background: linear-gradient(160deg,#EAF2EB,#D4E8D6,#C4DEC8); border-bottom: 1px solid rgba(74,124,89,.2); }
+    .prev-natura .preview-title { color: #2E6B42; }
+    .prev-natura .preview-sub { color: rgba(74,124,89,.7); }
+
+    .prev-studio { background: linear-gradient(135deg,#1C1C1E,#252525); border-bottom: 1px solid rgba(212,168,83,.25); }
+    .prev-studio .preview-title { color: #D4A853; text-shadow: 0 0 20px rgba(212,168,83,.3); }
+    .prev-studio .preview-sub { color: rgba(212,168,83,.65); }
+
+    .prev-fresh { background: linear-gradient(135deg,#062630,#0D5C6B); border-bottom: 1px solid rgba(26,143,160,.3); }
+    .prev-fresh .preview-title { color: #38C5D4; text-shadow: 0 0 20px rgba(56,197,212,.3); }
+    .prev-fresh .preview-sub { color: rgba(56,197,212,.6); }
+
+    .prev-bloom { background: linear-gradient(135deg,#FDF0F7,#F5E6F0,#EDD9EA); border-bottom: 1px solid rgba(196,120,160,.2); }
+    .prev-bloom .preview-title { background: linear-gradient(120deg,#C4789F,#A06AAA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .prev-bloom .preview-sub { color: rgba(196,120,160,.7); }
+
+    .prev-root { background: linear-gradient(135deg,#0E1F18,#1B3A2D); border-bottom: 1px solid rgba(201,168,76,.25); }
+    .prev-root::before { content:''; position:absolute; top:-20px; right:-20px; width:120px; height:120px; border-radius:50%; background:radial-gradient(ellipse,rgba(201,168,76,.15) 0%,transparent 70%); }
+    .prev-root .preview-title { color: #C9A84C; text-shadow: 0 0 20px rgba(201,168,76,.3); position:relative; z-index:2; }
+    .prev-root .preview-sub { color: rgba(201,168,76,.65); position:relative; z-index:2; }
+
+    .prev-signal { background: linear-gradient(135deg,#F8FFF8,#EDFFF0); border-bottom: 1px solid rgba(0,208,132,.2); }
+    .prev-signal .preview-title { color: #007A42; }
+    .prev-signal .preview-sub { color: rgba(0,208,132,.65); }
+
+    .model-body { padding: 1.35rem 1.5rem; flex: 1; }
+    .model-name { font-weight: 700; font-size: 1.05rem; margin-bottom: .4rem; }
+    .model-desc { font-size: .85rem; color: var(--muted); line-height: 1.65; margin-bottom: 1.1rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tag {
+      font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 5px;
+      background: rgba(255,255,255,.05); border: 1px solid var(--border);
+      color: rgba(255,255,255,.5);
+    }
+
+    .model-footer {
+      padding: .85rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .model-num { font-family: 'Space Mono', monospace; font-size: 10px; color: rgba(255,255,255,.2); }
+    .open-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .8rem; font-weight: 700; padding: .5rem 1.1rem;
+      border-radius: 7px; transition: all .2s; white-space: nowrap;
+    }
+
+    /* btn colors */
+    .btn-orange  { background:rgba(255,107,0,.12); color:#FF6B00; border:1px solid rgba(255,107,0,.3); }
+    .btn-orange:hover { background:rgba(255,107,0,.2); }
+    .btn-rose    { background:rgba(232,88,122,.12); color:#E8587A; border:1px solid rgba(232,88,122,.3); }
+    .btn-rose:hover { background:rgba(232,88,122,.2); }
+    .btn-lime    { background:rgba(200,255,0,.1); color:#C8FF00; border:1px solid rgba(200,255,0,.3); }
+    .btn-lime:hover { background:rgba(200,255,0,.18); }
+    .btn-purple  { background:rgba(139,92,246,.12); color:#A78BFA; border:1px solid rgba(139,92,246,.3); }
+    .btn-purple:hover { background:rgba(139,92,246,.2); }
+    .btn-terra   { background:rgba(196,98,58,.1); color:#C4623A; border:1px solid rgba(196,98,58,.3); }
+    .btn-terra:hover { background:rgba(196,98,58,.18); }
+    .btn-pink    { background:rgba(255,45,120,.1); color:#FF2D78; border:1px solid rgba(255,45,120,.3); }
+    .btn-pink:hover { background:rgba(255,45,120,.18); }
+    .btn-green   { background:rgba(74,124,89,.12); color:#4A7C59; border:1px solid rgba(74,124,89,.3); }
+    .btn-green:hover { background:rgba(74,124,89,.2); }
+    .btn-amber   { background:rgba(212,168,83,.1); color:#D4A853; border:1px solid rgba(212,168,83,.3); }
+    .btn-amber:hover { background:rgba(212,168,83,.18); }
+    .btn-teal    { background:rgba(13,92,107,.15); color:#38C5D4; border:1px solid rgba(56,197,212,.3); }
+    .btn-teal:hover { background:rgba(56,197,212,.15); }
+    .btn-mauve   { background:rgba(196,120,160,.1); color:#C4789F; border:1px solid rgba(196,120,160,.3); }
+    .btn-mauve:hover { background:rgba(196,120,160,.18); }
+    .btn-gold    { background:rgba(201,168,76,.1); color:#C9A84C; border:1px solid rgba(201,168,76,.3); }
+    .btn-gold:hover { background:rgba(201,168,76,.18); }
+    .btn-signal  { background:rgba(0,208,132,.08); color:#00A855; border:1px solid rgba(0,208,132,.3); }
+    .btn-signal:hover { background:rgba(0,208,132,.16); }
+
+    .footer { text-align:center; margin-top:5rem; padding-top:2rem; border-top:1px solid var(--border); }
+    .footer p { font-size:.78rem; color:rgba(255,255,255,.2); font-family:'Space Mono',monospace; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-badge">LinkBio · Biblioteca de Modelos</div>
+    <h1>
+      <span style="background:linear-gradient(120deg,#FF8C00,#E8587A,#C8FF00,#A78BFA,#38C5D4,#00D084);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">12 modelos</span><br/>
+      prontos para usar
+    </h1>
+    <p class="header-sub">Selecione a categoria, escolha o modelo e substitua apenas [Nome], fotos, contatos e valores.</p>
+    <div class="stats-row">
+      <div class="stat">
+        <div class="stat-n" style="color:#FF6B00">6</div>
+        <div class="stat-l">Personal Trainers</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n" style="color:#38C5D4">6</div>
+        <div class="stat-l">Nutricionistas</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">12</div>
+        <div class="stat-l">Total de modelos</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+
+    <!-- ======================== PERSONAL TRAINERS ======================== -->
+    <section class="category-section">
+      <div class="category-header">
+        <div>
+          <p class="category-label" style="color:#FF6B00">Categoria 01</p>
+          <h2 class="category-title">Personal Trainers & Fitness</h2>
+        </div>
+        <a href="personalfit/index.html" style="font-size:.82rem;color:var(--muted);text-decoration:none">Ver todos →</a>
+      </div>
+      <div class="models-grid">
+
+        <a href="personalfit/modelo-strong.html" class="model-card">
+          <div class="model-preview prev-strong">
+            <div class="preview-label"><span class="preview-title">STRONG</span><span class="preview-sub">Dark · Laranja · Performance</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Strong</p>
+            <p class="model-desc">Escuro e impactante com tons laranja. Musculação, hipertrofia e resultado visual rápido.</p>
+            <div class="tags"><span class="tag">Dark</span><span class="tag">Laranja</span><span class="tag">Musculação</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">PT 01/06</span>
+            <span class="open-btn btn-orange">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="personalfit/modelo-glow.html" class="model-card">
+          <div class="model-preview prev-glow">
+            <div class="preview-label"><span class="preview-title">GLOW</span><span class="preview-sub">Claro · Rosa · Feminino</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Glow</p>
+            <p class="model-desc">Editorial claro com rosé e coral. Saúde feminina, emagrecimento e bem-estar.</p>
+            <div class="tags"><span class="tag">Claro</span><span class="tag">Rosa/Coral</span><span class="tag">Feminino</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">PT 02/06</span>
+            <span class="open-btn btn-rose">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="personalfit/modelo-minimal.html" class="model-card">
+          <div class="model-preview prev-minimal">
+            <div class="preview-label"><span class="preview-title">MINIMAL</span><span class="preview-sub">Dark · Lime · Digital</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Minimal Dark</p>
+            <p class="model-desc">Ultra moderno, grafite e neon verde-limão. Consultoria online e presença digital forte.</p>
+            <div class="tags"><span class="tag">Dark</span><span class="tag">Neon lime</span><span class="tag">Online</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">PT 03/06</span>
+            <span class="open-btn btn-lime">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="personalfit/modelo-aurora.html" class="model-card">
+          <div class="model-preview prev-aurora">
+            <div class="preview-label"><span class="preview-title">AURORA</span><span class="preview-sub">Dark · Roxo/Ciano · Premium</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Aurora</p>
+            <p class="model-desc">Luxury dark com gradiente aurora e glassmorphism. Para personal de alto padrão.</p>
+            <div class="tags"><span class="tag">Glassmorphism</span><span class="tag">Roxo/Ciano</span><span class="tag">Premium</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">PT 04/06</span>
+            <span class="open-btn btn-purple">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="personalfit/modelo-terra.html" class="model-card">
+          <div class="model-preview prev-terra">
+            <div class="preview-label"><span class="preview-title">TERRA</span><span class="preview-sub">Nude · Terracota · Wellness</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Terra</p>
+            <p class="model-desc">Orgânico e acolhedor, terracota e areia. Pilates, yoga e movimento consciente.</p>
+            <div class="tags"><span class="tag">Terracota</span><span class="tag">Wellness</span><span class="tag">Pilates/Yoga</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">PT 05/06</span>
+            <span class="open-btn btn-terra">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="personalfit/modelo-voltage.html" class="model-card">
+          <div class="model-preview prev-voltage">
+            <div class="preview-label"><span class="preview-title">VOLTAGE</span><span class="preview-sub">Dark · Neon · Gen-Z</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Voltage</p>
+            <p class="model-desc">Cyberpunk com rosa neon e ciano. Para personals com público jovem e presença digital.</p>
+            <div class="tags"><span class="tag">Cyberpunk</span><span class="tag">Rosa neon</span><span class="tag">Gen-Z</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">PT 06/06</span>
+            <span class="open-btn btn-pink">Visualizar →</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- ======================== NUTRICIONISTAS ======================== -->
+    <section class="category-section">
+      <div class="category-header">
+        <div>
+          <p class="category-label" style="color:#38C5D4">Categoria 02</p>
+          <h2 class="category-title">Nutricionistas & Dietistas</h2>
+        </div>
+        <a href="nutricionistas/index.html" style="font-size:.82rem;color:var(--muted);text-decoration:none">Ver todos →</a>
+      </div>
+      <div class="models-grid">
+
+        <a href="nutricionistas/modelo-natura.html" class="model-card">
+          <div class="model-preview prev-natura">
+            <div class="preview-label"><span class="preview-title">NATURA</span><span class="preview-sub">Verde · Creme · Orgânico</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Natura</p>
+            <p class="model-desc">Verde sálvia e creme orgânico, tipografia serif. Nutrição holística e alimentação natural.</p>
+            <div class="tags"><span class="tag">Verde</span><span class="tag">Orgânico</span><span class="tag">Plant-based</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">NUT 01/06</span>
+            <span class="open-btn btn-green">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="nutricionistas/modelo-studio.html" class="model-card">
+          <div class="model-preview prev-studio">
+            <div class="preview-label"><span class="preview-title">STUDIO</span><span class="preview-sub">Carvão · Âmbar · Clínico</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Studio</p>
+            <p class="model-desc">Carvão premium com acento âmbar dourado. Nutricionista clínica e nutrologia de alto padrão.</p>
+            <div class="tags"><span class="tag">Dark</span><span class="tag">Âmbar</span><span class="tag">Clínico</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">NUT 02/06</span>
+            <span class="open-btn btn-amber">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="nutricionistas/modelo-fresh.html" class="model-card">
+          <div class="model-preview prev-fresh">
+            <div class="preview-label"><span class="preview-title">FRESH</span><span class="preview-sub">Teal · Branco · Esportivo</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Fresh</p>
+            <p class="model-desc">Teal escuro e limpo. Layout focado em dados e performance. Nutrição esportiva.</p>
+            <div class="tags"><span class="tag">Teal</span><span class="tag">Esportivo</span><span class="tag">Performance</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">NUT 03/06</span>
+            <span class="open-btn btn-teal">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="nutricionistas/modelo-bloom.html" class="model-card">
+          <div class="model-preview prev-bloom">
+            <div class="preview-label"><span class="preview-title">BLOOM</span><span class="preview-sub">Blush · Lavanda · Feminino</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Bloom</p>
+            <p class="model-desc">Blush e lavanda suave. Saúde hormonal, emagrecimento consciente e coaching feminino.</p>
+            <div class="tags"><span class="tag">Blush</span><span class="tag">Lavanda</span><span class="tag">Feminino</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">NUT 04/06</span>
+            <span class="open-btn btn-mauve">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="nutricionistas/modelo-root.html" class="model-card">
+          <div class="model-preview prev-root">
+            <div class="preview-label"><span class="preview-title">ROOT</span><span class="preview-sub">Floresta · Dourado · Luxury</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Root</p>
+            <p class="model-desc">Verde floresta escuro e dourado. Nutrição integrativa de alto padrão e saúde funcional.</p>
+            <div class="tags"><span class="tag">Dark green</span><span class="tag">Dourado</span><span class="tag">Luxury</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">NUT 05/06</span>
+            <span class="open-btn btn-gold">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="nutricionistas/modelo-signal.html" class="model-card">
+          <div class="model-preview prev-signal">
+            <div class="preview-label"><span class="preview-title">SIGNAL</span><span class="preview-sub">Branco · Verde neon · Tech</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Signal</p>
+            <p class="model-desc">Branco puro e verde neon. Data-driven, grid técnico e resultados numéricos em destaque.</p>
+            <div class="tags"><span class="tag">Branco</span><span class="tag">Verde neon</span><span class="tag">Tech</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">NUT 06/06</span>
+            <span class="open-btn btn-signal">Visualizar →</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>modelos/ · LinkBio · Substitua [Nome], fotos e contatos antes de publicar</p>
+  </footer>
+
+</body>
+</html>

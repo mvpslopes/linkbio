@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>[Nome] Personal — Consultoria Online de Elite</title>
+  <meta name="description" content="Personal trainer digital de elite. Consultoria online com método científico, acompanhamento real e resultados em qualquer lugar do mundo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'ui-sans-serif'],
+            mono: ['"Space Mono"', 'ui-monospace'],
+          },
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --lime: #C8FF00;
+      --lime-dim: rgba(200,255,0,.18);
+      --lime-glow: rgba(200,255,0,.45);
+      --bg: #0C0C0C;
+      --bg2: #111111;
+      --bg3: #181818;
+      --card: #141414;
+      --border: rgba(255,255,255,.06);
+      --muted: rgba(255,255,255,.45);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: #fff; overflow-x: hidden; font-family: 'Space Grotesk', sans-serif; }
+
+    /* animated gradient bg */
+    .animated-grid {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 40%, transparent 100%);
+    }
+
+    /* glow blob */
+    .glow-blob {
+      position: fixed; z-index: 0; pointer-events: none; border-radius: 50%;
+      filter: blur(100px);
+      animation: floatBlob 12s ease-in-out infinite alternate;
+    }
+    @keyframes floatBlob {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(40px, 30px) scale(1.12); }
+    }
+
+    /* text gradient lime */
+    .text-lime { color: var(--lime); }
+    .text-grad {
+      background: linear-gradient(120deg, var(--lime) 0%, #90ff00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* tag pill */
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--lime-dim);
+      border: 1px solid rgba(200,255,0,.35);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--lime);
+      font-family: 'Space Mono', monospace;
+    }
+
+    /* nav */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 90;
+      padding: 1.25rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(12,12,12,.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* HERO — fullscreen centered */
+    .hero-full {
+      min-height: 100svh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 7rem 1.5rem 5rem;
+      position: relative;
+    }
+
+    /* glitch effect on H1 */
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute; inset: 0;
+      background: transparent;
+      clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    }
+    .glitch::before {
+      left: 2px; top: -2px;
+      background: linear-gradient(120deg, var(--lime) 0%, #90ff00 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glitchTop 3.5s infinite;
+      opacity: .7;
+    }
+    @keyframes glitchTop {
+      0%, 90%, 100% { transform: none; opacity: 0; }
+      92% { transform: translate(3px, -3px); opacity: .7; }
+      94% { transform: translate(-2px, 2px); opacity: .7; }
+      96% { transform: translate(3px, -1px); opacity: .7; }
+      98% { transform: none; opacity: 0; }
+    }
+
+    /* counter */
+    .counter-wrap {
+      font-family: 'Space Mono', monospace;
+      font-size: 3.5rem; font-weight: 700;
+      color: var(--lime); line-height: 1;
+    }
+
+    /* horizontal marquee */
+    .marquee-wrap {
+      overflow: hidden; white-space: nowrap;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .marquee-track {
+      display: inline-flex; gap: 0;
+      animation: marquee 20s linear infinite;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 2rem;
+      padding: .85rem 2rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+    }
+    .marquee-item span { color: var(--lime); font-size: 18px; }
+
+    /* card glass dark */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      transition: all .3s;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,255,0,.4), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .card:hover {
+      border-color: rgba(200,255,0,.3);
+      box-shadow: 0 0 30px rgba(200,255,0,.07);
+    }
+    .card:hover::before { opacity: 1; }
+
+    /* number badge */
+    .num-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; font-weight: 700;
+      color: var(--lime);
+      background: var(--lime-dim);
+      border: 1px solid rgba(200,255,0,.3);
+      border-radius: 8px;
+      padding: 3px 10px;
+      display: inline-block;
+    }
+
+    /* plan card */
+    .plan-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      transition: all .3s;
+      position: relative; overflow: hidden;
+    }
+    .plan-card.featured {
+      border-color: var(--lime);
+      background: linear-gradient(145deg, rgba(200,255,0,.07), var(--card));
+    }
+    .plan-card.featured::after {
+      content: 'RECOMENDADO';
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px; font-weight: 700; letter-spacing: .15em;
+      color: var(--bg); background: var(--lime);
+      padding: 3px 10px; border-radius: 6px;
+    }
+
+    .plan-price {
+      font-family: 'Space Mono', monospace;
+      font-size: 3.25rem; font-weight: 700;
+      color: #fff; line-height: 1;
+    }
+    .plan-price sup { font-size: 1.4rem; vertical-align: super; color: var(--lime); }
+    .plan-price small { font-size: 1rem; color: var(--muted); }
+
+    /* check list */
+    .check-list li {
+      display: flex; gap: .75rem; align-items: flex-start;
+      font-size: .9rem; color: rgba(255,255,255,.7);
+      padding: .4rem 0;
+    }
+    .check-list li .ck { color: var(--lime); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
+    .check-list li .no { color: rgba(255,255,255,.2); flex-shrink: 0; }
+
+    /* buttons */
+    .btn-lime {
+      background: var(--lime);
+      color: #0C0C0C;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: .85rem 2rem;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .25s;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: .01em;
+    }
+    .btn-lime:hover {
+      background: #d4ff00;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px var(--lime-glow);
+    }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.75); font-weight: 600;
+      border-radius: 8px;
+      padding: .85rem 2rem;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .25s;
+    }
+    .btn-outline:hover {
+      border-color: rgba(200,255,0,.4);
+      color: var(--lime);
+      background: var(--lime-dim);
+    }
+
+    /* section label */
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--lime);
+    }
+
+    /* FAQ */
+    details summary {
+      list-style: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 1.5rem;
+      font-weight: 600;
+      transition: color .2s;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary:hover { color: var(--lime); }
+    details summary .arrow {
+      width: 20px; height: 20px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 12px;
+      transition: transform .3s, border-color .2s, background .2s;
+    }
+    details[open] summary .arrow {
+      transform: rotate(45deg);
+      border-color: var(--lime);
+      background: var(--lime-dim);
+      color: var(--lime);
+    }
+    details .faq-body {
+      padding: 0 1.5rem 1.25rem;
+      font-size: .9rem; line-height: 1.75;
+      color: rgba(255,255,255,.6);
+    }
+    details + details { border-top: 1px solid var(--border); }
+
+    /* testimonial */
+    .test-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      position: relative;
+    }
+    .test-card .qt {
+      font-family: 'Space Mono', monospace;
+      font-size: 4rem; line-height: .8; font-weight: 700;
+      color: var(--lime); opacity: .2;
+      user-select: none;
+    }
+
+    /* CTA terminal effect */
+    .terminal-box {
+      background: #000;
+      border: 1px solid rgba(200,255,0,.3);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(200,255,0,.1);
+    }
+    .terminal-header {
+      background: var(--bg3);
+      padding: .75rem 1.25rem;
+      display: flex; align-items: center; gap: .75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: var(--lime); }
+    .terminal-body { padding: 2rem; }
+    .terminal-line {
+      font-family: 'Space Mono', monospace;
+      font-size: .85rem; color: rgba(255,255,255,.7);
+      margin-bottom: .5rem;
+    }
+    .terminal-line .prompt { color: var(--lime); }
+    .cursor { display: inline-block; width: 8px; height: 16px; background: var(--lime); animation: blink .9s step-end infinite; vertical-align: middle; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    /* fade-up */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* section divider */
+    .section-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    @media(max-width:640px){
+      .counter-wrap { font-size: 2.5rem; }
+      h1 { overflow-wrap: anywhere; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- background grid -->
+  <div class="animated-grid" aria-hidden="true"></div>
+  <div class="glow-blob" style="width:400px; height:400px; top:-100px; right:-100px; background:rgba(200,255,0,.04)" aria-hidden="true"></div>
+  <div class="glow-blob" style="width:300px; height:300px; bottom:10%; left:-80px; background:rgba(200,255,0,.03); animation-duration:15s" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="site-nav" aria-label="Navegação principal">
+    <a href="#home" class="font-mono font-bold text-base tracking-widest text-grad">[NOME]_FIT</a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium" style="color:var(--muted)">
+      <a href="#sobre" class="hover:text-lime transition-colors" style="color:var(--muted)">Sobre</a>
+      <a href="#metodo" class="hover:text-lime transition-colors" style="color:var(--muted)">Método</a>
+      <a href="#planos" class="hover:text-lime transition-colors" style="color:var(--muted)">Planos</a>
+      <a href="#faq" class="hover:text-lime transition-colors" style="color:var(--muted)">FAQ</a>
+    </div>
+    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-lime text-sm">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Começar agora
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-full relative z-10" id="home">
+    <div class="flex flex-wrap justify-center gap-2 mb-8 fade-up">
+      <span class="pill">Personal Trainer</span>
+      <span class="pill">Consultoria Online</span>
+      <span class="pill">CREF 000000</span>
+    </div>
+
+    <h1 class="font-bold leading-none mb-6 fade-up" style="font-size:clamp(3rem,9vw,7.5rem); max-width:900px; letter-spacing:-.03em">
+      <span class="glitch text-white" data-text="TREINO">TREINO</span><br/>
+      <span class="text-grad">SEM LIMITE</span><br/>
+      <span class="text-white">DE FRONTEIRA.</span>
+    </h1>
+
+    <p class="mb-10 max-w-2xl mx-auto leading-relaxed fade-up" style="font-size:1.15rem; color:var(--muted)">
+      Consultoria online de elite com método científico, app de treino e acompanhamento diário.
+      Você treina onde quiser. Eu garanto o resultado.
+    </p>
+
+    <div class="flex flex-wrap justify-center gap-3 mb-16 fade-up">
+      <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-lime text-base px-8">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Agendar avaliação gratuita
+      </a>
+      <a href="#planos" class="btn-outline text-base px-8">Ver planos</a>
+    </div>
+
+    <!-- Stats row -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-px max-w-3xl mx-auto w-full fade-up"
+         style="background:var(--border); border-radius: 1rem; overflow:hidden">
+      <div style="background:var(--bg2); padding:1.5rem 1rem; text-align:center">
+        <p class="counter-wrap">500<span class="text-lime">+</span></p>
+        <p class="text-xs uppercase tracking-widest mt-2" style="color:var(--muted); font-family:'Space Mono',monospace">Alunos</p>
+      </div>
+      <div style="background:var(--bg2); padding:1.5rem 1rem; text-align:center">
+        <p class="counter-wrap">6<span class="text-lime">+</span></p>
+        <p class="text-xs uppercase tracking-widest mt-2" style="color:var(--muted); font-family:'Space Mono',monospace">Anos</p>
+      </div>
+      <div style="background:var(--bg2); padding:1.5rem 1rem; text-align:center">
+        <p class="counter-wrap">30<span class="text-lime">+</span></p>
+        <p class="text-xs uppercase tracking-widest mt-2" style="color:var(--muted); font-family:'Space Mono',monospace">Estados</p>
+      </div>
+      <div style="background:var(--bg2); padding:1.5rem 1rem; text-align:center">
+        <p class="counter-wrap">99<span class="text-lime">%</span></p>
+        <p class="text-xs uppercase tracking-widest mt-2" style="color:var(--muted); font-family:'Space Mono',monospace">Satisfação</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap py-0 relative z-10" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">MUSCULAÇÃO <span>/</span></div>
+      <div class="marquee-item">EMAGRECIMENTO <span>/</span></div>
+      <div class="marquee-item">HIPERTROFIA <span>/</span></div>
+      <div class="marquee-item">TREINO ONLINE <span>/</span></div>
+      <div class="marquee-item">AVALIAÇÃO FÍSICA <span>/</span></div>
+      <div class="marquee-item">MÉTODO CIENTÍFICO <span>/</span></div>
+      <div class="marquee-item">RESULTADOS REAIS <span>/</span></div>
+      <!-- duplicado para loop infinito -->
+      <div class="marquee-item">MUSCULAÇÃO <span>/</span></div>
+      <div class="marquee-item">EMAGRECIMENTO <span>/</span></div>
+      <div class="marquee-item">HIPERTROFIA <span>/</span></div>
+      <div class="marquee-item">TREINO ONLINE <span>/</span></div>
+      <div class="marquee-item">AVALIAÇÃO FÍSICA <span>/</span></div>
+      <div class="marquee-item">MÉTODO CIENTÍFICO <span>/</span></div>
+      <div class="marquee-item">RESULTADOS REAIS <span>/</span></div>
+    </div>
+  </div>
+
+  <!-- SOBRE -->
+  <section class="py-24 px-6 max-w-6xl mx-auto relative z-10" id="sobre">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="fade-up">
+        <div class="eyebrow mb-5">// sobre mim</div>
+        <h2 class="font-bold leading-tight mb-6" style="font-size:clamp(2rem,5vw,3.25rem); letter-spacing:-.02em">
+          Personal trainer.<br/>
+          <span class="text-grad">Resultado é obrigação.</span>
+        </h2>
+        <p class="leading-relaxed mb-4" style="color:var(--muted)">
+          Sou [nome], formada em Educação Física pela [faculdade], com [X] anos de experiência
+          e mais de 500 alunos atendidos em todo o Brasil.
+        </p>
+        <p class="leading-relaxed mb-8" style="color:var(--muted)">
+          Meu método é direto ao ponto: avaliação completa, protocolo individualizado e
+          acompanhamento diário. Sem enrolação, sem fórmula mágica — só ciência e consistência.
+        </p>
+
+        <div class="grid grid-cols-2 gap-4 mb-8">
+          <div class="card p-4">
+            <div class="eyebrow mb-2">expertise</div>
+            <ul class="space-y-1 text-sm" style="color:rgba(255,255,255,.65)">
+              <li>→ Musculação & Hipertrofia</li>
+              <li>→ Emagrecimento</li>
+              <li>→ Funcional</li>
+              <li>→ Pré e pós-operatório</li>
+            </ul>
+          </div>
+          <div class="card p-4">
+            <div class="eyebrow mb-2">certificações</div>
+            <ul class="space-y-1 text-sm" style="color:rgba(255,255,255,.65)">
+              <li>→ CREF ativo</li>
+              <li>→ Esp. em periodização</li>
+              <li>→ Nutrição esportiva</li>
+              <li>→ Avaliação postural</li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="#planos" class="btn-lime">Ver planos de treino</a>
+      </div>
+
+      <div class="relative fade-up" style="transition-delay:.2s">
+        <div class="rounded-2xl overflow-hidden" style="aspect-ratio:4/5; border: 1px solid rgba(200,255,0,.15)">
+          <img src="fotos/foto-sobre.jpg" alt="[Nome] Personal"
+               class="w-full h-full object-cover object-top"
+               onerror="this.parentElement.style.background='var(--bg2)'; this.style.display='none'"/>
+        </div>
+        <!-- overlay corner decoration -->
+        <div class="absolute -bottom-3 -right-3 px-4 py-3" style="background:var(--lime); border-radius: 12px">
+          <p class="font-mono font-bold text-xs" style="color:#000">CREF ATIVO</p>
+          <p class="font-mono text-xs" style="color:rgba(0,0,0,.6)">000000-G/UF</p>
+        </div>
+        <div class="absolute top-4 -left-4 card px-4 py-3">
+          <p class="font-mono text-xs" style="color:var(--lime)">● ONLINE AGORA</p>
+          <p class="text-xs mt-1" style="color:var(--muted)">Resposta em até 2h</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- MÉTODO -->
+  <section class="py-24 px-6 max-w-6xl mx-auto relative z-10" id="metodo">
+    <div class="text-center mb-14 fade-up">
+      <div class="eyebrow mb-4">// como funciona</div>
+      <h2 class="font-bold leading-tight" style="font-size:clamp(2rem,5vw,3.25rem); letter-spacing:-.02em">
+        O método que <span class="text-grad">entrega.</span>
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="card p-6 fade-up">
+        <div class="num-badge mb-4">01</div>
+        <h3 class="font-bold text-lg mb-3">Avaliação completa</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">Formulário detalhado, análise de histórico e definição de metas reais com base na sua rotina atual.</p>
+      </div>
+      <div class="card p-6 fade-up" style="transition-delay:.08s">
+        <div class="num-badge mb-4">02</div>
+        <h3 class="font-bold text-lg mb-3">Protocolo no app</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">Fichas de treino com vídeos demonstrativos, progressão de carga e periodização mensal direto no celular.</p>
+      </div>
+      <div class="card p-6 fade-up" style="transition-delay:.16s">
+        <div class="num-badge mb-4">03</div>
+        <h3 class="font-bold text-lg mb-3">Acompanhamento diário</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">WhatsApp aberto, check-ins semanais, ajuste de treino conforme evolução e feedbacks em tempo real.</p>
+      </div>
+      <div class="card p-6 fade-up" style="transition-delay:.04s">
+        <div class="num-badge mb-4">04</div>
+        <h3 class="font-bold text-lg mb-3">Evolução monitorada</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">Fotos de progresso, medidas e relatório mensal para visualizar cada conquista ao longo da jornada.</p>
+      </div>
+      <div class="card p-6 fade-up" style="transition-delay:.12s">
+        <div class="num-badge mb-4">05</div>
+        <h3 class="font-bold text-lg mb-3">Suporte nutricional</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">Orientações nutricionais práticas integradas ao treino para potencializar resultados sem complicar a vida.</p>
+      </div>
+      <div class="card p-6 fade-up" style="transition-delay:.2s">
+        <div class="num-badge mb-4">06</div>
+        <h3 class="font-bold text-lg mb-3">Comunidade exclusiva</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">Grupo de alunos ativos, desafios mensais e conteúdo exclusivo para manter a consistência nos treinos.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- PLANOS -->
+  <section class="py-24 px-6 max-w-6xl mx-auto relative z-10" id="planos">
+    <div class="text-center mb-14 fade-up">
+      <div class="eyebrow mb-4">// planos</div>
+      <h2 class="font-bold leading-tight" style="font-size:clamp(2rem,5vw,3.25rem); letter-spacing:-.02em">
+        Escolha seu <span class="text-grad">protocolo.</span>
+      </h2>
+      <p class="mt-4 max-w-lg mx-auto" style="color:var(--muted)">Todos incluem app de treino, avaliação inicial e suporte via WhatsApp.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <!-- Basic -->
+      <div class="plan-card fade-up">
+        <div class="eyebrow mb-4">BASIC</div>
+        <div class="plan-price mb-1"><sup>R$</sup>XXX<small>/mês</small></div>
+        <p class="text-xs mb-6" style="color:var(--muted)">Consultoria online base</p>
+        <ul class="check-list space-y-1 mb-8">
+          <li><span class="ck">✓</span> Planilha de treino no app</li>
+          <li><span class="ck">✓</span> Avaliação inicial</li>
+          <li><span class="ck">✓</span> Suporte 3x/semana</li>
+          <li><span class="ck">✓</span> Check-in quinzenal</li>
+          <li><span class="no">✗</span><span style="opacity:.3"> Suporte diário</span></li>
+          <li><span class="no">✗</span><span style="opacity:.3"> Orientação nutricional</span></li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline w-full justify-center text-sm">Quero o Basic</a>
+      </div>
+
+      <!-- Pro (destaque) -->
+      <div class="plan-card featured fade-up" style="transition-delay:.1s">
+        <div class="eyebrow mb-4">PRO</div>
+        <div class="plan-price mb-1"><sup>R$</sup>XXX<small>/mês</small></div>
+        <p class="text-xs mb-6" style="color:var(--muted)">Nosso plano mais popular</p>
+        <ul class="check-list space-y-1 mb-8">
+          <li><span class="ck">✓</span> Planilha de treino no app</li>
+          <li><span class="ck">✓</span> Avaliação completa</li>
+          <li><span class="ck">✓</span> Suporte diário no WhatsApp</li>
+          <li><span class="ck">✓</span> Check-in semanal</li>
+          <li><span class="ck">✓</span> Orientação nutricional</li>
+          <li><span class="ck">✓</span> Relatório mensal de evolução</li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-lime w-full justify-center text-sm">Quero o Pro!</a>
+      </div>
+
+      <!-- Elite -->
+      <div class="plan-card fade-up" style="transition-delay:.2s">
+        <div class="eyebrow mb-4">ELITE</div>
+        <div class="plan-price mb-1"><sup>R$</sup>XXX<small>/mês</small></div>
+        <p class="text-xs mb-6" style="color:var(--muted)">Máxima atenção e resultado</p>
+        <ul class="check-list space-y-1 mb-8">
+          <li><span class="ck">✓</span> Tudo do plano Pro</li>
+          <li><span class="ck">✓</span> Videochamada semanal</li>
+          <li><span class="ck">✓</span> Análise postural detalhada</li>
+          <li><span class="ck">✓</span> Planilha alimentar</li>
+          <li><span class="ck">✓</span> Prioridade de resposta 24h</li>
+          <li><span class="ck">✓</span> Acesso à comunidade VIP</li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline w-full justify-center text-sm">Quero o Elite</a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- DEPOIMENTOS -->
+  <section class="py-24 px-6 max-w-6xl mx-auto relative z-10">
+    <div class="text-center mb-14 fade-up">
+      <div class="eyebrow mb-4">// resultados</div>
+      <h2 class="font-bold leading-tight" style="font-size:clamp(2rem,5vw,3.25rem); letter-spacing:-.02em">
+        Quem treinou, <span class="text-grad">aprovou.</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="test-card fade-up">
+        <div class="qt">"</div>
+        <p class="text-sm leading-relaxed mb-5" style="color:rgba(255,255,255,.65)">O app facilita demais. Consigo treinar no hotel, em casa, na academia — e a [nome] acompanha cada treino. Resultado em 60 dias!</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center font-mono font-bold" style="background:var(--lime-dim); color:var(--lime); border: 1px solid rgba(200,255,0,.3)">R</div>
+          <div>
+            <p class="font-semibold text-sm">Rodrigo Alves</p>
+            <p class="text-xs" style="color:var(--muted)">Plano Pro · 3 meses</p>
+          </div>
+          <div class="ml-auto text-xs font-mono" style="color:var(--lime)">★★★★★</div>
+        </div>
+      </div>
+      <div class="test-card fade-up" style="transition-delay:.1s">
+        <div class="qt">"</div>
+        <p class="text-sm leading-relaxed mb-5" style="color:rgba(255,255,255,.65)">Moro em outro estado e pensava que não conseguiria um acompanhamento sério online. Me enganei completamente. Método excelente!</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center font-mono font-bold" style="background:var(--lime-dim); color:var(--lime); border: 1px solid rgba(200,255,0,.3)">F</div>
+          <div>
+            <p class="font-semibold text-sm">Fernanda Lima</p>
+            <p class="text-xs" style="color:var(--muted)">Plano Elite · 5 meses</p>
+          </div>
+          <div class="ml-auto text-xs font-mono" style="color:var(--lime)">★★★★★</div>
+        </div>
+      </div>
+      <div class="test-card fade-up" style="transition-delay:.2s">
+        <div class="qt">"</div>
+        <p class="text-sm leading-relaxed mb-5" style="color:rgba(255,255,255,.65)">Perdi 8kg e ganhei muito mais disposição. O protocolo é preciso e o suporte diário faz toda a diferença pra não desanimar.</p>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center font-mono font-bold" style="background:var(--lime-dim); color:var(--lime); border: 1px solid rgba(200,255,0,.3)">T</div>
+          <div>
+            <p class="font-semibold text-sm">Thiago Campos</p>
+            <p class="text-xs" style="color:var(--muted)">Plano Pro · 4 meses</p>
+          </div>
+          <div class="ml-auto text-xs font-mono" style="color:var(--lime)">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- FAQ -->
+  <section class="py-24 px-6 max-w-3xl mx-auto relative z-10" id="faq">
+    <div class="text-center mb-12 fade-up">
+      <div class="eyebrow mb-4">// dúvidas</div>
+      <h2 class="font-bold leading-tight" style="font-size:clamp(2rem,5vw,3rem); letter-spacing:-.02em">FAQ</h2>
+    </div>
+
+    <div class="card overflow-hidden fade-up">
+      <details open>
+        <summary>
+          <span>Como funciona a consultoria online?</span>
+          <span class="arrow">+</span>
+        </summary>
+        <div class="faq-body">Após a contratação, você recebe acesso ao app com sua planilha de treino personalizada. Fazemos check-ins semanais e você tem suporte no WhatsApp para tirar dúvidas sobre execução e evolução.</div>
+      </details>
+      <details>
+        <summary>
+          <span>Preciso ter academia?</span>
+          <span class="arrow">+</span>
+        </summary>
+        <div class="faq-body">Não necessariamente. O protocolo é adaptado ao local onde você treina — academia, casa ou ao ar livre. Informe seus equipamentos disponíveis na avaliação.</div>
+      </details>
+      <details>
+        <summary>
+          <span>Em quanto tempo vejo resultados?</span>
+          <span class="arrow">+</span>
+        </summary>
+        <div class="faq-body">Os primeiros resultados costumam aparecer em 3 a 6 semanas. Emagrecimento, ganho de força e disposição são os primeiros sinais. Resultados visuais significativos geralmente ocorrem entre 2 e 4 meses com consistência.</div>
+      </details>
+      <details>
+        <summary>
+          <span>Posso cancelar a qualquer momento?</span>
+          <span class="arrow">+</span>
+        </summary>
+        <div class="faq-body">Sim. Os planos mensais podem ser cancelados a qualquer momento sem multa. Planos trimestrais têm política específica detalhada no contrato.</div>
+      </details>
+      <details>
+        <summary>
+          <span>Atende iniciantes?</span>
+          <span class="arrow">+</span>
+        </summary>
+        <div class="faq-body">Com certeza! O protocolo é 100% personalizado para o seu nível. Iniciantes recebem atenção especial na execução dos movimentos e uma progressão de carga segura e gradual.</div>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA TERMINAL -->
+  <section class="py-24 px-6 max-w-4xl mx-auto relative z-10">
+    <div class="terminal-box fade-up">
+      <div class="terminal-header">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="ml-2 text-xs font-mono" style="color:var(--muted)">consulta_gratuita.sh</span>
+      </div>
+      <div class="terminal-body">
+        <p class="terminal-line"><span class="prompt">$ </span>./iniciar_transformacao.sh</p>
+        <p class="terminal-line" style="color:var(--lime)">✓ Avaliação gratuita disponível</p>
+        <p class="terminal-line" style="color:var(--lime)">✓ Protocolo personalizado em 48h</p>
+        <p class="terminal-line" style="color:var(--lime)">✓ Suporte diário garantido</p>
+        <p class="terminal-line" style="color:rgba(255,255,255,.3)">Aguardando contato...</p>
+        <p class="terminal-line mt-2">
+          <span class="prompt">$ </span><span class="cursor"></span>
+        </p>
+
+        <div class="mt-8 text-center">
+          <h3 class="font-bold mb-3" style="font-size:clamp(1.5rem,4vw,2.25rem); letter-spacing:-.01em">
+            Pronto para <span class="text-grad">executar</span>?
+          </h3>
+          <p class="mb-8 text-sm" style="color:var(--muted)">Vagas limitadas. Clique e inicie sua transformação ainda hoje.</p>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-lime text-base px-10 py-4 mx-auto inline-flex">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Falar no WhatsApp agora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 px-6 relative z-10" style="border-top: 1px solid var(--border)">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="font-mono font-bold text-base text-grad">[NOME]_PERSONAL</p>
+      <p class="text-xs font-mono" style="color:var(--muted)">© 2026 · CREF 000000-G/UF · Todos os direitos reservados</p>
+      <a href="https://wa.me/5500000000000" target="_blank" rel="noopener"
+         class="text-xs font-mono" style="color:var(--lime)">Falar no WhatsApp →</a>
+    </div>
+  </footer>
+
+  <script>
+    // Fade-up observer
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

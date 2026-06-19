@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>[Nome] Personal Trainer — Força, Disciplina & Resultado</title>
+  <meta name="description" content="Personal trainer especialista em musculação e performance. Treino presencial e online. Resultados reais com método científico." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif'],
+            display: ['"Barlow Condensed"', 'ui-sans-serif'],
+          },
+          colors: {
+            brand: '#FF6B00',
+            'brand-dark': '#CC5500',
+            'brand-glow': 'rgba(255,107,0,0.35)',
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --brand: #FF6B00;
+      --brand-glow: rgba(255,107,0,0.35);
+      --bg: #080808;
+      --bg2: #0f0f0f;
+      --bg3: #161616;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); overflow-x: hidden; color: #fff; }
+
+    .font-display { font-family: 'Barlow Condensed', sans-serif; }
+
+    /* grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 100;
+      opacity: .45;
+    }
+
+    .text-grad {
+      background: linear-gradient(110deg, #FF8C00 0%, #FF6B00 50%, #FF4500 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* tag pill */
+    .tag-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,107,0,.1);
+      border: 1px solid rgba(255,107,0,.35);
+      border-radius: 999px;
+      padding: 5px 16px;
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--brand);
+    }
+
+    /* HERO — split layout */
+    .hero-split {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    @media(min-width:1024px){
+      .hero-split { grid-template-columns: 1fr 1fr; }
+    }
+
+    .hero-img-side {
+      position: relative;
+      min-height: 55svh;
+    }
+    @media(min-width:1024px){
+      .hero-img-side { min-height: 100svh; }
+    }
+    .hero-img-side img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center 15%;
+      display: block;
+    }
+    .hero-img-side::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 60%, #080808 100%),
+                  linear-gradient(to bottom, rgba(8,8,8,.3) 0%, rgba(8,8,8,.0) 50%, #080808 100%);
+    }
+    @media(max-width:1023px){
+      .hero-img-side::after {
+        background: linear-gradient(to bottom, rgba(8,8,8,.2) 0%, #080808 85%);
+      }
+    }
+
+    /* diagonal accent line */
+    .hero-diagonal {
+      position: absolute;
+      top: 0; right: -2px; bottom: 0;
+      width: 80px;
+      background: var(--bg);
+      clip-path: polygon(100% 0, 100% 100%, 0 100%);
+      z-index: 2;
+      display: none;
+    }
+    @media(min-width:1024px){
+      .hero-diagonal { display: block; }
+    }
+
+    .hero-copy-side {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2.5rem 1.5rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+    @media(min-width:1024px){
+      .hero-copy-side { padding: 6rem 4rem 4rem 3rem; }
+    }
+
+    /* stat strip */
+    .stat-item + .stat-item { border-left: 1px solid rgba(255,255,255,.07); }
+
+    /* card glass */
+    .card-glass {
+      background: rgba(22,22,22,.7);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,107,0,.18);
+      border-radius: 1.25rem;
+      transition: all .35s ease;
+      position: relative; overflow: hidden;
+    }
+    .card-glass::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,107,0,.6), transparent);
+    }
+    .card-glass:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,107,0,.45);
+      box-shadow: 0 20px 40px rgba(255,107,0,.12);
+    }
+
+    /* icon box */
+    .icon-box {
+      height: 52px; width: 52px; border-radius: 14px; flex-shrink: 0;
+      background: radial-gradient(circle at 30% 30%, rgba(255,107,0,.25), rgba(255,107,0,.06));
+      border: 1px solid rgba(255,107,0,.28);
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* progress bars */
+    .bar-track {
+      height: 6px; background: rgba(255,255,255,.08); border-radius: 999px; overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; border-radius: 999px;
+      background: linear-gradient(90deg, #FF8C00, #FF4500);
+      animation: barGrow 1.4s cubic-bezier(.4,0,.2,1) forwards;
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+    @keyframes barGrow { to { transform: scaleX(1); } }
+
+    /* count-up (sem JS — animação CSS) */
+    .stat-number {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3rem; font-weight: 900; line-height: 1;
+      background: linear-gradient(110deg, #FF8C00, #FF4500);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* nav */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 90;
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(8,8,8,.95) 0%, transparent 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.04);
+    }
+
+    .btn-brand {
+      background: linear-gradient(135deg, #FF8C00, #FF4500);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: .75rem 1.75rem;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: opacity .2s, transform .2s, box-shadow .2s;
+      box-shadow: 0 0 0 rgba(255,107,0,0);
+      white-space: nowrap;
+    }
+    .btn-brand:hover {
+      opacity: .9;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(255,107,0,.45);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.85);
+      font-weight: 600;
+      border-radius: 999px;
+      padding: .75rem 1.75rem;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .2s;
+      backdrop-filter: blur(4px);
+    }
+    .btn-ghost:hover {
+      border-color: rgba(255,107,0,.5);
+      color: var(--brand);
+      background: rgba(255,107,0,.06);
+    }
+
+    /* quote decoration */
+    .quote-mark {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 6rem; line-height: .8;
+      font-weight: 900; font-style: italic;
+      color: rgba(255,107,0,.25);
+      user-select: none;
+    }
+
+    /* before/after grid */
+    .ba-card {
+      position: relative; border-radius: 1rem; overflow: hidden;
+      background: var(--bg3);
+    }
+    .ba-card img { width: 100%; display: block; aspect-ratio: 3/4; object-fit: cover; }
+    .ba-badge {
+      position: absolute; top: .75rem; left: .75rem;
+      font-size: 10px; font-weight: 800; letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px;
+      background: rgba(0,0,0,.7);
+      backdrop-filter: blur(6px);
+    }
+
+    /* fade-in on scroll */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* section label */
+    .section-eyebrow {
+      font-size: 11px; font-weight: 800; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--brand);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      display: inline-block; width: 28px; height: 2px;
+      background: var(--brand);
+      border-radius: 2px;
+    }
+
+    /* horizontal scrolling plans */
+    .plans-scroll {
+      display: flex; gap: 1rem;
+      overflow-x: auto; padding-bottom: .5rem;
+      scroll-snap-type: x mandatory;
+      -ms-overflow-style: none; scrollbar-width: none;
+    }
+    .plans-scroll::-webkit-scrollbar { display: none; }
+    .plan-card {
+      flex: 0 0 280px; scroll-snap-align: start;
+      background: var(--bg3);
+      border: 1px solid rgba(255,107,0,.15);
+      border-radius: 1.25rem; padding: 1.75rem;
+      position: relative; overflow: hidden;
+      transition: all .3s;
+    }
+    .plan-card.featured {
+      border-color: var(--brand);
+      background: linear-gradient(145deg, rgba(255,107,0,.12), rgba(22,22,22,.95));
+    }
+    .plan-card.featured::before {
+      content: 'MAIS POPULAR';
+      position: absolute; top: 1rem; right: 1rem;
+      font-size: 9px; font-weight: 800; letter-spacing: .15em;
+      color: #000; background: var(--brand);
+      padding: 3px 10px; border-radius: 999px;
+    }
+    .plan-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3.5rem; font-weight: 900; line-height: 1;
+      color: #fff;
+    }
+    .plan-price sup { font-size: 1.5rem; vertical-align: super; }
+
+    /* CTA bottom banner */
+    .cta-banner {
+      background: linear-gradient(135deg, #1a0a00 0%, #0d0500 100%);
+      border: 1px solid rgba(255,107,0,.2);
+      position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: '';
+      position: absolute; inset: -100px;
+      background: radial-gradient(ellipse at center, rgba(255,107,0,.15) 0%, transparent 70%);
+    }
+
+    @media(max-width:640px){
+      .stat-number { font-size: 2.25rem; }
+      h1 { overflow-wrap: anywhere; }
+    }
+  </style>
+</head>
+<body class="font-sans text-white">
+
+  <!-- NAV -->
+  <nav class="site-nav" aria-label="Navegação principal">
+    <a href="#home" class="font-display font-black text-xl tracking-widest uppercase text-grad">
+      [NOME]<span class="text-white"> PERSONAL</span>
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-semibold text-white/70">
+      <a href="#sobre" class="hover:text-brand transition-colors">Sobre</a>
+      <a href="#metodo" class="hover:text-brand transition-colors">Método</a>
+      <a href="#planos" class="hover:text-brand transition-colors">Planos</a>
+      <a href="#resultados" class="hover:text-brand transition-colors">Resultados</a>
+      <a href="#depoimentos" class="hover:text-brand transition-colors">Depoimentos</a>
+    </div>
+    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-brand text-sm">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Falar no WhatsApp
+    </a>
+  </nav>
+
+  <!-- HERO SPLIT -->
+  <section class="hero-split" id="home">
+    <div class="hero-img-side">
+      <!-- Substitua pela foto da personal -->
+      <img src="fotos/foto-hero.jpg" alt="[Nome] Personal Trainer"
+           onerror="this.parentElement.style.background='linear-gradient(135deg,#1a0a00,#0d0500)'; this.style.display='none'"/>
+      <div class="hero-diagonal"></div>
+    </div>
+
+    <div class="hero-copy-side">
+      <div class="flex flex-wrap gap-2 mb-6 fade-up">
+        <span class="tag-pill">CREF 000000</span>
+        <span class="tag-pill">Presencial & Online</span>
+      </div>
+
+      <p class="section-eyebrow mb-4 fade-up">Personal Trainer</p>
+
+      <h1 class="font-display font-black uppercase leading-none mb-4 fade-up"
+          style="font-size:clamp(3rem,7vw,5.5rem)">
+        Seu corpo.<br/>
+        <span class="text-grad">Seu poder.</span>
+      </h1>
+
+      <p class="text-white/65 text-lg leading-relaxed mb-8 max-w-md fade-up">
+        Treino individualizado com base científica e acompanhamento real.
+        Resultados que você vê, sente e sustenta para sempre.
+      </p>
+
+      <div class="flex flex-wrap gap-3 mb-12 fade-up">
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-brand">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Começar agora
+        </a>
+        <a href="#sobre" class="btn-ghost">Ver minha história</a>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-3 divide-x divide-white/[.07]">
+        <div class="pr-4">
+          <p class="stat-number">200<span class="text-brand" style="font-size:1.8rem">+</span></p>
+          <p class="text-white/45 text-xs font-medium mt-1 uppercase tracking-wider">Alunos</p>
+        </div>
+        <div class="px-4">
+          <p class="stat-number">5<span class="text-brand" style="font-size:1.8rem">+</span></p>
+          <p class="text-white/45 text-xs font-medium mt-1 uppercase tracking-wider">Anos</p>
+        </div>
+        <div class="pl-4">
+          <p class="stat-number">98<span class="text-brand" style="font-size:1.8rem">%</span></p>
+          <p class="text-white/45 text-xs font-medium mt-1 uppercase tracking-wider">Satisfação</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="py-20 px-6 max-w-6xl mx-auto" id="sobre">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="fade-up">
+        <p class="section-eyebrow mb-4">Quem sou eu</p>
+        <h2 class="font-display font-black uppercase leading-tight mb-6"
+            style="font-size:clamp(2.2rem,5vw,3.5rem)">
+          Mais que treino —<br/><span class="text-grad">uma transformação</span>
+        </h2>
+        <p class="text-white/60 leading-relaxed mb-4">
+          Sou [nome], personal trainer com [X] anos de experiência formada em [faculdade].
+          Meu trabalho vai além do exercício: envolve escuta, estratégia e evolução contínua.
+        </p>
+        <p class="text-white/60 leading-relaxed mb-8">
+          Acredito que cada corpo tem um ritmo e um potencial único. O meu papel é te guiar
+          com método e presença para que você alcance seus objetivos de forma sustentável.
+        </p>
+
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-sm font-semibold mb-2">
+              <span>Musculação & Hipertrofia</span>
+              <span class="text-brand">92%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:92%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm font-semibold mb-2">
+              <span>Emagrecimento funcional</span>
+              <span class="text-brand">88%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:88%; animation-delay:.2s"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm font-semibold mb-2">
+              <span>Nutrição esportiva</span>
+              <span class="text-brand">78%</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:78%; animation-delay:.4s"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Photo card com decoração -->
+      <div class="relative fade-up">
+        <div class="absolute -inset-4 rounded-2xl"
+             style="background:radial-gradient(ellipse at 50% 50%, rgba(255,107,0,.15) 0%, transparent 70%)"></div>
+        <div class="relative rounded-2xl overflow-hidden border border-brand/20"
+             style="aspect-ratio:4/5">
+          <img src="fotos/foto-sobre.jpg" alt="[Nome] Personal"
+               class="w-full h-full object-cover object-top"
+               onerror="this.parentElement.style.background='linear-gradient(135deg,rgba(255,107,0,.1),rgba(22,22,22,1))'; this.style.display='none'"/>
+        </div>
+        <!-- badge flutuante -->
+        <div class="absolute -bottom-4 -left-4 card-glass p-4 rounded-xl">
+          <p class="font-display font-black text-2xl text-grad">CREF</p>
+          <p class="text-white/50 text-xs">000000-G/UF</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTODO / SERVIÇOS -->
+  <section class="py-20 px-6" id="metodo"
+           style="background:linear-gradient(to bottom, var(--bg) 0%, var(--bg2) 50%, var(--bg) 100%)">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14 fade-up">
+        <p class="section-eyebrow justify-center mb-4">Como trabalho</p>
+        <h2 class="font-display font-black uppercase leading-tight"
+            style="font-size:clamp(2rem,5vw,3.5rem)">
+          O método que <span class="text-grad">entrega resultado</span>
+        </h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- card 1 -->
+        <div class="card-glass p-6 fade-up">
+          <div class="icon-box mb-4">
+            <svg width="22" height="22" fill="none" stroke="#FF6B00" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19V6l12-3v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="15" r="3"/></svg>
+          </div>
+          <h3 class="font-display font-black text-xl uppercase mb-2">Avaliação completa</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Análise corporal, histórico de saúde e definição de metas reais e alcançáveis para o seu perfil.</p>
+        </div>
+        <!-- card 2 -->
+        <div class="card-glass p-6 fade-up" style="transition-delay:.1s">
+          <div class="icon-box mb-4">
+            <svg width="22" height="22" fill="none" stroke="#FF6B00" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3 class="font-display font-black text-xl uppercase mb-2">Protocolo individual</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Treino 100% personalizado baseado na sua rotina, nível de condicionamento e objetivos específicos.</p>
+        </div>
+        <!-- card 3 -->
+        <div class="card-glass p-6 fade-up" style="transition-delay:.2s">
+          <div class="icon-box mb-4">
+            <svg width="22" height="22" fill="none" stroke="#FF6B00" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3 class="font-display font-black text-xl uppercase mb-2">Acompanhamento real</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Evolução monitorada semanalmente com ajustes de treino, feedback constante e suporte direto no WhatsApp.</p>
+        </div>
+        <!-- card 4 -->
+        <div class="card-glass p-6 fade-up" style="transition-delay:.05s">
+          <div class="icon-box mb-4">
+            <svg width="22" height="22" fill="none" stroke="#FF6B00" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3 class="font-display font-black text-xl uppercase mb-2">Comunidade exclusiva</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Grupo de alunos, desafios mensais e conteúdos exclusivos para manter a motivação em alta.</p>
+        </div>
+        <!-- card 5 -->
+        <div class="card-glass p-6 fade-up" style="transition-delay:.15s">
+          <div class="icon-box mb-4">
+            <svg width="22" height="22" fill="none" stroke="#FF6B00" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3 class="font-display font-black text-xl uppercase mb-2">Treino online</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Fichas de treino no app com vídeos demonstrativos e acompanhamento remoto. Treine onde quiser.</p>
+        </div>
+        <!-- card 6 -->
+        <div class="card-glass p-6 fade-up" style="transition-delay:.25s">
+          <div class="icon-box mb-4">
+            <svg width="22" height="22" fill="none" stroke="#FF6B00" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3 class="font-display font-black text-xl uppercase mb-2">Resultado garantido</h3>
+          <p class="text-white/55 text-sm leading-relaxed">Comprometimento total com a sua evolução. Método com evidência científica e resultados comprovados.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section class="py-20 px-6" id="planos">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 fade-up">
+        <p class="section-eyebrow justify-center mb-4">Investimento</p>
+        <h2 class="font-display font-black uppercase leading-tight"
+            style="font-size:clamp(2rem,5vw,3.5rem)">
+          Escolha seu <span class="text-grad">plano</span>
+        </h2>
+        <p class="text-white/50 mt-3 max-w-lg mx-auto">Todos os planos incluem avaliação inicial, protocolo personalizado e suporte via WhatsApp.</p>
+      </div>
+
+      <div class="plans-scroll pb-4 md:grid md:grid-cols-3 md:gap-6 md:overflow-visible fade-up">
+        <!-- Plano Start -->
+        <div class="plan-card">
+          <p class="tag-pill mb-4 inline-flex">START</p>
+          <div class="plan-price mb-1">
+            <sup>R$</sup>XXX
+          </div>
+          <p class="text-white/40 text-sm mb-6">/mês</p>
+          <ul class="space-y-3 text-sm text-white/70 mb-8">
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> 8 treinos/mês presencial</li>
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> Avaliação corporal</li>
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> Protocolo inicial</li>
+            <li class="flex gap-2 opacity-40"><span>✗</span> Consultoria nutricional</li>
+            <li class="flex gap-2 opacity-40"><span>✗</span> Treino online</li>
+          </ul>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-ghost text-sm block text-center">Consultar</a>
+        </div>
+
+        <!-- Plano Pro (destaque) -->
+        <div class="plan-card featured">
+          <p class="tag-pill mb-4 inline-flex">PRO</p>
+          <div class="plan-price mb-1">
+            <sup>R$</sup>XXX
+          </div>
+          <p class="text-white/40 text-sm mb-6">/mês</p>
+          <ul class="space-y-3 text-sm text-white/70 mb-8">
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> 12 treinos/mês presencial</li>
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> Avaliação corporal mensal</li>
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> Protocolo avançado</li>
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> Consultoria nutricional</li>
+            <li class="flex gap-2 opacity-40"><span>✗</span> Treino online</li>
+          </ul>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-brand text-sm block text-center">Quero esse!</a>
+        </div>
+
+        <!-- Plano Elite -->
+        <div class="plan-card">
+          <p class="tag-pill mb-4 inline-flex">ELITE</p>
+          <div class="plan-price mb-1">
+            <sup>R$</sup>XXX
+          </div>
+          <p class="text-white/40 text-sm mb-6">/mês</p>
+          <ul class="space-y-3 text-sm text-white/70 mb-8">
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> Treinos ilimitados presencial</li>
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> Avaliação corporal mensal</li>
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> Protocolo premium</li>
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> Consultoria nutricional</li>
+            <li class="flex gap-2"><span class="text-brand font-bold">✓</span> Treino online + app</li>
+          </ul>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-ghost text-sm block text-center">Consultar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="py-20 px-6" id="depoimentos"
+           style="background: var(--bg2)">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12 fade-up">
+        <p class="section-eyebrow justify-center mb-4">Quem já treinou</p>
+        <h2 class="font-display font-black uppercase leading-tight"
+            style="font-size:clamp(2rem,5vw,3.5rem)">
+          Resultados <span class="text-grad">reais</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="card-glass p-6 fade-up">
+          <div class="quote-mark leading-none mb-2">"</div>
+          <p class="text-white/70 text-sm leading-relaxed mb-6">Em 3 meses perdi 10kg e ganhei mais energia do que nos últimos 5 anos. Método incrível e acompanhamento impecável!</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand/20 border border-brand/30 flex items-center justify-content-center text-brand font-black font-display text-lg flex items-center justify-center">A</div>
+            <div>
+              <p class="font-bold text-sm">Ana Lima</p>
+              <p class="text-white/40 text-xs">Aluna há 8 meses</p>
+            </div>
+            <div class="ml-auto text-brand text-sm">★★★★★</div>
+          </div>
+        </div>
+        <div class="card-glass p-6 fade-up" style="transition-delay:.1s">
+          <div class="quote-mark leading-none mb-2">"</div>
+          <p class="text-white/70 text-sm leading-relaxed mb-6">Já tinha tentado academia sozinha várias vezes. Com a [nome] foi diferente — personalizado, motivador e com resultado real.</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand/20 border border-brand/30 flex items-center justify-center text-brand font-black font-display text-lg">M</div>
+            <div>
+              <p class="font-bold text-sm">Marina Costa</p>
+              <p class="text-white/40 text-xs">Aluna há 1 ano</p>
+            </div>
+            <div class="ml-auto text-brand text-sm">★★★★★</div>
+          </div>
+        </div>
+        <div class="card-glass p-6 fade-up" style="transition-delay:.2s">
+          <div class="quote-mark leading-none mb-2">"</div>
+          <p class="text-white/70 text-sm leading-relaxed mb-6">Voltei a me sentir bem comigo mesma. O treino encaixou perfeitamente na minha rotina corrida. Super recomendo!</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-brand/20 border border-brand/30 flex items-center justify-center text-brand font-black font-display text-lg">J</div>
+            <div>
+              <p class="font-bold text-sm">Juliana Reis</p>
+              <p class="text-white/40 text-xs">Aluna há 6 meses</p>
+            </div>
+            <div class="ml-auto text-brand text-sm">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="py-24 px-6">
+    <div class="max-w-4xl mx-auto cta-banner rounded-3xl p-12 text-center fade-up">
+      <p class="section-eyebrow justify-center mb-6">Pronta para mudar?</p>
+      <h2 class="font-display font-black uppercase leading-tight mb-6"
+          style="font-size:clamp(2.5rem,6vw,4rem)">
+        Sua transformação<br/><span class="text-grad">começa agora</span>
+      </h2>
+      <p class="text-white/55 mb-8 max-w-lg mx-auto">Vagas limitadas. Entre em contato e marque sua avaliação gratuita.</p>
+      <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-brand text-lg mx-auto inline-flex">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Falar no WhatsApp agora
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 px-6 border-t border-white/[.06] text-center">
+    <p class="font-display font-black text-xl tracking-widest uppercase text-grad mb-2">[NOME] PERSONAL</p>
+    <p class="text-white/30 text-xs">© 2026 · CREF 000000 · Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    // Fade-up on scroll
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: .15 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>

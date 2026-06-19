@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signal — [Nome] | Nutricionista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            neon: '#00D084',
+            'neon-dim': '#00b872',
+            'off-white': '#F5F5F5',
+            ink: '#0A0A0A',
+            muted: '#6B7280',
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #FFFFFF;
+      color: #0A0A0A;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Ticker ── */
+    .ticker-wrap { overflow: hidden; }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: ticker 40s linear infinite;
+    }
+    .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+    @keyframes ticker {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Fade-up ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Progress bars ── */
+    .bar-fill {
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .bar-fill.animated { width: var(--target-width); }
+
+    @keyframes fillBar {
+      from { width: 0%; }
+      to   { width: var(--target-width); }
+    }
+
+    /* ── Counter animation ── */
+    .counter { display: inline-block; }
+
+    /* ── Stat counter ── */
+    .stat-val { font-variant-numeric: tabular-nums; }
+
+    /* ── Table ── */
+    .plan-table th, .plan-table td {
+      padding: 14px 24px;
+      text-align: left;
+      border-bottom: 1px solid #E5E7EB;
+    }
+    .plan-table thead th { background: #F5F5F5; }
+    .plan-table tbody tr:last-child td { border-bottom: none; }
+    .plan-table tbody tr:hover { background: #FAFAFA; }
+
+    /* ── Check / X icon colors ── */
+    .icon-check { color: #00D084; }
+    .icon-minus  { color: #D1D5DB; }
+
+    /* ── Scrollbar thin ── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #F5F5F5; }
+    ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════ -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-neon inline-block"></span>
+      <span class="font-semibold text-ink tracking-tight text-lg">Signal</span>
+    </a>
+
+    <!-- Links desktop -->
+    <div class="hidden md:flex items-center gap-8 text-sm text-muted font-medium">
+      <a href="#sobre"      class="hover:text-ink transition-colors">Sobre</a>
+      <a href="#servicos"   class="hover:text-ink transition-colors">Serviços</a>
+      <a href="#resultados" class="hover:text-ink transition-colors">Resultados</a>
+      <a href="#planos"     class="hover:text-ink transition-colors">Planos</a>
+    </div>
+
+    <!-- CTA -->
+    <a href="https://wa.me/5500000000000" target="_blank"
+       class="bg-neon text-ink text-sm font-semibold px-5 py-2 rounded-[6px] hover:bg-neon-dim transition-colors">
+      Agendar consulta
+    </a>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="pt-28 pb-20 max-w-6xl mx-auto px-6">
+  <div class="grid md:grid-cols-2 gap-16 items-center">
+
+    <!-- Left: headline -->
+    <div class="fade-up">
+      <p class="text-xs font-semibold text-neon tracking-[0.18em] uppercase mb-4">Nutricionista Funcional · CRN 00000</p>
+      <h1 class="text-5xl md:text-6xl font-bold leading-[1.08] text-ink mb-6">
+        Nutrição orientada<br/>a dados reais.
+      </h1>
+      <p class="text-muted text-lg leading-relaxed mb-10 max-w-md">
+        Protocolos personalizados baseados em análise metabólica,
+        genômica e bioquímica. Sem achismos. Sem dietas genéricas.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="https://wa.me/5500000000000" target="_blank"
+           class="bg-neon text-ink font-semibold px-7 py-3 rounded-[6px] hover:bg-neon-dim transition-colors">
+          Iniciar protocolo
+        </a>
+        <a href="#resultados"
+           class="border border-neon text-neon font-semibold px-7 py-3 rounded-[6px] hover:bg-neon hover:text-ink transition-colors">
+          Ver resultados
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: stats -->
+    <div class="fade-up grid grid-cols-2 gap-4">
+
+      <div class="bg-off-white rounded-2xl p-6">
+        <p class="text-5xl font-bold text-neon stat-val" data-target="847" data-suffix="+">0</p>
+        <p class="text-sm text-muted mt-2 leading-snug">pacientes<br/>atendidos</p>
+      </div>
+
+      <div class="bg-off-white rounded-2xl p-6">
+        <p class="text-5xl font-bold text-neon stat-val" data-target="91" data-suffix="%">0</p>
+        <p class="text-sm text-muted mt-2 leading-snug">taxa de<br/>aderência</p>
+      </div>
+
+      <div class="bg-off-white rounded-2xl p-6">
+        <p class="text-5xl font-bold text-neon stat-val" data-target="6" data-suffix=" anos">0</p>
+        <p class="text-sm text-muted mt-2 leading-snug">de experiência<br/>clínica</p>
+      </div>
+
+      <div class="bg-off-white rounded-2xl p-6">
+        <p class="text-5xl font-bold text-neon stat-val" data-target="4.9" data-suffix="/5" data-decimals="1">0</p>
+        <p class="text-sm text-muted mt-2 leading-snug">avaliação<br/>média</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     TICKER
+════════════════════════════════════════════ -->
+<div class="ticker-wrap border-y border-gray-100 bg-off-white py-4 overflow-hidden">
+  <div class="ticker-track">
+    <!-- duplicado para loop contínuo -->
+    <template id="ticker-items">
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-medium text-muted whitespace-nowrap">
+        <span class="w-1.5 h-1.5 rounded-full bg-neon flex-shrink-0"></span>Análise Metabólica
+      </span>
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-bold text-neon whitespace-nowrap">12kg perdidos em média</span>
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-medium text-muted whitespace-nowrap">
+        <span class="w-1.5 h-1.5 rounded-full bg-neon flex-shrink-0"></span>Protocolo de Emagrecimento
+      </span>
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-bold text-neon whitespace-nowrap">83% redução de inflamação</span>
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-medium text-muted whitespace-nowrap">
+        <span class="w-1.5 h-1.5 rounded-full bg-neon flex-shrink-0"></span>Performance Atlética
+      </span>
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-bold text-neon whitespace-nowrap">+27% de desempenho físico</span>
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-medium text-muted whitespace-nowrap">
+        <span class="w-1.5 h-1.5 rounded-full bg-neon flex-shrink-0"></span>Reequilíbrio Hormonal
+      </span>
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-bold text-neon whitespace-nowrap">94% satisfação reportada</span>
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-medium text-muted whitespace-nowrap">
+        <span class="w-1.5 h-1.5 rounded-full bg-neon flex-shrink-0"></span>Saúde Digestiva
+      </span>
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-bold text-neon whitespace-nowrap">CRN 00000</span>
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-medium text-muted whitespace-nowrap">
+        <span class="w-1.5 h-1.5 rounded-full bg-neon flex-shrink-0"></span>Consultoria Empresarial
+      </span>
+      <span class="ticker-item flex items-center gap-3 px-8 text-sm font-bold text-neon whitespace-nowrap">847+ pacientes</span>
+    </template>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════
+     SOBRE
+════════════════════════════════════════════ -->
+<section id="sobre" class="py-28 max-w-6xl mx-auto px-6">
+  <div class="grid md:grid-cols-2 gap-16 items-start">
+
+    <!-- Left: text -->
+    <div class="fade-up">
+      <p class="text-xs font-semibold text-neon tracking-[0.18em] uppercase mb-4">Sobre</p>
+      <h2 class="text-4xl font-bold text-ink mb-6 leading-tight">
+        Ciência aplicada.<br/>Resultado mensurável.
+      </h2>
+      <p class="text-muted leading-relaxed mb-4">
+        [Nome] é nutricionista graduada pela [Faculdade] com especialização em Nutrição Funcional e Metabolômica. Desenvolve protocolos individualizados combinando dados laboratoriais, análise genômica e comportamento alimentar para gerar resultados consistentes e duradouros.
+      </p>
+      <p class="text-muted leading-relaxed mb-10">
+        Cada protocolo é elaborado com base em biomarcadores reais — não em tendências. A abordagem integra evidências científicas de ponta com a rotina do paciente, tornando a mudança sustentável e verificável.
+      </p>
+
+      <!-- Credentials -->
+      <div class="flex flex-wrap gap-3 mb-10">
+        <span class="border border-gray-200 text-xs font-medium text-muted px-3 py-1.5 rounded-[6px]">CRN 00000</span>
+        <span class="border border-gray-200 text-xs font-medium text-muted px-3 py-1.5 rounded-[6px]">Nutrição Funcional</span>
+        <span class="border border-gray-200 text-xs font-medium text-muted px-3 py-1.5 rounded-[6px]">Metabolômica</span>
+        <span class="border border-gray-200 text-xs font-medium text-muted px-3 py-1.5 rounded-[6px]">Saúde Integrativa</span>
+        <span class="border border-gray-200 text-xs font-medium text-muted px-3 py-1.5 rounded-[6px]">Nutrigenômica</span>
+      </div>
+
+      <!-- Skill bars -->
+      <div class="space-y-5">
+        <div>
+          <div class="flex justify-between text-xs font-medium mb-2">
+            <span class="text-ink">Emagrecimento Funcional</span>
+            <span class="text-neon">97%</span>
+          </div>
+          <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div class="bar-fill h-full bg-neon rounded-full" style="--target-width: 97%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium mb-2">
+            <span class="text-ink">Performance Atlética</span>
+            <span class="text-neon">91%</span>
+          </div>
+          <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div class="bar-fill h-full bg-neon rounded-full" style="--target-width: 91%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium mb-2">
+            <span class="text-ink">Equilíbrio Hormonal</span>
+            <span class="text-neon">88%</span>
+          </div>
+          <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div class="bar-fill h-full bg-neon rounded-full" style="--target-width: 88%"></div>
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between text-xs font-medium mb-2">
+            <span class="text-ink">Saúde Digestiva</span>
+            <span class="text-neon">94%</span>
+          </div>
+          <div class="h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div class="bar-fill h-full bg-neon rounded-full" style="--target-width: 94%"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: photo placeholder -->
+    <div class="fade-up flex justify-center md:justify-end">
+      <div class="relative">
+        <div class="w-72 h-80 md:w-80 md:h-96 bg-off-white rounded-2xl flex items-center justify-center overflow-hidden border border-gray-100">
+          <!-- Photo placeholder SVG -->
+          <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="32" r="16" fill="#D1D5DB"/>
+            <path d="M10 68C10 51.432 23.432 38 40 38s30 13.432 30 30" fill="#D1D5DB"/>
+          </svg>
+        </div>
+        <!-- Decorative neon dot -->
+        <div class="absolute -bottom-3 -left-3 w-6 h-6 rounded-full bg-neon"></div>
+        <div class="absolute -top-3 -right-3 w-3 h-3 rounded-full border-2 border-neon"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     SERVIÇOS
+════════════════════════════════════════════ -->
+<section id="servicos" class="py-28 bg-off-white">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="fade-up mb-14">
+      <p class="text-xs font-semibold text-neon tracking-[0.18em] uppercase mb-4">Serviços</p>
+      <h2 class="text-4xl font-bold text-ink leading-tight max-w-xl">
+        Protocolos especializados<br/>para cada objetivo.
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+      <!-- Análise Metabólica -->
+      <div class="fade-up bg-white rounded-2xl p-7 border border-gray-100 hover:border-neon transition-colors group">
+        <div class="mb-5">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 22L10 14L15 18L21 10L24 13" stroke="#00D084" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="24" cy="13" r="2" fill="#00D084"/>
+            <path d="M4 6v16h20" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-semibold text-ink mb-2">Análise Metabólica</h3>
+        <p class="text-sm text-muted leading-relaxed">Avaliação completa de biomarcadores, taxa metabólica basal e composição corporal para traçar o ponto de partida exato do protocolo.</p>
+        <div class="mt-5 pt-5 border-t border-gray-100 flex items-center justify-between">
+          <span class="text-xs text-muted">3 consultas</span>
+          <svg class="text-neon group-hover:translate-x-1 transition-transform" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Protocolo de Emagrecimento -->
+      <div class="fade-up bg-white rounded-2xl p-7 border border-gray-100 hover:border-neon transition-colors group">
+        <div class="mb-5">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="14" cy="14" r="9" stroke="#00D084" stroke-width="2"/>
+            <path d="M14 9v5l3 3" stroke="#00D084" stroke-width="2" stroke-linecap="round"/>
+            <path d="M8 4L4 4M24 4l-4 0M14 2v2M14 24v2M2 14h2M24 14h2" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-semibold text-ink mb-2">Protocolo de Emagrecimento</h3>
+        <p class="text-sm text-muted leading-relaxed">Estratégia calórica e nutricional baseada em ciclagem de macros, timing alimentar e monitoramento semanal de progresso real.</p>
+        <div class="mt-5 pt-5 border-t border-gray-100 flex items-center justify-between">
+          <span class="text-xs text-muted">Acompanhamento mensal</span>
+          <svg class="text-neon group-hover:translate-x-1 transition-transform" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Performance Atlética -->
+      <div class="fade-up bg-white rounded-2xl p-7 border border-gray-100 hover:border-neon transition-colors group">
+        <div class="mb-5">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 20L9 12L13 16L17 8L22 14" stroke="#00D084" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2 20h24" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="22" cy="14" r="2" fill="#00D084"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-semibold text-ink mb-2">Performance Atlética</h3>
+        <p class="text-sm text-muted leading-relaxed">Nutrição periodizada para atletas e praticantes de atividade física. Pré, intra e pós-treino calibrados por dados de esforço.</p>
+        <div class="mt-5 pt-5 border-t border-gray-100 flex items-center justify-between">
+          <span class="text-xs text-muted">Revisão quinzenal</span>
+          <svg class="text-neon group-hover:translate-x-1 transition-transform" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Reequilíbrio Hormonal -->
+      <div class="fade-up bg-white rounded-2xl p-7 border border-gray-100 hover:border-neon transition-colors group">
+        <div class="mb-5">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 4C10 4 7 7.5 7 12c0 4 2 6 4 8l3 4 3-4c2-2 4-4 4-8 0-4.5-3-8-7-8z" stroke="#00D084" stroke-width="2"/>
+            <path d="M14 9v6M11 12h6" stroke="#00D084" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-semibold text-ink mb-2">Reequilíbrio Hormonal</h3>
+        <p class="text-sm text-muted leading-relaxed">Intervenção nutricional direcionada a disfunções hormonais: tireoide, cortisol, insulina e hormônios sexuais via alimentação funcional.</p>
+        <div class="mt-5 pt-5 border-t border-gray-100 flex items-center justify-between">
+          <span class="text-xs text-muted">Protocolo 90 dias</span>
+          <svg class="text-neon group-hover:translate-x-1 transition-transform" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Saúde Digestiva -->
+      <div class="fade-up bg-white rounded-2xl p-7 border border-gray-100 hover:border-neon transition-colors group">
+        <div class="mb-5">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 6c0 0-4 2-4 7s4 8 4 8" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M18 6c0 0 4 2 4 7s-4 8-4 8" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10 6h8M10 21h8" stroke="#00D084" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="14" cy="13" r="3" stroke="#00D084" stroke-width="2"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-semibold text-ink mb-2">Saúde Digestiva</h3>
+        <p class="text-sm text-muted leading-relaxed">Modulação da microbiota intestinal e resolução de disbioses, constipação, SII e inflamação intestinal com abordagem funcional baseada em evidências.</p>
+        <div class="mt-5 pt-5 border-t border-gray-100 flex items-center justify-between">
+          <span class="text-xs text-muted">Protocolo 60 dias</span>
+          <svg class="text-neon group-hover:translate-x-1 transition-transform" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Consultoria Empresarial -->
+      <div class="fade-up bg-white rounded-2xl p-7 border border-gray-100 hover:border-neon transition-colors group">
+        <div class="mb-5">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="8" width="20" height="16" rx="2" stroke="#0A0A0A" stroke-width="1.5"/>
+            <path d="M9 8V6a5 5 0 0110 0v2" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M4 14h20" stroke="#00D084" stroke-width="2"/>
+            <circle cx="14" cy="14" r="2" fill="#00D084"/>
+          </svg>
+        </div>
+        <h3 class="text-base font-semibold text-ink mb-2">Consultoria Empresarial</h3>
+        <p class="text-sm text-muted leading-relaxed">Programas de nutrição corporativa para equipes: melhora de produtividade, redução de absenteísmo e bem-estar organizacional mensurável.</p>
+        <div class="mt-5 pt-5 border-t border-gray-100 flex items-center justify-between">
+          <span class="text-xs text-muted">Sob demanda</span>
+          <svg class="text-neon group-hover:translate-x-1 transition-transform" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     RESULTADOS
+════════════════════════════════════════════ -->
+<section id="resultados" class="py-28 max-w-6xl mx-auto px-6">
+
+  <div class="fade-up mb-14">
+    <p class="text-xs font-semibold text-neon tracking-[0.18em] uppercase mb-4">Resultados</p>
+    <h2 class="text-4xl font-bold text-ink leading-tight max-w-xl">
+      Números que comprovam<br/>a eficácia do método.
+    </h2>
+  </div>
+
+  <!-- Big numbers grid -->
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+
+    <div class="fade-up">
+      <p class="text-6xl font-bold text-neon mb-1">12<span class="text-3xl">kg</span></p>
+      <p class="text-sm font-medium text-ink mb-1">perda média de peso</p>
+      <p class="text-xs text-muted">em 90 dias de protocolo</p>
+    </div>
+
+    <div class="fade-up">
+      <p class="text-6xl font-bold text-neon mb-1">83<span class="text-3xl">%</span></p>
+      <p class="text-sm font-medium text-ink mb-1">redução de inflamação</p>
+      <p class="text-xs text-muted">marcadores de PCR e IL-6</p>
+    </div>
+
+    <div class="fade-up">
+      <p class="text-6xl font-bold text-neon mb-1">+27<span class="text-3xl">%</span></p>
+      <p class="text-sm font-medium text-ink mb-1">ganho de performance</p>
+      <p class="text-xs text-muted">em atletas acompanhados</p>
+    </div>
+
+    <div class="fade-up">
+      <p class="text-6xl font-bold text-neon mb-1">94<span class="text-3xl">%</span></p>
+      <p class="text-sm font-medium text-ink mb-1">satisfação geral</p>
+      <p class="text-xs text-muted">avaliação pós-protocolo</p>
+    </div>
+
+  </div>
+
+  <!-- Progress bars by goal -->
+  <div class="fade-up bg-off-white rounded-2xl p-8">
+    <h3 class="text-sm font-semibold text-ink mb-8 uppercase tracking-wide">Taxa de sucesso por objetivo</h3>
+    <div class="space-y-7">
+
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm font-medium text-ink">Emagrecimento com manutenção de massa</span>
+          <span class="text-sm font-bold text-neon">89%</span>
+        </div>
+        <div class="h-2 bg-white rounded-full overflow-hidden">
+          <div class="bar-fill h-full bg-neon rounded-full" style="--target-width: 89%"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm font-medium text-ink">Controle glicêmico e resistência à insulina</span>
+          <span class="text-sm font-bold text-neon">92%</span>
+        </div>
+        <div class="h-2 bg-white rounded-full overflow-hidden">
+          <div class="bar-fill h-full bg-neon rounded-full" style="--target-width: 92%"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm font-medium text-ink">Melhora da microbiota intestinal</span>
+          <span class="text-sm font-bold text-neon">87%</span>
+        </div>
+        <div class="h-2 bg-white rounded-full overflow-hidden">
+          <div class="bar-fill h-full bg-neon rounded-full" style="--target-width: 87%"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm font-medium text-ink">Regulação hormonal via alimentação</span>
+          <span class="text-sm font-bold text-neon">81%</span>
+        </div>
+        <div class="h-2 bg-white rounded-full overflow-hidden">
+          <div class="bar-fill h-full bg-neon rounded-full" style="--target-width: 81%"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-sm font-medium text-ink">Performance e composição corporal atlética</span>
+          <span class="text-sm font-bold text-neon">95%</span>
+        </div>
+        <div class="h-2 bg-white rounded-full overflow-hidden">
+          <div class="bar-fill h-full bg-neon rounded-full" style="--target-width: 95%"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     PLANOS — TABELA
+════════════════════════════════════════════ -->
+<section id="planos" class="py-28 bg-off-white">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="fade-up mb-14">
+      <p class="text-xs font-semibold text-neon tracking-[0.18em] uppercase mb-4">Planos</p>
+      <h2 class="text-4xl font-bold text-ink leading-tight max-w-xl">
+        Escolha o protocolo<br/>adequado ao seu objetivo.
+      </h2>
+    </div>
+
+    <div class="fade-up overflow-x-auto rounded-2xl border border-gray-200 bg-white">
+      <table class="plan-table w-full min-w-[640px]">
+        <thead>
+          <tr>
+            <th class="text-sm font-semibold text-muted w-1/2">Recurso</th>
+            <th class="text-sm font-semibold text-ink text-center">Essencial<br/><span class="text-neon font-bold text-base">R$XXX</span><span class="text-xs text-muted font-normal">/mês</span></th>
+            <th class="text-sm font-semibold text-ink text-center border-l-2 border-neon bg-neon/5">Avançado<br/><span class="text-neon font-bold text-base">R$XXX</span><span class="text-xs text-muted font-normal">/mês</span></th>
+            <th class="text-sm font-semibold text-ink text-center">Elite<br/><span class="text-neon font-bold text-base">R$XXX</span><span class="text-xs text-muted font-normal">/mês</span></th>
+          </tr>
+        </thead>
+        <tbody class="text-sm">
+
+          <tr>
+            <td class="text-muted">Consulta inicial de anamnese</td>
+            <td class="text-center"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="text-center border-l-2 border-neon bg-neon/5"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="text-center"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          </tr>
+
+          <tr>
+            <td class="text-muted">Plano alimentar personalizado</td>
+            <td class="text-center"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="text-center border-l-2 border-neon bg-neon/5"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="text-center"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          </tr>
+
+          <tr>
+            <td class="text-muted">Número de consultas/mês</td>
+            <td class="text-center text-ink font-medium">1</td>
+            <td class="text-center text-ink font-medium border-l-2 border-neon bg-neon/5">2</td>
+            <td class="text-center text-ink font-medium">4</td>
+          </tr>
+
+          <tr>
+            <td class="text-muted">Análise de exames laboratoriais</td>
+            <td class="text-center"><svg class="icon-minus mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 9h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
+            <td class="text-center border-l-2 border-neon bg-neon/5"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="text-center"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          </tr>
+
+          <tr>
+            <td class="text-muted">Suplementação direcionada</td>
+            <td class="text-center"><svg class="icon-minus mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 9h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
+            <td class="text-center border-l-2 border-neon bg-neon/5"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="text-center"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          </tr>
+
+          <tr>
+            <td class="text-muted">Suporte via mensagem entre consultas</td>
+            <td class="text-center"><svg class="icon-minus mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 9h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
+            <td class="text-center border-l-2 border-neon bg-neon/5"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+            <td class="text-center"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          </tr>
+
+          <tr>
+            <td class="text-muted">Avaliação de composição corporal (bioimpedância)</td>
+            <td class="text-center"><svg class="icon-minus mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 9h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
+            <td class="text-center border-l-2 border-neon bg-neon/5"><svg class="icon-minus mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 9h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
+            <td class="text-center"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          </tr>
+
+          <tr>
+            <td class="text-muted">Relatório mensal de progresso com métricas</td>
+            <td class="text-center"><svg class="icon-minus mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 9h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
+            <td class="text-center border-l-2 border-neon bg-neon/5"><svg class="icon-minus mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 9h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></td>
+            <td class="text-center"><svg class="icon-check mx-auto" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></td>
+          </tr>
+
+          <tr>
+            <td class="text-muted">Atendimento presencial ou online</td>
+            <td class="text-center text-xs text-muted">Online</td>
+            <td class="text-center text-xs text-muted border-l-2 border-neon bg-neon/5">Online</td>
+            <td class="text-center text-xs text-ink font-medium">Ambos</td>
+          </tr>
+
+          <!-- CTA row -->
+          <tr>
+            <td></td>
+            <td class="pt-6 pb-2 text-center">
+              <a href="https://wa.me/5500000000000" target="_blank"
+                 class="inline-block border border-neon text-neon text-xs font-semibold px-5 py-2.5 rounded-[6px] hover:bg-neon hover:text-ink transition-colors">
+                Selecionar
+              </a>
+            </td>
+            <td class="pt-6 pb-2 text-center border-l-2 border-neon bg-neon/5">
+              <a href="https://wa.me/5500000000000" target="_blank"
+                 class="inline-block bg-neon text-ink text-xs font-semibold px-5 py-2.5 rounded-[6px] hover:bg-neon-dim transition-colors">
+                Mais popular
+              </a>
+            </td>
+            <td class="pt-6 pb-2 text-center">
+              <a href="https://wa.me/5500000000000" target="_blank"
+                 class="inline-block border border-neon text-neon text-xs font-semibold px-5 py-2.5 rounded-[6px] hover:bg-neon hover:text-ink transition-colors">
+                Selecionar
+              </a>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     DEPOIMENTOS
+════════════════════════════════════════════ -->
+<section id="depoimentos" class="py-28 max-w-6xl mx-auto px-6">
+
+  <div class="fade-up mb-14">
+    <p class="text-xs font-semibold text-neon tracking-[0.18em] uppercase mb-4">Depoimentos</p>
+    <h2 class="text-4xl font-bold text-ink leading-tight max-w-xl">
+      Resultados reais,<br/>relatados por pacientes reais.
+    </h2>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <!-- Card 1 -->
+    <div class="fade-up border border-gray-100 rounded-2xl p-7 hover:border-neon transition-colors">
+      <div class="border-b border-gray-100 pb-5 mb-5">
+        <p class="text-3xl font-bold text-neon">-14kg</p>
+        <p class="text-xs text-muted mt-1">em 4 meses de protocolo</p>
+      </div>
+      <p class="text-sm text-muted leading-relaxed mb-6">
+        "Tentei várias dietas antes e sempre recuperava o peso. Com o protocolo da [Nome] entendi o que acontecia no meu metabolismo. Os exames mostraram o caminho certo. Resultado mantido há 8 meses."
+      </p>
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-off-white flex items-center justify-center text-xs font-bold text-muted">AM</div>
+        <div>
+          <p class="text-xs font-semibold text-ink">Ana M.</p>
+          <p class="text-xs text-muted">Protocolo de Emagrecimento</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="fade-up border border-gray-100 rounded-2xl p-7 hover:border-neon transition-colors">
+      <div class="border-b border-gray-100 pb-5 mb-5">
+        <p class="text-3xl font-bold text-neon">+31%</p>
+        <p class="text-xs text-muted mt-1">de desempenho em corrida</p>
+      </div>
+      <p class="text-sm text-muted leading-relaxed mb-6">
+        "Sou triatleta e precisava de algo além de 'comer bem'. A periodização nutricional foi cirúrgica. Meu VO2 máx melhorou, recuperação mais rápida e PR em todas as provas da temporada."
+      </p>
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-off-white flex items-center justify-center text-xs font-bold text-muted">RC</div>
+        <div>
+          <p class="text-xs font-semibold text-ink">Rafael C.</p>
+          <p class="text-xs text-muted">Performance Atlética</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="fade-up border border-gray-100 rounded-2xl p-7 hover:border-neon transition-colors">
+      <div class="border-b border-gray-100 pb-5 mb-5">
+        <p class="text-3xl font-bold text-neon">TSH normal</p>
+        <p class="text-xs text-muted mt-1">após 3 meses sem medicação</p>
+      </div>
+      <p class="text-sm text-muted leading-relaxed mb-6">
+        "Hipotireoidismo subclínico há 2 anos. Depois do protocolo de reequilíbrio, minha TSH voltou para a faixa ideal e reduzi a dose do levotiroxil. Nunca pensei que alimentação chegasse a esse nível."
+      </p>
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-full bg-off-white flex items-center justify-center text-xs font-bold text-muted">CS</div>
+        <div>
+          <p class="text-xs font-semibold text-ink">Camila S.</p>
+          <p class="text-xs text-muted">Reequilíbrio Hormonal</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════════ -->
+<section class="py-28 bg-ink">
+  <div class="max-w-6xl mx-auto px-6 text-center fade-up">
+    <p class="text-xs font-semibold text-neon tracking-[0.18em] uppercase mb-6">Próximo passo</p>
+    <h2 class="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight max-w-2xl mx-auto">
+      Pronto para um protocolo baseado nos seus dados?
+    </h2>
+    <p class="text-gray-400 text-lg mb-10 max-w-xl mx-auto">
+      Agende sua consulta de anamnese. Primeira sessão dedicada integralmente ao mapeamento do seu perfil metabólico.
+    </p>
+    <a href="https://wa.me/5500000000000" target="_blank"
+       class="inline-flex items-center gap-3 bg-neon text-ink font-semibold px-10 py-4 rounded-[6px] text-base hover:bg-neon-dim transition-colors">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="currentColor"/>
+        <path d="M10 1.5A8.5 8.5 0 001.5 10c0 1.5.394 2.908 1.082 4.124L1.5 18.5l4.5-1.079A8.5 8.5 0 1010 1.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Falar no WhatsApp
+    </a>
+    <p class="text-gray-500 text-xs mt-6">Resposta em até 2 horas · Atendimento online e presencial</p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer class="bg-ink border-t border-gray-800">
+  <div class="max-w-6xl mx-auto px-6 py-12">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="w-2 h-2 rounded-full bg-neon inline-block"></span>
+          <span class="font-semibold text-white tracking-tight">Signal</span>
+        </div>
+        <p class="text-xs text-gray-500">[Nome] · Nutricionista · CRN 00000</p>
+        <p class="text-xs text-gray-600 mt-1">Nutrição funcional orientada a dados</p>
+      </div>
+
+      <!-- Links -->
+      <div class="flex flex-wrap gap-6 text-xs text-gray-500">
+        <a href="#sobre"      class="hover:text-white transition-colors">Sobre</a>
+        <a href="#servicos"   class="hover:text-white transition-colors">Serviços</a>
+        <a href="#resultados" class="hover:text-white transition-colors">Resultados</a>
+        <a href="#planos"     class="hover:text-white transition-colors">Planos</a>
+        <a href="https://wa.me/5500000000000" target="_blank" class="hover:text-white transition-colors">WhatsApp</a>
+      </div>
+
+    </div>
+    <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-2">
+      <p class="text-xs text-gray-600">© 2025 [Nome]. Todos os direitos reservados.</p>
+      <p class="text-xs text-gray-700">CRN 00000 · [Faculdade]</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════ -->
+<script>
+  /* ── Build Ticker ── */
+  (function buildTicker() {
+    const tmpl = document.getElementById('ticker-items');
+    const track = document.querySelector('.ticker-track');
+    const html = tmpl.innerHTML;
+    // two copies for seamless loop
+    track.innerHTML = html + html;
+    tmpl.remove();
+  })();
+
+  /* ── IntersectionObserver: fade-up ── */
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+  /* ── IntersectionObserver: progress bars ── */
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.bar-fill').forEach(bar => {
+          bar.classList.add('animated');
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('section').forEach(sec => barObserver.observe(sec));
+
+  /* ── Counter animation ── */
+  function animateCounter(el) {
+    const target = parseFloat(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
+    const duration = 1800;
+    const start = performance.now();
+
+    function step(now) {
+      const elapsed = Math.min(now - start, duration);
+      const progress = elapsed / duration;
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const current = target * ease;
+      el.textContent = current.toFixed(decimals) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target.toFixed(decimals) + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.stat-val').forEach(el => counterObserver.observe(el));
+</script>
+
+</body>
+</html>
