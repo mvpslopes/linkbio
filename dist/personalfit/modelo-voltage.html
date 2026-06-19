@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>[NOME] — PERSONAL TRAINER</title>
+  <meta name="description" content="Personal trainer Gen-Z. Treino de alta intensidade, método brutal, resultados que aparecem nas fotos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg: #080810;
+      --bg2: #0d0d1a;
+      --pink: #FF2D78;
+      --cyan: #00F0FF;
+      --yellow: #FFED00;
+      --white: #F0EFFF;
+      --muted: rgba(240,239,255,.45);
+      --card-bg: rgba(255,255,255,.03);
+      --card-border: rgba(255,255,255,.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* grid bg */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,45,120,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,45,120,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridShift 30s linear infinite;
+    }
+    @keyframes gridShift {
+      from { background-position: 0 0; }
+      to   { background-position: 40px 40px; }
+    }
+
+    /* scan line flicker */
+    body::after {
+      content: '';
+      position: fixed; inset: 0; z-index: 999; pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent, transparent 2px,
+        rgba(0,0,0,.08) 2px, rgba(0,0,0,.08) 4px
+      );
+    }
+
+    /* glow helpers */
+    .glow-pink { text-shadow: 0 0 20px rgba(255,45,120,.7), 0 0 60px rgba(255,45,120,.3); }
+    .glow-cyan { text-shadow: 0 0 20px rgba(0,240,255,.7), 0 0 60px rgba(0,240,255,.3); }
+    .glow-yellow { text-shadow: 0 0 20px rgba(255,237,0,.7), 0 0 60px rgba(255,237,0,.3); }
+
+    .box-glow-pink { box-shadow: 0 0 0 1px rgba(255,45,120,.35), 0 0 30px rgba(255,45,120,.15); }
+    .box-glow-cyan { box-shadow: 0 0 0 1px rgba(0,240,255,.35), 0 0 30px rgba(0,240,255,.15); }
+
+    /* NAV */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(8,8,16,.8);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,45,120,.15);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.75rem; letter-spacing: .08em;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--pink); }
+
+    .btn-voltage {
+      background: var(--pink); color: var(--white);
+      font-family: 'Syne', sans-serif;
+      font-size: .82rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: .6rem 1.5rem; border-radius: 6px;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .2s; text-decoration: none;
+      box-shadow: 0 0 20px rgba(255,45,120,.3);
+    }
+    .btn-voltage:hover {
+      filter: brightness(1.2);
+      box-shadow: 0 0 40px rgba(255,45,120,.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-voltage {
+      border: 1px solid rgba(0,240,255,.5); color: var(--cyan);
+      font-size: .82rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      padding: .6rem 1.5rem; border-radius: 6px;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .2s; text-decoration: none;
+    }
+    .btn-outline-voltage:hover {
+      background: rgba(0,240,255,.08);
+      box-shadow: 0 0 30px rgba(0,240,255,.2);
+    }
+
+    /* HERO */
+    .hero {
+      position: relative; z-index: 10;
+      min-height: 100svh;
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 7rem 2rem 4rem;
+      overflow: hidden;
+    }
+
+    .hero-bg-photo {
+      position: absolute; inset: 0;
+      background: var(--bg2);
+      z-index: 0;
+    }
+    .hero-bg-photo img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 10%;
+      opacity: .35;
+      filter: saturate(1.3) contrast(1.1);
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      background:
+        linear-gradient(to right, rgba(8,8,16,.9) 0%, rgba(8,8,16,.5) 60%, transparent 100%),
+        linear-gradient(to top, rgba(8,8,16,1) 0%, transparent 50%);
+    }
+
+    /* diagonal accent */
+    .hero-diag {
+      position: absolute; top: 0; right: 0; z-index: 2; pointer-events: none;
+      width: 50%; height: 100%;
+      background: linear-gradient(135deg, transparent 50%, rgba(255,45,120,.06) 50%);
+    }
+
+    .hero-content { position: relative; z-index: 10; max-width: 700px; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(0,240,255,.35);
+      background: rgba(0,240,255,.06);
+      border-radius: 4px; padding: 5px 14px;
+      font-size: .7rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--cyan); margin-bottom: 1.5rem;
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--cyan);
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,240,255,.4); }
+      50% { opacity: .6; box-shadow: 0 0 0 6px rgba(0,240,255,0); }
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 14vw, 11rem);
+      line-height: .9; letter-spacing: .02em;
+      margin-bottom: .5rem;
+    }
+    .hero-subtitle {
+      font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+      font-weight: 800; letter-spacing: -.02em;
+      margin-bottom: 1.5rem;
+    }
+
+    /* numbers inline with hero */
+    .hero-stats {
+      display: flex; flex-wrap: wrap; gap: 2rem; margin-bottom: 2.5rem;
+    }
+    .hero-stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem; color: var(--pink); line-height: 1;
+    }
+    .hero-stat-label { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+    /* scrolling ticker */
+    .ticker {
+      background: var(--pink); overflow: hidden; position: relative; z-index: 10;
+      padding: .6rem 0;
+      border-top: 1px solid rgba(255,255,255,.1);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+    .ticker-track {
+      display: flex; gap: 0; white-space: nowrap;
+      animation: ticker 20s linear infinite;
+    }
+    .ticker-track span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem; letter-spacing: .12em;
+      padding: 0 2rem;
+    }
+    .ticker-track .sep { opacity: .5; }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* CARD flat */
+    .v-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      transition: all .25s;
+      position: relative; overflow: hidden;
+    }
+    .v-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+      opacity: 0; transition: opacity .25s;
+    }
+    .v-card:hover { border-color: rgba(255,45,120,.3); }
+    .v-card:hover::before { opacity: 1; }
+
+    /* asymmetric section */
+    .asym-grid {
+      display: grid; grid-template-columns: 1fr;
+      gap: 0;
+    }
+    @media(min-width:768px){
+      .asym-grid { grid-template-columns: 55% 45%; }
+    }
+
+    /* accent line */
+    .accent-line {
+      width: 40px; height: 3px;
+      background: var(--pink);
+      margin-bottom: 1.25rem;
+    }
+    .accent-line-cyan { background: var(--cyan); }
+
+    /* service number */
+    .svc-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem; line-height: 1;
+      color: rgba(255,45,120,.12);
+      position: absolute; top: 1rem; right: 1.25rem;
+    }
+
+    /* progress bars */
+    .prog-bar {
+      height: 4px; border-radius: 2px;
+      background: rgba(255,255,255,.08);
+      overflow: hidden; margin-top: .5rem;
+    }
+    .prog-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+      border-radius: 2px;
+      animation: fillBar 1.8s ease forwards;
+      transform-origin: left;
+    }
+    @keyframes fillBar {
+      from { width: 0; }
+    }
+
+    /* Glitch on hover for headings */
+    .glitch-hover {
+      position: relative; display: inline-block;
+    }
+    .glitch-hover:hover {
+      animation: glitchText .4s steps(2) forwards;
+    }
+    @keyframes glitchText {
+      0%   { text-shadow: 2px 0 var(--pink), -2px 0 var(--cyan); clip-path: inset(10% 0 80% 0); }
+      25%  { text-shadow: -2px 0 var(--pink), 2px 0 var(--cyan); clip-path: inset(60% 0 20% 0); }
+      50%  { text-shadow: 2px 2px var(--pink), -2px -2px var(--cyan); clip-path: inset(30% 0 50% 0); }
+      75%  { text-shadow: -1px 1px var(--cyan), 1px -1px var(--pink); clip-path: inset(80% 0 5% 0); }
+      100% { text-shadow: none; clip-path: none; }
+    }
+
+    /* tag chip */
+    .v-tag {
+      display: inline-block;
+      border: 1px solid rgba(255,45,120,.35);
+      color: rgba(255,45,120,.9);
+      font-size: .68rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 3px;
+      background: rgba(255,45,120,.05);
+    }
+    .v-tag-cyan {
+      border-color: rgba(0,240,255,.35); color: rgba(0,240,255,.9);
+      background: rgba(0,240,255,.05);
+    }
+
+    /* terminal CTA */
+    .terminal {
+      background: #0a0a0a;
+      border: 1px solid rgba(0,240,255,.25);
+      border-radius: 10px; overflow: hidden;
+      font-family: 'Space Mono', monospace;
+    }
+    .terminal-top {
+      background: rgba(255,255,255,.04); padding: .6rem 1rem;
+      display: flex; align-items: center; gap: .5rem;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .t-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .terminal-body { padding: 1.5rem 1.75rem; }
+    .t-line { line-height: 2; font-size: .85rem; }
+    .t-prompt { color: var(--cyan); }
+    .t-cmd { color: var(--white); }
+    .t-comment { color: rgba(255,255,255,.35); }
+    .t-output { color: rgba(255,237,0,.85); }
+    .t-cursor {
+      display: inline-block; width: 9px; height: 1.1em;
+      background: var(--pink); vertical-align: middle;
+      animation: blink .8s step-end infinite;
+    }
+    @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
+
+    /* testimonial */
+    .test-v {
+      border: 1px solid var(--card-border);
+      border-radius: 8px; padding: 1.5rem;
+      background: var(--card-bg);
+      transition: border-color .2s;
+    }
+    .test-v:hover { border-color: rgba(255,45,120,.25); }
+
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav" aria-label="Navegação">
+    <div class="nav-logo">[<span>Nome</span>]</div>
+    <div class="hidden md:flex gap-8 text-sm font-medium" style="color:var(--muted)">
+      <a href="#sobre" class="hover:text-white transition-colors">Sobre</a>
+      <a href="#servicos" class="hover:text-white transition-colors">Serviços</a>
+      <a href="#planos" class="hover:text-white transition-colors">Planos</a>
+      <a href="#depoimentos" class="hover:text-white transition-colors">Resultados</a>
+    </div>
+    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-voltage">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Começar agora
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg-photo">
+      <img src="fotos/foto-hero.jpg" alt=""
+           onerror="this.parentElement.style.background='linear-gradient(135deg,#0d0014 0%,#080820 60%,#000 100%)';this.style.display='none'"/>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-diag" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Agenda aberta — vagas limitadas
+      </div>
+      <h1 class="hero-title glow-pink glitch-hover">
+        TREINO<br/><span style="color:var(--cyan);text-shadow:0 0 20px rgba(0,240,255,.7)">DURO.</span>
+      </h1>
+      <p class="hero-subtitle" style="color:var(--white)">
+        Resultados que <span style="color:var(--pink)">aparecem</span> nas fotos.
+      </p>
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span class="v-tag">HIIT & Crossfit</span>
+        <span class="v-tag-cyan">Força</span>
+        <span class="v-tag">Emagrecimento</span>
+        <span class="v-tag-cyan">Bodybuilding</span>
+        <span class="v-tag">Online</span>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">500+</div>
+          <div class="hero-stat-label">alunos transformados</div>
+        </div>
+        <div>
+          <div class="hero-stat-num glow-cyan" style="color:var(--cyan)">98%</div>
+          <div class="hero-stat-label">satisfação</div>
+        </div>
+        <div>
+          <div class="hero-stat-num glow-yellow" style="color:var(--yellow)">[X]+</div>
+          <div class="hero-stat-label">anos de experiência</div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-voltage" style="font-size:.9rem;padding:.75rem 2rem">
+          QUERO COMEÇAR →
+        </a>
+        <a href="#servicos" class="btn-outline-voltage" style="font-size:.9rem;padding:.75rem 2rem">VER SERVIÇOS</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>TREINO DE FORÇA</span><span class="sep">⚡</span>
+      <span>HIIT</span><span class="sep">⚡</span>
+      <span>BODYBUILDING</span><span class="sep">⚡</span>
+      <span>CROSSFIT</span><span class="sep">⚡</span>
+      <span>EMAGRECIMENTO</span><span class="sep">⚡</span>
+      <span>CONSULTORIA ONLINE</span><span class="sep">⚡</span>
+      <span>RESULTADOS REAIS</span><span class="sep">⚡</span>
+      <span>TREINO DE FORÇA</span><span class="sep">⚡</span>
+      <span>HIIT</span><span class="sep">⚡</span>
+      <span>BODYBUILDING</span><span class="sep">⚡</span>
+      <span>CROSSFIT</span><span class="sep">⚡</span>
+      <span>EMAGRECIMENTO</span><span class="sep">⚡</span>
+      <span>CONSULTORIA ONLINE</span><span class="sep">⚡</span>
+      <span>RESULTADOS REAIS</span><span class="sep">⚡</span>
+    </div>
+  </div>
+
+  <!-- SOBRE -->
+  <section class="relative z-10 py-24 px-6 max-w-6xl mx-auto" id="sobre">
+    <div class="asym-grid items-center gap-12">
+      <div class="fade-up">
+        <div class="accent-line mb-0"></div>
+        <h2 class="glitch-hover" style="font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,8vw,6rem);letter-spacing:.02em;line-height:.9;margin-bottom:1.5rem">
+          QUEM<br/><span style="color:var(--pink)">FAZ</span><br/>ISSO
+        </h2>
+        <p style="color:var(--muted);line-height:1.85;margin-bottom:1.25rem;max-width:480px">
+          Sou [nome], personal trainer com [X] anos na área, CREF [número], especializado em treinos de alta intensidade, musculação e emagrecimento com resultado visual rápido.
+        </p>
+        <p style="color:var(--muted);line-height:1.85;margin-bottom:2rem;max-width:480px">
+          Sem enrolação, sem protocolo genérico. Cada aluno tem um programa montado do zero. Meu método é direto: mais treino inteligente, menos achismo.
+        </p>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span style="font-weight:600">Musculação & Hipertrofia</span>
+              <span style="color:var(--pink)">95%</span>
+            </div>
+            <div class="prog-bar"><div class="prog-fill" style="width:95%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span style="font-weight:600">HIIT & Funcional</span>
+              <span style="color:var(--cyan)">90%</span>
+            </div>
+            <div class="prog-bar"><div class="prog-fill" style="width:90%"></div></div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm mb-1">
+              <span style="font-weight:600">Nutrição Esportiva</span>
+              <span style="color:var(--yellow)">80%</span>
+            </div>
+            <div class="prog-bar"><div class="prog-fill" style="width:80%;background:linear-gradient(90deg,var(--yellow),var(--pink))"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up" style="transition-delay:.15s">
+        <!-- photo + overlapping stats -->
+        <div style="position:relative;max-width:360px;margin:0 auto">
+          <div style="aspect-ratio:3/4;border-radius:8px;overflow:hidden;border:1px solid rgba(255,45,120,.25);box-shadow:0 0 60px rgba(255,45,120,.1)">
+            <img src="fotos/foto-sobre.jpg" alt="[Nome]"
+                 style="width:100%;height:100%;object-fit:cover;object-position:center 15%"
+                 onerror="this.parentElement.style.background='linear-gradient(160deg,rgba(255,45,120,.12) 0%,rgba(0,240,255,.08) 50%,rgba(8,8,16,1) 100%)';this.style.display='none'"/>
+          </div>
+          <!-- stat overlay cards -->
+          <div style="position:absolute;top:1.5rem;right:-1rem;background:rgba(8,8,16,.9);border:1px solid rgba(0,240,255,.3);border-radius:6px;padding:.75rem 1rem">
+            <p style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--cyan);line-height:1">500+</p>
+            <p style="font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em">Alunos</p>
+          </div>
+          <div style="position:absolute;bottom:1.5rem;left:-1rem;background:rgba(8,8,16,.9);border:1px solid rgba(255,45,120,.3);border-radius:6px;padding:.75rem 1rem">
+            <p style="font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--pink);line-height:1">CREF</p>
+            <p style="font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em">000000-G/UF</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="relative z-10 py-20 px-6" id="servicos" style="background:rgba(255,45,120,.03);border-top:1px solid rgba(255,45,120,.08);border-bottom:1px solid rgba(255,45,120,.08)">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-end justify-between mb-10 flex-wrap gap-4 fade-up">
+        <div>
+          <div class="accent-line mb-0"></div>
+          <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,5rem);line-height:.9;letter-spacing:.02em">
+            SERVIÇOS<br/><span style="color:var(--pink)">&</span> MODALIDADES
+          </h2>
+        </div>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline-voltage">Ver todos →</a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="v-card p-6 fade-up" style="position:relative">
+          <div class="svc-num">01</div>
+          <span class="v-tag mb-3 inline-block">Presencial</span>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.6rem;letter-spacing:.05em">MUSCULAÇÃO</h3>
+          <p style="font-size:.84rem;color:var(--muted);line-height:1.7">Periodização avançada para hipertrofia, força máxima e recomposição corporal. Para iniciantes a avançados.</p>
+        </div>
+        <div class="v-card p-6 fade-up" style="transition-delay:.06s;position:relative">
+          <div class="svc-num" style="color:rgba(0,240,255,.12)">02</div>
+          <span class="v-tag-cyan mb-3 inline-block">Alta intensidade</span>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.6rem;letter-spacing:.05em">HIIT & CROSS</h3>
+          <p style="font-size:.84rem;color:var(--muted);line-height:1.7">Treinos funcionais explosivos que queimam gordura em tempo recorde com mínimo de equipamento.</p>
+        </div>
+        <div class="v-card p-6 fade-up" style="transition-delay:.12s;position:relative">
+          <div class="svc-num">03</div>
+          <span class="v-tag mb-3 inline-block">Online</span>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.6rem;letter-spacing:.05em">CONSULTORIA</h3>
+          <p style="font-size:.84rem;color:var(--muted);line-height:1.7">Planilha no app, suporte semanal via WhatsApp e videocall mensal de avaliação. Treino de elite em casa.</p>
+        </div>
+        <div class="v-card p-6 fade-up" style="transition-delay:.18s;position:relative">
+          <div class="svc-num" style="color:rgba(0,240,255,.12)">04</div>
+          <span class="v-tag-cyan mb-3 inline-block">Assessoria</span>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.6rem;letter-spacing:.05em">EMAGRECIMENTO</h3>
+          <p style="font-size:.84rem;color:var(--muted);line-height:1.7">Protocolo focado em déficit calórico inteligente + preservação de massa. Resultado visual garantido.</p>
+        </div>
+        <div class="v-card p-6 fade-up" style="transition-delay:.24s;position:relative">
+          <div class="svc-num">05</div>
+          <span class="v-tag mb-3 inline-block">Especialidade</span>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.6rem;letter-spacing:.05em">PREPARAÇÃO</h3>
+          <p style="font-size:.84rem;color:var(--muted);line-height:1.7">Preparação para competições e eventos esportivos — prazo definido, performance máxima no dia certo.</p>
+        </div>
+        <div class="v-card p-6 fade-up" style="transition-delay:.3s;background:linear-gradient(145deg,rgba(255,45,120,.08),rgba(0,240,255,.04))">
+          <div class="svc-num" style="color:rgba(255,237,0,.12)">VIP</div>
+          <span class="v-tag mb-3 inline-block" style="border-color:rgba(255,237,0,.5);color:var(--yellow);background:rgba(255,237,0,.06)">Exclusivo</span>
+          <h3 style="font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:.6rem;letter-spacing:.05em;color:var(--yellow)">FULL VIP</h3>
+          <p style="font-size:.84rem;color:var(--muted);line-height:1.7">Acesso total: treino, nutrição, suporte 24/7, videocall semanal e acompanhamento em tempo real no app.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section class="relative z-10 py-20 px-6 max-w-6xl mx-auto" id="planos">
+    <div class="text-center mb-12 fade-up">
+      <div class="accent-line mx-auto accent-line-cyan mb-0"></div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,5rem);line-height:.95;letter-spacing:.02em">
+        ESCOLHA SEU <span style="color:var(--cyan)">NÍVEL</span>
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="v-card p-6 fade-up">
+        <p style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem">STARTER</p>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--white);line-height:1">R$XXX<span style="font-size:1.2rem;color:var(--muted)">/mês</span></p>
+        <p style="font-size:.8rem;color:var(--muted);margin-bottom:1.5rem">Online</p>
+        <ul style="font-size:.84rem;color:rgba(240,239,255,.65);line-height:2.2;margin-bottom:1.75rem">
+          <li>→ Planilha personalizada</li>
+          <li>→ App de treino</li>
+          <li>→ Suporte 3x semana</li>
+          <li>→ Check-in quinzenal</li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline-voltage" style="width:100%;justify-content:center">COMEÇAR</a>
+      </div>
+      <div class="v-card p-6 fade-up" style="transition-delay:.1s;background:linear-gradient(165deg,rgba(255,45,120,.1),rgba(0,240,255,.04),var(--card-bg));border-color:rgba(255,45,120,.3)">
+        <div style="position:absolute;top:1rem;right:1rem;background:var(--pink);color:#fff;font-size:.65rem;font-weight:700;letter-spacing:.15em;padding:2px 9px;border-radius:3px">HOT</div>
+        <p style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:1.25rem">PRO</p>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--pink);line-height:1;text-shadow:0 0 20px rgba(255,45,120,.4)">R$XXX<span style="font-size:1.2rem;color:var(--muted)">/mês</span></p>
+        <p style="font-size:.8rem;color:var(--muted);margin-bottom:1.5rem">Online + Presencial</p>
+        <ul style="font-size:.84rem;color:rgba(240,239,255,.65);line-height:2.2;margin-bottom:1.75rem">
+          <li>→ Tudo do Starter</li>
+          <li>→ Suporte diário</li>
+          <li>→ Check-in semanal</li>
+          <li>→ Guia nutricional</li>
+          <li>→ Reavaliação mensal</li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-voltage" style="width:100%;justify-content:center">QUERO ESSE ⚡</a>
+      </div>
+      <div class="v-card p-6 fade-up" style="transition-delay:.2s">
+        <p style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--yellow);margin-bottom:1.25rem">FULL VIP</p>
+        <p style="font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--yellow);line-height:1">R$XXX<span style="font-size:1.2rem;color:var(--muted)">/mês</span></p>
+        <p style="font-size:.8rem;color:var(--muted);margin-bottom:1.5rem">Acesso total</p>
+        <ul style="font-size:.84rem;color:rgba(240,239,255,.65);line-height:2.2;margin-bottom:1.75rem">
+          <li>→ Tudo do Pro</li>
+          <li>→ Suporte 24/7</li>
+          <li>→ Videocall semanal</li>
+          <li>→ Planilha alimentar</li>
+          <li>→ Acesso lifetime comunidade</li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline-voltage" style="width:100%;justify-content:center;border-color:rgba(255,237,0,.4);color:var(--yellow)">CONSULTAR</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="relative z-10 py-20 px-6 max-w-6xl mx-auto" id="depoimentos">
+    <div class="mb-10 fade-up">
+      <div class="accent-line mb-0"></div>
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,7vw,5rem);line-height:.95;letter-spacing:.02em">
+        ELES <span style="color:var(--pink)">MANDARAM</span><br/>VER
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
+      <div class="test-v fade-up">
+        <p style="color:var(--pink);margin-bottom:.75rem;letter-spacing:.05em">★★★★★</p>
+        <p style="font-size:.88rem;color:var(--muted);line-height:1.75;margin-bottom:1.25rem">"Em 3 meses vi mais resultado do que em 1 ano em academia comum. Protocolo no ponto, sem enrolação, suporte todo dia."</p>
+        <div class="flex items-center gap-3">
+          <div style="width:38px;height:38px;border-radius:6px;background:rgba(255,45,120,.1);border:1px solid rgba(255,45,120,.25);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--pink)">L</div>
+          <div><p style="font-weight:700;font-size:.84rem">Lucas Ferreira</p><p style="font-size:.72rem;color:var(--muted)">Plano Pro · 3 meses</p></div>
+        </div>
+      </div>
+      <div class="test-v fade-up" style="transition-delay:.08s">
+        <p style="color:var(--pink);margin-bottom:.75rem;letter-spacing:.05em">★★★★★</p>
+        <p style="font-size:.88rem;color:var(--muted);line-height:1.75;margin-bottom:1.25rem">"Consultoria online que funciona de verdade. Planilha sempre atualizada, suporte rápido e reavaliação mês a mês. Recomendo muito."</p>
+        <div class="flex items-center gap-3">
+          <div style="width:38px;height:38px;border-radius:6px;background:rgba(0,240,255,.08);border:1px solid rgba(0,240,255,.25);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--cyan)">J</div>
+          <div><p style="font-weight:700;font-size:.84rem">Juliana Souza</p><p style="font-size:.72rem;color:var(--muted)">Consultoria Online · 5 meses</p></div>
+        </div>
+      </div>
+      <div class="test-v fade-up" style="transition-delay:.16s">
+        <p style="color:var(--pink);margin-bottom:.75rem;letter-spacing:.05em">★★★★★</p>
+        <p style="font-size:.88rem;color:var(--muted);line-height:1.75;margin-bottom:1.25rem">"Fui de sedentário a competidor em 8 meses. Preparação impecável, do treino à estratégia de palco. [Nome] sabe o que faz."</p>
+        <div class="flex items-center gap-3">
+          <div style="width:38px;height:38px;border-radius:6px;background:rgba(255,237,0,.08);border:1px solid rgba(255,237,0,.25);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--yellow)">R</div>
+          <div><p style="font-weight:700;font-size:.84rem">Rafael Moura</p><p style="font-size:.72rem;color:var(--muted)">Full VIP · Preparação física</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TERMINAL CTA -->
+  <section class="relative z-10 py-10 px-6 max-w-4xl mx-auto pb-20">
+    <div class="terminal fade-up">
+      <div class="terminal-top">
+        <div class="t-dot" style="background:#FF5F57"></div>
+        <div class="t-dot" style="background:#FFBD2E"></div>
+        <div class="t-dot" style="background:#28CA41"></div>
+        <span style="margin-left:.5rem;font-size:.72rem;color:rgba(255,255,255,.3)">workout_session.sh</span>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-comment"># pronto para transformar seu corpo?</span></div>
+        <div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">contact --method whatsapp --subject "avaliacao-gratuita"</span></div>
+        <div class="t-line" style="margin-top:.5rem"><span class="t-output">✔ vaga disponível confirmada</span></div>
+        <div class="t-line"><span class="t-output">✔ protocolo personalizado em 48h</span></div>
+        <div class="t-line"><span class="t-output">✔ suporte ativo 7 dias/semana</span></div>
+        <div class="t-line" style="margin-top:.75rem"><span class="t-prompt">$ </span><span class="t-cmd">start_journey</span><span class="t-cursor"></span></div>
+        <div class="t-line" style="margin-top:1.5rem">
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-voltage" style="display:inline-flex">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            EXECUTE — ABRIR WHATSAPP
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="relative z-10 py-8 px-6 text-center" style="border-top:1px solid var(--card-border)">
+    <p style="font-family:'Bebas Neue',sans-serif;font-size:1.75rem;letter-spacing:.08em;color:var(--white);margin-bottom:.25rem">[<span style="color:var(--pink)">NOME</span>] PERSONAL TRAINER</p>
+    <p style="font-size:.72rem;color:var(--muted)">© 2026 · CREF 000000-G/UF · Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: .1 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
