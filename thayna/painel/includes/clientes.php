@@ -41,9 +41,6 @@ function thayna_cliente_status(array $row): string
     if (!empty($row['assinado_em'])) {
         return 'assinado';
     }
-    if (!empty($row['questionario_json'])) {
-        return 'questionario';
-    }
     return 'pendente';
 }
 
@@ -51,8 +48,7 @@ function thayna_cliente_status_label(string $status): string
 {
     return match ($status) {
         'assinado' => 'Termo assinado',
-        'questionario' => 'Aguardando assinatura',
-        default => 'Aguardando preenchimento',
+        default => 'Aguardando assinatura',
     };
 }
 

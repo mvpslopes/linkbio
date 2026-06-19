@@ -54,7 +54,6 @@ if ($tableOk && $_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $status = $row ? thayna_cliente_status($row) : 'pendente';
 $termoLink = $row ? thayna_termo_url($row['token']) : '';
-$questionario = $row ? (json_decode($row['questionario_json'] ?? '{}', true) ?: []) : [];
 
 $relatorios = [];
 if ($row && $id > 0) {
@@ -102,7 +101,7 @@ thayna_painel_layout_start('clientes', [
           <?php if ($status === 'assinado'): ?>
           <p class="report-meta" style="margin-top:8px">Assinado em <?= thayna_h(date('d/m/Y H:i', strtotime($row['assinado_em']))) ?> por <?= thayna_h($row['assinatura_nome']) ?></p>
           <?php else: ?>
-          <p class="report-meta" style="margin-top:8px">Envie este link para a cliente preencher e assinar. Apenas uma assinatura e permitida.</p>
+          <p class="report-meta" style="margin-top:8px">Envie este link para a cliente ler e assinar o termo. Apenas uma assinatura é permitida.</p>
           <?php endif; ?>
         </div>
         <div class="link-actions">
@@ -140,16 +139,6 @@ thayna_painel_layout_start('clientes', [
           <?php endif; ?>
         </div>
       </form>
-
-      <?php if ($row && $status !== 'pendente'): ?>
-      <div class="section">
-        <h2>Questionário preenchido</h2>
-        <?php foreach (thayna_questionario_labels() as $key => $label): ?>
-        <p class="field-label"><?= thayna_h($label) ?></p>
-        <p class="q-answer"><?= nl2br(thayna_h($questionario[$key] ?? '—')) ?></p>
-        <?php endforeach; ?>
-      </div>
-      <?php endif; ?>
 
       <?php if ($row && $relatorios): ?>
       <div class="section">

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Modelos Personal Trainer — LinkBio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0C0C0C;
+      --card: #141414;
+      --border: rgba(255,255,255,.07);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg); color: #fff;
+      min-height: 100vh;
+      padding: 2rem 1.5rem 4rem;
+    }
+    .header {
+      text-align: center;
+      padding: 4rem 1rem 3rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+    .badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: #C8FF00;
+      background: rgba(200,255,0,.1);
+      border: 1px solid rgba(200,255,0,.3);
+      border-radius: 999px; padding: 5px 16px;
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 700; line-height: 1.15;
+      letter-spacing: -.02em; margin-bottom: 1rem;
+    }
+    .sub { color: rgba(255,255,255,.5); font-size: 1.1rem; max-width: 500px; margin: 0 auto; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .model-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      transition: all .3s;
+      text-decoration: none; color: inherit;
+      display: flex; flex-direction: column;
+    }
+    .model-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,255,255,.15);
+      box-shadow: 0 24px 60px rgba(0,0,0,.5);
+    }
+
+    .model-preview {
+      height: 240px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 4rem; letter-spacing: -.05em;
+      font-weight: 800;
+      position: relative; overflow: hidden;
+    }
+    .model-preview .preview-label {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: .5rem;
+    }
+
+    /* Strong preview */
+    .preview-strong {
+      background: linear-gradient(135deg, #0d0500 0%, #1a0a00 50%, #0a0300 100%);
+      border-bottom: 1px solid rgba(255,107,0,.2);
+    }
+    .preview-strong .preview-label span:first-child {
+      font-family: 'Space Mono', monospace;
+      font-size: 2.5rem; font-weight: 700;
+      background: linear-gradient(110deg, #FF8C00, #FF4500);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .preview-strong .preview-label span:last-child {
+      font-size: .85rem; color: rgba(255,107,0,.6); letter-spacing: .15em; text-transform: uppercase;
+    }
+
+    /* Glow preview */
+    .preview-glow {
+      background: linear-gradient(135deg, #FDF0F5 0%, #FCE7EF 60%, #FFF0F5 100%);
+      border-bottom: 1px solid rgba(232,88,122,.2);
+    }
+    .preview-glow .preview-label span:first-child {
+      font-family: 'Space Mono', monospace;
+      font-size: 2.25rem; font-weight: 700; font-style: italic;
+      background: linear-gradient(120deg, #E8587A, #F97316);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .preview-glow .preview-label span:last-child {
+      font-size: .85rem; color: rgba(232,88,122,.6); letter-spacing: .15em; text-transform: uppercase;
+    }
+
+    /* Minimal preview */
+    .preview-minimal {
+      background: linear-gradient(135deg, #080808, #111111);
+      border-bottom: 1px solid rgba(200,255,0,.15);
+    }
+    .preview-minimal .preview-label span:first-child {
+      font-family: 'Space Mono', monospace;
+      font-size: 2.25rem; font-weight: 700;
+      color: #C8FF00;
+    }
+    .preview-minimal .preview-label span:last-child {
+      font-size: .85rem; color: rgba(200,255,0,.5); letter-spacing: .15em; text-transform: uppercase;
+    }
+
+    .model-body { padding: 1.5rem; flex: 1; }
+    .model-name {
+      font-weight: 700; font-size: 1.15rem; margin-bottom: .5rem;
+    }
+    .model-desc {
+      font-size: .9rem; color: rgba(255,255,255,.5);
+      line-height: 1.6; margin-bottom: 1.25rem;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 6px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,.55);
+    }
+
+    .model-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .open-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: .85rem; font-weight: 700;
+      padding: .6rem 1.25rem; border-radius: 8px;
+      transition: all .2s;
+    }
+    .open-btn-orange { background: rgba(255,107,0,.12); color: #FF6B00; border: 1px solid rgba(255,107,0,.3); }
+    .open-btn-orange:hover { background: rgba(255,107,0,.2); }
+    .open-btn-rose { background: rgba(232,88,122,.12); color: #E8587A; border: 1px solid rgba(232,88,122,.3); }
+    .open-btn-rose:hover { background: rgba(232,88,122,.2); }
+    .open-btn-lime { background: rgba(200,255,0,.1); color: #C8FF00; border: 1px solid rgba(200,255,0,.3); }
+    .open-btn-lime:hover { background: rgba(200,255,0,.18); }
+
+    .model-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; color: rgba(255,255,255,.25);
+      letter-spacing: .1em;
+    }
+
+    .footer-note {
+      text-align: center; margin-top: 4rem;
+      font-size: .85rem; color: rgba(255,255,255,.25);
+      font-family: 'Space Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="badge">LinkBio · Modelos Fitness</div>
+    <h1>3 modelos para<br/><span style="background: linear-gradient(120deg,#ff6b00,#e8587a,#c8ff00); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text">personal trainers</span></h1>
+    <p class="sub">Selecione o modelo mais adequado ao perfil da personal. Substitua [Nome], fotos, contatos e valores.</p>
+  </header>
+
+  <div class="grid">
+
+    <!-- Modelo Strong -->
+    <a href="modelo-strong.html" class="model-card">
+      <div class="model-preview preview-strong">
+        <div class="preview-label">
+          <span>STRONG</span>
+          <span>Dark · Laranja · Performance</span>
+        </div>
+      </div>
+      <div class="model-body">
+        <p class="model-name">Modelo Strong 🔥</p>
+        <p class="model-desc">
+          Layout escuro e impactante com tons laranja vibrante. Design bold inspirado em marcas de performance.
+          Ideal para personal focada em musculação, hipertrofia e resultado.
+        </p>
+        <div class="tags">
+          <span class="tag">Dark</span>
+          <span class="tag">Laranja</span>
+          <span class="tag">Split layout</span>
+          <span class="tag">Planos de treino</span>
+          <span class="tag">Depoimentos</span>
+        </div>
+      </div>
+      <div class="model-footer">
+        <span class="model-num">01/03</span>
+        <span class="open-btn open-btn-orange">Visualizar →</span>
+      </div>
+    </a>
+
+    <!-- Modelo Glow -->
+    <a href="modelo-glow.html" class="model-card">
+      <div class="model-preview preview-glow">
+        <div class="preview-label">
+          <span>GLOW</span>
+          <span>Claro · Rosa · Feminino</span>
+        </div>
+      </div>
+      <div class="model-body">
+        <p class="model-name">Modelo Glow 🌸</p>
+        <p class="model-desc">
+          Layout editorial claro com tom rosé e coral. Elegante e moderno, com tipografia serif premium.
+          Ideal para personal focada em saúde da mulher, emagrecimento feminino e bem-estar.
+        </p>
+        <div class="tags">
+          <span class="tag">Claro</span>
+          <span class="tag">Rosa/Coral</span>
+          <span class="tag">Editorial</span>
+          <span class="tag">Saúde feminina</span>
+          <span class="tag">Timeline</span>
+        </div>
+      </div>
+      <div class="model-footer">
+        <span class="model-num">02/03</span>
+        <span class="open-btn open-btn-rose">Visualizar →</span>
+      </div>
+    </a>
+
+    <!-- Modelo Minimal -->
+    <a href="modelo-minimal.html" class="model-card">
+      <div class="model-preview preview-minimal">
+        <div class="preview-label">
+          <span>MINIMAL</span>
+          <span>Dark · Lime · Digital</span>
+        </div>
+      </div>
+      <div class="model-body">
+        <p class="model-name">Modelo Minimal Dark ⚡</p>
+        <p class="model-desc">
+          Layout ultra moderno com fundo grafite escuro e acento verde-limão neon. Tipografia geométrica e
+          efeitos de terminal. Ideal para personal com foco em consultoria online e presença digital forte.
+        </p>
+        <div class="tags">
+          <span class="tag">Dark</span>
+          <span class="tag">Verde-limão</span>
+          <span class="tag">Online</span>
+          <span class="tag">Marquee</span>
+          <span class="tag">FAQ</span>
+        </div>
+      </div>
+      <div class="model-footer">
+        <span class="model-num">03/03</span>
+        <span class="open-btn open-btn-lime">Visualizar →</span>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="footer-note">
+    personalfit/ · Modelos temporários · Substitua [Nome], fotos e contatos antes de publicar
+  </p>
+</body>
+</html>

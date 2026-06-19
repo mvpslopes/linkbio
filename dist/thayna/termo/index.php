@@ -26,60 +26,23 @@ if ($token === '' || !thayna_token_is_valid($token)) {
     } else {
         $page = 'form';
         $error = '';
-        $step = 1;
-        $questionario = json_decode($cliente['questionario_json'] ?? '{}', true) ?: [];
 
-        if (!empty($questionario) && !isset($_GET['edit'])) {
-            $step = 2;
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $action = $_POST['action'] ?? '';
-
-            if ($action === 'questionario') {
-                $q = thayna_questionario_from_post($_POST);
-                $missing = false;
-                foreach (['motivo', 'sentimento', 'relacionamento_atual', 'tempo_relacionamento', 'inseguranca', 'traicao_antes', 'expectativa', 'preparada'] as $req) {
-                    if (trim($q[$req] ?? '') === '') {
-                        $missing = true;
-                        break;
-                    }
-                }
-                if ($missing) {
-                    $error = 'Responda todas as perguntas obrigatórias.';
-                    $step = 1;
-                    $questionario = $q;
-                } else {
-                    $pdo->prepare('UPDATE thayna_clientes SET questionario_json = ? WHERE id = ? AND assinado_em IS NULL')
-                        ->execute([json_encode($q, JSON_UNESCAPED_UNICODE), (int)$cliente['id']]);
-                    $questionario = $q;
-                    $step = 2;
-                }
-            } elseif ($action === 'assinatura') {
-                if (empty($questionario) && empty($cliente['questionario_json'])) {
-                    $error = 'Preencha o questionário antes de assinar.';
-                    $step = 1;
-                } else {
-                    $nomeAssinatura = trim($_POST['assinatura_nome'] ?? '');
-                    if ($nomeAssinatura === '') {
-                        $error = 'Digite seu nome completo para confirmar a assinatura.';
-                        $step = 2;
-                    } else {
-                        $pdo->prepare(
-                            'UPDATE thayna_clientes SET assinatura_nome = ?, assinado_em = NOW(), assinatura_ip_hash = ?
-                             WHERE id = ? AND assinado_em IS NULL'
-                        )->execute([$nomeAssinatura, thayna_ip_hash(), (int)$cliente['id']]);
-                        $cliente['assinatura_nome'] = $nomeAssinatura;
-                        $cliente['assinado_em'] = date('Y-m-d H:i:s');
-                        $page = 'signed';
-                    }
-                }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'assinatura') {
+            $nomeAssinatura = trim($_POST['assinatura_nome'] ?? '');
+            if ($nomeAssinatura === '') {
+                $error = 'Digite seu nome completo para confirmar a assinatura.';
+            } else {
+                $pdo->prepare(
+                    'UPDATE thayna_clientes SET assinatura_nome = ?, assinado_em = NOW(), assinatura_ip_hash = ?
+                     WHERE id = ? AND assinado_em IS NULL'
+                )->execute([$nomeAssinatura, thayna_ip_hash(), (int)$cliente['id']]);
+                $cliente['assinatura_nome'] = $nomeAssinatura;
+                $cliente['assinado_em'] = date('Y-m-d H:i:s');
+                $page = 'signed';
             }
         }
     }
 }
-
-$labels = thayna_questionario_labels();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -128,23 +91,6 @@ $labels = thayna_questionario_labels();
       margin-bottom: 16px;
       box-shadow: 0 4px 20px rgba(15,23,42,.04);
     }
-    .steps {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-    .step-pill {
-      flex: 1;
-      text-align: center;
-      font-size: .75rem;
-      font-weight: 600;
-      padding: 8px 6px;
-      border-radius: 999px;
-      background: #f1f5f9;
-      color: var(--muted);
-    }
-    .step-pill.active { background: var(--cream); color: var(--wine); }
-    .step-pill.done { background: #dcfce7; color: #166534; }
     label.q {
       display: block;
       font-size: .88rem;
@@ -152,8 +98,7 @@ $labels = thayna_questionario_labels();
       margin: 16px 0 8px;
       color: var(--wine);
     }
-    label.q:first-child { margin-top: 0; }
-    input[type="text"], input[type="tel"], textarea {
+    input[type="text"] {
       width: 100%;
       padding: 12px 14px;
       border: 1px solid var(--border);
@@ -162,8 +107,7 @@ $labels = thayna_questionario_labels();
       font-size: 1rem;
       background: #fff;
     }
-    textarea { min-height: 88px; resize: vertical; }
-    input:focus, textarea:focus {
+    input:focus {
       outline: none;
       border-color: var(--pink);
       box-shadow: 0 0 0 3px rgba(179,55,113,.15);
@@ -198,12 +142,6 @@ $labels = thayna_questionario_labels();
       color: #fff;
       margin-top: 8px;
     }
-    .btn-secondary {
-      background: #fff;
-      color: var(--wine);
-      border: 2px solid var(--wine);
-      margin-top: 10px;
-    }
     .err {
       background: #fef2f2;
       color: #b91c1c;
@@ -228,6 +166,12 @@ $labels = thayna_questionario_labels();
       font-size: .88rem;
     }
     .check-row input { width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0; }
+    .intro {
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
@@ -261,33 +205,13 @@ $labels = thayna_questionario_labels();
         <p class="note">Em caso de dúvidas, fale com a Thayna pelo WhatsApp informado no seu atendimento.</p>
       </div>
     <?php else: ?>
-      <div class="steps">
-        <span class="step-pill <?= $step >= 1 ? ($step > 1 ? 'done' : 'active') : '' ?>">1. Sobre você</span>
-        <span class="step-pill <?= $step === 2 ? 'active' : ($step > 2 ? 'done' : '') ?>">2. Termo e assinatura</span>
-      </div>
-
       <?php if (!empty($error)): ?><div class="err"><?= thayna_h($error) ?></div><?php endif; ?>
 
-      <?php if ($step === 1): ?>
-      <form method="POST" class="card">
-        <input type="hidden" name="action" value="questionario"/>
-        <p style="font-size:.9rem;color:var(--muted);margin-bottom:8px">Olá, <strong><?= thayna_h($cliente['nome_completo']) ?></strong>! Responda com sinceridade para personalizarmos seu atendimento.</p>
-        <?php $n = 1; foreach ($labels as $key => $label):
-          $optional = in_array($key, ['traicao_detalhe', 'info_importante'], true);
-        ?>
-        <label class="q" for="<?= thayna_h($key) ?>"><?= $n ?>. <?= thayna_h($label) ?><?= $optional ? ' (opcional)' : '' ?></label>
-        <?php if (strlen($label) > 60 || in_array($key, ['motivo', 'inseguranca', 'expectativa', 'info_importante', 'traicao_detalhe'], true)): ?>
-        <textarea id="<?= thayna_h($key) ?>" name="<?= thayna_h($key) ?>" <?= $optional ? '' : 'required' ?>><?= thayna_h($questionario[$key] ?? '') ?></textarea>
-        <?php else: ?>
-        <input type="text" id="<?= thayna_h($key) ?>" name="<?= thayna_h($key) ?>" value="<?= thayna_h($questionario[$key] ?? '') ?>" <?= $optional ? '' : 'required' ?>/>
-        <?php endif; ?>
-        <?php $n++; endforeach; ?>
-        <button type="submit" class="btn btn-primary">Continuar para o termo</button>
-      </form>
-      <?php else: ?>
       <form method="POST" class="card">
         <input type="hidden" name="action" value="assinatura"/>
-        <h2 style="font-size:1rem;color:var(--wine);margin-bottom:12px">Leia o termo com atenção</h2>
+        <p class="intro">Olá, <strong><?= thayna_h($cliente['nome_completo']) ?></strong>! Leia o termo abaixo com atenção e assine digitalmente para confirmar seu aceite.</p>
+
+        <h2 style="font-size:1rem;color:var(--wine);margin-bottom:12px">Termo de aceite</h2>
         <div class="termo-text"><?= thayna_h(thayna_termo_texto_legal()) ?></div>
 
         <label class="check-row">
@@ -301,10 +225,8 @@ $labels = thayna_questionario_labels();
                placeholder="Nome completo conforme documento"/>
 
         <button type="submit" class="btn btn-primary">Assinar termo</button>
-        <a href="/termo/<?= rawurlencode($token) ?>?edit=1" class="btn btn-secondary">Voltar ao questionário</a>
         <p class="note">A assinatura digital registra data e hora. Não substitui certificado ICP-Brasil, mas comprova seu aceite neste documento.</p>
       </form>
-      <?php endif; ?>
     <?php endif; ?>
   </main>
 </body>

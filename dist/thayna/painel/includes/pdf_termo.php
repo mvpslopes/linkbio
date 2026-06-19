@@ -55,23 +55,6 @@ class ThaynaTermoPdf extends FPDF
         $this->Cell(0, 6, pdf_txt('Cidade/Estado: ' . ($cliente['cidade_estado'] ?? '—')), 0, 1);
         $this->Ln(3);
 
-        $this->section('SOBRE VOCE - RESPOSTAS');
-        $labels = thayna_questionario_labels();
-        $n = 1;
-        foreach ($labels as $key => $label) {
-            $val = trim((string) ($questionario[$key] ?? ''));
-            if ($val === '') {
-                $val = '—';
-            }
-            $this->SetFont('Arial', 'B', 9);
-            $this->MultiCell(0, 5, pdf_txt($n . '. ' . $label));
-            $this->SetFont('Arial', '', 10);
-            $this->MultiCell(0, 5.5, pdf_txt($val));
-            $this->Ln(2);
-            $n++;
-        }
-
-        $this->AddPage();
         $this->section('TERMO DE ACEITE');
         $this->SetFont('Arial', '', 9);
         $this->MultiCell(0, 5, pdf_txt(thayna_termo_texto_legal()));
