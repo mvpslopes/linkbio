@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Velvet — Salão de Beleza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            burgundy: {
+              950: '#0F0208',
+              900: '#1A040D',
+              800: '#2A0718',
+              700: '#3D0B1E',
+              600: '#5C1230',
+              500: '#7A1940',
+            },
+            rosegold: {
+              300: '#F2C9A8',
+              400: '#E8B090',
+              500: '#D4956A',
+              600: '#BC7A52',
+            },
+            cream: {
+              50:  '#FFFDF9',
+              100: '#FDF5EE',
+              200: '#F5E8D8',
+              300: '#EDD6BE',
+            },
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            body:    ['"DM Sans"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: #1A040D;
+      color: #FDF5EE;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Rose-gold divider ── */
+    .rg-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, #D4956A 30%, #E8B090 50%, #D4956A 70%, transparent 100%);
+      opacity: .55;
+    }
+
+    /* ── Fade-up animation ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Nav ── */
+    #main-nav {
+      transition: background .35s, box-shadow .35s;
+    }
+    #main-nav.scrolled {
+      background: rgba(26,4,13,.92);
+      box-shadow: 0 2px 32px rgba(0,0,0,.5);
+      backdrop-filter: blur(10px);
+    }
+
+    /* ── Hero ── */
+    .hero-bg {
+      background-image:
+        linear-gradient(to bottom, rgba(26,4,13,.55) 0%, rgba(26,4,13,.75) 60%, rgba(26,4,13,1) 100%),
+        url('https://images.unsplash.com/photo-1562322140-8baeececf3df?w=1600&q=80&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center 30%;
+    }
+
+    /* ── Service cards ── */
+    .service-card {
+      border: 1px solid rgba(212,149,106,.25);
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+    }
+    .service-card:hover {
+      border-color: rgba(212,149,106,.75);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.45);
+    }
+
+    /* ── Team cards ── */
+    .team-card { border: 1px solid rgba(212,149,106,.2); }
+    .team-card:hover { border-color: rgba(212,149,106,.55); }
+
+    /* ── Plan cards ── */
+    .plan-card {
+      border: 1px solid rgba(212,149,106,.2);
+      transition: border-color .3s, transform .3s, box-shadow .3s;
+    }
+    .plan-card:hover {
+      border-color: rgba(212,149,106,.6);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 36px rgba(0,0,0,.4);
+    }
+    .plan-card.featured {
+      border-color: rgba(212,149,106,.65);
+      background: linear-gradient(145deg, #2A0718 0%, #3D0B1E 100%);
+    }
+
+    /* ── Testimonial cards ── */
+    .testimonial-card { border: 1px solid rgba(212,149,106,.18); }
+
+    /* ── Buttons ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #D4956A 0%, #E8B090 50%, #D4956A 100%);
+      color: #1A040D;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: .75rem;
+      border-radius: 5px;
+      padding: .75rem 2rem;
+      transition: opacity .25s, transform .2s;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-primary:hover { opacity: .88; transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent;
+      color: #E8B090;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: .75rem;
+      border-radius: 5px;
+      padding: .7rem 1.9rem;
+      border: 1px solid rgba(212,149,106,.55);
+      transition: background .25s, color .25s, border-color .25s;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-outline:hover {
+      background: rgba(212,149,106,.12);
+      border-color: #E8B090;
+    }
+
+    /* ── Gallery grid ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 220px 220px;
+      gap: 8px;
+    }
+    .gallery-grid .g-main { grid-column: 1; grid-row: 1 / 3; }
+    @media (max-width: 640px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 180px);
+      }
+      .gallery-grid .g-main { grid-column: 1 / 3; grid-row: 1; }
+    }
+
+    /* ── Photo placeholder ── */
+    .photo-ph {
+      background: linear-gradient(135deg, #2A0718 0%, #3D0B1E 100%);
+      overflow: hidden;
+      position: relative;
+    }
+    .photo-ph img { object-fit: cover; width: 100%; height: 100%; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+    .photo-ph:hover img { transform: scale(1.05); }
+
+    /* ── Star rating ── */
+    .star-fill { fill: #D4956A; }
+
+    /* ── Chips ── */
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      border: 1px solid rgba(212,149,106,.4);
+      border-radius: 4px;
+      padding: .3rem .85rem;
+      font-size: .7rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #E8B090;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #1A040D; }
+    ::-webkit-scrollbar-thumb { background: #5C1230; border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAV
+════════════════════════════════════════════════ -->
+<nav id="main-nav" class="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between">
+  <!-- Logo -->
+  <div class="flex items-center gap-3">
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="14" cy="14" r="13" stroke="#D4956A" stroke-width="1.2"/>
+      <path d="M8 10c1.5 2 3.5 4.5 6 4.5S19 12 20.5 10" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M11 18c1 .8 2 1.2 3 1.2s2-.4 3-1.2" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round"/>
+      <circle cx="14" cy="9" r="1.5" fill="#D4956A"/>
+    </svg>
+    <span class="font-display text-xl tracking-widest text-cream-100" style="letter-spacing:.2em;">VELVET</span>
+  </div>
+
+  <!-- Desktop links -->
+  <div class="hidden md:flex items-center gap-8 text-xs font-body font-medium tracking-widest uppercase text-cream-200" style="letter-spacing:.12em;">
+    <a href="#servicos" class="hover:text-rosegold-400 transition-colors">Serviços</a>
+    <a href="#espaco" class="hover:text-rosegold-400 transition-colors">Espaço</a>
+    <a href="#equipe" class="hover:text-rosegold-400 transition-colors">Equipe</a>
+    <a href="#planos" class="hover:text-rosegold-400 transition-colors">Planos</a>
+    <a href="#depoimentos" class="hover:text-rosegold-400 transition-colors">Avaliações</a>
+  </div>
+
+  <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-primary hidden md:inline-block">
+    Agendar Horário
+  </a>
+
+  <!-- Mobile CTA -->
+  <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-primary md:hidden text-xs px-4 py-2">
+    Agendar
+  </a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section class="hero-bg min-h-screen flex items-end pb-20 md:pb-28 relative">
+  <!-- Decorative corner lines -->
+  <div class="absolute top-28 left-8 w-16 h-16 border-l border-t" style="border-color:rgba(212,149,106,.3);" aria-hidden="true"></div>
+  <div class="absolute top-28 right-8 w-16 h-16 border-r border-t" style="border-color:rgba(212,149,106,.3);" aria-hidden="true"></div>
+
+  <div class="max-w-6xl mx-auto px-6 w-full">
+    <!-- Pre-label -->
+    <p class="text-rosegold-500 text-xs tracking-widest uppercase font-body mb-5 fade-up" style="letter-spacing:.22em;">
+      Salão de Beleza & Estética
+    </p>
+
+    <!-- Headline -->
+    <h1 class="font-display italic text-5xl md:text-7xl lg:text-8xl text-cream-100 leading-none mb-6 fade-up" style="transition-delay:.1s; max-width:800px;">
+      Beleza que conta<br/>
+      <span style="color:#E8B090;">histórias.</span>
+    </h1>
+
+    <!-- Sub -->
+    <p class="font-body text-base md:text-lg text-cream-300 mb-10 fade-up max-w-xl leading-relaxed" style="transition-delay:.2s; opacity:.85;">
+      Uma experiência completa de beleza e bem-estar. Do corte à coloração, do cuidado capilar à maquiagem — tudo com a sofisticação que você merece.
+    </p>
+
+    <!-- Chips -->
+    <div class="flex flex-wrap gap-2 mb-10 fade-up" style="transition-delay:.3s;">
+      <span class="chip">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="5" stroke="#D4956A" stroke-width="1"/><path d="M4 6l1.5 1.5L8 4" stroke="#D4956A" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Corte &amp; Estilo
+      </span>
+      <span class="chip">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="5" stroke="#D4956A" stroke-width="1"/><path d="M4 6l1.5 1.5L8 4" stroke="#D4956A" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Coloração
+      </span>
+      <span class="chip">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="5" stroke="#D4956A" stroke-width="1"/><path d="M4 6l1.5 1.5L8 4" stroke="#D4956A" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Manicure &amp; Pedicure
+      </span>
+      <span class="chip">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="5" stroke="#D4956A" stroke-width="1"/><path d="M4 6l1.5 1.5L8 4" stroke="#D4956A" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Tratamentos
+      </span>
+      <span class="chip">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="5" stroke="#D4956A" stroke-width="1"/><path d="M4 6l1.5 1.5L8 4" stroke="#D4956A" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Maquiagem
+      </span>
+    </div>
+
+    <!-- CTAs -->
+    <div class="flex flex-wrap items-center gap-4 fade-up" style="transition-delay:.4s;">
+      <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-primary">
+        Agendar pelo WhatsApp
+      </a>
+      <a href="#servicos" class="btn-outline">Ver Serviços</a>
+    </div>
+  </div>
+</section>
+
+<div class="rg-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     STATS
+════════════════════════════════════════════════ -->
+<section class="py-16 md:py-20 bg-burgundy-900">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+
+      <div class="fade-up">
+        <p class="font-display text-4xl md:text-5xl text-rosegold-400 mb-2">12</p>
+        <p class="font-body text-xs uppercase tracking-widest text-cream-300" style="letter-spacing:.14em; opacity:.7;">Anos de Experiência</p>
+      </div>
+
+      <div class="fade-up" style="transition-delay:.1s;">
+        <p class="font-display text-4xl md:text-5xl text-rosegold-400 mb-2">8.400+</p>
+        <p class="font-body text-xs uppercase tracking-widest text-cream-300" style="letter-spacing:.14em; opacity:.7;">Clientes Atendidas</p>
+      </div>
+
+      <div class="fade-up" style="transition-delay:.2s;">
+        <p class="font-display text-4xl md:text-5xl text-rosegold-400 mb-2">4.9</p>
+        <p class="font-body text-xs uppercase tracking-widest text-cream-300" style="letter-spacing:.14em; opacity:.7;">Avaliação Média</p>
+      </div>
+
+      <div class="fade-up" style="transition-delay:.3s;">
+        <p class="font-display text-4xl md:text-5xl text-rosegold-400 mb-2">8</p>
+        <p class="font-body text-xs uppercase tracking-widest text-cream-300" style="letter-spacing:.14em; opacity:.7;">Profissionais</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="rg-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     SERVIÇOS
+════════════════════════════════════════════════ -->
+<section id="servicos" class="py-20 md:py-28 bg-burgundy-900">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Section heading -->
+    <div class="text-center mb-16 fade-up">
+      <p class="text-rosegold-500 text-xs tracking-widest uppercase font-body mb-3" style="letter-spacing:.22em;">O que oferecemos</p>
+      <h2 class="font-display italic text-4xl md:text-5xl text-cream-100">Nossos Serviços</h2>
+      <div class="w-12 h-px mx-auto mt-5" style="background:#D4956A; opacity:.6;"></div>
+    </div>
+
+    <!-- Grid 3×2 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Card 1 — Corte & Estilo -->
+      <div class="service-card bg-burgundy-800 rounded p-8 fade-up" style="transition-delay:.05s;">
+        <div class="mb-5">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="10" cy="10" r="3.5" stroke="#D4956A" stroke-width="1.4"/>
+            <circle cx="10" cy="26" r="3.5" stroke="#D4956A" stroke-width="1.4"/>
+            <line x1="13.2" y1="11.8" x2="30" y2="6" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="13.2" y1="24.2" x2="30" y2="30" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <line x1="18" y1="18" x2="30" y2="18" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="2 2"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl text-cream-100 mb-2">Corte &amp; Estilo</h3>
+        <p class="font-body text-sm text-cream-300 leading-relaxed mb-5" style="opacity:.75;">Cortes personalizados, acabamentos precisos e finalização profissional para cada tipo de cabelo e rosto.</p>
+        <div class="flex items-center justify-between">
+          <span class="font-body text-sm text-rosegold-400 font-medium">A partir de R$XXX</span>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline text-xs px-4 py-2">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Card 2 — Coloração & Mechas -->
+      <div class="service-card bg-burgundy-800 rounded p-8 fade-up" style="transition-delay:.1s;">
+        <div class="mb-5">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 28c0 0 2-10 6-18" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M18 10c1.5-1.5 4-2 6-1s3 3 2 5-3.5 4-5 9" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M18 10c-1.5-1.5-4-2-6-1S9 12 10 14s3.5 4 2 14" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="25" cy="25" r="5" fill="#3D0B1E" stroke="#D4956A" stroke-width="1.4"/>
+            <path d="M23 25h4M25 23v4" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl text-cream-100 mb-2">Coloração &amp; Mechas</h3>
+        <p class="font-body text-sm text-cream-300 leading-relaxed mb-5" style="opacity:.75;">Coloração completa, balayage, mechas, ombré e técnicas de iluminação com produtos de alta performance.</p>
+        <div class="flex items-center justify-between">
+          <span class="font-body text-sm text-rosegold-400 font-medium">A partir de R$XXX</span>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline text-xs px-4 py-2">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Card 3 — Tratamentos Capilares -->
+      <div class="service-card bg-burgundy-800 rounded p-8 fade-up" style="transition-delay:.15s;">
+        <div class="mb-5">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M18 6c-6 0-10 4-10 9s4 8 10 8 10-3 10-8-4-9-10-9z" stroke="#D4956A" stroke-width="1.4"/>
+            <path d="M14 23v6M22 23v6" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M12 29h12" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M15 13c0 0 1 3 3 3s3-3 3-3" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl text-cream-100 mb-2">Tratamentos Capilares</h3>
+        <p class="font-body text-sm text-cream-300 leading-relaxed mb-5" style="opacity:.75;">Hidratação profunda, reconstrução, botox capilar, cronograma capilar e protocolos de recuperação intensiva.</p>
+        <div class="flex items-center justify-between">
+          <span class="font-body text-sm text-rosegold-400 font-medium">A partir de R$XXX</span>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline text-xs px-4 py-2">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Card 4 — Manicure & Pedicure -->
+      <div class="service-card bg-burgundy-800 rounded p-8 fade-up" style="transition-delay:.2s;">
+        <div class="mb-5">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 26c0 0-1-8 2-14" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M16 24c0 0-1-7 1-12" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M20 25c0 0 0-8 1-12" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M24 26c0 0 1-7 0-11" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M10 28c0 1.1 6.3 2 8 2s8-.9 8-2" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <ellipse cx="12" cy="12" rx="1.8" ry="2.5" stroke="#D4956A" stroke-width="1.2"/>
+            <ellipse cx="16" cy="11.5" rx="1.8" ry="2.5" stroke="#D4956A" stroke-width="1.2"/>
+            <ellipse cx="20" cy="12" rx="1.8" ry="2.5" stroke="#D4956A" stroke-width="1.2"/>
+            <ellipse cx="24" cy="13.5" rx="1.8" ry="2.5" stroke="#D4956A" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl text-cream-100 mb-2">Manicure &amp; Pedicure</h3>
+        <p class="font-body text-sm text-cream-300 leading-relaxed mb-5" style="opacity:.75;">Unhas em gel, acrílicas, fibra de vidro, nail art exclusiva, esmaltação convencional e em gel duradouro.</p>
+        <div class="flex items-center justify-between">
+          <span class="font-body text-sm text-rosegold-400 font-medium">A partir de R$XXX</span>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline text-xs px-4 py-2">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Card 5 — Design de Sobrancelhas -->
+      <div class="service-card bg-burgundy-800 rounded p-8 fade-up" style="transition-delay:.25s;">
+        <div class="mb-5">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 18c2-6 7-9 12-9s10 3 12 9" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="18" cy="20" r="5" stroke="#D4956A" stroke-width="1.4"/>
+            <circle cx="18" cy="20" r="2" fill="#D4956A" opacity=".4"/>
+            <path d="M7 12C9 9 13 7 18 7" stroke="#D4956A" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M29 12C27 9 23 7 18 7" stroke="#D4956A" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl text-cream-100 mb-2">Design de Sobrancelhas</h3>
+        <p class="font-body text-sm text-cream-300 leading-relaxed mb-5" style="opacity:.75;">Henna artística, micropigmentação, design personalizado com fio, pinça e cera para emoldurar o olhar.</p>
+        <div class="flex items-center justify-between">
+          <span class="font-body text-sm text-rosegold-400 font-medium">A partir de R$XXX</span>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline text-xs px-4 py-2">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Card 6 — Maquiagem -->
+      <div class="service-card bg-burgundy-800 rounded p-8 fade-up" style="transition-delay:.3s;">
+        <div class="mb-5">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M10 28L22 10" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M22 10c1-2 4-3 5-1s-1 4-3 5" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 28c-1 1.5-2.5 1.5-3 1s-.5-2 1-3" stroke="#D4956A" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="26" cy="26" r="5" fill="#3D0B1E" stroke="#D4956A" stroke-width="1.4"/>
+            <path d="M23.5 26.5c.5-1 1.2-1.5 2.5-1.5s2 .5 2.5 1.5" stroke="#D4956A" stroke-width="1.1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl text-cream-100 mb-2">Maquiagem</h3>
+        <p class="font-body text-sm text-cream-300 leading-relaxed mb-5" style="opacity:.75;">Maquiagem social, de noiva, artística e airbrush. Longa duração para eventos, ensaios e ocasiões especiais.</p>
+        <div class="flex items-center justify-between">
+          <span class="font-body text-sm text-rosegold-400 font-medium">A partir de R$XXX</span>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline text-xs px-4 py-2">Agendar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="rg-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     NOSSO ESPAÇO
+════════════════════════════════════════════════ -->
+<section id="espaco" class="py-20 md:py-28" style="background:#1A040D;">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="md:flex md:items-end md:justify-between mb-14">
+      <div class="fade-up">
+        <p class="text-rosegold-500 text-xs tracking-widest uppercase font-body mb-3" style="letter-spacing:.22em;">Ambiente &amp; Experiência</p>
+        <h2 class="font-display italic text-4xl md:text-5xl text-cream-100">Nosso Espaço</h2>
+      </div>
+      <p class="font-body text-sm text-cream-300 mt-4 md:mt-0 max-w-sm leading-relaxed fade-up" style="opacity:.7; transition-delay:.1s;">
+        Um ambiente pensado em cada detalhe para proporcionar conforto, privacidade e uma experiência sensorial única.
+      </p>
+    </div>
+
+    <!-- Gallery grid -->
+    <div class="gallery-grid fade-up">
+      <div class="photo-ph g-main rounded overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=800&q=80&auto=format&fit=crop" alt="Salão interior" loading="lazy" />
+      </div>
+      <div class="photo-ph rounded overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=600&q=80&auto=format&fit=crop" alt="Cadeira de salão" loading="lazy" />
+      </div>
+      <div class="photo-ph rounded overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80&auto=format&fit=crop" alt="Espelhos e luzes" loading="lazy" />
+      </div>
+      <div class="photo-ph rounded overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&auto=format&fit=crop" alt="Produtos e bancada" loading="lazy" />
+      </div>
+      <div class="photo-ph rounded overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1582095133179-bfd08e2fb6b8?w=600&q=80&auto=format&fit=crop" alt="Atendimento" loading="lazy" />
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="rg-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     EQUIPE
+════════════════════════════════════════════════ -->
+<section id="equipe" class="py-20 md:py-28 bg-burgundy-900">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="text-center mb-16 fade-up">
+      <p class="text-rosegold-500 text-xs tracking-widest uppercase font-body mb-3" style="letter-spacing:.22em;">Quem nos representa</p>
+      <h2 class="font-display italic text-4xl md:text-5xl text-cream-100">Nossa Equipe</h2>
+      <div class="w-12 h-px mx-auto mt-5" style="background:#D4956A; opacity:.6;"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+      <!-- Prof 1 -->
+      <div class="team-card rounded overflow-hidden bg-burgundy-800 fade-up" style="transition-delay:.05s;">
+        <div class="photo-ph" style="height:280px;">
+          <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=500&q=80&auto=format&fit=crop&crop=face" alt="Profissional 1" loading="lazy" />
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl text-cream-100 mb-1">[Nome da Profissional]</h3>
+          <p class="font-body text-xs text-rosegold-400 uppercase tracking-widest mb-3" style="letter-spacing:.12em;">Colorista Senior</p>
+          <p class="font-body text-sm text-cream-300 leading-relaxed" style="opacity:.7;">Especialista em técnicas de coloração e balayage, com formação internacional e mais de 10 anos de experiência.</p>
+        </div>
+      </div>
+
+      <!-- Prof 2 -->
+      <div class="team-card rounded overflow-hidden bg-burgundy-800 fade-up" style="transition-delay:.1s;">
+        <div class="photo-ph" style="height:280px;">
+          <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=500&q=80&auto=format&fit=crop&crop=face" alt="Profissional 2" loading="lazy" />
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl text-cream-100 mb-1">[Nome da Profissional]</h3>
+          <p class="font-body text-xs text-rosegold-400 uppercase tracking-widest mb-3" style="letter-spacing:.12em;">Especialista em Cortes</p>
+          <p class="font-body text-sm text-cream-300 leading-relaxed" style="opacity:.7;">Referência em cortes femininos contemporâneos e técnicas de degradê. Adora transformar e empoderar suas clientes.</p>
+        </div>
+      </div>
+
+      <!-- Prof 3 -->
+      <div class="team-card rounded overflow-hidden bg-burgundy-800 fade-up" style="transition-delay:.15s;">
+        <div class="photo-ph" style="height:280px;">
+          <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500&q=80&auto=format&fit=crop&crop=face" alt="Profissional 3" loading="lazy" />
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-xl text-cream-100 mb-1">[Nome da Profissional]</h3>
+          <p class="font-body text-xs text-rosegold-400 uppercase tracking-widest mb-3" style="letter-spacing:.12em;">Maquiadora &amp; Designer</p>
+          <p class="font-body text-sm text-cream-300 leading-relaxed" style="opacity:.7;">Maquiadora e designer de sobrancelhas com olhar artístico refinado. Especialidade em makes de casamento.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="rg-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     PLANOS
+════════════════════════════════════════════════ -->
+<section id="planos" class="py-20 md:py-28" style="background:#1A040D;">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <div class="text-center mb-16 fade-up">
+      <p class="text-rosegold-500 text-xs tracking-widest uppercase font-body mb-3" style="letter-spacing:.22em;">Experiências completas</p>
+      <h2 class="font-display italic text-4xl md:text-5xl text-cream-100">Pacotes &amp; Planos</h2>
+      <div class="w-12 h-px mx-auto mt-5" style="background:#D4956A; opacity:.6;"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+
+      <!-- Plano Essencial -->
+      <div class="plan-card rounded p-8 bg-burgundy-800 fade-up" style="transition-delay:.05s;">
+        <p class="font-body text-xs text-rosegold-500 uppercase tracking-widest mb-3" style="letter-spacing:.16em;">Essencial</p>
+        <div class="flex items-end gap-1 mb-2">
+          <span class="font-display text-4xl text-cream-100">R$XXX</span>
+          <span class="font-body text-sm text-cream-300 mb-1" style="opacity:.6;">/mês</span>
+        </div>
+        <p class="font-body text-sm text-cream-300 mb-7" style="opacity:.65;">Perfeito para quem busca cuidado regular com praticidade.</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.8;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            2 cortes por mês
+          </li>
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.8;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            1 hidratação profunda
+          </li>
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.8;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Manicure &amp; pedicure
+          </li>
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.4;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#5C1230" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#5C1230" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Coloração inclusa
+          </li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline w-full text-center block">Contratar</a>
+      </div>
+
+      <!-- Plano Velvet (featured) -->
+      <div class="plan-card featured rounded p-8 relative fade-up" style="transition-delay:.1s;">
+        <!-- Badge -->
+        <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+          <span style="background:linear-gradient(135deg,#D4956A,#E8B090); color:#1A040D; font-family:'DM Sans',sans-serif; font-size:.65rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.25rem .9rem; border-radius:3px; white-space:nowrap;">Mais Popular</span>
+        </div>
+        <p class="font-body text-xs text-rosegold-400 uppercase tracking-widest mb-3" style="letter-spacing:.16em;">Velvet</p>
+        <div class="flex items-end gap-1 mb-2">
+          <span class="font-display text-4xl text-cream-100">R$XXX</span>
+          <span class="font-body text-sm text-cream-300 mb-1" style="opacity:.6;">/mês</span>
+        </div>
+        <p class="font-body text-sm text-cream-300 mb-7" style="opacity:.65;">A experiência completa Velvet para quem não abre mão do melhor.</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.85;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Cortes ilimitados
+          </li>
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.85;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Coloração completa
+          </li>
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.85;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Tratamentos semanais
+          </li>
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.85;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Manicure, pedicure + design
+          </li>
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.85;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Atendimento prioritário
+          </li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-primary w-full text-center block">Contratar</a>
+      </div>
+
+      <!-- Plano Noiva -->
+      <div class="plan-card rounded p-8 bg-burgundy-800 fade-up" style="transition-delay:.15s;">
+        <p class="font-body text-xs text-rosegold-500 uppercase tracking-widest mb-3" style="letter-spacing:.16em;">Noiva</p>
+        <div class="flex items-end gap-1 mb-2">
+          <span class="font-display text-4xl text-cream-100">R$XXX</span>
+          <span class="font-body text-sm text-cream-300 mb-1" style="opacity:.6;">pacote</span>
+        </div>
+        <p class="font-body text-sm text-cream-300 mb-7" style="opacity:.65;">Pacote especial para o dia mais importante da sua vida.</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.8;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Maquiagem de noiva
+          </li>
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.8;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Penteado exclusivo
+          </li>
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.8;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Teste com antecedência
+          </li>
+          <li class="flex items-start gap-3 font-body text-sm text-cream-300" style="opacity:.8;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#D4956A" stroke-width="1"/><path d="M5.5 8l2 2 3-3.5" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Madrinha inclusa (1)
+          </li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline w-full text-center block">Solicitar Orçamento</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="rg-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     DEPOIMENTOS
+════════════════════════════════════════════════ -->
+<section id="depoimentos" class="py-20 md:py-28 bg-burgundy-900">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <div class="text-center mb-16 fade-up">
+      <p class="text-rosegold-500 text-xs tracking-widest uppercase font-body mb-3" style="letter-spacing:.22em;">O que dizem nossas clientes</p>
+      <h2 class="font-display italic text-4xl md:text-5xl text-cream-100">Avaliações</h2>
+      <div class="w-12 h-px mx-auto mt-5" style="background:#D4956A; opacity:.6;"></div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Depoimento 1 -->
+      <div class="testimonial-card rounded bg-burgundy-800 p-8 fade-up" style="transition-delay:.05s;">
+        <!-- Stars -->
+        <div class="flex gap-1 mb-4" aria-label="5 estrelas">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+        </div>
+        <p class="font-display italic text-lg text-cream-100 leading-relaxed mb-6" style="opacity:.9;">"Nunca me senti tão bem saindo de um salão. O atendimento é impecável do início ao fim. Cada detalhe foi pensado para mim."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full overflow-hidden shrink-0" style="background:linear-gradient(135deg,#3D0B1E,#5C1230);">
+            <img src="https://i.pravatar.cc/80?img=47" alt="Cliente" loading="lazy" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <p class="font-body text-sm font-medium text-cream-100">[Nome da Cliente]</p>
+            <p class="font-body text-xs text-rosegold-400" style="opacity:.75;">Cliente há 3 anos</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 2 -->
+      <div class="testimonial-card rounded bg-burgundy-800 p-8 fade-up" style="transition-delay:.1s;">
+        <div class="flex gap-1 mb-4" aria-label="5 estrelas">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+        </div>
+        <p class="font-display italic text-lg text-cream-100 leading-relaxed mb-6" style="opacity:.9;">"Fiz meu penteado de casamento aqui e foi simplesmente perfeito. Toda a equipe é extremamente profissional e atenciosa."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full overflow-hidden shrink-0" style="background:linear-gradient(135deg,#3D0B1E,#5C1230);">
+            <img src="https://i.pravatar.cc/80?img=23" alt="Cliente" loading="lazy" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <p class="font-body text-sm font-medium text-cream-100">[Nome da Cliente]</p>
+            <p class="font-body text-xs text-rosegold-400" style="opacity:.75;">Noiva — [Mês/Ano]</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 3 -->
+      <div class="testimonial-card rounded bg-burgundy-800 p-8 fade-up" style="transition-delay:.15s;">
+        <div class="flex gap-1 mb-4" aria-label="5 estrelas">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1l1.5 4H13l-3.5 2.5 1.5 4.5L7 9.5 3 12l1.5-4.5L1 5h4.5L7 1z" class="star-fill"/></svg>
+        </div>
+        <p class="font-display italic text-lg text-cream-100 leading-relaxed mb-6" style="opacity:.9;">"A coloração ficou exatamente como eu sonhava. As profissionais realmente escutam o que você quer e entregam mais do que o esperado."</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full overflow-hidden shrink-0" style="background:linear-gradient(135deg,#3D0B1E,#5C1230);">
+            <img src="https://i.pravatar.cc/80?img=32" alt="Cliente" loading="lazy" class="w-full h-full object-cover" />
+          </div>
+          <div>
+            <p class="font-body text-sm font-medium text-cream-100">[Nome da Cliente]</p>
+            <p class="font-body text-xs text-rosegold-400" style="opacity:.75;">Cliente há 1 ano</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="rg-divider"></div>
+
+
+<!-- ═══════════════════════════════════════════════
+     CTA FINAL
+════════════════════════════════════════════════ -->
+<section class="py-24 md:py-32 relative overflow-hidden" style="background:linear-gradient(135deg, #1A040D 0%, #3D0B1E 50%, #1A040D 100%);">
+  <!-- Decorative lines -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+    <div style="width:600px; height:600px; border:1px solid rgba(212,149,106,.06); border-radius:50%;"></div>
+    <div style="width:400px; height:400px; border:1px solid rgba(212,149,106,.08); border-radius:50%; position:absolute;"></div>
+  </div>
+
+  <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+    <div class="fade-up">
+      <p class="text-rosegold-500 text-xs tracking-widest uppercase font-body mb-5" style="letter-spacing:.22em;">Pronta para se transformar?</p>
+      <h2 class="font-display italic text-4xl md:text-6xl text-cream-100 mb-6 leading-tight">
+        Agende sua visita<br/>
+        <span style="color:#E8B090;">ao Velvet.</span>
+      </h2>
+      <p class="font-body text-base text-cream-300 mb-10 leading-relaxed" style="opacity:.75;">
+        Reserve seu horário agora mesmo pelo WhatsApp e comece uma nova história de beleza. Nossa equipe está pronta para atendê-la.
+      </p>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-primary flex items-center gap-2" style="font-size:.8rem; padding:.9rem 2.4rem;">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M9 1.5C4.86 1.5 1.5 4.86 1.5 9c0 1.35.36 2.61.99 3.69L1.5 16.5l3.93-1.02A7.44 7.44 0 009 16.5c4.14 0 7.5-3.36 7.5-7.5S13.14 1.5 9 1.5z" stroke="#1A040D" stroke-width="1.3" fill="none"/>
+            <path d="M6.5 6c0 0 .5 1 1.5 2s2 1.5 2 1.5l.8-.8c.2-.2.5-.2.7 0l1.2 1.2c.2.2.2.5 0 .7l-.8.8c-.5.5-1.3.6-1.9.3C8.4 11 6.7 9.6 6 8c-.3-.6-.2-1.4.3-1.9L7 5.3c.2-.2.5-.2.7 0l-.2.7z" fill="#1A040D"/>
+          </svg>
+          Agendar pelo WhatsApp
+        </a>
+        <div class="flex items-center gap-2 text-cream-300 text-sm font-body" style="opacity:.6;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="#D4956A" stroke-width="1"/><path d="M8 4.5V8l2.5 2" stroke="#D4956A" stroke-width="1.1" stroke-linecap="round"/></svg>
+          Seg–Sáb, 9h às 20h
+        </div>
+      </div>
+      <p class="font-body text-xs text-cream-300 mt-8" style="opacity:.45; letter-spacing:.06em;">[Endereço] · [Bairro] · [Cidade]</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer style="background:#0F0208; border-top:1px solid rgba(212,149,106,.12);">
+  <div class="max-w-6xl mx-auto px-6 py-14">
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+
+      <!-- Brand -->
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <circle cx="14" cy="14" r="13" stroke="#D4956A" stroke-width="1.2"/>
+            <path d="M8 10c1.5 2 3.5 4.5 6 4.5S19 12 20.5 10" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M11 18c1 .8 2 1.2 3 1.2s2-.4 3-1.2" stroke="#D4956A" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="14" cy="9" r="1.5" fill="#D4956A"/>
+          </svg>
+          <span class="font-display text-lg tracking-widest text-cream-100" style="letter-spacing:.2em;">VELVET</span>
+        </div>
+        <p class="font-body text-sm text-cream-300 leading-relaxed max-w-xs" style="opacity:.6;">
+          Salão de beleza completo com atendimento personalizado, produtos premium e profissionais altamente qualificados.
+        </p>
+        <div class="flex gap-4 mt-6">
+          <!-- Instagram icon -->
+          <a href="#" aria-label="Instagram" class="text-cream-300 hover:text-rosegold-400 transition-colors" style="opacity:.55;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="16" height="16" rx="4.5" stroke="currentColor" stroke-width="1.3"/><circle cx="10" cy="10" r="3.5" stroke="currentColor" stroke-width="1.3"/><circle cx="14.5" cy="5.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <!-- Facebook icon -->
+          <a href="#" aria-label="Facebook" class="text-cream-300 hover:text-rosegold-400 transition-colors" style="opacity:.55;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.3"/><path d="M11.5 7H10a1 1 0 00-1 1v2H7.5v2H9v5h2v-5h1.5l.5-2H11V8a.5.5 0 01.5-.5V7z" fill="currentColor" opacity=".55"/></svg>
+          </a>
+          <!-- TikTok icon -->
+          <a href="#" aria-label="TikTok" class="text-cream-300 hover:text-rosegold-400 transition-colors" style="opacity:.55;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 3c.5 2 2 3 4 3v2c-1.5 0-3-.5-4-1.5V14a5 5 0 11-5-5v2a3 3 0 103 3V3h2z" fill="currentColor" opacity=".55"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links rápidos -->
+      <div>
+        <h4 class="font-body text-xs uppercase tracking-widest text-rosegold-500 mb-4" style="letter-spacing:.16em;">Navegação</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#servicos" class="font-body text-sm text-cream-300 hover:text-rosegold-400 transition-colors" style="opacity:.65;">Serviços</a></li>
+          <li><a href="#espaco" class="font-body text-sm text-cream-300 hover:text-rosegold-400 transition-colors" style="opacity:.65;">Espaço</a></li>
+          <li><a href="#equipe" class="font-body text-sm text-cream-300 hover:text-rosegold-400 transition-colors" style="opacity:.65;">Equipe</a></li>
+          <li><a href="#planos" class="font-body text-sm text-cream-300 hover:text-rosegold-400 transition-colors" style="opacity:.65;">Planos</a></li>
+          <li><a href="#depoimentos" class="font-body text-sm text-cream-300 hover:text-rosegold-400 transition-colors" style="opacity:.65;">Avaliações</a></li>
+        </ul>
+      </div>
+
+      <!-- Contato -->
+      <div>
+        <h4 class="font-body text-xs uppercase tracking-widest text-rosegold-500 mb-4" style="letter-spacing:.16em;">Contato</h4>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-2 font-body text-sm text-cream-300" style="opacity:.65;">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" class="mt-0.5 shrink-0" aria-hidden="true"><path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5S12.5 9.5 12.5 6c0-2.5-2-4.5-4.5-4.5z" stroke="#D4956A" stroke-width="1.1"/><circle cx="8" cy="6" r="1.5" stroke="#D4956A" stroke-width="1.1"/></svg>
+            [Endereço completo]
+          </li>
+          <li class="flex items-center gap-2 font-body text-sm" style="opacity:.65;">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" class="shrink-0" aria-hidden="true"><path d="M2 4a1 1 0 011-1h10a1 1 0 011 1v8a1 1 0 01-1 1H3a1 1 0 01-1-1V4z" stroke="#D4956A" stroke-width="1.1"/><path d="M2 4l6 5 6-5" stroke="#D4956A" stroke-width="1.1"/></svg>
+            <a href="mailto:contato@velvet.com.br" class="text-cream-300 hover:text-rosegold-400 transition-colors">contato@velvet.com.br</a>
+          </li>
+          <li class="flex items-center gap-2 font-body text-sm" style="opacity:.65;">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" class="shrink-0" aria-hidden="true"><path d="M2.5 4.5c0 5 4 9 9 9 .5 0 1-.5 1-1v-2c0-.5-.3-.9-.7-1L10 8.8c-.4-.1-.8 0-1.1.3l-.5.5C7 8.8 7.2 9 6.4 8.1 5.8 7.4 5 6.6 5 5.6l.5-.5c.3-.3.4-.7.3-1.1L5.5 2.7c-.1-.4-.5-.7-1-.7H2.5c-.5 0-1 .5-1 1v1.5z" stroke="#D4956A" stroke-width="1.1"/></svg>
+            <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="text-cream-300 hover:text-rosegold-400 transition-colors">(00) 00000-0000</a>
+          </li>
+          <li class="flex items-center gap-2 font-body text-sm text-cream-300" style="opacity:.65;">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" class="shrink-0" aria-hidden="true"><circle cx="8" cy="8" r="6" stroke="#D4956A" stroke-width="1.1"/><path d="M8 4.5V8l2 1.5" stroke="#D4956A" stroke-width="1.1" stroke-linecap="round"/></svg>
+            Seg–Sáb: 9h – 20h
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="rg-divider mb-6"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+      <p class="font-body text-xs text-cream-300" style="opacity:.35;">&copy; 2026 Velvet Salão de Beleza. Todos os direitos reservados.</p>
+      <p class="font-body text-xs text-cream-300" style="opacity:.25; letter-spacing:.06em;">[Nome do Salão] · CNPJ XX.XXX.XXX/XXXX-XX</p>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════ -->
+<script>
+  // ── Nav scroll effect ──
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ── Fade-up with IntersectionObserver ──
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ── Smooth anchor scroll (polyfill for older browsers) ──
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

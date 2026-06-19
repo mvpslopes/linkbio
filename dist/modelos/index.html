@@ -200,6 +200,48 @@
     .btn-signal  { background:rgba(0,208,132,.08); color:#00A855; border:1px solid rgba(0,208,132,.3); }
     .btn-signal:hover { background:rgba(0,208,132,.16); }
 
+    /* ESTÉTICA previews */
+    .prev-velvet { background: linear-gradient(135deg,#1A040D,#3D0B1E,#5C1230); border-bottom: 1px solid rgba(212,149,106,.25); }
+    .prev-velvet::before { content:''; position:absolute; top:-30px; right:-30px; width:140px; height:140px; border-radius:50%; background:radial-gradient(ellipse,rgba(212,149,106,.2) 0%,transparent 70%); }
+    .prev-velvet .preview-title { color: #D4956A; text-shadow: 0 0 20px rgba(212,149,106,.4); position:relative; z-index:2; }
+    .prev-velvet .preview-sub { color: rgba(212,149,106,.65); position:relative; z-index:2; }
+
+    .prev-pearl { background: linear-gradient(135deg,#FAFAFA,#F2EDE6); border-bottom: 1px solid rgba(201,168,76,.25); }
+    .prev-pearl .preview-title { background: linear-gradient(120deg,#8B6914,#C9A84C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .prev-pearl .preview-sub { color: rgba(180,140,60,.7); }
+
+    .prev-bliss { background: linear-gradient(135deg,#FDE8F5,#F5D8EA,#EDD0E4); border-bottom: 1px solid rgba(196,139,159,.2); }
+    .prev-bliss .preview-title { background: linear-gradient(120deg,#C48B9F,#A06080); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .prev-bliss .preview-sub { color: rgba(196,139,159,.75); }
+
+    .prev-obsidian { background: #080808; border-bottom: 1px solid rgba(255,45,143,.2); }
+    .prev-obsidian::before { content:''; position:absolute; inset:0; background-image:linear-gradient(rgba(255,45,143,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,45,143,.05) 1px,transparent 1px); background-size:20px 20px; }
+    .prev-obsidian .preview-title { color:#FF2D8F; text-shadow:0 0 24px rgba(255,45,143,.7); position:relative; z-index:2; }
+    .prev-obsidian .preview-sub { color:rgba(155,77,255,.8); position:relative; z-index:2; }
+
+    .prev-ivory { background: linear-gradient(135deg,#FAF6EE,#F2EAD8,#E8DFC8); border-bottom: 1px solid rgba(139,174,139,.2); }
+    .prev-ivory .preview-title { color: #5A7A5A; }
+    .prev-ivory .preview-sub { color: rgba(139,174,139,.75); }
+
+    .prev-lash { background: linear-gradient(135deg,#0D0D12,#111117); border-bottom: 1px solid rgba(255,77,143,.2); }
+    .prev-lash::before { content:''; position:absolute; top:-50px; left:50%; transform:translateX(-50%); width:200px; height:120px; border-radius:50%; background:radial-gradient(ellipse,rgba(255,77,143,.15) 0%,transparent 70%); }
+    .prev-lash .preview-title { background:linear-gradient(120deg,#FF4D8F,#FF8FA3); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; position:relative; z-index:2; }
+    .prev-lash .preview-sub { color:rgba(255,77,143,.6); position:relative; z-index:2; }
+
+    /* btn estetica */
+    .btn-velvet  { background:rgba(212,149,106,.1); color:#D4956A; border:1px solid rgba(212,149,106,.3); }
+    .btn-velvet:hover { background:rgba(212,149,106,.2); }
+    .btn-pearl   { background:rgba(201,168,76,.1); color:#8B6914; border:1px solid rgba(201,168,76,.3); }
+    .btn-pearl:hover { background:rgba(201,168,76,.2); }
+    .btn-bliss   { background:rgba(196,139,159,.1); color:#C48B9F; border:1px solid rgba(196,139,159,.3); }
+    .btn-bliss:hover { background:rgba(196,139,159,.2); }
+    .btn-obsidian { background:rgba(255,45,143,.1); color:#FF2D8F; border:1px solid rgba(255,45,143,.3); }
+    .btn-obsidian:hover { background:rgba(255,45,143,.18); }
+    .btn-ivory   { background:rgba(139,174,139,.1); color:#5A7A5A; border:1px solid rgba(139,174,139,.3); }
+    .btn-ivory:hover { background:rgba(139,174,139,.2); }
+    .btn-lash    { background:rgba(255,77,143,.1); color:#FF4D8F; border:1px solid rgba(255,77,143,.3); }
+    .btn-lash:hover { background:rgba(255,77,143,.18); }
+
     .footer { text-align:center; margin-top:5rem; padding-top:2rem; border-top:1px solid var(--border); }
     .footer p { font-size:.78rem; color:rgba(255,255,255,.2); font-family:'Space Mono',monospace; }
   </style>
@@ -209,7 +251,7 @@
   <header class="site-header">
     <div class="header-badge">LinkBio · Biblioteca de Modelos</div>
     <h1>
-      <span style="background:linear-gradient(120deg,#FF8C00,#E8587A,#C8FF00,#A78BFA,#38C5D4,#00D084);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">12 modelos</span><br/>
+      <span style="background:linear-gradient(120deg,#FF8C00,#E8587A,#C8FF00,#A78BFA,#38C5D4,#00D084,#D4956A,#FF2D8F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">18 modelos</span><br/>
       prontos para usar
     </h1>
     <p class="header-sub">Selecione a categoria, escolha o modelo e substitua apenas [Nome], fotos, contatos e valores.</p>
@@ -223,7 +265,11 @@
         <div class="stat-l">Nutricionistas</div>
       </div>
       <div class="stat">
-        <div class="stat-n">12</div>
+        <div class="stat-n" style="color:#D4956A">6</div>
+        <div class="stat-l">Estética & Beleza</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">18</div>
         <div class="stat-l">Total de modelos</div>
       </div>
     </div>
@@ -433,6 +479,112 @@
           <div class="model-footer">
             <span class="model-num">NUT 06/06</span>
             <span class="open-btn btn-signal">Visualizar →</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+    <!-- ======================== ESTÉTICA & BELEZA ======================== -->
+    <section class="category-section">
+      <div class="category-header">
+        <div>
+          <p class="category-label" style="color:#D4956A">Categoria 03</p>
+          <h2 class="category-title">Estética, Beleza & Salão</h2>
+        </div>
+        <a href="estetica/index.html" style="font-size:.82rem;color:var(--muted);text-decoration:none">Ver todos →</a>
+      </div>
+      <div class="models-grid">
+
+        <a href="estetica/modelo-velvet.html" class="model-card">
+          <div class="model-preview prev-velvet">
+            <div class="preview-label"><span class="preview-title">VELVET</span><span class="preview-sub">Vinho · Rose Gold · Luxo</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Velvet</p>
+            <p class="model-desc">Bordô profundo e rose gold. Salão de beleza completo, premium e sofisticado.</p>
+            <div class="tags"><span class="tag">Vinho</span><span class="tag">Rose Gold</span><span class="tag">Salão</span><span class="tag">Premium</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">EST 01/06</span>
+            <span class="open-btn btn-velvet">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="estetica/modelo-pearl.html" class="model-card">
+          <div class="model-preview prev-pearl">
+            <div class="preview-label"><span class="preview-title">PEARL</span><span class="preview-sub">Branco · Dourado · Nail Art</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Pearl</p>
+            <p class="model-desc">Branco imaculado e dourado elegante. Studio de unhas, nail art e pedicure premium.</p>
+            <div class="tags"><span class="tag">Branco</span><span class="tag">Dourado</span><span class="tag">Nail Studio</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">EST 02/06</span>
+            <span class="open-btn btn-pearl">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="estetica/modelo-bliss.html" class="model-card">
+          <div class="model-preview prev-bliss">
+            <div class="preview-label"><span class="preview-title">BLISS</span><span class="preview-sub">Rosa · Champagne · Spa</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Bliss</p>
+            <p class="model-desc">Rosa empoeirado e champagne suave. Estética facial, corporal, depilação e spa day.</p>
+            <div class="tags"><span class="tag">Rosa</span><span class="tag">Champagne</span><span class="tag">Spa</span><span class="tag">Facial</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">EST 03/06</span>
+            <span class="open-btn btn-bliss">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="estetica/modelo-obsidian.html" class="model-card">
+          <div class="model-preview prev-obsidian">
+            <div class="preview-label"><span class="preview-title">OBSIDIAN</span><span class="preview-sub">Preto · Magenta · Glamour</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Obsidian</p>
+            <p class="model-desc">Preto e magenta neon. Glamour ousado, extensão de cílios e maquiagem artística.</p>
+            <div class="tags"><span class="tag">Dark</span><span class="tag">Magenta</span><span class="tag">Cílios</span><span class="tag">Makeup</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">EST 04/06</span>
+            <span class="open-btn btn-obsidian">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="estetica/modelo-ivory.html" class="model-card">
+          <div class="model-preview prev-ivory">
+            <div class="preview-label"><span class="preview-title">IVORY</span><span class="preview-sub">Marfim · Sálvia · Natural</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Ivory</p>
+            <p class="model-desc">Marfim e verde sálvia orgânico. Estética natural, skincare clean e bem-estar holístico.</p>
+            <div class="tags"><span class="tag">Marfim</span><span class="tag">Sálvia</span><span class="tag">Natural</span><span class="tag">Skincare</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">EST 05/06</span>
+            <span class="open-btn btn-ivory">Visualizar →</span>
+          </div>
+        </a>
+
+        <a href="estetica/modelo-lash.html" class="model-card">
+          <div class="model-preview prev-lash">
+            <div class="preview-label"><span class="preview-title">LASH</span><span class="preview-sub">Dark · Pink · Cílios</span></div>
+          </div>
+          <div class="model-body">
+            <p class="model-name">Lash</p>
+            <p class="model-desc">Carvão escuro e pink quente. Portfolio visual especializado em extensão de cílios.</p>
+            <div class="tags"><span class="tag">Dark</span><span class="tag">Pink</span><span class="tag">Cílios</span><span class="tag">Portfolio</span></div>
+          </div>
+          <div class="model-footer">
+            <span class="model-num">EST 06/06</span>
+            <span class="open-btn btn-lash">Visualizar →</span>
           </div>
         </a>
 

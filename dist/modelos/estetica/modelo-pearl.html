@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pearl · Nail Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              DEFAULT: '#C9A84C',
+              dark: '#A8893A',
+              light: '#E8D5A3',
+            },
+            nude: '#F0E8DE',
+            cream: '#FAF7F4',
+            ink: '#1A1A1A',
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #FAFAFA; color: #1A1A1A; }
+
+    /* Fade-up animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5 { transition-delay: 0.5s; }
+
+    /* Marquee */
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-wrap { overflow: hidden; }
+    .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+
+    /* Gold divider line */
+    .gold-line {
+      display: block;
+      width: 48px;
+      height: 1px;
+      background: #C9A84C;
+    }
+
+    /* Pill button base */
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 999px;
+      background: #C9A84C;
+      color: #FFFFFF;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn-gold:hover { background: #A8893A; transform: translateY(-1px); }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 28px;
+      border-radius: 999px;
+      border: 1.5px solid #C9A84C;
+      color: #C9A84C;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+      background: transparent;
+    }
+    .btn-outline:hover { background: #C9A84C; color: #fff; }
+
+    /* Card hover */
+    .service-card { transition: box-shadow 0.25s ease, transform 0.25s ease; }
+    .service-card:hover { box-shadow: 0 8px 32px rgba(201,168,76,0.12); transform: translateY(-3px); }
+
+    /* Portfolio image placeholder */
+    .portfolio-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      background: #F0E8DE;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .portfolio-img svg { opacity: 0.25; }
+
+    /* Star rating */
+    .star { color: #C9A84C; fill: #C9A84C; }
+
+    /* Section label */
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #C9A84C;
+    }
+
+    /* Nav glass */
+    .nav-glass {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,247,244,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+
+    /* Gold border image */
+    .img-gold-border {
+      border: 1.5px solid #C9A84C;
+    }
+
+    /* Plan card highlight */
+    .plan-highlight {
+      background: linear-gradient(135deg, #C9A84C 0%, #A8893A 100%);
+      color: #fff;
+    }
+
+    /* Thin hr */
+    .hr-gold { border: none; border-top: 1px solid rgba(201,168,76,0.2); }
+
+    /* Process step circle */
+    .step-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid #C9A84C;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-size: 1.125rem;
+      font-weight: 400;
+      color: #C9A84C;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════ NAV ══════════════════════════════════════════ -->
+<header class="nav-glass">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-3 text-decoration-none" style="text-decoration:none;">
+      <span style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#1A1A1A; letter-spacing:0.05em;">Pearl</span>
+      <span style="width:1px; height:18px; background:#C9A84C; opacity:0.5;"></span>
+      <span style="font-family:'Inter',sans-serif; font-size:0.6875rem; font-weight:400; letter-spacing:0.18em; text-transform:uppercase; color:#8A8A8A;">Nail Studio</span>
+    </a>
+
+    <!-- Nav Links (desktop) -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="#servicos" style="font-size:0.8rem; letter-spacing:0.04em; color:#1A1A1A; text-decoration:none; opacity:0.7; transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Serviços</a>
+      <a href="#portfolio" style="font-size:0.8rem; letter-spacing:0.04em; color:#1A1A1A; text-decoration:none; opacity:0.7; transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Portfolio</a>
+      <a href="#planos" style="font-size:0.8rem; letter-spacing:0.04em; color:#1A1A1A; text-decoration:none; opacity:0.7; transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Planos</a>
+      <a href="#contato" style="font-size:0.8rem; letter-spacing:0.04em; color:#1A1A1A; text-decoration:none; opacity:0.7; transition:opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">Contato</a>
+    </nav>
+
+    <!-- CTA -->
+    <a href="https://wa.me/5500000000000" class="btn-gold" style="font-size:0.75rem; padding:10px 22px;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Agendar
+    </a>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════ HERO ═════════════════════════════════════════ -->
+<section style="background: linear-gradient(135deg, #FAF7F4 0%, #F0E8DE 100%); padding: 80px 0 0;">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <!-- Copy -->
+      <div class="fade-up" style="padding-bottom: 80px;">
+        <span class="section-label">Nail Studio Premium</span>
+        <h1 style="font-family:'Fraunces',serif; font-size:clamp(2.5rem,5vw,3.75rem); font-weight:400; line-height:1.1; color:#1A1A1A; margin-top:20px; margin-bottom:24px;">
+          Unhas que<br/>
+          <em style="font-style:italic; color:#C9A84C;">revelam</em><br/>
+          a sua essência.
+        </h1>
+        <span class="gold-line" style="margin-bottom:24px; display:block;"></span>
+        <p style="font-size:1rem; line-height:1.75; color:#5A5A5A; max-width:380px; margin-bottom:36px;">
+          [Nome] é um estúdio especializado em nail art de alta complexidade, alongamentos e cuidados completos para mãos e pés. Atendimento exclusivo, por hora marcada.
+        </p>
+
+        <!-- Stats inline -->
+        <div class="flex items-center gap-8" style="margin-bottom:40px;">
+          <div>
+            <div style="font-family:'Fraunces',serif; font-size:1.75rem; font-weight:400; color:#1A1A1A;">+800</div>
+            <div style="font-size:0.75rem; letter-spacing:0.1em; color:#8A8A8A; text-transform:uppercase;">clientes</div>
+          </div>
+          <div style="width:1px; height:40px; background:rgba(201,168,76,0.25);"></div>
+          <div>
+            <div style="font-family:'Fraunces',serif; font-size:1.75rem; font-weight:400; color:#1A1A1A;">6 anos</div>
+            <div style="font-size:0.75rem; letter-spacing:0.1em; color:#8A8A8A; text-transform:uppercase;">experiência</div>
+          </div>
+          <div style="width:1px; height:40px; background:rgba(201,168,76,0.25);"></div>
+          <div>
+            <div style="font-family:'Fraunces',serif; font-size:1.75rem; font-weight:400; color:#1A1A1A;">4.9</div>
+            <div style="font-size:0.75rem; letter-spacing:0.1em; color:#8A8A8A; text-transform:uppercase;">avaliação</div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 flex-wrap">
+          <a href="https://wa.me/5500000000000" class="btn-gold">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Agendar agora
+          </a>
+          <a href="#portfolio" class="btn-outline">Ver portfolio</a>
+        </div>
+      </div>
+
+      <!-- Hero image -->
+      <div class="fade-up delay-2 hidden md:flex justify-end items-end" style="padding-bottom:0;">
+        <div style="position:relative;">
+          <!-- Background shape -->
+          <div style="position:absolute; bottom:0; right:0; width:85%; height:90%; background:#F0E8DE; border-radius:4px; z-index:0;"></div>
+          <!-- Main image placeholder -->
+          <div class="img-gold-border" style="position:relative; z-index:1; width:340px; height:460px; background:#E8DDD2; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom: 0;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.4">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <!-- Label overlay -->
+            <div style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); background:rgba(250,247,244,0.92); border:1px solid rgba(201,168,76,0.3); border-radius:999px; padding:6px 18px; white-space:nowrap;">
+              <span style="font-size:0.7rem; letter-spacing:0.14em; text-transform:uppercase; color:#C9A84C;">Foto do estúdio</span>
+            </div>
+          </div>
+          <!-- Gold accent dot -->
+          <div style="position:absolute; top:-16px; left:-16px; width:32px; height:32px; border-radius:50%; background:#C9A84C; opacity:0.15; z-index:2;"></div>
+          <div style="position:absolute; top:-8px; left:-8px; width:16px; height:16px; border-radius:50%; background:#C9A84C; opacity:0.35; z-index:3;"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ MARQUEE ══════════════════════════════════════ -->
+<div style="background:#1A1A1A; padding:14px 0; overflow:hidden; border-top:1px solid rgba(201,168,76,0.3); border-bottom:1px solid rgba(201,168,76,0.3);">
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <!-- Repeat twice for seamless loop -->
+      <template id="marquee-items">
+        <span style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:#C9A84C; padding:0 28px; white-space:nowrap;">Gel</span>
+        <span style="color:rgba(201,168,76,0.35); padding:0 4px;">·</span>
+        <span style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:#FAFAFA; padding:0 28px; white-space:nowrap;">French Classic</span>
+        <span style="color:rgba(201,168,76,0.35); padding:0 4px;">·</span>
+        <span style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:#C9A84C; padding:0 28px; white-space:nowrap;">Fibra de Vidro</span>
+        <span style="color:rgba(201,168,76,0.35); padding:0 4px;">·</span>
+        <span style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:#FAFAFA; padding:0 28px; white-space:nowrap;">Nail Art</span>
+        <span style="color:rgba(201,168,76,0.35); padding:0 4px;">·</span>
+        <span style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:#C9A84C; padding:0 28px; white-space:nowrap;">Ombre</span>
+        <span style="color:rgba(201,168,76,0.35); padding:0 4px;">·</span>
+        <span style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:#FAFAFA; padding:0 28px; white-space:nowrap;">Baby Boomer</span>
+        <span style="color:rgba(201,168,76,0.35); padding:0 4px;">·</span>
+        <span style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:#C9A84C; padding:0 28px; white-space:nowrap;">Encapsulado</span>
+        <span style="color:rgba(201,168,76,0.35); padding:0 4px;">·</span>
+        <span style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:#FAFAFA; padding:0 28px; white-space:nowrap;">Acrílico</span>
+        <span style="color:rgba(201,168,76,0.35); padding:0 4px;">·</span>
+        <span style="font-family:'Inter',sans-serif; font-size:0.75rem; letter-spacing:0.18em; text-transform:uppercase; color:#C9A84C; padding:0 28px; white-space:nowrap;">Soft Gel</span>
+        <span style="color:rgba(201,168,76,0.35); padding:0 4px;">·</span>
+      </template>
+      <!-- JS will clone these -->
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════ SERVIÇOS ═════════════════════════════════════ -->
+<section id="servicos" style="padding:100px 0; background:#FFFFFF;">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="fade-up" style="text-align:center; margin-bottom:64px;">
+      <span class="section-label">O que oferecemos</span>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(2rem,4vw,2.75rem); font-weight:400; color:#1A1A1A; margin-top:16px; margin-bottom:16px;">Serviços</h2>
+      <p style="font-size:0.9375rem; color:#8A8A8A; max-width:440px; margin:0 auto; line-height:1.7;">Cada detalhe pensado para elevar a sua experiência e fazer suas unhas durarem mais.</p>
+    </div>
+
+    <!-- Grid 3x2 -->
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Card 1 -->
+      <div class="service-card fade-up delay-1" style="background:#FAFAFA; border:1px solid rgba(201,168,76,0.15); border-radius:4px; padding:36px 28px;">
+        <div style="width:44px; height:44px; background:#F0E8DE; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom:24px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8c0-3.3-2.7-6-6-6S6 4.7 6 8c0 6 6 10 6 10s6-4 6-10z"/><circle cx="12" cy="8" r="2"/></svg>
+        </div>
+        <div style="font-size:0.6875rem; letter-spacing:0.16em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">01</div>
+        <h3 style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#1A1A1A; margin-bottom:12px;">Manicure Simples</h3>
+        <p style="font-size:0.875rem; line-height:1.7; color:#6A6A6A; margin-bottom:24px;">Cuidado completo das cutículas, lixamento, modelagem e aplicação de esmalte convencional ou base.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-family:'Fraunces',serif; font-size:1.375rem; font-weight:400; color:#1A1A1A;">R$ XX</span>
+          <a href="https://wa.me/5500000000000" style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#C9A84C; text-decoration:none; border-bottom:1px solid rgba(201,168,76,0.35); padding-bottom:1px;">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card fade-up delay-2" style="background:#FAFAFA; border:1px solid rgba(201,168,76,0.15); border-radius:4px; padding:36px 28px;">
+        <div style="width:44px; height:44px; background:#F0E8DE; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom:24px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div style="font-size:0.6875rem; letter-spacing:0.16em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">02</div>
+        <h3 style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#1A1A1A; margin-bottom:12px;">Pedicure Completa</h3>
+        <p style="font-size:0.875rem; line-height:1.7; color:#6A6A6A; margin-bottom:24px;">Esfoliação, hidratação intensiva, remoção de calosidades, modelagem e esmaltação dos pés.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-family:'Fraunces',serif; font-size:1.375rem; font-weight:400; color:#1A1A1A;">R$ XX</span>
+          <a href="https://wa.me/5500000000000" style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#C9A84C; text-decoration:none; border-bottom:1px solid rgba(201,168,76,0.35); padding-bottom:1px;">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card fade-up delay-3" style="background:#1A1A1A; border:1px solid #1A1A1A; border-radius:4px; padding:36px 28px;">
+        <div style="width:44px; height:44px; background:rgba(201,168,76,0.15); border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom:24px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <div style="font-size:0.6875rem; letter-spacing:0.16em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">03</div>
+        <h3 style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#FFFFFF; margin-bottom:12px;">Alongamento em Gel</h3>
+        <p style="font-size:0.875rem; line-height:1.7; color:rgba(255,255,255,0.55); margin-bottom:24px;">Extensão natural com gel de alta resistência, modelagem personalizada e acabamento impecável.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-family:'Fraunces',serif; font-size:1.375rem; font-weight:400; color:#FFFFFF;">R$ XXX</span>
+          <a href="https://wa.me/5500000000000" style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#C9A84C; text-decoration:none; border-bottom:1px solid rgba(201,168,76,0.35); padding-bottom:1px;">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="service-card fade-up delay-1" style="background:#FAFAFA; border:1px solid rgba(201,168,76,0.15); border-radius:4px; padding:36px 28px;">
+        <div style="width:44px; height:44px; background:#F0E8DE; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom:24px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div style="font-size:0.6875rem; letter-spacing:0.16em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">04</div>
+        <h3 style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#1A1A1A; margin-bottom:12px;">Nail Art</h3>
+        <p style="font-size:0.875rem; line-height:1.7; color:#6A6A6A; margin-bottom:24px;">Designs exclusivos, grafismos, florais, geométricos, pedrarias e elementos 3D. Arte sob medida.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-family:'Fraunces',serif; font-size:1.375rem; font-weight:400; color:#1A1A1A;">R$ XXX+</span>
+          <a href="https://wa.me/5500000000000" style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#C9A84C; text-decoration:none; border-bottom:1px solid rgba(201,168,76,0.35); padding-bottom:1px;">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="service-card fade-up delay-2" style="background:#FAFAFA; border:1px solid rgba(201,168,76,0.15); border-radius:4px; padding:36px 28px;">
+        <div style="width:44px; height:44px; background:#F0E8DE; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom:24px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <div style="font-size:0.6875rem; letter-spacing:0.16em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">05</div>
+        <h3 style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#1A1A1A; margin-bottom:12px;">Baby Boomer & Ombre</h3>
+        <p style="font-size:0.875rem; line-height:1.7; color:#6A6A6A; margin-bottom:24px;">Gradiente perfeito do nude ao branco, efeito nuvem ou ombre colorido. Técnica francesa moderna.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-family:'Fraunces',serif; font-size:1.375rem; font-weight:400; color:#1A1A1A;">R$ XXX</span>
+          <a href="https://wa.me/5500000000000" style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#C9A84C; text-decoration:none; border-bottom:1px solid rgba(201,168,76,0.35); padding-bottom:1px;">Agendar</a>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="service-card fade-up delay-3" style="background:#FAFAFA; border:1px solid rgba(201,168,76,0.15); border-radius:4px; padding:36px 28px;">
+        <div style="width:44px; height:44px; background:#F0E8DE; border-radius:4px; display:flex; align-items:center; justify-content:center; margin-bottom:24px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div style="font-size:0.6875rem; letter-spacing:0.16em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">06</div>
+        <h3 style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#1A1A1A; margin-bottom:12px;">Manutenção</h3>
+        <p style="font-size:0.875rem; line-height:1.7; color:#6A6A6A; margin-bottom:24px;">Retoque e manutenção de alongamentos, encapsulados ou gel. Preserva o investimento anterior.</p>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <span style="font-family:'Fraunces',serif; font-size:1.375rem; font-weight:400; color:#1A1A1A;">R$ XX</span>
+          <a href="https://wa.me/5500000000000" style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#C9A84C; text-decoration:none; border-bottom:1px solid rgba(201,168,76,0.35); padding-bottom:1px;">Agendar</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ PORTFOLIO ════════════════════════════════════ -->
+<section id="portfolio" style="padding:100px 0; background:#FAFAFA;">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Header -->
+    <div class="fade-up" style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:56px; flex-wrap:gap;">
+      <div>
+        <span class="section-label">Nossos trabalhos</span>
+        <h2 style="font-family:'Fraunces',serif; font-size:clamp(2rem,4vw,2.75rem); font-weight:400; color:#1A1A1A; margin-top:16px;">Portfolio</h2>
+      </div>
+      <a href="https://wa.me/5500000000000" class="btn-outline" style="margin-bottom:8px;">Ver tudo no Instagram</a>
+    </div>
+
+    <!-- Grid 3x2 -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+
+      <!-- Photo 1 -->
+      <div class="fade-up delay-1" style="position:relative; overflow:hidden; border-radius:4px; border:1px solid rgba(201,168,76,0.15);">
+        <div class="portfolio-img">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:16px 14px; background:linear-gradient(transparent, rgba(26,26,26,0.7));">
+          <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Baby Boomer</span>
+        </div>
+      </div>
+
+      <!-- Photo 2 -->
+      <div class="fade-up delay-2" style="position:relative; overflow:hidden; border-radius:4px; border:1px solid rgba(201,168,76,0.15);">
+        <div class="portfolio-img">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:16px 14px; background:linear-gradient(transparent, rgba(26,26,26,0.7));">
+          <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Nail Art Floral</span>
+        </div>
+      </div>
+
+      <!-- Photo 3 -->
+      <div class="fade-up delay-3" style="position:relative; overflow:hidden; border-radius:4px; border:1px solid rgba(201,168,76,0.15);">
+        <div class="portfolio-img">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:16px 14px; background:linear-gradient(transparent, rgba(26,26,26,0.7));">
+          <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Gel Nude</span>
+        </div>
+      </div>
+
+      <!-- Photo 4 -->
+      <div class="fade-up delay-1" style="position:relative; overflow:hidden; border-radius:4px; border:1px solid rgba(201,168,76,0.15);">
+        <div class="portfolio-img">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:16px 14px; background:linear-gradient(transparent, rgba(26,26,26,0.7));">
+          <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">French Moderna</span>
+        </div>
+      </div>
+
+      <!-- Photo 5 -->
+      <div class="fade-up delay-2" style="position:relative; overflow:hidden; border-radius:4px; border:1px solid rgba(201,168,76,0.15);">
+        <div class="portfolio-img">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:16px 14px; background:linear-gradient(transparent, rgba(26,26,26,0.7));">
+          <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Encapsulado</span>
+        </div>
+      </div>
+
+      <!-- Photo 6 -->
+      <div class="fade-up delay-3" style="position:relative; overflow:hidden; border-radius:4px; border:1px solid rgba(201,168,76,0.15);">
+        <div class="portfolio-img">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:16px 14px; background:linear-gradient(transparent, rgba(26,26,26,0.7));">
+          <span style="font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.8);">Ombre Colorido</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ PROCESSO ════════════════════════════════════ -->
+<section style="padding:100px 0; background:#FFFFFF;">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <div class="fade-up" style="text-align:center; margin-bottom:64px;">
+      <span class="section-label">Como funciona</span>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(2rem,4vw,2.75rem); font-weight:400; color:#1A1A1A; margin-top:16px;">Agendamento simples</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8">
+
+      <!-- Step 1 -->
+      <div class="fade-up delay-1" style="text-align:center; padding:0 16px;">
+        <div style="display:flex; justify-content:center; margin-bottom:24px;">
+          <div class="step-circle">1</div>
+        </div>
+        <h3 style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#1A1A1A; margin-bottom:12px;">Escolha o serviço</h3>
+        <p style="font-size:0.875rem; line-height:1.75; color:#6A6A6A;">Navegue pelos serviços disponíveis e escolha o que melhor combina com o que você deseja.</p>
+      </div>
+
+      <!-- Connector -->
+      <div class="hidden md:flex items-start justify-center" style="padding-top:24px;">
+        <div style="width:100%; height:1px; background:rgba(201,168,76,0.25); position:relative; top:23px;">
+          <div style="position:absolute; right:-4px; top:-3px; width:7px; height:7px; border-radius:50%; background:#C9A84C; opacity:0.5;"></div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="fade-up delay-2" style="text-align:center; padding:0 16px;">
+        <div style="display:flex; justify-content:center; margin-bottom:24px;">
+          <div class="step-circle">2</div>
+        </div>
+        <h3 style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#1A1A1A; margin-bottom:12px;">Fale pelo WhatsApp</h3>
+        <p style="font-size:0.875rem; line-height:1.75; color:#6A6A6A;">Envie uma mensagem com o serviço desejado. Verificamos horários disponíveis em instantes.</p>
+      </div>
+
+    </div>
+
+    <!-- Step 3 separate row centered -->
+    <div class="flex justify-center" style="margin-top:48px;">
+      <div class="fade-up delay-3" style="text-align:center; padding:0 16px; max-width:280px;">
+        <div style="display:flex; justify-content:center; margin-bottom:24px;">
+          <div class="step-circle">3</div>
+        </div>
+        <h3 style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#1A1A1A; margin-bottom:12px;">Apareça e relaxe</h3>
+        <p style="font-size:0.875rem; line-height:1.75; color:#6A6A6A;">Chegue no horário combinado e desfrute de uma experiência premium do início ao fim.</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="fade-up" style="text-align:center; margin-top:56px;">
+      <a href="https://wa.me/5500000000000" class="btn-gold" style="font-size:0.8rem;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Agendar agora
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ PLANOS ═══════════════════════════════════════ -->
+<section id="planos" style="padding:100px 0; background:#FAFAFA;">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <div class="fade-up" style="text-align:center; margin-bottom:64px;">
+      <span class="section-label">Pacotes mensais</span>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(2rem,4vw,2.75rem); font-weight:400; color:#1A1A1A; margin-top:16px; margin-bottom:16px;">Planos</h2>
+      <p style="font-size:0.9375rem; color:#8A8A8A; max-width:400px; margin:0 auto; line-height:1.7;">Assine um plano mensal e garanta prioridade de horários, descontos exclusivos e mimos especiais.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Plan 1: Basic -->
+      <div class="fade-up delay-1" style="background:#FFFFFF; border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:40px 28px;">
+        <div style="margin-bottom:28px;">
+          <span style="font-size:0.6875rem; letter-spacing:0.18em; text-transform:uppercase; color:#8A8A8A;">Plano</span>
+          <div style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:400; color:#1A1A1A; margin-top:6px;">Essencial</div>
+        </div>
+        <div style="margin-bottom:32px;">
+          <span style="font-family:'Fraunces',serif; font-size:2.5rem; font-weight:300; color:#1A1A1A;">R$ XXX</span>
+          <span style="font-size:0.8rem; color:#8A8A8A;">/mês</span>
+        </div>
+        <hr class="hr-gold" style="margin-bottom:28px;" />
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:14px; margin-bottom:36px;">
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:#4A4A4A;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            2 manicures/mês
+          </li>
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:#4A4A4A;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            1 pedicure/mês
+          </li>
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:#4A4A4A;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Prioridade de agendamento
+          </li>
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:#C0C0C0;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C0C0C0" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Nail art inclusa
+          </li>
+        </ul>
+        <a href="https://wa.me/5500000000000" class="btn-outline" style="width:100%; justify-content:center;">Assinar plano</a>
+      </div>
+
+      <!-- Plan 2: Pearl (highlight) -->
+      <div class="fade-up delay-2 plan-highlight" style="border-radius:4px; padding:40px 28px; position:relative; overflow:hidden;">
+        <!-- Badge -->
+        <div style="position:absolute; top:20px; right:20px; background:rgba(255,255,255,0.2); border-radius:999px; padding:4px 12px; font-size:0.65rem; letter-spacing:0.14em; text-transform:uppercase; color:#fff;">Mais popular</div>
+        <div style="margin-bottom:28px;">
+          <span style="font-size:0.6875rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.65);">Plano</span>
+          <div style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:400; color:#FFFFFF; margin-top:6px;">Pearl</div>
+        </div>
+        <div style="margin-bottom:32px;">
+          <span style="font-family:'Fraunces',serif; font-size:2.5rem; font-weight:300; color:#FFFFFF;">R$ XXX</span>
+          <span style="font-size:0.8rem; color:rgba(255,255,255,0.6);">/mês</span>
+        </div>
+        <hr style="border:none; border-top:1px solid rgba(255,255,255,0.2); margin-bottom:28px;" />
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:14px; margin-bottom:36px;">
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:rgba(255,255,255,0.9);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            4 manicures/mês
+          </li>
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:rgba(255,255,255,0.9);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            2 pedicures/mês
+          </li>
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:rgba(255,255,255,0.9);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            1 nail art/mês inclusa
+          </li>
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:rgba(255,255,255,0.9);">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Horário exclusivo fixo
+          </li>
+        </ul>
+        <a href="https://wa.me/5500000000000" style="display:flex; align-items:center; justify-content:center; gap:8px; padding:12px 28px; border-radius:999px; background:#FFFFFF; color:#A8893A; font-family:'Inter',sans-serif; font-size:0.8125rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">Assinar Pearl</a>
+      </div>
+
+      <!-- Plan 3: Gold -->
+      <div class="fade-up delay-3" style="background:#FFFFFF; border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:40px 28px;">
+        <div style="margin-bottom:28px;">
+          <span style="font-size:0.6875rem; letter-spacing:0.18em; text-transform:uppercase; color:#8A8A8A;">Plano</span>
+          <div style="font-family:'Fraunces',serif; font-size:1.5rem; font-weight:400; color:#1A1A1A; margin-top:6px;">Gold</div>
+        </div>
+        <div style="margin-bottom:32px;">
+          <span style="font-family:'Fraunces',serif; font-size:2.5rem; font-weight:300; color:#1A1A1A;">R$ XXX</span>
+          <span style="font-size:0.8rem; color:#8A8A8A;">/mês</span>
+        </div>
+        <hr class="hr-gold" style="margin-bottom:28px;" />
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:14px; margin-bottom:36px;">
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:#4A4A4A;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Ilimitado mãos e pés
+          </li>
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:#4A4A4A;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Nail art ilimitada
+          </li>
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:#4A4A4A;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Atendimento VIP domiciliar
+          </li>
+          <li style="display:flex; align-items:center; gap:10px; font-size:0.875rem; color:#4A4A4A;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Produtos premium incluídos
+          </li>
+        </ul>
+        <a href="https://wa.me/5500000000000" class="btn-outline" style="width:100%; justify-content:center;">Assinar Gold</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ DEPOIMENTOS ══════════════════════════════════ -->
+<section style="padding:100px 0; background:#FFFFFF;">
+  <div class="max-w-5xl mx-auto px-6">
+
+    <div class="fade-up" style="text-align:center; margin-bottom:64px;">
+      <span class="section-label">O que dizem</span>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(2rem,4vw,2.75rem); font-weight:400; color:#1A1A1A; margin-top:16px;">Clientes</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- Review 1 -->
+      <div class="fade-up delay-1" style="background:#FAFAFA; border:1px solid rgba(201,168,76,0.12); border-radius:4px; padding:36px 28px;">
+        <!-- Stars -->
+        <div style="display:flex; gap:3px; margin-bottom:20px;">
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p style="font-size:0.9375rem; line-height:1.75; color:#4A4A4A; font-style:italic; margin-bottom:28px;">"Simplesmente o melhor nail studio que já frequentei. O atendimento é impecável e o resultado dura muito mais do que esperava."</p>
+        <hr class="hr-gold" style="margin-bottom:20px;" />
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:#F0E8DE; border:1px solid rgba(201,168,76,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.875rem; font-weight:500; color:#1A1A1A;">[Nome Cliente]</div>
+            <div style="font-size:0.75rem; color:#8A8A8A;">Cliente desde 2023</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 2 -->
+      <div class="fade-up delay-2" style="background:#FAFAFA; border:1px solid rgba(201,168,76,0.12); border-radius:4px; padding:36px 28px;">
+        <div style="display:flex; gap:3px; margin-bottom:20px;">
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p style="font-size:0.9375rem; line-height:1.75; color:#4A4A4A; font-style:italic; margin-bottom:28px;">"Fiz o baby boomer e ficou perfeito. A profissional é extremamente detalhista e o estúdio tem uma energia muito especial."</p>
+        <hr class="hr-gold" style="margin-bottom:20px;" />
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:#F0E8DE; border:1px solid rgba(201,168,76,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.875rem; font-weight:500; color:#1A1A1A;">[Nome Cliente]</div>
+            <div style="font-size:0.75rem; color:#8A8A8A;">Plano Pearl</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 3 -->
+      <div class="fade-up delay-3" style="background:#FAFAFA; border:1px solid rgba(201,168,76,0.12); border-radius:4px; padding:36px 28px;">
+        <div style="display:flex; gap:3px; margin-bottom:20px;">
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="star" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p style="font-size:0.9375rem; line-height:1.75; color:#4A4A4A; font-style:italic; margin-bottom:28px;">"Indico para todas as minhas amigas. A qualidade dos produtos e a técnica são de um nível que não encontrei em outro lugar na cidade."</p>
+        <hr class="hr-gold" style="margin-bottom:20px;" />
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:36px; height:36px; border-radius:50%; background:#F0E8DE; border:1px solid rgba(201,168,76,0.25); display:flex; align-items:center; justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div>
+            <div style="font-size:0.875rem; font-weight:500; color:#1A1A1A;">[Nome Cliente]</div>
+            <div style="font-size:0.75rem; color:#8A8A8A;">Plano Gold</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ CTA FINAL ════════════════════════════════════ -->
+<section id="contato" style="padding:100px 0; background: linear-gradient(135deg, #F0E8DE 0%, #FAF7F4 100%); border-top: 1px solid rgba(201,168,76,0.15);">
+  <div class="max-w-3xl mx-auto px-6 text-center">
+    <div class="fade-up">
+      <span class="section-label">Pronto para começar?</span>
+      <h2 style="font-family:'Fraunces',serif; font-size:clamp(2.25rem,5vw,3.5rem); font-weight:400; color:#1A1A1A; margin-top:20px; margin-bottom:24px; line-height:1.15;">
+        Suas unhas merecem<br/>
+        <em style="font-style:italic; color:#C9A84C;">atenção de alto padrão.</em>
+      </h2>
+      <p style="font-size:1rem; line-height:1.75; color:#6A6A6A; max-width:480px; margin:0 auto 48px;">
+        Agende agora pelo WhatsApp e garanta seu horário. Atendimento exclusivo, por hora marcada, em [Endereço].
+      </p>
+      <div style="display:flex; flex-direction:column; sm:flex-direction:row; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
+        <a href="https://wa.me/5500000000000" class="btn-gold" style="font-size:0.875rem; padding:14px 36px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Agendar pelo WhatsApp
+        </a>
+        <a href="#planos" class="btn-outline" style="font-size:0.875rem; padding:13px 36px;">Ver planos mensais</a>
+      </div>
+
+      <!-- Location -->
+      <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:48px; color:#8A8A8A;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span style="font-size:0.8125rem; letter-spacing:0.04em;">[Endereço completo] — Atendimento com hora marcada</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════ FOOTER ═══════════════════════════════════════ -->
+<footer style="background:#1A1A1A; padding:56px 0 32px;">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Top row -->
+    <div class="grid md:grid-cols-3 gap-12" style="margin-bottom:48px;">
+
+      <!-- Brand -->
+      <div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+          <span style="font-family:'Fraunces',serif; font-size:1.25rem; font-weight:400; color:#FFFFFF; letter-spacing:0.05em;">Pearl</span>
+          <span style="width:1px; height:16px; background:#C9A84C; opacity:0.4;"></span>
+          <span style="font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.4);">Nail Studio</span>
+        </div>
+        <p style="font-size:0.8125rem; line-height:1.7; color:rgba(255,255,255,0.4); max-width:240px;">Nail art de alto padrão para quem valoriza detalhes e sofisticação.</p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <div style="font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:#C9A84C; margin-bottom:20px;">Navegação</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+          <li><a href="#servicos" style="font-size:0.8125rem; color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Serviços</a></li>
+          <li><a href="#portfolio" style="font-size:0.8125rem; color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Portfolio</a></li>
+          <li><a href="#planos" style="font-size:0.8125rem; color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Planos</a></li>
+          <li><a href="https://wa.me/5500000000000" style="font-size:0.8125rem; color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.2s;" onmouseover="this.style.color='#FFFFFF'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">WhatsApp</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div style="font-size:0.65rem; letter-spacing:0.18em; text-transform:uppercase; color:#C9A84C; margin-bottom:20px;">Contato</div>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:12px;">
+          <li style="display:flex; align-items:flex-start; gap:10px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" style="flex-shrink:0; margin-top:2px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span style="font-size:0.8125rem; color:rgba(255,255,255,0.5); line-height:1.5;">[Endereço completo]</span>
+          </li>
+          <li style="display:flex; align-items:center; gap:10px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0; color:#C9A84C;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <a href="https://wa.me/5500000000000" style="font-size:0.8125rem; color:rgba(255,255,255,0.5); text-decoration:none;">(00) 00000-0000</a>
+          </li>
+          <li style="display:flex; align-items:center; gap:10px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" style="flex-shrink:0;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <a href="#" style="font-size:0.8125rem; color:rgba(255,255,255,0.5); text-decoration:none;">@[nomeinstagram]</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <hr style="border:none; border-top:1px solid rgba(255,255,255,0.06); margin-bottom:28px;" />
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+      <span style="font-size:0.75rem; color:rgba(255,255,255,0.25); letter-spacing:0.04em;">© 2025 Pearl Nail Studio · Todos os direitos reservados</span>
+      <span style="font-size:0.75rem; color:rgba(255,255,255,0.2); letter-spacing:0.04em;">Modelo LinkBio · Pearl</span>
+    </div>
+
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════ SCRIPTS ══════════════════════════════════════ -->
+<script>
+  // ── Marquee: clone items for seamless loop ──────────────────────────────────
+  (function () {
+    const track = document.querySelector('.marquee-track');
+    const tpl = document.getElementById('marquee-items');
+    if (track && tpl) {
+      const content = tpl.innerHTML;
+      // Fill with two copies for seamless loop
+      track.innerHTML = content + content;
+    }
+  })();
+
+  // ── IntersectionObserver fade-up ────────────────────────────────────────────
+  (function () {
+    const elements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    elements.forEach(function (el) { observer.observe(el); });
+  })();
+
+  // ── Smooth active nav highlight ─────────────────────────────────────────────
+  (function () {
+    const sections = document.querySelectorAll('section[id], header[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    const io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            navLinks.forEach(function (link) {
+              link.style.opacity = link.getAttribute('href') === '#' + entry.target.id ? '1' : '0.7';
+              link.style.fontWeight = link.getAttribute('href') === '#' + entry.target.id ? '500' : '400';
+            });
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    sections.forEach(function (s) { io.observe(s); });
+  })();
+</script>
+
+</body>
+</html>

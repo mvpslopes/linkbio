@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>[Nome] — Estética & Spa | Beleza e Bem-estar</title>
+  <meta name="description" content="Estética facial, corporal, depilação e spa day. Cuidados completos para seu bem-estar." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --cream: #FDF5F8;
+      --blush: #F5DCEA;
+      --rose: #E8A0B8;
+      --mauve: #C48B9F;
+      --mauve-d: #9E6680;
+      --champagne: #F7E8CC;
+      --gold: #C9A064;
+      --charcoal: #2A1F26;
+      --muted: #7A6070;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+
+    body::after { content:''; position:fixed; inset:0; z-index:999; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.025'/%3E%3C/svg%3E"); }
+
+    .site-nav { position:fixed; top:0; left:0; right:0; z-index:90; padding:1.1rem 2.5rem; display:flex; align-items:center; justify-content:space-between; background:rgba(253,245,248,.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); border-bottom:1px solid rgba(196,139,159,.12); }
+    @media(max-width:768px){ .site-nav { padding:1rem 1.25rem; } }
+    .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; letter-spacing:.02em; }
+    .nav-logo em { color:var(--mauve); }
+
+    .btn-rose { background:var(--mauve); color:#fff; font-family:'Nunito',sans-serif; font-size:.82rem; font-weight:700; padding:.6rem 1.5rem; border-radius:999px; display:inline-flex; align-items:center; gap:.5rem; transition:all .3s; text-decoration:none; }
+    .btn-rose:hover { background:var(--mauve-d); transform:translateY(-1px); box-shadow:0 8px 22px rgba(196,139,159,.3); }
+    .btn-outline-rose { border:1.5px solid var(--mauve); color:var(--mauve); font-family:'Nunito',sans-serif; font-size:.82rem; font-weight:700; padding:.6rem 1.5rem; border-radius:999px; display:inline-flex; align-items:center; gap:.5rem; transition:all .3s; text-decoration:none; }
+    .btn-outline-rose:hover { background:var(--mauve); color:#fff; }
+
+    /* HERO */
+    .hero { display:grid; grid-template-columns:1fr; min-height:100svh; padding-top:4.5rem; }
+    @media(min-width:1024px){ .hero { grid-template-columns:55% 45%; } }
+    .hero-left { display:flex; flex-direction:column; justify-content:center; padding:4rem 3rem 4rem 5rem; }
+    @media(max-width:1023px){ .hero-left { padding:3rem 1.5rem; } }
+    .hero-right { position:relative; overflow:hidden; min-height:60vw; background:var(--blush); }
+    @media(min-width:1024px){ .hero-right { min-height:unset; } }
+    .hero-right img { width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+    .hero-right::before { content:''; position:absolute; inset:0; z-index:1; background:linear-gradient(135deg, rgba(247,232,204,.15) 0%, transparent 60%); }
+
+    .eyebrow { font-family:'Nunito',sans-serif; font-size:.72rem; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--mauve); margin-bottom:1.25rem; }
+    .chip-b { display:inline-flex; align-items:center; gap:5px; background:var(--blush); border-radius:999px; padding:5px 14px; font-size:.74rem; color:var(--mauve-d); font-weight:600; }
+
+    /* service card */
+    .svc-card { background:#fff; border:1px solid rgba(196,139,159,.12); border-radius:1.25rem; padding:1.75rem; transition:all .3s; }
+    .svc-card:hover { border-color:rgba(196,139,159,.35); box-shadow:0 10px 28px rgba(196,139,159,.08); transform:translateY(-3px); }
+    .svc-icon { width:50px; height:50px; border-radius:13px; background:var(--blush); display:flex; align-items:center; justify-content:center; margin-bottom:1.1rem; }
+
+    /* experience steps */
+    .exp-step { display:flex; gap:1.25rem; }
+    .exp-dot { width:48px; height:48px; flex-shrink:0; border-radius:50%; background:var(--blush); display:flex; align-items:center; justify-content:center; }
+    .exp-line { width:1px; background:rgba(196,139,159,.25); margin:0 0 0 24px; margin-top:-.5rem; margin-bottom:0; flex-grow:1; }
+
+    /* plan card */
+    .plan-card { background:#fff; border:1px solid rgba(196,139,159,.15); border-radius:1.25rem; padding:1.75rem; transition:all .3s; }
+    .plan-card.featured { background:var(--mauve); color:#fff; }
+    .plan-card:not(.featured):hover { border-color:rgba(196,139,159,.4); transform:translateY(-3px); }
+    .plan-price { font-family:'Cormorant Garamond',serif; font-size:3.25rem; font-weight:700; line-height:1; }
+
+    /* test card */
+    .test-card { background:#fff; border:1px solid rgba(196,139,159,.1); border-radius:1.25rem; padding:1.75rem; transition:border-color .3s; }
+    .test-card:hover { border-color:rgba(196,139,159,.3); }
+
+    /* CTA */
+    .cta-sec { background:linear-gradient(135deg, var(--blush) 0%, var(--champagne) 100%); border-radius:2rem; padding:3.5rem 2.5rem; position:relative; overflow:hidden; }
+    .cta-sec::before { content:''; position:absolute; top:-60px; right:-60px; width:240px; height:240px; border-radius:50%; background:rgba(255,255,255,.4); }
+    .cta-sec::after { content:''; position:absolute; bottom:-40px; left:-30px; width:160px; height:160px; border-radius:50%; background:rgba(255,255,255,.3); }
+
+    .fade-up { opacity:0; transform:translateY(22px); transition:opacity .65s ease,transform .65s ease; }
+    .fade-up.visible { opacity:1; transform:translateY(0); }
+
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-track { display:flex; gap:2.5rem; animation:marquee 20s linear infinite; white-space:nowrap; }
+    .marquee-wrap { overflow:hidden; }
+  </style>
+</head>
+<body>
+
+  <nav class="site-nav">
+    <div class="nav-logo">[Nome] <em>Studio</em></div>
+    <div class="hidden md:flex gap-7 text-sm font-medium" style="color:var(--muted)">
+      <a href="#sobre" class="hover:text-mauve transition-colors">Sobre</a>
+      <a href="#servicos" class="hover:text-mauve transition-colors">Serviços</a>
+      <a href="#experiencia" class="hover:text-mauve transition-colors">Experiência</a>
+      <a href="#planos" class="hover:text-mauve transition-colors">Planos</a>
+    </div>
+    <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-rose">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Agendar horário
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-left">
+      <p class="eyebrow fade-up">Estética Facial · Corporal · Spa</p>
+      <h1 class="fade-up" style="font-size:clamp(3rem,6.5vw,5rem);font-weight:500;line-height:1.05;letter-spacing:-.02em;margin-bottom:1.25rem">
+        Cuide de você<br/><em style="color:var(--mauve)">como você merece.</em>
+      </h1>
+      <p class="fade-up" style="color:var(--muted);line-height:1.85;max-width:430px;font-size:1rem;margin-bottom:1.75rem">
+        Um espaço criado para que você desconecte do mundo e reconecte com você mesma. Tratamentos faciais, corporais, depilação e rituais de spa com produtos premium.
+      </p>
+      <div class="flex flex-wrap gap-2 mb-7 fade-up">
+        <span class="chip-b">Estética Facial</span>
+        <span class="chip-b">Depilação</span>
+        <span class="chip-b">Drenagem</span>
+        <span class="chip-b">Spa Day</span>
+        <span class="chip-b">[Cidade]</span>
+      </div>
+      <div class="flex flex-wrap gap-3 fade-up">
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-rose">Agendar tratamento</a>
+        <a href="#servicos" class="btn-outline-rose">Ver serviços</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="fotos/foto-hero.jpg" alt="[Nome] Estética"
+           onerror="this.parentElement.style.background='linear-gradient(160deg,var(--blush) 0%,var(--rose) 60%,var(--mauve) 100%)';this.style.display='none'"/>
+      <div style="position:absolute;bottom:2rem;left:1.5rem;background:rgba(253,245,248,.93);backdrop-filter:blur(12px);border:1px solid rgba(196,139,159,.2);border-radius:1rem;padding:.85rem 1.2rem;z-index:10">
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:700;color:var(--mauve);line-height:1">500+</p>
+        <p style="font-size:.7rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:2px">Clientes atendidas</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div style="background:var(--blush);padding:.85rem 0;border-top:1px solid rgba(196,139,159,.15);border-bottom:1px solid rgba(196,139,159,.15);overflow:hidden">
+    <div class="marquee-wrap">
+      <div class="marquee-track">
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Limpeza de Pele</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Peeling Químico</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Drenagem Linfática</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Depilação a Laser</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Microagulhamento</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Spa Day</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Massagem Relaxante</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Limpeza de Pele</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Peeling Químico</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Drenagem Linfática</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Depilação a Laser</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Microagulhamento</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Spa Day</span>
+        <span style="color:var(--rose)">·</span>
+        <span style="font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--mauve-d)">Massagem Relaxante</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- NÚMEROS -->
+  <section class="py-14 px-6">
+    <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <div class="fade-up"><p style="font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--mauve);line-height:1">[X]+</p><p style="font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:.4rem">Anos de experiência</p></div>
+      <div class="fade-up" style="transition-delay:.07s"><p style="font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--mauve);line-height:1">500+</p><p style="font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:.4rem">Clientes atendidas</p></div>
+      <div class="fade-up" style="transition-delay:.14s"><p style="font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--mauve);line-height:1">15+</p><p style="font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:.4rem">Tratamentos</p></div>
+      <div class="fade-up" style="transition-delay:.21s"><p style="font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:700;color:var(--mauve);line-height:1">5.0</p><p style="font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:.4rem">Avaliação média</p></div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="py-20 px-6" id="servicos" style="background:var(--blush);border-top:1px solid rgba(196,139,159,.15)">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-10 fade-up">
+        <p class="eyebrow mb-3">Tratamentos</p>
+        <h2 style="font-size:clamp(2.25rem,5vw,3.5rem);font-weight:500;line-height:1.1;letter-spacing:-.02em">Rituais de <em style="color:var(--mauve)">cuidado</em></h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="svc-card fade-up">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></div>
+          <h3 style="font-size:1.3rem;font-weight:500;margin-bottom:.5rem">Limpeza de Pele</h3>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7">Profunda ou express. Desobstrução de poros, extração e hidratação com produtos da sua necessidade.</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--mauve);margin-top:1rem">A partir de R$ XXX</p>
+        </div>
+        <div class="svc-card fade-up" style="transition-delay:.07s">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><path d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+          <h3 style="font-size:1.3rem;font-weight:500;margin-bottom:.5rem">Peeling & Microagulhamento</h3>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7">Renovação celular, tratamento de manchas, cicatrizes de acne e rejuvenescimento cutâneo.</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--mauve);margin-top:1rem">A partir de R$ XXX</p>
+        </div>
+        <div class="svc-card fade-up" style="transition-delay:.14s">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <h3 style="font-size:1.3rem;font-weight:500;margin-bottom:.5rem">Massagem & Drenagem</h3>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7">Drenagem linfática, massagem relaxante, modeladora e terapêutica. Alivie tensões e reduza inchaço.</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--mauve);margin-top:1rem">A partir de R$ XXX</p>
+        </div>
+        <div class="svc-card fade-up" style="transition-delay:.07s">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg></div>
+          <h3 style="font-size:1.3rem;font-weight:500;margin-bottom:.5rem">Depilação</h3>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7">Cera, linha, laser e luz pulsada. Pele lisa e macia com produtos de alta qualidade e técnica apurada.</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--mauve);margin-top:1rem">A partir de R$ XXX</p>
+        </div>
+        <div class="svc-card fade-up" style="transition-delay:.14s">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h3 style="font-size:1.3rem;font-weight:500;margin-bottom:.5rem">Design de Sobrancelha</h3>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7">Henna, brow lamination, micropigmentação e design personalizado que valoriza o seu rosto.</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--mauve);margin-top:1rem">A partir de R$ XXX</p>
+        </div>
+        <div class="svc-card fade-up" style="transition-delay:.21s">
+          <div class="svc-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <h3 style="font-size:1.3rem;font-weight:500;margin-bottom:.5rem">Spa Day</h3>
+          <p style="font-size:.85rem;color:var(--muted);line-height:1.7">Pacote completo de bem-estar: limpeza de pele + massagem + hidratação + aromaterapia. Uma experiência única.</p>
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--mauve);margin-top:1rem">A partir de R$ XXX</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section class="py-24 px-6 max-w-6xl mx-auto" id="sobre">
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+      <div class="fade-up">
+        <p class="eyebrow">Sobre o studio</p>
+        <h2 style="font-size:clamp(2.5rem,5vw,3.5rem);font-weight:500;line-height:1.1;letter-spacing:-.02em;margin-bottom:1.25rem">Um espaço só <em style="color:var(--mauve)">seu.</em></h2>
+        <p style="color:var(--muted);line-height:1.85;margin-bottom:1.25rem">O [Nome] Studio nasceu com a missão de oferecer uma experiência que vai além do tratamento. Cada detalhe — do ambiente à escolha dos produtos — foi pensado para que você se sinta cuidada, acolhida e renovada.</p>
+        <p style="color:var(--muted);line-height:1.85;margin-bottom:2rem">Trabalhamos apenas com marcas profissionais, protocolos comprovados e uma equipe apaixonada por beleza e bem-estar feminino.</p>
+        <div class="grid grid-cols-2 gap-3">
+          <div style="background:var(--blush);border-radius:1rem;padding:1.15rem;border:1px solid rgba(196,139,159,.12)">
+            <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--mauve)">Produtos</p>
+            <p style="font-size:.78rem;color:var(--muted);margin-top:.2rem">Marcas premium certificadas</p>
+          </div>
+          <div style="background:var(--blush);border-radius:1rem;padding:1.15rem;border:1px solid rgba(196,139,159,.12)">
+            <p style="font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;color:var(--mauve)">Ambiente</p>
+            <p style="font-size:.78rem;color:var(--muted);margin-top:.2rem">Exclusivo, relaxante, seguro</p>
+          </div>
+        </div>
+      </div>
+      <div class="fade-up" style="transition-delay:.15s">
+        <div style="position:relative;max-width:380px;margin:0 auto">
+          <div style="aspect-ratio:4/5;border-radius:2rem;overflow:hidden;border:1px solid rgba(196,139,159,.2);box-shadow:0 20px 50px rgba(196,139,159,.12)">
+            <img src="fotos/foto-sobre.jpg" alt="[Nome] Studio" style="width:100%;height:100%;object-fit:cover"
+                 onerror="this.parentElement.style.background='linear-gradient(160deg,var(--blush),var(--rose),var(--mauve))';this.style.display='none'"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIÊNCIA -->
+  <section class="py-20 px-6 max-w-5xl mx-auto" id="experiencia">
+    <div class="text-center mb-12 fade-up">
+      <p class="eyebrow mb-3">Sua visita</p>
+      <h2 style="font-size:clamp(2.25rem,5vw,3.5rem);font-weight:500;line-height:1.1;letter-spacing:-.02em">Como é a <em style="color:var(--mauve)">experiência</em></h2>
+    </div>
+    <div class="space-y-8 max-w-lg mx-auto fade-up">
+      <div class="exp-step">
+        <div><div class="exp-dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div></div>
+        <div style="padding-top:.5rem"><h4 style="font-size:1.15rem;font-weight:600;margin-bottom:.3rem">Agendamento</h4><p style="font-size:.85rem;color:var(--muted);line-height:1.7">Escolha seu serviço e horário diretamente pelo WhatsApp. Confirmamos em até 1 hora.</p></div>
+      </div>
+      <div class="exp-step">
+        <div><div class="exp-dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div></div>
+        <div style="padding-top:.5rem"><h4 style="font-size:1.15rem;font-weight:600;margin-bottom:.3rem">Recepção & Avaliação</h4><p style="font-size:.85rem;color:var(--muted);line-height:1.7">Chegue e seja recebida com chá e uma avaliação personalizada da sua pele e necessidades.</p></div>
+      </div>
+      <div class="exp-step">
+        <div><div class="exp-dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg></div></div>
+        <div style="padding-top:.5rem"><h4 style="font-size:1.15rem;font-weight:600;margin-bottom:.3rem">Seu Tratamento</h4><p style="font-size:.85rem;color:var(--muted);line-height:1.7">Relaxe enquanto cuidamos de você com técnica, carinho e os melhores produtos do mercado.</p></div>
+      </div>
+      <div class="exp-step">
+        <div><div class="exp-dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><polyline points="20 6 9 17 4 12"/></svg></div></div>
+        <div style="padding-top:.5rem"><h4 style="font-size:1.15rem;font-weight:600;margin-bottom:.3rem">Resultado & Orientações</h4><p style="font-size:.85rem;color:var(--muted);line-height:1.7">Saía renovada com orientações home care e seu próximo agendamento já programado.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS -->
+  <section class="py-20 px-6 max-w-6xl mx-auto" id="planos">
+    <div class="text-center mb-12 fade-up">
+      <p class="eyebrow mb-3">Pacotes</p>
+      <h2 style="font-size:clamp(2.25rem,5vw,3.5rem);font-weight:500;line-height:1.1;letter-spacing:-.02em">Cuide-se <em style="color:var(--mauve)">mensalmente</em></h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="plan-card fade-up">
+        <p style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem">BÁSICO</p>
+        <div class="plan-price" style="color:var(--mauve)"><sup style="font-size:1.2rem;vertical-align:super">R$</sup>XXX</div>
+        <p style="font-size:.82rem;color:var(--muted);margin:.5rem 0 1.4rem">/mês · 1 tratamento</p>
+        <ul style="font-size:.85rem;color:var(--muted);line-height:2.2;margin-bottom:1.5rem">
+          <li style="display:flex;gap:.5rem;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1 tratamento facial mensal</li>
+          <li style="display:flex;gap:.5rem;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Desconto de 10% avulso</li>
+          <li style="display:flex;gap:.5rem;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Agendamento prioritário</li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline-rose" style="width:100%;justify-content:center">Assinar</a>
+      </div>
+      <div class="plan-card featured fade-up" style="transition-delay:.1s">
+        <p style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:1.25rem">BELEZA</p>
+        <div class="plan-price"><sup style="font-size:1.2rem;vertical-align:super">R$</sup>XXX</div>
+        <p style="font-size:.82rem;color:rgba(255,255,255,.65);margin:.5rem 0 1.4rem">/mês · 2 tratamentos</p>
+        <ul style="font-size:.85rem;color:rgba(255,255,255,.75);line-height:2.2;margin-bottom:1.5rem">
+          <li style="display:flex;gap:.5rem;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>2 tratamentos/mês</li>
+          <li style="display:flex;gap:.5rem;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Desconto de 15% avulso</li>
+          <li style="display:flex;gap:.5rem;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>1 design de sobrancelha</li>
+          <li style="display:flex;gap:.5rem;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Brinde mensal surpresa</li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" style="background:#fff;color:var(--mauve);font-weight:700;padding:.75rem 1.5rem;border-radius:999px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:.85rem;transition:all .3s">Quero este!</a>
+      </div>
+      <div class="plan-card fade-up" style="transition-delay:.2s">
+        <p style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:1.25rem">VIP SPA</p>
+        <div class="plan-price" style="color:var(--mauve)"><sup style="font-size:1.2rem;vertical-align:super">R$</sup>XXX</div>
+        <p style="font-size:.82rem;color:var(--muted);margin:.5rem 0 1.4rem">/mês · acesso completo</p>
+        <ul style="font-size:.85rem;color:var(--muted);line-height:2.2;margin-bottom:1.5rem">
+          <li style="display:flex;gap:.5rem;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Spa Day completo mensal</li>
+          <li style="display:flex;gap:.5rem;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Desconto de 20% avulso</li>
+          <li style="display:flex;gap:.5rem;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Acesso a todos os serviços</li>
+          <li style="display:flex;gap:.5rem;align-items:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Kit skincare home care</li>
+        </ul>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-outline-rose" style="width:100%;justify-content:center">Assinar VIP</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPOIMENTOS -->
+  <section class="py-20 px-6 max-w-6xl mx-auto">
+    <div class="text-center mb-12 fade-up"><p class="eyebrow mb-3">Clientes</p><h2 style="font-size:clamp(2.25rem,5vw,3.5rem);font-weight:500;line-height:1.1;letter-spacing:-.02em">Elas <em style="color:var(--mauve)">adoraram</em></h2></div>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="test-card fade-up"><div style="color:#C9A064;margin-bottom:.75rem;font-size:.95rem">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p style="font-size:.9rem;color:var(--muted);line-height:1.75;margin-bottom:1.25rem">"A melhor limpeza de pele que já fiz. Ambiente maravilhoso, profissional super cuidadosa. Minha pele ficou outra depois da primeira sessão."</p><div class="flex items-center gap-3"><div style="width:40px;height:40px;border-radius:11px;background:var(--blush);display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><p style="font-weight:700;font-size:.87rem">Ana Lúcia</p><p style="font-size:.74rem;color:var(--muted)">Limpeza de Pele · Cliente VIP</p></div></div></div>
+      <div class="test-card fade-up" style="transition-delay:.1s"><div style="color:#C9A064;margin-bottom:.75rem;font-size:.95rem">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p style="font-size:.9rem;color:var(--muted);line-height:1.75;margin-bottom:1.25rem">"Fiz o Spa Day completo para o meu aniversário e foi a melhor escolha! Me senti uma rainha. Já agendei o próximo mês."</p><div class="flex items-center gap-3"><div style="width:40px;height:40px;border-radius:11px;background:var(--blush);display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><p style="font-weight:700;font-size:.87rem">Fernanda Dias</p><p style="font-size:.74rem;color:var(--muted)">Spa Day · 1 vez ao mês</p></div></div></div>
+      <div class="test-card fade-up" style="transition-delay:.2s"><div style="color:#C9A064;margin-bottom:.75rem;font-size:.95rem">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p style="font-size:.9rem;color:var(--muted);line-height:1.75;margin-bottom:1.25rem">"Meu microagulhamento ficou incrível. As manchas clarearam muito após 3 sessões. Profissional extremamente capacitada e atenciosa."</p><div class="flex items-center gap-3"><div style="width:40px;height:40px;border-radius:11px;background:var(--blush);display:flex;align-items:center;justify-content:center"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div><div><p style="font-weight:700;font-size:.87rem">Marcia Souza</p><p style="font-size:.74rem;color:var(--muted)">Microagulhamento · 3 sessões</p></div></div></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-10 px-6 max-w-5xl mx-auto pb-20">
+    <div class="cta-sec fade-up">
+      <div style="position:relative;z-index:10">
+        <p style="font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mauve-d);opacity:.8;margin-bottom:1rem;font-family:'Nunito',sans-serif;font-weight:700">Reserve seu momento</p>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,3.75rem);font-weight:500;line-height:1.1;color:var(--charcoal);margin-bottom:1.25rem">
+          Você merece esse<br/><em style="color:var(--mauve-d)">momento só seu.</em>
+        </h2>
+        <p style="color:var(--muted);max-width:420px;line-height:1.8;margin-bottom:2rem;font-size:.95rem">Entre em contato pelo WhatsApp e escolha seu tratamento. Agendamento rápido, sem complicação.</p>
+        <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" class="btn-rose" style="font-size:.9rem;padding:.85rem 2rem">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Agendar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid rgba(196,139,159,.12);padding:2rem;text-align:center">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--charcoal);margin-bottom:.4rem">[Nome] <em style="color:var(--mauve)">Studio</em></p>
+    <p style="font-size:.75rem;color:var(--muted)">[Endereço] · © 2026 · Todos os direitos reservados</p>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); } }); }, { threshold:.1 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
