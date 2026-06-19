@@ -1,0 +1,2012 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Escritório de Advocacia — Direito Civil e Criminal de Alto Padrão. Assessoria jurídica especializada com ética, discrição e excelência." />
+  <meta name="keywords" content="advocacia, advogado, direito civil, direito penal, escritório de advocacia, consultoria jurídica" />
+  <meta name="author" content="Escritório de Advocacia" />
+  <meta property="og:title" content="Escritório de Advocacia — Alto Padrão" />
+  <meta property="og:description" content="Direito Civil e Criminal com ética, discrição e excelência." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#F8F5F0" />
+  <title>Escritório de Advocacia — Alto Padrão</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream:        #F8F5F0;
+      --white:        #FFFFFF;
+      --charcoal:     #2C2A26;
+      --gold:         #C9A96E;
+      --gold-dark:    #A07840;
+      --text-sec:     #8C7A6B;
+      --border:       #E8E2D9;
+      --charcoal-mid: #3E3B35;
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+
+      --container: 1200px;
+      --section-pad: 96px 24px;
+      --section-pad-sm: 64px 20px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--charcoal);
+      background-color: var(--cream);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul { list-style: none; }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      width: 100%;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== FADE-UP ANIMATION ===== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5 { transition-delay: 0.5s; }
+    .fade-up.delay-6 { transition-delay: 0.6s; }
+
+    /* ===== GOLD DIVIDER ===== */
+    .gold-divider {
+      width: 56px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+      margin: 0 auto 32px;
+    }
+
+    .gold-divider.left {
+      margin: 0 0 32px;
+    }
+
+    /* ===== SECTION LABEL ===== */
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--white);
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(135deg, #8a6430, var(--gold-dark));
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(160, 120, 64, 0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--charcoal);
+      border: 1.5px solid var(--charcoal);
+    }
+
+    .btn-outline:hover {
+      background: var(--charcoal);
+      color: var(--white);
+    }
+
+    .btn-outline-gold {
+      background: transparent;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+    }
+
+    .btn-outline-gold:hover {
+      background: var(--gold);
+      color: var(--white);
+    }
+
+    /* ===================================================
+       1. NAVBAR
+    =================================================== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      background: rgba(248, 245, 240, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 4px 24px rgba(44, 42, 38, 0.08);
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .navbar__logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .navbar__monogram {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid var(--gold);
+    }
+
+    .navbar__monogram span {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold-dark);
+      line-height: 1;
+    }
+
+    .navbar__name {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar__name-main {
+      font-family: var(--font-serif);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--charcoal);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
+    }
+
+    .navbar__name-sub {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+    }
+
+    .navbar__nav {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .navbar__nav a {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .navbar__nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .navbar__nav a:hover { color: var(--gold-dark); }
+    .navbar__nav a:hover::after { width: 100%; }
+
+    .navbar__cta {
+      font-size: 11px;
+      padding: 10px 24px;
+    }
+
+    .navbar__toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .navbar__toggle span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--charcoal);
+      transition: all 0.3s ease;
+    }
+
+    /* ===================================================
+       2. HERO
+    =================================================== */
+    .hero {
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--cream);
+      overflow: hidden;
+      padding: 0 24px;
+    }
+
+    .hero__marble-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 20%, rgba(201,169,110,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 75%, rgba(201,169,110,0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.6) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero__marble-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image:
+        linear-gradient(123deg, transparent 30%, rgba(201,169,110,1) 31%, rgba(201,169,110,1) 31.3%, transparent 31.4%),
+        linear-gradient(97deg,  transparent 40%, rgba(140,122,107,1) 41%, rgba(140,122,107,1) 41.2%, transparent 41.3%),
+        linear-gradient(155deg, transparent 60%, rgba(201,169,110,1) 61%, rgba(201,169,110,1) 61.15%, transparent 61.2%);
+    }
+
+    .hero__deco-monogram {
+      position: absolute;
+      font-family: var(--font-serif);
+      font-size: clamp(280px, 35vw, 520px);
+      font-weight: 700;
+      color: rgba(201, 169, 110, 0.055);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      user-select: none;
+      pointer-events: none;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      text-align: center;
+    }
+
+    .hero__eyebrow {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .hero__eyebrow::before,
+    .hero__eyebrow::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero__name {
+      font-family: var(--font-serif);
+      font-size: clamp(52px, 7vw, 110px);
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .hero__name span {
+      display: block;
+      color: var(--gold-dark);
+    }
+
+    .hero__title-line {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 20px auto;
+    }
+
+    .hero__oab {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--charcoal);
+      color: var(--cream);
+      padding: 8px 20px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero__tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(18px, 2.5vw, 26px);
+      color: var(--text-sec);
+      line-height: 1.5;
+      margin-bottom: 44px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero__scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+      animation: scrollBounce 2.4s ease-in-out infinite;
+    }
+
+    .hero__scroll-hint span {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ===================================================
+       3. ÁREAS DE ATUAÇÃO
+    =================================================== */
+    .areas {
+      width: 100%;
+      background: var(--white);
+      padding: var(--section-pad);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 4vw, 58px);
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--text-sec);
+      line-height: 1.7;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .areas__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .area-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 40px 32px;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .area-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+
+    .area-card:hover {
+      box-shadow: 0 12px 48px rgba(44, 42, 38, 0.1);
+      transform: translateY(-4px);
+    }
+
+    .area-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .area-card__icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 24px;
+      color: var(--gold-dark);
+    }
+
+    .area-card__title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .area-card__text {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--text-sec);
+      line-height: 1.7;
+    }
+
+    /* ===================================================
+       4. SOBRE
+    =================================================== */
+    .sobre {
+      width: 100%;
+      background: var(--cream);
+      padding: var(--section-pad);
+    }
+
+    .sobre__inner {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sobre__photo-wrap {
+      position: relative;
+    }
+
+    .sobre__photo-frame {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sobre__photo-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(201,169,110,0.15) 0%, transparent 60%);
+      z-index: 1;
+    }
+
+    .sobre__photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #E8E2D9 0%, #D4CCC0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sobre__photo-placeholder svg {
+      width: 80px;
+      height: 80px;
+      color: var(--text-sec);
+      opacity: 0.4;
+    }
+
+    .sobre__deco-frame {
+      position: absolute;
+      top: -16px;
+      left: -16px;
+      right: 16px;
+      bottom: -16px;
+      border: 1.5px solid var(--gold);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .sobre__content {
+      position: relative;
+    }
+
+    .sobre__name {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 3.5vw, 52px);
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .sobre__role {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 32px;
+    }
+
+    .sobre__bio {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--charcoal-mid);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .sobre__credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .credential {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .credential__icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .credential__icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--white);
+    }
+
+    .credential__text h4 {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 2px;
+    }
+
+    .credential__text p {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-sec);
+    }
+
+    /* ===================================================
+       5. NÚMEROS
+    =================================================== */
+    .numeros {
+      width: 100%;
+      background: var(--charcoal);
+      padding: var(--section-pad);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .numeros::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(201,169,110,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 50%, rgba(201,169,110,0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .numeros__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+    }
+
+    .numeros__header {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .numeros__header .section-title {
+      color: var(--cream);
+    }
+
+    .numeros__header .section-subtitle {
+      color: rgba(248,245,240,0.5);
+    }
+
+    .stat {
+      text-align: center;
+      padding: 0 40px;
+      position: relative;
+    }
+
+    .stat + .stat::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    }
+
+    .stat__number {
+      font-family: var(--font-serif);
+      font-size: clamp(64px, 6vw, 96px);
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .stat__suffix {
+      font-size: 0.55em;
+      vertical-align: super;
+      color: var(--gold-dark);
+    }
+
+    .stat__label {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(248,245,240,0.5);
+    }
+
+    /* ===================================================
+       6. DEPOIMENTOS
+    =================================================== */
+    .depoimentos {
+      width: 100%;
+      background: var(--white);
+      padding: var(--section-pad);
+    }
+
+    .depoimentos__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 36px;
+    }
+
+    .testimonial {
+      background: var(--cream);
+      padding: 44px 40px;
+      position: relative;
+    }
+
+    .testimonial__quote-mark {
+      font-family: var(--font-serif);
+      font-size: 96px;
+      line-height: 0.6;
+      color: var(--gold);
+      opacity: 0.25;
+      position: absolute;
+      top: 28px;
+      left: 32px;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .testimonial__text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: clamp(18px, 2vw, 22px);
+      color: var(--charcoal);
+      line-height: 1.65;
+      margin-bottom: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testimonial__author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+
+    .testimonial__avatar {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .testimonial__avatar span {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .testimonial__author-info h4 {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+
+    .testimonial__author-info span {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--text-sec);
+    }
+
+    .testimonial__stars {
+      margin-left: auto;
+      display: flex;
+      gap: 3px;
+    }
+
+    .testimonial__stars svg {
+      width: 14px;
+      height: 14px;
+      color: var(--gold);
+    }
+
+    /* ===================================================
+       7. PROCESSO
+    =================================================== */
+    .processo {
+      width: 100%;
+      background: var(--cream);
+      padding: var(--section-pad);
+    }
+
+    .processo__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      margin-top: 64px;
+    }
+
+    .processo-step {
+      text-align: center;
+    }
+
+    .processo-step__numeral {
+      font-family: var(--font-serif);
+      font-size: clamp(64px, 6vw, 96px);
+      font-weight: 700;
+      color: var(--gold);
+      opacity: 0.35;
+      line-height: 1;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .processo-step__icon {
+      width: 56px;
+      height: 56px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+
+    .processo-step__icon svg {
+      width: 24px;
+      height: 24px;
+      color: var(--gold-dark);
+    }
+
+    .processo-step__title {
+      font-family: var(--font-serif);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--charcoal);
+      margin-bottom: 12px;
+    }
+
+    .processo-step__text {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      color: var(--text-sec);
+      line-height: 1.75;
+    }
+
+    .processo__connector {
+      display: none;
+    }
+
+    /* ===================================================
+       8. CONTATO
+    =================================================== */
+    .contato {
+      width: 100%;
+      background: var(--charcoal);
+      padding: var(--section-pad);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contato::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 80%, rgba(201,169,110,0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 20%, rgba(201,169,110,0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .contato__inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contato .section-title { color: var(--cream); }
+    .contato .section-subtitle { color: rgba(248,245,240,0.5); }
+
+    .contato__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 64px;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 44px 36px;
+      text-align: center;
+      transition: all 0.35s ease;
+    }
+
+    .contact-card:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(201,169,110,0.35);
+      transform: translateY(-4px);
+    }
+
+    .contact-card__icon {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .contact-card__icon svg {
+      width: 24px;
+      height: 24px;
+      color: var(--white);
+    }
+
+    .contact-card__type {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .contact-card__value {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .contact-card__detail {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: rgba(248,245,240,0.45);
+      margin-bottom: 28px;
+    }
+
+    .contact-card a.btn {
+      font-size: 11px;
+      padding: 11px 24px;
+    }
+
+    /* ===================================================
+       9. FOOTER
+    =================================================== */
+    .footer {
+      width: 100%;
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      padding: 64px 24px 40px;
+    }
+
+    .footer__inner {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 48px;
+    }
+
+    .footer__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer__monogram {
+      width: 48px;
+      height: 48px;
+      border: 1.5px solid var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer__monogram span {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold-dark);
+    }
+
+    .footer__brand-text h3 {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--charcoal);
+    }
+
+    .footer__brand-text p {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+    }
+
+    .footer__brand-desc {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-sec);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer__center {
+      text-align: center;
+    }
+
+    .footer__divider-v {
+      width: 1px;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+      margin: 0 auto 24px;
+    }
+
+    .footer__oab-badge {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer__oab-badge svg {
+      width: 28px;
+      height: 28px;
+      color: var(--gold-dark);
+    }
+
+    .footer__links {
+      text-align: right;
+    }
+
+    .footer__links h4 {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+    }
+
+    .footer__links ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__links ul li a {
+      font-family: var(--font-sans);
+      font-size: 13px;
+      color: var(--text-sec);
+      transition: color 0.2s;
+    }
+
+    .footer__links ul li a:hover {
+      color: var(--gold-dark);
+    }
+
+    .footer__bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer__copyright {
+      font-family: var(--font-sans);
+      font-size: 12px;
+      color: var(--text-sec);
+    }
+
+    .footer__disclaimer {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      color: rgba(140,122,107,0.6);
+      text-align: right;
+      max-width: 400px;
+    }
+
+    /* ===================================================
+       MOBILE MENU
+    =================================================== */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      width: 100%;
+      background: rgba(248, 245, 240, 0.98);
+      border-bottom: 1px solid var(--border);
+      z-index: 998;
+      padding: 28px 24px;
+      flex-direction: column;
+      gap: 20px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .mobile-menu.open { display: flex; }
+
+    .mobile-menu a {
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+    }
+
+    .mobile-menu .btn {
+      align-self: flex-start;
+      margin-top: 8px;
+    }
+
+    /* ===================================================
+       RESPONSIVE — TABLET (≤ 1024px)
+    =================================================== */
+    @media (max-width: 1024px) {
+      :root {
+        --section-pad: 80px 24px;
+      }
+
+      .sobre__inner {
+        grid-template-columns: 340px 1fr;
+        gap: 56px;
+      }
+
+      .areas__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* ===================================================
+       RESPONSIVE — TABLET PORTRAIT (≤ 768px)
+    =================================================== */
+    @media (max-width: 768px) {
+      :root {
+        --section-pad: 64px 20px;
+      }
+
+      .navbar__nav { display: none; }
+      .navbar__cta.desktop-only { display: none; }
+      .navbar__toggle { display: flex; }
+
+      .sobre__inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .sobre__photo-wrap {
+        max-width: 360px;
+        margin: 0 auto;
+      }
+
+      .areas__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .numeros__inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .numeros__inner .numeros__header {
+        grid-column: 1;
+      }
+
+      .stat + .stat::before { display: none; }
+
+      .depoimentos__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .processo__grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contato__grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .footer__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer__brand { align-items: center; }
+      .footer__brand-desc { max-width: none; text-align: center; }
+      .footer__links { text-align: center; }
+      .footer__links ul { align-items: center; }
+      .footer__divider-v { display: none; }
+      .footer__center { order: -1; }
+
+      .footer__bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer__disclaimer { text-align: center; max-width: none; }
+    }
+
+    /* ===================================================
+       RESPONSIVE — MOBILE (≤ 480px)
+    =================================================== */
+    @media (max-width: 480px) {
+      :root {
+        --section-pad: 56px 16px;
+      }
+
+      .container { padding: 0 16px; }
+
+      .hero { padding: 0 16px; }
+
+      .areas__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .area-card { padding: 32px 24px; }
+
+      .testimonial { padding: 32px 24px; }
+
+      .contact-card { padding: 36px 24px; }
+
+      .hero__actions { flex-direction: column; align-items: center; }
+      .hero__actions .btn { width: 100%; justify-content: center; max-width: 280px; }
+
+      .sobre__photo-wrap { max-width: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================================================
+       NAVBAR
+  =================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <div class="navbar__inner">
+        <a href="#inicio" class="navbar__logo">
+          <div class="navbar__monogram">
+            <span>A</span>
+          </div>
+          <div class="navbar__name">
+            <span class="navbar__name-main">Albuquerque &amp; Souza</span>
+            <span class="navbar__name-sub">Advocacia Civil &amp; Criminal</span>
+          </div>
+        </a>
+
+        <nav class="navbar__nav" aria-label="Navegação principal">
+          <a href="#areas">Áreas</a>
+          <a href="#sobre">O Escritório</a>
+          <a href="#processo">Processo</a>
+          <a href="#depoimentos">Clientes</a>
+          <a href="#contato">Contato</a>
+        </nav>
+
+        <a href="https://wa.me/5511999999999" class="btn btn-gold navbar__cta desktop-only" aria-label="Agendar consulta">
+          Agendar Consulta
+        </a>
+
+        <button class="navbar__toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menu Mobile -->
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+    <a href="#areas" class="mobile-nav-link">Áreas de Atuação</a>
+    <a href="#sobre" class="mobile-nav-link">O Escritório</a>
+    <a href="#processo" class="mobile-nav-link">Como Trabalhamos</a>
+    <a href="#depoimentos" class="mobile-nav-link">Depoimentos</a>
+    <a href="#contato" class="mobile-nav-link">Contato</a>
+    <a href="https://wa.me/5511999999999" class="btn btn-gold">Agendar Consulta</a>
+  </nav>
+
+  <main>
+
+    <!-- ===================================================
+         HERO
+    =================================================== -->
+    <section class="hero" id="inicio" aria-label="Apresentação do escritório">
+      <div class="hero__marble-bg" aria-hidden="true"></div>
+      <div class="hero__marble-lines" aria-hidden="true"></div>
+      <div class="hero__deco-monogram" aria-hidden="true">AS</div>
+
+      <div class="hero__content">
+        <div class="hero__eyebrow fade-up">
+          Excelência Jurídica
+        </div>
+
+        <h1 class="hero__name fade-up delay-1">
+          Albuquerque
+          <span>&amp; Souza</span>
+        </h1>
+
+        <div class="hero__title-line fade-up delay-2" aria-hidden="true"></div>
+
+        <div class="hero__oab fade-up delay-2">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          OAB/SP 123.456 &bull; Advocacia de Alto Padrão
+        </div>
+
+        <p class="hero__tagline fade-up delay-3">
+          Assessoria jurídica especializada em Direito Civil e Criminal.<br />
+          Ética, discrição e resultados que transformam vidas.
+        </p>
+
+        <div class="hero__actions fade-up delay-4">
+          <a href="https://wa.me/5511999999999" class="btn btn-gold">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Agendar Consulta
+          </a>
+          <a href="#areas" class="btn btn-outline">
+            Nossas Especialidades
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__scroll-hint" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        <span>Rolar</span>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         ÁREAS DE ATUAÇÃO
+    =================================================== -->
+    <section class="areas" id="areas" aria-labelledby="areas-title">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="section-label">Especialidades</span>
+          <div class="gold-divider"></div>
+          <h2 class="section-title" id="areas-title">Áreas de Atuação</h2>
+          <p class="section-subtitle">Atuação estratégica e personalizada nas principais frentes do Direito, com profundidade técnica e comprometimento humano.</p>
+        </div>
+
+        <div class="areas__grid">
+
+          <article class="area-card fade-up delay-1">
+            <div class="area-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="area-card__title">Direito Civil</h3>
+            <p class="area-card__text">Contratos, responsabilidade civil, cobranças, revisão contratual e todas as demandas que envolvem relações entre particulares com alto rigor técnico.</p>
+          </article>
+
+          <article class="area-card fade-up delay-2">
+            <div class="area-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+            </div>
+            <h3 class="area-card__title">Direito Penal</h3>
+            <p class="area-card__text">Defesa técnica em inquéritos, processos criminais, habeas corpus, prisões ilegais e proteção dos direitos fundamentais com estratégia robusta.</p>
+          </article>
+
+          <article class="area-card fade-up delay-3">
+            <div class="area-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="area-card__title">Direito de Família</h3>
+            <p class="area-card__text">Divórcio, guarda de filhos, pensão alimentícia, reconhecimento de paternidade e mediação familiar com sensibilidade e precisão jurídica.</p>
+          </article>
+
+          <article class="area-card fade-up delay-4">
+            <div class="area-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <h3 class="area-card__title">Direito Sucessório</h3>
+            <p class="area-card__text">Planejamento patrimonial, testamentos, inventários, partilha de bens e proteção do legado familiar com visão estratégica e personalizada.</p>
+          </article>
+
+          <article class="area-card fade-up delay-5">
+            <div class="area-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3 class="area-card__title">Direito Imobiliário</h3>
+            <p class="area-card__text">Compra, venda, locação, usucapião, regularização de imóveis e contratos imobiliários com due diligence completa e segurança jurídica.</p>
+          </article>
+
+          <article class="area-card fade-up delay-6">
+            <div class="area-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <h3 class="area-card__title">Divórcio &amp; Inventário</h3>
+            <p class="area-card__text">Procedimentos extrajudiciais e judiciais de divórcio e inventário com agilidade, discrição e proteção integral dos interesses do cliente.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         SOBRE O ESCRITÓRIO
+    =================================================== -->
+    <section class="sobre" id="sobre" aria-labelledby="sobre-title">
+      <div class="container">
+        <div class="sobre__inner">
+          <div class="sobre__photo-wrap fade-up">
+            <div class="sobre__deco-frame" aria-hidden="true"></div>
+            <div class="sobre__photo-frame">
+              <div class="sobre__photo-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="sobre__content fade-up delay-2">
+            <span class="section-label">O Escritório</span>
+            <div class="gold-divider left"></div>
+            <h2 class="sobre__name" id="sobre-title">Dr. Rafael Albuquerque</h2>
+            <p class="sobre__role">Advogado &bull; OAB/SP 123.456 &bull; 18 anos de experiência</p>
+
+            <p class="sobre__bio">
+              Fundado em 2006, o escritório Albuquerque &amp; Souza construiu sua reputação sobre três pilares inegociáveis: excelência técnica, ética absoluta e compromisso inabalável com cada cliente. Com sede em São Paulo, atendemos clientes em todo o território nacional, oferecendo soluções jurídicas personalizadas que respeitam a complexidade de cada caso e a dignidade de cada pessoa.
+            </p>
+            <p class="sobre__bio">
+              Nossa equipe é formada por advogados especializados, cada qual com formação de excelência nas mais relevantes instituições jurídicas do país e do exterior, prontos para desenvolver estratégias precisas nos mais diversos ramos do Direito.
+            </p>
+
+            <div class="sobre__credentials">
+              <div class="credential">
+                <div class="credential__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <div class="credential__text">
+                  <h4>Pós-graduado em Direito Processual Civil</h4>
+                  <p>PUC-SP — 2008 &bull; Extensão pela Universidade de Lisboa</p>
+                </div>
+              </div>
+              <div class="credential">
+                <div class="credential__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+                <div class="credential__text">
+                  <h4>Membro da Comissão de Direito Penal</h4>
+                  <p>OAB/SP — Secção São Paulo desde 2012</p>
+                </div>
+              </div>
+              <div class="credential">
+                <div class="credential__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                </div>
+                <div class="credential__text">
+                  <h4>Reconhecido pelo Chambers Latin America</h4>
+                  <p>Ranking de Advocacia de Alto Padrão — 2020, 2022 e 2024</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         NÚMEROS
+    =================================================== -->
+    <section class="numeros" aria-label="Resultados e números do escritório">
+      <div class="container">
+        <div class="numeros__inner">
+          <div class="numeros__header fade-up">
+            <span class="section-label" style="color: var(--gold);">Resultados</span>
+            <div class="gold-divider"></div>
+            <h2 class="section-title">Nossos Números Falam</h2>
+            <p class="section-subtitle">Décadas de dedicação transformadas em resultados concretos para nossos clientes.</p>
+          </div>
+
+          <div class="stat fade-up delay-1">
+            <div class="stat__number">18<span class="stat__suffix">+</span></div>
+            <div class="stat__label">Anos de Experiência</div>
+          </div>
+
+          <div class="stat fade-up delay-2">
+            <div class="stat__number">2.400<span class="stat__suffix">+</span></div>
+            <div class="stat__label">Casos Concluídos</div>
+          </div>
+
+          <div class="stat fade-up delay-3">
+            <div class="stat__number">97<span class="stat__suffix">%</span></div>
+            <div class="stat__label">Índice de Satisfação</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         DEPOIMENTOS
+    =================================================== -->
+    <section class="depoimentos" id="depoimentos" aria-labelledby="depoimentos-title">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="section-label">Depoimentos</span>
+          <div class="gold-divider"></div>
+          <h2 class="section-title" id="depoimentos-title">O Que Dizem Nossos Clientes</h2>
+          <p class="section-subtitle">A confiança dos nossos clientes é o maior reconhecimento do nosso trabalho.</p>
+        </div>
+
+        <div class="depoimentos__grid">
+
+          <blockquote class="testimonial fade-up delay-1">
+            <div class="testimonial__quote-mark" aria-hidden="true">"</div>
+            <p class="testimonial__text">
+              "A competência e o profissionalismo do Dr. Rafael foram decisivos para o desfecho favorável do meu processo. Em um momento de enorme pressão, tive ao meu lado um advogado que me transmitiu segurança e clareza em cada etapa."
+            </p>
+            <footer class="testimonial__author">
+              <div class="testimonial__avatar" aria-hidden="true"><span>M</span></div>
+              <div class="testimonial__author-info">
+                <h4>Marcelo T.</h4>
+                <span>Empresário — São Paulo/SP</span>
+              </div>
+              <div class="testimonial__stars" aria-label="5 estrelas">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial fade-up delay-2">
+            <div class="testimonial__quote-mark" aria-hidden="true">"</div>
+            <p class="testimonial__text">
+              "Contratei o escritório para conduzir o inventário da minha família, um processo delicado e repleto de nuances. A equipe foi impecável: pontual, transparente e extremamente eficiente. Recomendo sem reservas."
+            </p>
+            <footer class="testimonial__author">
+              <div class="testimonial__avatar" aria-hidden="true"><span>C</span></div>
+              <div class="testimonial__author-info">
+                <h4>Carla F.</h4>
+                <span>Médica — Campinas/SP</span>
+              </div>
+              <div class="testimonial__stars" aria-label="5 estrelas">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial fade-up delay-3">
+            <div class="testimonial__quote-mark" aria-hidden="true">"</div>
+            <p class="testimonial__text">
+              "Passamos por um divórcio litigioso de alta complexidade. O Dr. Rafael conduziu tudo com extrema habilidade, protegendo meus direitos e os dos meus filhos. Profissional raro — une a ciência jurídica à humanidade."
+            </p>
+            <footer class="testimonial__author">
+              <div class="testimonial__avatar" aria-hidden="true"><span>A</span></div>
+              <div class="testimonial__author-info">
+                <h4>Amanda L.</h4>
+                <span>Professora — Santos/SP</span>
+              </div>
+              <div class="testimonial__stars" aria-label="5 estrelas">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+            </footer>
+          </blockquote>
+
+          <blockquote class="testimonial fade-up delay-4">
+            <div class="testimonial__quote-mark" aria-hidden="true">"</div>
+            <p class="testimonial__text">
+              "Minha empresa enfrentou uma disputa contratual de grande monta. A estratégia do escritório foi cirúrgica. Obtivemos resultado favorável em primeira instância, poupando anos de litígio. Parceria que vale ouro."
+            </p>
+            <footer class="testimonial__author">
+              <div class="testimonial__avatar" aria-hidden="true"><span>R</span></div>
+              <div class="testimonial__author-info">
+                <h4>Roberto M.</h4>
+                <span>CEO — Grupo Industrial / SP</span>
+              </div>
+              <div class="testimonial__stars" aria-label="5 estrelas">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+            </footer>
+          </blockquote>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         PROCESSO DE TRABALHO
+    =================================================== -->
+    <section class="processo" id="processo" aria-labelledby="processo-title">
+      <div class="container">
+        <div class="section-header fade-up">
+          <span class="section-label">Metodologia</span>
+          <div class="gold-divider"></div>
+          <h2 class="section-title" id="processo-title">Como Trabalhamos</h2>
+          <p class="section-subtitle">Um processo estruturado, transparente e centrado no cliente — do primeiro contato à resolução definitiva.</p>
+        </div>
+
+        <div class="processo__grid">
+
+          <div class="processo-step fade-up delay-1">
+            <div class="processo-step__numeral" aria-hidden="true">I</div>
+            <div class="processo-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3 class="processo-step__title">Consulta Inicial</h3>
+            <p class="processo-step__text">Reunião sigilosa e sem compromisso para compreensão aprofundada do caso. Ouvimos com atenção total, fazemos as perguntas certas e estabelecemos uma relação de confiança desde o primeiro momento.</p>
+          </div>
+
+          <div class="processo-step fade-up delay-2">
+            <div class="processo-step__numeral" aria-hidden="true">II</div>
+            <div class="processo-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+            <h3 class="processo-step__title">Análise &amp; Estratégia</h3>
+            <p class="processo-step__text">Estudo minucioso dos fatos, documentos e legislação aplicável. Desenvolvemos a estratégia mais eficaz para cada situação, com clareza sobre riscos, prazos e possibilidades concretas de êxito.</p>
+          </div>
+
+          <div class="processo-step fade-up delay-3">
+            <div class="processo-step__numeral" aria-hidden="true">III</div>
+            <div class="processo-step__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3 class="processo-step__title">Execução &amp; Acompanhamento</h3>
+            <p class="processo-step__text">Atuação técnica de alto nível com acompanhamento próximo e comunicação constante. O cliente é informado de cada movimentação processual, sem surpresas — apenas resultados.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================
+         CONTATO
+    =================================================== -->
+    <section class="contato" id="contato" aria-labelledby="contato-title">
+      <div class="container">
+        <div class="contato__inner">
+          <div class="section-header fade-up">
+            <span class="section-label" style="color: var(--gold);">Entre em Contato</span>
+            <div class="gold-divider"></div>
+            <h2 class="section-title" id="contato-title">Fale Conosco</h2>
+            <p class="section-subtitle">Sua situação merece atenção imediata. Entre em contato agora e agende sua consulta sigilosa.</p>
+          </div>
+
+          <div class="contato__grid">
+
+            <div class="contact-card fade-up delay-1">
+              <div class="contact-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 5.27 5.27l1.11-1.84a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21 14.14v.08"/></svg>
+              </div>
+              <p class="contact-card__type">WhatsApp</p>
+              <p class="contact-card__value">(11) 99999-9999</p>
+              <p class="contact-card__detail">Atendimento de seg. a sex., das 8h às 19h</p>
+              <a href="https://wa.me/5511999999999" class="btn btn-outline-gold" target="_blank" rel="noopener noreferrer">
+                Iniciar Conversa
+              </a>
+            </div>
+
+            <div class="contact-card fade-up delay-2">
+              <div class="contact-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg>
+              </div>
+              <p class="contact-card__type">E-mail</p>
+              <p class="contact-card__value">contato@albuquerquesouza.adv.br</p>
+              <p class="contact-card__detail">Respondemos em até 24 horas úteis</p>
+              <a href="mailto:contato@albuquerquesouza.adv.br" class="btn btn-outline-gold">
+                Enviar E-mail
+              </a>
+            </div>
+
+            <div class="contact-card fade-up delay-3">
+              <div class="contact-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <p class="contact-card__type">Endereço</p>
+              <p class="contact-card__value">Av. Paulista, 1000<br/>Conj. 210 — Bela Vista</p>
+              <p class="contact-card__detail">São Paulo/SP — CEP 01310-100</p>
+              <a href="https://maps.google.com" class="btn btn-outline-gold" target="_blank" rel="noopener noreferrer">
+                Ver no Mapa
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================
+       FOOTER
+  =================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <div class="footer__monogram" aria-hidden="true">
+              <span>AS</span>
+            </div>
+            <div class="footer__brand-text">
+              <h3>Albuquerque &amp; Souza</h3>
+              <p>Advocacia Civil &amp; Criminal</p>
+            </div>
+          </div>
+          <p class="footer__brand-desc">
+            Assessoria jurídica de alto padrão há mais de 18 anos. Ética, discrição e resultados que transformam vidas.
+          </p>
+        </div>
+
+        <div class="footer__center">
+          <div class="footer__divider-v" aria-hidden="true"></div>
+          <div class="footer__oab-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            OAB/SP 123.456
+          </div>
+        </div>
+
+        <nav class="footer__links" aria-label="Links do rodapé">
+          <h4>Navegação</h4>
+          <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#areas">Áreas de Atuação</a></li>
+            <li><a href="#sobre">O Escritório</a></li>
+            <li><a href="#processo">Como Trabalhamos</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copyright">
+          &copy; 2024 Albuquerque &amp; Souza Advocacia. Todos os direitos reservados.
+        </p>
+        <p class="footer__disclaimer">
+          As informações contidas neste site têm caráter meramente informativo e não constituem consultoria jurídica. A contratação de advogado pressupõe análise específica do caso concreto.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================
+       JAVASCRIPT
+  =================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ---- Navbar scroll ---- */
+      const navbar = document.getElementById('navbar');
+      let lastScroll = 0;
+
+      window.addEventListener('scroll', function () {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 60) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+        lastScroll = currentScroll;
+      }, { passive: true });
+
+      /* ---- Mobile menu ---- */
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      menuToggle.addEventListener('click', function () {
+        const isOpen = mobileMenu.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+
+        const spans = menuToggle.querySelectorAll('span');
+        if (isOpen) {
+          spans[0].style.transform = 'translateY(6.5px) rotate(45deg)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'translateY(-6.5px) rotate(-45deg)';
+        } else {
+          spans[0].style.transform = '';
+          spans[1].style.opacity = '';
+          spans[2].style.transform = '';
+        }
+      });
+
+      mobileLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          mobileMenu.classList.remove('open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          const spans = menuToggle.querySelectorAll('span');
+          spans[0].style.transform = '';
+          spans[1].style.opacity = '';
+          spans[2].style.transform = '';
+        });
+      });
+
+      /* ---- IntersectionObserver fade-up ---- */
+      const fadeEls = document.querySelectorAll('.fade-up');
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.12,
+          rootMargin: '0px 0px -48px 0px'
+        });
+
+        fadeEls.forEach(function (el) {
+          observer.observe(el);
+        });
+      } else {
+        /* Fallback for browsers without IntersectionObserver */
+        fadeEls.forEach(function (el) {
+          el.classList.add('visible');
+        });
+      }
+
+      /* ---- Smooth active nav highlight ---- */
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.navbar__nav a');
+
+      function updateActiveNav() {
+        let current = '';
+        sections.forEach(function (section) {
+          const sectionTop = section.getBoundingClientRect().top;
+          if (sectionTop <= 100) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(function (link) {
+          link.style.color = '';
+          const href = link.getAttribute('href').replace('#', '');
+          if (href === current) {
+            link.style.color = 'var(--gold-dark)';
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNav, { passive: true });
+      updateActiveNav();
+
+      /* ---- Number counter animation ---- */
+      const stats = document.querySelectorAll('.stat__number');
+
+      function parseNumber(str) {
+        return parseFloat(str.replace(/[^0-9.]/g, ''));
+      }
+
+      function animateCounter(el) {
+        const originalText = el.textContent;
+        const suffixEl = el.querySelector('.stat__suffix');
+        const suffix = suffixEl ? suffixEl.textContent : '';
+        const target = parseNumber(originalText);
+        const hasDecimal = String(target).includes('.');
+        const duration = 1800;
+        const startTime = performance.now();
+
+        function update(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = target * eased;
+          const display = hasDecimal ? current.toFixed(1) : Math.round(current).toLocaleString('pt-BR');
+          el.textContent = display + suffix;
+          if (progress < 1) requestAnimationFrame(update);
+        }
+
+        requestAnimationFrame(update);
+      }
+
+      if ('IntersectionObserver' in window) {
+        const counterObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              counterObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+
+        stats.forEach(function (stat) {
+          counterObserver.observe(stat);
+        });
+      }
+
+    })();
+  </script>
+
+</body>
+</html>

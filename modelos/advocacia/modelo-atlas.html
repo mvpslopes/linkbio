@@ -1,0 +1,2215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dr. Rafael Monteiro — Advogado especializado em Direito Ambiental, Trabalhista e Direitos Humanos. OAB/SP 123.456. Agende sua consulta." />
+  <meta name="keywords" content="advogado ambiental, direito trabalhista, direitos humanos, OAB, advocacia, consulta jurídica" />
+  <meta name="author" content="Dr. Rafael Monteiro" />
+  <meta property="og:title" content="Dr. Rafael Monteiro — Advocacia Especializada" />
+  <meta property="og:description" content="Direito Ambiental, Trabalhista e Direitos Humanos. Causas que importam." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rafaelmonteiro.adv.br" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Dr. Rafael Monteiro — Advocacia Especializada</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* =========================================
+       RESET & BASE
+    ========================================= */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --verde-floresta:    #1B3A2D;
+      --verde-card:        #243D30;
+      --verde-medio:       #2E5040;
+      --verde-claro:       #7CB899;
+      --creme:             #F5EDD7;
+      --creme-escuro:      #EDE0C4;
+      --creme-suave:       #F9F4EA;
+      --branco:            #FFFFFF;
+      --texto-suave:       rgba(245, 237, 215, 0.75);
+      --sombra-card:       0 4px 24px rgba(0, 0, 0, 0.18);
+      --radius:            12px;
+      --radius-lg:         20px;
+      --transition:        0.35s ease;
+      --max-width:         1200px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      background-color: var(--verde-floresta);
+      color: var(--creme);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* =========================================
+       UTILITÁRIOS
+    ========================================= */
+    .container {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--verde-claro);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+
+    /* =========================================
+       ANIMAÇÕES FADE-UP
+    ========================================= */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5 { transition-delay: 0.5s; }
+
+    /* =========================================
+       NAVBAR
+    ========================================= */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: var(--verde-floresta);
+      border-bottom: 1px solid rgba(124, 184, 153, 0.15);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+
+    .navbar.scrolled {
+      background: rgba(27, 58, 45, 0.97);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+      backdrop-filter: blur(10px);
+    }
+
+    .navbar__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .navbar__logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .navbar__logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--verde-claro);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .navbar__logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar__logo-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--creme);
+      line-height: 1.1;
+    }
+
+    .navbar__logo-oab {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--verde-claro);
+      letter-spacing: 0.08em;
+    }
+
+    .navbar__links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .navbar__links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--creme-escuro);
+      transition: color var(--transition);
+      letter-spacing: 0.02em;
+    }
+
+    .navbar__links a:hover {
+      color: var(--verde-claro);
+    }
+
+    .navbar__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      background: var(--creme);
+      color: var(--verde-floresta);
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: background var(--transition), transform var(--transition);
+      white-space: nowrap;
+    }
+
+    .navbar__cta:hover {
+      background: var(--verde-claro);
+      transform: translateY(-1px);
+    }
+
+    .navbar__hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .navbar__hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--creme);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--verde-medio);
+      padding: 20px 40px 24px;
+      border-top: 1px solid rgba(124, 184, 153, 0.15);
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(124, 184, 153, 0.1);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--creme-escuro);
+      transition: color var(--transition);
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+      margin-top: 12px;
+      padding: 12px 22px;
+      text-align: center;
+      background: var(--creme);
+      color: var(--verde-floresta);
+      font-weight: 600;
+      border-radius: 6px;
+    }
+
+    /* =========================================
+       HERO
+    ========================================= */
+    .hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--verde-floresta);
+      overflow: hidden;
+      padding-top: 72px;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 70% at 60% 40%, rgba(124, 184, 153, 0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 80% at 15% 70%, rgba(36, 61, 48, 0.7) 0%, transparent 60%),
+        linear-gradient(160deg, #1B3A2D 0%, #162e24 55%, #0f2019 100%);
+      pointer-events: none;
+    }
+
+    .hero__grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 80px 40px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero__content {}
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid rgba(124, 184, 153, 0.4);
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--verde-claro);
+      margin-bottom: 28px;
+    }
+
+    .hero__badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--verde-claro);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero__name {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      color: var(--creme);
+      line-height: 1.0;
+      margin-bottom: 8px;
+    }
+
+    .hero__title {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      color: var(--verde-claro);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero__tagline {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.35rem);
+      color: var(--texto-suave);
+      line-height: 1.55;
+      max-width: 520px;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--verde-claro);
+      padding-left: 20px;
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 32px;
+      background: var(--creme);
+      color: var(--verde-floresta);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary:hover {
+      background: var(--verde-claro);
+      color: var(--verde-floresta);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124, 184, 153, 0.3);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 32px;
+      background: transparent;
+      color: var(--creme);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 8px;
+      border: 1.5px solid rgba(245, 237, 215, 0.4);
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--creme);
+      background: rgba(245, 237, 215, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .hero__visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .hero__photo-wrap {
+      position: relative;
+      width: 320px;
+      height: 320px;
+    }
+
+    .hero__photo-ring {
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(245, 237, 215, 0.3);
+    }
+
+    .hero__photo-ring-2 {
+      position: absolute;
+      inset: -24px;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 237, 215, 0.1);
+    }
+
+    .hero__photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--verde-medio);
+      border: 3px solid var(--creme-escuro);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero__photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      color: var(--verde-claro);
+      opacity: 0.6;
+    }
+
+    .hero__photo-placeholder span {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    .hero__oab {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      background: rgba(36, 61, 48, 0.8);
+      border: 1px solid rgba(124, 184, 153, 0.25);
+      border-radius: 40px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero__oab-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--verde-claro);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hero__oab-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero__oab-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--verde-claro);
+    }
+
+    .hero__oab-number {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--creme);
+    }
+
+    /* =========================================
+       ÁREAS DE ATUAÇÃO
+    ========================================= */
+    .areas {
+      width: 100%;
+      background: var(--verde-medio);
+      padding: 100px 0;
+    }
+
+    .areas__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .areas__header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .areas__title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--creme);
+      margin-bottom: 16px;
+    }
+
+    .areas__subtitle {
+      font-size: 1.05rem;
+      color: var(--texto-suave);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .areas__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .area-card {
+      background: var(--verde-card);
+      border: 1px solid rgba(245, 237, 215, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+
+    .area-card:hover {
+      border-color: rgba(124, 184, 153, 0.4);
+      transform: translateY(-4px);
+      box-shadow: var(--sombra-card);
+    }
+
+    .area-card__icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(124, 184, 153, 0.12);
+      border: 1px solid rgba(124, 184, 153, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      color: var(--verde-claro);
+      transition: background var(--transition);
+    }
+
+    .area-card:hover .area-card__icon {
+      background: rgba(124, 184, 153, 0.2);
+    }
+
+    .area-card__title {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--creme);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .area-card__desc {
+      font-size: 0.875rem;
+      color: var(--texto-suave);
+      line-height: 1.65;
+    }
+
+    /* =========================================
+       SOBRE
+    ========================================= */
+    .sobre {
+      width: 100%;
+      background: var(--verde-floresta);
+      padding: 100px 0;
+    }
+
+    .sobre__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sobre__content {}
+
+    .sobre__title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--creme);
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+
+    .sobre__text {
+      font-size: 1rem;
+      color: var(--texto-suave);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+
+    .sobre__bullets {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sobre__bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .sobre__bullet-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(124, 184, 153, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--verde-claro);
+    }
+
+    .sobre__bullet-text {
+      font-size: 0.9rem;
+      color: var(--texto-suave);
+      line-height: 1.55;
+    }
+
+    .sobre__visual {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sobre__stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-circle {
+      background: var(--verde-card);
+      border: 1px solid rgba(245, 237, 215, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      text-align: center;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .stat-circle:hover {
+      border-color: rgba(124, 184, 153, 0.3);
+      transform: translateY(-3px);
+    }
+
+    .stat-circle__number {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      color: var(--verde-claro);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-circle__label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--texto-suave);
+      letter-spacing: 0.03em;
+      line-height: 1.45;
+    }
+
+    .sobre__feature {
+      background: var(--verde-card);
+      border: 1px solid rgba(124, 184, 153, 0.15);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .sobre__feature-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(124, 184, 153, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--verde-claro);
+    }
+
+    .sobre__feature-text strong {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--creme);
+      margin-bottom: 3px;
+    }
+
+    .sobre__feature-text span {
+      font-size: 0.82rem;
+      color: var(--texto-suave);
+    }
+
+    /* =========================================
+       NÚMEROS
+    ========================================= */
+    .numeros {
+      width: 100%;
+      background: var(--creme);
+      padding: 90px 0;
+    }
+
+    .numeros__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+      text-align: center;
+    }
+
+    .numeros__tag {
+      color: var(--verde-floresta);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 48px;
+      display: block;
+    }
+
+    .numeros__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .numero-item {
+      padding: 20px;
+    }
+
+    .numero-item__value {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      color: var(--verde-floresta);
+      line-height: 1;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .numero-item__suffix {
+      font-size: 0.55em;
+      color: var(--verde-claro);
+    }
+
+    .numero-item__label {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--verde-floresta);
+      margin-bottom: 6px;
+    }
+
+    .numero-item__desc {
+      font-size: 0.85rem;
+      color: rgba(27, 58, 45, 0.6);
+      line-height: 1.5;
+    }
+
+    .numeros__divider {
+      width: 1px;
+      background: rgba(27, 58, 45, 0.15);
+      align-self: stretch;
+    }
+
+    /* =========================================
+       DEPOIMENTOS
+    ========================================= */
+    .depoimentos {
+      width: 100%;
+      background: var(--verde-card);
+      padding: 100px 0;
+    }
+
+    .depoimentos__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .depoimentos__header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .depoimentos__title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--creme);
+      margin-bottom: 12px;
+    }
+
+    .depoimentos__subtitle {
+      font-size: 1rem;
+      color: var(--texto-suave);
+    }
+
+    .depoimentos__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .depoimento-card {
+      background: var(--creme-suave);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      position: relative;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .depoimento-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .depoimento-card__quote {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      opacity: 0.15;
+      color: var(--verde-floresta);
+    }
+
+    .depoimento-card__stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+      color: var(--verde-floresta);
+    }
+
+    .depoimento-card__text {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--verde-floresta);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .depoimento-card__footer {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(27, 58, 45, 0.12);
+    }
+
+    .depoimento-card__avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--verde-medio);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--creme);
+      flex-shrink: 0;
+    }
+
+    .depoimento-card__author strong {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--verde-floresta);
+    }
+
+    .depoimento-card__author span {
+      font-size: 0.8rem;
+      color: rgba(27, 58, 45, 0.6);
+    }
+
+    /* =========================================
+       PROCESSO
+    ========================================= */
+    .processo {
+      width: 100%;
+      background: var(--verde-floresta);
+      padding: 100px 0;
+    }
+
+    .processo__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .processo__header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+
+    .processo__title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--creme);
+    }
+
+    .processo__steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .processo__connector {
+      position: absolute;
+      top: 48px;
+      left: calc(33.33% - 0px);
+      width: calc(33.33%);
+      height: 1px;
+      background: linear-gradient(90deg, rgba(124, 184, 153, 0.5), rgba(124, 184, 153, 0.2));
+      transform: translateY(-50%);
+    }
+
+    .processo__connector:last-of-type {
+      left: calc(66.66%);
+    }
+
+    .step-item {
+      padding: 0 32px;
+      text-align: center;
+      position: relative;
+    }
+
+    .step-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 46px;
+      right: -1px;
+      width: calc(100% - 96px);
+      left: 50%;
+      height: 1px;
+      background: rgba(124, 184, 153, 0.25);
+      z-index: 0;
+    }
+
+    .step-item__icon-wrap {
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 24px;
+      background: var(--verde-card);
+      border: 2px solid rgba(124, 184, 153, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      color: var(--verde-claro);
+      transition: border-color var(--transition), background var(--transition);
+    }
+
+    .step-item:hover .step-item__icon-wrap {
+      border-color: var(--verde-claro);
+      background: rgba(124, 184, 153, 0.1);
+    }
+
+    .step-item__number {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 24px;
+      height: 24px;
+      background: var(--verde-claro);
+      border-radius: 50%;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--verde-floresta);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step-item__title {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--creme);
+      margin-bottom: 10px;
+    }
+
+    .step-item__desc {
+      font-size: 0.875rem;
+      color: var(--texto-suave);
+      line-height: 1.65;
+    }
+
+    /* =========================================
+       CONTATO
+    ========================================= */
+    .contato {
+      width: 100%;
+      background: var(--verde-medio);
+      padding: 100px 0;
+    }
+
+    .contato__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .contato__header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .contato__title {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      color: var(--creme);
+      margin-bottom: 16px;
+    }
+
+    .contato__subtitle {
+      font-size: 1.05rem;
+      color: var(--texto-suave);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .contato__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 56px;
+    }
+
+    .contato-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      padding: 32px 20px;
+      background: var(--verde-card);
+      border: 1px solid rgba(245, 237, 215, 0.12);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      transition: border-color var(--transition), transform var(--transition), background var(--transition);
+      cursor: pointer;
+    }
+
+    .contato-btn:hover {
+      border-color: rgba(245, 237, 215, 0.35);
+      transform: translateY(-4px);
+      background: rgba(36, 61, 48, 0.9);
+    }
+
+    .contato-btn__icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform var(--transition);
+    }
+
+    .contato-btn:hover .contato-btn__icon {
+      transform: scale(1.08);
+    }
+
+    .contato-btn__icon--whatsapp { background: rgba(37, 211, 102, 0.12); color: #25D366; }
+    .contato-btn__icon--email    { background: rgba(124, 184, 153, 0.12); color: var(--verde-claro); }
+    .contato-btn__icon--instagram { background: rgba(225, 100, 100, 0.1); color: #E06060; }
+
+    .contato-btn__label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--verde-claro);
+    }
+
+    .contato-btn__title {
+      font-family: 'Fraunces', serif;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: var(--creme);
+    }
+
+    .contato-btn__value {
+      font-size: 0.85rem;
+      color: var(--texto-suave);
+    }
+
+    .contato__info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(245, 237, 215, 0.1);
+      flex-wrap: wrap;
+    }
+
+    .contato__info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--texto-suave);
+      font-size: 0.875rem;
+    }
+
+    .contato__info-item svg {
+      color: var(--verde-claro);
+      flex-shrink: 0;
+    }
+
+    .contato__sep {
+      width: 1px;
+      height: 24px;
+      background: rgba(245, 237, 215, 0.15);
+    }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    .footer {
+      width: 100%;
+      background: #121f17;
+      padding: 60px 0 36px;
+    }
+
+    .footer__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(245, 237, 215, 0.08);
+      margin-bottom: 32px;
+    }
+
+    .footer__brand {}
+
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .footer__logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--verde-claro);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer__logo-name {
+      font-family: 'Fraunces', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--creme);
+    }
+
+    .footer__tagline {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--texto-suave);
+      line-height: 1.55;
+      margin-bottom: 16px;
+    }
+
+    .footer__oab-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border: 1px solid rgba(124, 184, 153, 0.25);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--verde-claro);
+      letter-spacing: 0.06em;
+    }
+
+    .footer__col-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--verde-claro);
+      margin-bottom: 18px;
+    }
+
+    .footer__links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer__links a {
+      font-size: 0.875rem;
+      color: var(--texto-suave);
+      transition: color var(--transition);
+    }
+
+    .footer__links a:hover {
+      color: var(--creme);
+    }
+
+    .footer__contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer__contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--texto-suave);
+    }
+
+    .footer__contact-item svg {
+      color: var(--verde-claro);
+      flex-shrink: 0;
+    }
+
+    .footer__bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer__copy {
+      font-size: 0.8rem;
+      color: rgba(245, 237, 215, 0.4);
+    }
+
+    .footer__legal {
+      font-size: 0.78rem;
+      color: rgba(245, 237, 215, 0.35);
+      text-align: right;
+      line-height: 1.5;
+    }
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+    @media (max-width: 1024px) {
+      .container,
+      .navbar__inner,
+      .hero__inner,
+      .areas__inner,
+      .sobre__inner,
+      .numeros__inner,
+      .depoimentos__inner,
+      .processo__inner,
+      .contato__inner,
+      .footer__inner {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .hero__inner {
+        grid-template-columns: 1fr 340px;
+        gap: 48px;
+      }
+
+      .hero__photo-wrap {
+        width: 270px;
+        height: 270px;
+      }
+
+      .areas__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer__top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar__links {
+        display: none;
+      }
+
+      .navbar__cta {
+        display: none;
+      }
+
+      .navbar__hamburger {
+        display: flex;
+      }
+
+      .hero__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 48px;
+        padding: 60px 24px;
+      }
+
+      .hero__tagline {
+        margin-left: auto;
+        margin-right: auto;
+        border-left: none;
+        padding-left: 0;
+        border-top: 2px solid var(--verde-claro);
+        padding-top: 16px;
+        padding-left: 0;
+      }
+
+      .hero__actions {
+        justify-content: center;
+      }
+
+      .hero__visual {
+        order: -1;
+      }
+
+      .hero__photo-wrap {
+        width: 220px;
+        height: 220px;
+      }
+
+      .areas__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .sobre__inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .numeros__grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .numeros__divider {
+        display: none;
+      }
+
+      .depoimentos__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .processo__steps {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .step-item::after {
+        display: none;
+      }
+
+      .contato__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contato__info {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+
+      .contato__sep {
+        display: none;
+      }
+
+      .footer__top {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer__bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer__legal {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .areas__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sobre__stats-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero__name {
+        font-size: 2.6rem;
+      }
+
+      .navbar__inner {
+        padding: 0 20px;
+      }
+
+      .mobile-menu {
+        padding: 16px 20px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner">
+      <a href="#" class="navbar__logo">
+        <div class="navbar__logo-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1B3A2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1v4M5.05 5.05l2.83 2.83M1 12h4M5.05 18.95l2.83-2.83M12 19v4M18.95 18.95l-2.83-2.83M23 12h-4M18.95 5.05l-2.83 2.83"/>
+          </svg>
+        </div>
+        <div class="navbar__logo-text">
+          <span class="navbar__logo-name">Dr. Rafael Monteiro</span>
+          <span class="navbar__logo-oab">OAB/SP 123.456</span>
+        </div>
+      </a>
+
+      <nav class="navbar__links">
+        <a href="#areas">Áreas</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#processo">Como Funciona</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <a href="https://wa.me/5511999999999" class="navbar__cta" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Falar com Especialista
+      </a>
+
+      <button class="navbar__hamburger" id="hamburger" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+    <nav class="mobile-menu" id="mobile-menu">
+      <a href="#areas" onclick="closeMobileMenu()">Áreas de Atuação</a>
+      <a href="#sobre" onclick="closeMobileMenu()">Sobre</a>
+      <a href="#depoimentos" onclick="closeMobileMenu()">Depoimentos</a>
+      <a href="#processo" onclick="closeMobileMenu()">Como Funciona</a>
+      <a href="#contato" onclick="closeMobileMenu()">Contato</a>
+      <a href="https://wa.me/5511999999999" target="_blank" rel="noopener">Falar com Especialista</a>
+    </nav>
+  </header>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="inicio">
+    <div class="hero__bg"></div>
+    <div class="hero__grain"></div>
+
+    <div class="hero__inner">
+      <div class="hero__content fade-up">
+        <div class="hero__badge">
+          <div class="hero__badge-dot"></div>
+          Advocacia Especializada
+        </div>
+
+        <h1 class="hero__name">Dr. Rafael<br>Monteiro</h1>
+        <p class="hero__title">Direito Ambiental &amp; Trabalhista</p>
+
+        <p class="hero__tagline">
+          "Acreditamos que o direito é um instrumento de transformação. Cada causa é tratada com a seriedade que a justiça exige."
+        </p>
+
+        <div class="hero__actions">
+          <a href="https://wa.me/5511999999999" class="btn-primary" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+            Agendar Consulta
+          </a>
+          <a href="#sobre" class="btn-outline">
+            Conhecer o escritório
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__visual fade-up delay-2">
+        <div class="hero__photo-wrap">
+          <div class="hero__photo-ring"></div>
+          <div class="hero__photo-ring-2"></div>
+          <div class="hero__photo">
+            <!-- Substitua por: <img src="foto-dr-rafael.jpg" alt="Dr. Rafael Monteiro" /> -->
+            <div class="hero__photo-placeholder">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <span>Foto do<br>Advogado</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__oab">
+          <div class="hero__oab-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1B3A2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <div class="hero__oab-text">
+            <span class="hero__oab-label">Registro</span>
+            <span class="hero__oab-number">OAB/SP 123.456</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ÁREAS DE ATUAÇÃO ==================== -->
+  <section class="areas" id="areas">
+    <div class="areas__inner">
+      <div class="areas__header">
+        <span class="section-tag fade-up">Especialidades</span>
+        <h2 class="section-title areas__title fade-up delay-1">Áreas de Atuação</h2>
+        <p class="areas__subtitle fade-up delay-2">Defesa técnica qualificada nas causas que impactam pessoas, comunidades e o meio ambiente.</p>
+      </div>
+
+      <div class="areas__grid">
+        <!-- Card 1 -->
+        <div class="area-card fade-up delay-1">
+          <div class="area-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="area-card__title">Direito Ambiental</h3>
+          <p class="area-card__desc">Licenciamento ambiental, crimes ecológicos, responsabilidade civil ambiental e ações populares em defesa do meio ambiente.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="area-card fade-up delay-2">
+          <div class="area-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+            </svg>
+          </div>
+          <h3 class="area-card__title">Direito Trabalhista</h3>
+          <p class="area-card__desc">Reclamações trabalhistas, assédio moral e sexual, rescisão indireta, acidente de trabalho e negociações coletivas.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="area-card fade-up delay-3">
+          <div class="area-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3 class="area-card__title">Direitos Humanos</h3>
+          <p class="area-card__desc">Proteção de grupos vulneráveis, ações perante o sistema interamericano, dignidade da pessoa humana e liberdades fundamentais.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="area-card fade-up delay-1">
+          <div class="area-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <h3 class="area-card__title">Direito do Consumidor</h3>
+          <p class="area-card__desc">Defesa em relações de consumo, danos morais, práticas abusivas e tutela coletiva de consumidores lesados.</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="area-card fade-up delay-2">
+          <div class="area-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h3 class="area-card__title">Ações Coletivas</h3>
+          <p class="area-card__desc">Ação civil pública, ação popular, mandado de segurança coletivo e defesa de interesses difusos e coletivos.</p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="area-card fade-up delay-3">
+          <div class="area-card__icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <h3 class="area-card__title">Direito Previdenciário</h3>
+          <p class="area-card__desc">Aposentadoria especial, revisão de benefícios, auxílio-doença, pensão por morte e recursos junto ao INSS e Judiciário.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SOBRE ==================== -->
+  <section class="sobre" id="sobre">
+    <div class="sobre__inner">
+      <div class="sobre__content fade-up">
+        <span class="section-tag">Sobre o Escritório</span>
+        <h2 class="section-title sobre__title">Advocacia com propósito e rigor técnico</h2>
+
+        <p class="sobre__text">
+          Com mais de 12 anos de atuação dedicada às causas socioambientais e trabalhistas, o escritório Monteiro Advocacia foi fundado com a convicção de que o direito é um instrumento de transformação social efetiva.
+        </p>
+        <p class="sobre__text">
+          Nossa equipe combina sólida formação acadêmica — com especializações no Brasil e exterior — e profundo comprometimento ético com a defesa de clientes pessoas físicas, trabalhadores e comunidades vulneráveis.
+        </p>
+
+        <ul class="sobre__bullets">
+          <li class="sobre__bullet">
+            <div class="sobre__bullet-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <span class="sobre__bullet-text">Mestre em Direito Ambiental pela USP, com extensão pela Universidad de Chile</span>
+          </li>
+          <li class="sobre__bullet">
+            <div class="sobre__bullet-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <span class="sobre__bullet-text">Membro da Comissão de Meio Ambiente da OAB/SP e da CAASP</span>
+          </li>
+          <li class="sobre__bullet">
+            <div class="sobre__bullet-icon">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <span class="sobre__bullet-text">Palestrante em eventos nacionais sobre direitos humanos e sustentabilidade jurídica</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sobre__visual fade-up delay-2">
+        <div class="sobre__stats-grid">
+          <div class="stat-circle">
+            <div class="stat-circle__number counter" data-target="12">0</div>
+            <div class="stat-circle__label">Anos de<br>Experiência</div>
+          </div>
+          <div class="stat-circle">
+            <div class="stat-circle__number counter" data-target="850">0</div>
+            <div class="stat-circle__label">Casos<br>Resolvidos</div>
+          </div>
+          <div class="stat-circle">
+            <div class="stat-circle__number counter" data-target="6">0</div>
+            <div class="stat-circle__label">Áreas de<br>Atuação</div>
+          </div>
+          <div class="stat-circle">
+            <div class="stat-circle__number counter" data-target="98">0</div>
+            <div class="stat-circle__label">% de Clientes<br>Satisfeitos</div>
+          </div>
+        </div>
+
+        <div class="sobre__feature">
+          <div class="sobre__feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div class="sobre__feature-text">
+            <strong>Sigilo e Ética Garantidos</strong>
+            <span>Todas as informações tratadas com absoluta confidencialidade e nos termos do Código de Ética da OAB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== NÚMEROS ==================== -->
+  <section class="numeros" id="numeros">
+    <div class="numeros__inner">
+      <span class="numeros__tag fade-up">Resultados que falam por si</span>
+      <div class="numeros__grid">
+        <div class="numero-item fade-up delay-1">
+          <div class="numero-item__value">
+            <span class="counter" data-target="1200">0</span>
+            <span class="numero-item__suffix">+</span>
+          </div>
+          <div class="numero-item__label">Clientes Atendidos</div>
+          <div class="numero-item__desc">Pessoas físicas, trabalhadores e comunidades atendidas ao longo dos anos</div>
+        </div>
+
+        <div class="numero-item fade-up delay-2">
+          <div class="numero-item__value">
+            <span class="counter" data-target="94">0</span>
+            <span class="numero-item__suffix">%</span>
+          </div>
+          <div class="numero-item__label">Taxa de Êxito</div>
+          <div class="numero-item__desc">Das causas trabalhistas e ambientais levadas ao Judiciário ou negociadas extrajudicialmente</div>
+        </div>
+
+        <div class="numero-item fade-up delay-3">
+          <div class="numero-item__value">
+            <span class="counter" data-target="12">0</span>
+            <span class="numero-item__suffix">anos</span>
+          </div>
+          <div class="numero-item__label">De Dedicação</div>
+          <div class="numero-item__desc">Mais de uma década construindo jurisprudência e transformando a vida de clientes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DEPOIMENTOS ==================== -->
+  <section class="depoimentos" id="depoimentos">
+    <div class="depoimentos__inner">
+      <div class="depoimentos__header fade-up">
+        <span class="section-tag">Depoimentos</span>
+        <h2 class="section-title depoimentos__title">O que dizem nossos clientes</h2>
+        <p class="depoimentos__subtitle">Histórias reais de pessoas que confiaram em nossa defesa</p>
+      </div>
+
+      <div class="depoimentos__grid">
+        <div class="depoimento-card fade-up delay-1">
+          <div class="depoimento-card__quote">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+          </div>
+          <div class="depoimento-card__stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="depoimento-card__text">
+            "Após anos tentando resolver sozinha um acidente de trabalho que me deixou sem renda, o Dr. Rafael entrou com uma ação e conseguiu não só a indenização como também o reconhecimento do dano moral. Minha vida mudou."
+          </p>
+          <div class="depoimento-card__footer">
+            <div class="depoimento-card__avatar">AM</div>
+            <div class="depoimento-card__author">
+              <strong>Ana Meireles</strong>
+              <span>Auxiliar administrativa — Osasco/SP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="depoimento-card fade-up delay-2">
+          <div class="depoimento-card__quote">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+          </div>
+          <div class="depoimento-card__stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="depoimento-card__text">
+            "Nossa comunidade sofreu por anos com a contaminação de um rio local por uma empresa do agronegócio. Com a assessoria do Dr. Rafael, conseguimos uma ação civil pública que obrigou a remediação completa da área."
+          </p>
+          <div class="depoimento-card__footer">
+            <div class="depoimento-card__avatar">CL</div>
+            <div class="depoimento-card__author">
+              <strong>Carlos Lima</strong>
+              <span>Presidente de associação comunitária — Sorocaba/SP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="depoimento-card fade-up delay-1">
+          <div class="depoimento-card__quote">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+          </div>
+          <div class="depoimento-card__stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="depoimento-card__text">
+            "Fui demitida enquanto estava grávida — situação de total desespero. O escritório me acolheu com humanidade e competência técnica impecável. Ganhamos a reintegração e todas as verbas retroativas."
+          </p>
+          <div class="depoimento-card__footer">
+            <div class="depoimento-card__avatar">PS</div>
+            <div class="depoimento-card__author">
+              <strong>Patricia Santos</strong>
+              <span>Analista financeira — São Paulo/SP</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="depoimento-card fade-up delay-2">
+          <div class="depoimento-card__quote">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+          </div>
+          <div class="depoimento-card__stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="depoimento-card__text">
+            "O Dr. Rafael nos representou em um processo previdenciário complexo de aposentadoria especial. Sua clareza na explicação jurídica e agilidade no processo foram decisivas. Em menos de 8 meses tínhamos o resultado."
+          </p>
+          <div class="depoimento-card__footer">
+            <div class="depoimento-card__avatar">JR</div>
+            <div class="depoimento-card__author">
+              <strong>José Roberto Alves</strong>
+              <span>Metalúrgico aposentado — Santo André/SP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PROCESSO ==================== -->
+  <section class="processo" id="processo">
+    <div class="processo__inner">
+      <div class="processo__header fade-up">
+        <span class="section-tag">Como Trabalhamos</span>
+        <h2 class="section-title processo__title">Do primeiro contato à resolução</h2>
+      </div>
+
+      <div class="processo__steps">
+        <div class="step-item fade-up delay-1">
+          <div class="step-item__icon-wrap">
+            <span class="step-item__number">01</span>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h3 class="step-item__title">Consulta Inicial</h3>
+          <p class="step-item__desc">Você entra em contato pelo WhatsApp ou formulário. Agendamos uma conversa confidencial para entender seu caso sem compromisso.</p>
+        </div>
+
+        <div class="step-item fade-up delay-2">
+          <div class="step-item__icon-wrap">
+            <span class="step-item__number">02</span>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3 class="step-item__title">Análise Jurídica</h3>
+          <p class="step-item__desc">Nossa equipe realiza análise técnica aprofundada, apresentando parecer claro sobre viabilidade e estratégia mais adequada ao seu caso.</p>
+        </div>
+
+        <div class="step-item fade-up delay-3">
+          <div class="step-item__icon-wrap">
+            <span class="step-item__number">03</span>
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+          </div>
+          <h3 class="step-item__title">Atuação e Resultado</h3>
+          <p class="step-item__desc">Com a estratégia traçada, atuamos com rigor técnico e transparência total, mantendo você informado em cada etapa até a resolução.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTATO ==================== -->
+  <section class="contato" id="contato">
+    <div class="contato__inner">
+      <div class="contato__header fade-up">
+        <span class="section-tag">Entre em Contato</span>
+        <h2 class="section-title contato__title">Inicie sua consulta hoje</h2>
+        <p class="contato__subtitle">Atendimento humanizado, sigiloso e especializado. Escolha o canal de sua preferência.</p>
+      </div>
+
+      <div class="contato__grid">
+        <a href="https://wa.me/5511999999999" class="contato-btn fade-up delay-1" target="_blank" rel="noopener">
+          <div class="contato-btn__icon contato-btn__icon--whatsapp">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+          </div>
+          <span class="contato-btn__label">WhatsApp</span>
+          <span class="contato-btn__title">Mensagem Direta</span>
+          <span class="contato-btn__value">(11) 99999-9999</span>
+        </a>
+
+        <a href="mailto:contato@rafaelmonteiro.adv.br" class="contato-btn fade-up delay-2">
+          <div class="contato-btn__icon contato-btn__icon--email">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </div>
+          <span class="contato-btn__label">E-mail</span>
+          <span class="contato-btn__title">Enviar Mensagem</span>
+          <span class="contato-btn__value">contato@rafaelmonteiro.adv.br</span>
+        </a>
+
+        <a href="https://instagram.com/dr.rafaelmonteiro" class="contato-btn fade-up delay-3" target="_blank" rel="noopener">
+          <div class="contato-btn__icon contato-btn__icon--instagram">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </div>
+          <span class="contato-btn__label">Instagram</span>
+          <span class="contato-btn__title">Conteúdo Jurídico</span>
+          <span class="contato-btn__value">@dr.rafaelmonteiro</span>
+        </a>
+      </div>
+
+      <div class="contato__info fade-up">
+        <div class="contato__info-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          Seg–Sex: 9h às 18h
+        </div>
+        <div class="contato__sep"></div>
+        <div class="contato__info-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          Av. Paulista, 1234 — São Paulo/SP
+        </div>
+        <div class="contato__sep"></div>
+        <div class="contato__info-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+            <polyline points="22 4 12 14.01 9 11.01"/>
+          </svg>
+          Consulta inicial sem compromisso
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <div class="footer__logo-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1B3A2D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1v4M5.05 5.05l2.83 2.83M1 12h4M5.05 18.95l2.83-2.83M12 19v4M18.95 18.95l-2.83-2.83M23 12h-4M18.95 5.05l-2.83 2.83"/>
+              </svg>
+            </div>
+            <span class="footer__logo-name">Dr. Rafael Monteiro</span>
+          </div>
+          <p class="footer__tagline">"Acreditamos que o direito é um instrumento de transformação. Cada causa é tratada com a seriedade que a justiça exige."</p>
+          <span class="footer__oab-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            OAB/SP 123.456
+          </span>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Navegação</p>
+          <ul class="footer__links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#areas">Áreas de Atuação</a></li>
+            <li><a href="#sobre">Sobre o Escritório</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#processo">Como Trabalhamos</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer__col-title">Contato</p>
+          <ul class="footer__contact-list">
+            <li class="footer__contact-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.74h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l.77-.77a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 17z"/>
+              </svg>
+              (11) 99999-9999
+            </li>
+            <li class="footer__contact-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              contato@rafaelmonteiro.adv.br
+            </li>
+            <li class="footer__contact-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Av. Paulista, 1234 — São Paulo/SP
+            </li>
+            <li class="footer__contact-item">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              Seg–Sex: 9h às 18h
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; 2024 Monteiro Advocacia. Todos os direitos reservados.
+        </p>
+        <p class="footer__legal">
+          Este site possui caráter informativo e não constitui consulta jurídica.<br>
+          OAB/SP 123.456 — Inscrito na CAASP
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    /* ---- Navbar scroll ---- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+    /* ---- Mobile menu ---- */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+
+    /* ---- IntersectionObserver fade-up ---- */
+    const fadeEls = document.querySelectorAll('.fade-up');
+
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    fadeEls.forEach(el => fadeObserver.observe(el));
+
+    /* ---- Contador animado ---- */
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-target'), 10);
+      const duration = 1800;
+      const start = performance.now();
+
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.floor(eased * target);
+        el.textContent = current.toLocaleString('pt-BR');
+
+        if (progress < 1) {
+          requestAnimationFrame(step);
+        } else {
+          el.textContent = target.toLocaleString('pt-BR');
+        }
+      }
+
+      requestAnimationFrame(step);
+    }
+
+    const counters = document.querySelectorAll('.counter');
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    /* ---- Smooth scroll para links internos ---- */
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          const offset = 72;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

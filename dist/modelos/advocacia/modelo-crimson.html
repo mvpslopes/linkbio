@@ -1,0 +1,1994 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dr(a). [Nome] — Advogado(a) Criminalista e Trabalhista. Defesa penal de alto nível, habeas corpus, crimes empresariais e júri popular. Consulta por WhatsApp." />
+  <meta name="keywords" content="advogado criminalista, defesa penal, habeas corpus, crimes empresariais, júri popular, direito trabalhista" />
+  <meta name="author" content="Dr(a). [Nome Completo]" />
+  <meta property="og:title" content="Dr(a). [Nome] — Advogado(a) Criminalista" />
+  <meta property="og:description" content="Defesa penal de alto nível. Mais de 18 anos de experiência, 600+ defesas conduzidas." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seusite.com.br" />
+  <meta name="theme-color" content="#1E0505" />
+  <title>Dr(a). [Nome] — Advogado(a) Criminalista</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===========================
+       RESET & VARIÁVEIS
+    =========================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-deep:      #1E0505;
+      --bg-dark:      #2D0808;
+      --bg-mid:       #260707;
+      --card-bg:      #3D1010;
+      --card-hover:   #4A1414;
+      --cream:        #F5EDD7;
+      --cream-soft:   #EDE0C4;
+      --red-mid:      #C04444;
+      --red-light:    #D96060;
+      --white:        #FFFFFF;
+      --font-serif:   'DM Serif Display', serif;
+      --font-sans:    'Nunito', sans-serif;
+      --radius:       10px;
+      --radius-lg:    16px;
+      --shadow:       0 8px 32px rgba(0, 0, 0, 0.55);
+      --shadow-sm:    0 4px 16px rgba(0, 0, 0, 0.35);
+      --transition:   0.35s ease;
+      --inner-max:    1200px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-deep);
+      color: var(--white);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===========================
+       UTILITÁRIOS
+    =========================== */
+    .inner {
+      max-width: var(--inner-max);
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.15;
+      color: var(--cream);
+    }
+
+    .section-title span {
+      color: var(--red-light);
+    }
+
+    /* ===========================
+       FADE-UP ANIMATION
+    =========================== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5 { transition-delay: 0.5s; }
+    .fade-up.delay-6 { transition-delay: 0.6s; }
+
+    /* ===========================
+       NAVBAR
+    =========================== */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(30, 5, 5, 0.97);
+      border-bottom: 1px solid rgba(245, 237, 215, 0.08);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: box-shadow var(--transition);
+    }
+
+    #navbar.scrolled {
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .nav-inner {
+      max-width: var(--inner-max);
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-mark {
+      width: 38px;
+      height: 38px;
+      background: var(--red-mid);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-logo-mark svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--cream);
+    }
+
+    .nav-logo-text {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .nav-logo-text small {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--red-light);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--cream-soft);
+      letter-spacing: 0.03em;
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--red-light);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--cream);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--cream);
+      color: var(--bg-deep) !important;
+      font-size: 0.825rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      transition: background var(--transition), transform var(--transition);
+    }
+
+    .nav-cta:hover {
+      background: var(--cream-soft);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta::after {
+      display: none !important;
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--cream);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ===========================
+       HERO
+    =========================== */
+    #hero {
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--bg-deep);
+      background-image:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(192, 68, 68, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 80% at 10% 80%, rgba(45, 8, 8, 0.9) 0%, transparent 60%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 70px;
+    }
+
+    .hero-deco-letter {
+      position: absolute;
+      right: -2%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-serif);
+      font-size: clamp(16rem, 28vw, 32rem);
+      color: rgba(192, 68, 68, 0.06);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.05em;
+    }
+
+    .hero-line-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--red-mid), transparent);
+    }
+
+    .hero-inner {
+      max-width: var(--inner-max);
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content {}
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(192, 68, 68, 0.15);
+      border: 1px solid rgba(192, 68, 68, 0.35);
+      color: var(--red-light);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 4px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge svg {
+      width: 14px;
+      height: 14px;
+      fill: var(--red-light);
+    }
+
+    .hero-name {
+      font-family: var(--font-serif);
+      font-size: clamp(2.75rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-sans);
+      font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red-light);
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-oab {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(245, 237, 215, 0.08);
+      border: 1px solid rgba(245, 237, 215, 0.2);
+      color: var(--cream-soft);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.4rem 0.85rem;
+      border-radius: 4px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-oab svg {
+      width: 15px;
+      height: 15px;
+      fill: var(--cream-soft);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+      color: var(--cream-soft);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    .hero-tagline strong {
+      color: var(--cream);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--cream);
+      color: var(--bg-deep);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 0.9rem 2rem;
+      border-radius: 7px;
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 20px rgba(245, 237, 215, 0.25);
+    }
+
+    .btn-primary svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--bg-deep);
+    }
+
+    .btn-primary:hover {
+      background: var(--cream-soft);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(245, 237, 215, 0.35);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: transparent;
+      color: var(--cream);
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.9rem 1.75rem;
+      border-radius: 7px;
+      border: 1px solid rgba(245, 237, 215, 0.3);
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+    }
+
+    .btn-outline svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--cream);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cream);
+      background: rgba(245, 237, 215, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .hero-photo-wrap {
+      position: relative;
+    }
+
+    .hero-photo-ring {
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      border: 5px solid var(--cream);
+      overflow: hidden;
+      box-shadow: 0 0 0 12px rgba(245, 237, 215, 0.1), var(--shadow);
+      background: var(--card-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-photo-ring img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(245, 237, 215, 0.35);
+    }
+
+    .hero-photo-placeholder svg {
+      width: 80px;
+      height: 80px;
+      fill: rgba(245, 237, 215, 0.2);
+    }
+
+    .hero-photo-placeholder span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-photo-badge {
+      position: absolute;
+      bottom: 16px;
+      right: -8px;
+      background: var(--red-mid);
+      color: var(--white);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.85rem;
+      border-radius: 5px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-num {
+      font-family: var(--font-serif);
+      font-size: 1.9rem;
+      color: var(--cream);
+      line-height: 1;
+    }
+
+    .hero-stat-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red-light);
+      margin-top: 0.2rem;
+    }
+
+    /* ===========================
+       SEÇÃO ÁREAS
+    =========================== */
+    #areas {
+      width: 100%;
+      background-color: var(--bg-mid);
+      padding: 6rem 0;
+      border-top: 1px solid rgba(245, 237, 215, 0.06);
+      border-bottom: 1px solid rgba(245, 237, 215, 0.06);
+    }
+
+    .areas-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .area-card {
+      background: var(--card-bg);
+      border-top: 3px solid var(--cream);
+      border-radius: var(--radius);
+      padding: 2rem 1.75rem;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      cursor: default;
+    }
+
+    .area-card:hover {
+      background: var(--card-hover);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .area-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .area-icon svg {
+      width: 40px;
+      height: 40px;
+      fill: var(--cream);
+      opacity: 0.9;
+    }
+
+    .area-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--cream);
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
+    }
+
+    .area-card p {
+      font-size: 0.875rem;
+      color: rgba(245, 237, 215, 0.65);
+      line-height: 1.6;
+    }
+
+    /* ===========================
+       SEÇÃO SOBRE
+    =========================== */
+    #sobre {
+      width: 100%;
+      background-color: var(--bg-deep);
+      padding: 7rem 0;
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .sobre-content {}
+
+    .sobre-content .section-title {
+      margin-bottom: 1.5rem;
+    }
+
+    .sobre-content p {
+      color: rgba(245, 237, 215, 0.75);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+
+    .sobre-content p strong {
+      color: var(--cream);
+    }
+
+    .sobre-quote {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border-left: 3px solid var(--red-mid);
+      background: rgba(192, 68, 68, 0.07);
+      border-radius: 0 var(--radius) var(--radius) 0;
+    }
+
+    .sobre-quote p {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--cream) !important;
+      margin-bottom: 0 !important;
+      line-height: 1.6;
+    }
+
+    .sobre-diferenciais {}
+
+    .diferencial-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      transition: background var(--transition);
+    }
+
+    .diferencial-card:hover {
+      background: var(--card-hover);
+    }
+
+    .diferencial-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background: rgba(192, 68, 68, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .diferencial-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--red-light);
+    }
+
+    .diferencial-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      color: var(--cream);
+      margin-bottom: 0.35rem;
+    }
+
+    .diferencial-card p {
+      font-size: 0.86rem;
+      color: rgba(245, 237, 215, 0.65);
+      line-height: 1.55;
+    }
+
+    /* ===========================
+       SEÇÃO NÚMEROS
+    =========================== */
+    #numeros {
+      width: 100%;
+      background-color: var(--cream);
+      padding: 6rem 0;
+    }
+
+    .numeros-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .numeros-header .section-label {
+      color: var(--red-mid);
+    }
+
+    .numeros-header .section-title {
+      color: var(--bg-deep);
+    }
+
+    .numeros-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .numero-card {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 24px rgba(30, 5, 5, 0.1);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .numero-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(30, 5, 5, 0.15);
+    }
+
+    .numero-value {
+      font-family: var(--font-serif);
+      font-size: clamp(3rem, 5vw, 5rem);
+      color: var(--bg-deep);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .numero-suffix {
+      color: var(--red-mid);
+    }
+
+    .numero-label {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red-mid);
+      margin-bottom: 0.65rem;
+    }
+
+    .numero-desc {
+      font-size: 0.875rem;
+      color: rgba(30, 5, 5, 0.6);
+      line-height: 1.55;
+    }
+
+    /* ===========================
+       SEÇÃO DEPOIMENTOS
+    =========================== */
+    #depoimentos {
+      width: 100%;
+      background-color: var(--bg-dark);
+      padding: 7rem 0;
+      border-top: 1px solid rgba(245, 237, 215, 0.06);
+      border-bottom: 1px solid rgba(245, 237, 215, 0.06);
+    }
+
+    .depoimentos-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .depoimentos-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .depo-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      position: relative;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .depo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .depo-quote-mark {
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      line-height: 0.8;
+      color: var(--red-mid);
+      opacity: 0.5;
+      margin-bottom: 0.5rem;
+    }
+
+    .depo-text {
+      font-family: var(--font-serif);
+      font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+    }
+
+    .depo-author {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .depo-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(192, 68, 68, 0.2);
+      border: 2px solid var(--red-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: var(--red-light);
+    }
+
+    .depo-author-info strong {
+      display: block;
+      font-size: 0.925rem;
+      font-weight: 700;
+      color: var(--cream);
+    }
+
+    .depo-author-info span {
+      font-size: 0.78rem;
+      color: rgba(245, 237, 215, 0.5);
+    }
+
+    .depo-stars {
+      display: flex;
+      gap: 3px;
+      margin-top: 0.3rem;
+    }
+
+    .depo-stars svg {
+      width: 13px;
+      height: 13px;
+      fill: var(--red-light);
+    }
+
+    /* ===========================
+       SEÇÃO PROCESSO
+    =========================== */
+    #processo {
+      width: 100%;
+      background-color: var(--bg-deep);
+      padding: 7rem 0;
+    }
+
+    .processo-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .processo-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .processo-steps::before {
+      content: '';
+      position: absolute;
+      top: 52px;
+      left: calc(16.66% + 1rem);
+      right: calc(16.66% + 1rem);
+      height: 2px;
+      background: linear-gradient(90deg, var(--red-mid), var(--red-light));
+      z-index: 0;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-number {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--bg-deep);
+      border: 3px solid var(--red-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-bottom: 1.75rem;
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .step:hover .step-number {
+      background: var(--red-mid);
+    }
+
+    .step-icon {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .step-icon svg {
+      width: 32px;
+      height: 32px;
+      fill: var(--cream);
+    }
+
+    .step h3 {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+    }
+
+    .step p {
+      font-size: 0.9rem;
+      color: rgba(245, 237, 215, 0.65);
+      line-height: 1.6;
+    }
+
+    /* ===========================
+       SEÇÃO CONTATO
+    =========================== */
+    #contato {
+      width: 100%;
+      background: linear-gradient(180deg, var(--bg-mid) 0%, var(--bg-deep) 100%);
+      padding: 7rem 0;
+      border-top: 1px solid rgba(245, 237, 215, 0.06);
+    }
+
+    .contato-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .contato-inner .section-title {
+      margin-bottom: 1rem;
+    }
+
+    .contato-sub {
+      font-size: 1.05rem;
+      color: rgba(245, 237, 215, 0.65);
+      margin-bottom: 3rem;
+      line-height: 1.65;
+    }
+
+    .contato-btns {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+
+    .btn-contato {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2.25rem;
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: 0.925rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-contato svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .btn-contato:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-whatsapp {
+      background: #1FAD47;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(31, 173, 71, 0.3);
+    }
+
+    .btn-whatsapp svg { fill: #fff; }
+
+    .btn-whatsapp:hover {
+      background: #1a9a3d;
+      box-shadow: 0 8px 30px rgba(31, 173, 71, 0.45);
+    }
+
+    .btn-email {
+      background: var(--card-bg);
+      color: var(--cream);
+      border: 1px solid rgba(245, 237, 215, 0.2);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-email svg { fill: var(--cream); }
+
+    .btn-email:hover {
+      background: var(--card-hover);
+      border-color: rgba(245, 237, 215, 0.4);
+    }
+
+    .btn-tel {
+      background: var(--red-mid);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(192, 68, 68, 0.35);
+    }
+
+    .btn-tel svg { fill: #fff; }
+
+    .btn-tel:hover {
+      background: var(--red-light);
+      box-shadow: 0 8px 30px rgba(192, 68, 68, 0.5);
+    }
+
+    .contato-disclaimer {
+      margin-top: 2.5rem;
+      font-size: 0.78rem;
+      color: rgba(245, 237, 215, 0.35);
+      line-height: 1.5;
+    }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    #footer {
+      width: 100%;
+      background-color: var(--bg-deep);
+      border-top: 1px solid rgba(245, 237, 215, 0.08);
+      padding: 3.5rem 0;
+    }
+
+    .footer-inner {
+      max-width: var(--inner-max);
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .footer-brand {}
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .footer-logo-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--red-mid);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-logo-mark svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--cream);
+    }
+
+    .footer-logo-text {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      color: var(--cream);
+    }
+
+    .footer-oab-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: rgba(245, 237, 215, 0.45);
+      font-weight: 600;
+    }
+
+    .footer-oab-badge svg {
+      width: 13px;
+      height: 13px;
+      fill: rgba(245, 237, 215, 0.35);
+    }
+
+    .footer-center {
+      text-align: center;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(245, 237, 215, 0.3);
+      line-height: 1.6;
+    }
+
+    .footer-right {
+      text-align: right;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1.5rem;
+      list-style: none;
+      margin-bottom: 0.65rem;
+    }
+
+    .footer-links a {
+      font-size: 0.8rem;
+      color: rgba(245, 237, 215, 0.45);
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--cream);
+    }
+
+    .footer-socials {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+
+    .footer-social-link {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      background: rgba(245, 237, 215, 0.06);
+      border: 1px solid rgba(245, 237, 215, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition);
+    }
+
+    .footer-social-link:hover {
+      background: rgba(245, 237, 215, 0.12);
+    }
+
+    .footer-social-link svg {
+      width: 16px;
+      height: 16px;
+      fill: rgba(245, 237, 215, 0.6);
+    }
+
+    /* ===========================
+       SCROLL TOP
+    =========================== */
+    #scrollTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 44px;
+      height: 44px;
+      background: var(--red-mid);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity var(--transition), transform var(--transition);
+      z-index: 900;
+      border: none;
+    }
+
+    #scrollTop.show {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    #scrollTop svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--cream);
+    }
+
+    /* ===========================
+       RESPONSIVE — TABLET
+    =========================== */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 3rem;
+      }
+
+      .hero-tagline {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-actions {
+        justify-content: center;
+      }
+
+      .hero-deco-letter {
+        font-size: clamp(12rem, 22vw, 22rem);
+        right: -5%;
+        opacity: 0.5;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .hero-photo-ring {
+        width: 260px;
+        height: 260px;
+      }
+
+      .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .footer-right {
+        text-align: center;
+      }
+
+      .footer-links,
+      .footer-socials {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-deep);
+        border-bottom: 1px solid rgba(245, 237, 215, 0.08);
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
+      }
+
+      .nav-cta.open {
+        display: flex;
+        margin-left: 0;
+        align-self: flex-start;
+      }
+
+      .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .numeros-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .depoimentos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .processo-steps {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .processo-steps::before {
+        display: none;
+      }
+    }
+
+    /* ===========================
+       RESPONSIVE — MOBILE
+    =========================== */
+    @media (max-width: 480px) {
+      .inner {
+        padding: 0 1.25rem;
+      }
+
+      .hero-inner {
+        padding: 4rem 1.25rem;
+      }
+
+      .hero-photo-ring {
+        width: 220px;
+        height: 220px;
+      }
+
+      .areas-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        gap: 1.25rem;
+      }
+
+      .contato-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .btn-contato {
+        width: 100%;
+        justify-content: center;
+      }
+
+      #sobre,
+      #areas,
+      #numeros,
+      #depoimentos,
+      #processo,
+      #contato {
+        padding: 4.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================
+       NAVBAR
+  ========================= -->
+  <nav id="navbar" role="navigation" aria-label="Menu principal">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="Início">
+        <div class="nav-logo-mark" aria-hidden="true">
+          <!-- Scales of Justice icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l1.5 3.5L12 7l8.5 3.5L22 7 12 2zm-1 8v9H7l-1 3h12l-1-3h-4v-9h-2zm-7 3.5L2 17h4l-2-3.5zM22 17l-2-3.5-2 3.5h4z"/></svg>
+        </div>
+        <div class="nav-logo-text">
+          Dr(a). [Nome]
+          <small>Advocacia Criminal</small>
+        </div>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#areas">Áreas</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#numeros">Resultados</a></li>
+        <li><a href="#depoimentos">Clientes</a></li>
+        <li><a href="#processo">Processo</a></li>
+        <a href="#contato" class="nav-cta" id="navCta">
+          <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+          Consulta Agora
+        </a>
+      </ul>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========================
+       HERO
+  ========================= -->
+  <section id="hero" aria-label="Apresentação">
+    <div class="hero-line-top" aria-hidden="true"></div>
+    <div class="hero-deco-letter" aria-hidden="true">D</div>
+
+    <div class="hero-inner">
+      <div class="hero-content fade-up">
+        <div class="hero-badge">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l1.5 3.5L12 7l8.5 3.5L22 7 12 2zm-1 8v9H7l-1 3h12l-1-3h-4v-9h-2z"/></svg>
+          Especialista em Defesa Penal
+        </div>
+
+        <h1 class="hero-name">Dr(a). [Nome<br>Completo]</h1>
+        <p class="hero-title">Advogado(a) Criminalista</p>
+
+        <div class="hero-oab">
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          OAB/SP 000.000
+        </div>
+
+        <p class="hero-tagline">
+          <strong>Quando a liberdade está em jogo, cada detalhe importa.</strong><br>
+          Defesa criminal estratégica, habeas corpus e representação em júri popular com dedicação absoluta ao seu caso.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://wa.me/5511999999999" class="btn-primary" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M5.077 18.769l-.014.002a9.963 9.963 0 01-5.063-1.376 10.004 10.004 0 01-3.726-3.726A9.95 9.95 0 01-4.5 9c0-5.523 4.477-10 10-10 5.522 0 10 4.477 10 10 0 1.66-.404 3.226-1.122 4.607L19.5 19l-5.169-1.356A9.952 9.952 0 019.5 18.5a9.95 9.95 0 01-4.423-1.731z" opacity=".3"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.523 3.66 1.432 5.18L2 22l4.98-1.404A9.959 9.959 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.96 7.96 0 01-4.066-1.112l-.291-.173-3.017.851.854-3.114-.19-.305A7.967 7.967 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a href="#sobre" class="btn-outline">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+            Saiba mais
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-up delay-2">
+        <div class="hero-photo-wrap">
+          <div class="hero-photo-ring">
+            <!-- Substitua o bloco abaixo por: <img src="fotos/foto-advogado.jpg" alt="Dr(a). [Nome]" /> -->
+            <div class="hero-photo-placeholder">
+              <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+              <span>Sua Foto Aqui</span>
+            </div>
+          </div>
+          <span class="hero-photo-badge">18 anos de atuação</span>
+        </div>
+
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-num">600<span style="color:var(--red-light)">+</span></div>
+            <div class="hero-stat-label">Defesas</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">85<span style="color:var(--red-light)">%</span></div>
+            <div class="hero-stat-label">Absolvições</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-num">18<span style="color:var(--red-light)">a</span></div>
+            <div class="hero-stat-label">Experiência</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       ÁREAS DE ATUAÇÃO
+  ========================= -->
+  <section id="areas" aria-labelledby="areas-title">
+    <div class="inner">
+      <div class="areas-header fade-up">
+        <p class="section-label">Especialidades</p>
+        <h2 class="section-title" id="areas-title">Áreas de <span>Atuação</span></h2>
+      </div>
+
+      <div class="areas-grid">
+        <!-- Card 1 — Direito Penal -->
+        <article class="area-card fade-up delay-1">
+          <div class="area-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 4.18L19 8.3V11c0 4.52-3.02 8.76-7 9.93-3.98-1.17-7-5.41-7-9.93V8.3l7-3.12z"/></svg>
+          </div>
+          <h3>Direito Penal</h3>
+          <p>Defesa técnica em crimes dolosos e culposos, com estratégias processuais que preservam sua liberdade e dignidade.</p>
+        </article>
+
+        <!-- Card 2 — Direito Trabalhista -->
+        <article class="area-card fade-up delay-2">
+          <div class="area-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.35C18 2.53 15.63 1 13.5 1c-1.16 0-2.26.48-3.05 1.34L10 2.9l-.45-.56C8.76 1.48 7.66 1 6.5 1 4.37 1 2 2.53 2 4.65 2 5.12 2.1 5.56 2.18 6H0v12c0 1.1.9 2 2 2h20c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-9 11H4v-2h7v2zm0-4H4v-2h7v2zm9 4h-7v-2h7v2zm0-4h-7v-2h7v2z"/></svg>
+          </div>
+          <h3>Direito Trabalhista</h3>
+          <p>Representação em reclamações trabalhistas, rescisões indevidas, assédio moral e negociações sindicais.</p>
+        </article>
+
+        <!-- Card 3 — Habeas Corpus -->
+        <article class="area-card fade-up delay-3">
+          <div class="area-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          </div>
+          <h3>Habeas Corpus</h3>
+          <p>Impetração célere de habeas corpus preventivo e liberatório. Atuação imediata para restituir a liberdade.</p>
+        </article>
+
+        <!-- Card 4 — Crimes Empresariais -->
+        <article class="area-card fade-up delay-1">
+          <div class="area-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+          </div>
+          <h3>Crimes Empresariais</h3>
+          <p>Defesa em crimes contra a ordem tributária, lavagem de dinheiro, estelionato e crimes societários complexos.</p>
+        </article>
+
+        <!-- Card 5 — Tráfico -->
+        <article class="area-card fade-up delay-2">
+          <div class="area-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          </div>
+          <h3>Tráfico e Entorpecentes</h3>
+          <p>Estratégia diferenciada para crimes da Lei de Drogas. Tese de usuário, nulidades e medidas cautelares alternativas.</p>
+        </article>
+
+        <!-- Card 6 — Júri Popular -->
+        <article class="area-card fade-up delay-3">
+          <div class="area-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>
+          </div>
+          <h3>Júri Popular</h3>
+          <p>Atuação no Tribunal do Júri com domínio da oratória, construção de narrativa e persuasão perante os jurados.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       SOBRE
+  ========================= -->
+  <section id="sobre" aria-labelledby="sobre-title">
+    <div class="inner">
+      <div class="sobre-grid">
+        <div class="sobre-content fade-up">
+          <p class="section-label">Quem sou eu</p>
+          <h2 class="section-title" id="sobre-title">Defesa que <span>transforma</span> vidas</h2>
+
+          <p>Há mais de <strong>18 anos</strong> atuando nas mais complexas causas criminais do país, construí uma trajetória fundamentada em rigor técnico, ética inabalável e compromisso absoluto com cada cliente que representa.</p>
+
+          <p>Formado(a) pela <strong>Universidade de São Paulo (USP)</strong>, com especialização em Direito Penal Econômico pela PUC-SP e MBA em Gestão Jurídica, acumulo passagens por bancas referência no segmento criminal, além de atuação constante nos Tribunais Superiores.</p>
+
+          <p>Cada caso é tratado como único. Minha metodologia combina análise investigativa profunda, identificação cirúrgica de nulidades processuais e defesa oral contundente — características que se traduzem em resultados concretos para meus clientes.</p>
+
+          <div class="sobre-quote">
+            <p>"A liberdade de uma pessoa vale mais do que qualquer honorário. É isso que move cada peça que assino."</p>
+          </div>
+        </div>
+
+        <div class="sobre-diferenciais fade-up delay-2">
+          <p class="section-label">Diferenciais</p>
+
+          <div class="diferencial-card">
+            <div class="diferencial-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <div>
+              <h4>Atendimento Exclusivo e Direto</h4>
+              <p>Você se comunica diretamente comigo em todas as fases. Sem estagiários, sem terceirização do seu caso.</p>
+            </div>
+          </div>
+
+          <div class="diferencial-card">
+            <div class="diferencial-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+            </div>
+            <div>
+              <h4>Disponibilidade 24 Horas</h4>
+              <p>Prisões e urgências não respeitam horário comercial. Estou disponível a qualquer hora para emergências criminais.</p>
+            </div>
+          </div>
+
+          <div class="diferencial-card">
+            <div class="diferencial-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9 4.5v15l11-7.5z"/></svg>
+            </div>
+            <div>
+              <h4>Estratégia Personalizada</h4>
+              <p>Nenhum caso é idêntico ao anterior. Cada defesa é construída do zero com estratégia específica para o seu perfil.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       NÚMEROS
+  ========================= -->
+  <section id="numeros" aria-labelledby="numeros-title">
+    <div class="inner">
+      <div class="numeros-header fade-up">
+        <p class="section-label">Resultados reais</p>
+        <h2 class="section-title" id="numeros-title">Números que <span style="color: var(--red-mid)">falam por si</span></h2>
+      </div>
+
+      <div class="numeros-grid">
+        <div class="numero-card fade-up delay-1">
+          <div class="numero-value">
+            <span class="count" data-target="600">0</span><span class="numero-suffix">+</span>
+          </div>
+          <p class="numero-label">Defesas Conduzidas</p>
+          <p class="numero-desc">Mais de 600 processos criminais gerenciados com dedicação e excelência técnica ao longo de 18 anos.</p>
+        </div>
+
+        <div class="numero-card fade-up delay-2">
+          <div class="numero-value">
+            <span class="count" data-target="18">0</span><span class="numero-suffix"> anos</span>
+          </div>
+          <p class="numero-label">De Experiência</p>
+          <p class="numero-desc">Trajetória construída nos mais exigentes casos criminais, dos tribunais estaduais ao STJ e STF.</p>
+        </div>
+
+        <div class="numero-card fade-up delay-3">
+          <div class="numero-value">
+            <span class="count" data-target="85">0</span><span class="numero-suffix">%</span>
+          </div>
+          <p class="numero-label">Taxa de Absolvições</p>
+          <p class="numero-desc">Índice de absolvições e decisões favoráveis acima da média nacional, com prova técnica robusta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       DEPOIMENTOS
+  ========================= -->
+  <section id="depoimentos" aria-labelledby="depo-title">
+    <div class="inner">
+      <div class="depoimentos-header fade-up">
+        <p class="section-label">Vozes de clientes</p>
+        <h2 class="section-title" id="depo-title">O que dizem <span>meus clientes</span></h2>
+      </div>
+
+      <div class="depoimentos-grid">
+        <article class="depo-card fade-up delay-1">
+          <div class="depo-quote-mark" aria-hidden="true">"</div>
+          <p class="depo-text">Quando fui preso em flagrante, minha família entrou em contato imediato. Em menos de 24 horas, o habeas corpus foi impetrado e eu estava em casa. A competência e agilidade são incomparáveis.</p>
+          <div class="depo-author">
+            <div class="depo-avatar" aria-hidden="true">R</div>
+            <div class="depo-author-info">
+              <strong>R.M. — Empresário</strong>
+              <span>Caso de prisão em flagrante — São Paulo</span>
+              <div class="depo-stars" aria-label="5 estrelas">
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="depo-card fade-up delay-2">
+          <div class="depo-quote-mark" aria-hidden="true">"</div>
+          <p class="depo-text">Enfrentei um processo trabalhista que poderia arruinar minha empresa. A estratégia foi cirúrgica, e o resultado superou todas as expectativas. Serei eternamente grato pela dedicação e clareza nas explicações.</p>
+          <div class="depo-author">
+            <div class="depo-avatar" aria-hidden="true">C</div>
+            <div class="depo-author-info">
+              <strong>C.F. — Diretora Comercial</strong>
+              <span>Processo trabalhista — Campinas</span>
+              <div class="depo-stars" aria-label="5 estrelas">
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="depo-card fade-up delay-3">
+          <div class="depo-quote-mark" aria-hidden="true">"</div>
+          <p class="depo-text">Meu filho foi acusado de tráfico de forma injusta. A tese construída identificou nulidades no auto de prisão que nenhum outro advogado havia visto. Ele foi absolvido em primeira instância.</p>
+          <div class="depo-author">
+            <div class="depo-avatar" aria-hidden="true">A</div>
+            <div class="depo-author-info">
+              <strong>A.S. — Mãe de cliente</strong>
+              <span>Absolvição — Crime de tráfico</span>
+              <div class="depo-stars" aria-label="5 estrelas">
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="depo-card fade-up delay-4">
+          <div class="depo-quote-mark" aria-hidden="true">"</div>
+          <p class="depo-text">No júri popular, a sustentação oral foi magistral. Os jurados ficaram visualmente impactados com os argumentos. A absolvição por 7 votos a 0 foi um divisor de águas na minha vida.</p>
+          <div class="depo-author">
+            <div class="depo-avatar" aria-hidden="true">P</div>
+            <div class="depo-author-info">
+              <strong>P.L. — Profissional liberal</strong>
+              <span>Absolvição no Júri Popular — 7x0</span>
+              <div class="depo-stars" aria-label="5 estrelas">
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       PROCESSO DE TRABALHO
+  ========================= -->
+  <section id="processo" aria-labelledby="processo-title">
+    <div class="inner">
+      <div class="processo-header fade-up">
+        <p class="section-label">Como trabalhamos</p>
+        <h2 class="section-title" id="processo-title">Três etapas para <span>sua defesa</span></h2>
+      </div>
+
+      <div class="processo-steps">
+        <div class="step fade-up delay-1">
+          <div class="step-number" aria-hidden="true">01</div>
+          <div class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          </div>
+          <h3>Análise do Caso</h3>
+          <p>Estudo minucioso dos autos, inquérito, provas colhidas e circunstâncias do fato. Identificamos nulidades, ilegalidades e oportunidades de defesa que outros não enxergam.</p>
+        </div>
+
+        <div class="step fade-up delay-3">
+          <div class="step-number" aria-hidden="true">02</div>
+          <div class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
+          </div>
+          <h3>Estratégia Jurídica</h3>
+          <p>Montagem do plano de defesa com teses técnicas sólidas, linha argumentativa coerente e antecipação dos movimentos da acusação.</p>
+        </div>
+
+        <div class="step fade-up delay-5">
+          <div class="step-number" aria-hidden="true">03</div>
+          <div class="step-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21 6.5l-4-4-8.5 8.5-2 4 4-2L21 6.5zM5 16l-2 1 1-2 1 1zm14.12-9.12l-1.42 1.42-1.41-1.42 1.41-1.41 1.42 1.41z"/></svg>
+          </div>
+          <h3>Atuação Processual</h3>
+          <p>Execução rigorosa da estratégia: peticionamento, sustentações orais, audiências e recursos — com presença ativa em cada fase do processo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       CONTATO
+  ========================= -->
+  <section id="contato" aria-labelledby="contato-title">
+    <div class="contato-inner">
+      <p class="section-label fade-up">Entre em contato</p>
+      <h2 class="section-title fade-up delay-1" id="contato-title">Pronto para <span>sua defesa</span></h2>
+      <p class="contato-sub fade-up delay-2">
+        Não enfrente um processo criminal ou trabalhista desacompanhado. Entre em contato agora e receba uma avaliação inicial do seu caso com total confidencialidade.
+      </p>
+
+      <div class="contato-btns fade-up delay-3">
+        <a href="https://wa.me/5511999999999" class="btn-contato btn-whatsapp" target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.523 3.66 1.432 5.18L2 22l4.98-1.404A9.959 9.959 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm5.472 12.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+          WhatsApp
+        </a>
+
+        <a href="mailto:contato@seuescritorio.com.br" class="btn-contato btn-email" aria-label="Enviar e-mail">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          E-mail
+        </a>
+
+        <a href="tel:+5511999999999" class="btn-contato btn-tel" aria-label="Ligar agora">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          Telefone
+        </a>
+      </div>
+
+      <p class="contato-disclaimer fade-up delay-4">
+        Atendimento presencial e remoto em todo o Brasil. Sigilo absoluto garantido em todas as consultas.<br>
+        Este site tem caráter informativo e não constitui relação advocatícia.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================
+       FOOTER
+  ========================= -->
+  <footer id="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="footer-logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+          </div>
+          <span class="footer-logo-text">Dr(a). [Nome]</span>
+        </div>
+        <div class="footer-oab-badge">
+          <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          OAB/SP 000.000 — Inscrito(a) na Ordem dos Advogados do Brasil
+        </div>
+      </div>
+
+      <div class="footer-center">
+        <p class="footer-copy">
+          &copy; 2026 Dr(a). [Nome Completo].<br>
+          Todos os direitos reservados.
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <ul class="footer-links">
+          <li><a href="#areas">Áreas</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#contato">Contato</a></li>
+          <li><a href="#">Privacidade</a></li>
+        </ul>
+        <div class="footer-socials">
+          <!-- Instagram -->
+          <a href="#" class="footer-social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 01-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 017.8 2m-.2 2A3.6 3.6 0 004 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 003.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 011.25 1.25A1.25 1.25 0 0117.25 8 1.25 1.25 0 0116 6.75a1.25 1.25 0 011.25-1.25M12 7a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5m0 2a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3z"/></svg>
+          </a>
+          <!-- LinkedIn -->
+          <a href="#" class="footer-social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="#" class="footer-social-link" aria-label="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button id="scrollTop" aria-label="Voltar ao topo">
+    <svg viewBox="0 0 24 24"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
+  </button>
+
+  <!-- ========================
+       JAVASCRIPT
+  ========================= -->
+  <script>
+    'use strict';
+
+    /* --- Navbar scroll shadow --- */
+    const navbar = document.getElementById('navbar');
+    const scrollTopBtn = document.getElementById('scrollTop');
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      navbar.classList.toggle('scrolled', y > 40);
+      scrollTopBtn.classList.toggle('show', y > 400);
+    }, { passive: true });
+
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    /* --- Mobile nav toggle --- */
+    const navToggle = document.getElementById('navToggle');
+    const navLinks  = document.getElementById('navLinks');
+    const navCta    = document.getElementById('navCta');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navCta.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    /* Close menu on link click (mobile) */
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navCta.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* --- IntersectionObserver fade-up --- */
+    const fadeEls = document.querySelectorAll('.fade-up');
+
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    fadeEls.forEach(el => fadeObserver.observe(el));
+
+    /* --- Contador JS --- */
+    const counters = document.querySelectorAll('.count');
+
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1800;
+      const step = 16;
+      const totalSteps = duration / step;
+      let current = 0;
+      const increment = target / totalSteps;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = target;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, step);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(el => counterObserver.observe(el));
+
+    /* --- Active nav link on scroll --- */
+    const sections = document.querySelectorAll('section[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navAnchors.forEach(a => {
+            a.style.color = a.getAttribute('href') === '#' + id
+              ? 'var(--cream)'
+              : '';
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => sectionObserver.observe(s));
+  </script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Modelos Advocacia & Direito — LinkBio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Space Grotesk', sans-serif; background: #0A0A0A; color: #fff; min-height: 100vh; padding: 0 0 5rem; }
+
+    .site-header {
+      text-align: center; padding: 4rem 1.5rem 3rem;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      background: linear-gradient(180deg, rgba(212,168,83,.05) 0%, transparent 100%);
+    }
+    .back-link {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: rgba(255,255,255,.4); text-decoration: none; font-size: .82rem;
+      margin-bottom: 2rem; transition: color .2s;
+    }
+    .back-link:hover { color: #D4A853; }
+    .cat-badge {
+      display: inline-block; background: rgba(212,168,83,.12); color: #D4A853;
+      border: 1px solid rgba(212,168,83,.25); border-radius: 999px;
+      padding: .3rem 1rem; font-size: .78rem; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase; margin-bottom: 1.2rem;
+    }
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;
+      line-height: 1.15; margin-bottom: .8rem;
+      background: linear-gradient(120deg, #D4A853, #F0C96A, #fff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .header-sub { color: rgba(255,255,255,.5); font-size: 1rem; max-width: 480px; margin: 0 auto; }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 3rem 1.5rem 0; }
+
+    .models-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;
+    }
+
+    .model-card {
+      display: flex; flex-direction: column;
+      background: #111; border: 1px solid rgba(255,255,255,.07);
+      border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit;
+      transition: transform .2s, border-color .2s, box-shadow .2s;
+    }
+    .model-card:hover { transform: translateY(-4px); border-color: rgba(212,168,83,.3); box-shadow: 0 12px 40px rgba(0,0,0,.5); }
+
+    .model-preview {
+      height: 180px; display: flex; align-items: flex-end; padding: 1.2rem;
+      position: relative; overflow: hidden;
+    }
+    .preview-label { display: flex; flex-direction: column; gap: .15rem; }
+    .preview-title { font-weight: 700; font-size: 1.35rem; letter-spacing: .06em; }
+    .preview-sub { font-size: .75rem; letter-spacing: .05em; }
+
+    /* previews */
+    .prev-lex      { background: linear-gradient(135deg, #0B1C3D 0%, #1A3060 60%, #D4A853 100%); }
+    .prev-lex .preview-title { background: linear-gradient(90deg,#D4A853,#F0C96A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .prev-lex .preview-sub   { color:rgba(212,168,83,.6); }
+
+    .prev-cipher   { background: linear-gradient(135deg, #000 0%, #0A0A0A 60%, #0047FF 100%); }
+    .prev-cipher .preview-title { background: linear-gradient(90deg,#0047FF,#4A90FF); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .prev-cipher .preview-sub   { color:rgba(0,71,255,.6); }
+
+    .prev-marble   { background: linear-gradient(135deg, #F5F5F0 0%, #E8E6E0 60%, #C9A96E 100%); }
+    .prev-marble .preview-title { background: linear-gradient(90deg,#2C2C2C,#4A4A4A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .prev-marble .preview-sub   { color:rgba(44,44,44,.5); }
+
+    .prev-atlas    { background: linear-gradient(135deg, #1B3A2D 0%, #2D5A44 60%, #F5EDD7 100%); }
+    .prev-atlas .preview-title { background: linear-gradient(90deg,#F5EDD7,#E8D9B0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .prev-atlas .preview-sub   { color:rgba(245,237,215,.5); }
+
+    .prev-crimson  { background: linear-gradient(135deg, #3D0B0B 0%, #6B1515 60%, #F5EDD7 100%); }
+    .prev-crimson .preview-title { background: linear-gradient(90deg,#F5EDD7,#FFDAB9); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .prev-crimson .preview-sub   { color:rgba(245,237,215,.5); }
+
+    .prev-quorum   { background: linear-gradient(135deg, #F0F2F5 0%, #D8DDE5 60%, #1E3A8A 100%); }
+    .prev-quorum .preview-title { background: linear-gradient(90deg,#1E3A8A,#2D5BB5); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+    .prev-quorum .preview-sub   { color:rgba(30,58,138,.5); }
+
+    .model-body { padding: 1.2rem 1.2rem .8rem; flex: 1; }
+    .model-name { font-size: 1.05rem; font-weight: 700; margin-bottom: .4rem; }
+    .model-desc { font-size: .82rem; color: rgba(255,255,255,.5); line-height: 1.55; }
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .8rem; }
+    .tag {
+      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+      color: rgba(255,255,255,.5); border-radius: 999px;
+      padding: .2rem .65rem; font-size: .72rem; font-weight: 500;
+    }
+    .model-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 1.2rem; border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .model-num { font-size: .75rem; color: rgba(255,255,255,.25); font-weight: 600; letter-spacing: .05em; }
+    .open-btn {
+      font-size: .78rem; font-weight: 600; padding: .35rem .9rem;
+      border-radius: 999px; cursor: pointer; transition: background .2s;
+    }
+    .btn-lex      { background:rgba(212,168,83,.1); color:#D4A853; border:1px solid rgba(212,168,83,.3); }
+    .btn-lex:hover { background:rgba(212,168,83,.2); }
+    .btn-cipher   { background:rgba(0,71,255,.1); color:#4A90FF; border:1px solid rgba(0,71,255,.3); }
+    .btn-cipher:hover { background:rgba(0,71,255,.2); }
+    .btn-marble   { background:rgba(201,169,110,.1); color:#8B6914; border:1px solid rgba(201,169,110,.3); }
+    .btn-marble:hover { background:rgba(201,169,110,.2); }
+    .btn-atlas    { background:rgba(45,90,68,.1); color:#5A9E80; border:1px solid rgba(45,90,68,.3); }
+    .btn-atlas:hover { background:rgba(45,90,68,.2); }
+    .btn-crimson  { background:rgba(107,21,21,.1); color:#C04444; border:1px solid rgba(107,21,21,.3); }
+    .btn-crimson:hover { background:rgba(107,21,21,.2); }
+    .btn-quorum   { background:rgba(30,58,138,.1); color:#3B6FD4; border:1px solid rgba(30,58,138,.3); }
+    .btn-quorum:hover { background:rgba(30,58,138,.2); }
+
+    .footer { text-align:center; padding: 3rem 1rem 1rem; color:rgba(255,255,255,.2); font-size:.78rem; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="../index.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Voltar à biblioteca
+    </a>
+    <div class="cat-badge">Categoria 04 · Advocacia & Direito</div>
+    <h1 class="header-title">Modelos para<br/>Advogados & Escritórios</h1>
+    <p class="header-sub">6 identidades visuais distintas para o universo jurídico — de clássico premium a tech-law moderno.</p>
+  </header>
+
+  <main>
+    <div class="models-grid">
+
+      <a href="modelo-lex.html" class="model-card">
+        <div class="model-preview prev-lex">
+          <div class="preview-label">
+            <span class="preview-title">LEX</span>
+            <span class="preview-sub">Marinho · Dourado · Corporativo</span>
+          </div>
+        </div>
+        <div class="model-body">
+          <p class="model-name">Lex</p>
+          <p class="model-desc">Azul marinho profundo e dourado clássico. Autoridade e tradição para escritórios premium.</p>
+          <div class="tags"><span class="tag">Luxury</span><span class="tag">Corporativo</span><span class="tag">Dark</span><span class="tag">Gold</span></div>
+        </div>
+        <div class="model-footer">
+          <span class="model-num">ADV 01/06</span>
+          <span class="open-btn btn-lex">Visualizar →</span>
+        </div>
+      </a>
+
+      <a href="modelo-cipher.html" class="model-card">
+        <div class="model-preview prev-cipher">
+          <div class="preview-label">
+            <span class="preview-title">CIPHER</span>
+            <span class="preview-sub">Preto · Azul Elétrico · Tech</span>
+          </div>
+        </div>
+        <div class="model-body">
+          <p class="model-name">Cipher</p>
+          <p class="model-desc">Preto absoluto com azul elétrico neon. Direito digital, startups e propriedade intelectual.</p>
+          <div class="tags"><span class="tag">Tech</span><span class="tag">Digital</span><span class="tag">Neon</span><span class="tag">Moderno</span></div>
+        </div>
+        <div class="model-footer">
+          <span class="model-num">ADV 02/06</span>
+          <span class="open-btn btn-cipher">Visualizar →</span>
+        </div>
+      </a>
+
+      <a href="modelo-marble.html" class="model-card">
+        <div class="model-preview prev-marble">
+          <div class="preview-label">
+            <span class="preview-title">MARBLE</span>
+            <span class="preview-sub">Branco · Carvão · Dourado</span>
+          </div>
+        </div>
+        <div class="model-body">
+          <p class="model-name">Marble</p>
+          <p class="model-desc">Editorial luxury clean com textura mármor. Advocacia civil e criminal de alto padrão.</p>
+          <div class="tags"><span class="tag">Editorial</span><span class="tag">Luxury</span><span class="tag">Minimalista</span><span class="tag">Clean</span></div>
+        </div>
+        <div class="model-footer">
+          <span class="model-num">ADV 03/06</span>
+          <span class="open-btn btn-marble">Visualizar →</span>
+        </div>
+      </a>
+
+      <a href="modelo-atlas.html" class="model-card">
+        <div class="model-preview prev-atlas">
+          <div class="preview-label">
+            <span class="preview-title">ATLAS</span>
+            <span class="preview-sub">Verde Floresta · Creme · Serif</span>
+          </div>
+        </div>
+        <div class="model-body">
+          <p class="model-name">Atlas</p>
+          <p class="model-desc">Verde floresta sofisticado e creme quente. Direito ambiental, trabalhista e humano.</p>
+          <div class="tags"><span class="tag">Natural</span><span class="tag">Sofisticado</span><span class="tag">Serif</span><span class="tag">Editorial</span></div>
+        </div>
+        <div class="model-footer">
+          <span class="model-num">ADV 04/06</span>
+          <span class="open-btn btn-atlas">Visualizar →</span>
+        </div>
+      </a>
+
+      <a href="modelo-crimson.html" class="model-card">
+        <div class="model-preview prev-crimson">
+          <div class="preview-label">
+            <span class="preview-title">CRIMSON</span>
+            <span class="preview-sub">Bordô · Creme · Bold</span>
+          </div>
+        </div>
+        <div class="model-body">
+          <p class="model-name">Crimson</p>
+          <p class="model-desc">Bordô escuro e creme. Presença forte e editorial para advocacia criminal e trabalhista.</p>
+          <div class="tags"><span class="tag">Bold</span><span class="tag">Criminal</span><span class="tag">Trabalhista</span><span class="tag">Editorial</span></div>
+        </div>
+        <div class="model-footer">
+          <span class="model-num">ADV 05/06</span>
+          <span class="open-btn btn-crimson">Visualizar →</span>
+        </div>
+      </a>
+
+      <a href="modelo-quorum.html" class="model-card">
+        <div class="model-preview prev-quorum">
+          <div class="preview-label">
+            <span class="preview-title">QUORUM</span>
+            <span class="preview-sub">Cinza · Slate · Cobalto</span>
+          </div>
+        </div>
+        <div class="model-body">
+          <p class="model-name">Quorum</p>
+          <p class="model-desc">Cinza claro e cobalto moderno. Direito empresarial, M&A e assessoria para startups.</p>
+          <div class="tags"><span class="tag">Corporativo</span><span class="tag">Empresarial</span><span class="tag">Clean</span><span class="tag">Azul</span></div>
+        </div>
+        <div class="model-footer">
+          <span class="model-num">ADV 06/06</span>
+          <span class="open-btn btn-quorum">Visualizar →</span>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>advocacia/ · LinkBio · Substitua [Nome], OAB e contatos antes de publicar</p>
+  </footer>
+
+</body>
+</html>

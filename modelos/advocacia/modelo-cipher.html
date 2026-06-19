@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dr. Alexandre Cipher — Advogado especialista em Direito Digital, Startups, Propriedade Intelectual e LGPD. Consultoria jurídica de precisão para o universo tech." />
+  <meta name="keywords" content="advogado direito digital, startups, propriedade intelectual, LGPD, contratos tech, marcas, patentes" />
+  <meta name="author" content="Dr. Alexandre Cipher" />
+  <meta property="og:title" content="Dr. Alexandre Cipher | Direito Digital & Tecnologia" />
+  <meta property="og:description" content="Advogado especialista em Direito Digital, Startups e Propriedade Intelectual." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0047FF" />
+  <title>Dr. Alexandre Cipher | Direito Digital & Tecnologia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ==========================================
+       RESET & BASE
+    ========================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black: #000000;
+      --black-soft: #050505;
+      --card-bg: #0A0F1E;
+      --blue-primary: #0047FF;
+      --blue-secondary: #4A90FF;
+      --blue-glow: rgba(0, 71, 255, 0.3);
+      --blue-glow-sm: rgba(0, 71, 255, 0.15);
+      --white: #FFFFFF;
+      --white-60: rgba(255, 255, 255, 0.6);
+      --white-30: rgba(255, 255, 255, 0.3);
+      --white-10: rgba(255, 255, 255, 0.07);
+      --font: 'Space Grotesk', sans-serif;
+      --nav-h: 72px;
+      --radius: 8px;
+      --transition: 0.3s ease;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background-color: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ==========================================
+       UTILITIES
+    ========================================== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue-primary);
+      border: 1px solid var(--blue-primary);
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--white-60);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    .blue-accent {
+      color: var(--blue-primary);
+    }
+
+    /* Fade-up animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Line decorators */
+    .line-h {
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue-primary), transparent);
+      border-radius: 2px;
+      margin: 20px 0;
+    }
+
+    /* ==========================================
+       NAVBAR
+    ========================================== */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 71, 255, 0.12);
+      transition: background var(--transition);
+    }
+
+    #navbar.scrolled {
+      background: rgba(0, 0, 0, 0.97);
+      border-bottom-color: rgba(0, 71, 255, 0.25);
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--blue-primary);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .nav-logo::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--blue-primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-logo:hover::after {
+      transform: scaleX(1);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--white-60);
+      letter-spacing: 0.04em;
+      transition: color var(--transition);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--blue-primary);
+      transition: width var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--blue-primary);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 10px 22px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+
+    .btn-nav:hover {
+      background: #0055ff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px var(--blue-glow);
+    }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* ==========================================
+       HERO
+    ========================================== */
+    #hero {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--black);
+      overflow: hidden;
+    }
+
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,71,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      padding-top: calc(var(--nav-h) + 60px);
+      padding-bottom: 80px;
+      width: 100%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 71, 255, 0.1);
+      border: 1px solid rgba(0, 71, 255, 0.35);
+      color: var(--blue-secondary);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 7px 16px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--blue-primary);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.7); }
+    }
+
+    .hero-name {
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .hero-name span {
+      color: var(--blue-primary);
+    }
+
+    .hero-typing-wrapper {
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 500;
+      color: var(--white-60);
+      margin-bottom: 28px;
+      min-height: 2.4em;
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .hero-typing-prefix {
+      color: var(--blue-secondary);
+      margin-right: 8px;
+    }
+
+    #typing-text {
+      color: var(--white);
+    }
+
+    .cursor-blink {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--blue-primary);
+      margin-left: 3px;
+      vertical-align: middle;
+      animation: blink 0.9s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--white-60);
+      max-width: 540px;
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--blue-primary);
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 14px 30px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.02em;
+    }
+
+    .btn-primary:hover {
+      background: #0055ff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px var(--blue-glow);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 13px 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--white-30);
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.02em;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--blue-primary);
+      color: var(--blue-secondary);
+      transform: translateY(-2px);
+    }
+
+    .hero-oab {
+      margin-top: 56px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 20px;
+      background: var(--white-10);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-left: 3px solid var(--blue-primary);
+      border-radius: var(--radius);
+      max-width: 400px;
+    }
+
+    .oab-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      color: var(--blue-primary);
+    }
+
+    .hero-oab p {
+      font-size: 0.82rem;
+      color: var(--white-60);
+      line-height: 1.5;
+    }
+
+    .hero-oab strong {
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* Hero decorative line */
+    .hero-deco-line {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(180deg, transparent 0%, var(--blue-primary) 40%, var(--blue-primary) 60%, transparent 100%);
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ==========================================
+       AREAS DE ATUACAO
+    ========================================== */
+    #areas {
+      width: 100%;
+      background: var(--black-soft);
+      padding: 100px 0;
+    }
+
+    .areas-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .areas-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .area-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 71, 255, 0.15);
+      border-radius: 12px;
+      padding: 36px 28px;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .area-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--blue-primary), transparent);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .area-card:hover {
+      border-color: rgba(0, 71, 255, 0.5);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0, 71, 255, 0.12);
+    }
+
+    .area-card:hover::before {
+      opacity: 1;
+    }
+
+    .area-icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(0, 71, 255, 0.12);
+      border: 1px solid rgba(0, 71, 255, 0.25);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      color: var(--blue-primary);
+      transition: background var(--transition);
+    }
+
+    .area-card:hover .area-icon {
+      background: rgba(0, 71, 255, 0.22);
+    }
+
+    .area-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .area-card p {
+      font-size: 0.88rem;
+      color: var(--white-60);
+      line-height: 1.7;
+    }
+
+    /* ==========================================
+       SOBRE
+    ========================================== */
+    #sobre {
+      width: 100%;
+      background: var(--black);
+      padding: 100px 0;
+    }
+
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .sobre-bullets {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .sobre-bullet {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .bullet-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: rgba(0, 71, 255, 0.12);
+      border: 1px solid rgba(0, 71, 255, 0.3);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-primary);
+      margin-top: 2px;
+    }
+
+    .sobre-bullet h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 3px;
+    }
+
+    .sobre-bullet p {
+      font-size: 0.85rem;
+      color: var(--white-60);
+      line-height: 1.6;
+    }
+
+    .sobre-visual {
+      position: relative;
+    }
+
+    .sobre-card-main {
+      background: var(--card-bg);
+      border: 1px solid rgba(0, 71, 255, 0.2);
+      border-radius: 16px;
+      padding: 40px 36px;
+      position: relative;
+    }
+
+    .sobre-card-main::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--blue-primary), var(--blue-secondary));
+      border-radius: 3px 0 0 3px;
+    }
+
+    .sobre-avatar {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--blue-primary), var(--blue-secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .sobre-card-main h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .sobre-card-main .role {
+      font-size: 0.85rem;
+      color: var(--blue-secondary);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .sobre-card-main p {
+      font-size: 0.88rem;
+      color: var(--white-60);
+      line-height: 1.7;
+    }
+
+    .sobre-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .sobre-stat {
+      background: rgba(0, 71, 255, 0.07);
+      border: 1px solid rgba(0, 71, 255, 0.15);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .sobre-stat .num {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--blue-primary);
+      display: block;
+    }
+
+    .sobre-stat .lbl {
+      font-size: 0.75rem;
+      color: var(--white-60);
+      letter-spacing: 0.04em;
+    }
+
+    /* ==========================================
+       NUMEROS
+    ========================================== */
+    #numeros {
+      width: 100%;
+      background: var(--card-bg);
+      padding: 90px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #numeros::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue-primary), transparent);
+      opacity: 0.4;
+    }
+
+    #numeros::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--blue-primary), transparent);
+      opacity: 0.4;
+    }
+
+    .numeros-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    .numero-item {
+      position: relative;
+    }
+
+    .numero-item + .numero-item::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 60px;
+      width: 1px;
+      background: rgba(0, 71, 255, 0.2);
+    }
+
+    .numero-value {
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      font-weight: 700;
+      color: var(--blue-primary);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .numero-suffix {
+      color: var(--blue-secondary);
+    }
+
+    .numero-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--white-60);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ==========================================
+       DEPOIMENTOS
+    ========================================== */
+    #depoimentos {
+      width: 100%;
+      background: var(--black-soft);
+      padding: 100px 0;
+    }
+
+    .depoimentos-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .depoimentos-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .depo-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-left: 3px solid var(--blue-primary);
+      border-radius: 12px;
+      padding: 36px 32px;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .depo-card:hover {
+      border-color: rgba(255, 255, 255, 0.1);
+      border-left-color: var(--blue-secondary);
+      transform: translateY(-4px);
+    }
+
+    .depo-stars {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 18px;
+    }
+
+    .depo-stars svg {
+      color: var(--blue-primary);
+    }
+
+    .depo-text {
+      font-size: 0.95rem;
+      color: var(--white-60);
+      line-height: 1.8;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .depo-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .depo-avatar {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--blue-primary), var(--blue-secondary));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .depo-info h4 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .depo-info span {
+      font-size: 0.78rem;
+      color: var(--blue-secondary);
+    }
+
+    /* ==========================================
+       PROCESSO
+    ========================================== */
+    #processo {
+      width: 100%;
+      background: var(--black);
+      padding: 100px 0;
+    }
+
+    .processo-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .processo-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      position: relative;
+      gap: 0;
+    }
+
+    .processo-steps::before {
+      content: '';
+      position: absolute;
+      top: 44px;
+      left: calc(100% / 6);
+      right: calc(100% / 6);
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue-primary), rgba(74, 144, 255, 0.4));
+      z-index: 0;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      width: 88px;
+      height: 88px;
+      background: var(--card-bg);
+      border: 2px solid var(--blue-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--blue-primary);
+      margin-bottom: 28px;
+      position: relative;
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+
+    .step:hover .step-num {
+      background: rgba(0, 71, 255, 0.12);
+      box-shadow: 0 0 24px var(--blue-glow);
+    }
+
+    .step h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .step p {
+      font-size: 0.88rem;
+      color: var(--white-60);
+      line-height: 1.7;
+      max-width: 260px;
+    }
+
+    /* ==========================================
+       CONTATO
+    ========================================== */
+    #contato {
+      width: 100%;
+      background: var(--black);
+      padding: 100px 0;
+      border-top: 1px solid rgba(0, 71, 255, 0.1);
+    }
+
+    .contato-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contato-inner .section-subtitle {
+      margin: 0 auto 48px;
+    }
+
+    .contato-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn-contact {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      max-width: 420px;
+      font-family: var(--font);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 16px 28px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all var(--transition);
+      letter-spacing: 0.02em;
+    }
+
+    .btn-contact.whatsapp {
+      background: var(--blue-primary);
+      color: var(--white);
+      border: 2px solid var(--blue-primary);
+    }
+
+    .btn-contact.whatsapp:hover {
+      background: #0055ff;
+      border-color: #0055ff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px var(--blue-glow);
+    }
+
+    .btn-contact.email {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .btn-contact.email:hover {
+      border-color: var(--blue-secondary);
+      color: var(--blue-secondary);
+      transform: translateY(-2px);
+    }
+
+    .btn-contact.linkedin {
+      background: transparent;
+      color: var(--white-60);
+      border: 2px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-contact.linkedin:hover {
+      border-color: rgba(74, 144, 255, 0.4);
+      color: var(--blue-secondary);
+      transform: translateY(-2px);
+    }
+
+    .contato-separator {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 12px auto;
+      max-width: 420px;
+      width: 100%;
+    }
+
+    .contato-separator span {
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .contato-separator p {
+      font-size: 0.75rem;
+      color: var(--white-30);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ==========================================
+       FOOTER
+    ========================================== */
+    #footer {
+      width: 100%;
+      background: #000;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 56px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 60px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand .nav-logo {
+      display: block;
+      margin-bottom: 16px;
+      font-size: 1.4rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: var(--white-60);
+      line-height: 1.7;
+      max-width: 280px;
+      margin-bottom: 20px;
+    }
+
+    .footer-brand .oab-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      color: var(--white-60);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--white-60);
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-col ul li a {
+      font-size: 0.88rem;
+      color: var(--white-60);
+      transition: color var(--transition);
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--blue-secondary);
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 0.8rem;
+      color: var(--white-30);
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      font-size: 0.8rem;
+      color: var(--white-30);
+      transition: color var(--transition);
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--blue-secondary);
+    }
+
+    /* ==========================================
+       RESPONSIVE — TABLET (≤ 1024px)
+    ========================================== */
+    @media (max-width: 1024px) {
+      .areas-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .numeros-grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 40px;
+      }
+
+      .numero-item + .numero-item::before {
+        display: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: span 2;
+      }
+
+      .sobre-grid {
+        gap: 48px;
+      }
+    }
+
+    /* ==========================================
+       RESPONSIVE — TABLET (≤ 768px)
+    ========================================== */
+    @media (max-width: 768px) {
+      :root {
+        --nav-h: 64px;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+
+      .nav-inner {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: var(--nav-h);
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.98);
+        border-bottom: 1px solid rgba(0, 71, 255, 0.2);
+        flex-direction: column;
+        gap: 0;
+        padding: 16px 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 14px 24px;
+        width: 100%;
+      }
+
+      .nav-links a::after {
+        display: none;
+      }
+
+      .btn-nav-wrap {
+        padding: 14px 24px;
+        width: 100%;
+      }
+
+      .btn-nav {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .nav-toggle {
+        display: flex;
+      }
+
+      .hero-inner {
+        padding-top: calc(var(--nav-h) + 40px);
+        padding-bottom: 60px;
+      }
+
+      .hero-oab {
+        max-width: 100%;
+      }
+
+      #areas {
+        padding: 72px 0;
+      }
+
+      .areas-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .sobre-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      #numeros {
+        padding: 72px 0;
+      }
+
+      .depoimentos-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .processo-steps {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .processo-steps::before {
+        display: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .footer-brand {
+        grid-column: unset;
+      }
+    }
+
+    /* ==========================================
+       RESPONSIVE — MOBILE (< 480px)
+    ========================================== */
+    @media (max-width: 480px) {
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-primary,
+      .btn-outline {
+        justify-content: center;
+      }
+
+      .areas-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sobre-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .numeros-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* ==========================================
+       SCROLL-TO-TOP
+    ========================================== */
+    #scroll-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 44px;
+      height: 44px;
+      background: var(--blue-primary);
+      border: none;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--white);
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity var(--transition), transform var(--transition), background var(--transition);
+      z-index: 999;
+    }
+
+    #scroll-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #scroll-top:hover {
+      background: #0055ff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       NAVBAR
+  ========================================== -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">CIPHER</a>
+      <div class="nav-links" id="nav-links">
+        <a href="#areas">Atuacao</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#numeros">Numeros</a>
+        <a href="#depoimentos">Clientes</a>
+        <a href="#processo">Processo</a>
+        <div class="btn-nav-wrap">
+          <a href="#contato" class="btn-nav">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Consulta
+          </a>
+        </div>
+      </div>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       HERO
+  ========================================== -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-overlay"></div>
+    <div class="hero-deco-line"></div>
+
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Especialista em Direito Digital
+      </div>
+
+      <h1 class="hero-name">
+        Dr. Alexandre<br /><span>Cipher</span>
+      </h1>
+
+      <div class="hero-typing-wrapper">
+        <span class="hero-typing-prefix">//</span>
+        <span id="typing-text"></span>
+        <span class="cursor-blink"></span>
+      </div>
+
+      <p class="hero-desc">
+        Assessoria juridica estrategica para empresas de tecnologia, startups inovadoras e criadores digitais. Precisao tecnica. Resultados reais.
+      </p>
+
+      <div class="hero-actions">
+        <a href="https://wa.me/5511999999999?text=Ola%2C%20gostaria%20de%20uma%20consulta" target="_blank" rel="noopener" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.527 5.857L.057 23.882a.5.5 0 0 0 .61.61l6.108-1.527A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.958 9.958 0 0 1-5.185-1.45l-.371-.222-3.849.962.978-3.77-.244-.392A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+          Falar no WhatsApp
+        </a>
+        <a href="#areas" class="btn-outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          Ver atuacao
+        </a>
+      </div>
+
+      <div class="hero-oab">
+        <svg class="oab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          <polyline points="9 12 11 14 15 10"/>
+        </svg>
+        <p><strong>OAB/SP 000.000</strong><br />Inscrito na Ordem dos Advogados do Brasil — Seccional Sao Paulo</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       AREAS DE ATUACAO
+  ========================================== -->
+  <section id="areas">
+    <div class="container">
+      <div class="areas-header fade-up">
+        <span class="section-tag">Atuacao</span>
+        <h2 class="section-title">Areas de <span class="blue-accent">Especializacao</span></h2>
+        <p class="section-subtitle">Cobertura juridica completa para o ecossistema digital, com profundidade tecnica e visao estrategica.</p>
+      </div>
+
+      <div class="areas-grid">
+        <!-- Card 1 -->
+        <div class="area-card fade-up">
+          <div class="area-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3>Direito Digital</h3>
+          <p>Contratos digitais, e-commerce, regulacao de plataformas, responsabilidade civil online e conformidade com marcos regulatorios do ambiente digital.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="area-card fade-up">
+          <div class="area-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <h3>Startups &amp; Venture</h3>
+          <p>Constituicao societaria, termo de socio, cap table, due diligence, rodadas de investimento (seed, Serie A/B) e termos de aporte com investidores-anjo.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="area-card fade-up">
+          <div class="area-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <h3>Propriedade Intelectual</h3>
+          <p>Registro de software (INPI), protecao de ativos intelectuais, licenciamento de tecnologia, open source compliance e acordos de confidencialidade (NDA).</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="area-card fade-up">
+          <div class="area-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>LGPD &amp; Privacidade</h3>
+          <p>Adequacao a Lei Geral de Protecao de Dados, mapeamento de dados pessoais, elaboracao de politicas de privacidade, DPO e resposta a incidentes.</p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="area-card fade-up">
+          <div class="area-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <h3>Contratos Tech</h3>
+          <p>Desenvolvimento de software (SaaS, MSA), SLA, termos de uso, contratos de API, outsourcing de TI, escrow de codigo-fonte e acordos de parceria tecnologica.</p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="area-card fade-up">
+          <div class="area-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+            </svg>
+          </div>
+          <h3>Marcas &amp; Patentes</h3>
+          <p>Registro e monitoramento de marcas (INPI/EUIPO/USPTO), patentes de software e metodos de negocio, desenho industrial e estrategia de portfolio de PI.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SOBRE
+  ========================================== -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <div class="sobre-text fade-up">
+          <span class="section-tag">Sobre</span>
+          <h2 class="section-title">Precisao juridica para o <span class="blue-accent">universo tech</span></h2>
+          <span class="line-h"></span>
+          <p class="section-subtitle">Com mais de uma decada de atuacao em direito e tecnologia, ofereco assessoria juridica que vai alem do codigo — entendo o negocio, o produto e o mercado em que voce opera.</p>
+
+          <div class="sobre-bullets">
+            <div class="sobre-bullet">
+              <div class="bullet-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <h4>Especializacao multidisciplinar</h4>
+                <p>Formacao em Direito com especializacao em Tecnologia da Informacao e MBA em Gestao de Startups e Inovacao.</p>
+              </div>
+            </div>
+            <div class="sobre-bullet">
+              <div class="bullet-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <h4>Atuacao nacional e internacional</h4>
+                <p>Experiencia com processos no INPI, litígios digitais e contratos com contraparte estrangeira em ingles e espanhol.</p>
+              </div>
+            </div>
+            <div class="sobre-bullet">
+              <div class="bullet-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div>
+                <h4>Parceiro estrategico de negocio</h4>
+                <p>Assessoria continua que acompanha cada fase do crescimento, do MVP a escala — com agilidade e custo proporcional.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sobre-visual fade-up">
+          <div class="sobre-card-main">
+            <div class="sobre-avatar">AC</div>
+            <h3>Alexandre Cipher</h3>
+            <p class="role">Advogado Especialista — OAB/SP 000.000</p>
+            <p>Assessoria juridica de precisao para empresas de tecnologia, startups e profissionais digitais que precisam de um parceiro juridico que entende o mundo em que atuam.</p>
+            <div class="sobre-stats">
+              <div class="sobre-stat">
+                <span class="num" data-target="12">0</span>
+                <span class="lbl">Anos de exp.</span>
+              </div>
+              <div class="sobre-stat">
+                <span class="num" data-target="300">0</span>
+                <span class="lbl">Clientes</span>
+              </div>
+              <div class="sobre-stat">
+                <span class="num" data-target="98">0</span>
+                <span class="lbl">% Satisfacao</span>
+              </div>
+              <div class="sobre-stat">
+                <span class="num" data-target="47">0</span>
+                <span class="lbl">Marcas reg.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       NUMEROS
+  ========================================== -->
+  <section id="numeros">
+    <div class="container">
+      <div class="numeros-grid">
+        <div class="numero-item fade-up">
+          <div class="numero-value">
+            <span class="count" data-target="450">0</span><span class="numero-suffix">+</span>
+          </div>
+          <p class="numero-label">Contratos elaborados</p>
+        </div>
+        <div class="numero-item fade-up">
+          <div class="numero-value">
+            <span class="count" data-target="120">0</span><span class="numero-suffix">+</span>
+          </div>
+          <p class="numero-label">Startups assessoradas</p>
+        </div>
+        <div class="numero-item fade-up">
+          <div class="numero-value">
+            <span class="count" data-target="98">0</span><span class="numero-suffix">%</span>
+          </div>
+          <p class="numero-label">Taxa de satisfacao</p>
+        </div>
+        <div class="numero-item fade-up">
+          <div class="numero-value">
+            <span class="count" data-target="12">0</span><span class="numero-suffix">+</span>
+          </div>
+          <p class="numero-label">Anos de experiencia</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       DEPOIMENTOS
+  ========================================== -->
+  <section id="depoimentos">
+    <div class="container">
+      <div class="depoimentos-header fade-up">
+        <span class="section-tag">Depoimentos</span>
+        <h2 class="section-title">O que dizem nossos <span class="blue-accent">clientes</span></h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Relatos reais de fundadores, CTOs e empreendedores digitais que escolheram assessoria juridica de precisao.</p>
+      </div>
+
+      <div class="depoimentos-grid">
+        <div class="depo-card fade-up">
+          <div class="depo-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="depo-text">"O Dr. Cipher foi essencial na nossa rodada seed. Ele estruturou o cap table, revisou todos os acordos com investidores e ainda nos alertou para clausulas que teriam sido problemas futuros. Profissional impecavel."</p>
+          <div class="depo-author">
+            <div class="depo-avatar">RM</div>
+            <div class="depo-info">
+              <h4>Rafael Monteiro</h4>
+              <span>CEO — Fintech Ativa</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="depo-card fade-up">
+          <div class="depo-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="depo-text">"A adequacao a LGPD do nosso SaaS foi conduzida com precisao cirurgica. O Dr. Cipher mapeou todos os dados, criou os documentos necessarios e nos deixou prontos para qualquer auditoria. Resultado em tempo record."</p>
+          <div class="depo-author">
+            <div class="depo-avatar">CS</div>
+            <div class="depo-info">
+              <h4>Camila Souza</h4>
+              <span>CTO — Plataforma EdTech</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="depo-card fade-up">
+          <div class="depo-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="depo-text">"Registramos nossa marca em 3 classes no INPI e nos EUA com suporte total do escritorio. O processo foi transparente, com prazos claros e atualizacoes constantes. Recomendo sem hesitar para qualquer empresa de tecnologia."</p>
+          <div class="depo-author">
+            <div class="depo-avatar">PL</div>
+            <div class="depo-info">
+              <h4>Pedro Lima</h4>
+              <span>Founder — SaaS B2B</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="depo-card fade-up">
+          <div class="depo-stars">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="depo-text">"Quando enfrentei uma disputa por direitos autorais de codigo, o Dr. Cipher foi a tranquilidade que eu precisava. Resolveu extrajudicialmente em menos de 60 dias. Expertise real, comunicacao clara e resultado concreto."</p>
+          <div class="depo-author">
+            <div class="depo-avatar">JA</div>
+            <div class="depo-info">
+              <h4>Julia Andrade</h4>
+              <span>Desenvolvedora Independente</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       PROCESSO
+  ========================================== -->
+  <section id="processo">
+    <div class="container">
+      <div class="processo-header fade-up">
+        <span class="section-tag">Processo</span>
+        <h2 class="section-title">Como <span class="blue-accent">trabalhamos</span></h2>
+        <p class="section-subtitle" style="margin: 0 auto;">Um metodo claro, estruturado e orientado a resultados — sem juridiques desnecessarias.</p>
+      </div>
+
+      <div class="processo-steps">
+        <div class="step fade-up">
+          <div class="step-num">01</div>
+          <h3>Diagnstico Inicial</h3>
+          <p>Consulta estrategica para mapear riscos juridicos, oportunidades de protecao e prioridades do seu negocio digital. Sem custo.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">02</div>
+          <h3>Plano de Acao</h3>
+          <p>Proposta personalizada com escopo detalhado, prazos realistas e investimento transparente. Voce decide com informacao completa.</p>
+        </div>
+        <div class="step fade-up">
+          <div class="step-num">03</div>
+          <h3>Execucao &amp; Acompanhamento</h3>
+          <p>Implementacao com atualizacoes periodicas, relatorios de progresso e acesso direto ao advogado responsavel via canal dedicado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       CONTATO
+  ========================================== -->
+  <section id="contato">
+    <div class="container">
+      <div class="contato-inner fade-up">
+        <span class="section-tag">Contato</span>
+        <h2 class="section-title">Pronto para proteger seu <span class="blue-accent">negocio</span>?</h2>
+        <p class="section-subtitle">Escolha o canal de sua preferencia e inicie uma conversa sem compromisso. Primeira analise juridica gratuita.</p>
+
+        <div class="contato-buttons">
+          <a href="https://wa.me/5511999999999?text=Ola%2C%20gostaria%20de%20uma%20consulta%20juridica" target="_blank" rel="noopener" class="btn-contact whatsapp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.527 5.857L.057 23.882a.5.5 0 0 0 .61.61l6.108-1.527A11.952 11.952 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.958 9.958 0 0 1-5.185-1.45l-.371-.222-3.849.962.978-3.77-.244-.392A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            Iniciar conversa no WhatsApp
+          </a>
+
+          <div class="contato-separator">
+            <span></span><p>ou</p><span></span>
+          </div>
+
+          <a href="mailto:contato@alexandrecipher.adv.br" class="btn-contact email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            contato@alexandrecipher.adv.br
+          </a>
+
+          <a href="https://linkedin.com/in/alexandrecipher" target="_blank" rel="noopener" class="btn-contact linkedin">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn — Alexandre Cipher
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FOOTER
+  ========================================== -->
+  <footer id="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo">CIPHER</a>
+          <p>Assessoria juridica especializada para o ecossistema digital. Direito de precisao para quem constroi o futuro.</p>
+          <div class="oab-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            OAB/SP 000.000
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navegacao</h4>
+          <ul>
+            <li><a href="#areas">Areas de Atuacao</a></li>
+            <li><a href="#sobre">Sobre o Escritorio</a></li>
+            <li><a href="#numeros">Numeros</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
+            <li><a href="#processo">Nosso Processo</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Especializacoes</h4>
+          <ul>
+            <li><a href="#areas">Direito Digital</a></li>
+            <li><a href="#areas">Startups &amp; Venture</a></li>
+            <li><a href="#areas">Propriedade Intelectual</a></li>
+            <li><a href="#areas">LGPD &amp; Privacidade</a></li>
+            <li><a href="#areas">Contratos Tech</a></li>
+            <li><a href="#areas">Marcas &amp; Patentes</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alexandre Cipher Advocacia. OAB/SP 000.000. Todos os direitos reservados.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Politica de Privacidade</a>
+          <a href="#">Termos de Uso</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to top -->
+  <button id="scroll-top" aria-label="Voltar ao topo">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- ==========================================
+       JAVASCRIPT
+  ========================================== -->
+  <script>
+    /* ---- NAVBAR scroll ---- */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* ---- Mobile menu ---- */
+    const toggle = document.getElementById('nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        toggle.classList.remove('active');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    /* ---- Scroll to top ---- */
+    const scrollTopBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* ---- Typing animation ---- */
+    const phrases = [
+      'Direito Digital Estrategico',
+      'Protecao de Propriedade Intelectual',
+      'Segurança Juridica para Startups'
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typingEl = document.getElementById('typing-text');
+
+    function type() {
+      const current = phrases[phraseIndex];
+      if (isDeleting) {
+        charIndex--;
+        typingEl.textContent = current.slice(0, charIndex);
+        if (charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(type, 400);
+          return;
+        }
+        setTimeout(type, 40);
+      } else {
+        charIndex++;
+        typingEl.textContent = current.slice(0, charIndex);
+        if (charIndex === current.length) {
+          isDeleting = true;
+          setTimeout(type, 2200);
+          return;
+        }
+        setTimeout(type, 65);
+      }
+    }
+    type();
+
+    /* ---- Canvas Particles ---- */
+    (function () {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      let W, H, particles;
+
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+
+      const PARTICLE_COUNT = 90;
+      const BLUE_PRIMARY = '#0047FF';
+      const BLUE_SECONDARY = '#4A90FF';
+
+      function createParticles() {
+        particles = Array.from({ length: PARTICLE_COUNT }, () => ({
+          x: Math.random() * W,
+          y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          r: Math.random() * 1.8 + 0.6,
+          color: Math.random() > 0.6 ? BLUE_PRIMARY : BLUE_SECONDARY,
+          alpha: Math.random() * 0.5 + 0.15
+        }));
+      }
+
+      function drawLine(p1, p2, dist, maxDist) {
+        const alpha = (1 - dist / maxDist) * 0.18;
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = `rgba(0, 71, 255, ${alpha})`;
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, W, H);
+        const maxDist = 140;
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0 || p.x > W) p.vx *= -1;
+          if (p.y < 0 || p.y > H) p.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.alpha;
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        });
+
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < maxDist) {
+              drawLine(particles[i], particles[j], dist, maxDist);
+            }
+          }
+        }
+
+        requestAnimationFrame(animate);
+      }
+
+      resize();
+      createParticles();
+      animate();
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          resize();
+          createParticles();
+        }, 200);
+      });
+    })();
+
+    /* ---- IntersectionObserver fade-up ---- */
+    const fadeEls = document.querySelectorAll('.fade-up');
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const siblings = Array.from(el.parentElement.querySelectorAll('.fade-up'));
+          const idx = siblings.indexOf(el);
+          setTimeout(() => {
+            el.classList.add('visible');
+          }, idx * 90);
+          fadeObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    fadeEls.forEach(el => fadeObserver.observe(el));
+
+    /* ---- Counter animation ---- */
+    function animateCount(el) {
+      const target = parseInt(el.getAttribute('data-target'), 10);
+      const duration = 1600;
+      const start = performance.now();
+      function update(now) {
+        const elapsed = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - elapsed, 3);
+        el.textContent = Math.floor(eased * target);
+        if (elapsed < 1) requestAnimationFrame(update);
+        else el.textContent = target;
+      }
+      requestAnimationFrame(update);
+    }
+
+    const countEls = document.querySelectorAll('.count, [data-target]');
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          countObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    countEls.forEach(el => countObserver.observe(el));
+  </script>
+</body>
+</html>
