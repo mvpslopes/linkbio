@@ -1,0 +1,1416 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Raquel Eduarda | Personal Trainer &amp; Educadora Física — Ouro Branco, MG</title>
+    <meta name="description" content="Treinos personalizados com Raquel Eduarda — Personal Trainer, Educadora Física e Pesquisadora. Atendimento presencial em Ouro Branco/MG e online para todo o Brasil. Emagrecimento, hipertrofia, saúde e confiança." />
+    <meta name="keywords" content="personal trainer, educadora física, Ouro Branco, treino personalizado, consultoria online, emagrecimento, hipertrofia, Raquel Eduarda" />
+    <link rel="canonical" href="https://personalraqueleduarda.linkbio.api.br/" />
+    <link rel="icon" href="logo/icone-logo-branco.png" type="image/png" sizes="32x32" />
+    <link rel="icon" href="logo/icone-logo-branco.png" type="image/png" sizes="16x16" />
+    <link rel="apple-touch-icon" href="logo/icone-logo-branco.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://personalraqueleduarda.linkbio.api.br/" />
+    <meta property="og:title" content="Raquel Eduarda — Personal Trainer & Educadora Física" />
+    <meta property="og:description" content="Treino inteligente, seguro e personalizado. Atendimento presencial em Ouro Branco/MG e online para todo o Brasil." />
+    <meta property="og:image" content="https://personalraqueleduarda.linkbio.api.br/artes/47864F12-E338-4D83-BB62-E6F74D47A3DF.PNG" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Raquel Eduarda — Personal Trainer" />
+
+    <!-- Dados estruturados -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Raquel Eduarda",
+      "jobTitle": "Personal Trainer, Educadora Física e Pesquisadora",
+      "description": "Personal Trainer e Educadora Física especializada em treinos personalizados, com atendimento presencial em Ouro Branco (MG) e consultoria online para todo o Brasil.",
+      "url": "https://personalraqueleduarda.linkbio.api.br/",
+      "telephone": "+5531982820924",
+      "email": "raquel.edu.braga@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ouro Branco",
+        "addressRegion": "MG",
+        "addressCountry": "BR"
+      },
+      "sameAs": [
+        "https://www.instagram.com/personalraqueleduarda/",
+        "https://br.linkedin.com/in/raquel-eduarda-ed-fisica",
+        "http://lattes.cnpq.br/1166832383885880"
+      ],
+      "knowsAbout": ["Personal training", "Educação Física", "Emagrecimento", "Hipertrofia", "Consultoria online", "Treinamento baseado em evidências"]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif'],
+              display: ['Sora', 'ui-sans-serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --accent: #22c55e;
+        --accent-dark: #16a34a;
+        --accent-light: #86efac;
+        --accent-glow: rgba(34, 197, 94, 0.30);
+        --accent-dim: rgba(34, 197, 94, 0.12);
+        --ink: #f2f7f4;
+        --muted: #9aaba2;
+        --bg: #070a08;
+        --bg2: #0c110e;
+        --bg3: #121a15;
+        --dark: #050705;
+        --dark2: #0a100c;
+        --surface: #111814;
+        --border: rgba(255,255,255,.08);
+        --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+      html { scroll-behavior: smooth; }
+      body { background: var(--bg); color: var(--ink); overflow-x: hidden; }
+
+      .font-display { font-family: 'Sora', sans-serif; }
+
+      .text-grad {
+        background: linear-gradient(120deg, #16a34a 0%, #22c55e 50%, #4ade80 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* seções com gradiente + textura */
+      .section-dark,
+      .section-light {
+        position: relative;
+        isolation: isolate;
+      }
+      .section-dark::before,
+      .section-light::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image: var(--noise);
+        background-repeat: repeat;
+        background-size: 180px 180px;
+        mix-blend-mode: overlay;
+      }
+      .section-dark > *,
+      .section-light > * { position: relative; z-index: 1; }
+
+      .section-dark {
+        --ink: #f2f7f4;
+        --muted: #9aaba2;
+        --surface: #111814;
+        --border: rgba(255,255,255,.10);
+        --accent-dim: rgba(34,197,94,.12);
+        --card-shadow: 0 2px 16px rgba(0,0,0,.28);
+        --card-hover-shadow: 0 22px 40px rgba(0,0,0,.38), 0 0 40px rgba(34,197,94,.08);
+        color: var(--ink);
+        background:
+          radial-gradient(ellipse 80% 60% at 100% 0%, rgba(34,197,94,.08) 0%, transparent 55%),
+          radial-gradient(ellipse 70% 50% at 0% 100%, rgba(34,197,94,.05) 0%, transparent 50%),
+          linear-gradient(165deg, #050705 0%, #0a100c 42%, #0d1510 100%);
+      }
+      .section-dark::before { opacity: .045; }
+
+      .section-light {
+        --ink: #101713;
+        --muted: #5b6b64;
+        --surface: #ffffff;
+        --border: rgba(15,23,20,.08);
+        --accent-dim: rgba(34,197,94,.10);
+        --card-shadow: 0 2px 14px rgba(16,23,17,.06);
+        --card-hover-shadow: 0 22px 40px rgba(16,23,17,.10);
+        color: var(--ink);
+        background:
+          radial-gradient(ellipse 70% 50% at 0% 0%, rgba(34,197,94,.07) 0%, transparent 55%),
+          radial-gradient(ellipse 60% 45% at 100% 100%, rgba(34,197,94,.05) 0%, transparent 50%),
+          linear-gradient(165deg, #ffffff 0%, #f4f7f5 48%, #eef3f0 100%);
+      }
+      .section-light::before { opacity: .035; mix-blend-mode: multiply; }
+
+      .section-light .tag-pill {
+        color: var(--accent-dark);
+        border-color: rgba(34,197,94,.28);
+      }
+      .section-light .carousel-dot { background: rgba(16,23,17,.16); }
+      .section-light .carousel-dot.active { background: var(--accent-dark); }
+      .section-light .btn-ghost {
+        border-color: rgba(16,23,17,.12);
+        background: rgba(16,23,17,.03);
+      }
+      .section-light .btn-ghost:hover {
+        background: rgba(16,23,17,.06);
+      }
+      .section-light .ba-card {
+        background: linear-gradient(160deg, #eef4f0 0%, #e4ece7 100%);
+        border-color: rgba(22,163,74,.35);
+      }
+      .section-light .num-ghost { color: rgba(16,23,17,.06); }
+      .section-dark .num-ghost { color: rgba(255,255,255,.05); }
+
+      /* tag pill */
+      .tag-pill {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: var(--accent-dim);
+        border: 1px solid rgba(34,197,94,.30);
+        border-radius: 999px;
+        padding: 5px 16px;
+        font-size: 11px; font-weight: 700; letter-spacing: .12em;
+        text-transform: uppercase; color: var(--accent-light);
+      }
+      .tag-pill-dark {
+        background: rgba(255,255,255,.08);
+        border: 1px solid rgba(255,255,255,.18);
+        color: var(--accent-light);
+      }
+
+      /* hero */
+      .hero-section { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
+      .hero-blob {
+        position: absolute; border-radius: 999px; filter: blur(60px); pointer-events: none; z-index: 0;
+      }
+      .hero-photo {
+        position: relative;
+        display: block;
+        width: 100%;
+      }
+      .hero-photo img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, rgba(0,0,0,.45) 78%, transparent 100%);
+        mask-image: linear-gradient(to bottom, #000 0%, #000 58%, rgba(0,0,0,.45) 78%, transparent 100%);
+      }
+
+      /* header logo height */
+      .brand-logo { height: 34px; }
+      @media(min-width:768px){ .brand-logo { height: 40px; } }
+
+      /* card base */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 1.25rem;
+        box-shadow: var(--card-shadow, 0 2px 16px rgba(0,0,0,.25));
+        transition: all .35s ease;
+      }
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--card-hover-shadow, 0 22px 40px rgba(0,0,0,.35));
+        border-color: rgba(34,197,94,.35);
+      }
+
+      .card-dark {
+        background: rgba(255,255,255,.04);
+        border: 1px solid rgba(255,255,255,.10);
+        border-radius: 1.25rem;
+      }
+
+      /* icon box */
+      .icon-box {
+        height: 52px; width: 52px; border-radius: 14px; flex-shrink: 0;
+        background: radial-gradient(circle at 30% 30%, rgba(34,197,94,.28), rgba(34,197,94,.08));
+        border: 1px solid rgba(34,197,94,.30);
+        display: flex; align-items: center; justify-content: center;
+      }
+
+      /* check item */
+      .check-item { display: flex; align-items: flex-start; gap: 12px; }
+      .check-dot {
+        height: 22px; width: 22px; border-radius: 50%;
+        background: var(--accent-dim); border: 1px solid rgba(34,197,94,.35);
+        display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+      }
+
+      /* deco line */
+      .deco-line {
+        display: block; height: 3px; width: 48px; border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent-dark), var(--accent-light));
+        margin-bottom: 1.5rem;
+      }
+
+      /* scroll animations */
+      [data-animate] { opacity:0; transform:translateY(22px); transition: opacity .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1); }
+      [data-animate].is-visible { opacity:1; transform:none; }
+      [data-animate-delay="1"] { transition-delay:.08s; }
+      [data-animate-delay="2"] { transition-delay:.16s; }
+      [data-animate-delay="3"] { transition-delay:.24s; }
+      [data-animate-delay="4"] { transition-delay:.32s; }
+      [data-animate-delay="5"] { transition-delay:.40s; }
+
+      /* splash */
+      #splash {
+        position: fixed; inset: 0; z-index: 9999;
+        display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.75rem;
+        background:
+          radial-gradient(ellipse 60% 50% at 50% 40%, rgba(34,197,94,.10) 0%, transparent 60%),
+          linear-gradient(165deg, #050705 0%, #0a100c 100%);
+        padding: 0 1rem;
+        transition: opacity .6s ease, visibility .6s ease;
+      }
+      #splash::before {
+        content: '';
+        position: absolute; inset: 0;
+        background-image: var(--noise);
+        background-size: 180px 180px;
+        opacity: .04;
+        pointer-events: none;
+      }
+      #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+      #splash .spl-symbol {
+        position: relative; z-index: 1;
+        display: block; margin: 0 auto;
+        width: min(46vw, 140px); height: auto; object-fit: contain;
+        animation: splIn 1.05s cubic-bezier(.34,1.56,.64,1) both;
+      }
+      @keyframes splIn { 0%{opacity:0;transform:scale(.7)} 100%{opacity:1;transform:scale(1)} }
+      .spl-bar { position: relative; z-index: 1; width: 140px; height: 3px; border-radius: 999px; background: rgba(255,255,255,.08); overflow: hidden; }
+      .spl-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #16a34a, #22c55e, #4ade80); width: 0; animation: splFill 1.6s ease-out forwards; }
+      @keyframes splFill { to { width: 100%; } }
+
+      /* accordion FAQ */
+      details summary { cursor: pointer; list-style: none; }
+      details summary::-webkit-details-marker { display: none; }
+      details[open] summary .faq-icon { transform: rotate(45deg); }
+      .faq-icon { transition: transform .3s ease; }
+
+      /* testimonial carousel */
+      .carousel-track {
+        display: flex; gap: 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory;
+        scroll-behavior: smooth; -webkit-overflow-scrolling: touch; padding-bottom: .5rem;
+      }
+      .carousel-track::-webkit-scrollbar { display: none; }
+      .carousel-track { scrollbar-width: none; }
+      .carousel-slide {
+        scroll-snap-align: start; flex: 0 0 100%;
+      }
+      @media(min-width:768px){ .carousel-slide { flex: 0 0 calc(50% - .625rem); } }
+      @media(min-width:1024px){ .carousel-slide { flex: 0 0 calc(33.333% - .834rem); } }
+      .carousel-dot { height: 8px; width: 8px; border-radius: 999px; background: rgba(255,255,255,.18); transition: all .3s; cursor: pointer; }
+      .carousel-dot.active { width: 24px; background: var(--accent); }
+
+      /* testemunho card */
+      .testi-card { position: relative; height: 100%; }
+      .testi-card::before {
+        content: '"';
+        position: absolute; top: -6px; left: 20px;
+        font-family: 'Sora', sans-serif; font-size: 70px; line-height: 1;
+        color: rgba(34,197,94,.18); pointer-events: none;
+      }
+
+      /* gallery */
+      .gallery-item { border-radius: 1.25rem; overflow: hidden; position: relative; background: var(--bg3); }
+      .gallery-item img, .gallery-item picture { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .5s ease; }
+      .gallery-item:hover img { transform: scale(1.06); }
+
+      /* before/after placeholder */
+      .ba-card {
+        border-radius: 1.25rem; overflow: hidden; position: relative;
+        background: linear-gradient(160deg, var(--bg3) 0%, var(--surface) 100%);
+        border: 1px dashed rgba(34,197,94,.35);
+        aspect-ratio: 4/5;
+        display: flex; align-items: center; justify-content: center;
+      }
+
+      @media(max-width:640px){
+        h1, h2 { overflow-wrap: anywhere; }
+      }
+    </style>
+  </head>
+
+  <body class="text-[var(--ink)] antialiased bg-[var(--bg)]">
+
+    <!-- ═══ SPLASH ═══ -->
+    <div id="splash">
+      <img src="logo/icone-logo-branco.png" alt="Raquel Eduarda" class="spl-symbol" />
+      <div class="spl-bar"><div class="spl-fill"></div></div>
+    </div>
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="sticky top-0 z-30 bg-[var(--bg)]/90 backdrop-blur-md border-b border-white/5">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
+
+        <a href="#" aria-label="Raquel Eduarda Personal Trainer" class="flex items-center">
+          <img src="logo/logo-branco.png" alt="Raquel Eduarda — Personal Trainer" class="brand-logo w-auto object-contain" />
+        </a>
+
+        <nav class="hidden md:flex items-center gap-6 text-[13px] font-semibold text-[var(--muted)]">
+          <a href="#sobre" class="hover:text-[var(--accent)] transition">Sobre</a>
+          <a href="#servicos" class="hover:text-[var(--accent)] transition">Serviços</a>
+          <a href="#formacao" class="hover:text-[var(--accent)] transition">Formação</a>
+          <a href="#depoimentos" class="hover:text-[var(--accent)] transition">Depoimentos</a>
+          <a href="#faq" class="hover:text-[var(--accent)] transition">FAQ</a>
+        </nav>
+
+        <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Conheci%20seu%20site%20e%20gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20seus%20servi%C3%A7os.%20Tenho%20interesse%20em%20iniciar%20um%20acompanhamento%20personalizado."
+          target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-3.5 sm:px-5 py-2 text-[12px] sm:text-[13px] font-bold text-white hover:bg-[var(--accent-dark)] transition shadow-[0_6px_20px_rgba(34,197,94,0.35)]">
+          <span class="sm:hidden">Contato</span>
+          <span class="hidden sm:inline">Quero Começar Meu Treino</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero-section section-dark">
+
+      <div class="relative z-10 mx-auto max-w-6xl w-full px-4 sm:px-6 lg:px-8 py-24 sm:py-28 lg:py-16">
+        <div class="grid gap-12 lg:gap-8 items-center lg:grid-cols-5">
+          <div class="lg:hidden order-1" data-animate>
+            <div class="relative mx-auto max-w-[300px]">
+              <div class="hero-photo">
+                <img src="fotos/foto01.png" alt="Raquel Eduarda — Personal Trainer" class="drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)]" loading="eager" />
+              </div>
+              <div class="absolute bottom-2 -left-2 sm:-left-4 z-10 bg-[var(--surface)] rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.4)] border border-[color:var(--border)] px-4 py-3 flex items-center gap-2">
+                <span class="h-2.5 w-2.5 rounded-full bg-[var(--accent)]"></span>
+                <span class="text-[12px] font-bold text-[var(--ink)]">CREF Ativo</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="order-2 lg:order-1 space-y-7 lg:pr-6 lg:col-span-3">
+            <div data-animate>
+              <span class="tag-pill">Personal Trainer · Educadora Física · Pesquisadora</span>
+            </div>
+
+            <div data-animate data-animate-delay="1">
+              <h1 class="font-display font-extrabold leading-[1.05] text-[32px] sm:text-[42px] lg:text-[52px] text-[var(--ink)]">
+                Transforme seu corpo com um treino <span class="text-grad">inteligente, seguro e personalizado.</span>
+              </h1>
+            </div>
+
+            <div data-animate data-animate-delay="2">
+              <p class="text-[15px] sm:text-[18px] text-[var(--muted)] leading-relaxed max-w-xl">
+                Atendimento presencial e online para quem busca emagrecer, ganhar massa muscular, melhorar a saúde e treinar com confiança.
+              </p>
+            </div>
+
+            <div data-animate data-animate-delay="3" class="flex flex-col sm:flex-row gap-3 pt-1">
+              <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Quero%20come%C3%A7ar%20meu%20treino%20personalizado.%20Pode%20me%20ajudar%3F"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2.5 rounded-full bg-[var(--accent)] px-8 py-4 text-[16px] font-bold text-white shadow-[0_16px_40px_rgba(34,197,94,0.35)] hover:bg-[var(--accent-dark)] hover:scale-[1.03] transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="currentColor">
+                  <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+                </svg>
+                Quero Começar Meu Treino
+              </a>
+              <a href="#servicos"
+                class="btn-ghost inline-flex items-center justify-center rounded-full border-2 border-white/15 bg-white/[.04] px-8 py-4 text-[16px] font-semibold text-[var(--ink)] hover:bg-white/10 hover:border-[var(--accent)]/40 transition">
+                Ver serviços
+              </a>
+            </div>
+
+            <div data-animate data-animate-delay="4" class="flex flex-wrap gap-x-8 gap-y-3 pt-3">
+              <div class="flex items-center gap-2">
+                <span class="check-dot"><svg class="h-3 w-3 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                <span class="text-[13px] font-medium text-[var(--muted)]">CREF ativo</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="check-dot"><svg class="h-3 w-3 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                <span class="text-[13px] font-medium text-[var(--muted)]">Presencial em Ouro Branco/MG</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="check-dot"><svg class="h-3 w-3 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                <span class="text-[13px] font-medium text-[var(--muted)]">Online para todo o Brasil</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hidden lg:block order-2 lg:col-span-2" data-animate data-animate-delay="1">
+            <div class="relative mx-auto max-w-[420px]">
+              <div class="hero-photo">
+                <img src="fotos/foto01.png" alt="Raquel Eduarda — Personal Trainer" class="drop-shadow-[0_35px_45px_rgba(0,0,0,0.4)]" loading="eager" />
+              </div>
+              <div class="absolute bottom-6 -left-10 z-10 bg-[var(--surface)] rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.45)] border border-[color:var(--border)] px-5 py-3.5 flex items-center gap-3">
+                <span class="h-2.5 w-2.5 rounded-full bg-[var(--accent)] shrink-0"></span>
+                <div>
+                  <p class="text-[13px] font-bold text-[var(--ink)] leading-none">CREF Ativo</p>
+                  <p class="text-[11px] text-[var(--muted)] mt-0.5">Educadora Física · UEPA</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FAIXA DE CREDENCIAIS ═══ -->
+    <div class="section-light border-y border-[color:var(--border)]">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-2 sm:grid-cols-4 divide-x divide-[color:var(--border)]">
+          <div class="flex flex-col items-center justify-center py-7 gap-1.5 text-center px-2">
+            <span class="font-display font-extrabold text-[15px] sm:text-[16px] text-[var(--ink)] leading-tight">Bacharel &amp; Licenciada</span>
+            <span class="text-[10px] text-[var(--muted)] uppercase tracking-widest font-semibold">Educação Física · UEPA</span>
+          </div>
+          <div class="flex flex-col items-center justify-center py-7 gap-1.5 text-center px-2">
+            <span class="font-display font-extrabold text-[15px] sm:text-[16px] text-[var(--ink)] leading-tight">CREF Ativo</span>
+            <span class="text-[10px] text-[var(--muted)] uppercase tracking-widest font-semibold">Personal Trainer</span>
+          </div>
+          <div class="flex flex-col items-center justify-center py-7 gap-1.5 text-center px-2">
+            <span class="font-display font-extrabold text-[15px] sm:text-[16px] text-[var(--ink)] leading-tight">Mestranda</span>
+            <span class="text-[10px] text-[var(--muted)] uppercase tracking-widest font-semibold">ProfEPT · IFMG</span>
+          </div>
+          <div class="flex flex-col items-center justify-center py-7 gap-1.5 text-center px-2">
+            <span class="font-display font-extrabold text-[15px] sm:text-[16px] text-[var(--ink)] leading-tight">Ouro Branco / MG</span>
+            <span class="text-[10px] text-[var(--muted)] uppercase tracking-widest font-semibold">+ Online no Brasil</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SOBRE ═══ -->
+    <section id="sobre" class="section-dark py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-14 lg:grid-cols-2 items-center">
+
+          <!-- foto -->
+          <div data-animate class="relative order-2 lg:order-1">
+            <div class="relative rounded-[2rem] overflow-hidden aspect-[3/4] max-w-sm mx-auto lg:mx-0 bg-[var(--bg3)] shadow-[0_30px_60px_-20px_rgba(16,23,17,0.18)]">
+              <img src="fotos/8F81849E-FEF8-49D4-BAE3-949C08376501 (1).PNG" alt="Raquel Eduarda em atendimento" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="absolute bottom-5 left-4 sm:left-5 right-4 sm:right-auto bg-[var(--surface)]/97 backdrop-blur-sm border border-[color:var(--border)] rounded-xl px-4 py-3 max-w-[260px] shadow-[0_15px_40px_rgba(0,0,0,0.4)]">
+              <p class="text-[11px] text-[var(--accent)] font-bold uppercase tracking-wider mb-0.5">Missão</p>
+              <p class="text-[13px] text-[var(--ink)] font-semibold leading-snug">Transformar vidas através do movimento</p>
+              <p class="text-[11px] text-[var(--muted)] mt-0.5">Ciência, educação e acompanhamento individual</p>
+            </div>
+          </div>
+
+          <!-- texto -->
+          <div data-animate data-animate-delay="1" class="space-y-6 order-1 lg:order-2">
+            <div>
+              <span class="deco-line"></span>
+              <span class="tag-pill">Quem é a Raquel?</span>
+              <h2 class="font-display font-extrabold text-[30px] sm:text-[40px] leading-[1.08] mt-4">
+                Personal Trainer que une <span class="text-grad">ciência e propósito</span>
+              </h2>
+            </div>
+            <p class="text-[15px] text-[var(--muted)] leading-relaxed">
+              Sou Raquel Eduarda, Personal Trainer, Educadora Física e pesquisadora apaixonada por transformar vidas através do movimento.
+            </p>
+            <p class="text-[15px] text-[var(--muted)] leading-relaxed">
+              Acredito que treinar vai muito além da estética. Meu trabalho é desenvolver estratégias personalizadas para que cada aluno alcance seus objetivos com segurança, eficiência e qualidade de vida.
+            </p>
+            <p class="text-[15px] text-[var(--muted)] leading-relaxed">
+              Minha atuação une conhecimento científico, acompanhamento individualizado e uma metodologia baseada na educação, para que você entenda seu corpo, evolua de forma consistente e conquiste resultados duradouros.
+            </p>
+            <p class="text-[15px] text-[var(--muted)] leading-relaxed">
+              Seja para emagrecimento, hipertrofia, condicionamento físico ou saúde, cada treino é planejado de acordo com sua realidade, limitações e metas.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- diferencial -->
+        <div data-animate data-animate-delay="2" class="mt-14 relative overflow-hidden rounded-3xl p-8 sm:p-12" style="background: linear-gradient(135deg, rgba(34,197,94,0.14) 0%, var(--bg2) 60%); border: 1px solid rgba(34,197,94,0.22);">
+          <div class="absolute -top-16 -right-16 w-56 h-56 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(34,197,94,0.14) 0%, transparent 70%);"></div>
+          <div class="relative grid gap-8 lg:grid-cols-[auto_1fr] items-start">
+            <div class="icon-box h-16 w-16">
+              <svg class="h-8 w-8 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            </div>
+            <div>
+              <span class="tag-pill mb-3">Meu diferencial</span>
+              <p class="text-[16px] sm:text-[18px] text-[var(--ink)] leading-relaxed font-medium">
+                Acredito que cada pessoa merece mais do que um treino pronto. Meu trabalho é unir conhecimento científico, educação e acompanhamento individualizado para transformar o treinamento em uma experiência segura, eficiente e consciente. Meu objetivo não é apenas ajudar você a alcançar resultados, mas ensinar como construir um estilo de vida saudável e sustentável.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SERVIÇOS ═══ -->
+    <section id="servicos" class="section-light py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="text-center mb-14">
+          <span class="deco-line mx-auto"></span>
+          <span class="tag-pill">Serviços</span>
+          <h2 class="font-display font-extrabold text-[30px] sm:text-[40px] leading-[1.08] mt-4">
+            Escolha o acompanhamento <span class="text-grad">ideal para você</span>
+          </h2>
+          <p class="text-[15px] text-[var(--muted)] mt-4 max-w-2xl mx-auto">
+            Pagamento único, sem renovação automática. Você decide se e quando quer continuar.
+          </p>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+          <!-- 1 -->
+          <div data-animate data-animate-delay="1" class="card p-7 space-y-5 flex flex-col">
+            <div class="flex items-start justify-between">
+              <div class="icon-box">
+                <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6M9 8h1M5 21h14a2 2 0 002-2V7.828a2 2 0 00-.586-1.414l-3.828-3.828A2 2 0 0015.172 2H5a2 2 0 00-2 2v15a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <span class="font-display font-extrabold text-[46px] leading-none num-ghost select-none">01</span>
+            </div>
+            <div>
+              <p class="text-[18px] font-bold text-[var(--ink)]">Ficha de Treino Personalizada</p>
+              <p class="text-[13px] text-[var(--accent)] font-medium mt-0.5">Validade de até 2 meses</p>
+            </div>
+            <p class="text-[14px] text-[var(--muted)] leading-relaxed flex-1">
+              Treino individualizado elaborado conforme seus objetivos, rotina e nível de experiência.
+            </p>
+            <div class="pt-1">
+              <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Tenho%20interesse%20na%20Ficha%20de%20Treino%20Personalizada.%20Pode%20me%20passar%20mais%20detalhes%3F"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-[13px] font-bold text-[var(--accent)] hover:text-[var(--ink)] transition">
+                Quero esse plano
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- 2 -->
+          <div data-animate data-animate-delay="2" class="card p-7 space-y-5 flex flex-col">
+            <div class="flex items-start justify-between">
+              <div class="icon-box">
+                <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <span class="font-display font-extrabold text-[46px] leading-none num-ghost select-none">02</span>
+            </div>
+            <div>
+              <p class="text-[18px] font-bold text-[var(--ink)]">Plano Online com Acompanhamento</p>
+              <p class="text-[13px] text-[var(--accent)] font-medium mt-0.5">Validade de até 2 meses</p>
+            </div>
+            <p class="text-[14px] text-[var(--muted)] leading-relaxed flex-1">
+              Treino personalizado entregue por aplicativo, com acompanhamento e ajustes conforme sua evolução.
+            </p>
+            <div class="pt-1">
+              <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Tenho%20interesse%20no%20Plano%20Online%20com%20Acompanhamento.%20Pode%20me%20passar%20mais%20detalhes%3F"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-[13px] font-bold text-[var(--accent)] hover:text-[var(--ink)] transition">
+                Quero esse plano
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- 3 - destaque -->
+          <div data-animate data-animate-delay="3" class="card p-7 space-y-5 flex flex-col relative" style="border-color: rgba(34,197,94,.45); box-shadow: 0 20px 50px rgba(34,197,94,.12);">
+            <div class="absolute top-0 inset-x-0 h-[3px] rounded-t-2xl" style="background: linear-gradient(90deg, transparent, var(--accent), transparent);"></div>
+            <div class="flex items-start justify-between">
+              <div class="icon-box">
+                <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
+                </svg>
+              </div>
+              <div class="flex flex-col items-end gap-1">
+                <span class="text-[10px] font-bold bg-[var(--accent)] text-white rounded-full px-2.5 py-0.5 uppercase tracking-wider">Mais completo</span>
+                <span class="font-display font-extrabold text-[46px] leading-none num-ghost select-none">03</span>
+              </div>
+            </div>
+            <div>
+              <p class="text-[18px] font-bold text-[var(--ink)]">Plano Premium com Aula Explicativa</p>
+              <p class="text-[13px] text-[var(--accent)] font-medium mt-0.5">Treino + aula técnica gravada</p>
+            </div>
+            <p class="text-[14px] text-[var(--muted)] leading-relaxed flex-1">
+              Treino personalizado acompanhado de uma aula técnica gravada, enviada por WhatsApp, com orientações sobre execução dos exercícios, regulagem das máquinas e ajustes para treinar com mais segurança e autonomia.
+            </p>
+            <div class="pt-1">
+              <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Tenho%20interesse%20no%20Plano%20Premium%20com%20Aula%20Explicativa.%20Pode%20me%20passar%20mais%20detalhes%3F"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-[13px] font-bold text-[var(--accent)] hover:text-[var(--ink)] transition">
+                Quero esse plano
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- 4 -->
+          <div data-animate data-animate-delay="4" class="card p-7 space-y-5 flex flex-col">
+            <div class="flex items-start justify-between">
+              <div class="icon-box">
+                <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
+                </svg>
+              </div>
+              <span class="font-display font-extrabold text-[46px] leading-none num-ghost select-none">04</span>
+            </div>
+            <div>
+              <p class="text-[18px] font-bold text-[var(--ink)]">Plano Duo Premium</p>
+              <p class="text-[13px] text-[var(--accent)] font-medium mt-0.5">Presencial · Ouro Branco/MG</p>
+            </div>
+            <p class="text-[14px] text-[var(--muted)] leading-relaxed flex-1">
+              Treinamento personalizado para duas pessoas no mesmo horário, com acompanhamento presencial em Ouro Branco – MG.
+            </p>
+            <div class="pt-1">
+              <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Tenho%20interesse%20no%20Plano%20Duo%20Premium%20(presencial).%20Pode%20me%20passar%20mais%20detalhes%3F"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-[13px] font-bold text-[var(--accent)] hover:text-[var(--ink)] transition">
+                Quero esse plano
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- 5 -->
+          <div data-animate data-animate-delay="5" class="card p-7 space-y-5 flex flex-col">
+            <div class="flex items-start justify-between">
+              <div class="icon-box">
+                <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/>
+                </svg>
+              </div>
+              <span class="font-display font-extrabold text-[46px] leading-none num-ghost select-none">05</span>
+            </div>
+            <div>
+              <p class="text-[18px] font-bold text-[var(--ink)]">Personal Trainer Presencial</p>
+              <p class="text-[13px] text-[var(--accent)] font-medium mt-0.5">Acompanhamento individual</p>
+            </div>
+            <p class="text-[14px] text-[var(--muted)] leading-relaxed flex-1">
+              Acompanhamento presencial individual com treinos personalizados em Ouro Branco – MG.
+            </p>
+            <div class="pt-1">
+              <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Tenho%20interesse%20no%20acompanhamento%20de%20Personal%20Trainer%20presencial%20em%20Ouro%20Branco.%20Pode%20me%20passar%20mais%20detalhes%3F"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-[13px] font-bold text-[var(--accent)] hover:text-[var(--ink)] transition">
+                Quero esse plano
+                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- 6 - pagamento único -->
+          <div data-animate data-animate-delay="1" class="rounded-[1.25rem] p-7 space-y-4 flex flex-col justify-center" style="background: linear-gradient(150deg, var(--dark) 0%, var(--dark2) 100%);">
+            <p class="text-[13px] font-bold text-[var(--accent-light)] uppercase tracking-widest">Por que pagamento único?</p>
+            <ul class="space-y-2.5">
+              <li class="flex items-start gap-2.5 text-[13px] text-white/85"><span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)] shrink-0 mt-1.5"></span>Sem renovação automática</li>
+              <li class="flex items-start gap-2.5 text-[13px] text-white/85"><span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)] shrink-0 mt-1.5"></span>Mais liberdade para decidir se deseja renovar</li>
+              <li class="flex items-start gap-2.5 text-[13px] text-white/85"><span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)] shrink-0 mt-1.5"></span>Pagamento rápido e seguro</li>
+              <li class="flex items-start gap-2.5 text-[13px] text-white/85"><span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)] shrink-0 mt-1.5"></span>Atendimento iniciado logo após a confirmação</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FORMAÇÃO ═══ -->
+    <section id="formacao" class="section-dark py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="text-center mb-14">
+          <span class="deco-line mx-auto"></span>
+          <span class="tag-pill">Formação</span>
+          <h2 class="font-display font-extrabold text-[30px] sm:text-[40px] leading-[1.08] mt-4">
+            Credenciais &amp; <span class="text-grad">Formação Acadêmica</span>
+          </h2>
+          <p class="text-[15px] text-[var(--muted)] mt-4 max-w-xl mx-auto">
+            Atendimento personalizado baseado em evidências, com foco na técnica, segurança, autonomia e resultados.
+          </p>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+          <div data-animate data-animate-delay="1" class="card p-6 flex items-start gap-4">
+            <div class="icon-box shrink-0">
+              <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 14l9-5-9-5-9 5 9 5z"/><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[15px] font-bold text-[var(--ink)]">Bacharel em Educação Física</p>
+              <p class="text-[12px] text-[var(--accent)] mt-0.5">UEPA · Concluído com honras</p>
+              <p class="text-[12px] text-[var(--muted)] mt-1">Universidade do Estado do Pará</p>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="2" class="card p-6 flex items-start gap-4">
+            <div class="icon-box shrink-0">
+              <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[15px] font-bold text-[var(--ink)]">Licenciada em Educação Física</p>
+              <p class="text-[12px] text-[var(--accent)] mt-0.5">UEPA · Concluído com honras</p>
+              <p class="text-[12px] text-[var(--muted)] mt-1">Universidade do Estado do Pará</p>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="3" class="card p-6 flex items-start gap-4">
+            <div class="icon-box shrink-0">
+              <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[15px] font-bold text-[var(--ink)]">CREF Ativo</p>
+              <p class="text-[12px] text-[var(--accent)] mt-0.5">Registro profissional</p>
+              <p class="text-[12px] text-[var(--muted)] mt-1">Atuação regulamentada como Personal Trainer</p>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="4" class="card p-6 flex items-start gap-4">
+            <div class="icon-box shrink-0">
+              <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 119 0v3.75M3.75 21.75h16.5a1.5 1.5 0 001.5-1.5v-9a1.5 1.5 0 00-1.5-1.5H3.75a1.5 1.5 0 00-1.5 1.5v9a1.5 1.5 0 001.5 1.5z"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[15px] font-bold text-[var(--ink)]">Personal Trainer</p>
+              <p class="text-[12px] text-[var(--accent)] mt-0.5">Atuação profissional</p>
+              <p class="text-[12px] text-[var(--muted)] mt-1">Treinos individualizados e acompanhamento contínuo</p>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="5" class="card p-6 flex items-start gap-4">
+            <div class="icon-box shrink-0">
+              <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[15px] font-bold text-[var(--ink)]">Especialização em andamento</p>
+              <p class="text-[12px] text-[var(--accent)] mt-0.5">Pós-graduação</p>
+              <p class="text-[12px] text-[var(--muted)] mt-1">Atualização contínua na área</p>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="6" class="card p-6 flex items-start gap-4">
+            <div class="icon-box shrink-0">
+              <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[15px] font-bold text-[var(--ink)]">Mestranda em Educação Profissional e Tecnológica</p>
+              <p class="text-[12px] text-[var(--accent)] mt-0.5">ProfEPT · IFMG</p>
+              <p class="text-[12px] text-[var(--muted)] mt-1">Pesquisa aplicada à educação e tecnologia</p>
+            </div>
+          </div>
+
+          <div data-animate data-animate-delay="1" class="card p-6 flex items-start gap-4 sm:col-span-2 lg:col-span-3" style="background: var(--bg2);">
+            <div class="icon-box shrink-0">
+              <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-[15px] font-bold text-[var(--ink)]">Atendimento personalizado baseado em evidências</p>
+              <p class="text-[12px] text-[var(--muted)] mt-1">Foco na técnica, segurança, autonomia e resultados reais para cada aluno.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div data-animate class="mt-8 flex flex-wrap gap-3 justify-center">
+          <a href="https://br.linkedin.com/in/raquel-eduarda-ed-fisica" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-5 py-2.5 text-[13px] font-semibold text-[var(--ink)] hover:border-[var(--accent)]/50 hover:bg-[var(--accent-dim)] transition">
+            <svg class="h-4 w-4 text-[var(--accent-light)]" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 18.34V10.1H5.67v8.24h2.67zM7 8.94a1.54 1.54 0 100-3.08 1.54 1.54 0 000 3.08zM18.34 18.34v-4.5c0-2.4-1.28-3.52-3-3.52-1.38 0-2 .76-2.34 1.3v-1.12h-2.67c.03.7 0 8.34 0 8.34H13v-4.66c0-.25.02-.5.1-.68.2-.5.66-1.02 1.44-1.02 1.02 0 1.43.78 1.43 1.92v4.44h2.37z"/></svg>
+            LinkedIn
+          </a>
+          <a href="http://lattes.cnpq.br/1166832383885880" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-full border border-[color:var(--border)] px-5 py-2.5 text-[13px] font-semibold text-[var(--ink)] hover:border-[var(--accent)]/50 hover:bg-[var(--accent-dim)] transition">
+            <svg class="h-4 w-4 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            Currículo Lattes
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DEPOIMENTOS ═══ -->
+    <section id="depoimentos" class="section-light py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="text-center mb-12">
+          <span class="deco-line mx-auto"></span>
+          <span class="tag-pill">Depoimentos</span>
+          <h2 class="font-display font-extrabold text-[30px] sm:text-[40px] leading-[1.08] mt-4">
+            O que dizem meus <span class="text-grad">alunos</span>
+          </h2>
+          <p class="text-[15px] text-[var(--muted)] mt-4 max-w-xl mx-auto">
+            <!-- TODO: substituir pelos depoimentos reais dos alunos da Raquel antes da publicação -->
+            Experiências reais de quem treina com acompanhamento presencial e online.
+          </p>
+        </div>
+
+        <div data-animate class="relative">
+          <div id="carousel-track" class="carousel-track px-1">
+
+            <div class="carousel-slide">
+              <div class="card testi-card p-7 space-y-4 h-full flex flex-col">
+                <div class="flex gap-1">
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+                <p class="text-[14px] text-[var(--muted)] leading-relaxed italic flex-1">
+                  "A Raquel entende de verdade o que faz. Os treinos são pensados pra minha rotina, e sinto muito mais segurança na execução dos exercícios."
+                </p>
+                <div class="flex items-center gap-3 pt-2">
+                  <div class="h-10 w-10 rounded-full bg-[var(--accent-dim)] border border-[var(--accent)]/30 flex items-center justify-center">
+                    <span class="font-display font-extrabold text-[13px] text-[var(--accent)]">JV</span>
+                  </div>
+                  <div>
+                    <p class="text-[14px] font-semibold text-[var(--ink)]">Aluno presencial</p>
+                    <p class="text-[12px] text-[var(--muted)]">Ouro Branco/MG</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide">
+              <div class="card testi-card p-7 space-y-4 h-full flex flex-col">
+                <div class="flex gap-1">
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+                <p class="text-[14px] text-[var(--muted)] leading-relaxed italic flex-1">
+                  "Faço o acompanhamento online e recebo tudo bem explicado. Consigo treinar em casa com confiança de que estou fazendo certo."
+                </p>
+                <div class="flex items-center gap-3 pt-2">
+                  <div class="h-10 w-10 rounded-full bg-[var(--accent-dim)] border border-[var(--accent)]/30 flex items-center justify-center">
+                    <span class="font-display font-extrabold text-[13px] text-[var(--accent)]">MC</span>
+                  </div>
+                  <div>
+                    <p class="text-[14px] font-semibold text-[var(--ink)]">Aluno online</p>
+                    <p class="text-[12px] text-[var(--muted)]">Consultoria à distância</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-slide">
+              <div class="card testi-card p-7 space-y-4 h-full flex flex-col">
+                <div class="flex gap-1">
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                  <svg class="h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+                <p class="text-[14px] text-[var(--muted)] leading-relaxed italic flex-1">
+                  "O que mais me chamou atenção foi a aula explicativa. Aprendi a regular as máquinas certinho e a executar cada exercício com segurança."
+                </p>
+                <div class="flex items-center gap-3 pt-2">
+                  <div class="h-10 w-10 rounded-full bg-[var(--accent-dim)] border border-[var(--accent)]/30 flex items-center justify-center">
+                    <span class="font-display font-extrabold text-[13px] text-[var(--accent)]">LP</span>
+                  </div>
+                  <div>
+                    <p class="text-[14px] font-semibold text-[var(--ink)]">Plano Premium</p>
+                    <p class="text-[12px] text-[var(--muted)]">Aula explicativa</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="flex items-center justify-center gap-3 mt-6">
+            <button id="carousel-prev" aria-label="Depoimento anterior" class="h-10 w-10 rounded-full border border-[color:var(--border)] flex items-center justify-center hover:bg-[var(--accent-dim)] hover:border-[var(--accent)]/40 transition">
+              <svg class="h-4 w-4 text-[var(--ink)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <div id="carousel-dots" class="flex items-center gap-2"></div>
+            <button id="carousel-next" aria-label="Próximo depoimento" class="h-10 w-10 rounded-full border border-[color:var(--border)] flex items-center justify-center hover:bg-[var(--accent-dim)] hover:border-[var(--accent)]/40 transition">
+              <svg class="h-4 w-4 text-[var(--ink)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══ ANTES E DEPOIS ═══ -->
+    <section id="antes-depois" class="section-dark py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="text-center mb-14">
+          <span class="deco-line mx-auto"></span>
+          <span class="tag-pill">Antes e depois</span>
+          <h2 class="font-display font-extrabold text-[30px] sm:text-[40px] leading-[1.08] mt-4">
+            Transformações <span class="text-grad">reais</span>
+          </h2>
+          <p class="text-[15px] text-[var(--muted)] mt-4 max-w-xl mx-auto">
+            <!-- TODO: substituir pelos pares reais de fotos "antes" e "depois" dos alunos (ex.: fotos/antes-depois/aluno1-antes.jpg / -depois.jpg) -->
+            Em breve, novos registros de evolução dos alunos serão publicados aqui.
+          </p>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div data-animate data-animate-delay="1" class="ba-card">
+            <div class="text-center px-6">
+              <svg class="h-9 w-9 text-[var(--accent)] mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h18M16.5 3L21 7.5m0 0L16.5 12M21 7.5H3"/></svg>
+              <p class="text-[13px] font-bold text-[var(--ink)]">Evolução em breve</p>
+              <p class="text-[12px] text-[var(--muted)] mt-1">Novo registro de transformação</p>
+            </div>
+          </div>
+          <div data-animate data-animate-delay="2" class="ba-card">
+            <div class="text-center px-6">
+              <svg class="h-9 w-9 text-[var(--accent)] mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h18M16.5 3L21 7.5m0 0L16.5 12M21 7.5H3"/></svg>
+              <p class="text-[13px] font-bold text-[var(--ink)]">Evolução em breve</p>
+              <p class="text-[12px] text-[var(--muted)] mt-1">Novo registro de transformação</p>
+            </div>
+          </div>
+          <div data-animate data-animate-delay="3" class="ba-card">
+            <div class="text-center px-6">
+              <svg class="h-9 w-9 text-[var(--accent)] mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h18M16.5 3L21 7.5m0 0L16.5 12M21 7.5H3"/></svg>
+              <p class="text-[13px] font-bold text-[var(--ink)]">Evolução em breve</p>
+              <p class="text-[12px] text-[var(--muted)] mt-1">Novo registro de transformação</p>
+            </div>
+          </div>
+        </div>
+
+        <div data-animate class="mt-8 text-center">
+          <a href="https://www.instagram.com/personalraqueleduarda/" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-[13px] font-bold text-[var(--accent)] hover:text-[var(--ink)] transition">
+            Acompanhe as transformações no Instagram
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ GALERIA ═══ -->
+    <section id="galeria" class="section-light py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="mb-12 text-center">
+          <span class="deco-line mx-auto"></span>
+          <span class="tag-pill">Galeria</span>
+          <h2 class="font-display font-extrabold text-[30px] sm:text-[40px] leading-[1.08] mt-4">
+            Raquel em <span class="text-grad">ação</span>
+          </h2>
+        </div>
+
+        <div data-animate class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:grid-flow-row-dense">
+          <div class="gallery-item aspect-[3/4] lg:row-span-2">
+            <img src="fotos/IMG_9838.jpg" alt="Raquel Eduarda — Personal Trainer" loading="lazy" />
+          </div>
+          <div class="gallery-item aspect-[3/4]">
+            <img src="fotos/8F81849E-FEF8-49D4-BAE3-949C08376501 (1).PNG" alt="Raquel Eduarda em atendimento" loading="lazy" />
+          </div>
+          <div class="gallery-item aspect-[3/4]">
+            <img src="artes/47864F12-E338-4D83-BB62-E6F74D47A3DF.PNG" alt="Raquel Eduarda — Resultados que motivam" loading="lazy" />
+          </div>
+          <div class="gallery-item aspect-[3/4] lg:row-span-2">
+            <img src="artes/B7DF7198-481A-4E9E-BCB7-11666523229D.PNG" alt="Raquel Eduarda — Treino, foco, disciplina, evolução" loading="lazy" />
+          </div>
+        </div>
+
+        <div data-animate class="mt-8 text-center">
+          <a href="https://www.instagram.com/personalraqueleduarda/" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-[13px] font-bold text-[var(--accent)] hover:text-[var(--ink)] transition">
+            Ver mais fotos no Instagram
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section id="faq" class="section-dark py-16 sm:py-24">
+      <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+
+        <div data-animate class="text-center mb-14">
+          <span class="deco-line mx-auto"></span>
+          <span class="tag-pill">Dúvidas</span>
+          <h2 class="font-display font-extrabold text-[30px] sm:text-[40px] leading-[1.08] mt-4">
+            Perguntas <span class="text-grad">frequentes</span>
+          </h2>
+        </div>
+
+        <div class="space-y-3">
+
+          <details data-animate data-animate-delay="1" class="card group">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">Como funciona o atendimento online?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed">
+                Após a contratação, você recebe um treino personalizado elaborado conforme seus objetivos, rotina e disponibilidade. O acompanhamento é realizado de forma online.
+              </p>
+            </div>
+          </details>
+
+          <details data-animate data-animate-delay="1" class="card group">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">O treino é realmente personalizado?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed">
+                Sim. Todos os treinos são elaborados de forma individual, respeitando seus objetivos, nível de experiência, limitações e rotina.
+              </p>
+            </div>
+          </details>
+
+          <details data-animate data-animate-delay="2" class="card group">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">O que está incluso no Plano Premium com Aula Explicativa?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed">
+                Além do treino personalizado, você recebe uma aula técnica gravada enviada por WhatsApp com orientações sobre execução dos exercícios, regulagem das máquinas e ajustes técnicos.
+              </p>
+            </div>
+          </details>
+
+          <details data-animate data-animate-delay="2" class="card group">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">Como recebo a aula explicativa?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed">
+                A aula é enviada por WhatsApp para que você possa assistir quantas vezes quiser durante o período contratado.
+              </p>
+            </div>
+          </details>
+
+          <details data-animate data-animate-delay="3" class="card group">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">Posso contratar sendo de outra cidade?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed">
+                Sim. Todos os serviços online estão disponíveis para alunos de qualquer lugar do Brasil.
+              </p>
+            </div>
+          </details>
+
+          <details data-animate data-animate-delay="3" class="card group">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">Onde acontecem os atendimentos presenciais?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed">
+                Os atendimentos presenciais são realizados exclusivamente em Ouro Branco – MG.
+              </p>
+            </div>
+          </details>
+
+          <details data-animate data-animate-delay="4" class="card group">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">Como funciona o Plano Duo Premium?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed">
+                O acompanhamento é realizado com duas pessoas no mesmo horário, mantendo um treino personalizado para cada aluno.
+              </p>
+            </div>
+          </details>
+
+          <details data-animate data-animate-delay="4" class="card group">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">Qual a diferença entre a Ficha de Treino e o Plano Online?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed">
+                A Ficha de Treino inclui apenas a prescrição personalizada. O Plano Online inclui acompanhamento e ajustes durante o período contratado.
+              </p>
+            </div>
+          </details>
+
+          <details data-animate data-animate-delay="5" class="card group">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">Preciso ter experiência para começar?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed">
+                Não. Os treinos são adaptados tanto para iniciantes quanto para praticantes mais experientes.
+              </p>
+            </div>
+          </details>
+
+          <details data-animate data-animate-delay="5" class="card group">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">Como faço para contratar?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed">
+                Escolha o serviço desejado e realize o pagamento de forma segura. Após a confirmação, o atendimento será iniciado.
+              </p>
+            </div>
+          </details>
+
+          <details data-animate data-animate-delay="1" class="card group">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">Por que o pagamento é único?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6 space-y-1.5">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed">Porque isso garante mais transparência e liberdade para você:</p>
+              <ul class="space-y-1.5 pt-1">
+                <li class="flex items-start gap-2.5 text-[14px] text-[var(--muted)]"><span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)] shrink-0 mt-1.5"></span>Sem renovação automática</li>
+                <li class="flex items-start gap-2.5 text-[14px] text-[var(--muted)]"><span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)] shrink-0 mt-1.5"></span>Mais liberdade para decidir se deseja renovar</li>
+                <li class="flex items-start gap-2.5 text-[14px] text-[var(--muted)]"><span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)] shrink-0 mt-1.5"></span>Pagamento rápido e seguro</li>
+                <li class="flex items-start gap-2.5 text-[14px] text-[var(--muted)]"><span class="h-1.5 w-1.5 rounded-full bg-[var(--accent)] shrink-0 mt-1.5"></span>Atendimento iniciado logo após a confirmação</li>
+              </ul>
+            </div>
+          </details>
+
+          <details data-animate data-animate-delay="2" class="card group" style="border-color: rgba(34,197,94,.35);">
+            <summary class="flex items-center justify-between p-6 gap-4">
+              <span class="text-[15px] font-semibold text-[var(--ink)]">Ainda ficou com alguma dúvida?</span>
+              <svg class="faq-icon h-5 w-5 text-[var(--accent)] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
+            </summary>
+            <div class="px-6 pb-6">
+              <p class="text-[14px] text-[var(--muted)] leading-relaxed mb-4">
+                Entre em contato pelo WhatsApp. Será um prazer ajudar você a escolher o acompanhamento ideal.
+              </p>
+              <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Conheci%20seu%20site%20e%20gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20seus%20servi%C3%A7os.%20Tenho%20interesse%20em%20iniciar%20um%20acompanhamento%20personalizado."
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-5 py-2.5 text-[13px] font-bold text-white hover:bg-[var(--accent-dark)] transition">
+                Falar no WhatsApp
+              </a>
+            </div>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA FINAL / CONTATO ═══ -->
+    <section id="contato" class="section-light py-16 sm:py-24">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div data-animate class="relative overflow-hidden rounded-3xl p-10 sm:p-16" style="background: linear-gradient(135deg, var(--dark) 0%, var(--dark2) 65%);">
+          <div class="absolute -top-32 -right-32 w-96 h-96 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(34,197,94,0.22) 0%, transparent 65%);"></div>
+          <div class="absolute -bottom-20 -left-20 w-72 h-72 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(34,197,94,0.10) 0%, transparent 65%);"></div>
+
+          <div class="relative max-w-xl space-y-6">
+            <span class="tag-pill tag-pill-dark">Próximo passo</span>
+            <h2 class="font-display font-extrabold text-[32px] sm:text-[46px] leading-[1.05] text-white">
+              Sua transformação começa com uma <span class="text-grad">mensagem.</span>
+            </h2>
+            <p class="text-[15px] text-white/70 max-w-md leading-relaxed">
+              Fale agora com a Raquel e descubra o plano ideal para emagrecer, ganhar massa muscular, melhorar a saúde e treinar com confiança.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+              <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Quero%20come%C3%A7ar%20meu%20treino%20personalizado.%20Pode%20me%20ajudar%3F"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2.5 rounded-full bg-[var(--accent)] px-8 py-4 text-[15px] font-bold text-white hover:bg-[var(--accent-dark)] transition shadow-[0_16px_40px_rgba(34,197,94,0.4)]">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0" viewBox="0 0 32 32" fill="currentColor">
+                  <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+                </svg>
+                Quero Começar Meu Treino
+              </a>
+              <a href="https://client.mfitpersonal.com.br/out/signup-link/NjE3MDMw"
+                target="_blank" rel="noopener noreferrer"
+                class="inline-flex items-center justify-center rounded-full border-2 border-white/20 bg-white/5 px-8 py-4 text-[15px] font-semibold text-white hover:bg-white/10 transition">
+                Portal do aluno
+              </a>
+            </div>
+
+            <div class="flex flex-wrap gap-x-8 gap-y-3 pt-4 text-white/70 text-[13px]">
+              <span class="inline-flex items-center gap-2">
+                <svg class="h-4 w-4 text-[var(--accent-light)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+                (31) 98282-0924
+              </span>
+              <span class="inline-flex items-center gap-2">
+                <svg class="h-4 w-4 text-[var(--accent-light)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+                raquel.edu.braga@gmail.com
+              </span>
+              <span class="inline-flex items-center gap-2">
+                <svg class="h-4 w-4 text-[var(--accent-light)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+                Ouro Branco, MG
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="border-t border-white/5" style="background: var(--dark);">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+
+          <div class="lg:col-span-2">
+            <div class="mb-5">
+              <img src="logo/logo-branco.png" alt="Raquel Eduarda" class="h-14 w-auto object-contain" />
+            </div>
+            <p class="text-[14px] text-white/60 leading-relaxed max-w-sm">
+              Personal Trainer, Educadora Física e pesquisadora. Treinos personalizados, presenciais em Ouro Branco/MG e online para todo o Brasil.
+            </p>
+            <div class="flex items-center gap-2 mt-4">
+              <a href="https://wa.me/5531982820924" target="_blank" rel="noopener noreferrer"
+                class="h-9 w-9 rounded-full flex items-center justify-center hover:opacity-80 transition"
+                style="background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35);">
+                <svg class="h-4 w-4 text-[var(--accent-light)]" viewBox="0 0 32 32" fill="currentColor">
+                  <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4z"/>
+                </svg>
+              </a>
+              <a href="https://www.instagram.com/personalraqueleduarda/" target="_blank" rel="noopener noreferrer"
+                class="h-9 w-9 rounded-full flex items-center justify-center hover:opacity-80 transition"
+                style="background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35);">
+                <svg class="h-4 w-4 text-[var(--accent-light)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </a>
+              <a href="https://br.linkedin.com/in/raquel-eduarda-ed-fisica" target="_blank" rel="noopener noreferrer"
+                class="h-9 w-9 rounded-full flex items-center justify-center hover:opacity-80 transition"
+                style="background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35);">
+                <svg class="h-4 w-4 text-[var(--accent-light)]" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14zM8.34 18.34V10.1H5.67v8.24h2.67zM7 8.94a1.54 1.54 0 100-3.08 1.54 1.54 0 000 3.08zM18.34 18.34v-4.5c0-2.4-1.28-3.52-3-3.52-1.38 0-2 .76-2.34 1.3v-1.12h-2.67c.03.7 0 8.34 0 8.34H13v-4.66c0-.25.02-.5.1-.68.2-.5.66-1.02 1.44-1.02 1.02 0 1.43.78 1.43 1.92v4.44h2.37z"/></svg>
+              </a>
+              <a href="http://lattes.cnpq.br/1166832383885880" target="_blank" rel="noopener noreferrer"
+                class="h-9 w-9 rounded-full flex items-center justify-center hover:opacity-80 transition"
+                style="background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35);">
+                <svg class="h-4 w-4 text-[var(--accent-light)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-[12px] font-bold text-white uppercase tracking-wider mb-4">Links</h4>
+            <ul class="space-y-2">
+              <li><a href="#sobre" class="text-[14px] text-white/60 hover:text-[var(--accent-light)] transition">Sobre</a></li>
+              <li><a href="#servicos" class="text-[14px] text-white/60 hover:text-[var(--accent-light)] transition">Serviços</a></li>
+              <li><a href="#formacao" class="text-[14px] text-white/60 hover:text-[var(--accent-light)] transition">Formação</a></li>
+              <li><a href="#depoimentos" class="text-[14px] text-white/60 hover:text-[var(--accent-light)] transition">Depoimentos</a></li>
+              <li><a href="#faq" class="text-[14px] text-white/60 hover:text-[var(--accent-light)] transition">Dúvidas</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-[12px] font-bold text-white uppercase tracking-wider mb-4">Contato</h4>
+            <ul class="space-y-2">
+              <li class="text-[14px] text-white/60">(31) 98282-0924</li>
+              <li class="text-[14px] text-white/60">Ouro Branco · MG</li>
+              <li>
+                <a href="https://wa.me/5531982820924" target="_blank" rel="noopener noreferrer"
+                  class="text-[14px] text-[var(--accent-light)] hover:text-white transition">
+                  WhatsApp
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/personalraqueleduarda/" target="_blank" rel="noopener noreferrer"
+                  class="text-[14px] text-[var(--accent-light)] hover:text-white transition">
+                  @personalraqueleduarda
+                </a>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="border-t border-white/10 mt-10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="text-center sm:text-left">
+            <p class="text-[12px] text-white/45">© <span id="year"></span> Raquel Eduarda · Personal Trainer</p>
+            <p class="text-[11px] text-white/30 mt-1">Seus dados são tratados com sigilo e confidencialidade, conforme a LGPD.</p>
+          </div>
+          <a href="https://linkbio.api.br" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 text-[12px] text-white/50 hover:text-white transition">
+            <span>Feito com</span>
+            <img src="https://linkbio.api.br/logo/logo-link-bio-2.png" alt="LinkBio" class="h-4 w-auto opacity-70" />
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ═══ WHATSAPP FLUTUANTE ═══ -->
+    <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Conheci%20seu%20site%20e%20gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20seus%20servi%C3%A7os.%20Tenho%20interesse%20em%20iniciar%20um%20acompanhamento%20personalizado."
+      target="_blank" rel="noopener noreferrer"
+      aria-label="Falar com a Raquel no WhatsApp"
+      class="fixed bottom-5 right-5 z-40 h-14 w-14 rounded-full flex items-center justify-center hover:scale-110 transition"
+      style="background: var(--accent); box-shadow: 0 10px 30px rgba(34,197,94,0.5);">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" viewBox="0 0 32 32" fill="currentColor">
+        <path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.83 1.782 6.865L2 30l7.348-1.748A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12s-5.373 12-12 12a11.94 11.94 0 01-5.98-1.602l-.418-.246-4.36 1.037 1.072-4.245-.27-.434A11.94 11.94 0 014 16C4 9.373 9.373 4 16 4zm-3.14 6.5c-.22 0-.576.082-.878.41-.302.328-1.152 1.125-1.152 2.742s1.178 3.18 1.342 3.4c.165.22 2.32 3.54 5.622 4.965 2.78 1.19 3.346.953 3.948.894.603-.06 1.944-.795 2.218-1.562.275-.768.275-1.427.193-1.564-.082-.137-.303-.22-.632-.384s-1.944-.958-2.247-1.068c-.302-.11-.521-.165-.74.165-.22.33-.85 1.067-1.042 1.288-.192.22-.384.247-.713.082-.329-.165-1.39-.513-2.647-1.636-.978-.873-1.639-1.95-1.83-2.28-.193-.33-.02-.508.145-.672.148-.148.329-.385.494-.578.165-.192.22-.329.33-.549.11-.22.055-.412-.027-.578-.083-.165-.735-1.776-1.01-2.43-.243-.576-.5-.59-.713-.6a13.5 13.5 0 00-.66-.022z"/>
+      </svg>
+    </a>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          var s = document.getElementById('splash');
+          if (s) {
+            s.classList.add('hide');
+            s.addEventListener('transitionend', function () { s.remove(); }, { once: true });
+          }
+        }, 1600);
+      });
+
+      var obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+        });
+      }, { threshold: 0.07 });
+      document.querySelectorAll('[data-animate]').forEach(function (el) { obs.observe(el); });
+
+      // Carrossel de depoimentos
+      (function () {
+        var track = document.getElementById('carousel-track');
+        var dotsWrap = document.getElementById('carousel-dots');
+        var prevBtn = document.getElementById('carousel-prev');
+        var nextBtn = document.getElementById('carousel-next');
+        if (!track) return;
+        var slides = Array.prototype.slice.call(track.children);
+
+        slides.forEach(function (_, i) {
+          var dot = document.createElement('button');
+          dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+          dot.setAttribute('aria-label', 'Ir para depoimento ' + (i + 1));
+          dot.addEventListener('click', function () { scrollToSlide(i); });
+          dotsWrap.appendChild(dot);
+        });
+        var dots = Array.prototype.slice.call(dotsWrap.children);
+
+        function getSlideWidth() {
+          return slides[0] ? slides[0].getBoundingClientRect().width + 20 : 0;
+        }
+        function currentIndex() {
+          var w = getSlideWidth();
+          return w ? Math.round(track.scrollLeft / w) : 0;
+        }
+        function scrollToSlide(i) {
+          i = Math.max(0, Math.min(slides.length - 1, i));
+          track.scrollTo({ left: i * getSlideWidth(), behavior: 'smooth' });
+        }
+        function updateDots() {
+          var idx = currentIndex();
+          dots.forEach(function (d, i) { d.classList.toggle('active', i === idx); });
+        }
+        prevBtn.addEventListener('click', function () { scrollToSlide(currentIndex() - 1); });
+        nextBtn.addEventListener('click', function () { scrollToSlide(currentIndex() + 1); });
+        track.addEventListener('scroll', function () {
+          window.clearTimeout(track._t);
+          track._t = window.setTimeout(updateDots, 100);
+        });
+      })();
+    </script>
+
+    <!-- Analytics LinkBio -->
+    <script src="https://linkbio.api.br/tracker.js" data-slug="personalraqueleduarda"></script>
+  </body>
+</html>
