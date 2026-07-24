@@ -48,7 +48,7 @@ try {
     $ins = db()->prepare(
         'INSERT INTO testimonials
           (page_slug, google_sub, name, email, photo_url, rating, comment, approved)
-         VALUES (?,?,?,?,?,?,?,1)'
+         VALUES (?,?,?,?,?,?,?,0)'
     );
     $ins->execute([
         $slug,
@@ -60,8 +60,8 @@ try {
         $comment,
     ]);
 
-    flash_set('ok', 'Depoimento publicado! Ele já aparece no site.');
-    header('Location: ' . rtrim((string) cfg('main_site_url', '/'), '/') . '/#depoimentos');
+    flash_set('ok', 'Depoimento enviado! Ele aparece no site após a Raquel aprovar.');
+    header('Location: ' . base_url() . '/');
     exit;
 } catch (Throwable $e) {
     flash_set('error', 'Não foi possível salvar. Confirme se a tabela testimonials existe no banco.');

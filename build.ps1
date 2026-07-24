@@ -86,6 +86,9 @@ foreach ($name in $subdomains) {
     if (Test-Path $src) {
         if (Test-Path $dst) { Remove-Item $dst -Recurse -Force }
         Copy-Item -Path $src -Destination $dst -Recurse -Force
+        # Artefatos de build local — não vão para o Hostinger
+        $nodeModules = Join-Path $dst "node_modules"
+        if (Test-Path $nodeModules) { Remove-Item $nodeModules -Recurse -Force }
         Write-Host "  [OK] $name/"
     }
 }

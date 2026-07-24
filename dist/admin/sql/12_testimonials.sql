@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS `testimonials` (
   `photo_url`  VARCHAR(500) DEFAULT NULL,
   `rating`     TINYINT UNSIGNED NOT NULL DEFAULT 5,
   `comment`    VARCHAR(800) NOT NULL,
-  `approved`   TINYINT(1)   NOT NULL DEFAULT 1,
+  `approved`   TINYINT(1)   NOT NULL DEFAULT 0,
   `created_at` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `idx_slug_approved` (`page_slug`, `approved`, `created_at`),

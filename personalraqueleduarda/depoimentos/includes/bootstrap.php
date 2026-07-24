@@ -80,3 +80,52 @@ function google_configured(): bool {
         && !str_contains($id, 'SEU_CLIENT_ID')
         && !str_contains($secret, 'SEU_CLIENT_SECRET');
 }
+
+function painel_url(): string {
+    return base_url() . '/painel';
+}
+
+function is_admin_logged_in(): bool {
+    return !empty($_SESSION['testimonial_admin']);
+}
+
+function require_admin(): void {
+    if (!is_admin_logged_in()) {
+        header('Location: ' . painel_url() . '/login.php');
+        exit;
+    }
+}
+
+function admin_try_login(string $user, string $pass): bool {
+    $expectedUser = (string) cfg('admin_user', '');
+    $expectedPass = (string) cfg('admin_password', '');
+    if ($expectedUser === '' || $expectedPass === '' || str_contains($expectedPass, 'TROCAR_')) {
+        return false;
+    }
+    if (!hash_equals($expectedUser, $user) || !hash_equals($expectedPass, $pass)) {
+        return false;
+    }
+    $_SESSION['testimonial_admin'] = [
+        'user' => $expectedUser,
+        'at'   => time(),
+    ];
+    return true;
+}
+
+function admin_logout(): void {
+    unset($_SESSION['testimonial_admin']);
+}
+
+function csrf_token(): string {
+    if (empty($_SESSION['csrf'])) {
+        $_SESSION['csrf'] = bin2hex(random_bytes(16));
+    }
+    return $_SESSION['csrf'];
+}
+
+function csrf_ok(?string $token): bool {
+    return is_string($token)
+        && $token !== ''
+        && !empty($_SESSION['csrf'])
+        && hash_equals($_SESSION['csrf'], $token);
+}

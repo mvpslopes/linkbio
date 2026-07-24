@@ -1,62 +1,53 @@
 # Depoimentos com login Google
 
-Alunos entram em `/depoimentos/`, autenticam com Google (gratuito) e publicam comentário com nome + foto da conta. Os depoimentos aparecem no carrossel da home via `api/testimonials.php`.
+Alunos entram em `/depoimentos/`, autenticam com Google e enviam comentário. A Raquel aprova no painel; só então aparecem no carrossel da home (`api/testimonials.php`).
 
 ## 1. Banco de dados
 
-No phpMyAdmin do banco `u179630068_linkbio_bd`, execute:
+No phpMyAdmin (`u179630068_linkbio_bd`):
 
-```
-admin/sql/12_testimonials.sql
-```
+1. Se a tabela ainda não existe: `admin/sql/12_testimonials.sql`
+2. Se a tabela já existe: rode também `admin/sql/13_testimonials_moderation.sql`  
+   (novos depoimentos entram como pendentes)
 
 ## 2. Google Cloud (OAuth)
 
-1. Acesse [Google Cloud Console](https://console.cloud.google.com/)
-2. Crie um projeto (ou use um existente)
-3. **APIs e serviços → Tela de consentimento OAuth**  
-   - Tipo: Externo  
-   - Nome do app: Raquel Eduarda (ou similar)  
-   - Escopos: `openid`, `email`, `profile` (padrão)
-4. **APIs e serviços → Credenciais → Criar credenciais → ID do cliente OAuth**  
-   - Tipo: **Aplicativo da Web**
-   - **Origens JavaScript autorizadas:**
-     - `https://personalraqueleduarda.linkbio.api.br`
-   - **URIs de redirecionamento autorizados:**
-     - `https://personalraqueleduarda.linkbio.api.br/depoimentos/callback.php`
-5. Copie o **Client ID** e o **Client Secret**
+1. [Google Cloud Console](https://console.cloud.google.com/)
+2. Projeto + tela de consentimento **Externo**
+3. Credencial OAuth **Aplicativo da Web**
+   - Origem: `https://personalraqueleduarda.linkbio.api.br`
+   - Redirect: `https://personalraqueleduarda.linkbio.api.br/depoimentos/callback.php`
 
 ## 3. Config no servidor
 
-No Hostinger, edite:
-
-`personalraqueleduarda/depoimentos/config.php`
-
-(ou copie de `config.example.php` se ainda não existir)
-
-Preencha:
+Edite `depoimentos/config.php`:
 
 ```php
-'google_client_id'     => '...apps.googleusercontent.com',
+'google_client_id'     => '...',
 'google_client_secret' => '...',
+'admin_user'           => 'raquel',
+'admin_password'       => 'sua_senha_forte',
 ```
 
-Os demais campos já vêm corretos no exemplo.
+## 4. Painel de moderação
 
-## 4. Deploy
+URL: https://personalraqueleduarda.linkbio.api.br/depoimentos/painel/
 
-1. Rode o build (`build.ps1`) e envie a pasta `dist/personalraqueleduarda` (ou o sync habitual)
-2. Confirme que no servidor existem:
-   - `/depoimentos/` (PHP)
-   - `/api/testimonials.php`
-   - `config.php` com as credenciais reais
-3. Teste:
-   - `https://personalraqueleduarda.linkbio.api.br/depoimentos/`
-   - Login Google → publicar → ver em `/#depoimentos`
+Ações:
+- **Aprovar** — aparece no site
+- **Ocultar** — some do site (fica no banco como pendente)
+- **Excluir** — remove de vez
+
+Abas: Pendentes | Aprovados | Todos
+
+## 5. Deploy
+
+1. `build.ps1` → enviar `dist/personalraqueleduarda`
+2. Atualizar `config.php` no Hostinger (senha do painel + Google)
+3. Rodar SQL `13_testimonials_moderation.sql` se a tabela já existia
 
 ## Regras
 
-- Publicação imediata (`approved = 1`)
+- Novos comentários entram com `approved = 0` (pendentes)
 - Máximo 2 comentários por dia por conta Google
-- Nome e foto vêm do Google (sem upload)
-- Sem custo de API além do OAuth gratuito do Google
+- Nome e foto vêm do Google

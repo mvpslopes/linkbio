@@ -106,7 +106,7 @@ $mainUrl = rtrim((string) cfg('main_site_url', '/'), '/') . '/';
     </div>
 
     <h1>Deixe seu depoimento</h1>
-    <p class="lead">Entre com sua conta Google para publicar um comentário. Seu nome e foto do Google aparecem no site da <?= e($siteName) ?>.</p>
+    <p class="lead">Entre com sua conta Google para enviar um comentário. Seu nome e foto do Google aparecem no site da <?= e($siteName) ?> após a aprovação.</p>
 
     <?php if ($flash): ?>
       <div class="flash <?= e($flash['type']) ?>"><?= e($flash['message']) ?></div>
@@ -150,10 +150,10 @@ $mainUrl = rtrim((string) cfg('main_site_url', '/'), '/') . '/';
           <label for="comment">Seu depoimento</label>
           <textarea id="comment" name="comment" maxlength="800" minlength="10" required placeholder="Conte como foi treinar com a Raquel..."></textarea>
 
-          <button type="submit" class="btn btn-primary">Publicar no site</button>
+          <button type="submit" class="btn btn-primary">Enviar depoimento</button>
         </form>
         <a class="btn btn-ghost" href="logout.php">Sair da conta Google</a>
-        <p class="hint">Seu comentário aparece automaticamente na seção Depoimentos do site, com sua foto do Google.</p>
+        <p class="hint">Seu comentário fica pendente até a Raquel aprovar. Nome e foto do Google aparecem no site após a aprovação.</p>
       <?php endif; ?>
     </div>
   </div>
