@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Raquel Eduarda | Personal Trainer &amp; Educadora Física — Ouro Branco, MG</title>
-    <meta name="description" content="Treinos personalizados com Raquel Eduarda — Personal Trainer, Educadora Física e Pesquisadora. Atendimento presencial em Ouro Branco/MG e online para todo o Brasil. Emagrecimento, hipertrofia, saúde e confiança." />
-    <meta name="keywords" content="personal trainer, educadora física, Ouro Branco, treino personalizado, consultoria online, emagrecimento, hipertrofia, Raquel Eduarda" />
+    <title>Personal Raquel Eduarda | Personal Trainer &amp; Educadora Física — Ouro Branco, MG</title>
+    <meta name="description" content="Personal Raquel Eduarda — Personal Trainer e Educadora Física em Ouro Branco/MG. Treinos personalizados presenciais e online para todo o Brasil. Emagrecimento, hipertrofia, saúde e confiança." />
+    <meta name="keywords" content="Personal Raquel Eduarda, personal trainer Raquel Eduarda, personal trainer Ouro Branco, educadora física, treino personalizado, consultoria online, emagrecimento, hipertrofia" />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://personalraqueleduarda.linkbio.api.br/" />
     <link rel="icon" href="logo/icone-logo-branco.png" type="image/png" sizes="32x32" />
     <link rel="icon" href="logo/icone-logo-branco.png" type="image/png" sizes="16x16" />
@@ -26,6 +27,7 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Raquel Eduarda",
+      "alternateName": ["Personal Raquel Eduarda", "Raquel Eduarda Personal Trainer"],
       "jobTitle": "Personal Trainer, Educadora Física e Pesquisadora",
       "description": "Personal Trainer e Educadora Física especializada em treinos personalizados, com atendimento presencial em Ouro Branco (MG) e consultoria online para todo o Brasil.",
       "url": "https://personalraqueleduarda.linkbio.api.br/",
@@ -45,6 +47,25 @@
       "knowsAbout": ["Personal training", "Educação Física", "Emagrecimento", "Hipertrofia", "Consultoria online", "Treinamento baseado em evidências"]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Personal Raquel Eduarda",
+      "image": "https://personalraqueleduarda.linkbio.api.br/artes/47864F12-E338-4D83-BB62-E6F74D47A3DF.PNG",
+      "url": "https://personalraqueleduarda.linkbio.api.br/",
+      "telephone": "+5531982820924",
+      "email": "raquel.edu.braga@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Ouro Branco",
+        "addressRegion": "MG",
+        "addressCountry": "BR"
+      },
+      "areaServed": ["Ouro Branco", "Brasil"],
+      "priceRange": "$$"
+    }
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -52,7 +73,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- CSS local (Tailwind compilado — sem CDN) -->
-    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/app.css?v=20260726c" />
   </head>
 
   <body class="text-[var(--ink)] antialiased bg-[var(--bg)]">
@@ -64,28 +85,57 @@
     </div>
 
     <!-- ═══ HEADER ═══ -->
-    <header class="sticky top-0 z-30 bg-[var(--bg)]/90 backdrop-blur-md border-b border-white/5">
+    <header id="site-header" class="sticky top-0 z-30 bg-[var(--bg)]/90 backdrop-blur-md border-b border-white/5">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-4">
 
-        <a href="#" aria-label="Raquel Eduarda Personal Trainer" class="flex items-center">
-          <img src="logo/logo-branco.png" alt="Raquel Eduarda — Personal Trainer" class="brand-logo w-auto object-contain" />
+        <a href="#" aria-label="Raquel Eduarda Personal Trainer" class="brand-logo-link">
+          <img
+            src="logo/logo-branco.png"
+            alt="Raquel Eduarda — Personal Trainer"
+            class="brand-logo"
+            id="header-logo"
+            data-src-top="logo/logo-branco.png"
+            data-src-scrolled="logo/logo-preto.png"
+            width="200"
+            height="40"
+          />
         </a>
 
-        <nav class="hidden md:flex items-center gap-6 text-[13px] font-semibold text-[var(--muted)]">
+        <nav class="hidden md:flex items-center gap-6 text-[13px] font-semibold text-[var(--muted)]" aria-label="Menu principal">
           <a href="#sobre" class="hover:text-[var(--accent)] transition">Sobre</a>
           <a href="#servicos" class="hover:text-[var(--accent)] transition">Serviços</a>
           <a href="#formacao" class="hover:text-[var(--accent)] transition">Formação</a>
           <a href="#depoimentos" class="hover:text-[var(--accent)] transition">Depoimentos</a>
+          <a href="#transformacoes" class="hover:text-[var(--accent)] transition">Transformações</a>
           <a href="#faq" class="hover:text-[var(--accent)] transition">FAQ</a>
         </nav>
 
-        <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Conheci%20seu%20site%20e%20gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20seus%20servi%C3%A7os.%20Tenho%20interesse%20em%20iniciar%20um%20acompanhamento%20personalizado."
-          target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-3.5 sm:px-5 py-2 text-[12px] sm:text-[13px] font-bold text-white hover:bg-[var(--accent-dark)] transition shadow-[0_6px_20px_rgba(34,197,94,0.35)]">
-          <span class="sm:hidden">Contato</span>
-          <span class="hidden sm:inline">Quero Começar Meu Treino</span>
-        </a>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Conheci%20seu%20site%20e%20gostaria%20de%20receber%20mais%20informa%C3%A7%C3%B5es%20sobre%20seus%20servi%C3%A7os.%20Tenho%20interesse%20em%20iniciar%20um%20acompanhamento%20personalizado."
+            target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-3.5 sm:px-5 py-2 text-[12px] sm:text-[13px] font-bold text-white hover:bg-[var(--accent-dark)] transition shadow-[0_6px_20px_rgba(34,197,94,0.35)]">
+            <span class="sm:hidden">Contato</span>
+            <span class="hidden sm:inline">Quero Começar Meu Treino</span>
+          </a>
+
+          <button type="button" id="nav-toggle" class="nav-toggle md:hidden" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menu">
+            <span class="nav-toggle-bars" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </span>
+          </button>
+        </div>
       </div>
+
+      <nav id="mobile-nav" class="mobile-nav md:hidden" hidden aria-label="Menu mobile">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#formacao">Formação</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#transformacoes">Transformações</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://wa.me/5531982820924?text=Ol%C3%A1%2C%20Raquel!%20Quero%20come%C3%A7ar%20meu%20treino%20personalizado.%20Pode%20me%20ajudar%3F"
+          target="_blank" rel="noopener noreferrer" class="mobile-nav-cta">Quero Começar Meu Treino</a>
+      </nav>
     </header>
 
     <!-- ═══ HERO ═══ -->
@@ -94,7 +144,7 @@
       <div class="relative z-10 mx-auto max-w-6xl w-full px-4 sm:px-6 lg:px-8 py-24 sm:py-28 lg:py-16">
         <div class="grid gap-12 lg:gap-8 items-center lg:grid-cols-5">
           <div class="lg:hidden order-1" data-animate>
-            <div class="relative mx-auto max-w-[300px]">
+            <div class="relative mx-auto max-w-[360px] w-[92%]">
               <div class="hero-photo">
                 <img src="fotos/foto01.png" alt="Raquel Eduarda — Personal Trainer" class="drop-shadow-[0_25px_35px_rgba(0,0,0,0.35)]" loading="eager" />
               </div>
@@ -327,18 +377,14 @@
           </div>
 
           <!-- 3 - destaque -->
-          <div data-animate data-animate-delay="3" class="card p-7 space-y-5 flex flex-col relative" style="border-color: rgba(34,197,94,.45); box-shadow: 0 20px 50px rgba(34,197,94,.12);">
-            <div class="absolute top-0 inset-x-0 h-[3px] rounded-t-2xl" style="background: linear-gradient(90deg, transparent, var(--accent), transparent);"></div>
+          <div data-animate data-animate-delay="3" class="card p-7 space-y-5 flex flex-col" style="border-color: rgba(34,197,94,.45); box-shadow: 0 20px 50px rgba(34,197,94,.12);">
             <div class="flex items-start justify-between">
               <div class="icon-box">
                 <svg class="h-6 w-6 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z"/>
                 </svg>
               </div>
-              <div class="flex flex-col items-end gap-1">
-                <span class="text-[10px] font-bold bg-[var(--accent)] text-white rounded-full px-2.5 py-0.5 uppercase tracking-wider">Mais completo</span>
-                <span class="font-display font-extrabold text-[46px] leading-none num-ghost select-none">03</span>
-              </div>
+              <span class="font-display font-extrabold text-[46px] leading-none num-ghost select-none">03</span>
             </div>
             <div>
               <p class="text-[18px] font-bold text-[var(--ink)]">Plano Premium com Aula Explicativa</p>
@@ -587,44 +633,137 @@
       </div>
     </section>
 
-    <!-- ═══ ANTES E DEPOIS ═══ -->
-    <section id="antes-depois" class="section-dark py-16 sm:py-24">
+    <!-- ═══ TRANSFORMAÇÕES REAIS ═══ -->
+    <section id="transformacoes" class="section-dark py-16 sm:py-24">
       <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
 
-        <div data-animate class="text-center mb-14">
+        <div data-animate class="text-center mb-12">
           <span class="deco-line mx-auto"></span>
           <span class="tag-pill">Antes e depois</span>
           <h2 class="font-display font-extrabold text-[30px] sm:text-[40px] leading-[1.08] mt-4">
             Transformações <span class="text-grad">reais</span>
           </h2>
-          <p class="text-[15px] text-[var(--muted)] mt-4 max-w-xl mx-auto">
-            <!-- TODO: substituir pelos pares reais de fotos "antes" e "depois" dos alunos (ex.: fotos/antes-depois/aluno1-antes.jpg / -depois.jpg) -->
-            Em breve, novos registros de evolução dos alunos serão publicados aqui.
+          <p class="text-[15px] text-[var(--muted)] mt-4 max-w-2xl mx-auto">
+            Resultados reais, com estratégia, constância e acompanhamento, você também pode conquistar o seu
           </p>
         </div>
 
-        <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <div data-animate data-animate-delay="1" class="ba-card">
-            <div class="text-center px-6">
-              <svg class="h-9 w-9 text-[var(--accent)] mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h18M16.5 3L21 7.5m0 0L16.5 12M21 7.5H3"/></svg>
-              <p class="text-[13px] font-bold text-[var(--ink)]">Evolução em breve</p>
-              <p class="text-[12px] text-[var(--muted)] mt-1">Novo registro de transformação</p>
-            </div>
+        <div data-animate class="ba-carousel" id="ba-carousel">
+          <div class="ba-track" id="ba-track">
+            <article class="ba-slide">
+              <div class="ba-result">
+                <div class="ba-photo" aria-label="Antes e depois">
+                  <img src="antes-depois/01.PNG" alt="Antes e depois — emagrecimento" width="1179" height="1549" loading="lazy" decoding="async" />
+                  <span class="ba-label antes">Antes</span>
+                  <span class="ba-label depois">Depois</span>
+                </div>
+                <div class="ba-info">
+                  <div class="ba-meta-row">
+                <div class="ba-meta-item">
+                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></div>
+                  <div class="ba-meta-text">
+                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Objetivo</p>
+                    <p class="text-[14px] font-bold text-[var(--ink)]">Emagrecimento</p>
+                  </div>
+                </div>
+                <div class="ba-meta-item">
+                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.118a7.5 7.5 0 0115 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.5-1.632z"/></svg></div>
+                  <div class="ba-meta-text">
+                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Perfil da Aluna</p>
+                    <p class="text-[14px] font-bold text-[var(--ink)]">Lipedema</p>
+                  </div>
+                </div>
+                <div class="ba-meta-item">
+                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                  <div class="ba-meta-text">
+                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Resultado em</p>
+                    <p class="text-[14px] font-bold text-[var(--ink)]">4 meses</p>
+                  </div>
+                </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="ba-slide">
+              <div class="ba-result">
+                <div class="ba-photo" aria-label="Antes e depois">
+                  <img src="antes-depois/03.PNG" alt="Antes e depois — definição muscular" width="1179" height="1549" loading="lazy" decoding="async" />
+                  <span class="ba-label antes">Antes</span>
+                  <span class="ba-label depois">Depois</span>
+                </div>
+                <div class="ba-info">
+                  <div class="ba-meta-row">
+                <div class="ba-meta-item">
+                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></div>
+                  <div class="ba-meta-text">
+                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Objetivo</p>
+                    <p class="text-[14px] font-bold text-[var(--ink)]">Definição muscular</p>
+                  </div>
+                </div>
+                <div class="ba-meta-item">
+                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.118a7.5 7.5 0 0115 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.5-1.632z"/></svg></div>
+                  <div class="ba-meta-text">
+                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Perfil do Aluno</p>
+                    <p class="text-[14px] font-bold text-[var(--ink)]">Atleta</p>
+                  </div>
+                </div>
+                <div class="ba-meta-item">
+                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                  <div class="ba-meta-text">
+                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Resultado em</p>
+                    <p class="text-[14px] font-bold text-[var(--ink)]">2 meses</p>
+                  </div>
+                </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="ba-slide">
+              <div class="ba-result">
+                <div class="ba-photo" aria-label="Antes e depois">
+                  <img src="antes-depois/04.PNG" alt="Antes e depois — hipertrofia" width="1179" height="1549" loading="lazy" decoding="async" />
+                  <span class="ba-label antes">Antes</span>
+                  <span class="ba-label depois">Depois</span>
+                </div>
+                <div class="ba-info">
+                  <div class="ba-meta-row">
+                <div class="ba-meta-item">
+                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></div>
+                  <div class="ba-meta-text">
+                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Objetivo</p>
+                    <p class="text-[14px] font-bold text-[var(--ink)]">Hipertrofia</p>
+                  </div>
+                </div>
+                <div class="ba-meta-item">
+                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.118a7.5 7.5 0 0115 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.5-1.632z"/></svg></div>
+                  <div class="ba-meta-text">
+                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Perfil do Aluno</p>
+                    <p class="text-[14px] font-bold text-[var(--ink)]">Aluna Iniciante</p>
+                  </div>
+                </div>
+                <div class="ba-meta-item">
+                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+                  <div class="ba-meta-text">
+                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Resultado em</p>
+                    <p class="text-[14px] font-bold text-[var(--ink)]">4 meses</p>
+                  </div>
+                </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
           </div>
-          <div data-animate data-animate-delay="2" class="ba-card">
-            <div class="text-center px-6">
-              <svg class="h-9 w-9 text-[var(--accent)] mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h18M16.5 3L21 7.5m0 0L16.5 12M21 7.5H3"/></svg>
-              <p class="text-[13px] font-bold text-[var(--ink)]">Evolução em breve</p>
-              <p class="text-[12px] text-[var(--muted)] mt-1">Novo registro de transformação</p>
-            </div>
-          </div>
-          <div data-animate data-animate-delay="3" class="ba-card">
-            <div class="text-center px-6">
-              <svg class="h-9 w-9 text-[var(--accent)] mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h18M16.5 3L21 7.5m0 0L16.5 12M21 7.5H3"/></svg>
-              <p class="text-[13px] font-bold text-[var(--ink)]">Evolução em breve</p>
-              <p class="text-[12px] text-[var(--muted)] mt-1">Novo registro de transformação</p>
-            </div>
-          </div>
+
+          <button type="button" class="ba-nav ba-prev" id="ba-prev" aria-label="Foto anterior">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button type="button" class="ba-nav ba-next" id="ba-next" aria-label="Próxima foto">
+            <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </button>
+          <div class="ba-dots" id="ba-dots" aria-hidden="true"></div>
         </div>
 
         <div data-animate class="mt-8 text-center">
@@ -959,6 +1098,51 @@
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
 
+      (function () {
+        var header = document.getElementById('site-header');
+        var logo = document.getElementById('header-logo');
+        if (!header || !logo) return;
+        var srcTop = logo.getAttribute('data-src-top') || 'logo/logo-branco.png';
+        var srcScrolled = logo.getAttribute('data-src-scrolled') || 'logo/logo-preto.png';
+        var preload = new Image();
+        preload.src = srcScrolled;
+        function onScroll() {
+          var scrolled = window.scrollY > 24;
+          header.classList.toggle('is-scrolled', scrolled);
+          var next = scrolled ? srcScrolled : srcTop;
+          if (logo.getAttribute('src') !== next) logo.setAttribute('src', next);
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      })();
+
+      (function () {
+        var toggle = document.getElementById('nav-toggle');
+        var panel = document.getElementById('mobile-nav');
+        if (!toggle || !panel) return;
+
+        function setOpen(open) {
+          panel.hidden = !open;
+          panel.classList.toggle('is-open', open);
+          toggle.classList.toggle('is-open', open);
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+          document.body.classList.toggle('nav-open', open);
+        }
+
+        toggle.addEventListener('click', function () {
+          setOpen(panel.hidden);
+        });
+
+        panel.querySelectorAll('a').forEach(function (link) {
+          link.addEventListener('click', function () { setOpen(false); });
+        });
+
+        window.addEventListener('resize', function () {
+          if (window.matchMedia('(min-width: 768px)').matches) setOpen(false);
+        });
+      })();
+
       window.addEventListener('load', function () {
         setTimeout(function () {
           var s = document.getElementById('splash');
@@ -975,6 +1159,95 @@
         });
       }, { threshold: 0.07 });
       document.querySelectorAll('[data-animate]').forEach(function (el) { obs.observe(el); });
+
+      // Carrossel Transformações (mobile 1 / desktop 3)
+      (function () {
+        var carousel = document.getElementById('ba-carousel');
+        var track = document.getElementById('ba-track');
+        var prev = document.getElementById('ba-prev');
+        var next = document.getElementById('ba-next');
+        var dotsWrap = document.getElementById('ba-dots');
+        if (!carousel || !track || !prev || !next || !dotsWrap) return;
+
+        var slides = Array.prototype.slice.call(track.querySelectorAll('.ba-slide'));
+        if (!slides.length) return;
+        var index = 0;
+        var activated = false;
+
+        slides.forEach(function (_, i) {
+          var d = document.createElement('button');
+          d.type = 'button';
+          d.className = 'ba-dot' + (i === 0 ? ' active' : '');
+          d.setAttribute('aria-label', 'Ir para transformação ' + (i + 1));
+          d.addEventListener('click', function () {
+            activate();
+            go(i);
+          });
+          dotsWrap.appendChild(d);
+        });
+        var dots = Array.prototype.slice.call(dotsWrap.children);
+
+        function isDesktop() {
+          return window.matchMedia('(min-width: 1024px)').matches;
+        }
+
+        function activate() {
+          if (isDesktop()) return;
+          activated = true;
+          carousel.classList.add('is-nav');
+        }
+
+        function go(i) {
+          if (isDesktop()) {
+            index = 0;
+            track.style.transform = '';
+            dots.forEach(function (d, n) { d.classList.toggle('active', n === 0); });
+            return;
+          }
+          index = Math.max(0, Math.min(slides.length - 1, i));
+          track.style.transform = 'translateX(-' + (index * 100) + '%)';
+          dots.forEach(function (d, n) { d.classList.toggle('active', n === index); });
+          prev.disabled = index === 0;
+          next.disabled = index === slides.length - 1;
+        }
+
+        prev.addEventListener('click', function (e) {
+          e.stopPropagation();
+          activate();
+          go(index - 1);
+        });
+        next.addEventListener('click', function (e) {
+          e.stopPropagation();
+          activate();
+          go(index + 1);
+        });
+
+        track.addEventListener('click', function () {
+          activate();
+        });
+
+        // swipe
+        var startX = 0;
+        track.addEventListener('touchstart', function (e) {
+          startX = e.changedTouches[0].clientX;
+        }, { passive: true });
+        track.addEventListener('touchend', function (e) {
+          var dx = e.changedTouches[0].clientX - startX;
+          if (Math.abs(dx) < 40) return;
+          activate();
+          go(dx < 0 ? index + 1 : index - 1);
+        }, { passive: true });
+
+        window.addEventListener('resize', function () {
+          if (isDesktop()) {
+            carousel.classList.remove('is-nav');
+            activated = false;
+          }
+          go(index);
+        });
+
+        go(0);
+      })();
 
       // Depoimentos (API + carrossel)
       (function () {

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Disallow: /depoimentos/painel/
+Disallow: /depoimentos/login.php
+Disallow: /depoimentos/callback.php
+Disallow: /depoimentos/submit.php
+Disallow: /depoimentos/logout.php
+
+Sitemap: https://personalraqueleduarda.linkbio.api.br/sitemap.xml
