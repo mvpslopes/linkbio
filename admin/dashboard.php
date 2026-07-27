@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/analytics_data.php';
 $user    = require_auth();
 $isRoot  = $user['role'] === 'root';
 $pdo     = db();
@@ -13,145 +14,52 @@ if ($isRoot) {
 $selected = preg_replace('/[^a-z0-9_\-]/', '', $_GET['page'] ?? $slugs[0]['page_slug'] ?? '');
 if (!$isRoot && $selected !== $user['page_slug']) $selected = $user['page_slug'];
 
-// ── Período ──────────────────────────────────────────────────
+// ── Analytics ────────────────────────────────────────────────
 $period = $_GET['period'] ?? '7d';
-$periodMap = [
-    'today' => "DATE(created_at) = CURDATE()",
-    '7d'    => "created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)",
-    '30d'   => "created_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)",
-    '90d'   => "created_at >= DATE_SUB(NOW(), INTERVAL 90 DAY)",
-    'all'   => "1=1",
-];
-if (!isset($periodMap[$period])) $period = '7d';
-$whereTime = $periodMap[$period];
+$data = analytics_load($pdo, $selected, $period);
+$period = $data['period'];
+$periodLabels = $data['period_labels'];
 
-// ── Período anterior ─────────────────────────────────────────
-$prevMap = [
-    'today' => "DATE(created_at) = DATE_SUB(CURDATE(), INTERVAL 1 DAY)",
-    '7d'    => "created_at >= DATE_SUB(NOW(), INTERVAL 14 DAY) AND created_at < DATE_SUB(NOW(), INTERVAL 7 DAY)",
-    '30d'   => "created_at >= DATE_SUB(NOW(), INTERVAL 60 DAY) AND created_at < DATE_SUB(NOW(), INTERVAL 30 DAY)",
-    '90d'   => "created_at >= DATE_SUB(NOW(), INTERVAL 180 DAY) AND created_at < DATE_SUB(NOW(), INTERVAL 90 DAY)",
-    'all'   => "1=0",
-];
-$wherePrev = $prevMap[$period];
+$total_views   = $data['kpis']['total_views'];
+$uniq_visitors = $data['kpis']['uniq_visitors'];
+$total_clicks  = $data['kpis']['total_clicks'];
+$online_now    = $data['kpis']['online_now'];
+$last_visit    = $data['kpis']['last_visit'];
+$conv_rate     = $data['kpis']['conv_rate'];
+$views_per_visitor = $data['kpis']['views_per_visitor'];
+$lastVisitFormatted = $data['kpis']['last_visit_formatted'];
+$trend_views = $data['kpis']['trend_views'];
+$tv_up = $data['kpis']['tv_up'];
+$trend_visitors = $data['kpis']['trend_visitors'];
+$ts_up = $data['kpis']['ts_up'];
+$trend_clicks = $data['kpis']['trend_clicks'];
+$tc_up = $data['kpis']['tc_up'];
+$trend_conv = $data['kpis']['trend_conv'];
+$tconv_up = $data['kpis']['tconv_up'];
 
-// ── Helpers ──────────────────────────────────────────────────
-function q(PDO $pdo, string $sql, array $p = []) {
-    $s = $pdo->prepare($sql); $s->execute($p); return $s;
-}
-function trend(int $now, int $prev): array {
-    if ($prev === 0) return $now > 0 ? ['+∞', true] : ['—', null];
-    $pct = round(($now - $prev) / $prev * 100);
-    return [($pct >= 0 ? '+' : '') . $pct . '%', $pct >= 0];
-}
+$chartLabels = $data['chart']['labels'];
+$chartData = $data['chart']['views'];
+$chartClicks = $data['chart']['clicks'];
 
-// ── Dados atuais ─────────────────────────────────────────────
-$total_views   = (int) q($pdo,"SELECT COUNT(*) FROM page_views WHERE page_slug=? AND $whereTime",[$selected])->fetchColumn();
-$uniq_visitors = (int) q($pdo,"SELECT COUNT(DISTINCT ip_hash) FROM page_views WHERE page_slug=? AND $whereTime",[$selected])->fetchColumn();
-$total_clicks  = (int) q($pdo,"SELECT COUNT(*) FROM click_events WHERE page_slug=? AND $whereTime",[$selected])->fetchColumn();
-$online_now    = (int) q($pdo,"SELECT COUNT(DISTINCT ip_hash) FROM page_views WHERE page_slug=? AND created_at >= DATE_SUB(NOW(), INTERVAL 5 MINUTE)",[$selected])->fetchColumn();
-$last_visit    = q($pdo,"SELECT MAX(created_at) FROM page_views WHERE page_slug=?",[$selected])->fetchColumn();
-
-// ── Dados anteriores ─────────────────────────────────────────
-$prev_views    = (int) q($pdo,"SELECT COUNT(*) FROM page_views WHERE page_slug=? AND $wherePrev",[$selected])->fetchColumn();
-$prev_visitors = (int) q($pdo,"SELECT COUNT(DISTINCT ip_hash) FROM page_views WHERE page_slug=? AND $wherePrev",[$selected])->fetchColumn();
-$prev_clicks   = (int) q($pdo,"SELECT COUNT(*) FROM click_events WHERE page_slug=? AND $wherePrev",[$selected])->fetchColumn();
-
-[$trend_views,    $tv_up]    = trend($total_views,   $prev_views);
-[$trend_visitors, $ts_up]    = trend($uniq_visitors, $prev_visitors);
-[$trend_clicks,   $tc_up]    = trend($total_clicks,  $prev_clicks);
-
-$conv_rate   = $total_views > 0 ? round($total_clicks / $total_views * 100, 1) : 0;
-$prev_conv   = $prev_views  > 0 ? round($prev_clicks  / $prev_views  * 100, 1) : 0;
-[$trend_conv, $tconv_up] = trend((int)($conv_rate * 10), (int)($prev_conv * 10));
-
-$views_per_visitor  = $uniq_visitors > 0 ? round($total_views / $uniq_visitors, 1) : 0;
-$lastVisitFormatted = $last_visit ? date('d/m/Y \à\s H:i', strtotime($last_visit)) : '—';
-
-// ── Gráfico ──────────────────────────────────────────────────
-$days_interval     = match($period) { 'today' => 0, '7d' => 6, '30d' => 29, '90d' => 89, 'all' => 29, default => 6 };
-$daily_views_rows  = q($pdo,"SELECT DATE(created_at) AS day, COUNT(*) AS total FROM page_views   WHERE page_slug=? AND $whereTime GROUP BY day ORDER BY day",[$selected])->fetchAll();
-$daily_clicks_rows = q($pdo,"SELECT DATE(created_at) AS day, COUNT(*) AS total FROM click_events WHERE page_slug=? AND $whereTime GROUP BY day ORDER BY day",[$selected])->fetchAll();
-
-$chartLabels = []; $chartData = []; $chartClicks = [];
-for ($i = $days_interval; $i >= 0; $i--) {
-    $date = date('Y-m-d', strtotime("-{$i} days"));
-    $fmt  = $period === 'today' ? '' : date('d/m', strtotime($date));
-    if ($fmt) {
-        $chartLabels[] = $fmt;
-        $fv = 0; foreach ($daily_views_rows  as $d) { if ($d['day']===$date) { $fv=(int)$d['total']; break; } }
-        $fc = 0; foreach ($daily_clicks_rows as $d) { if ($d['day']===$date) { $fc=(int)$d['total']; break; } }
-        $chartData[]   = $fv;
-        $chartClicks[] = $fc;
-    }
-}
-if ($period === 'today') {
-    $hourly_v = q($pdo,"SELECT HOUR(created_at) AS h, COUNT(*) AS total FROM page_views   WHERE page_slug=? AND DATE(created_at)=CURDATE() GROUP BY h ORDER BY h",[$selected])->fetchAll();
-    $hourly_c = q($pdo,"SELECT HOUR(created_at) AS h, COUNT(*) AS total FROM click_events WHERE page_slug=? AND DATE(created_at)=CURDATE() GROUP BY h ORDER BY h",[$selected])->fetchAll();
-    for ($h = 0; $h < 24; $h++) {
-        $chartLabels[] = str_pad($h,2,'0',STR_PAD_LEFT).':00';
-        $fv = 0; foreach ($hourly_v as $r) { if ((int)$r['h']===$h) { $fv=(int)$r['total']; break; } }
-        $fc = 0; foreach ($hourly_c as $r) { if ((int)$r['h']===$h) { $fc=(int)$r['total']; break; } }
-        $chartData[]   = $fv;
-        $chartClicks[] = $fc;
-    }
-}
-
-// ── Heatmap (dia da semana × hora) ───────────────────────────
-$heatmap_rows = q($pdo,"
-    SELECT DAYOFWEEK(created_at) AS dow, HOUR(created_at) AS h, COUNT(*) AS total
-    FROM page_views WHERE page_slug=? AND $whereTime GROUP BY dow, h
-",[$selected])->fetchAll();
-$heatmap = [];
-for ($d = 1; $d <= 7; $d++) for ($h = 0; $h < 24; $h++) $heatmap[$d][$h] = 0;
-foreach ($heatmap_rows as $r) $heatmap[(int)$r['dow']][(int)$r['h']] = (int)$r['total'];
-$heatmap_max = max(array_merge([1], array_map('max', $heatmap)));
-
-// ── Dispositivos ─────────────────────────────────────────────
-$devices   = q($pdo,"SELECT device, COUNT(*) AS total FROM page_views WHERE page_slug=? AND $whereTime GROUP BY device ORDER BY total DESC",[$selected])->fetchAll();
-$dev_total = array_sum(array_column($devices,'total')) ?: 1;
-
-// ── Browsers ─────────────────────────────────────────────────
-$browsers = q($pdo,"SELECT COALESCE(browser,'Unknown') AS browser, COUNT(*) AS total FROM page_views WHERE page_slug=? AND $whereTime GROUP BY browser ORDER BY total DESC LIMIT 6",[$selected])->fetchAll();
-$br_total  = array_sum(array_column($browsers,'total')) ?: 1;
-
-// ── Sistemas operacionais ────────────────────────────────────
-$os_rows  = q($pdo,"SELECT COALESCE(os,'Unknown') AS os, COUNT(*) AS total FROM page_views WHERE page_slug=? AND $whereTime GROUP BY os ORDER BY total DESC LIMIT 6",[$selected])->fetchAll();
-$os_total = array_sum(array_column($os_rows,'total')) ?: 1;
-
-// ── Origem do tráfego ────────────────────────────────────────
-$traffic = q($pdo,"
-    SELECT
-      CASE
-        WHEN referrer='' OR referrer IS NULL THEN 'Direto'
-        WHEN referrer REGEXP '(google|bing|yahoo|duckduckgo|baidu|yandex)' THEN 'Buscadores'
-        WHEN referrer REGEXP '(instagram|facebook|twitter|tiktok|linkedin|youtube|t\\.co|whatsapp)' THEN 'Redes Sociais'
-        ELSE 'Outros'
-      END AS source,
-      COUNT(*) AS total
-    FROM page_views WHERE page_slug=? AND $whereTime GROUP BY source ORDER BY total DESC
-",[$selected])->fetchAll();
-$tr_total = array_sum(array_column($traffic,'total')) ?: 1;
-
-// ── Países ───────────────────────────────────────────────────
-$countries = q($pdo,"SELECT COALESCE(country,'Desconhecido') AS country, COUNT(DISTINCT ip_hash) AS visitors, COUNT(*) AS views FROM page_views WHERE page_slug=? AND $whereTime GROUP BY country ORDER BY visitors DESC LIMIT 10",[$selected])->fetchAll();
-
-// ── Cidades ──────────────────────────────────────────────────
-$cities = q($pdo,"SELECT COALESCE(city,'Desconhecida') AS city, COALESCE(country,'') AS country, COUNT(DISTINCT ip_hash) AS visitors FROM page_views WHERE page_slug=? AND $whereTime AND city IS NOT NULL GROUP BY city, country ORDER BY visitors DESC LIMIT 10",[$selected])->fetchAll();
-
-// ── Top cliques ──────────────────────────────────────────────
-$top_clicks = q($pdo,"
-    SELECT element_text, element_type, COUNT(*) AS total
-    FROM click_events WHERE page_slug=? AND $whereTime
-    GROUP BY element_text, element_type ORDER BY total DESC LIMIT 10
-",[$selected])->fetchAll();
+$devices = $data['devices'];
+$dev_total = $data['totals']['devices'];
+$browsers = $data['browsers'];
+$br_total = $data['totals']['browsers'];
+$os_rows = $data['os_rows'];
+$os_total = $data['totals']['os'];
+$traffic = $data['traffic'];
+$tr_total = $data['totals']['traffic'];
+$countries = $data['countries'];
+$cities = $data['cities'];
+$top_clicks = $data['top_clicks'];
+$heatmap = $data['heatmap'];
+$heatmap_max = $data['heatmap_max'];
 
 // ── Helpers de exibição ──────────────────────────────────────
 $slugName = $selected;
 foreach ($slugs as $s) { if ($s['page_slug']===$selected) { $slugName = $s['name'] ?: $selected; break; } }
 $clientPages = [];
 foreach ($slugs as $s) { if ($s['page_slug']) $clientPages[$s['page_slug']] = 'https://'.$s['page_slug'].'.linkbio.api.br'; }
-$periodLabels = ['today'=>'Hoje','7d'=>'7 dias','30d'=>'30 dias','90d'=>'90 dias','all'=>'Todo período'];
 $pageUrl = 'https://'.$selected.'.linkbio.api.br';
 ?>
 <!DOCTYPE html>
@@ -504,6 +412,13 @@ $pageUrl = 'https://'.$selected.'.linkbio.api.br';
           <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
         </svg>
         Ver página
+      </a>
+      <a href="/admin/analytics_export_pdf.php?page=<?= urlencode($selected) ?>&period=<?= urlencode($period) ?>"
+        class="inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-[13px] font-semibold transition border border-slate-300 bg-white text-slate-800 hover:bg-slate-50 hover:border-slate-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        Exportar PDF
       </a>
     </div>
   </div>
