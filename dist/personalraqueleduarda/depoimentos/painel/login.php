@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require_once dirname(__DIR__) . '/includes/bootstrap.php';
+require_once __DIR__ . '/includes/nav.php';
 
 if (is_admin_logged_in()) {
     header('Location: ' . painel_url() . '/');
@@ -36,7 +37,7 @@ $mainUrl = rtrim((string) cfg('main_site_url', '/'), '/') . '/';
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/painel.css" />
+  <link rel="stylesheet" href="<?= painel_css_href() ?>" />
 </head>
 <body class="login-body">
   <section class="login-brand">

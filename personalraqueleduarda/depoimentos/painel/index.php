@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require_once dirname(__DIR__) . '/includes/bootstrap.php';
+require_once __DIR__ . '/includes/nav.php';
 require_admin();
 
 $slug = (string) cfg('page_slug', 'personalraqueleduarda');
@@ -74,7 +75,7 @@ $listTitle = $titles[$filter];
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/painel.css" />
+  <link rel="stylesheet" href="<?= painel_css_href() ?>" />
 </head>
 <body>
   <div class="app">
@@ -83,9 +84,11 @@ $listTitle = $titles[$filter];
         <img src="../../logo/icone-logo-branco.png" alt="" />
         <div>
           <strong><?= e($siteName) ?></strong>
-          <span>Sistema de depoimentos</span>
+          <span>Sistema interno</span>
         </div>
       </div>
+
+      <?php painel_module_nav('depoimentos'); ?>
 
       <nav class="side-nav" aria-label="Filtros">
         <a class="<?= $filter === 'pending' ? 'active' : '' ?>" href="?f=pending">
@@ -125,6 +128,8 @@ $listTitle = $titles[$filter];
       </header>
 
       <nav class="mobile-nav" aria-label="Filtros mobile">
+        <a class="active" href="index.php">Depoimentos</a>
+        <a href="transformacoes.php">Transformações</a>
         <a class="<?= $filter === 'pending' ? 'active' : '' ?>" href="?f=pending">Pendentes (<?= (int) $counts['pending'] ?>)</a>
         <a class="<?= $filter === 'approved' ? 'active' : '' ?>" href="?f=approved">No site (<?= (int) $counts['approved'] ?>)</a>
         <a class="<?= $filter === 'all' ? 'active' : '' ?>" href="?f=all">Todos (<?= (int) $counts['all'] ?>)</a>

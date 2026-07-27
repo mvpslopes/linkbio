@@ -73,7 +73,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- CSS local (Tailwind compilado — sem CDN) -->
-    <link rel="stylesheet" href="css/app.css?v=20260726c" />
+    <link rel="stylesheet" href="css/app.css?v=20260727a" />
   </head>
 
   <body class="text-[var(--ink)] antialiased bg-[var(--bg)]">
@@ -648,114 +648,12 @@
           </p>
         </div>
 
-        <div data-animate class="ba-carousel" id="ba-carousel">
-          <div class="ba-track" id="ba-track">
-            <article class="ba-slide">
-              <div class="ba-result">
-                <div class="ba-photo" aria-label="Antes e depois">
-                  <img src="antes-depois/01.PNG" alt="Antes e depois — emagrecimento" width="1179" height="1549" loading="lazy" decoding="async" />
-                  <span class="ba-label antes">Antes</span>
-                  <span class="ba-label depois">Depois</span>
-                </div>
-                <div class="ba-info">
-                  <div class="ba-meta-row">
-                <div class="ba-meta-item">
-                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></div>
-                  <div class="ba-meta-text">
-                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Objetivo</p>
-                    <p class="text-[14px] font-bold text-[var(--ink)]">Emagrecimento</p>
-                  </div>
-                </div>
-                <div class="ba-meta-item">
-                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.118a7.5 7.5 0 0115 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.5-1.632z"/></svg></div>
-                  <div class="ba-meta-text">
-                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Perfil da Aluna</p>
-                    <p class="text-[14px] font-bold text-[var(--ink)]">Lipedema</p>
-                  </div>
-                </div>
-                <div class="ba-meta-item">
-                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                  <div class="ba-meta-text">
-                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Resultado em</p>
-                    <p class="text-[14px] font-bold text-[var(--ink)]">4 meses</p>
-                  </div>
-                </div>
-                  </div>
-                </div>
-              </div>
-            </article>
+        <div id="ba-empty" class="hidden text-center card p-10 max-w-xl mx-auto">
+          <p class="text-[15px] text-[var(--muted)]">Em breve novas transformações por aqui.</p>
+        </div>
 
-            <article class="ba-slide">
-              <div class="ba-result">
-                <div class="ba-photo" aria-label="Antes e depois">
-                  <img src="antes-depois/03.PNG" alt="Antes e depois — definição muscular" width="1179" height="1549" loading="lazy" decoding="async" />
-                  <span class="ba-label antes">Antes</span>
-                  <span class="ba-label depois">Depois</span>
-                </div>
-                <div class="ba-info">
-                  <div class="ba-meta-row">
-                <div class="ba-meta-item">
-                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></div>
-                  <div class="ba-meta-text">
-                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Objetivo</p>
-                    <p class="text-[14px] font-bold text-[var(--ink)]">Definição muscular</p>
-                  </div>
-                </div>
-                <div class="ba-meta-item">
-                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.118a7.5 7.5 0 0115 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.5-1.632z"/></svg></div>
-                  <div class="ba-meta-text">
-                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Perfil do Aluno</p>
-                    <p class="text-[14px] font-bold text-[var(--ink)]">Atleta</p>
-                  </div>
-                </div>
-                <div class="ba-meta-item">
-                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                  <div class="ba-meta-text">
-                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Resultado em</p>
-                    <p class="text-[14px] font-bold text-[var(--ink)]">2 meses</p>
-                  </div>
-                </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="ba-slide">
-              <div class="ba-result">
-                <div class="ba-photo" aria-label="Antes e depois">
-                  <img src="antes-depois/04.PNG" alt="Antes e depois — hipertrofia" width="1179" height="1549" loading="lazy" decoding="async" />
-                  <span class="ba-label antes">Antes</span>
-                  <span class="ba-label depois">Depois</span>
-                </div>
-                <div class="ba-info">
-                  <div class="ba-meta-row">
-                <div class="ba-meta-item">
-                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg></div>
-                  <div class="ba-meta-text">
-                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Objetivo</p>
-                    <p class="text-[14px] font-bold text-[var(--ink)]">Hipertrofia</p>
-                  </div>
-                </div>
-                <div class="ba-meta-item">
-                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.118a7.5 7.5 0 0115 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.5-1.632z"/></svg></div>
-                  <div class="ba-meta-text">
-                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Perfil do Aluno</p>
-                    <p class="text-[14px] font-bold text-[var(--ink)]">Aluna Iniciante</p>
-                  </div>
-                </div>
-                <div class="ba-meta-item">
-                  <div class="ba-meta-icon"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-                  <div class="ba-meta-text">
-                    <p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">Resultado em</p>
-                    <p class="text-[14px] font-bold text-[var(--ink)]">4 meses</p>
-                  </div>
-                </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-          </div>
+        <div data-animate class="ba-carousel hidden" id="ba-carousel">
+          <div class="ba-track" id="ba-track"></div>
 
           <button type="button" class="ba-nav ba-prev" id="ba-prev" aria-label="Foto anterior">
             <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
@@ -1160,93 +1058,144 @@
       }, { threshold: 0.07 });
       document.querySelectorAll('[data-animate]').forEach(function (el) { obs.observe(el); });
 
-      // Carrossel Transformações (mobile 1 / desktop 3)
+      // Carrossel Transformações (API + mobile 1 / desktop 3)
       (function () {
         var carousel = document.getElementById('ba-carousel');
         var track = document.getElementById('ba-track');
         var prev = document.getElementById('ba-prev');
         var next = document.getElementById('ba-next');
         var dotsWrap = document.getElementById('ba-dots');
+        var empty = document.getElementById('ba-empty');
         if (!carousel || !track || !prev || !next || !dotsWrap) return;
 
-        var slides = Array.prototype.slice.call(track.querySelectorAll('.ba-slide'));
-        if (!slides.length) return;
-        var index = 0;
-        var activated = false;
+        var iconTarget = '<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path stroke-linecap="round" d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg>';
+        var iconUser = '<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.5 20.118a7.5 7.5 0 0115 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.5-1.632z"/></svg>';
+        var iconClock = '<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>';
 
-        slides.forEach(function (_, i) {
-          var d = document.createElement('button');
-          d.type = 'button';
-          d.className = 'ba-dot' + (i === 0 ? ' active' : '');
-          d.setAttribute('aria-label', 'Ir para transformação ' + (i + 1));
-          d.addEventListener('click', function () {
-            activate();
-            go(i);
+        function escapeHtml(s) {
+          return String(s || '').replace(/[&<>"']/g, function (c) {
+            return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c];
           });
-          dotsWrap.appendChild(d);
-        });
-        var dots = Array.prototype.slice.call(dotsWrap.children);
-
-        function isDesktop() {
-          return window.matchMedia('(min-width: 1024px)').matches;
         }
 
-        function activate() {
-          if (isDesktop()) return;
-          activated = true;
-          carousel.classList.add('is-nav');
+        function metaItem(label, value, icon) {
+          return '<div class="ba-meta-item">' +
+            '<div class="ba-meta-icon">' + icon + '</div>' +
+            '<div class="ba-meta-text">' +
+              '<p class="text-[10px] font-bold tracking-[0.12em] uppercase text-[var(--muted)]">' + escapeHtml(label) + '</p>' +
+              '<p class="text-[14px] font-bold text-[var(--ink)]">' + escapeHtml(value) + '</p>' +
+            '</div></div>';
         }
 
-        function go(i) {
-          if (isDesktop()) {
-            index = 0;
-            track.style.transform = '';
-            dots.forEach(function (d, n) { d.classList.toggle('active', n === 0); });
-            return;
+        function slideHtml(item) {
+          var img = escapeHtml(item.image_url || '');
+          var objetivo = item.objetivo || '';
+          return '<article class="ba-slide">' +
+            '<div class="ba-result">' +
+              '<div class="ba-photo" aria-label="Antes e depois">' +
+                '<img src="' + img + '" alt="Antes e depois — ' + escapeHtml(objetivo) + '" loading="lazy" decoding="async" />' +
+                '<span class="ba-label antes">Antes</span>' +
+                '<span class="ba-label depois">Depois</span>' +
+              '</div>' +
+              '<div class="ba-info"><div class="ba-meta-row">' +
+                metaItem('Objetivo', objetivo, iconTarget) +
+                metaItem(item.perfil_label || 'Perfil', item.perfil || '', iconUser) +
+                metaItem('Resultado em', item.resultado_em || '', iconClock) +
+              '</div></div>' +
+            '</div></article>';
+        }
+
+        function initCarousel() {
+          var slides = Array.prototype.slice.call(track.querySelectorAll('.ba-slide'));
+          if (!slides.length) return;
+          var index = 0;
+          dotsWrap.innerHTML = '';
+
+          slides.forEach(function (_, i) {
+            var d = document.createElement('button');
+            d.type = 'button';
+            d.className = 'ba-dot' + (i === 0 ? ' active' : '');
+            d.setAttribute('aria-label', 'Ir para transformação ' + (i + 1));
+            d.addEventListener('click', function () {
+              activate();
+              go(i);
+            });
+            dotsWrap.appendChild(d);
+          });
+          var dots = Array.prototype.slice.call(dotsWrap.children);
+
+          function isDesktop() {
+            return window.matchMedia('(min-width: 1024px)').matches;
           }
-          index = Math.max(0, Math.min(slides.length - 1, i));
-          track.style.transform = 'translateX(-' + (index * 100) + '%)';
-          dots.forEach(function (d, n) { d.classList.toggle('active', n === index); });
-          prev.disabled = index === 0;
-          next.disabled = index === slides.length - 1;
+
+          function activate() {
+            if (isDesktop()) return;
+            carousel.classList.add('is-nav');
+          }
+
+          function go(i) {
+            if (isDesktop()) {
+              index = 0;
+              track.style.transform = '';
+              dots.forEach(function (d, n) { d.classList.toggle('active', n === 0); });
+              return;
+            }
+            index = Math.max(0, Math.min(slides.length - 1, i));
+            track.style.transform = 'translateX(-' + (index * 100) + '%)';
+            dots.forEach(function (d, n) { d.classList.toggle('active', n === index); });
+            prev.disabled = index === 0;
+            next.disabled = index === slides.length - 1;
+          }
+
+          prev.onclick = function (e) {
+            e.stopPropagation();
+            activate();
+            go(index - 1);
+          };
+          next.onclick = function (e) {
+            e.stopPropagation();
+            activate();
+            go(index + 1);
+          };
+          track.onclick = function () { activate(); };
+
+          var startX = 0;
+          track.addEventListener('touchstart', function (e) {
+            startX = e.changedTouches[0].clientX;
+          }, { passive: true });
+          track.addEventListener('touchend', function (e) {
+            var dx = e.changedTouches[0].clientX - startX;
+            if (Math.abs(dx) < 40) return;
+            activate();
+            go(dx < 0 ? index + 1 : index - 1);
+          }, { passive: true });
+
+          window.addEventListener('resize', function () {
+            if (isDesktop()) carousel.classList.remove('is-nav');
+            go(index);
+          });
+
+          go(0);
         }
 
-        prev.addEventListener('click', function (e) {
-          e.stopPropagation();
-          activate();
-          go(index - 1);
-        });
-        next.addEventListener('click', function (e) {
-          e.stopPropagation();
-          activate();
-          go(index + 1);
-        });
-
-        track.addEventListener('click', function () {
-          activate();
-        });
-
-        // swipe
-        var startX = 0;
-        track.addEventListener('touchstart', function (e) {
-          startX = e.changedTouches[0].clientX;
-        }, { passive: true });
-        track.addEventListener('touchend', function (e) {
-          var dx = e.changedTouches[0].clientX - startX;
-          if (Math.abs(dx) < 40) return;
-          activate();
-          go(dx < 0 ? index + 1 : index - 1);
-        }, { passive: true });
-
-        window.addEventListener('resize', function () {
-          if (isDesktop()) {
-            carousel.classList.remove('is-nav');
-            activated = false;
-          }
-          go(index);
-        });
-
-        go(0);
+        fetch('/api/transformations.php?slug=personalraqueleduarda')
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            var items = (data && data.items) ? data.items : [];
+            if (!items.length) {
+              if (empty) empty.classList.remove('hidden');
+              carousel.classList.add('hidden');
+              return;
+            }
+            if (empty) empty.classList.add('hidden');
+            carousel.classList.remove('hidden');
+            track.innerHTML = items.map(slideHtml).join('');
+            initCarousel();
+          })
+          .catch(function () {
+            if (empty) empty.classList.remove('hidden');
+            carousel.classList.add('hidden');
+          });
       })();
 
       // Depoimentos (API + carrossel)
