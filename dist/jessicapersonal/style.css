@@ -1234,6 +1234,52 @@ body {
   gap: 1.25rem;
 }
 
+.antes-depois-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.antes-depois-shot {
+  margin: 0;
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: rgba(8, 6, 14, 0.96);
+  box-shadow: 0 14px 44px rgba(0, 0, 0, 0.38);
+}
+
+.antes-depois-shot img {
+  display: block;
+  width: 100%;
+  height: min(560px, 62vh);
+  object-fit: cover;
+  object-position: center top;
+}
+
+.antes-depois-shot figcaption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(8, 6, 14, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+}
+
+.antes-depois-shot:last-child figcaption {
+  background: var(--accent-mix);
+  border-color: transparent;
+}
+
 .antes-depois-card {
   margin: 0;
   border-radius: var(--radius-lg);
@@ -1269,6 +1315,19 @@ body {
 @media (max-width: 560px) {
   .antes-depois-grid {
     grid-template-columns: 1fr;
+  }
+
+  .antes-depois-pair {
+    gap: 0.65rem;
+  }
+
+  .antes-depois-shot img {
+    height: min(340px, 46vh);
+  }
+
+  .antes-depois-shot figcaption {
+    font-size: 0.62rem;
+    padding: 0.28rem 0.55rem;
   }
 }
 
