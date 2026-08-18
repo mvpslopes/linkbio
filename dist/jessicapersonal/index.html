@@ -1,468 +1,1238 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="splash-lock">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Jéssica Personal | Personal Trainer em Ouro Branco (MG)</title>
-  <meta name="description" content="Jéssica Personal — Personal Trainer há 12 anos em Ouro Branco (MG). Especialista em bodybuilding, emagrecimento e saúde da mulher. CREF 025935 G/MG.">
+  <meta name="description" content="Jéssica Personal — Personal Trainer há 12 anos em Ouro Branco (MG). Especialista em bodybuilding, emagrecimento e saúde da mulher. CREF 025935 G/MG." />
   <link rel="canonical" href="https://jessicapersonal.linkbio.api.br/" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" sizes="any" />
   <link rel="apple-touch-icon" href="favicon.svg" />
-  <link rel="stylesheet" href="style.css?v=10">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Space Grotesk"', 'ui-sans-serif'],
+            mono: ['"Space Mono"', 'ui-monospace'],
+          },
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --lime: #EF4444;
+      --lime-dim: rgba(239, 68, 68, .18);
+      --lime-glow: rgba(239, 68, 68, .45);
+      --bg: #0C0C0C;
+      --bg2: #111111;
+      --bg3: #181818;
+      --card: #141414;
+      --border: rgba(255,255,255,.06);
+      --muted: rgba(255,255,255,.45);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: #fff; overflow-x: hidden; font-family: 'Space Grotesk', sans-serif; }
+
+    .animated-grid {
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, black 40%, transparent 100%);
+    }
+
+    .glow-blob {
+      position: fixed; z-index: 0; pointer-events: none; border-radius: 50%;
+      filter: blur(100px);
+      animation: floatBlob 12s ease-in-out infinite alternate;
+    }
+    @keyframes floatBlob {
+      from { transform: translate(0, 0) scale(1); }
+      to { transform: translate(40px, 30px) scale(1.12); }
+    }
+
+    .text-lime { color: var(--lime); }
+    .text-grad {
+      background: linear-gradient(120deg, #F87171 0%, #EF4444 45%, #B91C1C 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--lime-dim);
+      border: 1px solid rgba(239, 68, 68, .35);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 11px; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--lime);
+      font-family: 'Space Mono', monospace;
+    }
+
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 90;
+      padding: 1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(12,12,12,.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { height: 36px; width: auto; }
+    .site-nav a.nav-link:hover { color: var(--lime); }
+
+    .hero-full {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: left;
+      padding: 6.5rem 1.5rem 3rem;
+      position: relative;
+    }
+    .hero-inner {
+      width: 100%;
+      max-width: 1280px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, .92fr);
+      align-items: center;
+      gap: 1.5rem 2rem;
+    }
+    .hero-copy {
+      padding: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-photo {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+    .hero-photo-stage {
+      position: relative;
+      width: min(100%, 540px);
+    }
+    .hero-photo-back {
+      position: absolute;
+      inset: 14px -12px -12px 14px;
+      border: 1px solid rgba(239, 68, 68, .45);
+      border-radius: 1.35rem;
+      transform: rotate(2.5deg);
+      z-index: 0;
+    }
+    .hero-photo-frame {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 4/5;
+      max-height: min(72vh, 640px);
+      border-radius: 1.25rem;
+      overflow: hidden;
+      border: 1px solid rgba(239, 68, 68, .4);
+      box-shadow:
+        0 28px 70px rgba(0,0,0,.5),
+        0 0 40px rgba(239, 68, 68, .14);
+    }
+    .hero-photo-frame::after {
+      content: '';
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 1rem;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hero-photo-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 12%;
+    }
+
+    .glitch { position: relative; display: inline-block; white-space: nowrap; }
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute; inset: 0;
+      background: transparent;
+      clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    }
+    .glitch::before {
+      left: 2px; top: -2px;
+      background: linear-gradient(120deg, #F87171 0%, #EF4444 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glitchTop 3.5s infinite;
+      opacity: .7;
+    }
+    .glitch.d2::before { animation-delay: 1.15s; }
+    .glitch.d3::before { animation-delay: 2.2s; }
+    @keyframes glitchTop {
+      0%, 90%, 100% { transform: none; opacity: 0; }
+      92% { transform: translate(3px, -3px); opacity: .7; }
+      94% { transform: translate(-2px, 2px); opacity: .7; }
+      96% { transform: translate(3px, -1px); opacity: .7; }
+      98% { transform: none; opacity: 0; }
+    }
+
+    .counter-wrap {
+      font-family: 'Space Mono', monospace;
+      font-size: 3.5rem; font-weight: 700;
+      color: var(--lime); line-height: 1;
+    }
+
+    .marquee-wrap {
+      overflow: hidden; white-space: nowrap;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+    }
+    .marquee-track {
+      display: inline-flex; gap: 0;
+      animation: marquee 22s linear infinite;
+    }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .marquee-item {
+      display: inline-flex; align-items: center; gap: 2rem;
+      padding: .85rem 2rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+    }
+    .marquee-item span { color: var(--lime); font-size: 18px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      transition: all .3s;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(239, 68, 68, .4), transparent);
+      opacity: 0; transition: opacity .3s;
+    }
+    .card:hover {
+      border-color: rgba(239, 68, 68, .3);
+      box-shadow: 0 0 30px rgba(239, 68, 68, .07);
+    }
+    .card:hover::before { opacity: 1; }
+
+    .num-badge {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; font-weight: 700;
+      color: var(--lime);
+      background: var(--lime-dim);
+      border: 1px solid rgba(239, 68, 68, .3);
+      border-radius: 8px;
+      padding: 3px 10px;
+      display: inline-block;
+    }
+
+    .plan-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 2rem;
+      transition: all .3s;
+      position: relative; overflow: hidden;
+    }
+    .plan-card.featured {
+      border-color: var(--lime);
+      background: linear-gradient(145deg, rgba(239, 68, 68, .07), var(--card));
+    }
+    .plan-card.featured::after {
+      content: 'DESTAQUE';
+      position: absolute; top: 1.25rem; right: 1.25rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px; font-weight: 700; letter-spacing: .15em;
+      color: #fff; background: var(--lime);
+      padding: 3px 10px; border-radius: 6px;
+    }
+
+    .check-list li {
+      display: flex; gap: .75rem; align-items: flex-start;
+      font-size: .9rem; color: rgba(255,255,255,.7);
+      padding: .4rem 0;
+    }
+    .check-list li .ck { color: var(--lime); font-weight: 700; flex-shrink: 0; margin-top: .05rem; }
+
+    .btn-lime {
+      background: var(--lime);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 8px;
+      padding: .85rem 2rem;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .25s;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: .01em;
+    }
+    .btn-lime:hover {
+      background: #F87171;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px var(--lime-glow);
+    }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.18);
+      color: rgba(255,255,255,.75); font-weight: 600;
+      border-radius: 8px;
+      padding: .85rem 2rem;
+      display: inline-flex; align-items: center; gap: .5rem;
+      transition: all .25s;
+    }
+    .btn-outline:hover {
+      border-color: rgba(239, 68, 68, .4);
+      color: var(--lime);
+      background: var(--lime-dim);
+    }
+
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--lime);
+    }
+
+    details summary {
+      list-style: none; cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.25rem 1.5rem;
+      font-weight: 600;
+      transition: color .2s;
+    }
+    details summary::-webkit-details-marker { display: none; }
+    details summary:hover { color: var(--lime); }
+    details summary .arrow {
+      width: 20px; height: 20px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 12px;
+      transition: transform .3s, border-color .2s, background .2s;
+    }
+    details[open] summary .arrow {
+      transform: rotate(45deg);
+      border-color: var(--lime);
+      background: var(--lime-dim);
+      color: var(--lime);
+    }
+    details .faq-body {
+      padding: 0 1.5rem 1.25rem;
+      font-size: .9rem; line-height: 1.75;
+      color: rgba(255,255,255,.6);
+    }
+    details + details { border-top: 1px solid var(--border); }
+
+    .test-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      position: relative;
+    }
+    .test-card .qt {
+      font-family: 'Space Mono', monospace;
+      font-size: 4rem; line-height: .8; font-weight: 700;
+      color: var(--lime); opacity: .2;
+      user-select: none;
+    }
+
+    .terminal-box {
+      background: #000;
+      border: 1px solid rgba(239, 68, 68, .3);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 60px rgba(239, 68, 68, .1);
+    }
+    .terminal-header {
+      background: var(--bg3);
+      padding: .75rem 1.25rem;
+      display: flex; align-items: center; gap: .75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: var(--lime); }
+    .terminal-body { padding: 2rem; }
+    .terminal-line {
+      font-family: 'Space Mono', monospace;
+      font-size: .85rem; color: rgba(255,255,255,.7);
+      margin-bottom: .5rem;
+    }
+    .terminal-line .prompt { color: var(--lime); }
+    .cursor { display: inline-block; width: 8px; height: 16px; background: var(--lime); animation: blink .9s step-end infinite; vertical-align: middle; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    .section-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    .antes-depois-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      max-width: 920px;
+      margin: 0 auto;
+    }
+    .antes-depois-grid .media-card img {
+      width: 100%;
+      max-height: 340px;
+      object-fit: contain;
+      background: #0a0a0a;
+    }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .depo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1.6rem 1.2rem;
+      padding: 6px 8px 18px;
+    }
+    .photo-frame {
+      position: relative;
+      margin: 0;
+    }
+    .photo-frame-back {
+      position: absolute;
+      inset: 10px -8px -8px 10px;
+      border: 1px solid rgba(239, 68, 68, .45);
+      border-radius: 1.15rem;
+      transform: rotate(2.2deg);
+      z-index: 0;
+    }
+    .photo-frame-inner {
+      position: relative;
+      z-index: 1;
+      display: block;
+      aspect-ratio: 3 / 4;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(239, 68, 68, .4);
+      background: #0a0a0a;
+      box-shadow:
+        0 18px 40px rgba(0,0,0,.45),
+        0 0 24px rgba(239, 68, 68, .1);
+    }
+    .photo-frame-inner::after {
+      content: '';
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: .75rem;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .photo-frame-inner img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+    .media-card {
+      margin: 0;
+      border-radius: 1rem;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--card);
+    }
+    .media-card img, .media-card video {
+      display: block; width: 100%; height: auto;
+    }
+    .software-band {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 80% 55% at 50% 0%, rgba(239, 68, 68, .18), transparent 58%),
+        linear-gradient(180deg, #0C0C0C 0%, #160808 42%, #0C0C0C 100%);
+      border-top: 1px solid rgba(239, 68, 68, .28);
+      border-bottom: 1px solid rgba(239, 68, 68, .28);
+    }
+    .software-band::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 100%);
+    }
+    .software-mockup {
+      position: relative;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .software-mockup::before {
+      content: '';
+      position: absolute;
+      left: 50%; top: 42%;
+      width: 70%; height: 55%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(ellipse at center, rgba(239, 68, 68, .28), transparent 70%);
+      filter: blur(40px);
+      z-index: 0;
+    }
+    .software-mockup img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 24px 50px rgba(0,0,0,.55));
+    }
+    .treino-video, .hipo-video {
+      width: 100%; border-radius: 1rem; border: 1px solid var(--border);
+      background: #000;
+    }
+
+    .jp-agent { position: fixed; right: 1.4rem; bottom: 1.4rem; z-index: 520; }
+    .jp-agent-fab {
+      width: 60px; height: 60px; border: 0; border-radius: 50%; cursor: pointer; color: #fff;
+      background: linear-gradient(135deg, #F87171, #DC2626);
+      box-shadow: 0 10px 36px rgba(220, 38, 38, .45);
+      display: grid; place-items: center;
+    }
+    .jp-agent-panel {
+      position: absolute; right: 0; bottom: 4.6rem;
+      width: min(380px, calc(100vw - 1.6rem));
+      height: min(560px, calc(100vh - 7rem));
+      display: flex; flex-direction: column;
+      border-radius: 20px; overflow: hidden;
+      background: #141414; border: 1px solid var(--border);
+    }
+    .jp-agent-panel[hidden] { display: none !important; }
+    .jp-agent-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: .9rem 1rem; background: rgba(239, 68, 68, .12);
+      border-bottom: 1px solid var(--border);
+    }
+    .jp-agent-head strong { display: block; font-size: .95rem; }
+    .jp-agent-head span { display: block; font-size: .75rem; color: var(--muted); }
+    .jp-agent-close { border: 0; background: transparent; color: var(--muted); font-size: 1.5rem; cursor: pointer; }
+    .jp-agent-messages { flex: 1; overflow-y: auto; padding: .9rem; display: flex; flex-direction: column; gap: .55rem; }
+    .jp-agent-bubble { max-width: 88%; padding: .65rem .8rem; border-radius: 14px; font-size: .9rem; line-height: 1.45; white-space: pre-wrap; }
+    .jp-agent-bubble--assistant { align-self: flex-start; background: rgba(255,255,255,.06); }
+    .jp-agent-bubble--user { align-self: flex-end; background: linear-gradient(135deg, #ef4444, #b91c1c); color: #fff; }
+    .jp-agent-typing { display: inline-flex; gap: 4px; align-items: center; min-height: 1.2rem; }
+    .jp-agent-typing span { width: 6px; height: 6px; border-radius: 50%; background: var(--lime); animation: jpDot .9s ease-in-out infinite; }
+    .jp-agent-typing span:nth-child(2) { animation-delay: .15s; }
+    .jp-agent-typing span:nth-child(3) { animation-delay: .3s; }
+    @keyframes jpDot { 0%, 80%, 100% { opacity: .25; transform: scale(.8); } 40% { opacity: 1; transform: scale(1); } }
+    .jp-agent-suggestions { display: flex; flex-wrap: wrap; gap: .4rem; padding: 0 .9rem .55rem; }
+    .jp-agent-chip {
+      border: 1px solid rgba(239, 68, 68, .35); background: var(--lime-dim); color: #fff;
+      font: inherit; font-size: .78rem; padding: .4rem .7rem; border-radius: 999px; cursor: pointer;
+    }
+    .jp-agent-actions { padding: 0 .9rem .55rem; }
+    .jp-agent-btn--wa { display: block; text-align: center; text-decoration: none; font-size: .82rem; font-weight: 600; padding: .55rem .75rem; border-radius: 999px; background: rgba(37,211,102,.15); color: #6ee7a0; border: 1px solid rgba(37,211,102,.35); }
+    .jp-agent-btn[hidden] { display: none !important; }
+    .jp-agent-form { display: flex; gap: .45rem; padding: .65rem .85rem .85rem; border-top: 1px solid var(--border); }
+    .jp-agent-form input { flex: 1; min-width: 0; border: 1px solid var(--border); border-radius: 999px; background: rgba(255,255,255,.04); color: #fff; padding: .65rem .9rem; }
+    .jp-agent-form button { width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--lime); color: #fff; cursor: pointer; }
+
+    .footer-promo { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); text-align: center; font-size: 12px; color: var(--muted); }
+    .footer-promo a { display: inline-flex; align-items: center; gap: 8px; margin-top: 8px; color: rgba(255,255,255,.45); text-decoration: none; }
+    .footer-promo img { height: 22px; width: auto; opacity: .45; }
+
+    html.splash-lock, body.splash-lock { overflow: hidden; }
+
+    .splash {
+      position: fixed; inset: 0; z-index: 4000;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg);
+      overflow: hidden;
+      transition: opacity .55s ease, visibility 0s linear .55s;
+    }
+    .splash.hide {
+      opacity: 0; visibility: hidden; pointer-events: none;
+    }
+    .splash.hide .splash-inner {
+      transform: translateY(12px) scale(.97);
+      opacity: 0;
+      transition: transform .45s ease, opacity .4s ease;
+    }
+    .splash-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 70% 55% at 50% 45%, black 30%, transparent 100%);
+    }
+    .splash-glow {
+      position: absolute; border-radius: 50%; pointer-events: none; filter: blur(90px);
+      width: 380px; height: 380px; top: 18%; left: 50%; transform: translateX(-50%);
+      background: rgba(239, 68, 68, .16);
+      animation: splashGlow 3.2s ease-in-out infinite alternate;
+    }
+    @keyframes splashGlow {
+      from { transform: translateX(-50%) scale(1); opacity: .7; }
+      to { transform: translateX(-46%) scale(1.12); opacity: 1; }
+    }
+    .splash-inner {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      gap: 1.15rem; padding: 1.5rem; width: min(420px, 88vw);
+      transition: transform .5s ease, opacity .45s ease;
+    }
+    .splash-logo {
+      width: min(220px, 62vw); height: auto;
+      filter: drop-shadow(0 0 28px rgba(239, 68, 68, .35));
+      animation: splashLogoIn .85s cubic-bezier(.22,1,.36,1) both;
+    }
+    @keyframes splashLogoIn {
+      from { opacity: 0; transform: translateY(10px) scale(.94); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .splash-title {
+      font-weight: 700; letter-spacing: -.03em; line-height: .95;
+      font-size: clamp(2rem, 7vw, 3.1rem);
+      animation: splashLogoIn .9s cubic-bezier(.22,1,.36,1) .12s both;
+    }
+    .splash-title .glitch, .splash-title .text-grad { display: block; }
+    .splash-term {
+      width: 100%;
+      background: #000;
+      border: 1px solid rgba(239, 68, 68, .3);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(239, 68, 68, .12);
+      text-align: left;
+      animation: splashLogoIn 1s cubic-bezier(.22,1,.36,1) .22s both;
+    }
+    .splash-term-head {
+      background: var(--bg3);
+      padding: .65rem 1rem;
+      display: flex; align-items: center; gap: .55rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .splash-term-body { padding: 1.1rem 1.15rem 1.2rem; }
+    .splash-bar {
+      margin: .85rem 0 .7rem;
+      height: 3px; border-radius: 99px;
+      background: rgba(255,255,255,.1); overflow: hidden;
+    }
+    .splash-bar span {
+      display: block; height: 100%; width: 0;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #7f1d1d, #EF4444 50%, #F87171);
+      box-shadow: 0 0 12px var(--lime-glow);
+      animation: splashBar 2.8s cubic-bezier(.45,0,.2,1) .35s forwards;
+    }
+    @keyframes splashBar { from { width: 0; } to { width: 100%; } }
+    .splash-meta {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px; letter-spacing: .16em; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .splash-glow, .splash-logo, .splash-title, .splash-term, .splash-bar span { animation: none; }
+      .splash-bar span { width: 100%; }
+    }
+
+    @media (max-width: 900px) {
+      .hero-full { padding: 5.5rem 1.25rem 2.5rem; text-align: center; }
+      .hero-inner { grid-template-columns: 1fr; gap: 0; }
+      .hero-copy { order: 1; padding: 1.25rem 0 0; }
+      .hero-photo { order: 0; padding: 0; }
+      .hero-stats { order: 2; margin-top: 1.5rem; }
+      .hero-photo-stage { width: min(100%, 380px); margin: 0 auto; }
+      .hero-photo-frame { max-height: min(52vh, 480px); }
+      .antes-depois-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 640px) {
+      .counter-wrap { font-size: 2.5rem; }
+      h1 { overflow-wrap: anywhere; }
+      .antes-depois-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .antes-depois-grid .media-card img { max-height: 280px; }
+      .hero-photo-frame { max-height: min(46vh, 420px); }
+    }
+  </style>
 </head>
-<body>
-  <div id="splash" class="splash" aria-hidden="true">
-    <div class="splash-bg" aria-hidden="true">
-      <div class="splash-blob splash-blob--1" aria-hidden="true"></div>
-      <div class="splash-blob splash-blob--2" aria-hidden="true"></div>
-      <div class="splash-mesh" aria-hidden="true"></div>
-    </div>
+<body class="splash-lock">
+  <div id="splash" class="splash" role="status" aria-label="Carregando Jéssica Personal">
+    <div class="splash-grid" aria-hidden="true"></div>
+    <div class="splash-glow" aria-hidden="true"></div>
     <div class="splash-inner">
-      <img src="logo/logo-jessica-3.png" alt="" class="splash-logo" width="220" height="auto" loading="eager" />
-      <div class="splash-bar" aria-hidden="true"><span class="splash-bar-fill"></span></div>
+      <span class="pill">Ouro Branco · MG</span>
+      <img class="splash-logo" src="logo/logo-jessica-5.png" alt="Jéssica Personal" width="220" height="56" />
+      <p class="splash-title">
+        <span class="glitch text-white" data-text="TREINO">TREINO</span>
+        <span class="text-grad">COM MÉTODO.</span>
+      </p>
+      <div class="splash-term">
+        <div class="splash-term-head">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <span class="ml-1 text-xs font-mono" style="color:var(--muted)">iniciar_evolucao.sh</span>
+        </div>
+        <div class="splash-term-body">
+          <p class="terminal-line"><span class="prompt">$ </span>./carregar_protocolo.sh</p>
+          <p class="terminal-line" style="color:var(--lime)">✓ Presença real</p>
+          <div class="splash-bar" aria-hidden="true"><span></span></div>
+          <p class="terminal-line splash-meta">carregando<span class="cursor"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="glow-blob" style="width:400px; height:400px; top:-100px; right:-100px; background:rgba(239,68,68,.06)" aria-hidden="true"></div>
+  <div class="glow-blob" style="width:300px; height:300px; bottom:10%; left:-80px; background:rgba(239,68,68,.04); animation-duration:15s" aria-hidden="true"></div>
+
+  <nav class="site-nav" aria-label="Navegação principal">
+    <a href="#home" class="inline-flex items-center gap-3">
+      <img src="logo/logo-jessica-5.png" alt="Jéssica Personal" class="nav-logo" width="140" height="36" />
+    </a>
+    <div class="hidden md:flex items-center gap-6 text-sm font-medium" style="color:var(--muted)">
+      <a href="#sobre" class="nav-link transition-colors">Sobre</a>
+      <a href="#metodo" class="nav-link transition-colors">Método</a>
+      <a href="#servicos" class="nav-link transition-colors">Serviços</a>
+      <a href="#resultados" class="nav-link transition-colors">Resultados</a>
+      <a href="#faq" class="nav-link transition-colors">FAQ</a>
+    </div>
+    <a href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+saber+mais+sobre+seus+servi%C3%A7os." target="_blank" rel="noopener noreferrer" class="btn-lime text-sm">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Agendar treino
+    </a>
+  </nav>
+
+  <section class="hero-full relative z-10" id="home">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="flex flex-wrap gap-2 mb-8 fade-up max-md:justify-center">
+          <span class="pill">Ouro Branco · MG</span>
+          <span class="pill">12+ anos</span>
+          <span class="pill">CREF 025935</span>
+        </div>
+
+        <h1 class="font-bold leading-none mb-6 fade-up" style="font-size:clamp(1.85rem,4.2vw,3.4rem); max-width:640px; letter-spacing:-.03em">
+          <span class="glitch text-white" data-text="TREINO">TREINO</span><br/>
+          <span class="glitch d2 text-grad" data-text="COM MÉTODO.">COM MÉTODO.</span><br/>
+          <span class="glitch d3 text-white" data-text="PRESENÇA REAL.">PRESENÇA REAL.</span>
+        </h1>
+
+        <p class="mb-10 max-w-xl leading-relaxed fade-up max-md:mx-auto" style="font-size:1.15rem; color:var(--muted)">
+          Bodybuilding, emagrecimento e saúde da mulher. Protocolos feitos para o seu corpo, a sua rotina e as suas metas — presencial ou online.
+        </p>
+
+        <div class="flex flex-wrap gap-3 fade-up max-md:justify-center">
+          <a href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+saber+mais+sobre+seus+servi%C3%A7os." target="_blank" rel="noopener noreferrer" class="btn-lime text-base px-8">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Falar no WhatsApp
+          </a>
+          <a href="#servicos" class="btn-outline text-base px-8">Ver serviços</a>
+        </div>
+      </div>
+
+      <div class="hero-photo fade-up">
+        <div class="hero-photo-stage">
+          <div class="hero-photo-back" aria-hidden="true"></div>
+          <div class="hero-photo-frame">
+            <img src="fotos/Foto%20(27).jpeg?v=5" alt="Jéssica Personal" width="720" height="900" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats grid grid-cols-2 md:grid-cols-4 gap-px w-full fade-up" style="background:var(--border); border-radius: 1rem; overflow:hidden; max-width:1280px; margin-top:2.25rem">
+      <div style="background:var(--bg2); padding:1.5rem 1rem; text-align:center">
+        <p class="counter-wrap">12<span class="text-lime">+</span></p>
+        <p class="text-xs uppercase tracking-widest mt-2" style="color:var(--muted); font-family:'Space Mono',monospace">Anos</p>
+      </div>
+      <div style="background:var(--bg2); padding:1.5rem 1rem; text-align:center">
+        <p class="counter-wrap">100<span class="text-lime">%</span></p>
+        <p class="text-xs uppercase tracking-widest mt-2" style="color:var(--muted); font-family:'Space Mono',monospace">Individual</p>
+      </div>
+      <div style="background:var(--bg2); padding:1.5rem 1rem; text-align:center">
+        <p class="counter-wrap text-2xl md:text-3xl" style="font-size:clamp(1.4rem,3vw,2rem)">MG</p>
+        <p class="text-xs uppercase tracking-widest mt-2" style="color:var(--muted); font-family:'Space Mono',monospace">Ouro Branco</p>
+      </div>
+      <div style="background:var(--bg2); padding:1.5rem 1rem; text-align:center">
+        <p class="counter-wrap text-2xl md:text-3xl" style="font-size:clamp(1.1rem,2.6vw,1.7rem)">CREF</p>
+        <p class="text-xs uppercase tracking-widest mt-2" style="color:var(--muted); font-family:'Space Mono',monospace">025935 G/MG</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-wrap py-0 relative z-10" aria-hidden="true">
+    <div class="marquee-track">
+      <div class="marquee-item">BODYBUILDING <span>/</span></div>
+      <div class="marquee-item">EMAGRECIMENTO <span>/</span></div>
+      <div class="marquee-item">SAÚDE DA MULHER <span>/</span></div>
+      <div class="marquee-item">HIPOPRESSIVO <span>/</span></div>
+      <div class="marquee-item">CONSULTORIA ONLINE <span>/</span></div>
+      <div class="marquee-item">PRESENCIAL <span>/</span></div>
+      <div class="marquee-item">100% PERSONALIZADO <span>/</span></div>
+      <div class="marquee-item">BODYBUILDING <span>/</span></div>
+      <div class="marquee-item">EMAGRECIMENTO <span>/</span></div>
+      <div class="marquee-item">SAÚDE DA MULHER <span>/</span></div>
+      <div class="marquee-item">HIPOPRESSIVO <span>/</span></div>
+      <div class="marquee-item">CONSULTORIA ONLINE <span>/</span></div>
+      <div class="marquee-item">PRESENCIAL <span>/</span></div>
+      <div class="marquee-item">100% PERSONALIZADO <span>/</span></div>
     </div>
   </div>
 
-  <div class="page-bg" aria-hidden="true"></div>
-  <div class="grid-overlay" aria-hidden="true"></div>
-  <div class="noise" aria-hidden="true"></div>
-
-  <header class="site-header" id="top">
-    <div class="container header-inner">
-      <a class="brand brand-logo-wrap" href="#home">
-        <img src="logo/logo-jessica-5.png" alt="Jéssica Personal" class="brand-logo" width="168" height="40" loading="eager" />
-      </a>
-      <nav class="nav-shell" aria-label="Seções">
-        <a href="#about">Sobre</a>
-        <a href="#services">Serviços</a>
-        <a href="#differential">Diferencial</a>
-        <a href="#software">Software</a>
-        <a href="#antes-depois">Antes e depois</a>
-        <a href="#hipopressive">Hipopressivo</a>
-        <a href="#treinos">Treinos</a>
-        <a href="#depoimentos">Depoimentos</a>
-      </nav>
-      <a class="header-cta" href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+saber+mais+sobre+seus+servi%C3%A7os." target="_blank" rel="noopener noreferrer">
-        <span>Agendar Treino</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-      </a>
-    </div>
-  </header>
-
-  <section class="hero" id="home">
-    <div class="hero-blob hero-blob--a" aria-hidden="true"></div>
-    <div class="hero-blob hero-blob--b" aria-hidden="true"></div>
-    <div class="hero-blob hero-blob--c" aria-hidden="true"></div>
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <div class="hero-badges fade-in">
-          <span class="pill">Ouro Branco · MG</span>
-          <span class="pill pill--accent">12+ anos</span>
-          <span class="pill">CREF 025935</span>
-        </div>
-        <h1 class="hero-title fade-in">Jéssica <span class="title-gradient">Personal</span></h1>
-        <p class="hero-tagline fade-in">Treino com método, presença e estratégia para você evoluir com segurança.</p>
-        <p class="hero-lead fade-in">Especialista em bodybuilding, emagrecimento e saúde da mulher: protocolos feitos para o seu corpo, sua rotina e suas metas.</p>
-        <div class="hero-actions fade-in">
-          <a class="btn btn-primary" href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+saber+mais+sobre+seus+servi%C3%A7os." target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-          <a class="btn btn-ghost" href="#about">Ver trajetória</a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="hero-visual-column">
-          <div class="hero-visual-stack">
-            <div class="hero-photo-wrap fade-in">
-              <div class="hero-photo-ring" aria-hidden="true"></div>
-              <img src="fotos/Foto%20(27).jpeg?v=5" alt="" class="hero-photo" loading="eager" />
-              <div class="hero-photo-shine" aria-hidden="true"></div>
-            </div>
-            <div class="hero-float hero-float--1 fade-in"><span>100%</span> individual</div>
-            <div class="hero-float hero-float--2 fade-in">Presencial &amp; online</div>
-          </div>
-          <div class="hero-glass fade-in" aria-hidden="true">
-            <div class="hero-glass-inner">
-              <div class="hero-stat-row">
-                <div>
-                  <span class="hero-stat-num">12+</span>
-                  <span class="hero-stat-lbl">anos</span>
-                </div>
-                <div class="hero-stat-div"></div>
-                <div>
-                  <span class="hero-stat-num">CREF</span>
-                  <span class="hero-stat-lbl">025935 G/MG</span>
-                </div>
-              </div>
-              <p class="hero-glass-note">Planejamento contínuo, correção técnica e acompanhamento da sua evolução.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="strip" aria-label="Galeria em destaque">
-    <div class="strip-track" aria-hidden="true">
-      <img src="fotos/Foto%20(19).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(20).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(21).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(22).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(23).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(24).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(25).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(26).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(29).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(30).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(19).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(20).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(21).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(22).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(23).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(24).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(25).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(26).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(29).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-      <img src="fotos/Foto%20(30).jpeg?v=5" alt="" loading="lazy" width="210" height="300" />
-    </div>
-  </section>
-
-  <section class="section about" id="about">
-    <div class="container">
-      <header class="section-head fade-in">
-        <span class="section-eyebrow">Trajetória</span>
-        <h2 class="section-title">Quem conduz seu <span class="title-gradient-soft">progresso</span></h2>
-        <p class="section-desc">Formação acadêmica e experiência em campo, com foco em resultado sustentável e educação corporal.</p>
-      </header>
-      <div class="about-bento">
-        <div class="about-main glass-card fade-in">
-          <p>Personal Trainer há <strong>12 anos</strong>, com atuação em musculação e treinos individualizados para objetivos reais e mensuráveis.</p>
-          <p><strong>CREF:</strong> 025935 G/MG</p>
-          <p><strong>Formação:</strong> Educação Física (licenciatura e bacharelado)</p>
-          <p><strong>Pós-graduação:</strong> Bodybuilding Coach, emagrecimento e metabolismo, saúde da mulher</p>
-          <p class="about-highlight">Cada corpo é único: metodologia, volume e intensidade ajustados à sua realidade.</p>
-        </div>
-        <aside class="about-side fade-in">
-          <div class="glass-card about-mini">
-            <h3>Como atuo</h3>
-            <ul>
-              <li>Academias e studios parceiros</li>
-              <li>Presencial e consultoria online</li>
-              <li>Técnica hipopressiva</li>
-              <li>Registro da evolução</li>
+  <section class="py-24 px-6 max-w-6xl mx-auto relative z-10" id="sobre">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="fade-up">
+        <div class="eyebrow mb-5">// sobre mim</div>
+        <h2 class="font-bold leading-tight mb-6" style="font-size:clamp(2rem,5vw,3.25rem); letter-spacing:-.02em">
+          Jéssica Luddyanne.<br/>
+          Resultado com <span class="glitch text-grad" data-text="método.">método.</span>
+        </h2>
+        <p class="leading-relaxed mb-4" style="color:var(--muted)">
+          Personal Trainer há 12 anos, licenciada e bacharel em Educação Física. Pós-graduada em Bodybuilding Coach, emagrecimento e metabolismo, e saúde da mulher.
+        </p>
+        <p class="leading-relaxed mb-8" style="color:var(--muted)">
+          Cada corpo é único. Os treinos são 100% personalizados — volume, intensidade e exercícios pensados para o seu objetivo, a sua rotina e as suas necessidades.
+        </p>
+        <div class="grid grid-cols-2 gap-4 mb-8">
+          <div class="card p-4">
+            <div class="eyebrow mb-2">expertise</div>
+            <ul class="space-y-1 text-sm" style="color:rgba(255,255,255,.65)">
+              <li>→ Bodybuilding</li>
+              <li>→ Emagrecimento</li>
+              <li>→ Saúde da mulher</li>
+              <li>→ Hipopressivo</li>
             </ul>
           </div>
-          <div class="about-deco" aria-hidden="true"></div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <section class="section services" id="services">
-    <div class="container">
-      <header class="section-head fade-in">
-        <span class="section-eyebrow">Escopo</span>
-        <h2 class="section-title">Serviços em <span class="title-gradient-soft">camadas</span></h2>
-        <p class="section-desc">Um ecossistema de opções para você treinar do jeito que a sua vida permite hoje.</p>
-      </header>
-      <div class="bento">
-        <article class="bento-card bento-card--span2 fade-in">
-          <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 6.5h11M8 6.5V5a2 2 0 012-2h4a2 2 0 012 2v1.5M8 17.5V19a2 2 0 002 2h4a2 2 0 002-2v-1.5M6.5 17.5h11M12 6.5v11"/><path d="M4 10h2v4H4zM18 10h2v4h-2z"/></svg></div>
-          <h3>Acompanhamento presencial</h3>
-          <p>Supervisão em tempo real, ajustes de postura e progressão planejada para cada sessão.</p>
-        </article>
-        <article class="bento-card fade-in">
-          <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-          <h3>Consultoria online</h3>
-          <p>Plano remoto com checkpoints, revisões e suporte entre os treinos.</p>
-        </article>
-        <article class="bento-card fade-in">
-          <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9h.01M12 16h.01"/></svg></div>
-          <h3>Treinos personalizados</h3>
-          <p>Periodização e escolha de exercícios alinhadas ao seu objetivo.</p>
-        </article>
-        <article class="bento-card bento-card--tall fade-in">
-          <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M4 21V10l8-6 8 6v11M9 21v-6h6v6"/></svg></div>
-          <h3>Academias parceiras</h3>
-          <p>Atendimento em espaços combinados, respeitando logística e horários.</p>
-        </article>
-        <article class="bento-card bento-card--wide fade-in">
-          <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c-4 4-6 8-6 12a6 6 0 1012 0c0-4-2-8-6-12z"/><path d="M12 11v4"/></svg></div>
-          <h3>Hipopressivo</h3>
-          <p>Integração de respiração, core profundo e assoalho pélvico com aplicação criteriosa e individual.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section differential" id="differential">
-    <div class="container">
-      <header class="section-head fade-in">
-        <span class="section-eyebrow">Por quê</span>
-        <h2 class="section-title">Diferenciais que <span class="title-gradient-soft">pesam</span></h2>
-        <p class="section-desc">Critérios que definem cada ciclo de treino e cada feedback sua com você.</p>
-      </header>
-      <div class="diff-cards">
-        <article class="diff-card fade-in"><span class="diff-num">01</span><h3>100% personalizado</h3><p>Nada genérico: volume, intensidade e exercícios pensados para você.</p></article>
-        <article class="diff-card fade-in"><span class="diff-num">02</span><h3>Estratégia clara</h3><p>Você sabe o porquê de cada etapa e o que esperar a seguir.</p></article>
-        <article class="diff-card fade-in"><span class="diff-num">03</span><h3>Didática forte</h3><p>Execução correta e autonomia no treino, sem achismo.</p></article>
-        <article class="diff-card fade-in"><span class="diff-num">04</span><h3>Presença real</h3><p>Acompanhamento próximo e comunicação objetiva.</p></article>
-        <article class="diff-card diff-card--feature fade-in"><span class="diff-num">05</span><h3>Evolução registrada</h3><p>Acompanhamento digital da progressão para decisões baseadas em dados e sensação.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section software-section" id="software">
-    <div class="container">
-      <header class="section-head fade-in">
-        <span class="section-eyebrow">Tecnologia</span>
-        <h2 class="section-title">Acompanhamento por <span class="title-gradient-soft">software</span></h2>
-        <p class="section-desc">Planilhas, evolução e comunicação organizadas para você saber exatamente o que treinar e como progredir.</p>
-      </header>
-      <div class="software-grid">
-        <figure class="software-card fade-in">
-          <img src="software/Foto%20(15).jpeg?v=5" alt="Acompanhamento por software — registro de treino" width="640" height="480" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="software-card fade-in">
-          <img src="software/Foto%20(16).jpeg?v=5" alt="Acompanhamento por software — planilha personalizada" width="640" height="480" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="software-card fade-in">
-          <img src="software/Foto%20(28).jpeg?v=5" alt="Acompanhamento por software" width="640" height="480" loading="lazy" decoding="async" />
-        </figure>
-      </div>
-      <div class="software-agent-cta fade-in">
-        <div class="software-agent-cta-copy">
-          <span class="software-agent-cta-label">Assistente IA</span>
-          <p>Dúvidas sobre o <strong>MFIT Personal</strong>? Converse com o assistente do site e, se quiser, finalize no WhatsApp.</p>
-        </div>
-        <button type="button" class="btn btn-primary software-agent-cta-btn" data-open-agent>
-          Falar com o assistente
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section antes-depois" id="antes-depois">
-    <div class="container">
-      <header class="section-head fade-in">
-        <span class="section-eyebrow">Resultados</span>
-        <h2 class="section-title">Antes e <span class="title-gradient-soft">depois</span></h2>
-        <p class="section-desc">Transformações de alunos com treino e acompanhamento contínuo.</p>
-      </header>
-      <div class="antes-depois-pair fade-in">
-        <figure class="antes-depois-shot">
-          <img src="antes_depois/foto%2002.png?v=1" alt="Antes — transformação de aluna" width="720" height="1280" loading="lazy" decoding="async" />
-          <figcaption>Antes</figcaption>
-        </figure>
-        <figure class="antes-depois-shot">
-          <img src="antes_depois/foto.png?v=1" alt="Depois — transformação de aluna" width="720" height="1280" loading="lazy" decoding="async" />
-          <figcaption>Depois</figcaption>
-        </figure>
-      </div>
-      <div class="antes-depois-grid">
-        <figure class="antes-depois-card fade-in">
-          <img src="antes_depois/Fotos%20(1).jpeg?v=5" alt="Antes e depois — resultado de aluno" width="500" height="600" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="antes-depois-card fade-in">
-          <img src="antes_depois/Fotos%20(2).png?v=5" alt="Antes e depois — resultado de aluno" width="500" height="600" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="antes-depois-card fade-in">
-          <img src="antes_depois/Fotos%20(3).jpeg?v=5" alt="Antes e depois — resultado de aluno" width="500" height="600" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="antes-depois-card fade-in">
-          <img src="antes_depois/Fotos%20(4).jpeg?v=5" alt="Antes e depois — resultado de aluno" width="500" height="600" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="antes-depois-card fade-in">
-          <img src="antes_depois/Fotos%20(5).jpeg?v=5" alt="Antes e depois — resultado de aluno" width="500" height="600" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="antes-depois-card fade-in">
-          <img src="antes_depois/Fotos%20(6).jpeg?v=5" alt="Antes e depois — resultado de aluno" width="500" height="600" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="antes-depois-card fade-in">
-          <img src="antes_depois/Fotos%20(7).jpeg?v=5" alt="Antes e depois — resultado de aluno" width="500" height="600" loading="lazy" decoding="async" />
-        </figure>
-      </div>
-    </div>
-  </section>
-
-  <section class="section hipopressive" id="hipopressive">
-    <div class="container">
-      <div class="hipo-split">
-        <header class="section-head section-head--left fade-in">
-          <span class="section-eyebrow">Técnica</span>
-          <h2 class="section-title">Hipopressivo</h2>
-          <p class="section-desc">Respiração, estabilidade e fortalecimento profundo com protocolo adaptado à sua história.</p>
-        </header>
-        <div class="hipo-layout">
-          <video class="hipo-video fade-in" controls poster="fotos/Foto%20(18).jpeg?v=5" preload="metadata">
-            <source src="videos/hipopressivo.mp4" type="video/mp4">
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
-          <div class="hipo-content">
-            <div class="glass-card hipo-prose fade-in">
-              <ul class="hipo-chips">
-                <li>Redução abdominal</li>
-                <li>Postura</li>
-                <li>Assoalho pélvico</li>
-                <li>Pós-parto</li>
-                <li>Consciência corporal</li>
-              </ul>
-              <p>A técnica atua de forma integrada, sempre respeitando contraindicações e momento fisiológico.</p>
-            </div>
-            <aside class="hipo-aside glass-card fade-in">
-              <p>Tire dúvidas sobre indicação, frequência e o que esperar nas primeiras sessões.</p>
-              <a class="btn btn-primary btn-block" href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+informa%C3%A7%C3%B5es+sobre+hipopressivo." target="_blank" rel="noopener noreferrer">Falar sobre hipopressivo</a>
-            </aside>
+          <div class="card p-4">
+            <div class="eyebrow mb-2">formação</div>
+            <ul class="space-y-1 text-sm" style="color:rgba(255,255,255,.65)">
+              <li>→ CREF 025935 G/MG</li>
+              <li>→ Licenciatura e bacharelado</li>
+              <li>→ Bodybuilding Coach</li>
+              <li>→ Metabolismo</li>
+            </ul>
           </div>
         </div>
+        <a href="#servicos" class="btn-lime">Ver serviços</a>
       </div>
-    </div>
-  </section>
-
-  <section class="section treinos" id="treinos">
-    <div class="container">
-      <header class="section-head fade-in">
-        <span class="section-eyebrow">Acompanhe</span>
-        <h2 class="section-title">Meus <span class="title-gradient-soft">Treinos</span></h2>
-        <p class="section-desc">Veja um pouco da rotina de treinos e exercícios realizados com meus alunos.</p>
-      </header>
-      <div class="treinos-grid fade-in">
-        <div class="treino-card">
-          <video class="treino-video" controls preload="metadata">
-            <source src="videos/video-treino-01.mp4" type="video/mp4">
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
+      <div class="relative fade-up" style="transition-delay:.2s">
+        <div class="rounded-2xl overflow-hidden" style="aspect-ratio:4/5; border: 1px solid rgba(239,68,68,.15)">
+          <img src="fotos/Foto%20(1).jpeg?v=5" alt="Jéssica Personal" class="w-full h-full object-cover object-top" />
         </div>
-        <div class="treino-card">
-          <video class="treino-video" controls preload="metadata">
-            <source src="videos/video-treino-02.mp4" type="video/mp4">
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
+        <div class="absolute -bottom-3 -right-3 px-4 py-3" style="background:var(--lime); border-radius: 12px">
+          <p class="font-mono font-bold text-xs" style="color:#fff">CREF ATIVO</p>
+          <p class="font-mono text-xs" style="color:rgba(255,255,255,.8)">025935-G/MG</p>
         </div>
-        <div class="treino-card">
-          <video class="treino-video" controls preload="metadata">
-            <source src="videos/video-treino-03.mp4" type="video/mp4">
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
-        </div>
-        <div class="treino-card">
-          <video class="treino-video" controls preload="metadata">
-            <source src="videos/video-treino-04.mp4" type="video/mp4">
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
-        </div>
-        <div class="treino-card">
-          <video class="treino-video" controls preload="metadata">
-            <source src="videos/video-treino-05.mp4" type="video/mp4">
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
-        </div>
-        <div class="treino-card">
-          <video class="treino-video" controls preload="metadata">
-            <source src="videos/video-treino-06.mp4" type="video/mp4">
-            Seu navegador não suporta o elemento de vídeo.
-          </video>
+        <div class="absolute top-4 -left-4 card px-4 py-3">
+          <p class="font-mono text-xs" style="color:var(--lime)">● PRESENCIAL &amp; ONLINE</p>
+          <p class="text-xs mt-1" style="color:var(--muted)">Ouro Branco · MG</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section testimonials" id="depoimentos">
-    <div class="container">
-      <header class="section-head fade-in">
-        <span class="section-eyebrow">Alunos</span>
-        <h2 class="section-title">Depoimentos em <span class="title-gradient-soft">destaque</span></h2>
-        <p class="section-desc">Relatos reais de quem acompanha o trabalho da Jéssica no dia a dia.</p>
-      </header>
-      <div class="testimonials-quotes">
-        <blockquote class="testimonial-quote glass-card fade-in">
-          <p>Nós tentando gostar de exercício… e nada. Dança, spinning, musculação, corrida… eu simplesmente não ficava.</p>
-          <p>Até a Jéssica aparecer.</p>
-          <p>Ela fez o que ninguém conseguiu: me prender. E não foi só na conversa não, foi no resultado.</p>
-          <p>Ela é intensa, criteriosa, perfeccionista num nível impressionante (ela confere até se seu abdômen está contraído… kkkk) — não deixa passar nada. Cada detalhe importa e você sente isso no corpo.</p>
-          <p>E o corpo responde… rápido. Mais disposição, respiração melhor, sono profundo… e uma vontade absurda de voltar no dia seguinte. Mesmo cansada, eu vou. Porque agora não é sobre motivação — é sobre não querer abrir mão.</p>
-          <p>Levei meu marido, cheio de dor, histórico de mais de 80 fisioterapias… e ele também ficou em choque.</p>
-          <p>Tem gente que treina. Tem gente que finge que acompanha. E tem a Jéssica… que simplesmente eleva o nível de tudo.</p>
-          <p>Não é só treino. É vício. É resultado. É outro padrão.</p>
-          <p class="testimonial-quote-sign">Obrigada pelo cuidado e pela atenção!</p>
-        </blockquote>
-        <blockquote class="testimonial-quote glass-card fade-in">
-          <p>Oi, Jéssica, bom dia!</p>
-          <p>Passando para te dar um feedback da planilha personalizada que você fez para mim. Uma coisa que não tenho muito hoje é tempo para treinos longos e, com a sua estratégia, consigo sentir muito mais do que ficar horas e horas na academia. Parabéns pelo seu trabalho, que é perfeito! Te indico de olhos fechados!</p>
-        </blockquote>
+  <hr class="section-divider" />
+
+  <section class="py-24 px-6 max-w-6xl mx-auto relative z-10" id="metodo">
+    <div class="text-center mb-14 fade-up">
+      <div class="eyebrow mb-4">// como funciona</div>
+      <h2 class="font-bold leading-tight" style="font-size:clamp(2rem,5vw,3.25rem); letter-spacing:-.02em">
+        O método que <span class="glitch d2 text-grad" data-text="entrega.">entrega.</span>
+      </h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="card p-6 fade-up">
+        <div class="num-badge mb-4">01</div>
+        <h3 class="font-bold text-lg mb-3">100% personalizado</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">Nada genérico: volume, intensidade e exercícios pensados para você.</p>
       </div>
-      <div class="testimonials-grid">
-        <figure class="testimonial-card fade-in">
-          <img src="depoimentos/Fotos%20(1).jpeg?v=5" alt="Depoimento de aluno" width="400" height="500" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="testimonial-card fade-in">
-          <img src="depoimentos/Fotos%20(9).jpeg?v=5" alt="Depoimento de aluno" width="400" height="500" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="testimonial-card fade-in">
-          <img src="depoimentos/Fotos%20(10).jpeg?v=5" alt="Depoimento de aluno" width="400" height="500" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="testimonial-card fade-in">
-          <img src="depoimentos/Fotos%20(11).jpeg?v=5" alt="Depoimento de aluno" width="400" height="500" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="testimonial-card fade-in">
-          <img src="depoimentos/Fotos%20(12).jpeg?v=5" alt="Depoimento de aluno" width="400" height="500" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="testimonial-card fade-in">
-          <img src="depoimentos/Fotos%20(14).jpeg?v=5" alt="Depoimento de aluno" width="400" height="500" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="testimonial-card fade-in">
-          <img src="depoimentos/Fotos%20(19).jpeg?v=5" alt="Depoimento de aluno" width="400" height="500" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="testimonial-card fade-in">
-          <img src="depoimentos/Fotos%20(20).jpeg?v=5" alt="Depoimento de aluno" width="400" height="500" loading="lazy" decoding="async" />
-        </figure>
-        <figure class="testimonial-card fade-in">
-          <img src="depoimentos/Fotos%20(21).jpeg?v=5" alt="Depoimento de aluno" width="400" height="500" loading="lazy" decoding="async" />
-        </figure>
+      <div class="card p-6 fade-up">
+        <div class="num-badge mb-4">02</div>
+        <h3 class="font-bold text-lg mb-3">Estratégia clara</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">Você sabe o porquê de cada etapa e o que esperar a seguir.</p>
+      </div>
+      <div class="card p-6 fade-up">
+        <div class="num-badge mb-4">03</div>
+        <h3 class="font-bold text-lg mb-3">Didática forte</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">Execução correta e autonomia no treino, sem achismo.</p>
+      </div>
+      <div class="card p-6 fade-up">
+        <div class="num-badge mb-4">04</div>
+        <h3 class="font-bold text-lg mb-3">Presença real</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">Acompanhamento próximo e comunicação objetiva, presencial ou online.</p>
+      </div>
+      <div class="card p-6 fade-up">
+        <div class="num-badge mb-4">05</div>
+        <h3 class="font-bold text-lg mb-3">Evolução registrada</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">Software de treino para decisões com base em dados e na sua sensação.</p>
+      </div>
+      <div class="card p-6 fade-up">
+        <div class="num-badge mb-4">06</div>
+        <h3 class="font-bold text-lg mb-3">Hipopressivo</h3>
+        <p class="text-sm leading-relaxed" style="color:var(--muted)">Core profundo, postura e assoalho pélvico com protocolo individual.</p>
       </div>
     </div>
   </section>
 
-  <section class="section cta-final" id="cta">
-    <div class="cta-bg" aria-hidden="true"></div>
-    <div class="container cta-inner fade-in">
-      <div class="cta-orb" aria-hidden="true"></div>
-      <h2 class="cta-title">Próximo passo: <span class="title-gradient-cta">conversar</span></h2>
-      <p class="cta-text">Conte seu objetivo e sua rotina. A partir daí desenhamos o melhor caminho técnico para você.</p>
-      <a class="btn btn-light" href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+come%C3%A7ar+o+acompanhamento." target="_blank" rel="noopener noreferrer">Iniciar no WhatsApp</a>
+  <hr class="section-divider" />
+
+  <section class="py-24 px-6 max-w-6xl mx-auto relative z-10" id="servicos">
+    <div class="text-center mb-14 fade-up">
+      <div class="eyebrow mb-4">// serviços</div>
+      <h2 class="font-bold leading-tight" style="font-size:clamp(2rem,5vw,3.25rem); letter-spacing:-.02em">
+        Escolha seu <span class="glitch d3 text-grad" data-text="caminho.">caminho.</span>
+      </h2>
+      <p class="mt-4 max-w-lg mx-auto" style="color:var(--muted)">Presencial em Ouro Branco, consultoria online e técnica hipopressiva.</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="plan-card fade-up">
+        <div class="eyebrow mb-4">PRESENCIAL</div>
+        <h3 class="font-bold text-2xl mb-3">Acompanhamento</h3>
+        <p class="text-sm mb-6" style="color:var(--muted)">Supervisão em tempo real, postura e progressão a cada sessão.</p>
+        <ul class="check-list mb-8">
+          <li><span class="ck">✓</span> Treinos individualizados</li>
+          <li><span class="ck">✓</span> Academias e studios parceiros</li>
+          <li><span class="ck">✓</span> Correção técnica</li>
+          <li><span class="ck">✓</span> Periodização contínua</li>
+        </ul>
+        <a href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+treino+presencial." target="_blank" rel="noopener noreferrer" class="btn-outline w-full justify-center text-sm">Quero presencial</a>
+      </div>
+      <div class="plan-card featured fade-up">
+        <div class="eyebrow mb-4">ONLINE</div>
+        <h3 class="font-bold text-2xl mb-3">Consultoria</h3>
+        <p class="text-sm mb-6" style="color:var(--muted)">Plano remoto com checkpoints e suporte entre os treinos.</p>
+        <ul class="check-list mb-8">
+          <li><span class="ck">✓</span> Planilha no app MFIT</li>
+          <li><span class="ck">✓</span> Treino 100% personalizado</li>
+          <li><span class="ck">✓</span> Revisões e ajustes</li>
+          <li><span class="ck">✓</span> Acompanhamento digital</li>
+        </ul>
+        <a href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+consultoria+online." target="_blank" rel="noopener noreferrer" class="btn-lime w-full justify-center text-sm">Quero online</a>
+      </div>
+      <div class="plan-card fade-up">
+        <div class="eyebrow mb-4">TÉCNICA</div>
+        <h3 class="font-bold text-2xl mb-3">Hipopressivo</h3>
+        <p class="text-sm mb-6" style="color:var(--muted)">Respiração, core e assoalho pélvico com protocolo adaptado.</p>
+        <ul class="check-list mb-8">
+          <li><span class="ck">✓</span> Redução abdominal</li>
+          <li><span class="ck">✓</span> Postura e diástase</li>
+          <li><span class="ck">✓</span> Pós-parto</li>
+          <li><span class="ck">✓</span> Consciência corporal</li>
+        </ul>
+        <a href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+informa%C3%A7%C3%B5es+sobre+hipopressivo." target="_blank" rel="noopener noreferrer" class="btn-outline w-full justify-center text-sm">Falar sobre hipopressivo</a>
+      </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container footer-main">
-      <div class="footer-block">
-        <img src="logo/logo-jessica-3.png" alt="Jéssica Personal" class="footer-logo" width="160" height="48" loading="lazy" />
-        <p class="footer-meta">Personal Trainer · Ouro Branco (MG)</p>
+  <hr class="section-divider" />
+
+  <section class="py-24 px-6 max-w-6xl mx-auto relative z-10" id="resultados">
+    <div class="text-center mb-14 fade-up">
+      <div class="eyebrow mb-4">// resultados</div>
+      <h2 class="font-bold leading-tight" style="font-size:clamp(2rem,5vw,3.25rem); letter-spacing:-.02em">
+        Antes e <span class="glitch text-grad" data-text="depois.">depois.</span>
+      </h2>
+    </div>
+    <div class="antes-depois-grid">
+      <figure class="media-card fade-up">
+        <img src="antes_depois/novos/1.png" alt="Antes e depois — transformação de aluna" width="1200" height="800" loading="lazy" />
+      </figure>
+      <figure class="media-card fade-up">
+        <img src="antes_depois/novos/2.png" alt="Antes e depois — transformação de aluna" width="800" height="800" loading="lazy" />
+      </figure>
+      <figure class="media-card fade-up">
+        <img src="antes_depois/novos/3.png" alt="Antes e depois — transformação de aluna" width="800" height="800" loading="lazy" />
+      </figure>
+      <figure class="media-card fade-up">
+        <img src="antes_depois/novos/4.png" alt="Antes e depois — transformação de aluna" width="800" height="800" loading="lazy" />
+      </figure>
+      <figure class="media-card fade-up">
+        <img src="antes_depois/novos/5.png" alt="Antes e depois — transformação de aluna" width="800" height="800" loading="lazy" />
+      </figure>
+      <figure class="media-card fade-up">
+        <img src="antes_depois/novos/6.png" alt="Antes e depois — transformação de aluna" width="800" height="800" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="software-band relative z-10" id="software">
+    <div class="max-w-6xl mx-auto px-6 py-24 relative z-10">
+      <div class="text-center mb-12 fade-up">
+        <div class="eyebrow mb-4">// tecnologia</div>
+        <div class="flex flex-wrap justify-center gap-2 mb-6">
+          <span class="pill">MFIT Personal</span>
+          <span class="pill">Planilha no app</span>
+          <span class="pill">Evolução em tempo real</span>
+        </div>
+        <h2 class="font-bold leading-none" style="font-size:clamp(1.9rem,8vw,4.6rem); letter-spacing:-.03em">
+          <span class="glitch text-white" data-text="ACOMPANHAMENTO">ACOMPANHAMENTO</span><br/>
+          <span class="glitch d2 text-grad" data-text="NO APP.">NO APP.</span>
+        </h2>
+        <p class="mt-6 max-w-2xl mx-auto leading-relaxed" style="font-size:1.1rem; color:var(--muted)">
+          Treino, progresso e comunicação no mesmo lugar. Você abre o app e sabe exatamente o que fazer — e eu vejo cada passo.
+        </p>
       </div>
-      <div class="footer-block footer-contact">
-        <p><span class="footer-label">Telefone</span> <a href="tel:+5531983955337">(31) 98395-5337</a></p>
-        <p><span class="footer-label">Instagram</span> <a href="https://www.instagram.com/__jessica.personal_/" target="_blank" rel="noopener noreferrer">@__jessica.personal_</a></p>
-        <p><span class="footer-label">CREF</span> 025935 G/MG</p>
+
+      <div class="grid sm:grid-cols-3 gap-4 mb-12">
+        <div class="card p-6 fade-up">
+          <div class="num-badge mb-4">01</div>
+          <h3 class="font-bold text-lg mb-2">Planilha no celular</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Exercícios, séries e cargas no MFIT Personal — sem papel e sem dúvida.</p>
+        </div>
+        <div class="card p-6 fade-up">
+          <div class="num-badge mb-4">02</div>
+          <h3 class="font-bold text-lg mb-2">Evolução registrada</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Histórico, ajustes e decisões com base no que o seu corpo responde.</p>
+        </div>
+        <div class="card p-6 fade-up">
+          <div class="num-badge mb-4">03</div>
+          <h3 class="font-bold text-lg mb-2">Presença real</h3>
+          <p class="text-sm leading-relaxed" style="color:var(--muted)">Feedbacks e suporte entre os treinos, presencial ou online.</p>
+        </div>
+      </div>
+
+      <div class="software-mockup fade-up mb-12">
+        <img src="software/mockup-software.png" alt="App MFIT Personal — acompanhamento de treinos da Jéssica" width="1400" height="900" loading="lazy" />
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3 fade-up">
+        <a href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+saber+como+funciona+o+app." target="_blank" rel="noopener noreferrer" class="btn-lime text-base px-8">Quero treinar no app</a>
+        <button type="button" class="btn-outline" data-open-agent>Falar com o assistente</button>
       </div>
     </div>
-    <div class="footer-promo">
-      <div class="container">
-        Quer uma página como esta para o seu negócio?<br />
-        <a href="https://linkbio.api.br" target="_blank" rel="noopener noreferrer">
-          <img src="logo-linkbio.png" alt="LinkBio" loading="lazy" width="120" height="36" />
-          <span>Conheça o LinkBio</span>
-        </a>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="py-24 px-6 max-w-6xl mx-auto relative z-10" id="hipopressive">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="fade-up">
+        <div class="eyebrow mb-4">// técnica</div>
+        <h2 class="font-bold leading-tight mb-4" style="font-size:clamp(2rem,5vw,3rem); letter-spacing:-.02em"><span class="glitch d3 text-grad" data-text="Hipopressivo">Hipopressivo</span></h2>
+        <p class="leading-relaxed mb-6" style="color:var(--muted)">Respiração, estabilidade e fortalecimento profundo — sempre respeitando contraindicações e o momento fisiológico.</p>
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span class="pill">Redução abdominal</span>
+          <span class="pill">Postura</span>
+          <span class="pill">Assoalho pélvico</span>
+          <span class="pill">Pós-parto</span>
+        </div>
+        <a href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+informa%C3%A7%C3%B5es+sobre+hipopressivo." target="_blank" rel="noopener noreferrer" class="btn-lime">Falar sobre hipopressivo</a>
       </div>
+      <video class="hipo-video fade-up" controls poster="fotos/Foto%20(18).jpeg?v=5" preload="metadata">
+        <source src="videos/hipopressivo.mp4" type="video/mp4" />
+      </video>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="py-24 px-6 max-w-6xl mx-auto relative z-10" id="treinos">
+    <div class="text-center mb-14 fade-up">
+      <div class="eyebrow mb-4">// treinos</div>
+      <h2 class="font-bold leading-tight" style="font-size:clamp(2rem,5vw,3.25rem); letter-spacing:-.02em">
+        A rotina na <span class="glitch text-grad" data-text="prática.">prática.</span>
+      </h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <video class="treino-video fade-up" controls preload="metadata"><source src="videos/video-treino-01.mp4" type="video/mp4" /></video>
+      <video class="treino-video fade-up" controls preload="metadata"><source src="videos/video-treino-02.mp4" type="video/mp4" /></video>
+      <video class="treino-video fade-up" controls preload="metadata"><source src="videos/video-treino-03.mp4" type="video/mp4" /></video>
+      <video class="treino-video fade-up" controls preload="metadata"><source src="videos/video-treino-04.mp4" type="video/mp4" /></video>
+      <video class="treino-video fade-up" controls preload="metadata"><source src="videos/video-treino-05.mp4" type="video/mp4" /></video>
+      <video class="treino-video fade-up" controls preload="metadata"><source src="videos/video-treino-06.mp4" type="video/mp4" /></video>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="py-24 px-6 max-w-6xl mx-auto relative z-10" id="depoimentos">
+    <div class="text-center mb-14 fade-up">
+      <div class="eyebrow mb-4">// alunos</div>
+      <h2 class="font-bold leading-tight" style="font-size:clamp(2rem,5vw,3.25rem); letter-spacing:-.02em">
+        Quem treinou, <span class="glitch d2 text-grad" data-text="aprovou.">aprovou.</span>
+      </h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4 mb-10">
+      <div class="test-card fade-up">
+        <div class="qt">"</div>
+        <p class="text-sm leading-relaxed mb-4" style="color:rgba(255,255,255,.65)">Ela fez o que ninguém conseguiu: me prender. E não foi só na conversa — foi no resultado. Cada detalhe importa e você sente isso no corpo.</p>
+        <p class="text-xs font-mono" style="color:var(--lime)">★★★★★</p>
+      </div>
+      <div class="test-card fade-up">
+        <div class="qt">"</div>
+        <p class="text-sm leading-relaxed mb-4" style="color:rgba(255,255,255,.65)">Com a sua estratégia, consigo sentir muito mais do que ficar horas na academia. Parabéns pelo trabalho. Indico de olhos fechados!</p>
+        <p class="text-xs font-mono" style="color:var(--lime)">★★★★★</p>
+      </div>
+    </div>
+    <div class="depo-grid">
+      <figure class="photo-frame fade-up">
+        <span class="photo-frame-back" aria-hidden="true"></span>
+        <span class="photo-frame-inner"><img src="depoimentos/Fotos%20(1).jpeg?v=5" alt="Depoimento de aluna" loading="lazy" /></span>
+      </figure>
+      <figure class="photo-frame fade-up">
+        <span class="photo-frame-back" aria-hidden="true"></span>
+        <span class="photo-frame-inner"><img src="depoimentos/Fotos%20(9).jpeg?v=5" alt="Depoimento de aluna" loading="lazy" /></span>
+      </figure>
+      <figure class="photo-frame fade-up">
+        <span class="photo-frame-back" aria-hidden="true"></span>
+        <span class="photo-frame-inner"><img src="depoimentos/Fotos%20(10).jpeg?v=5" alt="Depoimento de aluna" loading="lazy" /></span>
+      </figure>
+      <figure class="photo-frame fade-up">
+        <span class="photo-frame-back" aria-hidden="true"></span>
+        <span class="photo-frame-inner"><img src="depoimentos/Fotos%20(11).jpeg?v=5" alt="Depoimento de aluna" loading="lazy" /></span>
+      </figure>
+      <figure class="photo-frame fade-up">
+        <span class="photo-frame-back" aria-hidden="true"></span>
+        <span class="photo-frame-inner"><img src="depoimentos/Fotos%20(12).jpeg?v=5" alt="Depoimento de aluna" loading="lazy" /></span>
+      </figure>
+      <figure class="photo-frame fade-up">
+        <span class="photo-frame-back" aria-hidden="true"></span>
+        <span class="photo-frame-inner"><img src="depoimentos/Fotos%20(14).jpeg?v=5" alt="Depoimento de aluna" loading="lazy" /></span>
+      </figure>
+      <figure class="photo-frame fade-up">
+        <span class="photo-frame-back" aria-hidden="true"></span>
+        <span class="photo-frame-inner"><img src="depoimentos/Fotos%20(19).jpeg?v=5" alt="Depoimento de aluna" loading="lazy" /></span>
+      </figure>
+      <figure class="photo-frame fade-up">
+        <span class="photo-frame-back" aria-hidden="true"></span>
+        <span class="photo-frame-inner"><img src="depoimentos/Fotos%20(20).jpeg?v=5" alt="Depoimento de aluna" loading="lazy" /></span>
+      </figure>
+      <figure class="photo-frame fade-up">
+        <span class="photo-frame-back" aria-hidden="true"></span>
+        <span class="photo-frame-inner"><img src="depoimentos/Fotos%20(21).jpeg?v=5" alt="Depoimento de aluna" loading="lazy" /></span>
+      </figure>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="py-24 px-6 max-w-3xl mx-auto relative z-10" id="faq">
+    <div class="text-center mb-12 fade-up">
+      <div class="eyebrow mb-4">// dúvidas</div>
+      <h2 class="font-bold leading-tight" style="font-size:clamp(2rem,5vw,3rem); letter-spacing:-.02em"><span class="glitch d3" data-text="FAQ">FAQ</span></h2>
+    </div>
+    <div class="card overflow-hidden fade-up">
+      <details open>
+        <summary><span>Como funciona o acompanhamento?</span><span class="arrow">+</span></summary>
+        <div class="faq-body">Presencial em Ouro Branco (MG) ou consultoria online com planilha no app, revisões e suporte. Tudo 100% personalizado para o seu objetivo e a sua rotina.</div>
+      </details>
+      <details>
+        <summary><span>Atende só mulheres?</span><span class="arrow">+</span></summary>
+        <div class="faq-body">A especialidade inclui saúde da mulher, mas o atendimento é individualizado. Homens também treinam com a Jéssica.</div>
+      </details>
+      <details>
+        <summary><span>O que é hipopressivo?</span><span class="arrow">+</span></summary>
+        <div class="faq-body">Técnica de respiração e ativação do core profundo. Auxilia na circunferência abdominal, postura, assoalho pélvico e pós-parto, sempre com avaliação individual.</div>
+      </details>
+      <details>
+        <summary><span>Preciso de academia para o online?</span><span class="arrow">+</span></summary>
+        <div class="faq-body">O protocolo é adaptado ao local onde você treina. Informe os equipamentos na avaliação inicial.</div>
+      </details>
+      <details>
+        <summary><span>Como começo?</span><span class="arrow">+</span></summary>
+        <div class="faq-body">Chame no WhatsApp, conte seu objetivo e sua rotina. A partir daí desenhamos o caminho técnico.</div>
+      </details>
+    </div>
+  </section>
+
+  <section class="py-24 px-6 max-w-4xl mx-auto relative z-10">
+    <div class="terminal-box fade-up">
+      <div class="terminal-header">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <span class="ml-2 text-xs font-mono" style="color:var(--muted)">agendar_treino.sh</span>
+      </div>
+      <div class="terminal-body">
+        <p class="terminal-line"><span class="prompt">$ </span>./iniciar_evolucao.sh</p>
+        <p class="terminal-line" style="color:var(--lime)">✓ Treino 100% personalizado</p>
+        <p class="terminal-line" style="color:var(--lime)">✓ Presencial ou consultoria online</p>
+        <p class="terminal-line" style="color:var(--lime)">✓ CREF 025935 G/MG</p>
+        <p class="terminal-line" style="color:rgba(255,255,255,.3)">Aguardando contato...</p>
+        <p class="terminal-line mt-2"><span class="prompt">$ </span><span class="cursor"></span></p>
+        <div class="mt-8 text-center">
+          <h3 class="font-bold mb-3" style="font-size:clamp(1.5rem,4vw,2.25rem); letter-spacing:-.01em">
+            Pronto para <span class="glitch text-grad" data-text="evoluir">evoluir</span>?
+          </h3>
+          <p class="mb-8 text-sm" style="color:var(--muted)">Conte seu objetivo. Desenhamos o próximo passo juntas.</p>
+          <a href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+come%C3%A7ar+o+acompanhamento." target="_blank" rel="noopener noreferrer" class="btn-lime text-base px-10 py-4 mx-auto inline-flex">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Falar no WhatsApp agora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 px-6 relative z-10" style="border-top: 1px solid var(--border)">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <img src="logo/logo-jessica-5.png" alt="Jéssica Personal" width="140" height="36" />
+      <p class="text-xs font-mono text-center" style="color:var(--muted)">© 2026 · CREF 025935 G/MG · Ouro Branco (MG)</p>
+      <div class="flex flex-col sm:flex-row items-center gap-3 text-xs font-mono">
+        <a href="tel:+5531983955337" style="color:var(--lime)">(31) 98395-5337</a>
+        <a href="https://www.instagram.com/__jessica.personal_/" target="_blank" rel="noopener noreferrer" style="color:var(--lime)">@__jessica.personal_</a>
+      </div>
+    </div>
+    <div class="footer-promo max-w-6xl mx-auto">
+      Quer uma página como esta para o seu negócio?
+      <a href="https://linkbio.api.br" target="_blank" rel="noopener noreferrer">
+        <img src="logo-linkbio.png" alt="LinkBio" width="90" height="28" />
+        <span>Conheça o LinkBio</span>
+      </a>
     </div>
   </footer>
 
-  <a href="https://wa.me/5531983955337?text=Ol%C3%A1%2C+J%C3%A9ssica%21+Vim+pelo+Link+Bio+e+quero+saber+mais+sobre+seus+servi%C3%A7os." class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp">
-    <span class="wa-pulse" aria-hidden="true"></span>
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-  </a>
+  <script>
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-  <script src="script.js?v=5"></script>
+    (function () {
+      var splash = document.getElementById('splash');
+      if (!splash) return;
+      function unlock() {
+        document.documentElement.classList.remove('splash-lock');
+        document.body.classList.remove('splash-lock');
+      }
+      var done = false;
+      function hide() {
+        if (done) return;
+        done = true;
+        splash.classList.add('hide');
+        unlock();
+        splash.addEventListener('transitionend', function () { splash.remove(); }, { once: true });
+      }
+      var wait = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 200 : 3200;
+      window.addEventListener('load', function () { setTimeout(hide, wait); });
+      setTimeout(hide, wait + 2500);
+    })();
+  </script>
   <script src="agent.js?v=5"></script>
   <script src="https://linkbio.api.br/tracker.js" data-slug="jessicapersonal"></script>
 </body>
