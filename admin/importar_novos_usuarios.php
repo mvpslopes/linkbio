@@ -26,6 +26,13 @@ $novosUsuarios = [
         'page_slug' => 'cyntiaalmeida',       // = data-slug em cyntiaalmeida/index.html
         'name'      => 'Dr.ª Cyntia Almeida',
     ],
+    [
+        'username'  => 'priscilaramos',
+        'password'  => 'priscilaramos2026',
+        'role'      => 'client',
+        'page_slug' => 'priscilaramos',
+        'name'      => 'Priscila Ramos',
+    ],
 
     // Exemplo para mais clientes (descomente e ajuste):
     // [

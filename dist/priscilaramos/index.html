@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Priscila Ramos | Beleza &amp; Cuidado — Manicure, Pedicure e Estética</title>
+  <meta name="description" content="Priscila Ramos — manicure, pedicure, sobrancelha e depilação. Clubes de assinatura com economia e atendimento express na hora que você precisar." />
+  <meta name="keywords" content="Priscila Ramos, manicure, pedicure, sobrancelha, depilação, estética, clube de assinatura, atendimento express, beleza" />
+  <link rel="canonical" href="https://priscilaramos.linkbio.api.br/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://priscilaramos.linkbio.api.br/" />
+  <meta property="og:title" content="Priscila Ramos | Beleza &amp; Cuidado" />
+  <meta property="og:description" content="Manicure, pedicure, sobrancelha e depilação. Assine um clube ou agende um atendimento express." />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:image" content="https://priscilaramos.linkbio.api.br/fotos/editorial.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://priscilaramos.linkbio.api.br/fotos/editorial.jpg" />
+  <meta name="theme-color" content="#FBF3EF" />
+
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="apple-touch-icon" href="fotos/perfil.jpg" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "Priscila Ramos | Beleza & Cuidado",
+    "description": "Manicure, pedicure, sobrancelha e depilação. Clubes de assinatura e atendimento express.",
+    "url": "https://priscilaramos.linkbio.api.br/",
+    "image": "https://priscilaramos.linkbio.api.br/fotos/editorial.jpg",
+    "priceRange": "$$",
+    "areaServed": "BR"
+  }
+  </script>
+
+  <style>
+    :root {
+      --paper: #FBF3EF;
+      --paper-2: #F5E8E1;
+      --white: #FFFDFB;
+      --rose: #C58C85;
+      --rose-d: #A86F68;
+      --rose-s: #EBD6D0;
+      --gold: #C4A07A;
+      --gold-l: #E6D3BC;
+      --wine: #6E3340;
+      --wine-d: #522530;
+      --ink: #2E2422;
+      --muted: #7A6561;
+      --line: rgba(197, 140, 133, .2);
+      --shadow: 0 24px 60px rgba(110, 51, 64, .1);
+      --font: 'Outfit', system-ui, sans-serif;
+      --display: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      font-family: var(--font);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      opacity: .03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+    .container { width: min(1120px, calc(100% - 2.5rem)); margin-inline: auto; position: relative; z-index: 1; }
+    .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+    /* ── Splash ── */
+    #splash {
+      position: fixed; inset: 0; z-index: 200;
+      display: grid; place-items: center;
+      background: linear-gradient(165deg, #FBF3EF 0%, #F1DED4 100%);
+      transition: opacity .7s ease, visibility .7s ease;
+    }
+    #splash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
+    .splash-inner { text-align: center; padding: 1.5rem; }
+    .splash-logo {
+      width: min(300px, 72vw); height: auto;
+      margin: 0 auto 1.1rem;
+      filter: drop-shadow(0 14px 30px rgba(110,51,64,.16));
+      animation: rise .85s cubic-bezier(.22,1,.36,1) both;
+    }
+    .splash-tag {
+      font-size: .68rem; font-weight: 500;
+      letter-spacing: .3em; text-transform: uppercase;
+      color: var(--rose-d);
+      animation: rise .85s cubic-bezier(.22,1,.36,1) .12s both;
+    }
+    .bar {
+      width: 140px; height: 2px; margin: 1.5rem auto 0;
+      border-radius: 99px; background: var(--rose-s); overflow: hidden;
+      animation: rise .8s ease .22s both;
+    }
+    .bar span {
+      display: block; height: 100%; width: 0;
+      background: linear-gradient(90deg, var(--rose-d), var(--gold));
+      animation: fillbar 1.5s cubic-bezier(.22,1,.36,1) .32s forwards;
+    }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    @keyframes fillbar { from { width: 0; } to { width: 100%; } }
+
+    /* ── Navbar ── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 16px 0;
+      padding-top: max(16px, env(safe-area-inset-top));
+      transition: background .3s ease, box-shadow .3s ease, padding .3s ease;
+    }
+    #navbar .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px;
+    }
+    #navbar.scrolled {
+      background: rgba(251,243,239,.88);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 6px 24px rgba(110,51,64,.06);
+      padding: 10px 0;
+    }
+    .brand { display: flex; align-items: center; }
+    .brand img { height: 34px; width: auto; }
+    .nav-links {
+      display: none;
+      align-items: center; gap: 30px;
+      font-size: .85rem; font-weight: 500; color: var(--muted);
+    }
+    .nav-links a { transition: color .2s; }
+    .nav-links a:hover { color: var(--rose-d); }
+    @media (min-width: 860px) { .nav-links { display: flex; } }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--wine); color: #fff;
+      font-size: .82rem; font-weight: 600;
+      padding: 10px 18px; border-radius: 99px;
+      box-shadow: 0 10px 22px rgba(110,51,64,.22);
+      transition: transform .2s, background .2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { transform: translateY(-1px); background: var(--wine-d); }
+    .nav-cta svg { flex-shrink: 0; }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 128px 0 64px;
+      position: relative;
+    }
+    @media (max-width: 959px) {
+      .hero { padding: 96px 0 40px; }
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -80px; right: -10%; z-index: 0;
+      width: 60%; height: 480px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(197,140,133,.18), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr; gap: 28px;
+      align-items: center;
+    }
+    .hero-copy { order: 2; }
+    .hero-visual { order: 1; }
+    @media (min-width: 960px) {
+      .hero-grid { grid-template-columns: 1.05fr .95fr; gap: 60px; }
+      .hero-copy { order: 0; }
+      .hero-visual { order: 0; }
+    }
+
+    .eyebrow-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white); border: 1px solid var(--line);
+      color: var(--rose-d);
+      font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 99px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 14px rgba(110,51,64,.05);
+    }
+    .eyebrow-badge svg { color: var(--gold); }
+
+    h1 {
+      font-family: var(--display);
+      font-size: clamp(2.6rem, 5.2vw, 4.1rem);
+      font-weight: 600; line-height: 1.08; letter-spacing: -.01em;
+      color: var(--wine-d);
+    }
+    h1 em { color: var(--rose-d); font-style: normal; }
+
+    .hero-lede {
+      margin-top: 1.35rem;
+      max-width: 46ch;
+      font-size: 1.05rem; color: var(--muted); line-height: 1.75;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 2rem; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+      padding: 14px 26px;
+      border-radius: 12px;
+      font-size: .92rem; font-weight: 600;
+      border: none; cursor: pointer;
+      transition: transform .2s, background .2s, box-shadow .2s, border-color .2s, color .2s;
+      white-space: nowrap;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+    .btn-solid { background: var(--rose-d); color: #fff; box-shadow: 0 12px 26px rgba(168,111,104,.32); }
+    .btn-solid:hover { background: var(--wine); }
+    .btn-outline { background: transparent; color: var(--wine); border: 1.5px solid var(--rose); }
+    .btn-outline:hover { background: var(--white); border-color: var(--rose-d); }
+    .btn-light { background: #fff; color: var(--wine); }
+    .btn-light:hover { background: var(--paper); }
+    .btn-wa { background: #128C7E; color: #fff; box-shadow: 0 12px 26px rgba(18,140,126,.28); }
+    .btn-wa:hover { background: #0e7368; }
+    .btn-full { width: 100%; }
+
+    .hero-notes { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 2.2rem; }
+    .hero-note { display: flex; align-items: center; gap: 9px; font-size: .84rem; color: var(--muted); font-weight: 500; }
+    .hero-note svg { color: var(--rose-d); flex-shrink: 0; }
+
+    .hero-visual { position: relative; }
+    .hero-photo {
+      position: relative;
+      aspect-ratio: 2 / 3;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.55);
+      background:
+        radial-gradient(circle at 50% 18%, rgba(197,140,133,.55), transparent 55%),
+        radial-gradient(circle at 88% 78%, rgba(196,160,122,.42), transparent 55%),
+        radial-gradient(circle at 8% 88%, rgba(110,51,64,.32), transparent 55%),
+        linear-gradient(165deg, #F8EAE3 0%, #F0DACD 55%, #E4C3AF 100%);
+    }
+    .hero-photo picture { display: block; width: 100%; height: 100%; }
+    .hero-photo img {
+      position: relative; z-index: 1;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      display: block;
+      filter: drop-shadow(0 16px 26px rgba(46,36,34,.16));
+    }
+    .hero-chip-top {
+      position: absolute; top: 18px; left: 18px; z-index: 3;
+      background: rgba(255,253,251,.92);
+      backdrop-filter: blur(8px);
+      color: var(--wine);
+      font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+      padding: 7px 13px; border-radius: 99px;
+      border: 1px solid rgba(255,255,255,.6);
+    }
+    .hero-float {
+      position: absolute; left: -16px; bottom: 24px; z-index: 3;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 14px 18px;
+      box-shadow: 0 18px 40px rgba(110,51,64,.16);
+      display: flex; align-items: center; gap: 12px;
+      max-width: 240px;
+      white-space: nowrap;
+    }
+    @media (max-width: 500px) { .hero-float { left: 10px; bottom: 16px; padding: 12px 14px; } }
+    .hero-float .dot-ico {
+      width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(197,140,133,.14); color: var(--rose-d);
+      display: grid; place-items: center;
+    }
+    .hero-float b { display: block; font-family: var(--display); font-size: 1rem; font-weight: 600; color: var(--wine-d); line-height: 1.15; }
+    .hero-float span { font-size: .72rem; color: var(--muted); }
+    @media (max-width: 640px) {
+      .hero-photo { aspect-ratio: 3 / 4; border-radius: 22px; }
+      .hero-photo img { object-position: center 14%; }
+    }
+
+    /* ── Marquee ── */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: var(--paper-2);
+      padding: 1rem 0;
+    }
+    .marquee {
+      display: flex; gap: 2.2rem; width: max-content;
+      animation: marquee 26s linear infinite;
+      font-family: var(--display);
+      font-size: 1.05rem; font-weight: 500; color: var(--rose-d);
+      white-space: nowrap;
+    }
+    .marquee .dot { color: var(--gold); }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── Section shared ── */
+    .section { padding: 5.5rem 0; }
+    .section-head { text-align: center; max-width: 620px; margin: 0 auto 3rem; }
+    .eyebrow {
+      display: inline-block;
+      font-size: .72rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: .7rem;
+    }
+    .section-head h2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 3.6vw, 2.9rem); font-weight: 600; color: var(--wine-d);
+      letter-spacing: -.01em; line-height: 1.15;
+    }
+    .section-head p { margin-top: .8rem; color: var(--muted); font-size: 1rem; line-height: 1.65; }
+    .alt-bg { background: var(--paper-2); }
+
+    /* ── Paths ── */
+    .paths-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 3rem; }
+    @media (min-width: 760px) { .paths-grid { grid-template-columns: 1fr 1fr; } }
+    .path-card {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 22px; padding: 2rem 1.9rem;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+    .path-card:hover { transform: translateY(-5px); box-shadow: 0 20px 44px rgba(110,51,64,.1); border-color: rgba(197,140,133,.4); }
+    .path-ico {
+      width: 52px; height: 52px; border-radius: 15px;
+      background: var(--rose-s); color: var(--wine);
+      display: grid; place-items: center;
+    }
+    .path-card h3 { font-family: var(--display); font-size: 1.55rem; font-weight: 600; color: var(--wine-d); }
+    .path-card p { color: var(--muted); font-size: .92rem; line-height: 1.6; }
+    .path-card .path-cta { margin-top: 6px; font-size: .85rem; font-weight: 700; color: var(--rose-d); display: inline-flex; align-items: center; gap: 6px; }
+
+    /* ── Clubs ── */
+    .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 620px; margin: 0 auto 3rem; }
+    .step { text-align: center; }
+    .step b { display: grid; place-items: center; width: 40px; height: 40px; margin: 0 auto 8px; border-radius: 50%; background: var(--white); border: 1px solid var(--line); font-family: var(--display); font-weight: 600; color: var(--rose-d); }
+    .step span { font-size: .78rem; color: var(--muted); font-weight: 500; }
+
+    .clubs-grid { display: grid; grid-template-columns: 1fr; gap: 22px; }
+    @media (min-width: 760px) { .clubs-grid { grid-template-columns: 1fr 1fr; } }
+    .club-card {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 24px; padding: 2.1rem 2rem;
+      box-shadow: 0 12px 32px rgba(110,51,64,.05);
+    }
+    .club-card.featured {
+      background: linear-gradient(165deg, #7A3A48 0%, #522530 100%);
+      color: #fff; border-color: transparent;
+      position: relative; overflow: hidden;
+    }
+    .club-card.featured::before {
+      content: ''; position: absolute; top: -60px; right: -50px;
+      width: 200px; height: 200px; border-radius: 50%;
+      background: rgba(255,255,255,.07);
+    }
+    .club-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25);
+      padding: 5px 12px; border-radius: 99px; margin-bottom: 14px;
+    }
+    .club-card h3 { font-family: var(--display); font-size: 1.7rem; font-weight: 600; position: relative; }
+    .club-cadence { font-size: .82rem; font-weight: 500; letter-spacing: .03em; color: var(--muted); margin: .25rem 0 .85rem; position: relative; }
+    .club-card.featured .club-cadence { color: rgba(255,255,255,.72); }
+    .club-desc { font-size: .92rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.1rem; position: relative; }
+    .club-card.featured .club-desc { color: rgba(255,255,255,.85); }
+    .club-incl { list-style: none; display: grid; gap: 9px; margin-bottom: 1.4rem; position: relative; }
+    .club-incl li { display: flex; align-items: center; gap: 10px; font-size: .9rem; }
+    .club-incl svg { flex-shrink: 0; color: var(--rose-d); }
+    .club-card.featured .club-incl svg { color: #F3D9CE; }
+    .club-price-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 1.3rem; position: relative; }
+    .club-price { font-family: var(--display); font-size: 2.5rem; font-weight: 600; line-height: 1; color: var(--rose-d); }
+    .club-card.featured .club-price { color: #fff; }
+    .club-price small { font-family: var(--font); font-size: .78rem; font-weight: 500; color: var(--muted); margin-left: 4px; }
+    .club-card.featured .club-price small { color: rgba(255,255,255,.65); }
+    .club-save { font-size: .72rem; font-weight: 700; color: var(--rose-d); background: rgba(197,140,133,.12); padding: 5px 10px; border-radius: 99px; }
+    .club-card.featured .club-save { color: #F3E4DE; background: rgba(255,255,255,.14); }
+
+    /* ── Express ── */
+    .express-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+    @media (min-width: 860px) { .express-grid { grid-template-columns: 1fr 1.35fr; } }
+    .express-intro { display: flex; flex-direction: column; gap: 18px; }
+    .express-intro-card {
+      background: var(--white); border: 1px solid var(--line); border-radius: 20px;
+      padding: 1.6rem 1.7rem;
+    }
+    .express-intro-card h3 { font-family: var(--display); font-size: 1.4rem; font-weight: 600; color: var(--wine-d); margin-bottom: 6px; }
+    .express-intro-card p { font-size: .88rem; color: var(--muted); line-height: 1.6; }
+
+    .menu-panel {
+      background: var(--white); border: 1px solid var(--line);
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 12px 32px rgba(110,51,64,.05);
+      margin-bottom: 18px;
+    }
+    .menu-panel:last-child { margin-bottom: 0; }
+    .menu-head { padding: 18px 22px 12px; }
+    .menu-head h3 { font-family: var(--display); font-size: 1.35rem; font-weight: 600; color: var(--wine-d); }
+    .menu-head p { font-size: .8rem; color: var(--muted); margin-top: 2px; }
+    .menu-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 22px;
+      border-top: 1px solid var(--line);
+      transition: background .2s;
+    }
+    .menu-row:hover { background: var(--paper-2); }
+    .menu-row strong { flex: 1; font-size: .94rem; font-weight: 500; }
+    .menu-row .val { font-family: var(--display); font-size: 1.2rem; font-weight: 600; color: var(--rose-d); }
+    .menu-row svg.arr { color: var(--rose); flex-shrink: 0; }
+
+    /* ── Fidelidade ── */
+    .loyalty-card {
+      display: grid; gap: 28px; align-items: center;
+      background: linear-gradient(165deg, #7A3A48 0%, #522530 100%);
+      color: #fff; border-radius: 28px; padding: 2.2rem 2rem;
+      position: relative; overflow: hidden;
+    }
+    .loyalty-card::before {
+      content: ''; position: absolute; top: -70px; right: -50px;
+      width: 220px; height: 220px; border-radius: 50%; background: rgba(255,255,255,.08);
+    }
+    @media (min-width: 760px) { .loyalty-card { grid-template-columns: 1.15fr .85fr; padding: 2.6rem 2.4rem; } }
+    .loyalty-copy { position: relative; }
+    .loyalty-copy h2 { font-family: var(--display); font-size: clamp(1.9rem, 3.4vw, 2.7rem); font-weight: 600; line-height: 1.15; }
+    .loyalty-copy p { margin: .75rem 0 1.3rem; font-size: .98rem; line-height: 1.65; color: rgba(255,255,255,.82); max-width: 44ch; }
+    .loyalty-copy .btn-light { box-shadow: 0 12px 24px rgba(0,0,0,.12); }
+    .loyalty-preview {
+      position: relative;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 20px; padding: 1.3rem 1.2rem;
+    }
+    .loyalty-preview span.k { font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; opacity: .75; }
+    .loyalty-preview strong { display: block; font-family: var(--display); font-size: 1.35rem; margin: .25rem 0 1rem; }
+    .loyalty-dots { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .loyalty-dots i {
+      aspect-ratio: 1; border-radius: 50%; display: block;
+      border: 2px solid rgba(255,255,255,.35);
+    }
+    .loyalty-dots i:nth-child(-n+3) { background: #F3D9CE; border-color: #F3D9CE; }
+
+    /* ── Gallery ── */
+    .gallery-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+    @media (min-width: 760px) { .gallery-grid { grid-template-columns: 1.15fr 1fr; } }
+    .gallery-item { position: relative; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery-item.tall { aspect-ratio: 4/5; }
+    .gallery-item.wide { aspect-ratio: 4/5; }
+    .gallery-caption {
+      position: absolute; left: 16px; right: 16px; bottom: 16px;
+      background: rgba(255,253,251,.92); backdrop-filter: blur(8px);
+      border-radius: 14px; padding: 12px 16px;
+    }
+    .gallery-caption b { font-family: var(--display); font-size: 1.15rem; font-weight: 600; display: block; color: var(--wine-d); }
+    .gallery-caption span { font-size: .8rem; color: var(--muted); }
+
+    /* ── CTA ── */
+    .cta-band {
+      border-radius: 32px;
+      background: linear-gradient(150deg, #F3DED4 0%, #EAD0BE 100%);
+      padding: 3.4rem 2rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-band::before { content: ''; position: absolute; top: -70px; right: -60px; width: 220px; height: 220px; border-radius: 50%; background: rgba(255,255,255,.35); }
+    .cta-band::after { content: ''; position: absolute; bottom: -60px; left: -50px; width: 180px; height: 180px; border-radius: 50%; background: rgba(255,255,255,.25); }
+    .cta-band h2 { font-family: var(--display); font-size: clamp(2rem,4vw,2.7rem); font-weight: 600; color: var(--wine-d); position: relative; }
+    .cta-band p { color: var(--muted); font-size: 1rem; margin: .7rem 0 1.6rem; position: relative; }
+    .cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; position: relative; }
+    .ig-link { display: none; align-items: center; gap: 6px; font-size: .85rem; font-weight: 600; color: var(--rose-d); }
+    .ig-link.is-on { display: inline-flex; }
+
+    /* ── Footer ── */
+    footer { padding: 3rem 0 2.5rem; text-align: center; }
+    .footer-logo { height: 30px; width: auto; margin: 0 auto 1rem; opacity: .9; }
+    footer .fine { font-size: .78rem; color: var(--muted); }
+    .promo { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
+    .promo a { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; margin-top: 8px; opacity: .75; transition: opacity .2s; }
+    .promo a:hover { opacity: 1; }
+
+    /* ── WhatsApp float ── */
+    .wa-float {
+      position: fixed;
+      right: max(18px, env(safe-area-inset-right));
+      bottom: max(18px, env(safe-area-inset-bottom));
+      z-index: 90;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; color: #fff;
+      display: grid; place-items: center;
+      box-shadow: 0 12px 28px rgba(37,211,102,.35);
+      transition: transform .2s;
+    }
+    .wa-float:hover { transform: scale(1.07); }
+
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+    .fade-up.visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      #splash { display: none; }
+      .fade-up { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div id="splash" aria-hidden="true">
+    <div class="splash-inner">
+      <img class="splash-logo" src="logo/logo-splash.png" alt="" width="720" height="258" />
+      <p class="splash-tag">Beleza &amp; Cuidado</p>
+      <div class="bar"><span></span></div>
+    </div>
+  </div>
+
+  <header id="navbar">
+    <div class="container nav-inner">
+      <a href="#top" class="brand" aria-label="Priscila Ramos">
+        <img src="logo/logo-nav.png" alt="Priscila Ramos" width="560" height="201" />
+      </a>
+      <nav class="nav-links">
+        <a href="#clubes">Assinaturas</a>
+        <a href="#express">Express</a>
+        <a href="#fidelidade">Fidelidade</a>
+        <a href="#trabalhos">Trabalhos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <a class="nav-cta js-wa" data-msg="Olá Priscila! Vim pelo site e gostaria de agendar um horário." href="#" target="_blank" rel="noopener noreferrer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        Agendar
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy fade-up">
+          <span class="eyebrow-badge">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
+            Manicure · Pedicure · Estética
+          </span>
+          <h1>Cuidado que se<br /><em>vê e se sente.</em></h1>
+          <p class="hero-lede">Manicure, pedicure, design de sobrancelha e depilação com excelência e higiene em cada detalhe. Escolha um clube de assinatura para a rotina em dia, ou agende um atendimento express quando precisar.</p>
+          <div class="hero-actions">
+            <a href="#clubes" class="btn btn-solid">Ver clubes de assinatura</a>
+            <a href="#express" class="btn btn-outline">Atendimento express</a>
+          </div>
+          <div class="hero-notes">
+            <span class="hero-note">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              Higiene em cada atendimento
+            </span>
+            <span class="hero-note">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              Agendamento pelo WhatsApp
+            </span>
+            <span class="hero-note">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+              A cada 10 express, 1 por nossa conta
+            </span>
+          </div>
+        </div>
+
+        <div class="hero-visual fade-up" style="transition-delay:.12s">
+          <div class="hero-photo">
+            <span class="hero-chip-top">Priscila Ramos</span>
+            <picture>
+              <source media="(max-width: 640px)" srcset="fotos/priscila-mobile.png" />
+              <img src="fotos/priscila.png" alt="Priscila Ramos, profissional de estética" width="1024" height="1536" />
+            </picture>
+          </div>
+          <div class="hero-float">
+            <div class="dot-ico">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21c0-6 1.2-14 3-14s3 8 3 14"/><path d="M10.2 8.2C10.6 6.4 11.4 5 12 5s1.4 1.4 1.8 3.2"/><path d="M8 21h8"/></svg>
+            </div>
+            <div>
+              <b>Assinatura ou express</b>
+              <span>Você escolhe como cuidar de você</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee">
+        <span>Pé e Mão</span><span class="dot">·</span>
+        <span>Sobrancelha</span><span class="dot">·</span>
+        <span>Depilação</span><span class="dot">·</span>
+        <span>Clube Essencial</span><span class="dot">·</span>
+        <span>Clube Pele Lisa</span><span class="dot">·</span>
+        <span>Atendimento Express</span><span class="dot">·</span>
+        <span>Pé e Mão</span><span class="dot">·</span>
+        <span>Sobrancelha</span><span class="dot">·</span>
+        <span>Depilação</span><span class="dot">·</span>
+        <span>Clube Essencial</span><span class="dot">·</span>
+        <span>Clube Pele Lisa</span><span class="dot">·</span>
+        <span>Atendimento Express</span><span class="dot">·</span>
+      </div>
+    </div>
+
+    <!-- PATHS -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head fade-up">
+          <span class="eyebrow">Como você prefere cuidar</span>
+          <h2>Dois jeitos de agendar</h2>
+          <p>Escolha o que faz mais sentido para a sua rotina — sempre com o mesmo cuidado.</p>
+        </div>
+        <div class="paths-grid">
+          <a href="#clubes" class="path-card fade-up">
+            <div class="path-ico">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18"/><path d="M8 3v4M16 3v4"/></svg>
+            </div>
+            <h3>Assinatura</h3>
+            <p>Clubes mensais com preço fixo, economia garantida e horário reservado todo mês.</p>
+            <span class="path-cta">Ver clubes <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></span>
+          </a>
+          <a href="#express" class="path-card fade-up" style="transition-delay:.08s">
+            <div class="path-ico">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <h3>Atendimento express</h3>
+            <p>Sem mensalidade. Escolha o serviço avulso e agende direto pelo WhatsApp.</p>
+            <span class="path-cta">Ver serviços <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLUBES -->
+    <section class="section alt-bg" id="clubes">
+      <div class="container">
+        <div class="section-head fade-up">
+          <span class="eyebrow">Recorrência com economia</span>
+          <h2>Clubes de assinatura</h2>
+          <p>A rotina de cuidado sempre em dia, com preço fixo todo mês.</p>
+        </div>
+
+        <div class="steps-row fade-up">
+          <div class="step"><b>01</b><span>Escolha o clube</span></div>
+          <div class="step"><b>02</b><span>Assine o plano</span></div>
+          <div class="step"><b>03</b><span>Agende no WhatsApp</span></div>
+        </div>
+
+        <div class="clubs-grid">
+          <article class="club-card featured fade-up">
+            <span class="club-badge">Mais escolhido</span>
+            <h3>Clube Essencial</h3>
+            <p class="club-cadence">Quinzenal · unhas e olhar impecáveis</p>
+            <p class="club-desc">A rotina completa para quem não abre mão de se sentir pronta o mês inteiro.</p>
+            <ul class="club-incl">
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>2x Pé e Mão no mês</li>
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>1x Sobrancelha</li>
+            </ul>
+            <div class="club-price-row">
+              <div class="club-price">R$ 145<small>/mês</small></div>
+              <span class="club-save">R$ 15 de economia</span>
+            </div>
+            <a class="btn btn-light btn-full js-club" data-club="essencial" data-label="Clube Essencial" href="#" target="_blank" rel="noopener noreferrer">Assinar plano Essencial</a>
+          </article>
+
+          <article class="club-card fade-up" style="transition-delay:.08s">
+            <h3>Clube Pele Lisa</h3>
+            <p class="club-cadence">Mensal · tranquilidade no seu ciclo</p>
+            <p class="club-desc">Depilação completa na frequência certa, sem se preocupar em remarcar cada região.</p>
+            <ul class="club-incl">
+              <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--rose-d)" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>Perna inteira, virilha, axila e buço</li>
+            </ul>
+            <div class="club-price-row">
+              <div class="club-price">R$ 130<small>/mês</small></div>
+              <span class="club-save">R$ 20 de economia</span>
+            </div>
+            <a class="btn btn-solid btn-full js-club" data-club="peleLisa" data-label="Clube Pele Lisa" href="#" target="_blank" rel="noopener noreferrer">Assinar plano Pele Lisa</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPRESS -->
+    <section class="section" id="express">
+      <div class="container">
+        <div class="section-head fade-up">
+          <span class="eyebrow">Sem mensalidade</span>
+          <h2>Atendimento express</h2>
+          <p>Encaixe rápido na agenda. Toque no serviço e fale direto no WhatsApp.</p>
+        </div>
+
+        <div class="express-grid">
+          <div class="express-intro fade-up">
+            <div class="express-intro-card">
+              <h3>Como funciona</h3>
+              <p>Escolha o serviço que precisa, toque para abrir o WhatsApp já com a mensagem pronta e combine o melhor horário com a Priscila.</p>
+            </div>
+            <div class="express-intro-card">
+              <h3>Higiene sempre</h3>
+              <p>Materiais e ambiente cuidados em cada atendimento, do avulso ao clube de assinatura.</p>
+            </div>
+          </div>
+
+          <div class="fade-up" style="transition-delay:.08s">
+            <div class="menu-panel">
+              <div class="menu-head">
+                <h3>Unhas e olhar</h3>
+                <p>Manicure, pedicure e design</p>
+              </div>
+              <a class="menu-row js-wa" data-msg="Olá Priscila! Quero um atendimento express de Pé e Mão." href="#">
+                <strong>Pé e mão</strong>
+                <span class="val">R$ 60</span>
+                <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+              <a class="menu-row js-wa" data-msg="Olá Priscila! Quero um atendimento express de Sobrancelha." href="#">
+                <strong>Sobrancelha</strong>
+                <span class="val">R$ 40</span>
+                <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+
+            <div class="menu-panel">
+              <div class="menu-head">
+                <h3>Depilação</h3>
+                <p>Escolha a região · valores à vista</p>
+              </div>
+              <a class="menu-row js-wa" data-msg="Olá Priscila! Quero um atendimento express de depilação no buço." href="#">
+                <strong>Buço</strong>
+                <span class="val">R$ 15</span>
+                <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+              <a class="menu-row js-wa" data-msg="Olá Priscila! Quero um atendimento express de depilação no buço e nariz." href="#">
+                <strong>Buço e nariz</strong>
+                <span class="val">R$ 20</span>
+                <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+              <a class="menu-row js-wa" data-msg="Olá Priscila! Quero um atendimento express de depilação na axila." href="#">
+                <strong>Axila</strong>
+                <span class="val">R$ 20</span>
+                <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+              <a class="menu-row js-wa" data-msg="Olá Priscila! Quero um atendimento express de depilação na meia perna." href="#">
+                <strong>Meia perna</strong>
+                <span class="val">R$ 30</span>
+                <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+              <a class="menu-row js-wa" data-msg="Olá Priscila! Quero um atendimento express de depilação na virilha." href="#">
+                <strong>Virilha</strong>
+                <span class="val">R$ 55</span>
+                <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+              <a class="menu-row js-wa" data-msg="Olá Priscila! Quero um atendimento express de depilação na perna inteira." href="#">
+                <strong>Perna inteira</strong>
+                <span class="val">R$ 60</span>
+                <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FIDELIDADE -->
+    <section class="section alt-bg" id="fidelidade">
+      <div class="container">
+        <div class="loyalty-card fade-up">
+          <div class="loyalty-copy">
+            <span class="eyebrow" style="color:#E6D3BC">Sem cartão de papel</span>
+            <h2>A cada 10 atendimentos, um é por nossa conta.</h2>
+            <p>Só vale para o atendimento express. A Priscila marca o selo no painel e você recebe a confirmação no WhatsApp. Consulte seu cartão quando quiser.</p>
+            <a class="btn btn-light" href="fidelidade/">Ver meu cartão</a>
+          </div>
+          <div class="loyalty-preview" aria-hidden="true">
+            <span class="k">Cartão digital</span>
+            <strong>10 selos · 1 brinde</strong>
+            <div class="loyalty-dots">
+              <i></i><i></i><i></i><i></i><i></i>
+              <i></i><i></i><i></i><i></i><i></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="section" id="trabalhos">
+      <div class="container">
+        <div class="section-head fade-up">
+          <span class="eyebrow">Acabamento</span>
+          <h2>Detalhes que aparecem</h2>
+          <p>Unhas bem feitas, higiene e cuidado do início ao fim de cada atendimento.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-item tall fade-up">
+            <img src="fotos/unhas.jpg" alt="Manicure em esmaltação vinho com acabamento brilhante" width="900" height="1200" loading="lazy" />
+            <figcaption class="gallery-caption">
+              <b>Acabamento que aparece</b>
+              <span>Esmaltação com brilho e durabilidade</span>
+            </figcaption>
+          </figure>
+          <figure class="gallery-item wide fade-up" style="transition-delay:.08s">
+            <img src="fotos/perfil.jpg" alt="Priscila Ramos" width="640" height="853" loading="lazy" />
+            <figcaption class="gallery-caption">
+              <b>Priscila Ramos</b>
+              <span>Beleza &amp; Cuidado</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" id="contato">
+      <div class="container">
+        <div class="cta-band fade-up">
+          <h2>Dúvidas, clube ou express?</h2>
+          <p>Fale com a Priscila e encaixe o próximo horário.</p>
+          <div class="cta-actions">
+            <a class="btn btn-wa js-wa" data-msg="Olá Priscila, estou com uma dúvida sobre os serviços!" href="#">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Falar no WhatsApp
+            </a>
+            <a class="ig-link js-ig" href="#" target="_blank" rel="noopener noreferrer" hidden>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>
+              Instagram
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <img class="footer-logo" src="logo/logo-footer.png" alt="Priscila Ramos" width="480" height="172" loading="lazy" />
+      <p class="fine">© <span id="y"></span> Priscila Ramos · Beleza &amp; Cuidado</p>
+      <div class="promo">
+        <p class="fine">Quer uma página como esta para o seu negócio?</p>
+        <a href="https://linkbio.api.br" target="_blank" rel="noopener noreferrer">
+          <img src="logo-linkbio.png" alt="LinkBio" width="90" height="28" loading="lazy" />
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float js-wa" data-msg="Olá Priscila! Vim pelo site e gostaria de agendar." href="#" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp">
+    <svg width="27" height="27" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.149-.67.149-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.123-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+
+  <script>
+    /* ── CONFIGURE AQUI ─────────────────────────────────────────
+       whatsapp: DDI + DDD + número, só dígitos. Ex: 5531999999999
+       asaas: cole o link do Asaas; se vazio, o botão cai no WhatsApp
+       instagram: URL completa ou vazio para ocultar
+    ─────────────────────────────────────────────────────────── */
+    const CONFIG = {
+      whatsapp: '5547997684492',
+      instagram: '',
+      asaas: {
+        essencial: '',
+        peleLisa: ''
+      }
+    };
+
+    const waUrl = (msg) =>
+      'https://wa.me/' + CONFIG.whatsapp.replace(/\D/g, '') +
+      '?text=' + encodeURIComponent(msg);
+
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('.js-wa').forEach((el) => {
+      el.setAttribute('href', waUrl(el.dataset.msg || 'Olá Priscila!'));
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener noreferrer');
+    });
+
+    document.querySelectorAll('.js-club').forEach((el) => {
+      const key = el.dataset.club;
+      const asaas = CONFIG.asaas[key];
+      el.setAttribute('href', asaas || waUrl('Olá Priscila! Quero assinar o ' + el.dataset.label + '.'));
+    });
+
+    const ig = document.querySelector('.js-ig');
+    if (CONFIG.instagram && ig) {
+      ig.hidden = false;
+      ig.classList.add('is-on');
+      ig.href = CONFIG.instagram;
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(() => document.getElementById('splash').classList.add('hide'), 1500);
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+      });
+    }, { threshold: .12 });
+    document.querySelectorAll('.fade-up').forEach((el) => obs.observe(el));
+  </script>
+  <script src="https://linkbio.api.br/tracker.js" data-slug="priscilaramos" defer></script>
+</body>
+</html>
